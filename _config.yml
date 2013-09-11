@@ -1,4 +1,4 @@
-exclude: ["Gemfile*", "*.org", "*.muse"]
+exclude: ["Gemfile*", "*.org", "_config"]
 include: [".htaccess"]
 permalink: none
 pygments: false
