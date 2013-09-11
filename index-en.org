@@ -1,0 +1,82 @@
+#+SETUPFILE: _config/config.org
+#+TITLE: My public repository@Github
+#+DATE: 2013-09-11 22:20:06
+#+LANG: en
+
+* What's this?
+
+My Github repositories. Patch welcome! :-)
+
+* [[http://uwabami.github.com/rdtool/][RDtool: formatter for RD.]]
+
+RD is Ruby's POD. RDtool is formatter for RD.
+
+RD is multipurpose documentation format created for documentating Ruby
+and output of Ruby world. You can embed RD into Ruby script. And RD have
+neat syntax which help you to read document in Ruby script. On the other
+hand, RD have a feature for class reference.
+
+
+ - gem: [[https://rubygems.org/gems/rdtool][RubyGems.org:rdtool]]
+ - Github Repos:: [[https://github.com/uwabami/rdtool][Github: rdtool]]
+ - If you have any questions, comment, bug reports, please report Githb Issues.
+
+* [[http://uwabami.github.com/rail/][Rail: Replace Agent-string Internal Library]]
+
+RAIL is a elisp library, translates codenames with latin chars of
+FLIM/SEMI/XEmacs/UTF-2000-Mule/Meadow to Japanese characters (On
+irchat-pj, Japanize code name for "CTCP VERSION" return string).
+
+It also provides a function compatible with genjis.el (a partof tm, that
+converts mule-version to Japanese characters).
+
+ - Github Repos: [[https://github.com/uwabami/rail][Github: rail]]
+ - If you have any questions, comment, bug reports, please report Githb Issues
+ - For Debian/Ubuntu Users: simply
+   #+BEGIN_EXAMPLE
+   % sudo apt-get install rail
+   #+END_EXAMPLE
+
+* [[https://github.com/uwabami/darkpastel-theme][Emacs color-theme: dark background + pastel font-lock]]
+
+  Github Repos: [[http://github.com/uwabami/darkpastel-theme][Emacs color-theme: dark background + pastel font-lock]]
+
+    #+BEGIN_HTML
+    <div style="margin-left:auto; margin-right:auto; text-align: center; width=640px">
+    <img src="https://raw.github.com/uwabami/darkpastel-theme/master/darkpastel-screenshot.png" class="img-responsive" alt="screenshot" />
+    </div><!-- close img tag -->
+    #+END_HTML
+
+* Beamer Theme for Debian
+
+  Beamer theme for Debian, originaly Created by [[http://www.nofuture.tv/diary/][Jun Nogata]] for OpenOffice Impress.
+   - Github Repos: [[http://github.com/uwabami/beamerthemeKyoto][Github: beamerthemeKyoto]]
+   - Sample: [[https://github.com/uwabami/beamerthemeKyoto/blob/master/examples/sample.pdf][PDF]]
+
+#+BEGIN_HTML
+  <div style="margin-left:auto; margin-right:auto; text-align: center;">
+  <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-1.png" alt="title" />
+  <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-3.png" alt="description" />
+  <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-4.png" alt="TAKAHASHI!!" />
+  </div>
+#+END_HTML
+
+* Rabbit Theme
+
+[[http://rabbit-shockers.org][Rabbit]] Theme for [[http://www.gfd-dennou.org/index.html.en][GFD Dennou Club]].
+
+ - Github Repos: [[http://github.com/uwabami/rabbit-dennou][Github: rabbit-dennou]]
+
+#+BEGIN_HTML
+<div style="margin-left:auto; margin-right:auto; text-align: center;">
+<a href="http://uwabami.github.com/rabbit-dennou/pub/slide/001.png">
+<img src="http://uwabami.github.com/rabbit-dennou/pub/thumbnail/001.png" alt="title" />
+</a>
+<a href="http://uwabami.github.com/rabbit-dennou/pub/slide/002.png">
+<img src="http://uwabami.github.com/rabbit-dennou/pub/thumbnail/002.png" alt="1st slide" />
+</a>
+<a href="http://uwabami.github.com/rabbit-dennou/pub/slide/011.png">
+<img src="http://uwabami.github.com/rabbit-dennou/pub/thumbnail/011.png" alt="TeX output" />
+</a>
+</div>
+#+END_HTML
