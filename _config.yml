@@ -1,0 +1,15 @@
+exclude: ["Gemfile*", "*.org", "*.muse"]
+include: [".htaccess"]
+permalink: none
+pygments: false
+show_drafts: true
+# baseurl:
+home: http://www.gfd-dennou.org/member/uwabami/
+title : "Youhei SASAKI's official site"
+author: Youhei SASAKI
+email: uwabami@gfd-dennou.org
+navbar_list:
+  - title: Top
+    url: index.html
+  - title: Resarch
+    url: work.html
