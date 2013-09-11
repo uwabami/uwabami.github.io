@@ -1,6 +1,6 @@
 #+SETUPFILE: _config/config.org
 #+TITLE: My public repository@Github
-#+DATE: 2013-09-11 22:20:06
+#+DATE: 2013-09-11 22:22:22
 #+LANG: en
 
 * What's this?
@@ -42,7 +42,7 @@ converts mule-version to Japanese characters).
   Github Repos: [[http://github.com/uwabami/darkpastel-theme][Emacs color-theme: dark background + pastel font-lock]]
 
     #+BEGIN_HTML
-    <div style="margin-left:auto; margin-right:auto; text-align: center; width=640px">
+    <div style="margin-left:auto; margin-right:auto; text-align: center; width=480px">
     <img src="https://raw.github.com/uwabami/darkpastel-theme/master/darkpastel-screenshot.png" class="img-responsive" alt="screenshot" />
     </div><!-- close img tag -->
     #+END_HTML
