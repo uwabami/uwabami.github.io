@@ -2,15 +2,10 @@
 <html lang="{{ page.lang }}">
   <head>
     <meta charset="UTF-8">
-    <title> {{ site.title }}{% if page.url != '/index.html' %}: {{ page.title }} {% endif %}</title>
+    <title>{{ site.title }}: {{ page.title }}</title>
     <meta name="author" content="{{ site.author }}">
     <!-- Enable responsive viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% if page.title == site.title %}
-    <!-- Google webmaster tool -->
-    <meta name="google-site-verification" content="eV6ftpub4rGjPL3tC-7VZq3pj2igU4ZJU1Ei_3aYuZE" />
-    {% endif %}
-    <!-- CSS and Javascript -->
     <link href="{{ site.baseurl }}bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
     <link href="{{ site.baseurl }}css/graph.css" rel="stylesheet" type="text/css" media="all">
     <!--[if lt IE 8]>
@@ -63,13 +58,14 @@
               {% else %}
               {% capture url %}{{ node.url | strip_newlines | remove:' ' }}{% endcapture %}
               {% endif %}
-              <li><a href="{{ site.home }}{{ url | remove:' ' | strip_newlines }}">{{ node.title }}</a></li>
+              <li><a href="{{ site.baseurl }}{{ url | remove:' ' | strip_newlines }}">{{ node.title }}</a></li>
               {% endfor %}
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sotfware<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="http://uwabami.github.io/">Github</a></li>
-                  <li><a href="{{ site.home }}cc-env/index.html">Computer Memo</a></li>
+                  {% if page.lang == "ja" %}<li><a href="http://uwabami.github.io/">Github</a></li>
+                  <li><a href="{{ site.baseurl }}cc-env/index.html">Computer Memo</a></li>
+                  {% else %} <li><a href="http://uwabami.github.io/index-en.html">Github</a></li>{% endif %}
                 </ul>
               </li>
               <li><a href="http://uwabami.junkhub.org/log/">Blog</a></li>
