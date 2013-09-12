@@ -1,7 +1,6 @@
 #+SETUPFILE: _config/config.org
 #+TITLE: My public repository@Github
-#+DATE: 2013-09-13 02:47:29
-#+JEKYLL_CATEGORIES: cc-env
+#+DATE: 2013-09-13 03:33:48
 #+LANG: ja
 
 * What's this?
