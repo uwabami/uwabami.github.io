@@ -1,6 +1,6 @@
 #+SETUPFILE: _config/config.org
 #+TITLE: My public repository@Github
-#+DATE: 2013-09-13 03:33:48
+#+DATE: 2013-09-13 03:40:09
 #+LANG: ja
 
 * What's this?
@@ -37,8 +37,8 @@ RDtool は RD のフォーマッタであり, RD を HTML や roff などに変�
   取得は github からどうぞ: [[http://github.com/uwabami/darkpastel-theme][Emacs color-theme: dark background + pastel font-lock]]
 
     #+BEGIN_HTML
-      <div style="margin-left:auto; margin-right:auto; text-align: center; width=640px">
-      <img src="https://raw.github.com/uwabami/darkpastel-theme/master/darkpastel-screenshot.png" class="img-responsive" alt="screenshot" />
+      <div style="margin-left:auto; margin-right:auto; text-align: center; max-width=480px">
+      <img src="https://raw.github.com/uwabami/darkpastel-theme/master/darkpastel-screenshot.png" class="img-responsive" max-width=480px alt="screenshot" />
       </div><!-- close img tag -->
    #+END_HTML
 
