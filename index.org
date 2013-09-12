@@ -1,6 +1,6 @@
 #+SETUPFILE: _config/config.org
 #+TITLE: My public repository@Github
-#+DATE: 2013-09-11 22:20:29
+#+DATE: 2013-09-13 02:47:29
 #+JEKYLL_CATEGORIES: cc-env
 #+LANG: ja
 
@@ -55,26 +55,4 @@ RDtool は RD のフォーマッタであり, RD を HTML や roff などに変�
   <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-3.png" class="img-responsive" alt="description" />
   <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-4.png" class="img-responsive" alt="TAKAHASHI!!" />
   </div>
-#+END_HTML
-
-* Rabbit のテーマ
-
-  [[http://www.gfd-dennou.org][地球流体電脳倶楽部]] のロゴが入った [[http://rabbit-shockers.org][Rabbit]] のテーマです.
-
-  字が小さいのであんまり rabbit っぽく無いです.
-  あと, 数式を沢山使いたいので TeX をパースする部分を弄っています.
-   - 取得は github からどうぞ: [[http://github.com/uwabami/rabbit-dennou][Github: rabbit-dennou]]
-
-#+BEGIN_HTML
-<div style="margin-left:auto; margin-right:auto; text-align: center;">
-<a href="http://uwabami.github.com/rabbit-dennou/pub/slide/001.png">
- <img src="http://uwabami.github.com/rabbit-dennou/pub/thumbnail/001.png" alt="title" />
-</a>
-<a href="http://uwabami.github.com/rabbit-dennou/pub/slide/002.png">
- <img src="http://uwabami.github.com/rabbit-dennou/pub/thumbnail/002.png" alt="1st slide" />
-</a>
-<a href="http://uwabami.github.com/rabbit-dennou/pub/slide/011.png">
- <img src="http://uwabami.github.com/rabbit-dennou/pub/thumbnail/011.png" alt="TeX output" />
-</a>
-</div>
 #+END_HTML
