@@ -86,9 +86,9 @@
               {% unless page.categories.first == 'cc-env' %}
               <li style="width: 85px;">
                 {% if page.lang == "ja" %}
-                <a href="{{ site.baseurl }}{{ page.url | remove_first: '/' | replace:'.html','-en.html' | strip_newlines | remove:' ' }}">English</a>
+                <a href="{{ page.url | remove_first: '/' | replace:'.html','-en.html' | strip_newlines | remove:' ' }}">English</a>
                 {% else %}
-                <a href="{{ site.baseurl }}{{ page.url | remove_first: '/' | replace:'-en.html','.html' | strip_newlines | remove:' ' }}">Japanese</a>
+                <a href="{{ page.url | remove_first: '/' | replace:'-en.html','.html' | strip_newlines | remove:' ' }}">Japanese</a>
                 {% endif %}
               </li>
               {% endunless %}
