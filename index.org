@@ -1,6 +1,6 @@
 #+SETUPFILE: _config/config.org
 #+TITLE: My public repository@Github
-#+DATE: 2013-09-13 03:40:09
+#+DATE: 2013-09-18 22:40:13
 #+LANG: ja
 
 * What's this?
@@ -21,7 +21,6 @@ RDtool は RD のフォーマッタであり, RD を HTML や roff などに変�
 
 * [[http://uwabami.github.com/rail/][Rail: Replace Agent-string Internal Library]]
 
-
 しまだみつひろさんが作成された rail を勝手に引き取って公開/気がついた時に
 アップデートしています. お気付きの点がありましたら, ご連絡下さい.
 
@@ -38,8 +37,8 @@ RDtool は RD のフォーマッタであり, RD を HTML や roff などに変�
 
     #+BEGIN_HTML
       <div style="margin-left:auto; margin-right:auto; text-align: center; max-width=480px">
-      <img src="https://raw.github.com/uwabami/darkpastel-theme/master/darkpastel-screenshot.png" class="img-responsive" max-width=480px alt="screenshot" />
-      </div><!-- close img tag -->
+        <img src="https://raw.github.com/uwabami/darkpastel-theme/master/darkpastel-screenshot.png" class="img-responsive" max-width=480px alt="screenshot" />
+      </div><!-- close div tag -->
    #+END_HTML
 
 * Beamer Theme for Debian
@@ -50,8 +49,8 @@ RDtool は RD のフォーマッタであり, RD を HTML や roff などに変�
 
 #+BEGIN_HTML
   <div style="margin-left:auto; margin-right:auto; text-align: center;">
-  <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-1.png" class="img-responsive" alt="title" />
-  <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-3.png" class="img-responsive" alt="description" />
-  <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-4.png" class="img-responsive" alt="TAKAHASHI!!" />
-  </div>
+    <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-1.png" class="img-responsive" alt="title" />
+    <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-3.png" class="img-responsive" alt="description" />
+    <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-4.png" class="img-responsive" alt="TAKAHASHI!!" />
+  </div><!-- close div tag -->
 #+END_HTML
