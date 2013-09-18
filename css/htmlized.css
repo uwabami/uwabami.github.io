@@ -1,0 +1,63 @@
+pre.src,
+pre.example {
+    background-color: #242424;
+    color: #cccccc;
+}
+
+.htmlized-builtin {
+    /* font-lock-builtin-face */
+    color: #7f7fff;
+}
+.htmlized-comment-delimiter {
+    /* font-lock-comment-delimiter-face */
+    color: #777777;
+}
+.htmlized-comment {
+    /* font-lock-comment-face */
+    color: #777777;
+}
+.htmlized-constant {
+    /* font-lock-constant-face */
+    color: #ffbf7f;
+}
+.htmlized-doc {
+    /* font-lock-doc-face */
+    color: #4ca54c;
+}
+.htmlized-doc-string {
+    /* font-lock-doc-string-face */
+    color: #4ca54c;
+}
+.htmlized-function-name {
+    /* font-lock-function-name-face */
+    color: #bf7fff;
+}
+.htmlized-keyword {
+    /* font-lock-keyword-face */
+    color: #ff7f7f;
+}
+.htmlized-negation-char {
+    /* font-lock-negation-char-face */
+    color: #7fffff;
+}
+.htmlized-preprocessor {
+    /* font-lock-preprocessor-face */
+    color: #ff7fbf;
+}
+.htmlized-string {
+    /* font-lock-string-face */
+    color: #7fff7f;
+}
+.htmlized-type {
+    /* font-lock-type-face */
+    color: #ffff7f;
+}
+.htmlized-variable-name {
+    /* font-lock-variable-name-face */
+    color: #7fbfff;
+}
+.htmlized-warning {
+    /* font-lock-warning-face */
+    color: #ff7fff;
+    font-weight: bold;
+}

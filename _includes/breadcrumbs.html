@@ -1,0 +1,24 @@
+<ul class="breadcrumb">
+{% assign crumbs = page.url | split:'/' %}
+{% assign crumbs_num = crumbs | size %}
+{% if page.lang != "ja" %}
+<li><a href="{{ site.baseurl }}index-en.html">Top</a>  </li>
+{% else %}
+<li><a href="{{ site.baseurl }}index.html">Top</a>  </li>
+{% endif %}
+{% assign link = "" %}
+{% for crumb in crumbs offset:1 %}
+{% unless forloop.first %}
+  {% capture link %}{{ link }}/{{ crumb }}{% endcapture %}
+{% else %}
+  {% capture link %}{{ link }}{{ crumb }}{% endcapture %}
+{% endunless %}
+{% unless forloop.last %}
+{% if page.lang != "ja" %}
+<li> <a href="{{ site.baseurl }}{{ link }}/index-en.html">{{ crumb }}</a>  </li>
+{% else %}
+<li> <a href="{{ site.baseurl }}{{ link }}/index.html">{{ crumb }}</a>  </li>
+{% endif %}
+{% endunless %}
+{% endfor %}
+</ul>

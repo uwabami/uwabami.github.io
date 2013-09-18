@@ -12,4 +12,4 @@ navbar_list:
   - title: Top
     url: index.html
   - title: Resarch
-    url: work.html
+    url: work/index.html

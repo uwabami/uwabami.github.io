@@ -2,12 +2,17 @@
 <html lang="{{ page.lang }}">
   <head>
     <meta charset="UTF-8">
-    <title>{{ site.title }}: {{ page.title }}</title>
+    {% capture url %}{{ page.url | replace: '.html','' | replace: '-en','' | strip_newlines | remove:' '}}{% endcapture %}
+    {% unless url == '/index' %}<title>{{ site.title }}: {{ page.title }}</title>
+    {% else %}<title>{{ site.title }}</title>
+    <meta name="google-site-verification" content="eV6ftpub4rGjPL3tC-7VZq3pj2igU4ZJU1Ei_3aYuZE" />
+    {% endunless %}
     <meta name="author" content="{{ site.author }}">
     <!-- Enable responsive viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ site.baseurl }}bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
     <link href="{{ site.baseurl }}css/graph.css" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ site.baseurl }}css/htmlized.css" rel="stylesheet" type="text/css" media="all">
     <!--[if lt IE 8]>
     <link href="{{ site.baseurl }}css/graph-bg-noembed.css" rel="stylesheet" type="text/css" media="all">
     <![endif]-->
@@ -47,27 +52,21 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" rel="home" href="{{ site.home }}">{{ site.title }}</a>
+            <a class="navbar-brand" rel="home" href="{{ site.baseurl }}">{{ site.title }}</a>
           </div> <!-- navbar-header -->
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              {% for node in site.navbar_list %}
-              {% if page.lang != "ja" %}
-              {% capture url %}{{ node.url | replace:'.html','-en.html' | strip_newlines | remove:' ' | remove: '/' }}{% endcapture %}
-              {% else %}
-              {% capture url %}{{ node.url | strip_newlines | remove:' ' | remove: '/'  }}{% endcapture %}
-              {% endif %}
-              <li><a href="{{ site.home }}{{ url | remove:' ' | strip_newlines }}">{{ node.title }}</a></li>
-              {% endfor %}
+              {% include navbar.html %}
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sotfware<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   {% if page.lang == "ja" %}<li><a href="http://uwabami.github.io/">Github</a></li>
-                  <li><a href="{{ site.home }}cc-env/index.html">Computer Memo</a></li>
+                  <li><a href="{{ site.baseurl }}cc-env/index.html">Computer Memo</a></li>
                   {% else %} <li><a href="http://uwabami.github.io/index-en.html">Github</a></li>{% endif %}
                 </ul>
               </li>
-              <li><a href="http://uwabami.junkhub.org/log/">Blog</a></li>
+              {% if page.lang == "ja" %}<li><a href="http://uwabami.junkhub.org/log/index.html">Blog</a></li>
+              {% else %}<li><a href="http://uwabami.junkhub.org/log/index-en.html">Blog</a></li>{% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li>
@@ -76,7 +75,7 @@
                       method="get"
                       onsubmit="$('#siteseach').val($location).attr('host')+$(location).attr('patname')">
                   <div class="form-group">
-                    <input type="hidden" name="q"  value="site:{{ site.baseurl | remove_first:'http://' }}">
+                    <input type="hidden" name="q"  value="site:{{ site.home | remove_first:'http://' }}">
                     <input type="hidden" name="ie" value="UTF-8">
                     <input type="hidden" name="oe" value="UTF-8">
                     <input type="hidden" name="sitesearch" id="sitesearch">
@@ -84,6 +83,7 @@
                   </div>
                 </form>
               </li>
+              {% unless page.categories.first == 'cc-env' %}
               <li style="width: 85px;">
                 {% if page.lang == "ja" %}
                 <a href="{{ site.baseurl }}{{ page.url | remove_first: '/' | replace:'.html','-en.html' | strip_newlines | remove:' ' }}">English</a>
@@ -91,6 +91,7 @@
                 <a href="{{ site.baseurl }}{{ page.url | remove_first: '/' | replace:'-en.html','.html' | strip_newlines | remove:' ' }}">Japanese</a>
                 {% endif %}
               </li>
+              {% endunless %}
             </ul>
           </div> <!-- nav-collapse -->
         </div> <!-- container -->

@@ -1,0 +1,8 @@
+              {% for node in site.navbar_list %}
+              {% if page.lang != "ja" %}
+              {% capture url %}{{ node.url | replace:'.html','-en.html' | strip_newlines | remove:' ' }}{% endcapture %}
+              {% else %}
+              {% capture url %}{{ node.url | strip_newlines | remove:' ' }}{% endcapture %}
+              {% endif %}
+              <li><a href="{{ site.baseurl }}{{ url | remove:' ' | strip_newlines }}">{{ node.title }}</a></li>
+              {% endfor %}
