@@ -3,7 +3,7 @@ include: [".htaccess"]
 permalink: none
 pygments: false
 show_drafts: true
-# baseurl:
+baseurl: http://www.gfd-dennou.org/member/uwabami/
 home: http://www.gfd-dennou.org/member/uwabami/
 title : "Youhei SASAKI's official site"
 author: Youhei SASAKI
