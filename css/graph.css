@@ -72,6 +72,9 @@ hr {
     color: inherit;
 }
 
+ul.navbar-nav {
+     font-size: 14px;
+}
 
 strong {
     font-weight: bold;
