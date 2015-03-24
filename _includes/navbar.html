@@ -1,8 +1,82 @@
-              {% for node in site.navbar_list %}
-              {% if page.lang != "ja" %}
-              {% capture url %}{{ node.url | replace:'.html','-en.html' | strip_newlines | remove:' ' }}{% endcapture %}
-              {% else %}
-              {% capture url %}{{ node.url | strip_newlines | remove:' ' }}{% endcapture %}
-              {% endif %}
-              <li><a href="{{ site.baseurl }}{{ url | remove:' ' | strip_newlines }}">{{ node.title }}</a></li>
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            {% strip %}
+            {% if page.lang == "en" %}
+            <a class="navbar-brand" href="{{ "/index.html.en" | prepend: site.baseurl }}">{{ site.title }}</a>
+            {% else %}
+            <a class="navbar-brand" href="{{ "/index.html.ja" | prepend: site.baseurl }}">{{ site.title }}</a>
+            {% endif %}
+            {% endstrip %}
+          </div> <!-- /.navbar-header -->
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              {% strip %}
+              {% capture current %}{{ page.url | strip_newlines | remove:' '}}{% endcapture %}
+              {% for nav in site.data.navigation %}
+                {% if nav.submenus %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ nav.name }} <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  {% for submenu in nav.submenus %}
+                  <!-- {{ submenu }} -->
+                    {% if submenu.name == "Github" %}
+                  <li><a href="{{ submenu.url }}">{{ submenu.name }}</a></li>
+                    {% else %}
+                  <li><a href="{{ submenu.url | prepend:site.baseurl }}">{{ submenu.name }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </li>
+                {% else %}
+                  {% if page.lang == "en" %}
+                    {% capture nav_url %}{{ nav.url | replace:'.html.ja','.html.en' | strip_newlines | remove: ' ' }}{% endcapture %}
+                  {% else %}
+                    {% capture nav_url %}{{ nav.url | strip_newlines | remove: ' ' }}{% endcapture %}
+                  {% endif %}
+                  {% if current == nav_url %}
+              <li class="active"><a href="{{ nav_url | prepend: site.baseurl }}">{{ nav.name }}</a></li>
+                  {% else %}
+              <li><a href="{{ nav_url | prepend: site.baseurl }}">{{ nav.name }}</a></li>
+                  {% endif %}
+                {% endif %}
               {% endfor %}
+              {% if page.lang == "ja" %}<li><a href="http://uwabami.junkhub.org/log/">Blog</a></li> {% endif %}
+              {% endstrip %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <form class="navbar-form" role="search"
+                      action="http://google.com/search"
+                      method="get"
+                      onsubmit="$('#siteseach').val($location).attr('host')">
+                  <div class="form-group">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <input type="hidden" name="oe" value="UTF-8">
+                    <input type="hidden" name="sitesearch" id="sitesearch">
+                    <input type="text"   name="q"  size="4" class="form-control" placeholder="search">
+                  </div>
+                </form>
+              </li>
+              <li>
+                {% strip %}
+                {% if page.lang == "ja" %}
+                <a href="{{ page.url | replace:'.html.ja','.html.en' | prepend: site.baseurl }}">English</a>
+                {% else %}
+                <a href="{{ page.url | replace:'.html.en','.html.ja' | prepend: site.baseurl }}">日本語</a>
+                {% endif %}
+                {% endstrip %}
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </header>

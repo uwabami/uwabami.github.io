@@ -1,0 +1,18 @@
+<h2>カテゴリ</h2>
+{% assign emacs_list = site.tags.emacs %}
+{% assign cc-env_list = site.tags.cc-env %}
+<p>
+  <a href="{{ "/cc-env/" | prepend: site.baseurl }}">cc-env</a>
+  ({{ cc-env_list.size }}),
+  <a href="{{ "/cc-env/emacs/" | prepend: site.baseurl }}">emacs</a>
+  ({{ emacs_list.size }})
+</p>
+<!--
+<h3>ページ一覧</h3>
+<ul>
+  {% for node in cc-env_list %}
+  <li><a href="{{ node.url | remove_first:'/' | append: site.baseurl }}">{{ node.title }}</a></li>
+  {% endfor %}
+</ul>
+</div>
+-->
