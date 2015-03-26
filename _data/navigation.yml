@@ -1,8 +1,0 @@
-- name: "Research"
-  url: "/Research/index.html.ja"
-- name: "Software"
-  submenus:
-    - name: "Github"
-      url: "http://uwabami.github.io/"
-    - name: "Computer Memo"
-      url: "/Software/cc-env/index.html.ja"

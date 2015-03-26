@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Youhei SASAKI's official site: My public repository@Github</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/js/html5shiv.min.js"></script>
+      <script src="/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  </head>
+
+
+  <body>
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+            <a class="navbar-brand" href="http://www.gfd-dennou.org/member/uwabami/index.html.ja">Youhei SASAKI's official site</a>
+            
+          </div> <!-- /.navbar-header -->
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              
+              <li><a href="http://www.gfd-dennou.org/member/uwabami/research/index.html.ja">Research</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Software <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="http://uwabami.github.io/">Github</a></li>
+                  <li><a href="http://www.gfd-dennou.org/member/uwabami/software/cc-env/index.html">Computer Memo</a></li>
+                </ul>
+              </li>
+              <li><a href="http://uwabami.junkhub.org/log/">Blog</a></li> 
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <form class="navbar-form" role="search"
+                      action="http://google.com/search"
+                      method="get"
+                      onsubmit="$('#siteseach').val($location).attr('host')">
+                  <div class="form-group">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <input type="hidden" name="oe" value="UTF-8">
+                    <input type="hidden" name="sitesearch" id="sitesearch">
+                    <input type="text"   name="q"  size="4" class="form-control" placeholder="search">
+                  </div>
+                </form>
+              </li>
+              <li>
+                
+                <a href="http://www.gfd-dennou.org/member/uwabami/software/Github/index.html.en">English</a>
+                
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </header>
+
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="page-header col-xs-12">
+        <h1>My public repository@Github</h1>
+<ul class="breadcrumb">
+
+<li><a href="http://www.gfd-dennou.org/member/uwabami/index.html.ja#">Top</a> </li>
+<li><a href="/member/uwabami/software/index.html.ja">Software</a></li>
+<li><a href="/member/uwabami/software/Github/index.html.ja">Github</a></li>
+
+</ul>
+
+      </div>
+      <div class="col-xs-12">
+<h2 id="sec-1">What&rsquo;s this?</h2>
+
+<p>
+主に自分が使うために作成したソフトウェアやプレゼン用のテーマなどです.
+公開できるモノについては github にどんどん置いています. パッチウェルカム.
+</p>
+
+<h2 id="sec-2"><a href="http://uwabami.github.com/rdtool/">RDtool: formatter for RD.</a></h2>
+
+<p>
+RD は Ruby における POD(Plain Old Documentation) のようなものです.
+RDtool は RD のフォーマッタであり, RD を HTML や roff などに変換できます.
+以前は Moonwolf さんがリリースマネジメントをされていましたが,
+2011年 5 月に引き継いで, gem 化したりイロイロ弄っています.
+</p>
+
+<ul class="org-ul">
+<li>gem で取得できます: <a href="https://rubygems.org/gems/rdtool">RubyGems.org:rdtool</a>
+</li>
+<li>開発は GitHub でやってます.: <a href="https://github.com/uwabami/rdtool">Github: rdtool</a>
+</li>
+<li>ご意見, ご要望など, メール下さるか Github の <a href="https://github.com/uwabami/rdtool/issues?sort%3Dcreated&amp%3Bdirection%3Ddesc&amp%3Bstate%3Dopen">Issues</a> にお願いします.
+</li>
+</ul>
+
+<h2 id="sec-3"><a href="http://uwabami.github.com/rail/">Rail: Replace Agent-string Internal Library</a></h2>
+
+<p>
+しまだみつひろさんが作成された rail を勝手に引き取って公開/気がついた時に
+アップデートしています. お気付きの点がありましたら, ご連絡下さい.
+</p>
+
+<ul class="org-ul">
+<li>取得は github からどうぞ: <a href="https://github.com/uwabami/rail">Github: rail</a>
+</li>
+<li>ご意見, ご要望など, メール下さるか Github の <a href="https://github.com/uwabami/rdtool/issues?sort%3Dcreated&amp%3Bdirection%3Ddesc&amp%3Bstate%3Dopen">Issues</a> にお願いします.
+</li>
+<li>Debian/Ubuntu ユーザの方は, 公式パッケージにしましたので  apt-get で install できます.
+<pre class="example">
+% sudo apt-get install rail
+</pre>
+</li>
+</ul>
+
+<h2 id="sec-4"><a href="https://github.com/uwabami/darkpastel-theme">Emacs color-theme: dark background + pastel font-lock</a></h2>
+
+<p>
+取得は github からどうぞ: <a href="http://github.com/uwabami/darkpastel-theme">Emacs color-theme: dark background + pastel font-lock</a>
+</p>
+
+  <div class="row">
+  <div class="col-md-8 col-md-offset2">
+    <img src="https://raw.github.com/uwabami/darkpastel-theme/master/darkpastel-screenshot.png" class="img-responsive" max-width=480px alt="screenshot" />
+  </div><!-- close col-md-8 -->
+ <div class="col-md-2"></div><!-- close offset -->
+</div><!-- close row -->
+
+<h2 id="sec-5">Beamer Theme for Debian</h2>
+
+<p>
+<a href="http://www.nofuture.tv/diary/">のがじゅん</a> さんが作った OpenOffice Impress の <a href="http://wiki.debian.org/KansaiDebianMeetingArchives?action%3DAttachFile&amp%3Bdo%3Dview&amp%3Btarget%3D20081108-KGB-Kansai_debian_PR.odp">Debian テーマ</a> を LaTeX Beamer に移植してみました.
+</p>
+<ul class="org-ul">
+<li>取得は github からどうぞ: <a href="http://github.com/uwabami/beamerthemeKyoto">Github: beamerthemeKyoto</a>
+</li>
+<li>サンプル: <a href="https://github.com/uwabami/beamerthemeKyoto/blob/master/examples/sample.pdf">PDF</a>
+</li>
+</ul>
+
+<div class="row">
+<div class="col-md-3 col-md-offset1">
+  <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-1.png" class="img-responsive" alt="title" />
+</div><!-- close col-md-3 -->
+<div class="col-md-3">
+  <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-3.png" class="img-responsive" alt="description" />
+</div><!-- close col-md-3 -->
+<div class="col-md-3">
+  <img src="https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-4.png" class="img-responsive" alt="TAKAHASHI!!" />
+</div><!-- close col-md-3 -->
+<div class="col-md-2"></div><!-- close col-md-2 -->
+</div><!-- close row -->
+
+      </div> <!-- /.col-xs-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.content -->
+</div> <!-- /.container -->
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="col-sm-12">
+    <footer>
+      <p>
+        
+        
+        
+        &copy; 2006 - 2013
+        <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+        Lastupdate: 2013-09-30 08:25:51 +0900
+        <br />
+        <span class="generator"> Powered by
+          <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>
+          +
+          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll" >Jekyll</a>
+          +
+          <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+        </span>
+      </p>
+    </footer>
+    <script src="/js/jquery-1.9.1.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+
+      </div> <!-- /.col-sm-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.content -->
+</div> <!-- /.container -->
+  </body>
+</html>
