@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
   <head>
     <meta charset="UTF-8">
@@ -32,13 +32,13 @@
               <span class="icon-bar"></span>
             </button>
             
-            <a class="navbar-brand" href="http://www.gfd-dennou.org/member/uwabami/index.html.ja">Youhei SASAKI's official site</a>
+            <a class="navbar-brand" href="http://www.gfd-dennou.org/member/uwabami/index.html.en">Youhei SASAKI's official site</a>
             
           </div> <!-- /.navbar-header -->
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               
-              <li><a href="http://www.gfd-dennou.org/member/uwabami/research/index.html.ja">Research</a></li>
+              <li><a href="http://www.gfd-dennou.org/member/uwabami/research/index.html.en">Research</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Software <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -46,7 +46,6 @@
                   <li><a href="http://www.gfd-dennou.org/member/uwabami/software/cc-env/index.html">Computer Memo</a></li>
                 </ul>
               </li>
-              <li><a href="http://uwabami.junkhub.org/log/">Blog</a></li> 
               
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -65,7 +64,7 @@
               </li>
               <li>
                 
-                <a href="http://www.gfd-dennou.org/member/uwabami/software/Github/index.html.en">English</a>
+                <a href="/software/Github/index.html">日本語</a>
                 
               </li>
             </ul>
@@ -81,9 +80,9 @@
         <h1>My public repository@Github</h1>
 <ul class="breadcrumb">
 
-<li><a href="http://www.gfd-dennou.org/member/uwabami/index.html.ja#">Top</a> </li>
-<li><a href="/member/uwabami/software/index.html.ja">Software</a></li>
-<li><a href="/member/uwabami/software/Github/index.html.ja">Github</a></li>
+<li><a href="http://www.gfd-dennou.org/member/uwabami/index.html.en#">Top</a> </li>
+<li><a href="http://www.gfd-dennou.org/member/uwabami/software/index.html.en">Software</a></li>
+<li><a href="http://uwabami.github.io/index-en.html">Github</a></li>
 
 </ul>
 
@@ -92,41 +91,51 @@
 <h2 id="sec-1">What&rsquo;s this?</h2>
 
 <p>
-主に自分が使うために作成したソフトウェアやプレゼン用のテーマなどです.
-公開できるモノについては github にどんどん置いています. パッチウェルカム.
+My Github repositories. Patch welcome! :-)
 </p>
 
 <h2 id="sec-2"><a href="http://uwabami.github.com/rdtool/">RDtool: formatter for RD.</a></h2>
 
 <p>
-RD は Ruby における POD(Plain Old Documentation) のようなものです.
-RDtool は RD のフォーマッタであり, RD を HTML や roff などに変換できます.
-以前は Moonwolf さんがリリースマネジメントをされていましたが,
-2011年 5 月に引き継いで, gem 化したりイロイロ弄っています.
+RD is Ruby&rsquo;s POD. RDtool is formatter for RD.
 </p>
 
+<p>
+RD is multipurpose documentation format created for documentating Ruby
+and output of Ruby world. You can embed RD into Ruby script. And RD have
+neat syntax which help you to read document in Ruby script. On the other
+hand, RD have a feature for class reference.
+</p>
+
+
 <ul class="org-ul">
-<li>gem で取得できます: <a href="https://rubygems.org/gems/rdtool">RubyGems.org:rdtool</a>
+<li>gem: <a href="https://rubygems.org/gems/rdtool">RubyGems.org:rdtool</a>
 </li>
-<li>開発は GitHub でやってます.: <a href="https://github.com/uwabami/rdtool">Github: rdtool</a>
+<li>Github Repos:: <a href="https://github.com/uwabami/rdtool">Github: rdtool</a>
 </li>
-<li>ご意見, ご要望など, メール下さるか Github の <a href="https://github.com/uwabami/rdtool/issues?sort%3Dcreated&amp%3Bdirection%3Ddesc&amp%3Bstate%3Dopen">Issues</a> にお願いします.
+<li>If you have any questions, comment, bug reports, please report Githb Issues.
 </li>
 </ul>
 
 <h2 id="sec-3"><a href="http://uwabami.github.com/rail/">Rail: Replace Agent-string Internal Library</a></h2>
 
 <p>
-しまだみつひろさんが作成された rail を勝手に引き取って公開/気がついた時に
-アップデートしています. お気付きの点がありましたら, ご連絡下さい.
+RAIL is a elisp library, translates codenames with latin chars of
+FLIM/SEMI/XEmacs/UTF-2000-Mule/Meadow to Japanese characters (On
+irchat-pj, Japanize code name for &ldquo;CTCP VERSION&rdquo; return string).
+</p>
+
+<p>
+It also provides a function compatible with genjis.el (a partof tm, that
+converts mule-version to Japanese characters).
 </p>
 
 <ul class="org-ul">
-<li>取得は github からどうぞ: <a href="https://github.com/uwabami/rail">Github: rail</a>
+<li>Github Repos: <a href="https://github.com/uwabami/rail">Github: rail</a>
 </li>
-<li>ご意見, ご要望など, メール下さるか Github の <a href="https://github.com/uwabami/rdtool/issues?sort%3Dcreated&amp%3Bdirection%3Ddesc&amp%3Bstate%3Dopen">Issues</a> にお願いします.
+<li>If you have any questions, comment, bug reports, please report Githb Issues
 </li>
-<li>Debian/Ubuntu ユーザの方は, 公式パッケージにしましたので  apt-get で install できます.
+<li>For Debian/Ubuntu Users: simply
 <pre class="example">
 % sudo apt-get install rail
 </pre>
@@ -136,7 +145,7 @@ RDtool は RD のフォーマッタであり, RD を HTML や roff などに変�
 <h2 id="sec-4"><a href="https://github.com/uwabami/darkpastel-theme">Emacs color-theme: dark background + pastel font-lock</a></h2>
 
 <p>
-取得は github からどうぞ: <a href="http://github.com/uwabami/darkpastel-theme">Emacs color-theme: dark background + pastel font-lock</a>
+Github Repos: <a href="http://github.com/uwabami/darkpastel-theme">Emacs color-theme: dark background + pastel font-lock</a>
 </p>
 
   <div class="row">
@@ -149,12 +158,12 @@ RDtool は RD のフォーマッタであり, RD を HTML や roff などに変�
 <h2 id="sec-5">Beamer Theme for Debian</h2>
 
 <p>
-<a href="http://www.nofuture.tv/diary/">のがじゅん</a> さんが作った OpenOffice Impress の <a href="http://wiki.debian.org/KansaiDebianMeetingArchives?action%3DAttachFile&amp%3Bdo%3Dview&amp%3Btarget%3D20081108-KGB-Kansai_debian_PR.odp">Debian テーマ</a> を LaTeX Beamer に移植してみました.
+Beamer theme for Debian, originaly Created by <a href="http://www.nofuture.tv/diary/">Jun Nogata</a> for OpenOffice Impress.
 </p>
 <ul class="org-ul">
-<li>取得は github からどうぞ: <a href="http://github.com/uwabami/beamerthemeKyoto">Github: beamerthemeKyoto</a>
+<li>Github Repos: <a href="http://github.com/uwabami/beamerthemeKyoto">Github: beamerthemeKyoto</a>
 </li>
-<li>サンプル: <a href="https://github.com/uwabami/beamerthemeKyoto/blob/master/examples/sample.pdf">PDF</a>
+<li>Sample: <a href="https://github.com/uwabami/beamerthemeKyoto/blob/master/examples/sample.pdf">PDF</a>
 </li>
 </ul>
 
@@ -186,7 +195,7 @@ RDtool は RD のフォーマッタであり, RD を HTML や roff などに変�
         
         &copy; 2006 - 2013
         <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-        Lastupdate: 2013-09-30 08:25:51 +0900
+        Lastupdate: 2013-09-30 08:25:55 +0900
         <br />
         <span class="generator"> Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>
