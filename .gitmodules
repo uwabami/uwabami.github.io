@@ -1,0 +1,8 @@
+[submodule "rdtool"]
+	path = rdtool
+	url = git@github.com:uwabami/rdtool.git
+	branch = gh-pages
+[submodule "rail"]
+	path = rail
+	url = git@github.com:uwabami/rail.git
+	branch = gh-pages
