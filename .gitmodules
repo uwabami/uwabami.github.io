@@ -6,3 +6,7 @@
 	path = rdtool
 	url = https://github.com/uwabami/rdtool.git
 	branch = gh-pages
+[submodule "darkpastel-theme"]
+	path = darkpastel-theme
+	url = https://github.com/uwabami/darkpastel-theme.git
+	branch = gh-pages
