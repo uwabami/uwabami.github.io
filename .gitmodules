@@ -10,3 +10,7 @@
 	path = darkpastel-theme
 	url = https://github.com/uwabami/darkpastel-theme.git
 	branch = gh-pages
+[submodule "beamerthemeKansaiDebianMeeting"]
+	path = beamerthemeKansaiDebianMeeting
+	url = https://github.com/uwabami/beamerthemeKansaiDebianMeeting.git
+	branch = gh-pages
