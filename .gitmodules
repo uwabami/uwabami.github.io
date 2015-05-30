@@ -1,0 +1,12 @@
+[submodule "rdtool"]
+	path = rdtool
+	url = https://github.com/uwabami/rdtool.git
+[submodule "rail"]
+	path = rail
+	url = https://github.com/uwabami/rail.git
+[submodule "beamerthemeKansaiDebianMeeting"]
+	path = beamerthemeKansaiDebianMeeting
+	url = https://github.com/uwabami/beamerthemeKansaiDebianMeeting.git
+[submodule "darkpastel-theme"]
+	path = darkpastel-theme
+	url = https://github.com/uwabami/darkpastel-theme.git
