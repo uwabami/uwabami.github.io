@@ -10,3 +10,7 @@
 [submodule "darkpastel-theme"]
 	path = darkpastel-theme
 	url = https://github.com/uwabami/darkpastel-theme.git
+[submodule "tdiary-style-org"]
+	path = tdiary-style-org
+	url = git@github.com:uwabami/tdiary-style-org.git
+	branch = gh-pages
