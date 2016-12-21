@@ -14,3 +14,7 @@
 	path = tdiary-style-org
 	url = https://github.com/uwabami/tdiary-style-org.git
 	branch = gh-pages
+[submodule "emacs"]
+	path = emacs
+	url = https://github.com/uwabami/emacs.git
+	branch = gh-pages
