@@ -1,8 +1,8 @@
 #+TITLE: Youhei SASAKI's Official site
-#+DATE: 2017-01-13 17:51:01
+#+DATE: 2017-01-13 22:31:48
 #+LANGUAGE: ja
 #+REF: index
-#+LAYOUT: default
+#+LAYOUT: top
 #+SETUPFILE: ./_setup.org
 * Welcome!!
   #+HTML: <div class="col-lg-4 col-md-5 col-sm-4">
