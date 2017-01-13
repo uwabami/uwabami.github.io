@@ -1,10 +1,11 @@
 #+TITLE: Youhei SASAKI's Official site
-#+DATE: 2017-01-11 23:43:29
+#+DATE: 2017-01-13 23:54:47
 #+LANGUAGE: en
 #+REF: index
 #+LAYOUT: default
 #+MENU: Top
 #+SETUPFILE: ./_setup.org
+#+REDIRECT_FROM: /index.html.en
 * Welcome!!
   #+HTML: <div class="col-lg-4 col-md-5 col-sm-4">
   #+ATTR_HTML: :class img-responsive center-block

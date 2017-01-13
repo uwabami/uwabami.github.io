@@ -1,7 +1,8 @@
 #+TITLE: Youhei SASAKI's Official site
-#+DATE: 2017-01-13 22:31:48
+#+DATE: 2017-01-13 23:52:02
 #+LANGUAGE: ja
 #+REF: index
+#+REDIRECT_FROM: /index.html.ja
 #+LAYOUT: top
 #+SETUPFILE: ./_setup.org
 * Welcome!!
