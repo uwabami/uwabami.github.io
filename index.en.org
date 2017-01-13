@@ -1,0 +1,63 @@
+#+TITLE: Youhei SASAKI's Official site
+#+DATE: 2017-01-11 23:43:29
+#+LANGUAGE: en
+#+REF: index
+#+LAYOUT: default
+#+MENU: Top
+#+SETUPFILE: ./_setup.org
+* Welcome!!
+  #+HTML: <div class="col-lg-4 col-md-5 col-sm-4">
+  #+ATTR_HTML: :class img-responsive center-block
+  [[file:images/face.png]]
+  #+HTML: </div>
+  #+HTML: <div class="col-lg-8 col-md-7 col-sm-8">
+  - Name ::  *Youhei SASAKI*
+  - Affiliation  :: [[http://www.math.kyoto-u.ac.jp/en/front][Department of Mathematics]], [[http://www.sci.kyoto-u.ac.jp/modules/tinycontent11/][Graduate school of science]], [[http://www.kyoto-u.ac.jp/en][Kyoto University]]
+  - Contact ::
+       [[mailto:uwabami@gfd-dennou.org][uwabami@gfd-dennou.org]] {{{br}}}
+       {{{keybase(uwabami)}}} [[https://keybase.io/uwabami/pgp_keys.asc][0x9394F354891D7E07]] {{{twitter(uwabami)}}} {{{fb(sasakyh)}}}  {{{github(uwabami)}}}
+  #+BEGIN_EXPORT html
+<div class="hidden-sm hidden-xs"><pre id="gpgkey">pub   rsa4096/0x9394F354891D7E07 2009-09-03 [SC]
+      Key fingerprint = 66A4 EA70 4FE2 4055 8D6A  C2E6 9394 F354 891D 7E07
+uid       [ultimate] Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+uid       [ultimate] Youhei SASAKI (JunkHub) &lt;uwabami@junkhub.org&gt;
+uid       [ultimate] Youhei SASAKI (Debian JP Project) &lt;uwabami@debian.or.jp&gt;
+sub   rsa4096/0xB41AF9579DBFD29F 2009-09-03 [E]
+      Key fingerprint = 9891 32E5 2947 1AFD D095  77C9 B41A F957 9DBF D29F
+sub   rsa4096/0xBC8C7730B7DB0213 2016-12-12 [A]
+      Key fingerprint = 7C14 990C E4C0 CAE6 7D7E  B874 BC8C 7730 B7DB 0213</pre></div>
+  #+END_EXPORT
+  #+HTML: </div><!--/.col-sm-8 -->
+  #+HTML: <div class="clearfix"></div>
+  -----
+  #+HTML: <div class="col-sm-12">
+* Research Interest
+  - Convection in rotating spherical shells
+  - MHD Dynamo theory(magnetic field generation in celestial bodies)
+  - Numerical Computing, High performance computing
+  - Computer and network management.
+** Project
+   - [[http://www.gfd-dennou.org/library/spmodel/index.htm.en][SPMODEL Project]]
+     - SPMODEL project is now developing various hierarchical spectral models for geophysical fluid dynamics which can be easily used for research and education.
+   - [[http://www.gfd-dennou.org/library/gtool/index.htm.en][Gtool project]]
+     - The gtool Project designs a netCDF conventions for gridded data used in geophysical sciences, and develops tools based on the conventions
+   - [[http://www.gfd-dennou.org/library/ruby/index.htm][Dennou Ruby Project]]
+     - Using object-oriented script language Ruby for data analyses, visualization, and numerical simulations for geophysical studies.
+
+-----
+* Personal Activities
+** [[http://www.debian.org][Debian Project]]
+   - DebianWiki: [[http://bit.ly/1luxhNI][Youhei SASAKI]]
+     - Current status my packages: [[http://bit.ly/1dstTi4][QA page]], [[http://bit.ly/1dsu4dk][My bugs]], [[http://bit.ly/1dsudxt][Maintainer Dashboard@UDD]]
+     - I'm interest in Emacs, Ruby, TeX, Scientific Computing(especially,Computational Fluid Dynamics).
+   - 2010-: I'm [[http://wiki.debian.org/DebianMaintainer][DebianMaintainer]](DM)
+** [[http://www.debian.or.jp][Debian JP Project]]
+   - 2009-: Debian JP Project offcial member
+     - organization committee of [[http://wiki.debian.org/KansaiDebianMeeting][KansaiDebianMeeting]], Japan.
+     - a member of admin team for [[http://www.gfd-dennou.org/index.htm.en][GFD Dennou Club]], Debian mirror in Japan
+       - http://dennou-h.gfd-dennou.org/debian (at Hokkaido University)
+       - http://dennou-k.gfd-dennou.org/debian (at Kyoto University)
+       - http://dennou-q.gfd-dennou.org/debian (at Kyushu University)
+   - 2011/04-2013/03: Project sub leader
+   - 2014/04- : Project sub leader
+#+HTML: </div><!-- /.col-sm-12 -->

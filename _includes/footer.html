@@ -1,0 +1,30 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <p>
+          {% if page.date %}
+          {% capture timestamp %}{{ page.date }}{% endcapture %}
+          {% else %}
+          {% capture timestamp %}{{ site.time }}{% endcapture %}
+          {% endif %}
+          &copy; 2006 - {{ timestamp | date: "%Y" }}
+          <a href="mailto:{{ site.email }}">{{ site.author }}</a>,
+          Lastupdate: {{ timestamp }}
+          <br />
+          <span class="generator"> Powered by
+            <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>
+            +
+            <a href="http://jekyllrb.com/" target="_blank" title="Jekyll" >Jekyll</a>
+            +
+            <a href="http://nkmr6194.github.io/Umi/" target="_blank">Umi</a> &amp;
+            <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div> <!-- /.container -->
+</footer>
+<script src="{{ "/assets/js/jquery.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/assets/bootstrap/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/assets/js/ie10-viewport-bug-workaround.js" | prepend: site.baseurl }}"></script>

@@ -1,0 +1,5 @@
+#+MACRO: br @@html:<br/>@@
+#+MACRO: twitter @@html:<a href="https://twitter.com/$1/" target="_blank"><i class="fa fa-twitter-square fa-lg twitter"></i></a>@@
+#+MACRO: github  @@html:<a href="https://github.com/$1/" target="_blank"><i class="fa fa-github-square fa-lg github"></i></a>@@
+#+MACRO: fb  @@html:<a href="https://facebook.com/$1/" target="_blank"><i class="fa fa-facebook-square fa-lg facebook"></i></a>@@
+#+MACRO: keybase @@html:<a href="https://keybase.io/$1/" target="_blank"><i class="fa fa-key fa-lg keybase"></i></a>@@

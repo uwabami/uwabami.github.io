@@ -1,0 +1,23 @@
+include: ["assets", "bootstrap"]
+exclude: ["Gemfile", ".git*", "*.org", "*.muse"]
+title:
+  ja: Youhei SASAKI&prime;s official site
+  en: Youhei SASAKI&prime;s official site
+email: uwabami@gfd-dennou.org
+description:
+  ja: "Youhei SASAKI&prime;s official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian"
+  en: "Youhei SASAKI&prime;s official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian"
+index:
+  ja: index.html
+  en: index.en.html
+feed:
+  ja: /feed.xml
+  en: /feed.en.xml
+baseurl: ""
+url: ""
+twitter_username: uwabami
+github_username:  uwabami
+sass:
+    style: compressed
+gems:
+  - jekyll-sitemap

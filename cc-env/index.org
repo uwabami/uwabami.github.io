@@ -1,0 +1,30 @@
+#+TITLE: Computer Memorandum
+#+DATE: 2017-01-13 18:40:59
+#+LANGUAGE: ja
+#+REF: cc-env
+#+LAYOUT: default
+#+SETUPFILE: ../_setup.org
+#+PERMALINK: /cc-env/index.html
+* 計算機関連のメモ書き
+  自分の計算機環境を整えた時の log を気が向いた時に書いています.
+  自分が分かれば良いと思っているので, あまりまとまってないし整ってもいません.
+  さらに, 思いついた時に適当に書き散らしていますんで,
+  文書の形式(というか文体?)は全く揃っていません. 書きかけの文書もあります.
+  ですから, 無責任, 無保証ですので, この文書によって生じたいかなる
+  不利益, 損害についての責任も取れません, 取りません. 御容赦下さい.
+
+  *現在再構成中です。*
+* このサイトができるまで。
+  このサイトは、記事を Emacs の [[http://orgmode.org/][Org mode]] で書いて、
+  [[http://jekyllrb.com/][Jekyll]] で HTML に変換しています。
+
+  [[http://orgmode.org/][Org mode]] のファイルそのものに(なるべく)手を加えることなく、
+  それなりに一貫性を持ってコンテンツを作成するために、
+  幾つか [[http://jekyllrb.com/][Jekyll]] のプラグインを書いています。その解説などを。
+  - [[file:JekyllandOrg.org][このサイトができるまで]]
+* Debian 関係
+  Debian 一般に関する話は
+  - 本家: 『[[http://www.debian.org/index.ja.html][Debian -- ユニバーサルオペレーティングシステム]]』
+  - Debian JP Project: 『[[http://www.debian.or.jp/][Debian JP Project]]』
+  - Debian 勉強会: 『[[http://tokyodebian.alioth.debian.org/][東京エリアDebian勉強会]]』
+ にある文書を参考に. 特に勉強会の文書は宝の山です.

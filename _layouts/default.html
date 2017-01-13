@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang }}">
+  {% include head.html %}
+  <body>
+    {% include navbar.html %}
+    <div class="container">
+      <div class="content">
+        <div class="row">
+          <div class="page-header col-xs-12">
+            {% if page.title == "Top" %}
+            <h1>{{ site.title[page.lang] }}</h1>
+            {% else %}
+            <h1>{{ page.title | escape }}</h1>
+            {% endif %}
+            {% include breadcrumbs.html %}
+          </div>
+          <div class="col-sm-12">
+            {{ content }}
+          </div>
+        </div> <!-- /.row -->
+      </div> <!-- /.content -->
+    </div> <!-- /.container -->
+    {% include footer.html %}
+  </body>
+</html>

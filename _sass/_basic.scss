@@ -1,0 +1,129 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAFXRFWHRDcmVhdGlvbiBUaW1lAAfbBhwTDDqAejMsAAAAB3RJTUUH2wYeEi8EgXgYKgAAAAlwSFlzAAAOdAAADnQBaySz1gAAABxJREFUeNpj/PLxFwNuwALEbJw4pZkY8IJhKw0AlAcDBIeyUC8AAAAASUVORK5CYII=);
+    margin-bottom: 70px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+.page-header {
+    padding-top: 15px !important;
+    background-color: #f5f5f5;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    -webkit-box-shadow: 0 1px 2px #ccc;
+       -moz-box-shadow: 0 1px 2px #ccc;
+            box-shadow: 0 1px 2px #ccc;
+}
+.container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.navbar > .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.footer > .container {
+    padding-top: 10px !important;
+    padding-bottom: 0 !important;
+}
+footer p {
+    text-align: right;
+}
+.content {
+    background-color: #fff;
+    padding: 0px 15px;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    -webkit-box-shadow: 0 1px 2px #ccc;
+       -moz-box-shadow: 0 1px 2px #ccc;
+            box-shadow: 0 1px 2px #ccc;
+}
+.breadcrumb {
+    position: relative;
+    z-index: 1;
+    padding: 4px 12px 0px 12px !important;
+    margin: 0px !important;
+}
+.anchor {
+    display: none;
+}
+
+
+/* Other Basic styles
+-------------------------------------------------- */
+.content p {
+    padding: 0 12px;
+}
+.content pre {
+    margin: 6px;
+    word-break: normal;
+    word-wrap: normal;
+    overflow-x: auto;
+}
+.content table {
+    margin: 24px;
+}
+h2 {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: #5af;
+    margin: 14px auto;
+}
+
+h3 {
+    margin: 14px auto;
+    border-width: 0px 0px 1px 0px;
+    border-style: dashed;
+    border-color: #4ae;
+}
+
+h4 {
+    margin: 14px auto;
+    border-width: 0px 0px 1px 0px;
+    border-style: dashed;
+    border-color: #bf7;
+}
+
+dt {
+    font-weight: normal;
+}
+
+dd {
+    font-weight: normal;
+    margin-left: 20px;
+}
+
+strong {
+    font-size: 28px;
+    line-height: 30px;
+    font-weight: normal !important;
+}
+
+#gpgkey{
+    margin: -15px auto 0px auto !important;
+    font-size: 85% !important;
+    background: white;
+    padding: 2px 4px;
+}
+
+/* Fix bootstrap link
+-------------------------------------------------- */
+a[id] {
+    display: block;
+    position: relative;
+    top: -90px;
+    visibility: hidden;
+}

@@ -1,0 +1,55 @@
+#+TITLE: Softwares@My Github
+#+DATE: 2017-01-13 21:38:47
+#+LANGUAGE: ja
+#+REF: github
+#+LAYOUT: default
+#+SETUPFILE: ./_setup.org
+#+PERMALINK: /github/index.html
+* これは何?
+  主に自分が使うために作成したソフトウェア、
+  ひきとったソフトウェア、
+  プレゼン用のテーマなどです.
+  公開できるモノについては github にどんどん置いています. パッチウェルカム.
+** [[http://uwabami.github.io/rdtool/][RDtool: formatter for RD]]
+   RD は Ruby における POD(Plain Old Documentation) のようなものです.
+   RDtool は RD のフォーマッタであり, RD を HTML や roff などに変換できます.
+   以前は Moonwolf さんがリリースマネジメントをされていましたが,
+   2011年 5 月に引き継いで, gem 化したりイロイロ弄っています.
+   - gem で取得できます: [[https://rubygems.org/gems/rdtool][RubyGems.org:rdtool]]
+   - 開発は GitHub でやってます: [[https://github.com/uwabami/rdtool][Github: rdtool]]
+   - ご意見, ご要望など, メール下さるか Github の [[https://github.com/uwabami/rdtool/issues][Issues]] にお願いします.
+** [[http://uwabami.github.io/rail/][Rail: Replace Agent-string Internal Library]]
+   しまだみつひろさんが作成された rail を勝手に引き取って公開/気がついた時にアップデートしています.
+   お気付きの点がありましたら, ご連絡下さい.
+   - 取得は github からどうぞ: [[https://github.com/uwabami/rail][Github: rail]]
+   - ご意見, ご要望など, メール下さるか Github の [[https://github.com/uwabami/rail/issues][Issues]] にお願いします.
+   - Debian/Ubuntu ユーザの方は, [[https://tracker.debian.org/pkg/rail][公式パッケージ]] にしましたので apt-get で install できます.
+   #+BEGIN_EXAMPLE
+     % sudo apt-get install rail
+   #+END_EXAMPLE
+** [[http://uwabami.github.io/tdiary-style-org/index.html][TDiary::Style::Org]]
+   TDiary::Style::Org は
+   [[http://orgmode.org/][Org mode for Emacs – Your Life in Plain Text]] の syntax で
+   [[http://www.tdiary.org/][tDiary.org]] の記事を書くためのスタイルを提供します．
+** [[http://uwabami.github.io/darkpastel-theme/][Emacs darkpastel theme]]
+   取得は github からどうぞ: [[https://github.com/uwabami/darkpastel-theme][Theme for Emacs (>= 24), dark background + pastel color palette]]
+   #+HTML: <div class="row">
+   #+HTML: <div class="col-xs-8 col-xs-offset-2">
+   [[https://raw.githubusercontent.com/uwabami/darkpastel-theme/master/darkpastel-screenshot.png]]
+   #+HTML: </div><!-- /.col-xs-8 -->
+   #+HTML: </div><!-- /.row -->
+** [[http://uwabami.github.io/beamerthemeKansaiDebianMeeting/][Beamer Theme for KansaiDebianMeeting]]
+   [[http://www.nofuture.tv/diary/][のがたじゅん]] さんが作った OpenOffice Impress の [[http://wiki.debian.org/KansaiDebianMeetingArchives?action%3DAttachFile&amp%3Bdo%3Dview&amp%3Btarget%3D20081108-KGB-Kansai_debian_PR.odp][Debian テーマ]] を LaTeX Beamer に移植してみました.
+   - 取得は github からどうぞ:[[http://github.com/uwabami/beamerthemeKansaiDebianMeeting][Github: beamerthemeKansaiDebianMeeting]]
+   - サンプル: [[https://github.com/uwabami/beamerthemeKansaiDebianMeeting/blob/master/examples/sample.pdf][samples.PDF]]
+#+HTML: <div class="row">
+#+HTML: <div class="col-sm-4 col-xs-12">
+[[https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-1.png]]
+#+HTML: </div>
+#+HTML: <div class="col-sm-4 col-xs-12">
+[[https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-3.png]]
+#+HTML: </div>
+#+HTML: <div class="col-sm-4 col-xs-12">
+[[https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-4.png]]
+#+HTML: </div>
+#+HTML: </div><!-- /.row -->

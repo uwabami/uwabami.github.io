@@ -1,0 +1,56 @@
+#+TITLE: Softwares@My Github
+#+DATE: 2017-01-13 21:39:26
+#+LANGUAGE: en
+#+REF: github
+#+SETUPFILE: ./_setup.org
+#+PERMALINK: /github/index.en.html
+* What's this ?
+  My Github repositories. Patch welcome! :-)
+** [[http://uwabami.github.com/rdtool/][RDtool: formatter for RD]]
+   RD is Ruby' POD. RDtool is formatter for RD.
+
+   RD is multipurpose documentation format created for documentating Ruby
+   and output of Ruby world. You can embed RD into Ruby script. And RD have
+   neat syntax which help you to read document in Ruby script. On the other
+   hand, RD have a feature for class reference.
+
+   - gem: [[https://rubygems.org/gems/rdtool][RubyGems.org:rdtool]]
+   - Github Repos:: [[https://github.com/uwabami/rdtool]]
+   - If you have any questions, comment, bug reports, please report Githb Issues.
+** [[http://uwabami.github.com/rail/][Rail: Replace Agent-string Internal Library]]
+
+   RAIL is a elisp library, translates codenames with latin chars of FLIM/SEMI/XEmacs/UTF-2000-Mule/Meadow to Japanese characters (On irchat-pj, Japanize code name for &ldquo;CTCP VERSION&rdquo; return string).
+
+   It also provides a function compatible with genjis.el (a partof tm, that converts mule-version to Japanese characters).
+
+   - Github Repos:: https://github.com/uwabami/rail
+   - If you have any questions, comment, bug reports, please report Githb Issues
+   - For Debian/Ubuntu Users: simply
+   #+BEGIN_EXAMPLE
+     % sudo apt-get install rail
+   #+END_EXAMPLE
+** [[http://uwabami.github.io/tdiary-style-org/index.html][TDiary::Style::Org]]
+   The =TDiary::Style::Org= is provide [[http://orgmode.org/][Org-mode]] style for [[http://www.tdiary.org/][tDiary]]
+** [[http://uwabami.github.io/darkpastel-theme/][Emacs darkpastel theme]]
+   - Github Repos:: http://github.com/uwabami/darkpastel-theme
+   #+HTML: <div class="row">
+   #+HTML: <div class="col-xs-8 col-xs-offset-2">
+   [[https://raw.githubusercontent.com/uwabami/darkpastel-theme/master/darkpastel-screenshot.png]]
+   #+HTML: </div><!-- /.col-xs-8 -->
+   #+HTML: </div><!-- /.row -->
+** [[http://uwabami.github.io/beamerthemeKansaiDebianMeeting/][Beamer Theme for KansaiDebianMeeting]]
+
+   Beamer theme for Debian, originaly Created by [[http://www.nofuture.tv/diary/][Jun Nogata]] for OpenOffice Impress.
+   - Github Repos:: http://github.com/uwabami/beamerthemeKansaiDebianMeeting
+   - Sample: [[https://github.com/uwabami/beamerthemeKansaiDebianMeeting/blob/master/examples/sample.pdf][samples.PDF]]
+#+HTML: <div class="row">
+#+HTML: <div class="col-sm-4 col-xs-12">
+[[https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-1.png]]
+#+HTML: </div>
+#+HTML: <div class="col-sm-4 col-xs-12">
+[[https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-3.png]]
+#+HTML: </div>
+#+HTML: <div class="col-sm-4 col-xs-12">
+[[https://github.com/uwabami/beamerthemeKyoto/raw/master/examples/thumbs-4.png]]
+#+HTML: </div>
+#+HTML: </div><!-- /.row -->
