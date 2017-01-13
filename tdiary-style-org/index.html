@@ -1,0 +1,145 @@
+---
+title: TDiary::Style::Org
+date: 2017-01-14 03:28:56
+layout: default
+lang: ja
+ref: tdiary-style-org
+permalink: /tdiary-style-org/index.html
+---
+<div id="outline-container-orgd959f94" class="outline-2">
+<h2 id="orgd959f94">これは何?</h2>
+<div class="outline-text-2" id="text-orgd959f94">
+<p>
+<img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" class="travis_badge">
+<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:120px;right:15px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/uwabami/tdiary-style-org">Fork me on GitHub</a></span>
+</p>
+
+
+<p>
+TDiary::Style::Org は
+<a href="http://orgmode.org/">Org mode for Emacs – Your Life in Plain Text</a> の syntax で
+<a href="http://www.tdiary.org/">tDiary.org</a> の記事を書くためのスタイルを提供します．
+</p>
+
+<p>
+Org から HTML の変換には <a href="https://github.com/wallyqs/org-ruby">wallyqs/org-ruby: An Org mode parser written in Ruby</a> を用いています．
+また，ソースコードのシンタックスハイライトには <a href="https://github.com/tmm1/pygments.rb">tmm1/pygments.rb: pygments syntax highlighting in ruby</a>
+を使っています．
+</p>
+<div class="col-md-6 col-sm-12">
+<img src="./src.png" class="img-responsive">
+</div>
+<div class="col-md-6 col-sm-12">
+<img src="./result.png" class="img-responsive">
+</div>
+</div>
+</div>
+<div id="outline-container-orge4a34b4" class="outline-2">
+<h2 id="orge4a34b4">インストール</h2>
+<div class="outline-text-2" id="text-orge4a34b4">
+<p>
+tDiary の <code>Gemfile.local</code> に
+</p>
+<div class="org-src-container">
+<pre class="src src-ruby">    gem <span style="color: #7FFF7F;">'tdiary-style-org'</span>
+</pre>
+</div>
+<p>
+を追加して，
+</p>
+<pre class="example">
+    % bundle install
+</pre>
+<p>
+とするか，
+</p>
+<pre class="example">
+    % gem install tdiary-style-org
+</pre>
+<p>
+として下さい．
+</p>
+</div>
+</div>
+<div id="outline-container-orgd34e306" class="outline-2">
+<h2 id="orgd34e306">使い方</h2>
+<div class="outline-text-2" id="text-orgd34e306">
+<p>
+<code>tdiary.conf</code> の <code>@style</code> で以下の用に指定します．
+</p>
+<div class="org-src-container">
+<pre class="src src-ruby">     <span style="color: #7F7FFF;">@style</span> = <span style="color: #7FFF7F;">'Org'</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org77b97b0" class="outline-2">
+<h2 id="org77b97b0">文法</h2>
+<div class="outline-text-2" id="text-org77b97b0">
+<p>
+基本的には通常の Org-mode の文法です．
+ただし，
+</p>
+<ul class="org-ul">
+<li>Org-mode の TAG が tDiary の CATEGORY になります．</li>
+<li>plugin 記法は今のところ <code>((%plugin, 'val'%))</code> となっています．
+もっと良い(Org らしい)記法があればご提案頂けると幸いです．</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8c88f37" class="outline-2">
+<h2 id="org8c88f37">Contributing</h2>
+<div class="outline-text-2" id="text-org8c88f37">
+<ol class="org-ol">
+<li>Fork it</li>
+<li>Create your feature branch (`git checkout -b my-new-feature`)</li>
+<li>Commit your changes (`git commit -am 'Add some feature'`)</li>
+<li>Push to the branch (`git push origin my-new-feature`)</li>
+<li>Create new Pull Request</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orga0ff23b" class="outline-2">
+<h2 id="orga0ff23b"><span class="todo TODO">TODO</span> ToDo</h2>
+<div class="outline-text-2" id="text-orga0ff23b">
+<ul class="org-ul">
+<li>on going&#x2026; <code>[2/3]</code>
+<ul class="org-ul">
+<li class="on"><code>[X]</code> can't convert TAG to CATEGORY of tDiary</li>
+<li class="on"><code>[X]</code> How to use plugin? -&gt; RD style like: <code>((%plugin, 'val'%))</code>
+<ul class="org-ul">
+<li>Is this syntax best?</li>
+</ul></li>
+<li class="off"><code>[&#xa0;]</code> can't handlinng "alt" in image link: due to org-ruby limitation.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfedcb84" class="outline-2">
+<h2 id="orgfedcb84">Copyright</h2>
+<div class="outline-text-2" id="text-orgfedcb84">
+<pre class="example">
+   Copyright (c) 2015-2016 Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+
+   MIT License
+
+   Permission is hereby granted, free of charge, to any person obtaining a
+   copy of this software and associated documentation files (the "Software"),
+   to deal in the Software without restriction, including without limitation
+   the rights to use, copy, modify, merge, publish, distribute, sublicense,
+   and/or sell copies of the Software, and to permit persons to whom the
+   Software is furnished to do so, subject to the following conditions:
+   .
+   The above copyright notice and this permission notice shall be included
+   in all copies or substantial portions of the Software.
+   .
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+   CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+   TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</pre>
+</div>
+</div>
