@@ -20,5 +20,4 @@ github_username:  uwabami
 sass:
     style: compressed
 gems:
-  - jekyll-redirect-from
   - jekyll-sitemap
