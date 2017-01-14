@@ -16,8 +16,12 @@ sync: build
 	  _site/rail/ submodules/rail/
 	rsync -au --exclude '.git*' --delete \
 	  _site/rdtool/ submodules/rdtool/
+server: build
+	JEKYLL_GITHUB_TOKEN=$(MY_JEKYLL_GITHUB_TOKEN) \
+	  bundle exec jekyll serve --watch --safe
+
 build: clean
 	JEKYLL_GITHUB_TOKEN=$(MY_JEKYLL_GITHUB_TOKEN) \
-	  bundle exec jekyll build
+	  bundle exec jekyll build --safe
 clean:
 	bundle exec jekyll clean
