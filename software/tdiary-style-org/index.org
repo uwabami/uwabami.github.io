@@ -1,5 +1,5 @@
 #+TITLE: TDiary::Style::Org
-#+DATE: 2017-01-15 18:41:27
+#+DATE: 2017-01-15 23:04:21
 #+LANGUAGE: ja
 #+REF: software/tdiary-style-org
 #+LAYOUT: default
@@ -41,7 +41,7 @@
 * 使い方
   =tdiary.conf= の =@style= で以下の用に指定します．
    #+BEGIN_SRC ruby
-     @style = 'Org'
+@style = 'Org'
    #+END_SRC
 * 文法
   基本的には通常の Org-mode の文法です．

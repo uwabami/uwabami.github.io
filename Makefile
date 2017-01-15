@@ -21,8 +21,11 @@ server: build
 	JEKYLL_GITHUB_TOKEN=$(MY_JEKYLL_GITHUB_TOKEN) \
 	  bundle exec jekyll serve --watch --safe
 
-build: clean
+build: publish
 	JEKYLL_GITHUB_TOKEN=$(MY_JEKYLL_GITHUB_TOKEN) \
 	  bundle exec jekyll build --safe
+publish:
+	emacs -l ~/.emacs.d/init.elc --batch \
+	  --funcall org-publish-all
 clean:
 	bundle exec jekyll clean

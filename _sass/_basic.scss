@@ -60,6 +60,23 @@ footer p {
     word-wrap: normal;
     overflow-x: auto;
 }
+.org-src-container {
+    width: 95%;
+    margin: auto;
+}
+.org-src-container > .src {
+    margin: 6px auto !important;
+    padding: 12px auto !important;
+    color: #F6F3E8 !important;
+    background-color: #242424 !important;
+}
+.example {
+    width: 95%;
+    margin: 6px auto !important;
+    padding: 12px auto !important;
+    color: #F6F3E8 !important;
+    background-color: #242424 !important;
+}
 .content table {
     margin: 24px;
 }

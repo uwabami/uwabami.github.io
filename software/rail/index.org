@@ -1,5 +1,5 @@
 #+TITLE: Rail - Replace Agent-String Internal Library
-#+DATE: 2017-01-15 18:37:55
+#+DATE: 2017-01-15 23:31:06
 #+LANGUAGE: ja
 #+REF: software/rail
 #+LAYOUT: default
@@ -13,6 +13,7 @@
 
   It also provides a function compatible with genjis.el (a partof tm, that converts mule-version to Japanese characters).
 
+  #+ATTR_HTML: :class img-responsive center-block
   [[file:images/wanderlust_with_or_without_rail.png]]
 
 * Download
@@ -26,10 +27,10 @@
 * install
 ** require: emacsen (I always use Emacs24.4)
    #+BEGIN_EXAMPLE
-     % tar xvzf rail-(version).tar.gz
-     % cd rail-(version)
-     % make
-     % sudo make install
+% tar xvzf rail-(version).tar.gz
+% cd rail-(version)
+% make
+% sudo make install
    #+END_EXAMPLE
 * License
   GPL-2+
