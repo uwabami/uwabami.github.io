@@ -1,25 +1,28 @@
 #+TITLE: My Repository@Github
-#+DATE: 2017-01-15 18:54:29
+#+DATE: 2017-01-15 19:52:34
 #+LANGUAGE: en
 #+REF: software
 #+SETUPFILE: ../_setup.org
 #+PERMALINK: /software/index.en.html
 * What's this ?
   My Github repositories. Patch welcome! :-)
-** [[file:rdtool/index.en.org][RDtool: formatter for RD]]
-   RD is Ruby' POD. RDtool is formatter for RD.
+* [[file:rdtool/index.en.org][RDtool: formatter for RD]]
+  RD is Ruby' POD. RDtool is formatter for RD.
 
-   RD is multipurpose documentation format created for documentating Ruby
-   and output of Ruby world. You can embed RD into Ruby script. And RD have
-   neat syntax which help you to read document in Ruby script. On the other
-   hand, RD have a feature for class reference.
-** [[file:rail/index.en.org][Rail: Replace Agent-string Internal Library]]
-   RAIL is a elisp library, translates codenames with latin chars of
-   FLIM/SEMI/XEmacs/UTF-2000-Mule/Meadow to Japanese characters (On
-   irchat-pj, Japanize code name for &ldquo;CTCP VERSION&rdquo; return
-   string).
+  RD is multipurpose documentation format created for documentating Ruby
+  and output of Ruby world. You can embed RD into Ruby script. And RD have
+  neat syntax which help you to read document in Ruby script. On the other
+  hand, RD have a feature for class reference.
+* [[file:rail/index.en.org][Rail: Replace Agent-string Internal Library]]
+  RAIL is a elisp library, translates codenames with latin chars of
+  FLIM/SEMI/XEmacs/UTF-2000-Mule/Meadow to Japanese characters (On
+  irchat-pj, Japanize code name for &ldquo;CTCP VERSION&rdquo; return
+  string).
 
-   It also provides a function compatible with genjis.el (a partof tm,
-   that converts mule-version to Japanese characters).
-** [[file:tdiary-style-org/index.en.org][TDiary::Style::Org]]
-   The =TDiary::Style::Org= is provide [[http://orgmode.org/][Org-mode]] style for [[http://www.tdiary.org/][tDiary]]
+  It also provides a function compatible with genjis.el (a partof tm,
+  that converts mule-version to Japanese characters).
+* [[file:tdiary-style-org/index.en.org][TDiary::Style::Org]]
+  The =TDiary::Style::Org= is provide [[http://orgmode.org/][Org-mode]] style for [[http://www.tdiary.org/][tDiary]]
+* [[file:jekyll-org-converter/index.en.org][Jekyll Org Converter]]
+  Add [[http://orgmode.org/][Org mode]] support into Jekyll,
+  with Org-mode options as YAML Front Matter.

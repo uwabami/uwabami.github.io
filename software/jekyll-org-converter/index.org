@@ -1,0 +1,49 @@
+#+TITLE: Jekyll Org Plugin
+#+DATE: 2017-01-15 19:50:44
+#+LANGUAGE: ja
+#+REF: software/jeykll-org-converter
+#+LAYOUT: default
+#+SETUPFILE: ../../_setup.org
+#+PERMALINK: /software/jeykll-org-converter/index.html
+* これは何?
+  Jekyll の原稿として [[http://orgmode.org/][Org mode]] で書かれたファイルを処理できるようにするプラグインです．
+
+  org ファイルの =+OPTIONS= を Jekyll の YAML Front Matter として扱える様にしてありますので，
+  org ファイルに YAML Front Matter を書く必要はありません．
+
+  とはいえ原稿となる org ファイルには、最低限
+  #+BEGIN_SRC org
+    ,#+TITLE:
+    ,#+DATE:
+    ,#+LAYOUT:
+  #+END_SRC
+  を記載しておいて下さい．
+* Depends
+  - jekyll
+  - org-ruby
+* Usage
+  - Jekyll の =_plugin= に submodule としてでも放り込んで下さい。
+  - org ファイルを html へ出力する際のタグのカスタマイズをしたい場合には、
+    =_html_tags.yml= を作成しておきます(リポジトリに example を置いてあります)。
+* limitation
+  - Github Pages では許可された plugin しか使えませんので，本プラグインは使えません．
+* License
+  #+BEGIN_EXAMPLE
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the "Software"),
+  to deal in the Software without restriction, including without limitation
+  the rights to use, copy, modify, merge, publish, distribute, sublicense,
+  and/or sell copies of the Software, and to permit persons to whom the
+  Software is furnished to do so, subject to the following conditions:
+  .
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+  .
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  #+END_EXAMPLE
