@@ -1,5 +1,5 @@
 #+TITLE: My Repository@Github
-#+DATE: 2017-01-15 18:46:04
+#+DATE: 2017-01-15 18:51:53
 #+LANGUAGE: ja
 #+REF: software
 #+LAYOUT: default
@@ -10,15 +10,15 @@
   ひきとったソフトウェア、
   プレゼン用のテーマなどです.
   公開できるモノについては github にどんどん置いています. パッチウェルカム.
-** [[/software/rdtool/][RDtool: formatter for RD]]
+** [[file:rdtool/index.org][RDtool: formatter for RD]]
    RD は Ruby における POD(Plain Old Documentation) のようなものです.
    RDtool は RD のフォーマッタであり, RD を HTML や roff などに変換できます.
    以前は Moonwolf さんがリリースマネジメントをされていましたが,
    2011年 5 月に引き継いで, gem 化したりイロイロ弄っています.
-** [[/software/rail][Rail: Replace Agent-string Internal Library]]
+** [[file:rail/index.org][Rail: Replace Agent-string Internal Library]]
    しまだみつひろさんが作成された rail を勝手に引き取って公開/気がついた時にアップデートしています.
    お気付きの点がありましたら, ご連絡下さい.
-** [[/software/tdiary-style-org][TDiary::Style::Org]]
+** [[file:tdiary-style-org/index.org][TDiary::Style::Org]]
    TDiary::Style::Org は
-   [[http://orgmode.org/][Org mode for Emacs – Your Life in Plain Text]] の syntax で
+   [[http://orgmode.org/][Org-mode]] の syntax で
    [[http://www.tdiary.org/][tDiary.org]] の記事を書くためのスタイルを提供します．
