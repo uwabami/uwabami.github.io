@@ -10,9 +10,7 @@ description:
 index:
   ja: index.html
   en: index.en.html
-feed:
-  ja: /feed.xml
-  en: /feed.en.xml
+base: https://uwabami.github.io/
 repository: uwabami/uwabami.github.io
 twitter_username: uwabami
 github_username:  uwabami

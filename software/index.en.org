@@ -1,9 +1,9 @@
-#+TITLE: Softwares@My Github
-#+DATE: 2017-01-13 21:39:26
+#+TITLE: My Repository@Github
+#+DATE: 2017-01-15 18:33:01
 #+LANGUAGE: en
-#+REF: github
-#+SETUPFILE: ./_setup.org
-#+PERMALINK: /github/index.en.html
+#+REF: software
+#+SETUPFILE: ../_setup.org
+#+PERMALINK: /software/index.en.html
 * What's this ?
   My Github repositories. Patch welcome! :-)
 ** [[http://uwabami.github.com/rdtool/][RDtool: formatter for RD]]

@@ -1,21 +1,17 @@
 #+TITLE: TDiary::Style::Org
-#+DATE: 2017-01-14 03:30:52
-#+LANGUAGE: ja
-#+REF: tdiary-style-org
+#+DATE: 2017-01-15 18:41:42
+#+LANGUAGE: en
+#+REF: software/tdiary-style-org
 #+LAYOUT: default
-#+SETUPFILE: ../_setup.org
-#+PERMALINK: /tdiary-style-org/index.html
-* これは何?
+#+SETUPFILE: ../../_setup.org
+#+PERMALINK: /software/tdiary-style-org/index.en.html
+* What's this?
   {{{travis(uwabami/tdiary-style-org)}}}
   {{{ghribbon(uwabami/tdiary-style-org)}}}
 
-  TDiary::Style::Org は
-  [[http://orgmode.org/][Org mode for Emacs – Your Life in Plain Text]] の syntax で
-  [[http://www.tdiary.org/][tDiary.org]] の記事を書くためのスタイルを提供します．
 
-  Org から HTML の変換には [[https://github.com/wallyqs/org-ruby][wallyqs/org-ruby: An Org mode parser written in Ruby]] を用いています．
-  また，ソースコードのシンタックスハイライトには [[https://github.com/tmm1/pygments.rb][tmm1/pygments.rb: pygments syntax highlighting in ruby]]
-  を使っています．
+  The =TDiary::Style::Org= is provide [[http://orgmode.org/][Org-mode]] style for [[http://www.tdiary.org/][tDiary]].
+  Convert Org to HTML by  [[https://github.com/wallyqs/org-ruby][wallyqs/org-ruby: An Org mode parser written in Ruby]].
   #+BEGIN_EXPORT html
   <div class="col-md-6 col-sm-12">
   <img src="./src.png" class="img-responsive">
@@ -24,31 +20,29 @@
   <img src="./result.png" class="img-responsive">
   </div>
   #+END_EXPORT
-* インストール
-  tDiary の =Gemfile.local= に
+* Installation
+  Add this line to your application's Gemfile.local:
   #+BEGIN_SRC ruby
     gem 'tdiary-style-org'
   #+END_SRC
-  を追加して，
+  And then execute:
   #+BEGIN_EXAMPLE
     % bundle install
   #+END_EXAMPLE
-  とするか，
+  Or install it yourself as:
   #+BEGIN_EXAMPLE
     % gem install tdiary-style-org
   #+END_EXAMPLE
-  として下さい．
-* 使い方
-  =tdiary.conf= の =@style= で以下の用に指定します．
-   #+BEGIN_SRC ruby
-     @style = 'Org'
-   #+END_SRC
-* 文法
-  基本的には通常の Org-mode の文法です．
-  ただし，
-  - Org-mode の TAG が tDiary の CATEGORY になります．
-  - plugin 記法は今のところ =((%plugin, 'val'%))= となっています．
-    もっと良い(Org らしい)記法があればご提案頂けると幸いです．
+* Usage
+  If you want to use this style, add @style into tdiary.conf below:
+  #+BEGIN_SRC ruby
+    @style = 'Org'
+  #+END_SRC
+* Syntax
+  Basically, samve as  [[http://orgmode.org/][Org-mode]].
+  - First Heading =*= is converted to =<h3>=
+  - Org-mode =TAG= is converted to CATEGORY of tDiary
+  - plugin syntax: =((%plugin, 'val'%))=
 * Contributing
   1. Fork it
   2. Create your feature branch (`git checkout -b my-new-feature`)

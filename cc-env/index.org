@@ -1,5 +1,5 @@
 #+TITLE: Computer Memorandum
-#+DATE: 2017-01-13 18:40:59
+#+DATE: 2017-01-15 18:35:16
 #+LANGUAGE: ja
 #+REF: cc-env
 #+LAYOUT: default

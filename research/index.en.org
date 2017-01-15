@@ -1,9 +1,9 @@
 #+TITLE: Research Work
-#+DATE: 2017-01-13 17:52:08
+#+DATE: 2017-01-15 18:30:22
 #+LANGUAGE: en
 #+REF: research
 #+LAYOUT: default
-#+SETUPFILE: ./_setup.org
+#+SETUPFILE: ../_setup.org
 #+PERMALINK: /research/index.en.html
 * Publication
    - Matsui, H., Heien, E., Aubert, J., Aurnou, J.M., Avery, M., Brown, B., Buffett, B.A., Busse, F.H., Christensen, U.R., Davies, C.J., Featherstone, N., Gastine, T., Glatzmaier, G.A., Gubbins, D., Guermond, J.-L.,Hayashi, Y.-Y., Hollerbach, R., Hwang, R.J., Jackson, A., Jones, C.A., Jiang, W., Kellogg, L.H., Kuang, W., Landeau, M., Marti, P.H., Olson, P., Ribeiro, A., _Sasaki, Y._, Schaeffer, N., Simitev, R.D., Sheyko, A., Silva, L., Stanley, S., Takahashi, F., Takehiro, S.-I., Wicht, J., Willis, A.P., 2016:

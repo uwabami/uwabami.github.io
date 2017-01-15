@@ -1,10 +1,10 @@
-#+TITLE: Softwares@My Github
-#+DATE: 2017-01-13 21:38:47
+#+TITLE: My Repository@Github
+#+DATE: 2017-01-15 18:32:46
 #+LANGUAGE: ja
-#+REF: github
+#+REF: software
 #+LAYOUT: default
-#+SETUPFILE: ./_setup.org
-#+PERMALINK: /github/index.html
+#+SETUPFILE: ../_setup.org
+#+PERMALINK: /software/index.html
 * これは何?
   主に自分が使うために作成したソフトウェア、
   ひきとったソフトウェア、

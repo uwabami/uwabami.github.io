@@ -1,13 +1,14 @@
 #+TITLE: RDtool - RD formatter
-#+DATE: 2017-01-14 13:42:42
+#+DATE: 2017-01-15 18:40:58
 #+LANGUAGE: ja
-#+REF: rdtool
+#+REF: software/rdtool
 #+LAYOUT: default
-#+SETUPFILE: ../_setup.org
-#+PERMALINK: /rdtool/index.html
+#+SETUPFILE: ../../_setup.org
+#+PERMALINK: /software/rdtool/index.html
 * RDってなに？
   {{{travis(uwabami/rdtool)}}}
   {{{ghribbon(uwabami/rdtool)}}}
+
   RDはRubyにおけるPOD(Plain Old Documentation)のようなものです。
   RDtoolはRDのフォーマッタであり、RDをHTMLなどに変換できます。
 * Download

@@ -1,10 +1,10 @@
 #+TITLE: RDtool - RD formatter
-#+DATE: 2017-01-14 13:44:18
+#+DATE: 2017-01-15 18:40:24
 #+LANGUAGE: en
-#+REF: rdtool
+#+REF: software/rdtool
 #+LAYOUT: default
-#+SETUPFILE: ../_setup.org
-#+PERMALINK: /rdtool/index.en.html
+#+SETUPFILE: ../../_setup.org
+#+PERMALINK: /software/rdtool/index.en.html
 * What's RD?
   {{{travis(uwabami/rdtool)}}}
   {{{ghribbon(uwabami/rdtool)}}}

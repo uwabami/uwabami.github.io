@@ -1,9 +1,9 @@
 #+TITLE: 研究関連
-#+DATE: 2017-01-13 17:51:36
+#+DATE: 2017-01-15 18:30:14
 #+LANGUAGE: ja
 #+REF: research
 #+LAYOUT: default
-#+SETUPFILE: ./_setup.org
+#+SETUPFILE: ../_setup.org
 #+PERMALINK: /research/index.html
 * 論文
 ** 査読有
