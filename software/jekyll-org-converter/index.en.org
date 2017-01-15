@@ -1,10 +1,10 @@
 #+TITLE: Jekyll Org Plugin
-#+DATE: 2017-01-15 19:46:23
+#+DATE: 2017-01-15 19:54:47
 #+LANGUAGE: en
-#+REF: software/jeykll-org-converter
+#+REF: software/jekyll-org-converter
 #+LAYOUT: default
 #+SETUPFILE: ../../_setup.org
-#+PERMALINK: /software/jeykll-org-converter/index.en.html
+#+PERMALINK: /software/jekyll-org-converter/index.en.html
 * What is This?
   Add [[http://orgmode.org/][Org mode]] support into Jekyll,
   with Org-mode options as YAML Front Matter.
