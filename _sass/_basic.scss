@@ -122,55 +122,6 @@ strong {
     background: white;
     padding: 2px 4px;
 }
-/* tocify
--------------------------------------------------- */
-/* The Table of Contents container element */
-#toc{
-    background: #FFF;
-    width: 20%;
-    top: 200px;
-    bottom: 100px;
-    -webkit-border-radius: 8px;
-       -moz-border-radius: 8px;
-            border-radius: 8px;
-    -webkit-box-shadow: 0 1px 2px #ccc;
-       -moz-box-shadow: 0 1px 2px #ccc;
-            box-shadow: 0 1px 2px #ccc;
-}
-.tocify {
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-size: 90%;
-    position: fixed;
-}
-.tocify ul,
-.tocify li {
-    list-style: none;
-    border: none;
-}
-.tocify-header li {
-    text-indent: 5px;
-}
-.tocify-subheader {
-    display: none;
-}
-.tocify-subheader .tocify-subheader {
-    text-indent: 15px;
-}
-.tocify-subheader .tocify-subheader .tocify-subheader {
-    text-indent: 20px;
-}
-/* Twitter Bootstrap Override Style */
-.tocify .nav-list > li > a, .nav-list .nav-header {
-    margin: 0px;
-}
-/* Twitter Bootstrap Override Style */
-.tocify  .nav-list > li > a {
-    padding: 5px;
-}
-.tocify-extend-page{
-    height: 0 !important;
-}
 /* Fix bootstrap staticlink
 -------------------------------------------------- */
 *[id]:before {

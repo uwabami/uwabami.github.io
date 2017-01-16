@@ -6,21 +6,37 @@ lang: ja
 ref: cc-env/DebianConfigure
 permalink: /cc-env/DebianConfigure.html
 ---
+<nav id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org40dfd00">始めに</a></li>
+<li><a href="#org286ce85">sudo の設定</a></li>
+<li><a href="#org41d5106">keymap の変更</a></li>
+<li><a href="#orgfdca897">MTA の設定</a>
+<ul>
+<li><a href="#org16f69b6">SSMTP</a></li>
+</ul>
+</li>
+<li><a href="#org5079f0c">alsa の初期設定</a></li>
+</ul>
+</div>
+</nav>
 <p>
 Related <a href='index.html'>Index</a>
 </p>
-<div id="outline-container-orgc875dca" class="outline-2">
-<h2 id="orgc875dca">始めに</h2>
-<div class="outline-text-2" id="text-orgc875dca">
+<div id="outline-container-org40dfd00" class="outline-2">
+<h2 id="org40dfd00">始めに</h2>
+<div class="outline-text-2" id="text-org40dfd00">
 <p>
 どんなシステムでも, かならずやっている雑多な設定などをメモ書き.
 増えてきたらそのうち分離する予定.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb42e67a" class="outline-2">
-<h2 id="orgb42e67a">sudo の設定</h2>
-<div class="outline-text-2" id="text-orgb42e67a">
+<div id="outline-container-org286ce85" class="outline-2">
+<h2 id="org286ce85">sudo の設定</h2>
+<div class="outline-text-2" id="text-org286ce85">
 <p>
 squeeze 以降は sudo グループがあるので, 自分を sudo グループに追加して再ログインした後に作業する.
 </p>
@@ -35,9 +51,9 @@ squeeze より前なら visudo で自分を追加してユーザアカウント�
 </pre>
 </div>
 </div>
-<div id="outline-container-org73aef82" class="outline-2">
-<h2 id="org73aef82">keymap の変更</h2>
-<div class="outline-text-2" id="text-org73aef82">
+<div id="outline-container-org41d5106" class="outline-2">
+<h2 id="org41d5106">keymap の変更</h2>
+<div class="outline-text-2" id="text-org41d5106">
 <p>
 console-setup で設定するようになった.
 X のキーボード設定もこれで設定される.
@@ -61,9 +77,9 @@ X のキーボード設定もこれで設定される.
 </pre>
 </div>
 </div>
-<div id="outline-container-orga7ec0dc" class="outline-2">
-<h2 id="orga7ec0dc">MTA の設定</h2>
-<div class="outline-text-2" id="text-orga7ec0dc">
+<div id="outline-container-orgfdca897" class="outline-2">
+<h2 id="orgfdca897">MTA の設定</h2>
+<div class="outline-text-2" id="text-orgfdca897">
 <ul class="org-ul">
 <li>常にネットワークに接続されているデスクトップ/ワークステーションは
 SSMTP を使用して上流のメールサーバに転送.</li>
@@ -73,9 +89,9 @@ SSMTP を使用して上流のメールサーバに転送.</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgad60ac5" class="outline-3">
-<h3 id="orgad60ac5">SSMTP</h3>
-<div class="outline-text-3" id="text-orgad60ac5">
+<div id="outline-container-org16f69b6" class="outline-3">
+<h3 id="org16f69b6">SSMTP</h3>
+<div class="outline-text-3" id="text-org16f69b6">
 <p>
 .qmail や .forward など, 上流のメールサーバで転送設定をしておく.
 </p>
@@ -118,9 +134,9 @@ SMTP-AUTH over SSL に対応したい場合は, /etc/ssmtp/ssmtp.conf に
 </div>
 </div>
 </div>
-<div id="outline-container-orga3766df" class="outline-2">
-<h2 id="orga3766df">alsa の初期設定</h2>
-<div class="outline-text-2" id="text-orga3766df">
+<div id="outline-container-org5079f0c" class="outline-2">
+<h2 id="org5079f0c">alsa の初期設定</h2>
+<div class="outline-text-2" id="text-org5079f0c">
 <p>
 あんまり複雑な事をしなくて良い機材だと楽.
 とりあえず alsa で音がなるようにしておく.
