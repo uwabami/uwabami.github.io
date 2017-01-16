@@ -1,13 +1,15 @@
 #+TITLE: このサイトができるまで
-#+DATE: 2017-01-16 03:54:58
+#+DATE: 2017-01-16 23:59:32
 #+LANGUAGE: ja
 #+REF: cc-env/JekyllandOrg
-#+LAYOUT: default
+#+LAYOUT: cc-env
 #+SETUPFILE: ~/Public/_setup.org
 #+PERMALINK: /cc-env/JekyllandOrg.html
 * はじめに
 
+  #+HTML: <div class="alert alert-danger">
   *以下，最近は使っていないので，今でも動くのは定かではありません．patch welcome!*
+  #+HTML: </div>
 
   このサイトは、記事を Emacs の [[http://orgmode.org/][Org mode]] で書いて、
   [[http://jekyllrb.com/][Jekyll]] で HTML に変換しています。

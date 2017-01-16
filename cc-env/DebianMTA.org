@@ -1,8 +1,8 @@
 #+TITLE: MTA の設定
-#+DATE: 2017-01-16 15:39:47
+#+DATE: 2017-01-16 23:56:55
 #+LANGUAGE: ja
 #+REF: cc-env/DebianMTA
-#+LAYOUT: default
+#+LAYOUT: cc-env
 #+SETUPFILE: ~/Public/_setup.org
 #+PERMALINK: /cc-env/DebianMTA.html
 Related: [[wiki:index][Index]]

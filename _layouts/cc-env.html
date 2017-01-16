@@ -16,12 +16,23 @@
             {% endif %}
             {% include breadcrumbs.html %}
           </div>
-          <div class="col-sm-12">
+          <div class="col-lg-9 col-md-9 cols-sm-12 col-xs-12">
             {{ content }}
+          </div>
+          <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+            <div id="toc"></div>
           </div>
         </div> <!-- /.row -->
       </div> <!-- /.content -->
     </div> <!-- /.container -->
     {% include footer.html %}
+    <script src="{{ "/assets/js/jquery-ui.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/assets/jquery-tocify/js/jquery.tocify.min.js" | prepend: site.baseurl }}"></script>
+    <script>
+      $(function() {
+      var toc = $("#toc").tocify({ selectors: "h2, h3, h4" }).data("toc-tocify");
+      toc.setOptions({ showEffect: "fadeIn", scrollTo: 85, smoothScroll: true });
+      });
+    </script>
   </body>
 </html>

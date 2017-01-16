@@ -1,7 +1,7 @@
 ---
 title: Emacs の設定
-date: 2017-01-16 15:46:10
-layout: default
+date: 2017-01-16 23:35:49
+layout: cc-env
 lang: ja
 ref: cc-env/Emacs
 permalink: /cc-env/Emacs.html
@@ -9,7 +9,6 @@ permalink: /cc-env/Emacs.html
 <p>
 Related: <a href='index.html'>Index</a>
 </p>
-
 <div id="outline-container-org7339e40" class="outline-2">
 <h2 id="org7339e40">はじめに</h2>
 <div class="outline-text-2" id="text-org7339e40">
@@ -730,9 +729,9 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
 <div id="outline-container-org90d79f2" class="outline-3">
 <h3 id="org90d79f2">標準機能の設定</h3>
 <div class="outline-text-3" id="text-org90d79f2">
-</div><div id="outline-container-org4b00b62" class="outline-4">
-<h4 id="org4b00b62">表示関連</h4>
-<div class="outline-text-4" id="text-org4b00b62">
+</div><div id="outline-container-orgb782e5d" class="outline-4">
+<h4 id="orgb782e5d">表示関連</h4>
+<div class="outline-text-4" id="text-orgb782e5d">
 </div><ul class="org-ul"><li><a id="org6cb0c89"></a>起動時のスプラッシュ画面を表示しない<br ><div class="outline-text-5" id="text-org6cb0c89">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> inhibit-startup-screen t
@@ -788,9 +787,9 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
 </div>
 </div></li></ul>
 </div>
-<div id="outline-container-orgea70f51" class="outline-4">
-<h4 id="orgea70f51">編集関連</h4>
-<div class="outline-text-4" id="text-orgea70f51">
+<div id="outline-container-org4387284" class="outline-4">
+<h4 id="org4387284">編集関連</h4>
+<div class="outline-text-4" id="text-org4387284">
 </div><ul class="org-ul"><li><a id="org2365249"></a>yes or no を y or n に<br ><div class="outline-text-5" id="text-org2365249">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(fset 'yes-or-no-p 'y-or-n-p)
@@ -1077,9 +1076,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orga514255" class="outline-3">
-<h3 id="orga514255">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orga514255">
+<div id="outline-container-org396dff8" class="outline-3">
+<h3 id="org396dff8">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org396dff8">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1115,9 +1114,9 @@ ddskk の 14.2 以降から同梱されるようになった(ありがたい)
 </div>
 </div>
 </div>
-<div id="outline-container-org0a9194b" class="outline-4">
-<h4 id="org0a9194b">表示関連</h4>
-<div class="outline-text-4" id="text-org0a9194b">
+<div id="outline-container-orgad4ca96" class="outline-4">
+<h4 id="orgad4ca96">表示関連</h4>
+<div class="outline-text-4" id="text-orgad4ca96">
 <p>
 変換候補の表示位置
 </p>
@@ -1198,9 +1197,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </div>
 </div>
 </div>
-<div id="outline-container-org9a1cb91" class="outline-4">
-<h4 id="org9a1cb91">編集関連</h4>
-<div class="outline-text-4" id="text-org9a1cb91">
+<div id="outline-container-orgc3fc069" class="outline-4">
+<h4 id="orgc3fc069">編集関連</h4>
+<div class="outline-text-4" id="text-orgc3fc069">
 <p>
 キーバインド
 </p>
@@ -1544,9 +1543,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-orgee0ccc8" class="outline-3">
-<h3 id="orgee0ccc8">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgee0ccc8">
+<div id="outline-container-orgbff5d5e" class="outline-3">
+<h3 id="orgbff5d5e">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgbff5d5e">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3546,18 +3545,6 @@ password-store には multiline で設定を書く．例えば以下:
       org-gcal-file-alist
       '((<span style="color: #7FFF7F;">"XXXXX@gmail.com"</span> . <span style="color: #7FFF7F;">"~/org/Schedule.org"</span>)
         (<span style="color: #7FFF7F;">"YYYYY@group.calendar.google.com"</span> . <span style="color: #7FFF7F;">"~/org/Project1.org"</span>)))
-(<span style="color: #FF7F7F;">defface</span> <span style="color: #7F7FFF;">my:org-agenda-calendar-Schedule</span>
-  '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span>)))
-  <span style="color: #7FFF7F;">"Agenda &#34920;&#31034;&#20013;, Schedule.org &#12398;&#34920;&#31034; face"</span>
-  <span style="color: #7FBFFF;">:group</span> 'org-agenda )
-(add-hook 'org-finalize-agenda-hook
-          (<span style="color: #FF7F7F;">lambda</span> ()
-            (<span style="color: #FF7F7F;">save-excursion</span>
-              (goto-char (point-min))
-              (<span style="color: #FF7F7F;">while</span> (re-search-forward <span style="color: #7FFF7F;">"Schedule:"</span> nil t)
-                (add-text-properties (match-beginning 0) (point-at-eol)
-                                     '(face my:org-agenda-calendar-Schedule)))
-              )))
 </pre>
 </div>
 </div>
@@ -3724,17 +3711,20 @@ html export の際に必要な yaml front matter を出力できるようにし�
     (<span style="color: #7FBFFF;">:permalink</span> <span style="color: #7FFF7F;">"PERMALINK"</span> nil nil)
     )
   <span style="color: #7FBFFF;">:filters-alist</span>
-  '((<span style="color: #7FBFFF;">:filter-final-output</span> . org-jekyll--escape-liquid))
+  '((<span style="color: #7FBFFF;">:filter-final-output</span> . org-jekyll-finalized))
   )
 <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">template</span>
 (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">org-jekyll-template</span> (contents info)
   <span style="color: #7FFF7F;">"Return complete document string after HTML conversion."</span>
   (concat (org-jekyll--yaml-front-matter info) contents))
-<span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">liquid template &#12395;&#35492;&#35299;&#12373;&#12428;&#12381;&#12358;&#12394;&#12450;&#12524;&#12467;&#12524;&#12434;&#32622;&#25563;</span>
-(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">org-jekyll--escape-liquid</span> (contents _backend info)
+<span style="color: #e5e5e6;">;;; </span><span style="color: #e5e5e6;">&#24190;&#12388;&#12363;&#12398;&#25991;&#23383;&#21015;&#12434;&#32622;&#25563;&#12377;&#12427;</span>
+<span style="color: #e5e5e6;">;;  </span><span style="color: #e5e5e6;">- liquid template&#12395;&#35492;&#35469;&#12373;&#12428;&#12427; `</span><span style="color: #FFBF7F;">&#123;%</span><span style="color: #e5e5e6;">', `</span><span style="color: #FFBF7F;">%&#125;</span><span style="color: #e5e5e6;">'</span>
+(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">org-jekyll-finalized</span> (contents _backend info)
   <span style="color: #7FFF7F;">"Publish src-block to html, Escape liquid tags, e.g. &#123;%, %&#125;"</span>
   (<span style="color: #FF7F7F;">with-temp-buffer</span>
-    (insert (s-replace <span style="color: #7FFF7F;">"&#123;%"</span> <span style="color: #7FFF7F;">"&amp;#123;%"</span> (s-replace <span style="color: #7FFF7F;">"%&#125;"</span> <span style="color: #7FFF7F;">"%&amp;#125;"</span> contents)))
+    (insert (s-replace <span style="color: #7FFF7F;">"&#123;%"</span> <span style="color: #7FFF7F;">"&amp;#123;%"</span>
+                       (s-replace <span style="color: #7FFF7F;">"%&#125;"</span> <span style="color: #7FFF7F;">"%&amp;#125;"</span>
+                                             contents)))
     (set-auto-mode t)
     (buffer-substring-no-properties (point-min) (point-max))))
 <span style="color: #e5e5e6;">;;</span>
@@ -3975,7 +3965,6 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">projectile</span>
-  <span style="color: #7FBFFF;">:if</span> (locate-library <span style="color: #7FFF7F;">"helm-projectile"</span>)
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> projectile-keymap-prefix (kbd <span style="color: #7FFF7F;">"C-c p"</span>)  <span style="color: #e5e5e6;">; </span><span style="color: #e5e5e6;">default</span>
         projectile-enable-caching t
@@ -3992,7 +3981,7 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
         <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">projectile-globally-ignored-files</span>
         <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">projectile-globally-ignored-directories</span>
         )
-  (projectile-mode)
+  (projectile-global-mode)
   (helm-projectile-on)
   )
 </pre>

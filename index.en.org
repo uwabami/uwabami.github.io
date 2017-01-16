@@ -1,5 +1,5 @@
 #+TITLE: Youhei SASAKI's Official site
-#+DATE: 2017-01-14 02:23:52
+#+DATE: 2017-01-16 23:36:47
 #+LANGUAGE: en
 #+REF: index
 #+LAYOUT: default
@@ -8,7 +8,7 @@
 * Welcome!!
   #+HTML: <div class="col-lg-4 col-md-5 col-sm-4">
   #+ATTR_HTML: :class img-responsive center-block
-  [[file:images/face.png]]
+  [[file:images/face.jpeg]]
   #+HTML: </div>
   #+HTML: <div class="col-lg-8 col-md-7 col-sm-8">
   - Name ::  *Youhei SASAKI*

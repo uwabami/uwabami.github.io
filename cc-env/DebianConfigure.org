@@ -1,8 +1,8 @@
 #+TITLE: Debian: Install 直後の雑多な設定
-#+DATE: 2017-01-16 15:45:29
+#+DATE: 2017-01-16 23:56:47
 #+LANGUAGE: ja
 #+REF: cc-env/DebianConfigure
-#+LAYOUT: default
+#+LAYOUT: cc-env
 #+SETUPFILE: ~/Public/_setup.org
 #+PERMALINK: /cc-env/DebianConfigure.html
 Related [[wiki:index][Index]]
