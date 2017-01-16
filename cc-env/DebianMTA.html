@@ -1,0 +1,948 @@
+---
+title: MTA の設定
+date: 2017-01-16 15:39:47
+layout: default
+lang: ja
+ref: cc-env/DebianMTA
+permalink: /cc-env/DebianMTA.html
+---
+<p>
+Related: <a href='index.html'>Index</a>
+</p>
+<div id="outline-container-orgda57763" class="outline-2">
+<h2 id="orgda57763">始めに</h2>
+<div class="outline-text-2" id="text-orgda57763">
+<p>
+メールに関するアレコレ.
+ネットワーク接続を意識したくないので,
+送受信用のサーバを手元に置いて MUA はなるべくここを叩くようにしている.
+</p>
+</div>
+</div>
+<div id="outline-container-org4205afd" class="outline-2">
+<h2 id="org4205afd">送信サーバの設定: Exim4</h2>
+<div class="outline-text-2" id="text-org4205afd">
+<p>
+smarthost での送信だけなら Exim4 が軽量で楽。
+他にも幾つか選択肢はある。気になるなら <a href="https://wiki.debian.org/Debate/DefaultMTA">Debian Wiki: DefaultMTA</a> あたり参照のこと。
+欲しい機能は
+</p>
+<ul class="org-ul">
+<li>上流の MTA への smarthost 送信。</li>
+<li>offline 時の queue</li>
+<li>localhost:25 での待受</li>
+</ul>
+<p>
+なので、軽いしとりあえず Exim4 をそのまま使っている。
+</p>
+<pre class="example">
+    $ sudo -s
+    # dpkg-reconfigure -plow exim4-config
+      メール設定の一般的なタイプ: 2. スマートホストでメール送信; SMTP または fetchmail で受信する
+      システムメール名: localhost
+      入力側 SMTP 接続をリスンする IP アドレス: 127.0.0.1
+      メールを受け取るその他の宛先: [空白]
+      メールをリレーするマシン: [空白]
+      送出スマートホストの IP アドレスまたはホスト名: スマートホスト用の送信サーバ::587
+      送出するメールでローカルメール名を隠しますか? no
+      DNS クエリの数を最小限に留めますか (ダイヤルオンデマンド)? no
+      ローカルメールの配送方式: 1. /var/mail/ 内の mbox 形式
+      設定を小さなファイルに分割しますか?: no
+      root と postmaster のメール受信者: 適当に設定
+</pre>
+<p>
+そのあと, <code>/etc/exim4/passwd.client</code> 内で, スマートホストの設定
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">    &#12473;&#12510;&#12540;&#12488;&#12507;&#12473;&#12488;&#36865;&#20449;&#12469;&#12540;&#12496;:[&#12450;&#12459;&#12454;&#12531;&#12488;]:[&#12497;&#12473;&#12527;&#12540;&#12489;]
+</pre>
+</div>
+<p>
+そして必要なら <code>/etc/exim4/email-addresses</code> に置換するリストを適当に記述.
+最低限 root と ユーザ宛(uid=1000) のメール送信先は設定しておく.
+</p>
+<pre class="example">
+    $ sudo -s
+    # upate-exim4.conf
+    # sudo /etc/init.d/exim4 restart
+</pre>
+<p>
+あとは適当にテストとかしてみると良い.
+</p>
+
+<p>
+(2012/07/30) このままだと message-id が "乱数列@hostname" になるので
+<code>/etc/exim4/exim4.conf.template</code> あたりに
+</p>
+<pre class="example">
+    message_id_header_domain = ドメイン名
+    message_id_header_text   = ホスト名
+</pre>
+<p>
+を追加して <code>update-exim4.conf</code> を走らせておくと良い。
+</p>
+</div>
+</div>
+<div id="outline-container-org434d1b7" class="outline-2">
+<h2 id="org434d1b7">受信</h2>
+<div class="outline-text-2" id="text-org434d1b7">
+<p>
+受信/閲覧は
+</p>
+<ul class="org-ul">
+<li><a href="http://isync.sourceforge.net/">isync</a> で、リモートの IMAP サーバのメールをローカルに Maildir 形式で保存</li>
+<li>ローカルで dovecot-imapd を起動してメールを閲覧</li>
+</ul>
+<p>
+としている.
+</p>
+
+<p>
+最近の MUA は多かれ少なかれ IMAP 接続でも手元にメールを持ってくるので,
+このメールの重複をなんとかしたいのだけれども,
+例えば Wanderlust なんかで Maildir を直接見にいくと Emacs の反応があまり芳しくない.
+</p>
+
+<p>
+以前 <a href="http://gihyo.jp/admin/serial/01/ubuntu-recipe/0247">第247回 Offlineimap＋Dovecotによる快適メール環境：Ubuntu Weekly Recipe</a> なんて記事を書いた。
+その時は offlineimap を使っていたのだけれども
+</p>
+<ul class="org-ul">
+<li>遅い。特に 2014 年あたりから Gmail の同期が体感できるレベルで遅くなった</li>
+<li>偶に block するし、imap の接続数が酷い事になる。</li>
+</ul>
+<p>
+ということで、2015 年から <a href="http://isync.sourceforge.net/">isync: free IMAP and MailDir mailbox synchronizer</a> に移行した。
+</p>
+</div>
+<div id="outline-container-orgb102936" class="outline-3">
+<h3 id="orgb102936">mbsync/isync</h3>
+<div class="outline-text-3" id="text-orgb102936">
+<p>
+isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
+</p>
+</div>
+<div id="outline-container-org1469761" class="outline-4">
+<h4 id="org1469761">インストール</h4>
+<div class="outline-text-4" id="text-org1469761">
+<p>
+実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
+</p>
+<pre class="example">
+      $ sudo apt-get install isync
+</pre>
+<p>
+apt 万歳
+</p>
+</div>
+</div>
+<div id="outline-container-org09c9eed" class="outline-4">
+<h4 id="org09c9eed">設定</h4>
+<div class="outline-text-4" id="text-org09c9eed">
+<p>
+設定ファイルは <code>~/.mbsyncrc</code>.
+設定例は以下:
+</p>
+<ul class="org-ul">
+<li><code>~/Maildir/</code> 以下にサーバのメールを同期する</li>
+<li><code>~/Maildir/INBOX.mobile.XXX</code> に imap.mobile.com のメールを同期.
+<ul class="org-ul">
+<li>明示的に <code>Pattern</code> を指定することで、指定ディレクトリ以外を同期しないことにする</li>
+</ul></li>
+<li><code>~/Maildir/INBOX.Gmail.XXX</code> に Gmail のメールを同期
+<ul class="org-ul">
+<li>明示的に <code>Pattern</code> を指定することで、指定ディレクトリ以外を同期しないことにする</li>
+<li><code>[Gmail]/</code> というラベルを上手く扱えないので、同期チャンネルを複数設定することで対応
+<ul class="org-ul">
+<li>今のところ SPAM 堕ちしたメールの確認のためだけに <code>~/Maildir/INBOX.Gmail.Junk</code> のみ確認している</li>
+</ul></li>
+</ul></li>
+<li><code>~/Maildir/INBOX</code> に <code>work.example.com</code> のメールを同期
+<ul class="org-ul">
+<li><code>work.example.com</code> メールサーバのディレクトリが <code>work/2014</code> 等と "/" 区切りになっているので <code>Flatten: .</code> で
+<code>INBOX.work.2014</code> 等に変換する。そのために <code>MaildirStore</code> を複数設定している</li>
+<li><code>Pattern: * !*mobile* !*Gmail*</code> で同期から除外する <code>Maildir</code> を指定する</li>
+</ul></li>
+<li>PassCmd で gpg 暗号化した netrc 形式のファイルからパスワードを取得している.
+<ul class="org-ul">
+<li>これ、User なんかにも使えないかなぁ、とか思ったり</li>
+</ul></li>
+</ul>
+<p>
+今のところ特に使用に際して困った事はおきていない。
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      IMAPAccount mobile
+      Host mobile.example.com
+      User TheMobileUserAccount
+      PassCmd <span style="color: #7FFF7F;">"echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine mobile.example.com .*password \\\([^ ]*\\) port.*,\\1,p')}"</span>
+      Port 993
+      UseIMAPS yes
+      RequireSSL yes
+      UseTLSv1.2 yes
+      CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+      IMAPAccount work
+      Host work.example.com
+      User TheWorkUserAccount
+      PassCmd <span style="color: #7FFF7F;">"echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine work.example.com .*password \\\([^ ]*\\) port.*,\\1,p')}"</span>
+      Port 993
+      UseIMAPS yes
+      RequireSSL yes
+      UseTLSv1.2 yes
+      CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+      IMAPAccount gmail
+      Host imap.gmail.com
+      User GmailMailAddress
+      PassCmd <span style="color: #7FFF7F;">"echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine imap.gmail.com .*password \\\([^ ]*\\) port.*,\\1,p')}"</span>
+      Port 993
+      UseIMAPS yes
+      RequireSSL yes
+      UseTLSv1.2 yes
+      CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+      IMAPStore work-remote
+      Account work
+      UseNamespace no
+
+      IMAPStore work-remote
+      Account work
+
+      IMAPStore gmail-remote
+      Account gmail
+      UseNamespace yes
+
+      MaildirStore local
+      Path ~/Maildir/
+      Inbox ~/Maildir/INBOX
+
+      MaildirStore work-local
+      Path ~/Maildir/
+      Inbox ~/Maildir/INBOX
+      Flatten .
+
+      Channel mobile
+      Master :mobile-remote:
+      Slave :local:INBOX.mobile.
+      Patterns INBOX Junk Archives Sent Drafts Trash
+      Create Both
+      Expunge Both
+      Sync all
+      SyncState *
+
+      Channel gmail
+      Master :gmail-remote:
+      Slave :local:INBOX.Gmail.
+      Patterns INBOX
+      Create Both
+      Expunge Both
+      Sync all
+      SyncState *
+
+      Channel gmail-junk
+      Master <span style="color: #7FFF7F;">":gmail-remote:[Gmail]/&amp;j,dg0TDhMPww6w-"</span>
+      Slave :local:INBOX.Gmail.Junk
+      Patterns *
+      Create Both
+      Expunge Both
+      Sync all
+      SyncState *
+
+      Channel work
+      Master :work-remote:
+      Slave :work-local:
+      Patterns * !*mobile* !*Gmail*
+      Create Both
+      Expunge Both
+      Sync all
+      SyncState *
+</pre>
+</div>
+<p>
+上手く設定できているなら
+</p>
+<pre class="example">
+      mbsync -l mobile
+</pre>
+<p>
+などとして、同期する <code>Maildir</code> を確認すると良い。
+リモートとローカルでどういうマッピングがされているかわかるだろう。
+25万通(6.5G)の同期にだいたい 3 時間ぐらい。
+回線速度に依存するだろうけれど、offlineimap より目に見えて速い(気がする)。
+また、IMAP Pipeline で処理されているので、サーバ上の IMAP connection の数は 1 つのみだった。
+</p>
+</div>
+</div>
+<div id="outline-container-org9ffbc41" class="outline-4">
+<h4 id="org9ffbc41">cron での動作</h4>
+<div class="outline-text-4" id="text-org9ffbc41">
+<p>
+認証に GPG を使っており、認証に Gnome Keyring を用いているので
+必要な環境変数を読み込んでから実行するようにする.
+先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/bin/bash</span>
+      sleep 5
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Export the dbus session address on startup so it can be used by cron</span>
+      touch $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+      chmod 600 $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+      env | grep DBUS_SESSION_BUS_ADDRESS &gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+      env | grep GPG_AGENT_INFO &gt;&gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+      <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'export DBUS_SESSION_BUS_ADDRESS'</span> &gt;&gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+      <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'export GPG_AGENT_INFO'</span> &gt;&gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+</pre>
+</div>
+<p>
+<code>~/.config/autostart</code> 以下に適当な名前で
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      [<span style="color: #FFFF7F;">Desktop Entry</span>]
+      <span style="color: #7F7FFF;">Type</span>=Application
+      <span style="color: #7F7FFF;">Exec</span>=/home/uwabami/.mua/export_x_info.sh
+      <span style="color: #7F7FFF;">Hidden</span>=false
+      <span style="color: #7F7FFF;">NoDisplay</span>=false
+      <span style="color: #7F7FFF;">X-GNOME-Autostart-enabled</span>=true
+      <span style="color: #7F7FFF;">Name</span>=Xdbus infomation exporter
+      <span style="color: #7F7FFF;">Comment</span>=Xdbus infomation exporter
+</pre>
+</div>
+<p>
+を用意しておく.
+</p>
+
+<p>
+あとは cron 実行時に <code>~/.Xdbus</code> を include するようにしておけば,
+必要に応じて GnomeKeyring による認証が行なわれる.
+cron で実行されるスクリプトは, 例えば
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/bin/sh</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
+      <span style="color: #e5e5e6;">################################################################################</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">for personal settings</span>
+      <span style="color: #7F7FFF;">PID</span>=~/Maildir/mbsync.pid
+      <span style="color: #7F7FFF;">CONF</span>=~/.mbsyncrc
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">for gnome-keyring:</span>
+      . ${<span style="color: #7F7FFF;">HOME</span>}/.Xdbus
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">check network is avaliable</span>
+      nm-online -x  2&gt;/dev/null || <span style="color: #FF7F7F;">exit</span> 0
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">check another offlineimap</span>
+      timelimit -T 300 -t 300 mbsync -c $<span style="color: #7F7FFF;">CONF</span> -a 2&gt;&amp;1 || <span style="color: #FF7F7F;">exit</span> 0
+</pre>
+</div>
+<p>
+とか。mbsync 自体の timeout や PID  管理ができないので、 <code>timelinit</code> コマンドで処理をするようにしている。
+実際は、二回目以降の同期は(回線速度に依存するだろうけれど) 20 秒ぐらい。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org51e009f" class="outline-3">
+<h3 id="org51e009f">dovecot</h3>
+<div class="outline-text-3" id="text-org51e009f">
+</div><div id="outline-container-org106420b" class="outline-4">
+<h4 id="org106420b">インストール</h4>
+<div class="outline-text-4" id="text-org106420b">
+<p>
+最低限 IMAP での接続ができれば良いので
+</p>
+<pre class="example">
+      % sudo apt-get install dovecot-imapd
+</pre>
+<p>
+apt 万歳
+</p>
+</div>
+</div>
+<div id="outline-container-org8086a93" class="outline-4">
+<h4 id="org8086a93">設定</h4>
+<div class="outline-text-4" id="text-org8086a93">
+<p>
+最低限の設定として、
+</p>
+<ul class="org-ul">
+<li>localhost で起動. 認証は PAM に任せる(login パスワードと同じ)</li>
+<li>Maildir 形式で mbsync(もしくは offlineimap)で同期したMaildirを読む.</li>
+<li>IMAP もしくは IMAP over SSL のみ</li>
+</ul>
+<p>
+ための設定を行なう
+</p>
+
+<p>
+以下、設定ファイル中のコメント行を除いた部分だけを記載しているので注意
+(コメント消すなんてとんでもない!)。
+</p>
+
+<p>
+先ず待受サーバ。
+どの IP アドレスで待ち受けるかは <code>/etc/dovecot/dovecot.conf</code> にあるので
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      ...
+      <span style="color: #7F7FFF;">listen</span> = 127.0.0.1
+      ...
+</pre>
+</div>
+<p>
+あたりを修正しておく。
+</p>
+
+<p>
+認証は
+<code>/etc/dovecot/conf.d/10-auth.conf</code> 内で
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      <span style="color: #7F7FFF;">disable_plain_text_auth</span> = no
+      <span style="color: #7F7FFF;">auth_mechanisms</span> = plain
+      !include auth-system.conf.ext
+</pre>
+</div>
+<p>
+を有効に。include されている auth-system.conf.ext の中身は
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      <span style="color: #FFFF7F;">passdb</span> {
+        <span style="color: #7F7FFF;">driver</span> = pam
+      }
+      <span style="color: #FFFF7F;">userdb</span> {
+        <span style="color: #7F7FFF;">driver</span> = passwd
+      }
+</pre>
+</div>
+<p>
+だけが有効。これで pam 経由でパスワードログインするようになる.
+</p>
+
+<p>
+次に Maildir の設定。 <code>/etc/dovecot/conf.d/10-mail.conf</code> 内で
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      <span style="color: #7F7FFF;">mail_location</span> = maildir:%h/Maildir:INBOX=%h/Maildir/INBOX:LAYOUT=fs
+      <span style="color: #FFFF7F;">namespace inbox</span> {
+        <span style="color: #7F7FFF;">inbox</span> = yes
+      }
+</pre>
+</div>
+<p>
+あたりを修正しておく。
+</p>
+
+<p>
+最後に IMAP over SSL の設定。 <code>/etc/dovecot/conf.d/10-ssl.conf</code> で証明書の設定をする:
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      <span style="color: #7F7FFF;">ssl_cert</span> = &lt;/etc/ssl/private/ssl-cert-dovecot.pem
+      <span style="color: #7F7FFF;">ssl_key</span> = &lt;/etc/ssl/private/ssl-cert-dovecot.key
+      <span style="color: #7F7FFF;">ssl_protocols</span> = !SSLv2 !SSLv3
+</pre>
+</div>
+<p>
+その後に <code>/etc/dovecot/conf.d/10-master.conf</code> 内の <code>imap-login</code> 部分を修正
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      <span style="color: #FFFF7F;">service imap-login</span> {
+        <span style="color: #FFFF7F;">inet_listener imap</span> {
+          <span style="color: #7F7FFF;">port</span> = 0
+          <span style="color: #7F7FFF;">ssl</span> = no
+        }
+        <span style="color: #FFFF7F;">inet_listener imaps</span> {
+          <span style="color: #7F7FFF;">port</span> = 993
+          <span style="color: #7F7FFF;">ssl</span> = yes
+        }
+      }
+</pre>
+</div>
+<p>
+これで再起動すると <code>/etc/ssl/private</code> に置いた SSL 証明書を使って <code>127.0.1.1:993</code> で IMAP サーバが起動する。Listen を 127.0.0.1 に絞るなら SSL でのアクセスは不要かもしれない。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6754617" class="outline-4">
+<h4 id="org6754617">検索: Solr</h4>
+<div class="outline-text-4" id="text-org6754617">
+<p>
+Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。
+ここでは Solr を試してみる
+</p>
+
+<p>
+とりあえず jetty で solar を動かすことに:
+</p>
+<pre class="example">
+      % sudo aptitude -R solr-jetty dovecot-solr
+</pre>
+
+<p>
+Jetty の起動設定は <code>/etc/default/jetty8</code> にあるので
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      <span style="color: #7F7FFF;">NO_START</span>=0
+      <span style="color: #7F7FFF;">JETTY_HOST</span>=localhost
+      <span style="color: #7F7FFF;">JETTY_PORT</span>=8089
+</pre>
+</div>
+<p>
+としておく。dovecot 用の scheme.xml は <code>dovecot-solr</code> をインストールすると <code>/usr/share/dovecot/solr-scheme.xml</code> にインストールされるので、これを <code>/etc/solr/conf/scheme.xml</code> にコピー
+</p>
+<pre class="example">
+      % cd /etc/solr/conf
+      % sudo cp scheme.xml scheme.xml.bak
+      % sudo cp /usr/share/dovecot/solr-schemex.ml scheme.xml
+</pre>
+<p>
+その後で <code>/etc/dovecot/conf.d/10-imap.conf</code> 内の mail<sub>plugins</sub> 行に
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      <span style="color: #7F7FFF;">mail_plugins</span> = fts fts_solr
+</pre>
+</div>
+<p>
+を追加しておく。
+IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定すれば良いのだが、この場合は <code>doveadm fts rescan -u USERNAME</code> ができない。
+最後に <code>/etc/dovecot/conf.d/90-plugin.conf</code> で
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      <span style="color: #FFFF7F;">plugin</span> {
+        <span style="color: #7F7FFF;">fts_autoindex</span> = yes
+        <span style="color: #7F7FFF;">fts</span> = solr
+        <span style="color: #7F7FFF;">fts_solr</span> = break-imap-search url=http://localhost:8089/solr/
+      }
+</pre>
+</div>
+<p>
+としておく。これで jetty8 および dovecot を再起動すると、検索が効く様になる&#x2026;?
+</p>
+</div>
+</div>
+
+<div id="outline-container-org54be4cd" class="outline-4">
+<h4 id="org54be4cd">検索: Solr で日本語</h4>
+<div class="outline-text-4" id="text-org54be4cd">
+<p>
+<code>scheme.xml</code> の修正が必要。
+とりあえず
+</p>
+<ul class="org-ul">
+<li><code>/etc/solr/conf/scheme.xml</code> より <code>text_cjk</code> および <code>text_ja</code> の部分を抜き出して, dovecot の提供していた <code>scheme.xml</code> に追加</li>
+<li><code>hdr,body,subject</code> を <code>text_cjk</code> で解析するように</li>
+</ul>
+<p>
+してみた.
+</p>
+
+<p>
+diff は以下:
+</p>
+<div class="org-src-container">
+<pre class="src src-diff">      --- solr-schema.xml 2015-05-10 20:52:33.375358006 +0900
+      +++ schema.xml  2015-05-10 20:37:37.358195292 +0900
+      @@ -13,6 +13,62 @@
+           &lt;fieldType name="long" class="solr.TrieLongField" /&gt;
+           &lt;fieldType name="boolean" class="solr.BoolField" /&gt;
+
+      +    &lt;!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) --&gt;
+      +    &lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;
+      +      &lt;analyzer&gt;
+      +        &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
+      +        &lt;!-- normalize width before bigram, as e.g. half-width dakuten combine  --&gt;
+      +        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;
+      +        &lt;!-- for any non-CJK --&gt;
+      +        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;
+      +        &lt;filter class="solr.CJKBigramFilterFactory"/&gt;
+      +      &lt;/analyzer&gt;
+      +    &lt;/fieldType&gt;
+      +    &lt;fieldType name="text_ja" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="false"&gt;
+      +      &lt;analyzer&gt;
+      +      &lt;!-- Kuromoji Japanese morphological analyzer/tokenizer (JapaneseTokenizer)
+      +
+      +           Kuromoji has a search mode (default) that does segmentation useful for search.  A heuristic
+      +           is used to segment compounds into its parts and the compound itself is kept as synonym.
+      +
+      +           Valid values for attribute mode are:
+      +              normal: regular segmentation
+      +              search: segmentation useful for search with synonyms compounds (default)
+      +            extended: same as search mode, but unigrams unknown words (experimental)
+      +
+      +           For some applications it might be good to use search mode for indexing and normal mode for
+      +           queries to reduce recall and prevent parts of compounds from being matched and highlighted.
+      +           Use &lt;analyzer type="index"&gt; and &lt;analyzer type="query"&gt; for this and mode normal in query.
+      +
+      +           Kuromoji also has a convenient user dictionary feature that allows overriding the statistical
+      +           model with your own entries for segmentation, part-of-speech tags and readings without a need
+      +           to specify weights.  Notice that user dictionaries have not been subject to extensive testing.
+      +
+      +           User dictionary attributes are:
+      +                     userDictionary: user dictionary filename
+      +             userDictionaryEncoding: user dictionary encoding (default is UTF-8)
+      +
+      +           See lang/userdict_ja.txt for a sample user dictionary file.
+      +
+      +           See http://wiki.apache.org/solr/JapaneseLanguageSupport for more on Japanese language support.
+      +        --&gt;
+      +        &lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search"/&gt;
+      +        &lt;!--&lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search" userDictionary="lang/userdict_ja.txt"/&gt;--&gt;
+      +        &lt;!-- Reduces inflected verbs and adjectives to their base/dictionary forms (&#36766;&#26360;&#24418;) --&gt;
+      +        &lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;
+      +        &lt;!-- Removes tokens with certain part-of-speech tags --&gt;
+      +        &lt;filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt" enablePositionIncrements="true"/&gt;
+      +        &lt;!-- Normalizes full-width romaji to half-width and half-width kana to full-width (Unicode NFKC subset) --&gt;
+      +        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;
+      +        &lt;!-- Removes common tokens typically not useful for search, but have a negative effect on ranking --&gt;
+      +        &lt;filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ja.txt" enablePositionIncrements="true" /&gt;
+      +        &lt;!-- Normalizes common katakana spelling variations by removing any last long sound character (U+30FC) --&gt;
+      +        &lt;filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4"/&gt;
+      +        &lt;!-- Lower-cases romaji characters --&gt;
+      +        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;
+      +      &lt;/analyzer&gt;
+      +    &lt;/fieldType&gt;
+      +
+           &lt;fieldType name="text" class="solr.TextField" positionIncrementGap="100"&gt;
+             &lt;analyzer type="index"&gt;
+               &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
+      @@ -43,14 +99,14 @@
+          &lt;field name="box" type="string" indexed="true" stored="true" required="true" /&gt;
+          &lt;field name="user" type="string" indexed="true" stored="true" required="true" /&gt;
+
+      -   &lt;field name="hdr" type="text" indexed="true" stored="false" /&gt;
+      -   &lt;field name="body" type="text" indexed="true" stored="false" /&gt;
+      +   &lt;field name="hdr" type="text_cjk" indexed="true" stored="false" /&gt;
+      +   &lt;field name="body" type="text_cjk" indexed="true" stored="false" /&gt;
+
+          &lt;field name="from" type="text" indexed="true" stored="false" /&gt;
+          &lt;field name="to" type="text" indexed="true" stored="false" /&gt;
+          &lt;field name="cc" type="text" indexed="true" stored="false" /&gt;
+          &lt;field name="bcc" type="text" indexed="true" stored="false" /&gt;
+      -   &lt;field name="subject" type="text" indexed="true" stored="false" /&gt;
+      +   &lt;field name="subject" type="text_cjk" indexed="true" stored="false" /&gt;
+
+          &lt;!-- Used by Solr internally: --&gt;
+          &lt;field name="_version_" type="long" indexed="true" stored="true"/&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3cb5640" class="outline-3">
+<h3 id="org3cb5640">offlineimap</h3>
+<div class="outline-text-3" id="text-org3cb5640">
+<p>
+(2015/05/10) 以前使っていた時のメモ。もう使わないけれど、たまに検索でココを見に来ている人がいるみたいなので、残しておくことに。
+<a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.
+</p>
+</div>
+<div id="outline-container-org6bd5813" class="outline-4">
+<h4 id="org6bd5813">インストール</h4>
+<div class="outline-text-4" id="text-org6bd5813">
+<p>
+apt万歳, ってことで.
+</p>
+<pre class="example">
+      $ sudo apt-get install offlineimap
+</pre>
+</div>
+</div>
+<div id="outline-container-orgac6b8d7" class="outline-4">
+<h4 id="orgac6b8d7">設定</h4>
+<div class="outline-text-4" id="text-orgac6b8d7">
+<p>
+現状, 以下の通り:
+</p>
+<ul class="org-ul">
+<li><a href="http://offlineimap.org/">OfflineIMAP</a> のメタ情報は <code>~/Mail/offlineimap</code> 以下に格納</li>
+<li>同期するサーバは二箇所:
+<ul class="org-ul">
+<li>Main サーバのメールは <code>~/Mail/imap</code> 以下に格納.
+<ul class="org-ul">
+<li>この際, IMAP Namespace である <code>INBOX.</code> を除外して <code>Maildir</code> を作成</li>
+<li><code>~/Mail/imap/[Gmail]</code> は同期しない</li>
+</ul></li>
+<li>Gmail のメールは <code>~/Mail/imap/[Gmail]/</code> 以下に格納</li>
+</ul></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-conf">      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">offlineimaprc</span>
+      <span style="color: #e5e5e6;">#</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Copyright(C) 2011 Youhei SASAKI All rights reserved.</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">$Lastupdate: 2014-07-26 18:25:07$</span>
+      <span style="color: #e5e5e6;">#</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">License: WTFPL</span>
+      <span style="color: #e5e5e6;">#</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Code:</span>
+      [<span style="color: #FFFF7F;">general</span>]
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#12513;&#12479;&#12487;&#12540;&#12479;&#12398;&#26684;&#32013;&#20808;</span>
+      <span style="color: #7F7FFF;">metadata</span> = ~/Mail/offlineimap
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#35036;&#21161;&#38306;&#25968;&#12364;&#23450;&#32681;&#12373;&#12428;&#12383;&#12501;&#12449;&#12452;&#12523;&#12398;&#32622;&#12365;&#22580;&#25152;</span>
+      <span style="color: #7F7FFF;">pythonfile</span> = ~/.mua/offlineimap_utils.py
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26399;&#12377;&#12427;&#12469;&#12540;&#12496;&#12398;&#35373;&#23450;</span>
+      <span style="color: #7F7FFF;">accounts</span> = Main, Gmail
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26399;&#12377;&#12427;&#12450;&#12459;&#12454;&#12531;&#12488;&#12398;&#25968;</span>
+      <span style="color: #7F7FFF;">maxsyncaccounts</span> = 2
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">UI &#12398;&#35373;&#23450;. cron &#12391;&#21516;&#26399;&#12377;&#12427;&#22580;&#21512;&#12395;&#12399; quiet &#12398;&#26041;&#12364;&#33391;&#12356;</span>
+      <span style="color: #7F7FFF;">ui</span> = basic
+      <span style="color: #7F7FFF;">socktimeout</span> = 600
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#39640;&#36895;&#21270;(?)</span>
+      <span style="color: #7F7FFF;">fsync</span> = false
+
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Gmail &#29992;&#12398;&#35373;&#23450;: &#12371;&#12371;&#12391;&#35373;&#23450;&#12377;&#12427;&#21517;&#21069;&#12399; accounts &#12395;&#25539;&#12360;&#12427;</span>
+      [<span style="color: #FFFF7F;">Account Gmail</span>]
+      <span style="color: #7F7FFF;">localrepository</span> = LocalGmail
+      <span style="color: #7F7FFF;">remoterepository</span> = RemoteGmail
+      <span style="color: #7F7FFF;">maxsize</span> = 2000000000
+      <span style="color: #7F7FFF;">status_backend</span> = sqlite
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">quick = 1 &#12384;&#12392;&#12501;&#12521;&#12464;&#12399;&#21516;&#26399;&#12373;&#12428;&#12394;&#12356;</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">'[Gmail]/&#20840;&#12390;&#12398;&#12513;&#12540;&#12523;' &#12434;&#21516;&#26399;&#12377;&#12427;&#12394;&#12425; quick = 1 &#12398;&#26041;&#12364;&#33391;&#12356;?</span>
+      <span style="color: #7F7FFF;">quick</span> = 0
+
+      [<span style="color: #FFFF7F;">Repository LocalGmail</span>]
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Gmail &#12398;&#25163;&#20803;&#12398;&#35373;&#23450;</span>
+      <span style="color: #7F7FFF;">type</span> = Maildir
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Maildir &#12398;&#26684;&#32013;&#22580;&#25152;</span>
+      <span style="color: #7F7FFF;">localfolders</span> = ~/Mail/imap/[Gmail]
+      <span style="color: #7F7FFF;">restoreatime</span> = no
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">IMAP &#12398;&#12475;&#12497;&#12524;&#12540;&#12479;&#12398;&#22793;&#25563;: Mailbox &#12398; "." &#12364; "/" &#12392;&#12394;&#12426;,</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12364;&#20316;&#25104;&#12373;&#12428;&#12427;</span>
+      <span style="color: #7F7FFF;">sep</span> = /
+
+      [<span style="color: #FFFF7F;">Repository RemoteGmail</span>]
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Gmail &#12392;&#12398;&#25509;&#32154;&#35373;&#23450;: type = IMAP &#12391;&#12418;&#33391;&#12356;?</span>
+      <span style="color: #7F7FFF;">type</span> = Gmail
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remote{pass,user}eval &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
+      <span style="color: #7F7FFF;">remoteusereval</span> = get_username(<span style="color: #7FFF7F;">"imap.gmail.com"</span>)
+      <span style="color: #7F7FFF;">remotepasseval</span> = get_password(<span style="color: #7FFF7F;">"imap.gmail.com"</span>)
+      <span style="color: #7F7FFF;">maxsize</span> = 2000000000
+      <span style="color: #7F7FFF;">realdelete</span> = no
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26178;&#25509;&#32154;&#25968;. &#20006;&#21015;&#23455;&#34892;&#21487;&#33021;&#12394;&#12398;&#12391;&#36969;&#23452;</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#12469;&#12540;&#12496;&#12395;&#24594;&#12425;&#12428;&#12394;&#12356;&#31243;&#24230;&#12395;</span>
+      <span style="color: #7F7FFF;">maxconnections</span> = 5
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remote -&gt; local &#26178;&#12398;&#12501;&#12457;&#12523;&#12480;&#21517;&#22793;&#25563;(&#27491;&#35215;&#34920;&#29694;)</span>
+      <span style="color: #7F7FFF;">nametrans</span> = lambda foldername: re.sub(<span style="color: #7FFF7F;">'^INBOX'</span>,<span style="color: #7FFF7F;">''</span>, (re.sub(<span style="color: #7FFF7F;">'^\[Gmail\]/'</span>,<span style="color: #7FFF7F;">''</span>, foldername)))
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26399;&#12377;&#12427;&#12501;&#12457;&#12523;&#12480;&#12398;&#35373;&#23450;: Gmail &#20596;&#12391; IMAP &#12391;&#34920;&#31034;&#12377;&#12427;&#12521;&#12505;&#12523;&#35373;&#23450;&#12375;&#12390;&#12362;&#12367;, &#12391;&#12418;&#33391;&#12356;&#12363;&#12418;.</span>
+      <span style="color: #7F7FFF;">folderfilter</span> = lambda foldername: foldername in [
+                   <span style="color: #7FFF7F;">'INBOX'</span>,                   <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-&gt; '~/Mail/imap/[Gmail]' &#12395;&#12394;&#12427;</span>
+                   <span style="color: #7FFF7F;">'[Gmail]/&amp;j,dg0TDhMPww6w-'</span> <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-&gt; '~/Mail/imap/[Gmail]/&amp;j,dg0TDhMPww6w-' &#12395;&#12394;&#12427;</span>
+                   ]
+      <span style="color: #7F7FFF;">sslcacertfile</span> = /etc/ssl/certs/ca-certificates.crt
+
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Main &#12469;&#12540;&#12496;&#12398;&#35373;&#23450;: &#12371;&#12371;&#12391;&#35373;&#23450;&#12377;&#12427;&#21517;&#21069;&#12399; [general] accounts &#12395;&#25539;&#12360;&#12427;</span>
+      [<span style="color: #FFFF7F;">Account Main</span>]
+      <span style="color: #7F7FFF;">localrepository</span> = LocalMain
+      <span style="color: #7F7FFF;">remoterepository</span> = RemoteMain
+      <span style="color: #7F7FFF;">status_backend</span> = sqlite
+      <span style="color: #7F7FFF;">maxsize</span> = 2000000000
+      <span style="color: #7F7FFF;">quick</span> = 0
+
+      [<span style="color: #FFFF7F;">Repository LocalMain</span>]
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#25163;&#20803;&#12398;&#35373;&#23450;</span>
+      <span style="color: #7F7FFF;">type</span> = Maildir
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Maildir &#12398;&#26684;&#32013;&#22580;&#25152;</span>
+      <span style="color: #7F7FFF;">localfolders</span> = ~/Mail/imap
+      <span style="color: #7F7FFF;">restoreatime</span> = no
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">local -&gt; remote &#12391;&#12398;&#21517;&#21069;&#22793;&#25563;</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">LocaltoRemoteTransnameINBOX &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
+      <span style="color: #7F7FFF;">nametrans</span> = LocalToRemoteTransnameINBOX
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">'Maildir/imap/[Gmail]' &#12399;&#21516;&#26399;&#12375;&#12394;&#12356;</span>
+      <span style="color: #7F7FFF;">folderfilter</span> = lambda folder: not folder.startswith(<span style="color: #7FFF7F;">'[Gmail]'</span>)
+      <span style="color: #7F7FFF;">sep</span> = /
+
+      [<span style="color: #FFFF7F;">Repository RemoteMain</span>]
+      <span style="color: #7F7FFF;">type</span> = IMAP
+      <span style="color: #7F7FFF;">ssl</span> = yes
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">certificates &#12364;&#12487;&#12501;&#12457;&#12523;&#12488;&#12391;&#25506;&#12379;&#12394;&#12356;?</span>
+      <span style="color: #7F7FFF;">sslcacertfile</span> = /etc/ssl/certs/ca-certificates.crt
+      <span style="color: #7F7FFF;">remotehost</span> = [main server]
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remote{pass,user}eval &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
+      <span style="color: #7F7FFF;">remoteusereval</span> = get_username(<span style="color: #7FFF7F;">"[main server]"</span>)
+      <span style="color: #7F7FFF;">remotepasseval</span> = get_password(<span style="color: #7FFF7F;">"[main server]"</span>)
+      <span style="color: #7F7FFF;">maxsize</span> = 2000000000
+      <span style="color: #7F7FFF;">maxconnections</span> = 5
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remote -&gt; local &#12391;&#12398;&#21517;&#21069;&#12398;&#22793;&#25563;</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">RemotetoLocalTransnameINBOX &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
+      <span style="color: #7F7FFF;">nametrans</span> = RemoteToLocalTransnameINBOX
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26399; *&#12375;&#12394;&#12356;* &#12501;&#12457;&#12523;&#12480;&#12398;&#36984;&#25246;</span>
+      <span style="color: #7F7FFF;">folderfilter</span> = lambda foldername: foldername not in [
+                  <span style="color: #7FFF7F;">'INBOX.Drafts'</span>,
+                  <span style="color: #7FFF7F;">'INBOX.Trash'</span>,
+                  <span style="color: #7FFF7F;">'INBOX.archive.zz2006'</span>,
+                  <span style="color: #7FFF7F;">'INBOX.archive.zz2007'</span>,
+                  <span style="color: #7FFF7F;">'INBOX.archive.zz2008'</span>,
+                  <span style="color: #7FFF7F;">'INBOX.archive.zz2009'</span>,
+                  <span style="color: #7FFF7F;">'INBOX.archive.zz2010'</span>,
+                  <span style="color: #7FFF7F;">'INBOX.archive.zz2011'</span>,
+                  <span style="color: #7FFF7F;">'INBOX.archive.zz2012'</span>,
+                  <span style="color: #7FFF7F;">'INBOX.archive.zz2013'</span>
+                  ]
+</pre>
+</div>
+<p>
+<code>offlineimap_utils.py</code> の中身は以下の通り:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/usr/bin/python</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- coding: utf-8</span>
+      <span style="color: #FF7F7F;">import</span> sys
+      <span style="color: #FF7F7F;">import</span> re
+      <span style="color: #FF7F7F;">import</span> os
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;"># Auth via GnomeKeyring</span>
+      <span style="color: #FF7F7F;">import</span> gtk
+      <span style="color: #FF7F7F;">from</span> getpass <span style="color: #FF7F7F;">import</span> getpass
+      <span style="color: #FF7F7F;">import</span> gnomekeyring <span style="color: #FF7F7F;">as</span> gkey
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Ad hoc fix for Striptime behavior</span>
+      <span style="color: #FF7F7F;">import</span> locale
+      locale.setlocale(locale.LC_TIME, <span style="color: #7FFF7F;">'C'</span>)
+
+      <span style="color: #e5e5e6;">##################</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Gnome keyring  #</span>
+      <span style="color: #e5e5e6;">##################</span>
+
+      <span style="color: #FF7F7F;">class</span> <span style="color: #FFFF7F;">Keyring</span>(<span style="color: #7FBFFF;">object</span>):
+          <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">__init__</span>(<span style="color: #FF7F7F;">self</span>, name, server, protocol):
+              <span style="color: #FF7F7F;">self</span>._name = name
+              <span style="color: #FF7F7F;">self</span>._server = server
+              <span style="color: #FF7F7F;">self</span>._protocol = protocol
+              <span style="color: #FF7F7F;">self</span>._keyring = gkey.get_default_keyring_sync()
+
+          <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">has_credentials</span>(<span style="color: #FF7F7F;">self</span>):
+              <span style="color: #FF7F7F;">try</span>:
+                  <span style="color: #7F7FFF;">attrs</span> = {<span style="color: #7FFF7F;">"server"</span>: <span style="color: #FF7F7F;">self</span>._server, <span style="color: #7FFF7F;">"protocol"</span>: <span style="color: #FF7F7F;">self</span>._protocol}
+                  <span style="color: #7F7FFF;">items</span> = gkey.find_items_sync(gkey.ITEM_NETWORK_PASSWORD, attrs)
+                  <span style="color: #FF7F7F;">return</span> <span style="color: #7FBFFF;">len</span>(items) &gt; 0
+              <span style="color: #FF7F7F;">except</span> gkey.DeniedError:
+                  <span style="color: #FF7F7F;">return</span> <span style="color: #FFBF7F;">False</span>
+
+          <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">get_credentials</span>(<span style="color: #FF7F7F;">self</span>):
+              <span style="color: #7F7FFF;">attrs</span> = {<span style="color: #7FFF7F;">"server"</span>: <span style="color: #FF7F7F;">self</span>._server, <span style="color: #7FFF7F;">"protocol"</span>: <span style="color: #FF7F7F;">self</span>._protocol}
+              <span style="color: #7F7FFF;">items</span> = gkey.find_items_sync(gkey.ITEM_NETWORK_PASSWORD, attrs)
+              <span style="color: #FF7F7F;">return</span> (items[0].attributes[<span style="color: #7FFF7F;">"user"</span>], items[0].secret)
+
+          <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">set_credentials</span>(<span style="color: #FF7F7F;">self</span>, (user, pw)):
+              <span style="color: #7F7FFF;">attrs</span> = {
+                      <span style="color: #7FFF7F;">"user"</span>: user,
+                      <span style="color: #7FFF7F;">"server"</span>: <span style="color: #FF7F7F;">self</span>._server,
+                      <span style="color: #7FFF7F;">"protocol"</span>: <span style="color: #FF7F7F;">self</span>._protocol,
+                  }
+              gkey.item_create_sync(gkey.get_default_keyring_sync(),
+                      gkey.ITEM_NETWORK_PASSWORD, <span style="color: #FF7F7F;">self</span>._name, attrs, pw, <span style="color: #FFBF7F;">True</span>)
+
+      <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">get_username</span>(server):
+          <span style="color: #7F7FFF;">keyring</span> = Keyring(<span style="color: #7FFF7F;">"offlineimap"</span>, server, <span style="color: #7FFF7F;">"imap"</span>)
+          (username, password) = keyring.get_credentials()
+          <span style="color: #FF7F7F;">return</span> username
+
+      <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">get_password</span>(server):
+          <span style="color: #7F7FFF;">keyring</span> = Keyring(<span style="color: #7FFF7F;">"offlineimap"</span>, server, <span style="color: #7FFF7F;">"imap"</span>)
+          (username, password) = keyring.get_credentials()
+          <span style="color: #FF7F7F;">return</span> password
+
+      <span style="color: #FF7F7F;">if</span> <span style="color: #7FBFFF;">__name__</span> == <span style="color: #7FFF7F;">'__main__'</span>:
+              <span style="color: #7F7FFF;">server</span> = <span style="color: #7FBFFF;">raw_input</span>(<span style="color: #7FFF7F;">"server: "</span>)
+              <span style="color: #7F7FFF;">user</span> = <span style="color: #7FBFFF;">raw_input</span>(<span style="color: #7FFF7F;">"username: "</span>)
+              <span style="color: #7F7FFF;">password</span> = getpass(<span style="color: #7FFF7F;">"password: "</span>)
+              <span style="color: #7F7FFF;">confirm</span> = getpass(<span style="color: #7FFF7F;">"confirm password: "</span>)
+              <span style="color: #FF7F7F;">if</span> password != confirm:
+                  <span style="color: #FF7F7F;">print</span> <span style="color: #7FFF7F;">"password doesn't match confirmation!"</span>
+                  sys.<span style="color: #FFBF7F;">exit</span>(1)
+              <span style="color: #7F7FFF;">keyring</span> = Keyring(<span style="color: #7FFF7F;">"offlineimap"</span>, server, <span style="color: #7FFF7F;">"imap"</span>)
+              keyring.set_credentials((user, password))
+
+      <span style="color: #e5e5e6;">############################</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">NameTrans 'INBOX' suffix #</span>
+      <span style="color: #e5e5e6;">############################</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">add 'INBOX' suffix</span>
+      <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">LocalToRemoteTransnameINBOX</span>(foldername):
+          <span style="color: #FF7F7F;">if</span> (foldername == <span style="color: #7FFF7F;">""</span>):
+              <span style="color: #7F7FFF;">retval</span> = <span style="color: #7FFF7F;">"INBOX"</span>
+          <span style="color: #FF7F7F;">else</span>:
+              <span style="color: #7F7FFF;">retval</span> = <span style="color: #7FFF7F;">"INBOX."</span> + foldername
+          <span style="color: #FF7F7F;">return</span> retval
+
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remove 'INBOX' suffix</span>
+      <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">RemoteToLocalTransnameINBOX</span>(foldername):
+          <span style="color: #FF7F7F;">if</span> (foldername == <span style="color: #7FFF7F;">"INBOX"</span>):
+              <span style="color: #7F7FFF;">retval</span> = <span style="color: #7FFF7F;">""</span>
+          <span style="color: #FF7F7F;">else</span>:
+              <span style="color: #7F7FFF;">retval</span> = re.sub(<span style="color: #7FFF7F;">"^INBOX\."</span>, <span style="color: #7FFF7F;">""</span>, foldername)
+          <span style="color: #FF7F7F;">return</span> retval
+</pre>
+</div>
+<p>
+IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加すると良い.
+</p>
+</div>
+</div>
+<div id="outline-container-org0aa38c0" class="outline-4">
+<h4 id="org0aa38c0">cron での動作</h4>
+<div class="outline-text-4" id="text-org0aa38c0">
+<p>
+認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから
+実行するようにする.
+先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/bin/bash</span>
+      sleep 5
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Export the dbus session address on startup so it can be used by cron</span>
+      touch $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+      chmod 600 $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+      env | grep DBUS_SESSION_BUS_ADDRESS &gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+      <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'export DBUS_SESSION_BUS_ADDRESS'</span> &gt;&gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+</pre>
+</div>
+<p>
+<code>~/.config/autostart</code> 以下に適当な名前で
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">      [<span style="color: #FFFF7F;">Desktop Entry</span>]
+      <span style="color: #7F7FFF;">Type</span>=Application
+      <span style="color: #7F7FFF;">Exec</span>=/home/uwabami/.mua/export_x_info.sh
+      <span style="color: #7F7FFF;">Hidden</span>=false
+      <span style="color: #7F7FFF;">NoDisplay</span>=false
+      <span style="color: #7F7FFF;">X-GNOME-Autostart-enabled</span>=true
+      <span style="color: #7F7FFF;">Name</span>=Xdbus infomation exporter
+      <span style="color: #7F7FFF;">Comment</span>=Xdbus infomation exporter
+</pre>
+</div>
+<p>
+を用意しておく.
+</p>
+
+<p>
+あとは cron 実行時に <code>~/.Xdbus</code> を include するようにしておけば,
+必要に応じて GnomeKeyring による認証が行なわれる.
+cron で実行されるスクリプトは, 例えば
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/bin/sh</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">$Lastupdate: 2014-07-15 11:52:22$</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">License: WTFPL</span>
+      <span style="color: #e5e5e6;">################################################################################</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">for personal settings</span>
+      <span style="color: #7F7FFF;">OFFLINEIMAP_PID</span>=~/Mail/offlineimap/pid
+      <span style="color: #7F7FFF;">OFFLINEIMAP_CONF</span>=~/.offlineimaprc
+      <span style="color: #7F7FFF;">UI</span>=quiet
+      <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"******************************************************************"</span>
+      <span style="color: #7FBFFF;">echo</span> <span style="font-weight: bold;">`LANG=C date`</span>
+      <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"******************************************************************"</span>
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">for gnome-keyring:</span>
+      . ${<span style="color: #7F7FFF;">HOME</span>}/.Xdbus
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">check network is avaliable</span>
+      nm-online -x || <span style="color: #FF7F7F;">exit</span> 0
+      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">check another offlineimap</span>
+      [ $(ps -p <span style="font-weight: bold;">`cat $OFFLINEIMAP_PID`</span> -o pid --no-heading) ] <span style="color: #7FFF7F;">\</span>
+        || nice -n 19 offlineimap -c $<span style="color: #7F7FFF;">OFFLINEIMAP_CONF</span> -u $<span style="color: #7F7FFF;">UI</span> -o  2&gt;&amp;1
+</pre>
+</div>
+<p>
+とか.
+</p>
+</div>
+</div>
+</div>
+</div>

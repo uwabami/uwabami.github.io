@@ -1,0 +1,23 @@
+#+TITLE: org ファイルを jekyll で処理する
+#+DATE: 2017-01-16 03:54:38
+#+LANGUAGE: ja
+#+REF: cc-env/OrgtoJekyll
+#+LAYOUT: default
+#+SETUPFILE: ~/Public/_setup.org
+#+PERMALINK: /cc-env/OrgtoJekyll.html
+Related:
+[[wiki:index][Index]] [[wiki:Emacs][Emacs]]
+
+* はじめに
+  以前は [[https://github.com/wallyqs/org-ruby][org-ruby]] を使って, org ファイルをそのまま Jekyll で処理していました．
+   - [[file:~/Public/software/tdiary-style-org/index.org][org-jekyll-converter]]
+   - [[wiki:JekyllandOrg][このサイトができるまで]]
+
+  しかしながら，
+    - github pages へ Web サイトを移動した = jekyll の plugin が使えなくなった
+    - Org-mode が ver. 9 系列に上がって，export 時の文法が(多少)変わった
+  こともあって，
+  結局「 Org-mode で html を出力→ jekyll で処理」という，
+  よくあるやり方に落ち着いてしまいました．
+
+  ... to be written...

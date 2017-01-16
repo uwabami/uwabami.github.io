@@ -1,0 +1,88 @@
+#+TITLE: Debian: Install 直後の雑多な設定
+#+DATE: 2017-01-16 15:45:29
+#+LANGUAGE: ja
+#+REF: cc-env/DebianConfigure
+#+LAYOUT: default
+#+SETUPFILE: ~/Public/_setup.org
+#+PERMALINK: /cc-env/DebianConfigure.html
+Related [[wiki:index][Index]]
+* 始めに
+  どんなシステムでも, かならずやっている雑多な設定などをメモ書き.
+  増えてきたらそのうち分離する予定.
+* sudo の設定
+  squeeze 以降は sudo グループがあるので, 自分を sudo グループに追加して再ログインした後に作業する.
+  #+BEGIN_EXAMPLE
+# adduser [アカウント] sudo
+  #+END_EXAMPLE
+  squeeze より前なら visudo で自分を追加してユーザアカウントでログインして作業.
+  #+BEGIN_EXAMPLE
+# visudo
+  #+END_EXAMPLE
+* keymap の変更
+  console-setup で設定するようになった.
+  X のキーボード設定もこれで設定される.
+  =/etc/default/console-setup= が =/etc/default/keyboad= を見に行き,
+  ファイルが存在すればその内容を読むようになっている.
+  現状は以下の通り:
+  #+BEGIN_SRC conf
+BACKSPACE="guess"
+XKBLAYOUT="jp"
+XKBMODEL="pc105"
+XKBVARIANT=""
+XKBOPTIONS="ctrl:nocaps"
+  #+END_SRC
+  その後で
+  #+BEGIN_EXAMPLE
+% sudo /etc/init.d/console-setup restart
+  #+END_EXAMPLE
+* MTA の設定
+ - 常にネットワークに接続されているデスクトップ/ワークステーションは
+   SSMTP を使用して上流のメールサーバに転送.
+ - モバイル環境のノートでは Exim4 を local 配送のみに設定して使用中.
+   - (2014/07/26) Exim4の設定を移動→[[wiki:DebianMTA][MTA の設定]]
+** SSMTP
+   .qmail や .forward など, 上流のメールサーバで転送設定をしておく.
+
+   SSMTP を動かしたい計算機でインストールと設定.
+   以下
+   - メールサーバ:mail.my.domain
+   - メールサーバのアカウント: account
+   - SSMTP の動作する計算機: hostname.my.domain
+   のつもりで.
+   #+BEGIN_EXAMPLE
+$ sudo -s
+# aptitude install ssmtp
+  ユーザ ID が 1000 未満のメールを受け取るユーザ: account-hostname@my.domain
+  メールハブの名前: mail.my.domain
+  リモート SMTP サーバのポート番号: [空白]
+  どのドメインとして送信するか: mail.my.domain
+  FQDN (完全修飾ドメイン名): hostname.my.domain
+  メールヘッダの From: 行の上書きを許可しますか?: NO
+   #+END_EXAMPLE
+   ついでに /etc/crontab に MAILTO を追記しておく.
+   SMTP-AUTH over SSL に対応したい場合は, /etc/ssmtp/ssmtp.conf に
+   #+BEGIN_SRC conf
+AuthUser=[SMTP-AUTH のユーザ名]
+AuthPass=[SMTP-AUTH のパスワード]
+UseTLS=YES
+   #+END_SRC
+   と書いておくと良い.
+* alsa の初期設定
+  あんまり複雑な事をしなくて良い機材だと楽.
+  とりあえず alsa で音がなるようにしておく.
+  #+BEGIN_EXAMPLE
+$ sudo aptitide install alsa-base alsa-utils mpg123
+$ sudo alsaconf
+$ alsamixer
+  #+END_EXAMPLE
+  alsamixer で mute を外していないと音が鳴らないので注意.
+
+  VAIO type G ではイヤホン差しても外部出力が mute にならないので,
+  明示的に mute しておく必要がある.
+  また snd-hda-intel module の読み込み時に "model=basic" を指定しておかないと
+  alsamixer での表示が悲しい感じになる.
+  =/etc/modprobe.d/alsa-base.conf= の末尾に
+  #+BEGIN_SRC conf
+options snd-hda-intel model=basic
+  #+END_SRC
+  なんて追記しておくと良い.

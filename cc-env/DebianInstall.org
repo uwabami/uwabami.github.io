@@ -1,0 +1,815 @@
+#+TITLE: Debian のインストール
+#+DATE: 2017-01-16 15:41:36
+#+LANGUAGE: ja
+#+REF: cc-env/DebianInstall
+#+LAYOUT: default
+#+SETUPFILE: ~/Public/_setup.org
+#+PERMALINK: /cc-env/DebianInstall.html
+Related: [[wiki:index][Index]]
+* 始めに
+  この文書は自作 DOS/V 機や
+  Laptop 機 へ Debian GNU/Linux をインストールした際のメモ.
+  特筆すべき事柄とかメモ程度の事しか書いてないので,
+  インストール作業自体は [[http://www.debian.org/releases/stable/i386/index.html.ja][Debian GNU/Linux インストールガイド]]を参考に.
+* Installer
+  最近は USB メモリを使った installer ばっかり使っている.
+  [[http://www.debian.org/devel/debian-installer/index.ja.html][Debian-Installer を使ったインストール]] より,
+
+   - weekly-build: http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/
+     - debian-testing-amd64-netinst.iso
+   - USB 用image ファイル: [[http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/hd-media/][hd-media(amd64)]]
+     - boot.img.gz
+
+   を落としてくる.
+   USB メモリを差して, これらを展開, 配置することでインストーラが作成される.
+
+   ISO ファイルを取得するには, ミラーが近くにあるのであれば jigdo が便利.
+   jigdo については [[https://www.debian.org/CD/jigdo-cd/index.ja.html][jigdo をつかって Debian CD イメージをダウンロードする]] を参照のこと.
+
+   例えば, USB メモリが /dev/sdb の場合には
+   #+BEGIN_EXAMPLE
+% sudo -s
+# zcat boot.img.gz > /dev/sdb
+# mount -t vfat /dev/sdb /mnt
+# cp debian-testing-amd64-netinsto.iso /mnt
+# tar xvzf firmware.tar.gz  -C /mnt
+# umount /mnt
+   #+END_EXAMPLE
+   だけで良い. あとは作成したインストーラで起動して, install 開始.
+   最小構成で install した後に sid へ upgrade する.
+* EFI 32bit installer
+  古いMacPro 用に作成する必要があったのでメモを残しておく.
+   - 参考: [[https://wiki.debian.org/InstallingDebianOn/Apple/MacBook/2-1][InstallingDebianOn/Apple/MacBook/2-1 - Debian Wiki]]
+   - Linux 環境で作成する.  =grub-efi-ia32-bin= をインストールする.
+   - インストーラとして,
+     http://ftp.de.debian.org/debian/dists/jessie/main/installer-i386/current/images/netboot/mini.iso
+     を使うので, ダウンロードしておく
+   - USB メモリの先頭に, 適当なサイズ(50MB もあれば十分) のFAT32(W95 FAT32) MBR パーティションを作成
+   - マウントする(以下,  =/media/usb= にマウントしたとする)
+   - IA32 EFI をインストール
+     #+BEGIN_EXAMPLE
+# grub-install --target=i386-efi \
+               --efi-directory=/media/usb \
+               --boot-directory=/media/usb/boot \
+               --removable
+     #+END_EXAMPLE
+   - =/media/usb/boot/grub/grub.cfg= ファイルを以下の内容で作成
+     #+BEGIN_EXAMPLE
+if loadfont /boot/grub/fonts/unicode.pf2 ; then
+    set gfxmode=800x600
+    insmod efi_gop
+    insmod efi_uga
+    insmod video_bochs
+    insmod video_cirrus
+    insmod gfxterm
+    insmod png
+    terminal_output gfxterm
+fi
+linux (hd0,msdos1)/linux
+initrd (hd0,msdos1)/initrd.gz
+boot
+     #+END_EXAMPLE
+   - =mini.iso= から =initrd.gz= と =linux= を取り出して, =/media/usb= 以下に置く
+   - =mini.iso= そのものを =/media/usb= に置く
+
+   以上で, 32-bit EFI 用のインストーラが作成できる.
+   ネットワーク必須なので, 必要に応じて firmware も同梱してくと良いだろう.
+* LetsNoteCF-SX3
+
+  2014/03/28 から Panasonic Let's Note CF-SX3 を使用中.
+  大学生協カスタマイズで
+   - SSD 512GB
+   - メモリ 16GB
+ にしました.
+** ハードウェア情報
+   lspci の出力結果は以下:
+   #+BEGIN_SRC text
+00:02.0 VGA compatible controller: Intel Corporation Haswell-ULT Integrated Graphics Controller (rev 0b) (prog-if 00 [VGA controller])
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Haswell-ULT Integrated Graphics Controller
+	Flags: bus master, fast devsel, latency 0, IRQ 51
+	Memory at f7800000 (64-bit, non-prefetchable) [size=4M]
+	Memory at e0000000 (64-bit, prefetchable) [size=256M]
+	I/O ports at f000 [size=64]
+	[virtual] Expansion ROM at 000c0000 [disabled] [size=128K]
+	Capabilities: <access denied>
+	Kernel driver in use: i915
+	Kernel modules: i915
+
+00:03.0 Audio device: Intel Corporation Haswell-ULT HD Audio Controller (rev 0b)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Haswell-ULT HD Audio Controller
+	Flags: bus master, fast devsel, latency 0, IRQ 45
+	Memory at f7f3c000 (64-bit, non-prefetchable) [size=16K]
+	Capabilities: <access denied>
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_hda_intel
+
+00:04.0 Signal processing controller: Intel Corporation Device 0a03 (rev 0b)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: fast devsel, IRQ 16
+	Memory at f7f30000 (64-bit, non-prefetchable) [size=32K]
+	Capabilities: <access denied>
+	Kernel modules: processor_thermal_device
+
+00:14.0 USB controller: Intel Corporation 8 Series USB xHCI HC (rev 04) (prog-if 30 [XHCI])
+	Subsystem: Matsushita Electric Industrial Co., Ltd. 8 Series USB xHCI HC
+	Flags: bus master, medium devsel, latency 0, IRQ 46
+	Memory at f7f20000 (64-bit, non-prefetchable) [size=64K]
+	Capabilities: <access denied>
+	Kernel driver in use: xhci_hcd
+	Kernel modules: xhci_pci
+
+00:16.0 Communication controller: Intel Corporation 8 Series HECI #0 (rev 04)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. 8 Series HECI
+	Flags: bus master, fast devsel, latency 0, IRQ 48
+	Memory at f7f47000 (64-bit, non-prefetchable) [size=32]
+	Capabilities: <access denied>
+	Kernel driver in use: mei_me
+	Kernel modules: mei_me
+
+00:16.3 Serial controller: Intel Corporation 8 Series HECI KT (rev 04) (prog-if 02 [16550])
+	Subsystem: Matsushita Electric Industrial Co., Ltd. 8 Series HECI KT
+	Flags: 66MHz, fast devsel, IRQ 19
+	I/O ports at f0e0 [size=8]
+	Memory at f7f45000 (32-bit, non-prefetchable) [size=4K]
+	Capabilities: <access denied>
+	Kernel driver in use: serial
+
+00:19.0 Ethernet controller: Intel Corporation Ethernet Connection I218-LM (rev 04)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Ethernet Connection I218-LM
+	Flags: fast devsel, IRQ 52
+	Memory at f7f00000 (32-bit, non-prefetchable) [disabled] [size=128K]
+	Memory at f7f44000 (32-bit, non-prefetchable) [disabled] [size=4K]
+	I/O ports at f080 [disabled] [size=32]
+	Capabilities: <access denied>
+	Kernel driver in use: e1000e
+	Kernel modules: e1000e
+
+00:1b.0 Audio device: Intel Corporation 8 Series HD Audio Controller (rev 04)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. 8 Series HD Audio Controller
+	Flags: bus master, fast devsel, latency 0, IRQ 49
+	Memory at f7f38000 (64-bit, non-prefetchable) [size=16K]
+	Capabilities: <access denied>
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_hda_intel
+
+00:1c.0 PCI bridge: Intel Corporation 8 Series PCI Express Root Port 1 (rev e4) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0, IRQ 42
+	Bus: primary=00, secondary=01, subordinate=01, sec-latency=0
+	I/O behind bridge: 0000e000-0000efff
+	Memory behind bridge: f7e00000-f7efffff
+	Prefetchable memory behind bridge: 00000000f0200000-00000000f02fffff
+	Capabilities: <access denied>
+	Kernel driver in use: pcieport
+	Kernel modules: shpchp
+
+00:1c.2 PCI bridge: Intel Corporation 8 Series PCI Express Root Port 3 (rev e4) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0, IRQ 43
+	Bus: primary=00, secondary=02, subordinate=02, sec-latency=0
+	I/O behind bridge: 0000d000-0000dfff
+	Memory behind bridge: f7d00000-f7dfffff
+	Prefetchable memory behind bridge: 00000000f0100000-00000000f01fffff
+	Capabilities: <access denied>
+	Kernel driver in use: pcieport
+	Kernel modules: shpchp
+
+00:1c.3 PCI bridge: Intel Corporation 8 Series PCI Express Root Port 4 (rev e4) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0, IRQ 44
+	Bus: primary=00, secondary=03, subordinate=03, sec-latency=0
+	I/O behind bridge: 0000c000-0000cfff
+	Memory behind bridge: f7c00000-f7cfffff
+	Prefetchable memory behind bridge: 00000000f0000000-00000000f00fffff
+	Capabilities: <access denied>
+	Kernel driver in use: pcieport
+	Kernel modules: shpchp
+
+00:1d.0 USB controller: Intel Corporation 8 Series USB EHCI #1 (rev 04) (prog-if 20 [EHCI])
+	Subsystem: Matsushita Electric Industrial Co., Ltd. 8 Series USB EHCI
+	Flags: medium devsel, IRQ 23
+	Memory at f7f43000 (32-bit, non-prefetchable) [size=1K]
+	Capabilities: <access denied>
+	Kernel driver in use: ehci-pci
+	Kernel modules: ehci_pci
+
+00:1f.0 ISA bridge: Intel Corporation 8 Series LPC Controller (rev 04)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. 8 Series LPC Controller
+	Flags: bus master, medium devsel, latency 0
+	Capabilities: <access denied>
+	Kernel driver in use: lpc_ich
+	Kernel modules: lpc_ich
+
+00:1f.2 SATA controller: Intel Corporation 8 Series SATA Controller 1 [AHCI mode] (rev 04) (prog-if 01 [AHCI 1.0])
+	Subsystem: Matsushita Electric Industrial Co., Ltd. 8 Series SATA Controller 1 [AHCI mode]
+	Flags: bus master, 66MHz, medium devsel, latency 0, IRQ 47
+	I/O ports at f0d0 [size=8]
+	I/O ports at f0c0 [size=4]
+	I/O ports at f0b0 [size=8]
+	I/O ports at f0a0 [size=4]
+	I/O ports at f060 [size=32]
+	Memory at f7f42000 (32-bit, non-prefetchable) [size=2K]
+	Capabilities: <access denied>
+	Kernel driver in use: ahci
+	Kernel modules: ahci
+
+00:1f.3 SMBus: Intel Corporation 8 Series SMBus Controller (rev 04)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. 8 Series SMBus Controller
+	Flags: medium devsel, IRQ 18
+	Memory at f7f41000 (64-bit, non-prefetchable) [size=256]
+	I/O ports at f040 [size=32]
+	Kernel driver in use: i801_smbus
+	Kernel modules: i2c_i801
+
+00:1f.6 Signal processing controller: Intel Corporation 8 Series Thermal (rev 04)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. 8 Series Thermal
+	Flags: fast devsel, IRQ 255
+	Memory at f7f40000 (64-bit, non-prefetchable) [disabled] [size=4K]
+	Capabilities: <access denied>
+
+02:00.0 Network controller: Intel Corporation Wireless 7260 (rev 6b)
+	Subsystem: Intel Corporation Dual Band Wireless-AC 7260
+	Flags: bus master, fast devsel, latency 0, IRQ 50
+	Memory at f7d00000 (64-bit, non-prefetchable) [size=8K]
+	Capabilities: <access denied>
+	Kernel driver in use: iwlwifi
+	Kernel modules: iwlwifi
+
+
+   #+END_SRC
+** install 前の準備
+
+   UEFI です.
+   legacy BIOS モードもあるので,
+   そちらで起動しても問題無いのかもしれしません.
+   ただ legacy BIOS モードだとデバイス初期化に失敗する機械
+   (MacBook Air とか)もあるらしいので,
+   ここでは UEFI でインストールすることにします.
+
+   今迄通り, 起動画面で F2 を押すと UEFI の設定画面に移行できます.
+   そこで SecureBoot を無効化しておきます.
+
+   初期の/リカバリ後のパーティション構成のうち,
+   第1/第2パーティションを弄ると何もできなくなりましたので,
+   ここは弄らずに Windows 領域を縮小します.
+
+   あと Windows 側でバッテリーのキャリブレーションと
+   eco モードへの切り替えを行なっておきます.
+   eco モード(80%充電で充電停止)を Linux から設定できると楽なんですけれどね.
+
+   Windows の「ディスク」ツールで, ディスクを縮小します.
+   ディスク縮小が自由にできない場合には,
+   Windows の「復旧」と「ページングファイル」を無効化すると良いでしょう.
+
+   install 後のディスク構成は以下の通り:
+   #+BEGIN_EXAMPLE
+Model: ATA TOSHIBA THNSNF51 (scsi)
+Disk /dev/sda: 512GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+
+Number  Start   End     Size    File system  Name                          Flags
+ 1      1049kB  840MB   839MB   ntfs         Basic data partition          hidden, diag
+ 2      840MB   1113MB  273MB   fat32        EFI system partition          boot
+ 3      1113MB  1247MB  134MB                Microsoft reserved partition  msftres
+ 4      1247MB  84.8GB  83.5GB  ntfs         Basic data partition          msftdata
+ 5      84.8GB  84.9GB  128MB   ext4         Boot(Grub)
+ 6      84.9GB  512GB   427GB                                              lvm
+   #+END_EXAMPLE
+
+   こんだけディスク大きいと, 先頭に数GB取られてもまったく気にならない(笑).
+   Windows8 は殆ど使う気が無いので 80 GB まで減らしてます.
+
+   初の UEFI にドキドキしつつ USB インストーラを試そうとしたら,
+   UEFI の画面で起動デバイスに選択できず.
+
+   しょうがないので(数年振りに) installer として 2014/04/07 の
+   snapshot 版の DVD イメージを DVD に焼いて試してみたら,
+   boot デバイスの選択画面にもドライブが表われて,
+   さらに installer 自体が EFI モードで起動し,
+   特に何も設定せずとも grub-efi で幸せになれました
+   Windows 領域も認識して, dual boot で綺麗に動いてくれています.
+
+   相変わらず Panasonic の機械は素直で良いですね.
+* Let's Note S9
+  2010/03/10 から Panasonic Let's Note S9 を使用中.
+  Corei5 で WiMAX です(ドキドキ).
+  大学生協カスタマイズから,
+
+   - RAM: 8GB
+   - HDD: 2.5inch SATA 512 GB
+
+   に変更しました. 発売が 2 月末というできたてホヤホヤの機械です.
+   主要な機能が動くかどうかも定かではないのですが気合で, なんとか.
+** ハードウェア情報
+   lspci の出力結果は以下
+   #+BEGIN_SRC text
+00:00.0 Host bridge: Intel Corporation Core Processor DRAM Controller (rev 12)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, fast devsel, latency 0
+	Capabilities: [e0] Vendor Specific Information: Len=0c <?>
+	Kernel driver in use: agpgart-intel
+
+00:02.0 VGA compatible controller: Intel Corporation Core Processor Integrated Graphics Controller (rev 12) (prog-if 00 [VGA controller])
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, fast devsel, latency 0, IRQ 33
+	Memory at f0000000 (64-bit, non-prefetchable) [size=4M]
+	Memory at e0000000 (64-bit, prefetchable) [size=256M]
+	I/O ports at e0b0 [size=8]
+	Expansion ROM at <unassigned> [disabled]
+	Capabilities: [90] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [d0] Power Management version 2
+	Capabilities: [a4] PCI Advanced Features
+	Kernel driver in use: i915
+
+00:19.0 Ethernet controller: Intel Corporation 82577LM Gigabit Network Connection (rev 06)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, fast devsel, latency 0, IRQ 34
+	Memory at f4a00000 (32-bit, non-prefetchable) [size=128K]
+	Memory at f4a29000 (32-bit, non-prefetchable) [size=4K]
+	I/O ports at e040 [size=32]
+	Capabilities: [c8] Power Management version 2
+	Capabilities: [d0] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Capabilities: [e0] PCI Advanced Features
+	Kernel driver in use: e1000e
+
+00:1a.0 USB Controller: Intel Corporation 5 Series/3400 Series Chipset USB2 Enhanced Host Controller (rev 06) (prog-if 20 [EHCI])
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, medium devsel, latency 0, IRQ 16
+	Memory at f4a28000 (32-bit, non-prefetchable) [size=1K]
+	Capabilities: [50] Power Management version 2
+	Capabilities: [58] Debug port: BAR=1 offset=00a0
+	Capabilities: [98] PCI Advanced Features
+	Kernel driver in use: ehci_hcd
+
+00:1b.0 Audio device: Intel Corporation 5 Series/3400 Series Chipset High Definition Audio (rev 06)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, fast devsel, latency 0, IRQ 22
+	Memory at f4a20000 (64-bit, non-prefetchable) [size=16K]
+	Capabilities: [50] Power Management version 2
+	Capabilities: [60] MSI: Enable- Count=1/1 Maskable- 64bit+
+	Capabilities: [70] Express Root Complex Integrated Endpoint, MSI 00
+	Capabilities: [100] Virtual Channel
+	Capabilities: [130] Root Complex Link
+	Kernel driver in use: HDA Intel
+
+00:1c.0 PCI bridge: Intel Corporation 5 Series/3400 Series Chipset PCI Express Root Port 1 (rev 06) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=01, subordinate=01, sec-latency=0
+	I/O behind bridge: 0000d000-0000dfff
+	Memory behind bridge: f4800000-f49fffff
+	Capabilities: [40] Express Root Port (Slot+), MSI 00
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Capabilities: [a0] Power Management version 2
+	Kernel driver in use: pcieport
+
+00:1c.1 PCI bridge: Intel Corporation 5 Series/3400 Series Chipset PCI Express Root Port 2 (rev 06) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=02, subordinate=09, sec-latency=0
+	I/O behind bridge: 0000c000-0000cfff
+	Memory behind bridge: f4600000-f47fffff
+	Prefetchable memory behind bridge: 00000000f4b00000-00000000f4cfffff
+	Capabilities: [40] Express Root Port (Slot+), MSI 00
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Capabilities: [a0] Power Management version 2
+	Kernel driver in use: pcieport
+
+00:1c.2 PCI bridge: Intel Corporation 5 Series/3400 Series Chipset PCI Express Root Port 3 (rev 06) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=0a, subordinate=0a, sec-latency=0
+	I/O behind bridge: 0000b000-0000bfff
+	Memory behind bridge: f4400000-f45fffff
+	Capabilities: [40] Express Root Port (Slot+), MSI 00
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Capabilities: [a0] Power Management version 2
+	Kernel driver in use: pcieport
+
+00:1c.3 PCI bridge: Intel Corporation 5 Series/3400 Series Chipset PCI Express Root Port 4 (rev 06) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=0b, subordinate=13, sec-latency=0
+	I/O behind bridge: 00009000-0000afff
+	Memory behind bridge: f0400000-f43fffff
+	Capabilities: [40] Express Root Port (Slot+), MSI 00
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Capabilities: [a0] Power Management version 2
+	Kernel driver in use: pcieport
+
+00:1d.0 USB Controller: Intel Corporation 5 Series/3400 Series Chipset USB2 Enhanced Host Controller (rev 06) (prog-if 20 [EHCI])
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, medium devsel, latency 0, IRQ 23
+	Memory at f4a27000 (32-bit, non-prefetchable) [size=1K]
+	Capabilities: [50] Power Management version 2
+	Capabilities: [58] Debug port: BAR=1 offset=00a0
+	Capabilities: [98] PCI Advanced Features
+	Kernel driver in use: ehci_hcd
+
+00:1e.0 PCI bridge: Intel Corporation 82801 Mobile PCI Bridge (rev a6) (prog-if 01 [Subtractive decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=14, subordinate=14, sec-latency=32
+	Capabilities: [50] Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+
+00:1f.0 ISA bridge: Intel Corporation Mobile 5 Series Chipset LPC Interface Controller (rev 06)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, medium devsel, latency 0
+	Capabilities: [e0] Vendor Specific Information: Len=10 <?>
+
+00:1f.2 SATA controller: Intel Corporation 5 Series/3400 Series Chipset 6 port SATA AHCI Controller (rev 06) (prog-if 01 [AHCI 1.0])
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, 66MHz, medium devsel, latency 0, IRQ 35
+	I/O ports at e090 [size=8]
+	I/O ports at e080 [size=4]
+	I/O ports at e070 [size=8]
+	I/O ports at e060 [size=4]
+	I/O ports at e020 [size=32]
+	Memory at f4a26000 (32-bit, non-prefetchable) [size=2K]
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [70] Power Management version 3
+	Capabilities: [a8] SATA HBA v1.0
+	Capabilities: [b0] PCI Advanced Features
+	Kernel driver in use: ahci
+
+00:1f.3 SMBus: Intel Corporation 5 Series/3400 Series Chipset SMBus Controller (rev 06)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: medium devsel, IRQ 18
+	Memory at f4a25000 (64-bit, non-prefetchable) [size=256]
+	I/O ports at e000 [size=32]
+
+00:1f.6 Signal processing controller: Intel Corporation 5 Series/3400 Series Chipset Thermal Subsystem (rev 06)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, fast devsel, latency 0, IRQ 11
+	Memory at f4a24000 (64-bit, non-prefetchable) [size=4K]
+	Capabilities: [50] Power Management version 3
+	Capabilities: [80] MSI: Enable- Count=1/1 Maskable- 64bit-
+
+0a:00.0 Network controller: Intel Corporation WiMAX/WiFi Link 6050 Series (rev 35)
+	Subsystem: Intel Corporation WiFi Link 6050 Series 2x2 6050AGN
+	Flags: bus master, fast devsel, latency 0, IRQ 11
+	Memory at f4400000 (64-bit, non-prefetchable) [size=8K]
+	Capabilities: [c8] Power Management version 3
+	Capabilities: [d0] MSI: Enable- Count=1/1 Maskable- 64bit+
+	Capabilities: [e0] Express Endpoint, MSI 00
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [140] Device Serial Number 00-23-15-ff-ff-05-7a-14
+
+0b:00.0 CardBus bridge: Ricoh Co Ltd Device e476
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, fast devsel, latency 0, IRQ 19
+	Memory at f2c01000 (32-bit, non-prefetchable) [size=4K]
+	Bus: primary=0b, secondary=0c, subordinate=0f, sec-latency=176
+	Memory window 0: f0400000-f2bff000 (prefetchable)
+	Memory window 1: f3000000-f33ff000
+	I/O window 0: 00009000-000090ff
+	I/O window 1: 00009400-000094ff
+	16-bit legacy interface ports at 0001
+	Kernel driver in use: yenta_cardbus
+
+0b:00.1 SD Host controller: Ricoh Co Ltd Device e822 (rev 02) (prog-if 01)
+	Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+	Flags: bus master, fast devsel, latency 0, IRQ 16
+	Memory at f2c00000 (32-bit, non-prefetchable) [size=256]
+	Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
+	Capabilities: [78] Power Management version 3
+	Capabilities: [80] Express Endpoint, MSI 00
+	Kernel driver in use: sdhci-pci
+
+0c:00.0 USB Controller: NEC Corporation USB (rev 44) (prog-if 10 [OHCI])
+	Subsystem: NEC Corporation Hama USB 2.0 CardBus
+	Flags: bus master, medium devsel, latency 64, IRQ 19
+	Memory at f3000000 (32-bit, non-prefetchable) [size=4K]
+	Capabilities: [fc] <chain broken>
+	Kernel driver in use: ohci_hcd
+
+0c:00.1 USB Controller: NEC Corporation USB 2.0 (rev 05) (prog-if 20 [EHCI])
+	!!! Unknown header type 7f
+	Kernel driver in use: ehci_hcd
+
+3f:00.0 Host bridge: Intel Corporation Core Processor QuickPath Architecture Generic Non-core Registers (rev 02)
+	Subsystem: Intel Corporation Device 8086
+	Flags: bus master, fast devsel, latency 0
+
+3f:00.1 Host bridge: Intel Corporation Core Processor QuickPath Architecture System Address Decoder (rev 02)
+	Subsystem: Intel Corporation Device 8086
+	Flags: bus master, fast devsel, latency 0
+
+3f:02.0 Host bridge: Intel Corporation Core Processor QPI Link 0 (rev 02)
+	Subsystem: Intel Corporation Device 8086
+	Flags: bus master, fast devsel, latency 0
+
+3f:02.1 Host bridge: Intel Corporation Core Processor QPI Physical 0 (rev 02)
+	Subsystem: Intel Corporation Device 8086
+	Flags: bus master, fast devsel, latency 0
+
+3f:02.2 Host bridge: Intel Corporation Core Processor Reserved (rev 02)
+	Subsystem: Intel Corporation Device 8086
+	Flags: bus master, fast devsel, latency 0
+
+3f:02.3 Host bridge: Intel Corporation Core Processor Reserved (rev 02)
+	Subsystem: Intel Corporation Device 8086
+	Flags: bus master, fast devsel, latency 0
+
+
+   #+END_SRC
+** install 前の準備
+   - 添付のリカバリディスクでブートして動作確認
+     - HDD 内のリカバリ領域を削除するのが目的. リカバリ領域無しでも出荷状態に戻せることを確認.
+   - [[http://gparted.sourceforge.net/livecd.php][GParted]] の LiveCD で起動して...
+     - 先頭のリカバリ領域を削除
+     - C: のサイズを 20 GB に変更.
+
+   install 後のディスク構成は以下の通り:
+   #+BEGIN_EXAMPLE
+                             Disk Drive: /dev/sda
+                      Size: 500107862016 bytes, 500.1 GB
+            Heads: 255   Sectors per Track: 63   Cylinders: 60801
+
+   Name        Flags      Part Type  FS Type          [Label]        Size (MB)
+------------------------------------------------------------------------------
+   sda1        Boot        Primary   Linux ext3       [/boot]           131.61
+   sda3                    Primary   NTFS             []              26213.97
+   sda2                    Primary   Linux swap/Solaris               15998.17
+   sda4                    Primary   Linux ext3       [/]            457761.51
+   #+END_EXAMPLE
+   Windows 領域を sda2 に移すの忘れていた. 気持ち悪いけれど, まあ良いか.
+* VAIO typeG
+  2009/04/01 から SONY VAIO typeG を使用中. SonyStyle でちょっとカスタマイズして
+  - CPU: Core2Duo SU9400
+  - RAM: 4GB(2GBx2)
+  - HDD: 2.5型 HDD 320GB, 光学ドライブ無し
+  にしました. あとから気がついたけれど, 日本語配列の刻印無しキーボードも選択すれば良かったかな...
+** ハードウェア情報
+   lspci の出力結果は以下を参照:
+   #+BEGIN_SRC text
+00:00.0 Host bridge: Intel Corporation Mobile 4 Series Chipset Memory Controller Hub (rev 07)
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, fast devsel, latency 0
+	Capabilities: [e0] Vendor Specific Information <?>
+	Kernel driver in use: agpgart-intel
+
+00:02.0 VGA compatible controller: Intel Corporation Mobile 4 Series Chipset Integrated Graphics Controller (rev 07) (prog-if 00 [VGA controller])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, fast devsel, latency 0, IRQ 28
+	Memory at d4400000 (64-bit, non-prefetchable) [size=4M]
+	Memory at c0000000 (64-bit, prefetchable) [size=256M]
+	I/O ports at 5130 [size=8]
+	Expansion ROM at <unassigned> [disabled]
+	Capabilities: [90] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [d0] Power Management version 3
+
+00:02.1 Display controller: Intel Corporation Mobile 4 Series Chipset Integrated Graphics Controller (rev 07)
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, fast devsel, latency 0
+	Memory at d5800000 (64-bit, non-prefetchable) [size=1M]
+	Capabilities: [d0] Power Management version 3
+
+00:19.0 Ethernet controller: Intel Corporation 82567LM Gigabit Network Connection (rev 03)
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, fast devsel, latency 0, IRQ 25
+	Memory at d6a00000 (32-bit, non-prefetchable) [size=128K]
+	Memory at d6a24000 (32-bit, non-prefetchable) [size=4K]
+	I/O ports at 5100 [size=32]
+	Capabilities: [c8] Power Management version 2
+	Capabilities: [d0] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Capabilities: [e0] PCI Advanced Features
+	Kernel driver in use: e1000e
+
+00:1a.0 USB Controller: Intel Corporation 82801I (ICH9 Family) USB UHCI Controller #4 (rev 03) (prog-if 00 [UHCI])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0, IRQ 23
+	I/O ports at 50e0 [size=32]
+	Capabilities: [50] PCI Advanced Features
+	Kernel driver in use: uhci_hcd
+
+00:1a.1 USB Controller: Intel Corporation 82801I (ICH9 Family) USB UHCI Controller #5 (rev 03) (prog-if 00 [UHCI])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0, IRQ 23
+	I/O ports at 50c0 [size=32]
+	Capabilities: [50] PCI Advanced Features
+	Kernel driver in use: uhci_hcd
+
+00:1a.2 USB Controller: Intel Corporation 82801I (ICH9 Family) USB UHCI Controller #6 (rev 03) (prog-if 00 [UHCI])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0, IRQ 23
+	I/O ports at 50a0 [size=32]
+	Capabilities: [50] PCI Advanced Features
+	Kernel driver in use: uhci_hcd
+
+00:1a.7 USB Controller: Intel Corporation 82801I (ICH9 Family) USB2 EHCI Controller #2 (rev 03) (prog-if 20 [EHCI])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0, IRQ 23
+	Memory at d6a25c00 (32-bit, non-prefetchable) [size=1K]
+	Capabilities: [50] Power Management version 2
+	Capabilities: [58] Debug port: BAR=1 offset=00a0
+	Capabilities: [98] PCI Advanced Features
+	Kernel driver in use: ehci_hcd
+
+00:1b.0 Audio device: Intel Corporation 82801I (ICH9 Family) HD Audio Controller (rev 03)
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, fast devsel, latency 0, IRQ 21
+	Memory at d6a20000 (64-bit, non-prefetchable) [size=16K]
+	Capabilities: [50] Power Management version 2
+	Capabilities: [60] MSI: Enable- Count=1/1 Maskable- 64bit+
+	Capabilities: [70] Express Root Complex Integrated Endpoint, MSI 00
+	Capabilities: [100] Virtual Channel <?>
+	Capabilities: [130] Root Complex Link <?>
+	Kernel driver in use: HDA Intel
+
+00:1c.0 PCI bridge: Intel Corporation 82801I (ICH9 Family) PCI Express Port 1 (rev 03) (prog-if 00 [Normal decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=02, subordinate=02, sec-latency=0
+	I/O behind bridge: 00004000-00004fff
+	Memory behind bridge: d5900000-d69fffff
+	Prefetchable memory behind bridge: 00000000d4800000-00000000d57fffff
+	Capabilities: [40] Express Root Port (Slot+), MSI 00
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: Sony Corporation Device 9047
+	Capabilities: [a0] Power Management version 2
+	Capabilities: [100] Virtual Channel <?>
+	Capabilities: [180] Root Complex Link <?>
+	Kernel driver in use: pcieport
+
+00:1d.0 USB Controller: Intel Corporation 82801I (ICH9 Family) USB UHCI Controller #1 (rev 03) (prog-if 00 [UHCI])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0, IRQ 20
+	I/O ports at 5080 [size=32]
+	Capabilities: [50] PCI Advanced Features
+	Kernel driver in use: uhci_hcd
+
+00:1d.1 USB Controller: Intel Corporation 82801I (ICH9 Family) USB UHCI Controller #2 (rev 03) (prog-if 00 [UHCI])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0, IRQ 20
+	I/O ports at 5060 [size=32]
+	Capabilities: [50] PCI Advanced Features
+	Kernel driver in use: uhci_hcd
+
+00:1d.2 USB Controller: Intel Corporation 82801I (ICH9 Family) USB UHCI Controller #3 (rev 03) (prog-if 00 [UHCI])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0, IRQ 20
+	I/O ports at 5040 [size=32]
+	Capabilities: [50] PCI Advanced Features
+	Kernel driver in use: uhci_hcd
+
+00:1d.7 USB Controller: Intel Corporation 82801I (ICH9 Family) USB2 EHCI Controller #1 (rev 03) (prog-if 20 [EHCI])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0, IRQ 20
+	Memory at d6a25800 (32-bit, non-prefetchable) [size=1K]
+	Capabilities: [50] Power Management version 2
+	Capabilities: [58] Debug port: BAR=1 offset=00a0
+	Capabilities: [98] PCI Advanced Features
+	Kernel driver in use: ehci_hcd
+
+00:1e.0 PCI bridge: Intel Corporation 82801 Mobile PCI Bridge (rev 93) (prog-if 01 [Subtractive decode])
+	Flags: bus master, fast devsel, latency 0
+	Bus: primary=00, secondary=0b, subordinate=0f, sec-latency=32
+	I/O behind bridge: 00003000-00003fff
+	Memory behind bridge: d2000000-d40fffff
+	Prefetchable memory behind bridge: 00000000d0000000-00000000d1ffffff
+	Capabilities: [50] Subsystem: Sony Corporation Device 9047
+
+00:1f.0 ISA bridge: Intel Corporation ICH9M-E LPC Interface Controller (rev 03)
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0
+	Capabilities: [e0] Vendor Specific Information <?>
+
+00:1f.2 SATA controller: Intel Corporation ICH9M/M-E SATA AHCI Controller (rev 03) (prog-if 01 [AHCI 1.0])
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, 66MHz, medium devsel, latency 0, IRQ 26
+	I/O ports at 5128 [size=8]
+	I/O ports at 513c [size=4]
+	I/O ports at 5120 [size=8]
+	I/O ports at 5138 [size=4]
+	I/O ports at 5020 [size=32]
+	Memory at d6a25000 (32-bit, non-prefetchable) [size=2K]
+	Capabilities: [80] MSI: Enable+ Count=1/16 Maskable- 64bit-
+	Capabilities: [70] Power Management version 3
+	Capabilities: [a8] SATA HBA <?>
+	Capabilities: [b0] PCI Advanced Features
+	Kernel driver in use: ahci
+
+00:1f.3 SMBus: Intel Corporation 82801I (ICH9 Family) SMBus Controller (rev 03)
+	Subsystem: Sony Corporation Device 9047
+	Flags: medium devsel, IRQ 22
+	Memory at dac26000 (64-bit, non-prefetchable) [size=256]
+	I/O ports at a000 [size=32]
+
+02:00.0 Network controller: Intel Corporation Wireless WiFi Link 5100
+	Subsystem: Intel Corporation Device 1301
+	Flags: fast devsel, IRQ 16
+	Memory at d5900000 (64-bit, non-prefetchable) [size=8K]
+	Capabilities: [c8] Power Management version 3
+	Capabilities: [d0] MSI: Enable- Count=1/1 Maskable- 64bit+
+	Capabilities: [e0] Express Endpoint, MSI 00
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [140] Device Serial Number 00-21-5d-ff-ff-5a-84-ee
+
+0b:04.0 CardBus bridge: Ricoh Co Ltd RL5c476 II (rev ba)
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 168, IRQ 20
+	Memory at d4000000 (32-bit, non-prefetchable) [size=4K]
+	Bus: primary=0b, secondary=0c, subordinate=0f, sec-latency=176
+	Memory window 0: dc000000-dffff000 (prefetchable)
+	Memory window 1: e0000000-e3fff000
+	I/O window 0: 00003000-000030ff
+	I/O window 1: 00003400-000034ff
+	16-bit legacy interface ports at 0001
+	Kernel driver in use: yenta_cardbus
+
+0b:04.2 SD Host controller: Ricoh Co Ltd R5C822 SD/SDIO/MMC/MS/MSPro Host Adapter (rev 21)
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 64, IRQ 22
+	Memory at d4001100 (32-bit, non-prefetchable) [size=256]
+	Capabilities: [80] Power Management version 2
+	Kernel driver in use: sdhci-pci
+
+0b:04.4 System peripheral: Ricoh Co Ltd R5C592 Memory Stick Bus Host Adapter (rev 11)
+	Subsystem: Sony Corporation Device 9047
+	Flags: bus master, medium devsel, latency 0, IRQ 10
+	Memory at d4001000 (32-bit, non-prefetchable) [size=256]
+	Capabilities: [80] Power Management version 2
+
+
+   #+END_SRC
+** install 前の準備
+   - リカバリディスクを作成し, リカバリを実行する
+     - どうあがいても最小構成で C: に 40 GB 割り当てようとする.
+     - BIOS の upgrade 程度にしか使う気が無いのに, この無駄さ加減.
+   - Knoppix で起動. GParted を用いて
+     - 先頭のリカバリ領域を削除
+     - 後方の D: を削除
+     - C: を sda2 に移動, サイズを 20 GB に変更.
+   - もういちどリカバリディスクで起動して, Windows の修復を実行
+   install の結果としてディスク構成は以下の様になりました.
+   #+BEGIN_EXAMPLE
+                             Disk Drive: /dev/da
+                       Size: 320072933376 bytes, 320.0 GB
+             Heads: 255   Sectors per Track: 63   Cylinders: 38913
+
+   Name        Flags      Part Type  FS Type          [Label]       Size (MB)
+------------------------------------------------------------------------------
+   sda1                    Primary   Linux ext3       [/boot]         131.61
+   sda2        Boot        Primary   NTFS             []            20974.47
+   sda3                    Primary   Linux swap / Solaris            8003.20
+   sda4                    Primary   Linux ext3        [root]       290961.06
+   #+END_EXAMPLE
+* Let's Note CF-R4
+  2009/04/01 まではメインで Panasonic Let's Note CF-R4 を使用してました.
+** ハードウェア情報
+   lspci の出力結果は以下を参照
+   #+BEGIN_SRC text
+00:00.0 Host bridge: Intel Corporation Mobile 915GM/PM/GMS/910GML Express Processor to DRAM Controller (rev 03)
+00:02.0 VGA compatible controller: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller (rev 03)
+00:02.1 Display controller: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller (rev 03)
+00:1d.0 USB Controller: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #1 (rev 04)
+00:1d.7 USB Controller: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB2 EHCI Controller (rev 04)
+00:1e.0 PCI bridge: Intel Corporation 82801 Mobile PCI Bridge (rev d4)
+00:1e.2 Multimedia audio controller: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) AC'97 Audio Controller (rev 04)
+00:1f.0 ISA bridge: Intel Corporation 82801FBM (ICH6M) LPC Interface Bridge (rev 04)
+00:1f.1 IDE interface: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) IDE Controller (rev 04)
+00:1f.3 SMBus: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) SMBus Controller (rev 04)
+06:01.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL-8139/8139C/8139C+ (rev 10)
+06:04.0 Network controller: Intel Corporation PRO/Wireless 2915ABG Network Connection (rev 05)
+06:05.0 CardBus bridge: Ricoh Co Ltd RL5c476 II (rev 8d)
+06:05.1 Generic system peripheral [0805]: Ricoh Co Ltd R5C822 SD/SDIO/MMC/MS/MSPro Host Adapter (rev 13)
+   #+END_SRC
+** install 前の準備
+   始めにリカバリー起動してパーティションの切り直し.
+   install の結果として今回は以下の様に.
+   #+BEGIN_EXAMPLE
+                             Disk Drive: /dev/hda
+                       Size: 60011642880 bytes, 60.0 GB
+             Heads: 255   Sectors per Track: 63   Cylinders: 7296
+
+   Name        Flags      Part Type  FS Type          [Label]        Size (MB)
+------------------------------------------------------------------------------
+   hda1                    Primary   NTFS             []               8595.42
+   hda2        Boot        Primary   Linux ext3       [/boot]           131.61
+   hda3                    Primary   Linux swap / Solaris              1998.75
+   hda4                    Primary   Linux ext3       [/]             49285.88
+   #+END_EXAMPLE
+
+   元の Windows 領域は 8GB に. 使う気は無いけど
+   バッテリーのエコモード切り替えや W05K のアクティベーションは Windows で
+   行なう必要があるので, 止むなく残す.
+
+   boot と swap に分ける必要はあるのか定かではない. 癖のようなもの.
+   また, swap 領域を / より先に持ってきているのは TuxOnIce のため.
+   「resume する領域が先にあった方が良い」という情報をどこかで見た記憶があるので
+   そのようにしている. これも嘘かもしれない.
+* install が終わったら.
+  install レポートを提出しましょう.
+  適当な [[wiki:DebianMTA][MTA]] の設定が終わったら,
+  #+BEGIN_EXAMPLE
+# reportbug --configure
+$ reportbug -b installation-reports
+  #+END_EXAMPLE
+  です.
+* 参考文献
+** 全般
+ - [[http://www.debian.org/releases/stable/i386/index.html.ja][Debian GNU/Linux インストールガイド]]
+ - [[http://qref.sourceforge.net/Debian/reference/reference.ja.html][Debian リファレンス]]
+** TypeG
+ - [[http://flatray.com/linux/vaio-t/][Linux on SONY VAIO type T]]
+** CF-R4
+ - [[http://kmuto.jp/open.cgi?Y2][Let's note CF-Y2]]
+ - [[http://yoosee.net/wiki/?Debian%2Finstall%2FCF-Y4][Debian sarge on Let's Note CF-Y4]]
+ - [[http://web.yl.is.s.u-tokyo.ac.jp/~furuse/comp/cf-w4.html][Debian Linux for CF-W4 (Let's note)]]
