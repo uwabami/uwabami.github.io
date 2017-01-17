@@ -1,5 +1,5 @@
 #+TITLE: Youhei SASAKI's Official site
-#+DATE: 2017-01-16 23:36:37
+#+DATE: 2017-01-17 22:19:47
 #+LANGUAGE: ja
 #+REF: index
 #+LAYOUT: top
@@ -14,7 +14,7 @@
   - 所属   :: [[http://www.kyoto-u.ac.jp/ja/][京都大学]] [[http://www.sci.kyoto-u.ac.jp/][大学院理学研究科]] [[http://www.math.kyoto-u.ac.jp/ja/front][数学教室]]
   - 連絡先 ::
        [[mailto:uwabami@gfd-dennou.org][uwabami@gfd-dennou.org]] {{{br}}}
-       {{{keybase(uwabami)}}} [[https://keybase.io/uwabami/pgp_keys.asc][0x9394F354891D7E07]] {{{wbr}}} {{{twitter(uwabami)}}} {{{fb(sasakyh)}}}  {{{github(uwabami)}}}
+       {{{nobr}}} {{{keybase(uwabami)}}} [[https://keybase.io/uwabami/pgp_keys.asc][0x9394F354891D7E07]] {{{twitter(uwabami)}}} {{{fb(sasakyh)}}}  {{{github(uwabami)}}} {{{end_nobr}}}
 #+BEGIN_EXPORT html
 <div class="hidden-sm hidden-xs"><pre id="gpgkey">pub   rsa4096/0x9394F354891D7E07 2009-09-03 [SC]
       Key fingerprint = 66A4 EA70 4FE2 4055 8D6A  C2E6 9394 F354 891D 7E07
