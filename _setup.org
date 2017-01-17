@@ -2,7 +2,9 @@
 #+MACRO: wbr @@html:<wbr>@@
 #+MACRO: travis @@html:<img src="https://travis-ci.org/$1.svg?branch=master" class="travis_badge">@@
 #+MACRO: ghribbon @@html:<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:120px;right:15px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/$1">Fork me on GitHub</a></span>@@
-#+MACRO: twitter @@html:<a href="https://twitter.com/$1/" target="_blank"><i class="fa fa-twitter-square fa-lg twitter"></i></a>@@
-#+MACRO: github  @@html:<a href="https://github.com/$1/" target="_blank"><i class="fa fa-github-square fa-lg github"></i></a>@@
-#+MACRO: fb  @@html:<a href="https://facebook.com/$1/" target="_blank"><i class="fa fa-facebook-square fa-lg facebook"></i></a>@@
-#+MACRO: keybase @@html:<a href="https://keybase.io/$1/" target="_blank"><i class="fa fa-key fa-lg keybase"></i></a>@@
+#+MACRO: twitter @@html:<a href="https://twitter.com/$1/" target="_blank"><span class="icon-twitter twitter"></span></a>@@
+#+MACRO: github  @@html:<a href="https://github.com/$1/" target="_blank"><i class="icon-github github"></i></a>@@
+#+MACRO: fb  @@html:<a href="https://facebook.com/$1/" target="_blank"><i class="icon-facebook facebook"></i></a>@@
+#+MACRO: keybase @@html:<a href="https://keybase.io/$1/" target="_blank"><i class="icon-key keybase"></i></a>@@
+#+MACRO: nobr @@html:<span style="white-space:nowrap!important;">@@
+#+MACRO: end_nobr @@html:</span>@@
