@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-17 15:51:40
+date: 2017-01-18 02:26:30
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -48,7 +48,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgf95ed47">標準機能の設定</a>
 <ul>
 <li><a href="#orgca82060">表示関連</a></li>
-<li><a href="#orgbc71c97">編集関連</a></li>
+<li><a href="#orgf82718c">編集関連</a></li>
 <li><a href="#org24778a8">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -71,10 +71,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org316cfac">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#org52a1090">Emacs 本体側の設定</a></li>
+<li><a href="#org2b49405">Emacs 本体側の設定</a></li>
 <li><a href="#orgbc8438c">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org6b68004">編集関連</a></li>
+<li><a href="#org11ace17">編集関連</a></li>
 <li><a href="#org3ec5032">インクリメンタルサーチ</a></li>
 <li><a href="#org9fa4fd2">辞書の設定</a></li>
 <li><a href="#org257bcd3">動的補完</a></li>
@@ -95,7 +95,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org255627a">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org95e85ac">Emacs 本体側の設定</a></li>
+<li><a href="#org079cd3e">Emacs 本体側の設定</a></li>
 <li><a href="#orgc36dcb0">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#org7e2f43a">依存/追加ライブラリのインストールと読み込み</a></li>
@@ -342,8 +342,8 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し�
 (add-to-list 'package-archives '(<span style="color: #7FFF7F;">"org"</span>   . <span style="color: #7FFF7F;">"http://orgmode.org/elpa/"</span>) t)
 (<span style="color: #FF7F7F;">eval-when-compile</span>
   (<span style="color: #FF7F7F;">unless</span> (file-exists-p (concat user-emacs-directory <span style="color: #7FFF7F;">"tmp/bootstrap-stamp"</span>))
-    (package-refresh-contents))
-  (package-initialize))
+    (package-refresh-contents)))
+(package-initialize)
 (<span style="color: #FF7F7F;">unless</span> (package-installed-p 'package-utils)
   (package-install 'package-utils))
 </pre>
@@ -774,9 +774,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-orgbc71c97" class="outline-4">
-<h4 id="orgbc71c97">編集関連</h4>
-<div class="outline-text-4" id="text-orgbc71c97">
+<div id="outline-container-orgf82718c" class="outline-4">
+<h4 id="orgf82718c">編集関連</h4>
+<div class="outline-text-4" id="text-orgf82718c">
 <p>
 yes or no を y or n に
 </p>
@@ -1221,9 +1221,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org52a1090" class="outline-3">
-<h3 id="org52a1090">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org52a1090">
+<div id="outline-container-org2b49405" class="outline-3">
+<h3 id="org2b49405">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org2b49405">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1333,9 +1333,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org6b68004" class="outline-4">
-<h4 id="org6b68004">編集関連</h4>
-<div class="outline-text-4" id="text-org6b68004">
+<div id="outline-container-org11ace17" class="outline-4">
+<h4 id="org11ace17">編集関連</h4>
+<div class="outline-text-4" id="text-org11ace17">
 <p>
 キーバインド
 </p>
@@ -1679,9 +1679,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org95e85ac" class="outline-3">
-<h3 id="org95e85ac">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org95e85ac">
+<div id="outline-container-org079cd3e" class="outline-3">
+<h3 id="org079cd3e">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org079cd3e">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3860,10 +3860,10 @@ html export の際に必要な yaml front matter を出力できるようにし�
 (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">org-jekyll-finalized</span> (contents _backend info)
   <span style="color: #7FFF7F;">"Publish src-block to html, Escape liquid tags, e.g. &#123;%, %&#125;"</span>
   (<span style="color: #FF7F7F;">with-temp-buffer</span>
-    (insert
-     (s-replace <span style="color: #7FFF7F;">"&#123;%"</span> <span style="color: #7FFF7F;">"&amp;#123;%"</span>
-                (s-replace <span style="color: #7FFF7F;">"%&#125;"</span> <span style="color: #7FFF7F;">"%&amp;#125;"</span>
-                           contents)))
+    (insert contents)
+    (perform-replace <span style="color: #7FFF7F;">"&amp;$58;"</span> <span style="color: #7FFF7F;">"&amp;#58;"</span> nil nil nil nil nil (point-min) (point-max))
+    (perform-replace <span style="color: #7FFF7F;">"&#123;%"</span> <span style="color: #7FFF7F;">"&amp;#123;%"</span> nil nil nil nil nil (point-min) (point-max))
+    (perform-replace <span style="color: #7FFF7F;">"%&#125;"</span> <span style="color: #7FFF7F;">"%&amp;#125;"</span> nil nil nil nil nil (point-min) (point-max))
     (set-auto-mode t)
     (buffer-substring-no-properties (point-min) (point-max))))
 <span style="color: #e5e5e6;">;;</span>
