@@ -1,5 +1,5 @@
 #+TITLE: TDiary::Style::Org
-#+DATE: 2017-01-15 23:04:21
+#+DATE: 2017-01-18 00:05:16
 #+LANGUAGE: ja
 #+REF: software/tdiary-style-org
 #+LAYOUT: default
