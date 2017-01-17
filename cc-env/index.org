@@ -1,5 +1,5 @@
 #+TITLE: Computer Memorandum
-#+DATE: 2017-01-17 04:30:26
+#+DATE: 2017-01-17 12:43:29
 #+LANGUAGE: ja
 #+REF: cc-env
 #+LAYOUT: cc-env
@@ -19,10 +19,6 @@ Related [[wiki:index][Index]] [[wiki:Emacs][Emacs]]
   *現在再構築中です*
   #+HTML: </div>
 
-* このサイトができるまで。
-  このサイトは、記事を Emacs の [[http://orgmode.org/][Org-mode]] で書いて、
-  [[http://jekyllrb.com/][Jekyll]] で HTML に変換しています。
-  - [[wiki:OrgtoJekyll][org ファイルを jekyll で処理する]]
 * Debian 関係
   Debian 一般に関する話は
   - 本家: 『[[http://www.debian.org/index.ja.html][Debian -- ユニバーサルオペレーティングシステム]]』
@@ -32,3 +28,11 @@ Related [[wiki:index][Index]] [[wiki:Emacs][Emacs]]
   - [[wiki:DebianInstall][Debian の install]]
   - [[wiki:DebianConfigure][Debian: Install 直後の雑多な設定]]: 細かい事柄はココに.中身が増えたら分ける予定
   - [[wiki:DebianMTA][MTA の設定]]
+* Emacs 関係
+  - [[wiki:Emacs][Emacs]] : 以前は使っているパッケージ毎に設定を分けていましたが
+    最近は Org で書かれた単一ファイルに設定を集約しています．
+
+* このサイトができるまで。
+  このサイトは、記事を Emacs の [[http://orgmode.org/][Org-mode]] で書いて、
+  [[http://jekyllrb.com/][Jekyll]] で HTML に変換しています。
+  - [[wiki:OrgtoJekyll][org ファイルを jekyll で処理する]]

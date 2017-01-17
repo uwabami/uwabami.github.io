@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-17 04:32:43
+date: 2017-01-17 15:51:40
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -32,15 +32,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org10d598b">dpkg-status</a></li>
 </ul>
 </li>
-<li><a href="#orge8c6f42">byte-compile 用の雑多な設定</a>
-<ul>
 <li><a href="#orga1a08d6">常に <code>cl-lib</code> を読み込む</a></li>
-<li><a href="#org72a407f">debug は表示しない: 必要に応じて t に変更する</a></li>
-<li><a href="#orgf4f8d34"><code>.elc</code> と <code>.el</code> の timestamp を比較し，新しい方を読み込む</a></li>
-<li><a href="#org231e299">Compile-Log の非表示</a></li>
-<li><a href="#org853eb54">Warning の抑制</a></li>
-</ul>
-</li>
 <li><a href="#org2833e37">後方互換性: <code>el-x</code></a></li>
 <li><a href="#org3456a84">url-retrieve の置き換え: <code>mb-url</code></a></li>
 <li><a href="#orgb285d23">環境変数の読み込み: <code>exec-path-from-shell</code></a></li>
@@ -53,39 +45,36 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org8a2eeb6">主にEmacs本体に同梱されている拡張に関する設定</a>
 <ul>
-<li><a href="#orgc3e4eda">基本的なキーバインドの設定</a></li>
-<li><a href="#orgfdecf7c">Emacs server</a></li>
-<li><a href="#org1a8890d"><code>whitespace</code>: 空白の強調表示</a></li>
+<li><a href="#orgf95ed47">標準機能の設定</a>
+<ul>
+<li><a href="#orgca82060">表示関連</a></li>
+<li><a href="#orgbc71c97">編集関連</a></li>
+<li><a href="#org24778a8">ファイル，デイレクトリ整理</a></li>
+</ul>
+</li>
+<li><a href="#orgf4f8d34"><code>.elc</code> と <code>.el</code> の timestamp を比較し，新しい方を読み込む</a></li>
+<li><a href="#orgbab11bd">ガベージコレクションの頻度を下げる</a></li>
+<li><a href="#org466c879">scratch を殺さない. 消したら再生成</a></li>
+<li><a href="#org98d690e">空になったファイルを尋ねずに自動削除</a></li>
+<li><a href="#org91deb14"><code>abbrev</code>: 略語展開</a></li>
+<li><a href="#orgb4fc11b"><code>eldoc</code>: emacs-lisp document</a></li>
+<li><a href="#orge9e7e7d"><code>midnight</code>: 一定期間使用しなかった buffer を自動削除</a></li>
 <li><a href="#org385c401"><code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</a></li>
+<li><a href="#org1a8890d"><code>whitespace</code>: 空白の強調表示</a></li>
 <li><a href="#org5743792"><code>saveplace</code>: 前回の修正位置を記憶する.</a></li>
 <li><a href="#org096aa27"><code>time-stamp</code>: 保存時に timestamp を自動更新</a></li>
 <li><a href="#org6df69b0"><code>tramp</code>: 使わないので無効化?</a></li>
 <li><a href="#org38a210a"><code>bookmark</code>: bookmark ファイル</a></li>
-<li><a href="#org6aa05f7">browse-url</a></li>
-<li><a href="#orgf95ed47">標準機能の設定</a>
-<ul>
-<li><a href="#org8bb4593">表示関連</a></li>
-<li><a href="#org8c58240">編集関連</a></li>
-<li><a href="#org24778a8">ファイル，デイレクトリ整理</a></li>
-</ul>
-</li>
-<li><a href="#orgbab11bd">ガベージコレクションの頻度を下げる</a></li>
-<li><a href="#org86aa390">行末の無駄な空白/改行を削除する</a></li>
-<li><a href="#org466c879">scratch を殺さない. 消したら再生成</a></li>
-<li><a href="#org98d690e">空になったファイルを尋ねずに自動削除</a></li>
-<li><a href="#orgc2025e9">略語展開: <code>abbrev</code></a></li>
-<li><a href="#orgf59edd4">emacs-lisp document: <code>eldoc</code></a></li>
-<li><a href="#orge9e7e7d"><code>midnight</code>: 一定期間使用しなかった buffer を自動削除</a></li>
+<li><a href="#org76c6528"><code>browse-url</code></a></li>
+<li><a href="#orgc93b416"><code>server</code>: Emacs server</a></li>
 </ul>
 </li>
 <li><a href="#org316cfac">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#org3877641">Emacs 本体側の設定</a></li>
+<li><a href="#org52a1090">Emacs 本体側の設定</a></li>
 <li><a href="#orgbc8438c">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org6ffd296">sticky-shift</a></li>
-<li><a href="#orgca82060">表示関連</a></li>
-<li><a href="#orgbd5eaa5">編集関連</a></li>
+<li><a href="#org6b68004">編集関連</a></li>
 <li><a href="#org3ec5032">インクリメンタルサーチ</a></li>
 <li><a href="#org9fa4fd2">辞書の設定</a></li>
 <li><a href="#org257bcd3">動的補完</a></li>
@@ -106,7 +95,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org255627a">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#orga49a1b6">Emacs 本体側の設定</a></li>
+<li><a href="#org95e85ac">Emacs 本体側の設定</a></li>
 <li><a href="#orgc36dcb0">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#org7e2f43a">依存/追加ライブラリのインストールと読み込み</a></li>
@@ -207,6 +196,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgde0aba8">フォントと色</a></li>
 <li><a href="#org0b49426"><code>diminish</code>: モードラインの短縮表示</a></li>
 <li><a href="#orgaa1db07"><code>powerline</code>: モードラインを綺麗に</a></li>
+<li><a href="#orgc3e4eda">基本的なキーバインドの設定 <code>[/]</code></a></li>
 <li><a href="#org6c42a50">起動時間の計測</a></li>
 <li><a href="#org6e71c29">LICENSE</a></li>
 </ul>
@@ -247,16 +237,12 @@ VCS からインストールしたいパッケージが幾つかあるので、
 <h3 id="org512beeb">Debian パッケージがインストールされているならば，それを優先する</h3>
 <div class="outline-text-3" id="text-org512beeb">
 <p>
-はい，個人の我侭ですね．:<a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">Eating your own dog food - Wikipedia</a>
+:<a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">Eating your own dog food - Wikipedia</a>
 </p>
 
 <p>
 Emacsに関連するDebianパッケージを幾つかメンテナンスしているので，
 可能な限りDebianパッケージを使うことにしています.
-</p>
-
-<p>
-自分が root 持っていない環境ではしょうがないですけれど．
 </p>
 </div>
 </div>
@@ -298,15 +284,12 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し�
 </p>
 <pre class="example">
     ~/.emacs.d/
-     |-- Makefile        ←  byte-compile 用の rule
-     |-- README.org      ←  本ファイル．`org-babel-tangle' で init.el を生成
-     |-- init-foobar.org ←  外部ファイルを使うパッケージの設定ファイル
-     |-- init-barbaz.org     (ddskk, gnus, wanderlust, ...)
-     :
-     |-- packages/       ←  package.el で導入したパッケージが置かれる場所
-     |-- quelpa/         ←  quelpa で導入したパッケージが置かれる場所
-     |-- share/          ←  (基本的に)参照するだけの資源置き場所
-     `-- tmp/            ←  一次ファイルの置き場所
+     |-- Makefile    ←  byte-compile 用の rule
+     |-- README.org  ←  本ファイル．`org-babel-tangle' で init.el を生成
+     |-- elpa/       ←  package.el で導入したパッケージが置かれる場所
+     |-- quelpa/     ←  quelpa で導入したパッケージが置かれる場所
+     |-- share/      ←  (基本的に)参照するだけの資源置き場所
+     `-- tmp/        ←  一次ファイルの置き場所
 </pre>
 <p>
 上記ディレクトリ構成を設定ファイルで使用するためにディレクトリ配置を宣言しておきます．
@@ -323,8 +306,6 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し�
 <p>
 ついでに，
 <code>custom-set-variables</code> は別ファイルに出力，終了時に削除するようにしています．
-これは単なる趣味です．
-<del>init.elが汚れる気がしてあまり好きではないのですが&#x2026;皆さん気にしてないんですかね</del>
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> custom-file (concat my:d:tmp <span style="color: #7FFF7F;">"custom.el"</span>))
@@ -334,6 +315,9 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し�
                 (delete-file custom-file))))
 </pre>
 </div>
+<p>
+<del>init.elが汚れる気がしてあまり好きではないのですが&#x2026;皆さん気にしてないんですかね</del>
+</p>
 </div>
 </div>
 <div id="outline-container-org0b2b512" class="outline-2">
@@ -351,16 +335,15 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し�
 パッケージは基本的に <code>pacakge.el</code> で導入するので、先ずはその設定.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (file-directory-p (concat user-emacs-directory <span style="color: #7FFF7F;">"packages"</span>))
-  (make-directory (concat user-emacs-directory <span style="color: #7FFF7F;">"packages"</span>)))
-(<span style="color: #FF7F7F;">setq</span> url-http-attempt-keepalives nil)
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> url-http-attempt-keepalives nil)
 (<span style="color: #FF7F7F;">require</span> '<span style="color: #FFBF7F;">package</span> nil 'noerror)
-(<span style="color: #FF7F7F;">setq</span> package-enable-at-startup t
-      package-user-dir (concat user-emacs-directory <span style="color: #7FFF7F;">"packages"</span>))
+(<span style="color: #FF7F7F;">setq</span> package-enable-at-startup t)
 (add-to-list 'package-archives '(<span style="color: #7FFF7F;">"melpa"</span> . <span style="color: #7FFF7F;">"https://melpa.org/packages/"</span>) t)
 (add-to-list 'package-archives '(<span style="color: #7FFF7F;">"org"</span>   . <span style="color: #7FFF7F;">"http://orgmode.org/elpa/"</span>) t)
-(package-initialize)
-(<span style="color: #FF7F7F;">eval-when-compile</span> (package-refresh-contents))
+(<span style="color: #FF7F7F;">eval-when-compile</span>
+  (<span style="color: #FF7F7F;">unless</span> (file-exists-p (concat user-emacs-directory <span style="color: #7FFF7F;">"tmp/bootstrap-stamp"</span>))
+    (package-refresh-contents))
+  (package-initialize))
 (<span style="color: #FF7F7F;">unless</span> (package-installed-p 'package-utils)
   (package-install 'package-utils))
 </pre>
@@ -370,13 +353,8 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し�
 batch でインストールできる様に，以下を <code>emacs-batch-install.el</code> として出力します．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">when</span> load-file-name
-  (<span style="color: #FF7F7F;">setq</span> user-emacs-directory (file-name-directory load-file-name)))
-(<span style="color: #FF7F7F;">unless</span> (file-directory-p (concat user-emacs-directory <span style="color: #7FFF7F;">"packages"</span>))
-  (make-directory (concat user-emacs-directory <span style="color: #7FFF7F;">"packages"</span>)))
-(<span style="color: #FF7F7F;">setq</span> url-http-attempt-keepalives nil)
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> url-http-attempt-keepalives nil)
 (<span style="color: #FF7F7F;">require</span> '<span style="color: #FFBF7F;">package</span> nil 'noerror)
-(<span style="color: #FF7F7F;">setq</span> package-user-dir (concat user-emacs-directory <span style="color: #7FFF7F;">"packages"</span>))
 (add-to-list 'package-archives '(<span style="color: #7FFF7F;">"melpa"</span> . <span style="color: #7FFF7F;">"https://melpa.org/packages/"</span>) t)
 (add-to-list 'package-archives '(<span style="color: #7FFF7F;">"org"</span>   . <span style="color: #7FFF7F;">"http://orgmode.org/elpa/"</span>) t)
 (package-refresh-contents)
@@ -393,7 +371,7 @@ batch でのインストールは例えば
 </pre>
 </div>
 <p>
-とか．実際は <a href="Makefile">Makefile</a> 参照．
+とすれば良いかと.
 </p>
 </div>
 </div>
@@ -425,8 +403,7 @@ melpa の同期はしません。
   (<span style="color: #FF7F7F;">setq</span> quelpa-upgrade-p nil
         quelpa-checkout-melpa-p nil
         quelpa-update-melpa-p nil
-        quelpa-melpa-recipe-stores nil
-        )
+        quelpa-melpa-recipe-stores nil)
   )
 </pre>
 </div>
@@ -436,7 +413,11 @@ melpa の同期はしません。
 <div id="outline-container-org8ba43cd" class="outline-2">
 <h2 id="org8ba43cd">独自関数</h2>
 <div class="outline-text-2" id="text-org8ba43cd">
-</div><div id="outline-container-org94268a7" class="outline-3">
+<p>
+細かい独自関数，など．
+</p>
+</div>
+<div id="outline-container-org94268a7" class="outline-3">
 <h3 id="org94268a7">カーソルのある位置の face を調べる関数</h3>
 <div class="outline-text-3" id="text-org94268a7">
 <p>
@@ -481,12 +462,9 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-orge8c6f42" class="outline-2">
-<h2 id="orge8c6f42">byte-compile 用の雑多な設定</h2>
-<div class="outline-text-2" id="text-orge8c6f42">
-</div><div id="outline-container-orga1a08d6" class="outline-3">
-<h3 id="orga1a08d6">常に <code>cl-lib</code> を読み込む</h3>
-<div class="outline-text-3" id="text-orga1a08d6">
+<div id="outline-container-orga1a08d6" class="outline-2">
+<h2 id="orga1a08d6">常に <code>cl-lib</code> を読み込む</h2>
+<div class="outline-text-2" id="text-orga1a08d6">
 <p>
 以前は(今も?)「 <code>cl.el</code> は名前衝突があるので byte compile 時以外は読み込まない様にしよう」
 というお話でした．つまり，
@@ -506,65 +484,6 @@ melpa の同期はしません。
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">eval-and-compile</span> (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">cl-lib</span>))
 </pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org72a407f" class="outline-3">
-<h3 id="org72a407f">debug は表示しない: 必要に応じて t に変更する</h3>
-<div class="outline-text-3" id="text-org72a407f">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> debug-on-error nil)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgf4f8d34" class="outline-3">
-<h3 id="orgf4f8d34"><code>.elc</code> と <code>.el</code> の timestamp を比較し，新しい方を読み込む</h3>
-<div class="outline-text-3" id="text-orgf4f8d34">
-<p>
-<code>load-prefer-newer</code> は Emacs &gt;= 24.4 から．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">when</span> (boundp 'load-prefer-newer)
-  (<span style="color: #FF7F7F;">setq</span> load-prefer-newer t))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org231e299" class="outline-3">
-<h3 id="org231e299">Compile-Log の非表示</h3>
-<div class="outline-text-3" id="text-org231e299">
-<p>
-ほとんど見ないし．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">let</span> ((win (get-buffer-window <span style="color: #7FFF7F;">"*Compile-Log*"</span>)))
-  (<span style="color: #FF7F7F;">when</span> win (delete-window win)))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org853eb54" class="outline-3">
-<h3 id="org853eb54">Warning の抑制</h3>
-<div class="outline-text-3" id="text-org853eb54">
-<p>
-これもほとんど見ないし．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> byte-compile-warnings
-      '(not
-        free-vars
-        unresolved
-        callargs
-        redefine
-        obsolete
-        noruntime
-        cl-functions
-        interactive-only
-        make-local
-        ))
-</pre>
-</div>
 </div>
 </div>
 </div>
@@ -761,44 +680,396 @@ Windows の場合はファイル名などは cp932 にしているものの,
 <div id="outline-container-org8a2eeb6" class="outline-2">
 <h2 id="org8a2eeb6">主にEmacs本体に同梱されている拡張に関する設定</h2>
 <div class="outline-text-2" id="text-org8a2eeb6">
-</div><div id="outline-container-orgc3e4eda" class="outline-3">
-<h3 id="orgc3e4eda">基本的なキーバインドの設定</h3>
-<div class="outline-text-3" id="text-orgc3e4eda">
+</div><div id="outline-container-orgf95ed47" class="outline-3">
+<h3 id="orgf95ed47">標準機能の設定</h3>
+<div class="outline-text-3" id="text-orgf95ed47">
+</div><div id="outline-container-orgca82060" class="outline-4">
+<h4 id="orgca82060">表示関連</h4>
+<div class="outline-text-4" id="text-orgca82060">
 <p>
-既に手癖になってしまっているアレコレ．
-特に <code>[home]</code> と <code>[end]</code> は無いと途方に暮れます．
+起動時のスプラッシュ画面を表示しない
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">bind-keys*</span>
- (<span style="color: #7FFF7F;">"C-h"</span>     . backward-delete-char)
- (<span style="color: #7FFF7F;">"C-c M-a"</span> . align-regexp)
- (<span style="color: #7FFF7F;">"C-c ;"</span>   . comment-region)
- (<span style="color: #7FFF7F;">"C-c M-;"</span> . uncomment-region)
- (<span style="color: #7FFF7F;">"C-/"</span>     . undo)
- (<span style="color: #7FFF7F;">"C-x M-b"</span> . ibuffer-other-window)
- (<span style="color: #7FFF7F;">"C-c M-r"</span> . replace-regexp)
- (<span style="color: #7FFF7F;">"C-c r"</span>   . replace-string)
- (<span style="color: #7FFF7F;">"&lt;home&gt;"</span>  . beginning-of-buffer)
- (<span style="color: #7FFF7F;">"&lt;end&gt;"</span>   . end-of-buffer))
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> inhibit-startup-screen t
+      inhibit-startup-message t)
 </pre>
 </div>
 <p>
-<a href="https://github.com/k1LoW/emacs-drill-instructor/wiki">鬼軍曹.el</a> とかで強制した方が良いのかも，とかごく偶に思いますが(思うだけ)．
+大抵の場合ターミナル内で <code>-nw</code> として起動するし,
+メニューは触ったことないので使わないので，
+フレーム, ツールバー等を非表示にする．
 </p>
-</div>
-</div>
-<div id="outline-container-orgfdecf7c" class="outline-3">
-<h3 id="orgfdecf7c">Emacs server</h3>
-<div class="outline-text-3" id="text-orgfdecf7c">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">server</span>
+<pre class="src src-emacs-lisp">(my:disable-builtin-mode 'tool-bar-mode)
+(my:disable-builtin-mode 'scroll-bar-mode)
+(my:disable-builtin-mode 'menu-bar-mode)
+(my:disable-builtin-mode 'blink-cursor-mode)
+(my:disable-builtin-mode 'column-number-mode)
+</pre>
+</div>
+<p>
+ベル無効化
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> ring-bell-function 'ignore)
+</pre>
+</div>
+<p>
+選択リージョンに色付け
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> transient-mark-mode t)
+</pre>
+</div>
+<p>
+対応する括弧を強調表示
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(show-paren-mode +1)
+(<span style="color: #FF7F7F;">setq</span> show-paren-style 'mixed)
+</pre>
+</div>
+<p>
+行番号を表示する <code>linum-mode</code> は基本使わない(必要に応じて有効にする)
+ので通常はモードラインに行番号や桁番号を表示しないようする.
+ついでに <code>linum-mode</code> を有効にした場合の桁表示を 5 桁に.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(my:disable-builtin-mode 'line-number-mode)
+(<span style="color: #FF7F7F;">setq</span> linum-format <span style="color: #7FFF7F;">"%5d "</span>)
+</pre>
+</div>
+<p>
+debug は表示しない: 必要に応じて t に変更する
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> debug-on-error nil)
+</pre>
+</div>
+<p>
+Compile-Log の非表示:     ほとんど見ないし．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">let</span> ((win (get-buffer-window <span style="color: #7FFF7F;">"*Compile-Log*"</span>)))
+  (<span style="color: #FF7F7F;">when</span> win (delete-window win)))
+</pre>
+</div>
+<p>
+Warning の抑制: これもほとんど見ないし．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> byte-compile-warnings
+      '(not
+        free-vars
+        unresolved
+        callargs
+        redefine
+        obsolete
+        noruntime
+        cl-functions
+        interactive-only
+        make-local
+        ))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbc71c97" class="outline-4">
+<h4 id="orgbc71c97">編集関連</h4>
+<div class="outline-text-4" id="text-orgbc71c97">
+<p>
+yes or no を y or n に
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(fset 'yes-or-no-p 'y-or-n-p)
+</pre>
+</div>
+<p>
+ファイル名の大文字小文字を区別しない(zsh風)
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> read-file-name-completion-ignore-case t)
+</pre>
+</div>
+<p>
+tab 幅 4, tab でのインデントはしない
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq-default</span> tab-width 4)
+(<span style="color: #FF7F7F;">setq-default</span> indent-tabs-mode nil)
+</pre>
+</div>
+<p>
+文字列は 72 文字で折り返し(RFC2822風味)
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq-default</span> fill-column 72)
+(<span style="color: #FF7F7F;">setq</span> paragraph-start '<span style="color: #7FFF7F;">"^</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">[ &#12288;&#12539;&#9675;&lt;\t\n\f]</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">(?[0-9a-zA-Z]+)</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>)
+(<span style="color: #FF7F7F;">setq-default</span> auto-fill-mode nil)
+</pre>
+</div>
+<p>
+長い行の折り返し:
+デフォルトは折り返し有で <code>\C-c M-l</code> で toggle
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(set-default 'truncate-lines nil)
+(<span style="color: #FF7F7F;">setq</span> truncate-partial-width-windows nil)
+(define-key global-map (kbd <span style="color: #7FFF7F;">"C-c M-l"</span>) 'toggle-truncate-lines)
+</pre>
+</div>
+<p>
+バッファ終端で newline を入れない
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> next-line-add-newlines nil)
+</pre>
+</div>
+<p>
+symlink は常においかける
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> vc-follow-symlinks t)
+</pre>
+</div>
+<p>
+変更のあったファイルの自動再読み込み
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(global-auto-revert-mode 1)
+</pre>
+</div>
+<p>
+バックアップとauto-saveの作成/位置の変更:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> auto-save-list-file-prefix (concat my:d:tmp <span style="color: #7FFF7F;">".saves-"</span>))
+(<span style="color: #FF7F7F;">setq</span> auto-save-default t)
+(<span style="color: #FF7F7F;">setq</span> auto-save-timeout 15)
+(<span style="color: #FF7F7F;">setq</span> auto-save-interval 60)
+(<span style="color: #FF7F7F;">setq</span> make-backup-files t)
+(<span style="color: #FF7F7F;">setq</span> backup-by-copying t) <span style="color: #e5e5e6;">; </span><span style="color: #e5e5e6;">symlink &#12399;&#20351;&#12431;&#12394;&#12356;</span>
+(<span style="color: #FF7F7F;">setq</span> backup-directory-alist `((<span style="color: #7FFF7F;">"."</span> . ,my:d:tmp)))
+(<span style="color: #FF7F7F;">setq</span> auto-save-file-name-transforms `((<span style="color: #7FFF7F;">".*"</span> ,my:d:tmp t)))
+(<span style="color: #FF7F7F;">setq</span> version-control t)
+(<span style="color: #FF7F7F;">setq</span> kept-new-versions 5)
+(<span style="color: #FF7F7F;">setq</span> kept-old-versions 5)
+(<span style="color: #FF7F7F;">setq</span> delete-old-versions t)
+(<span style="color: #FF7F7F;">setq</span> delete-auto-save-files t)
+</pre>
+</div>
+<p>
+<code>recentf</code>: 最近使ったファイル履歴の保管
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> recentf-max-saved-items 10000)
+(<span style="color: #FF7F7F;">setq</span> recentf-save-file
+      (expand-file-name (concat my:d:tmp <span style="color: #7FFF7F;">"recentf"</span>)))
+(<span style="color: #FF7F7F;">setq</span> recentf-auto-cleanup 'never)
+(<span style="color: #FF7F7F;">setq</span> recentf-exclude
+      '(<span style="color: #7FFF7F;">".recentf"</span>
+        <span style="color: #7FFF7F;">"^/tmp\\.*"</span>
+        <span style="color: #7FFF7F;">"^/private\\.*"</span>
+        <span style="color: #7FFF7F;">"^/var/folders\\.*"</span>
+        <span style="color: #7FFF7F;">"/TAGS$"</span>
+        <span style="color: #7FFF7F;">"^/home/uwabami/.mozilla/firefox/jhitnbb2.default/itsalltext\\.*"</span>
+        ))
+(add-hook 'after-init-hook 'recentf-mode)
+</pre>
+</div>
+<p>
+Undo/Redo:
+そのうち undohist と undo-tree を試そうと思っているのですが，
+今のところ特に弄ってません． <code>undo-limit</code> は無限大にしたいのですが，どうするのかな&#x2026;?
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> undo-limit 200000)
+(<span style="color: #FF7F7F;">setq</span> undo-strong-limit 260000)
+(savehist-mode 1)        <span style="color: #e5e5e6;">; </span><span style="color: #e5e5e6;">&#12511;&#12491;&#12496;&#12483;&#12501;&#12449;&#12398;&#23653;&#27508;&#12434;&#20445;&#23384;&#12375;&#12522;&#12473;&#12488;&#12450;</span>
+(<span style="color: #FF7F7F;">setq</span> savehist-file (concat my:d:tmp <span style="color: #7FFF7F;">"history"</span>))
+(<span style="color: #FF7F7F;">setq</span> history-length t)  <span style="color: #e5e5e6;">; </span><span style="color: #e5e5e6;">t &#12391;&#28961;&#21046;&#38480;</span>
+</pre>
+</div>
+<p>
+行末の無駄な空白/改行を削除する:     <a href="http://d.hatena.ne.jp/tototoshi/20101202/1291289625">無駄な行末の空白を削除する(Emacs Advent Calendar jp:2010)</a>
+</p>
+
+<p>
+ただし, RD や Markdown だと空白行に意味があったりするので，
+必要に応じて拡張子で判断して外している．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:delete-trailing-whitespace-exclude-suffix</span>
+  (list <span style="color: #7FFF7F;">"\\.rd$"</span> <span style="color: #7FFF7F;">"\\.md$"</span> <span style="color: #7FFF7F;">"\\.rbt$"</span> <span style="color: #7FFF7F;">"\\.rab$"</span>))
+(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:delete-trailing-whitespace</span> ()
+  (<span style="color: #FF7F7F;">interactive</span>)
+  (<span style="color: #FF7F7F;">cond</span>
+   ((equal nil
+           (<span style="color: #FF7F7F;">cl-loop</span> for pattern in my:delete-trailing-whitespace-exclude-suffix
+                    thereis (string-match pattern buffer-file-name)))
+    (delete-trailing-whitespace))))
+(add-hook 'before-save-hook 'my:delete-trailing-whitespace)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org24778a8" class="outline-4">
+<h4 id="org24778a8">ファイル，デイレクトリ整理</h4>
+<div class="outline-text-4" id="text-org24778a8">
+<p>
+他にもイロイロありそう．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">url</span>
+  <span style="color: #7FBFFF;">:init</span>
+  (<span style="color: #FF7F7F;">setq</span> url-configuration-directory (concat my:d:tmp <span style="color: #7FFF7F;">"url"</span>)))
+(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">nsm</span>
+  <span style="color: #7FBFFF;">:init</span>
+  (<span style="color: #FF7F7F;">setq</span> nsm-settings-file (concat my:d:tmp <span style="color: #7FFF7F;">"network-settings.data"</span>)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf4f8d34" class="outline-3">
+<h3 id="orgf4f8d34"><code>.elc</code> と <code>.el</code> の timestamp を比較し，新しい方を読み込む</h3>
+<div class="outline-text-3" id="text-orgf4f8d34">
+<p>
+<code>load-prefer-newer</code> は Emacs &gt;= 24.4 から．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">when</span> (boundp 'load-prefer-newer)
+  (<span style="color: #FF7F7F;">setq</span> load-prefer-newer t))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbab11bd" class="outline-3">
+<h3 id="orgbab11bd">ガベージコレクションの頻度を下げる</h3>
+<div class="outline-text-3" id="text-orgbab11bd">
+<p>
+とりあえず 128 MB にしておく.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> gc-cons-threshold (* 128 1024 1024))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org466c879" class="outline-3">
+<h3 id="org466c879">scratch を殺さない. 消したら再生成</h3>
+<div class="outline-text-3" id="text-org466c879">
+<p>
+&#x2026;元ネタがどこだったのか忘れてしまった&#x2026;
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:make-scratch</span> (<span style="color: #FFFF7F;">&amp;optional</span> arg)
+  (<span style="color: #FF7F7F;">interactive</span>)
+  (<span style="color: #FF7F7F;">progn</span>
+    <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">"*scratch*" &#12434;&#20316;&#25104;&#12375;&#12390; buffer-list &#12395;&#25918;&#12426;&#36796;&#12416;</span>
+    (set-buffer (get-buffer-create <span style="color: #7FFF7F;">"*scratch*"</span>))
+    (funcall initial-major-mode)
+    (erase-buffer)
+    (<span style="color: #FF7F7F;">when</span> (<span style="color: #FF7F7F;">and</span> initial-scratch-message (not inhibit-startup-message))
+      (insert initial-scratch-message))
+    (<span style="color: #FF7F7F;">or</span> arg
+        (<span style="color: #FF7F7F;">progn</span>
+          (<span style="color: #FF7F7F;">setq</span> arg 0)
+          (switch-to-buffer <span style="color: #7FFF7F;">"*scratch*"</span>)))
+    (<span style="color: #FF7F7F;">cond</span> ((= arg 0) (message <span style="color: #7FFF7F;">"*scratch* is cleared up."</span>))
+          ((= arg 1) (message <span style="color: #7FFF7F;">"another *scratch* is created"</span>)))))
+
+(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:buffer-name-list</span> ()
+  (mapcar (<span style="color: #FF7F7F;">function</span> buffer-name) (buffer-list)))
+(add-hook 'kill-buffer-query-functions
+          <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">*scratch* &#12496;&#12483;&#12501;&#12449;&#12391; kill-buffer &#12375;&#12383;&#12425;&#20869;&#23481;&#12434;&#28040;&#21435;&#12377;&#12427;&#12384;&#12369;&#12395;&#12377;&#12427;</span>
+          (<span style="color: #FF7F7F;">function</span> (<span style="color: #FF7F7F;">lambda</span> ()
+                      (<span style="color: #FF7F7F;">if</span> (string= <span style="color: #7FFF7F;">"*scratch*"</span> (buffer-name))
+                          (<span style="color: #FF7F7F;">progn</span> (my:make-scratch 0) nil)
+                        t))))
+(add-hook 'after-save-hook
+          <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">*scratch* &#12496;&#12483;&#12501;&#12449;&#12398;&#20869;&#23481;&#12434;&#20445;&#23384;&#12375;&#12383;&#12425;</span>
+          <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">*scratch* &#12496;&#12483;&#12501;&#12449;&#12434;&#26032;&#12375;&#12367;&#20316;&#12427;.</span>
+          (<span style="color: #FF7F7F;">function</span>
+           (<span style="color: #FF7F7F;">lambda</span> ()
+             (<span style="color: #FF7F7F;">unless</span> (member <span style="color: #7FFF7F;">"*scratch*"</span> (my:buffer-name-list))
+               (my:make-scratch 1)))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org98d690e" class="outline-3">
+<h3 id="org98d690e">空になったファイルを尋ねずに自動削除</h3>
+<div class="outline-text-3" id="text-org98d690e">
+<p>
+ゴミが残らないし，地味に便利．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:delete-file-if-no-contents</span> ()
+  (<span style="color: #FF7F7F;">when</span> (<span style="color: #FF7F7F;">and</span> (buffer-file-name (current-buffer))
+             (= (point-min) (point-max)))
+    (delete-file
+     (buffer-file-name (current-buffer)))))
+(<span style="color: #FF7F7F;">if</span> (not (memq 'my:delete-file-if-no-contents after-save-hook))
+    (<span style="color: #FF7F7F;">setq</span> after-save-hook
+          (cons 'my:delete-file-if-no-contents after-save-hook)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org91deb14" class="outline-3">
+<h3 id="org91deb14"><code>abbrev</code>: 略語展開</h3>
+<div class="outline-text-3" id="text-org91deb14">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">abbrev</span>
+  <span style="color: #7FBFFF;">:diminish</span> abbrev-mode
   <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">unless</span> (server-running-p)
-    (server-start)))
+  (<span style="color: #FF7F7F;">setq</span> abbrev-file-name (concat my:d:share <span style="color: #7FFF7F;">"abbrev_defs"</span>)
+        save-abbrevs t
+  )
+  (<span style="color: #FF7F7F;">setq-default</span> abbrev-mode t)
+  )
 </pre>
 </div>
 </div>
 </div>
+<div id="outline-container-orgb4fc11b" class="outline-3">
+<h3 id="orgb4fc11b"><code>eldoc</code>: emacs-lisp document</h3>
+<div class="outline-text-3" id="text-orgb4fc11b">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">eldoc</span>
+  <span style="color: #7FBFFF;">:diminish</span> eldoc-mode
+  <span style="color: #7FBFFF;">:config</span>
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge9e7e7d" class="outline-3">
+<h3 id="orge9e7e7d"><code>midnight</code>: 一定期間使用しなかった buffer を自動削除</h3>
+<div class="outline-text-3" id="text-orge9e7e7d">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">midnight</span>
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> clean-buffer-list-delay-general 1))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org385c401" class="outline-3">
+<h3 id="org385c401"><code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</h3>
+<div class="outline-text-3" id="text-org385c401">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">uniquify</span>
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> uniquify-buffer-name-style 'post-forward-angle-brackets
+        uniquify-min-dir-content 1))
+</pre>
+</div>
+</div>
+</div>
+
 <div id="outline-container-org1a8890d" class="outline-3">
 <h3 id="org1a8890d"><code>whitespace</code>: 空白の強調表示</h3>
 <div class="outline-text-3" id="text-org1a8890d">
@@ -823,18 +1094,6 @@ Windows の場合はファイル名などは cp932 にしているものの,
           (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t]))
         whitespace-space-regexp <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">\u3000+</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>)
   (global-whitespace-mode 1))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org385c401" class="outline-3">
-<h3 id="org385c401"><code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</h3>
-<div class="outline-text-3" id="text-org385c401">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">uniquify</span>
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> uniquify-buffer-name-style 'post-forward-angle-brackets
-        uniquify-min-dir-content 1))
 </pre>
 </div>
 </div>
@@ -903,15 +1162,17 @@ Windows の場合はファイル名などは cp932 にしているものの,
 </div>
 </div>
 </div>
-<div id="outline-container-org6aa05f7" class="outline-3">
-<h3 id="org6aa05f7">browse-url</h3>
-<div class="outline-text-3" id="text-org6aa05f7">
+
+<div id="outline-container-org76c6528" class="outline-3">
+<h3 id="org76c6528"><code>browse-url</code></h3>
+<div class="outline-text-3" id="text-org76c6528">
 <p>
 Firefox の呼び出し方が変わったので，そのために関数を追加．
 詳細は <a href="http://www.emacswiki.org/emacs/BrowseUrl">http://www.emacswiki.org/emacs/BrowseUrl</a> を参照のこと．
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">browse-url</span>
+  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point))
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">browse-url-firefox</span> (url <span style="color: #FFFF7F;">&amp;optional</span> new-window)
     <span style="color: #7FFF7F;">"@see </span><span style="text-decoration: underline;">http://www.emacswiki.org/emacs/BrowseUrl</span><span style="color: #7FFF7F;">"</span>
@@ -926,342 +1187,20 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
            (process-name (concat <span style="color: #7FFF7F;">"firefox "</span> url))
            (process (apply 'start-process process-name nil
                            browse-url-firefox-program ff-args) ))))
-  (<span style="color: #FF7F7F;">setq</span> browse-url-browser-function 'browse-url-firefox))
-(<span style="color: #FF7F7F;">bind-key</span> <span style="color: #7FFF7F;">"C-c C-j"</span> 'browse-url-at-point)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgf95ed47" class="outline-3">
-<h3 id="orgf95ed47">標準機能の設定</h3>
-<div class="outline-text-3" id="text-orgf95ed47">
-</div><div id="outline-container-org8bb4593" class="outline-4">
-<h4 id="org8bb4593">表示関連</h4>
-<div class="outline-text-4" id="text-org8bb4593">
-</div><ul class="org-ul"><li><a id="org55e6256"></a>起動時のスプラッシュ画面を表示しない<br ><div class="outline-text-5" id="text-org55e6256">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> inhibit-startup-screen t
-      inhibit-startup-message t)
-</pre>
-</div>
-</div></li>
-<li><a id="org15596d7"></a>フレーム, ツールバー等を非表示に<br ><div class="outline-text-5" id="text-org15596d7">
-<p>
-大抵の場合ターミナル内で <code>-nw</code> として起動するし,
-メニューは触ったことないので使わない.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(my:disable-builtin-mode 'tool-bar-mode)
-(my:disable-builtin-mode 'scroll-bar-mode)
-(my:disable-builtin-mode 'menu-bar-mode)
-(my:disable-builtin-mode 'blink-cursor-mode)
-<span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">&#12459;&#12540;&#12477;&#12523;&#12398;&#20301;&#32622;&#12364;&#20309;&#25991;&#23383;&#30446;&#12363;&#12434;&#34920;&#31034;&#12377;&#12427;</span>
-(my:disable-builtin-mode 'column-number-mode)
-<span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">&#12459;&#12540;&#12477;&#12523;&#12398;&#20301;&#32622;&#12364;&#20309;&#34892;&#30446;&#12363;&#12434;&#34920;&#31034;&#12377;&#12427;</span>
-(my:disable-builtin-mode 'line-number-mode)
-</pre>
-</div>
-</div></li>
-<li><a id="org639ecf3"></a>ベル無効化<br ><div class="outline-text-5" id="text-org639ecf3">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> ring-bell-function 'ignore)
-</pre>
-</div>
-</div></li>
-<li><a id="org27f885b"></a>選択リージョンに色付け<br ><div class="outline-text-5" id="text-org27f885b">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> transient-mark-mode t)
-</pre>
-</div>
-</div></li>
-<li><a id="orgbb7c064"></a>対応する括弧を強調表示<br ><div class="outline-text-5" id="text-orgbb7c064">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(show-paren-mode 1)
-(<span style="color: #FF7F7F;">setq</span> show-paren-style 'mixed)
-</pre>
-</div>
-</div></li>
-<li><a id="org12e4b40"></a>linum-mode<br ><div class="outline-text-5" id="text-org12e4b40">
-<p>
-必要に応じて <code>linum-mode</code> を有効にするので,
-通常はモードラインに行番号や桁番号を表示しないようする.
-ついでに <code>linum-mode</code> を有効にした場合の桁表示を 5 桁に.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> linum-format <span style="color: #7FFF7F;">"%5d "</span>)
-</pre>
-</div>
-</div></li></ul>
-</div>
-<div id="outline-container-org8c58240" class="outline-4">
-<h4 id="org8c58240">編集関連</h4>
-<div class="outline-text-4" id="text-org8c58240">
-</div><ul class="org-ul"><li><a id="org169a07f"></a>yes or no を y or n に<br ><div class="outline-text-5" id="text-org169a07f">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(fset 'yes-or-no-p 'y-or-n-p)
-</pre>
-</div>
-</div></li>
-<li><a id="org0ed86fe"></a>ファイル名の大文字小文字を区別しない(zsh風)<br ><div class="outline-text-5" id="text-org0ed86fe">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> read-file-name-completion-ignore-case t)
-</pre>
-</div>
-</div></li>
-<li><a id="orgf25607a"></a>tab 幅 4, tab でのインデントはしない<br ><div class="outline-text-5" id="text-orgf25607a">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq-default</span> tab-width 4)
-(<span style="color: #FF7F7F;">setq-default</span> indent-tabs-mode nil)
-</pre>
-</div>
-</div></li>
-<li><a id="org5c05263"></a>文字列は 72 文字で折り返し(RFC2822風味)<br ><div class="outline-text-5" id="text-org5c05263">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq-default</span> fill-column 72)
-(<span style="color: #FF7F7F;">setq</span> paragraph-start '<span style="color: #7FFF7F;">"^</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">[ &#12288;&#12539;&#9675;&lt;\t\n\f]</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">(?[0-9a-zA-Z]+)</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>)
-(<span style="color: #FF7F7F;">setq-default</span> auto-fill-mode nil)
-</pre>
-</div>
-</div></li>
-<li><a id="org72e8b27"></a>長い行の折り返し<br ><div class="outline-text-5" id="text-org72e8b27">
-<p>
-デフォルトは折り返し有で <code>\C-c M-l</code> で toggle
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(set-default 'truncate-lines nil)
-(<span style="color: #FF7F7F;">setq</span> truncate-partial-width-windows nil)
-(define-key global-map (kbd <span style="color: #7FFF7F;">"C-c M-l"</span>) 'toggle-truncate-lines)
-</pre>
-</div>
-</div></li>
-<li><a id="org7fcf960"></a>バッファ終端で newline を入れない<br ><div class="outline-text-5" id="text-org7fcf960">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> next-line-add-newlines nil)
-</pre>
-</div>
-</div></li>
-<li><a id="org984e19d"></a>symlink は常においかける<br ><div class="outline-text-5" id="text-org984e19d">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> vc-follow-symlinks t)
-</pre>
-</div>
-</div></li>
-<li><a id="org0215f00"></a>変更のあったファイルの自動再読み込み<br ><div class="outline-text-5" id="text-org0215f00">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(global-auto-revert-mode 1)
-</pre>
-</div>
-</div></li>
-<li><a id="orgb3f7feb"></a>バックアップとauto-saveの作成/位置の変更<br ><div class="outline-text-5" id="text-orgb3f7feb">
-<p>
-backup と auto-save ファイルを集約する
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> auto-save-list-file-prefix (concat my:d:tmp <span style="color: #7FFF7F;">".saves-"</span>))
-(<span style="color: #FF7F7F;">setq</span> auto-save-default t)
-(<span style="color: #FF7F7F;">setq</span> auto-save-timeout 15)
-(<span style="color: #FF7F7F;">setq</span> auto-save-interval 60)
-(<span style="color: #FF7F7F;">setq</span> make-backup-files t)
-(<span style="color: #FF7F7F;">setq</span> backup-by-copying t) <span style="color: #e5e5e6;">; </span><span style="color: #e5e5e6;">symlink &#12399;&#20351;&#12431;&#12394;&#12356;</span>
-(<span style="color: #FF7F7F;">setq</span> backup-directory-alist `((<span style="color: #7FFF7F;">"."</span> . ,my:d:tmp)))
-(<span style="color: #FF7F7F;">setq</span> auto-save-file-name-transforms `((<span style="color: #7FFF7F;">".*"</span> ,my:d:tmp t)))
-(<span style="color: #FF7F7F;">setq</span> version-control t)
-(<span style="color: #FF7F7F;">setq</span> kept-new-versions 5)
-(<span style="color: #FF7F7F;">setq</span> kept-old-versions 5)
-(<span style="color: #FF7F7F;">setq</span> delete-old-versions t)
-(<span style="color: #FF7F7F;">setq</span> delete-auto-save-files t)
-</pre>
-</div>
-</div></li>
-<li><a id="org234c3c4"></a>recentf<br ><div class="outline-text-5" id="text-org234c3c4">
-<p>
-最近使ったファイル履歴の保管
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> recentf-max-saved-items 10000)
-(<span style="color: #FF7F7F;">setq</span> recentf-save-file
-      (expand-file-name (concat my:d:tmp <span style="color: #7FFF7F;">"recentf"</span>)))
-(<span style="color: #FF7F7F;">setq</span> recentf-auto-cleanup 'never)
-(<span style="color: #FF7F7F;">setq</span> recentf-exclude
-      '(<span style="color: #7FFF7F;">".recentf"</span>
-        <span style="color: #7FFF7F;">"^/tmp\\.*"</span>
-        <span style="color: #7FFF7F;">"^/private\\.*"</span>
-        <span style="color: #7FFF7F;">"^/var/folders\\.*"</span>
-        <span style="color: #7FFF7F;">"/TAGS$"</span>
-        <span style="color: #7FFF7F;">"^/home/uwabami/.mozilla/firefox/jhitnbb2.default/itsalltext\\.*"</span>
-        ))
-(add-hook 'after-init-hook 'recentf-mode)
-</pre>
-</div>
-</div></li>
-<li><a id="org345ddb8"></a>Undo/Redo<br ><div class="outline-text-5" id="text-org345ddb8">
-<p>
-そのうち undohist と undo-tree を試そうと思っているのですが，
-今のところ特に弄ってません． <code>undo-limit</code> は無限大にしたいのですが，どうするのかな&#x2026;?
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> undo-limit 200000)
-(<span style="color: #FF7F7F;">setq</span> undo-strong-limit 260000)
-(savehist-mode 1)        <span style="color: #e5e5e6;">; </span><span style="color: #e5e5e6;">&#12511;&#12491;&#12496;&#12483;&#12501;&#12449;&#12398;&#23653;&#27508;&#12434;&#20445;&#23384;&#12375;&#12522;&#12473;&#12488;&#12450;</span>
-(<span style="color: #FF7F7F;">setq</span> savehist-file (concat my:d:tmp <span style="color: #7FFF7F;">"history"</span>))
-(<span style="color: #FF7F7F;">setq</span> history-length t)  <span style="color: #e5e5e6;">; </span><span style="color: #e5e5e6;">t &#12391;&#28961;&#21046;&#38480;</span>
-</pre>
-</div>
-</div></li></ul>
-</div>
-<div id="outline-container-org24778a8" class="outline-4">
-<h4 id="org24778a8">ファイル，デイレクトリ整理</h4>
-<div class="outline-text-4" id="text-org24778a8">
-<p>
-他にもイロイロありそう．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">url</span>
-  <span style="color: #7FBFFF;">:init</span>
-  (<span style="color: #FF7F7F;">setq</span> url-configuration-directory (concat my:d:tmp <span style="color: #7FFF7F;">"url"</span>)))
-(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">nsm</span>
-  <span style="color: #7FBFFF;">:init</span>
-  (<span style="color: #FF7F7F;">setq</span> nsm-settings-file (concat my:d:tmp <span style="color: #7FFF7F;">"network-settings.data"</span>)))
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-orgbab11bd" class="outline-3">
-<h3 id="orgbab11bd">ガベージコレクションの頻度を下げる</h3>
-<div class="outline-text-3" id="text-orgbab11bd">
-<p>
-とりあえず 128 MB にしておく.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> gc-cons-threshold (* 128 1024 1024))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org86aa390" class="outline-3">
-<h3 id="org86aa390">行末の無駄な空白/改行を削除する</h3>
-<div class="outline-text-3" id="text-org86aa390">
-<p>
-元ネタ: <a href="http://d.hatena.ne.jp/tototoshi/20101202/1291289625">無駄な行末の空白を削除する(Emacs Advent Calendar jp:2010)</a>
-</p>
-
-<p>
-ただし, RD や Markdown だと空白行に意味があったりするので，
-必要に応じて拡張子で判断して外している．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:delete-trailing-whitespace-exclude-suffix</span>
-  (list <span style="color: #7FFF7F;">"\\.rd$"</span> <span style="color: #7FFF7F;">"\\.md$"</span> <span style="color: #7FFF7F;">"\\.rbt$"</span> <span style="color: #7FFF7F;">"\\.rab$"</span>))
-(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:delete-trailing-whitespace</span> ()
-  (<span style="color: #FF7F7F;">interactive</span>)
-  (<span style="color: #FF7F7F;">cond</span>
-   ((equal nil
-           (<span style="color: #FF7F7F;">cl-loop</span> for pattern in my:delete-trailing-whitespace-exclude-suffix
-                    thereis (string-match pattern buffer-file-name)))
-    (delete-trailing-whitespace))))
-(add-hook 'before-save-hook 'my:delete-trailing-whitespace)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org466c879" class="outline-3">
-<h3 id="org466c879">scratch を殺さない. 消したら再生成</h3>
-<div class="outline-text-3" id="text-org466c879">
-<p>
-&#x2026;元ネタがどこだったのか忘れてしまった&#x2026;
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:make-scratch</span> (<span style="color: #FFFF7F;">&amp;optional</span> arg)
-  (<span style="color: #FF7F7F;">interactive</span>)
-  (<span style="color: #FF7F7F;">progn</span>
-    <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">"*scratch*" &#12434;&#20316;&#25104;&#12375;&#12390; buffer-list &#12395;&#25918;&#12426;&#36796;&#12416;</span>
-    (set-buffer (get-buffer-create <span style="color: #7FFF7F;">"*scratch*"</span>))
-    (funcall initial-major-mode)
-    (erase-buffer)
-    (<span style="color: #FF7F7F;">when</span> (<span style="color: #FF7F7F;">and</span> initial-scratch-message (not inhibit-startup-message))
-      (insert initial-scratch-message))
-    (<span style="color: #FF7F7F;">or</span> arg
-        (<span style="color: #FF7F7F;">progn</span>
-          (<span style="color: #FF7F7F;">setq</span> arg 0)
-          (switch-to-buffer <span style="color: #7FFF7F;">"*scratch*"</span>)))
-    (<span style="color: #FF7F7F;">cond</span> ((= arg 0) (message <span style="color: #7FFF7F;">"*scratch* is cleared up."</span>))
-          ((= arg 1) (message <span style="color: #7FFF7F;">"another *scratch* is created"</span>)))))
-
-(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:buffer-name-list</span> ()
-  (mapcar (<span style="color: #FF7F7F;">function</span> buffer-name) (buffer-list)))
-(add-hook 'kill-buffer-query-functions
-          <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">*scratch* &#12496;&#12483;&#12501;&#12449;&#12391; kill-buffer &#12375;&#12383;&#12425;&#20869;&#23481;&#12434;&#28040;&#21435;&#12377;&#12427;&#12384;&#12369;&#12395;&#12377;&#12427;</span>
-          (<span style="color: #FF7F7F;">function</span> (<span style="color: #FF7F7F;">lambda</span> ()
-                      (<span style="color: #FF7F7F;">if</span> (string= <span style="color: #7FFF7F;">"*scratch*"</span> (buffer-name))
-                          (<span style="color: #FF7F7F;">progn</span> (my:make-scratch 0) nil)
-                        t))))
-(add-hook 'after-save-hook
-          <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">*scratch* &#12496;&#12483;&#12501;&#12449;&#12398;&#20869;&#23481;&#12434;&#20445;&#23384;&#12375;&#12383;&#12425;</span>
-          <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">*scratch* &#12496;&#12483;&#12501;&#12449;&#12434;&#26032;&#12375;&#12367;&#20316;&#12427;.</span>
-          (<span style="color: #FF7F7F;">function</span>
-           (<span style="color: #FF7F7F;">lambda</span> ()
-             (<span style="color: #FF7F7F;">unless</span> (member <span style="color: #7FFF7F;">"*scratch*"</span> (my:buffer-name-list))
-               (my:make-scratch 1)))))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org98d690e" class="outline-3">
-<h3 id="org98d690e">空になったファイルを尋ねずに自動削除</h3>
-<div class="outline-text-3" id="text-org98d690e">
-<p>
-ゴミが残らないし，地味に便利．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:delete-file-if-no-contents</span> ()
-  (<span style="color: #FF7F7F;">when</span> (<span style="color: #FF7F7F;">and</span> (buffer-file-name (current-buffer))
-             (= (point-min) (point-max)))
-    (delete-file
-     (buffer-file-name (current-buffer)))))
-(<span style="color: #FF7F7F;">if</span> (not (memq 'my:delete-file-if-no-contents after-save-hook))
-    (<span style="color: #FF7F7F;">setq</span> after-save-hook
-          (cons 'my:delete-file-if-no-contents after-save-hook)))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgc2025e9" class="outline-3">
-<h3 id="orgc2025e9">略語展開: <code>abbrev</code></h3>
-<div class="outline-text-3" id="text-orgc2025e9">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">abbrev</span>
-  <span style="color: #7FBFFF;">:diminish</span> abbrev-mode
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> abbrev-file-name (concat my:d:share <span style="color: #7FFF7F;">"abbrev_defs"</span>)
-        save-abbrevs t
-  )
-  (<span style="color: #FF7F7F;">setq-default</span> abbrev-mode t)
+  (<span style="color: #FF7F7F;">setq</span> browse-url-browser-function 'browse-url-firefox)
   )
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf59edd4" class="outline-3">
-<h3 id="orgf59edd4">emacs-lisp document: <code>eldoc</code></h3>
-<div class="outline-text-3" id="text-orgf59edd4">
+<div id="outline-container-orgc93b416" class="outline-3">
+<h3 id="orgc93b416"><code>server</code>: Emacs server</h3>
+<div class="outline-text-3" id="text-orgc93b416">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">eldoc</span>
-  <span style="color: #7FBFFF;">:diminish</span> eldoc-mode
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">server</span>
   <span style="color: #7FBFFF;">:config</span>
-  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orge9e7e7d" class="outline-3">
-<h3 id="orge9e7e7d"><code>midnight</code>: 一定期間使用しなかった buffer を自動削除</h3>
-<div class="outline-text-3" id="text-orge9e7e7d">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">midnight</span>
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> clean-buffer-list-delay-general 1))
+  (<span style="color: #FF7F7F;">unless</span> (server-running-p)
+    (server-start)))
 </pre>
 </div>
 </div>
@@ -1282,9 +1221,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org3877641" class="outline-3">
-<h3 id="org3877641">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org3877641">
+<div id="outline-container-org52a1090" class="outline-3">
+<h3 id="org52a1090">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org52a1090">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1307,22 +1246,14 @@ Emacs*useXIM: false
 <div id="outline-container-orgbc8438c" class="outline-3">
 <h3 id="orgbc8438c">DDSKK 本体の設定</h3>
 <div class="outline-text-3" id="text-orgbc8438c">
-</div><div id="outline-container-org6ffd296" class="outline-4">
-<h4 id="org6ffd296">sticky-shift</h4>
-<div class="outline-text-4" id="text-org6ffd296">
 <p>
-sticky shift については   <a href="http://homepage1.nifty.com/blankspace/emacs/sticky.html">sticky shift</a> を参照のこと.
+sticky shift: <a href="http://homepage1.nifty.com/blankspace/emacs/sticky.html">sticky shift</a> を参照のこと.
 ddskk の 14.2 以降から同梱されるようになった(ありがたい)
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> skk-sticky-key <span style="color: #7FFF7F;">";"</span>)
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-orgca82060" class="outline-4">
-<h4 id="orgca82060">表示関連</h4>
-<div class="outline-text-4" id="text-orgca82060">
 <p>
 変換候補の表示位置
 </p>
@@ -1402,10 +1333,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-orgbd5eaa5" class="outline-4">
-<h4 id="orgbd5eaa5">編集関連</h4>
-<div class="outline-text-4" id="text-orgbd5eaa5">
+<div id="outline-container-org6b68004" class="outline-4">
+<h4 id="org6b68004">編集関連</h4>
+<div class="outline-text-4" id="text-org6b68004">
 <p>
 キーバインド
 </p>
@@ -1749,9 +1679,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-orga49a1b6" class="outline-3">
-<h3 id="orga49a1b6">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orga49a1b6">
+<div id="outline-container-org95e85ac" class="outline-3">
+<h3 id="org95e85ac">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org95e85ac">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -4871,6 +4801,37 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
   )
 </pre>
 </div>
+</div>
+</div>
+<div id="outline-container-orgc3e4eda" class="outline-2">
+<h2 id="orgc3e4eda">基本的なキーバインドの設定 <code>[/]</code></h2>
+<div class="outline-text-2" id="text-orgc3e4eda">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> 設定が効かない事がある．読み込む順番が関係するのかな&#x2026;?</li>
+</ul>
+<p>
+既に手癖になってしまっているアレコレ．
+特に <code>[home]</code> と <code>[end]</code> は無いと途方に暮れます．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">bind-keys*</span>
+ (<span style="color: #7FFF7F;">"C-h"</span>     . backward-delete-char)
+ (<span style="color: #7FFF7F;">"C-c M-a"</span> . align-regexp)
+ (<span style="color: #7FFF7F;">"C-c ;"</span>   . comment-region)
+ (<span style="color: #7FFF7F;">"C-c M-;"</span> . uncomment-region)
+ (<span style="color: #7FFF7F;">"C-/"</span>     . undo)
+ (<span style="color: #7FFF7F;">"C-x M-b"</span> . ibuffer-other-window)
+ (<span style="color: #7FFF7F;">"C-c M-r"</span> . replace-regexp)
+ (<span style="color: #7FFF7F;">"C-c r"</span>   . replace-string)
+ (<span style="color: #7FFF7F;">"&lt;home&gt;"</span>  . beginning-of-buffer)
+ (<span style="color: #7FFF7F;">"&lt;end&gt;"</span>   . end-of-buffer)
+ (<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point)
+ )
+</pre>
+</div>
+<p>
+<a href="https://github.com/k1LoW/emacs-drill-instructor/wiki">鬼軍曹.el</a> とかで強制した方が良いのかも，とかごく偶に思いますが(思うだけ)．
+</p>
 </div>
 </div>
 <div id="outline-container-org6c42a50" class="outline-2">
