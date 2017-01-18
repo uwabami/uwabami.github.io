@@ -2,7 +2,7 @@
 #+DATE: 2017-01-16 23:59:19
 #+LANGUAGE: ja
 #+REF: cc-env/OrgtoJekyll
-#+LAYOUT: default
+#+LAYOUT: cc-env
 #+SETUPFILE: ~/Public/_setup.org
 #+PERMALINK: /cc-env/OrgtoJekyll.html
 Related:

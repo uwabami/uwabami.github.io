@@ -1,7 +1,7 @@
 ---
 title: MTA の設定
 date: 2017-01-16 23:56:55
-layout: default
+layout: cc-env
 lang: ja
 ref: cc-env/DebianMTA
 permalink: /cc-env/DebianMTA.html
@@ -122,9 +122,9 @@ smarthost での送信だけなら Exim4 が軽量で楽。
 isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
 </p>
 </div>
-<div id="outline-container-org09b867a" class="outline-4">
-<h4 id="org09b867a">インストール</h4>
-<div class="outline-text-4" id="text-org09b867a">
+<div id="outline-container-org7e3ae15" class="outline-4">
+<h4 id="org7e3ae15">インストール</h4>
+<div class="outline-text-4" id="text-org7e3ae15">
 <p>
 実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
 </p>
@@ -136,9 +136,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-orgd192d44" class="outline-4">
-<h4 id="orgd192d44">設定</h4>
-<div class="outline-text-4" id="text-orgd192d44">
+<div id="outline-container-org73db5f3" class="outline-4">
+<h4 id="org73db5f3">設定</h4>
+<div class="outline-text-4" id="text-org73db5f3">
 <p>
 設定ファイルは <code>~/.mbsyncrc</code>.
 設定例は以下:
@@ -274,9 +274,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org3168324" class="outline-4">
-<h4 id="org3168324">cron での動作</h4>
-<div class="outline-text-4" id="text-org3168324">
+<div id="outline-container-org176e370" class="outline-4">
+<h4 id="org176e370">cron での動作</h4>
+<div class="outline-text-4" id="text-org176e370">
 <p>
 認証に GPG を使っており、認証に Gnome Keyring を用いているので
 必要な環境変数を読み込んでから実行するようにする.
@@ -342,9 +342,9 @@ cron で実行されるスクリプトは, 例えば
 <div id="outline-container-org51e009f" class="outline-3">
 <h3 id="org51e009f">dovecot</h3>
 <div class="outline-text-3" id="text-org51e009f">
-</div><div id="outline-container-orgd938edc" class="outline-4">
-<h4 id="orgd938edc">インストール</h4>
-<div class="outline-text-4" id="text-orgd938edc">
+</div><div id="outline-container-orgdd291fe" class="outline-4">
+<h4 id="orgdd291fe">インストール</h4>
+<div class="outline-text-4" id="text-orgdd291fe">
 <p>
 最低限 IMAP での接続ができれば良いので
 </p>
@@ -356,9 +356,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org8349a18" class="outline-4">
-<h4 id="org8349a18">設定</h4>
-<div class="outline-text-4" id="text-org8349a18">
+<div id="outline-container-orgd8d9016" class="outline-4">
+<h4 id="orgd8d9016">設定</h4>
+<div class="outline-text-4" id="text-orgd8d9016">
 <p>
 最低限の設定として、
 </p>
@@ -634,9 +634,9 @@ diff は以下:
 <a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.
 </p>
 </div>
-<div id="outline-container-org7e3ae15" class="outline-4">
-<h4 id="org7e3ae15">インストール</h4>
-<div class="outline-text-4" id="text-org7e3ae15">
+<div id="outline-container-org1b09526" class="outline-4">
+<h4 id="org1b09526">インストール</h4>
+<div class="outline-text-4" id="text-org1b09526">
 <p>
 apt万歳, ってことで.
 </p>
@@ -645,9 +645,9 @@ apt万歳, ってことで.
 </pre>
 </div>
 </div>
-<div id="outline-container-org73db5f3" class="outline-4">
-<h4 id="org73db5f3">設定</h4>
-<div class="outline-text-4" id="text-org73db5f3">
+<div id="outline-container-org6966fd5" class="outline-4">
+<h4 id="org6966fd5">設定</h4>
+<div class="outline-text-4" id="text-org6966fd5">
 <p>
 現状, 以下の通り:
 </p>
@@ -875,9 +875,9 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 </p>
 </div>
 </div>
-<div id="outline-container-org176e370" class="outline-4">
-<h4 id="org176e370">cron での動作</h4>
-<div class="outline-text-4" id="text-org176e370">
+<div id="outline-container-orga1e57d8" class="outline-4">
+<h4 id="orga1e57d8">cron での動作</h4>
+<div class="outline-text-4" id="text-orga1e57d8">
 <p>
 認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから
 実行するようにする.
