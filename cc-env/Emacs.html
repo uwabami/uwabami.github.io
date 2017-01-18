@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-18 20:47:42
+date: 2017-01-18 20:52:39
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -51,7 +51,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgf95ed47">標準機能の設定</a>
 <ul>
 <li><a href="#orgca82060">表示関連</a></li>
-<li><a href="#orgfdd1f21">編集関連</a></li>
+<li><a href="#org3212599">編集関連</a></li>
 <li><a href="#org24778a8">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -74,10 +74,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org316cfac">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#org8ae0d52">Emacs 本体側の設定</a></li>
+<li><a href="#orgae5fe43">Emacs 本体側の設定</a></li>
 <li><a href="#orgbc8438c">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#orgd0e736b">編集関連</a></li>
+<li><a href="#orgd4bce81">編集関連</a></li>
 <li><a href="#org3ec5032">インクリメンタルサーチ</a></li>
 <li><a href="#org9fa4fd2">辞書の設定</a></li>
 <li><a href="#org257bcd3">動的補完</a></li>
@@ -98,7 +98,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org255627a">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org314d3c5">Emacs 本体側の設定</a></li>
+<li><a href="#org887dd88">Emacs 本体側の設定</a></li>
 <li><a href="#orgc36dcb0">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#org7e2f43a">依存/追加ライブラリのインストールと読み込み</a></li>
@@ -781,9 +781,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-orgfdd1f21" class="outline-4">
-<h4 id="orgfdd1f21">編集関連</h4>
-<div class="outline-text-4" id="text-orgfdd1f21">
+<div id="outline-container-org3212599" class="outline-4">
+<h4 id="org3212599">編集関連</h4>
+<div class="outline-text-4" id="text-org3212599">
 <p>
 yes or no を y or n に
 </p>
@@ -1228,9 +1228,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org8ae0d52" class="outline-3">
-<h3 id="org8ae0d52">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org8ae0d52">
+<div id="outline-container-orgae5fe43" class="outline-3">
+<h3 id="orgae5fe43">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgae5fe43">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1340,9 +1340,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd0e736b" class="outline-4">
-<h4 id="orgd0e736b">編集関連</h4>
-<div class="outline-text-4" id="text-orgd0e736b">
+<div id="outline-container-orgd4bce81" class="outline-4">
+<h4 id="orgd4bce81">編集関連</h4>
+<div class="outline-text-4" id="text-orgd4bce81">
 <p>
 キーバインド
 </p>
@@ -1686,9 +1686,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org314d3c5" class="outline-3">
-<h3 id="org314d3c5">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org314d3c5">
+<div id="outline-container-org887dd88" class="outline-3">
+<h3 id="org887dd88">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org887dd88">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3890,8 +3890,6 @@ html export の際に必要な yaml front matter を出力できるようにし�
     (perform-replace <span style="color: #7FFF7F;">"&amp;$58;"</span> <span style="color: #7FFF7F;">"&amp;#58;"</span> nil nil nil nil nil (point-min) (point-max))
     (perform-replace <span style="color: #7FFF7F;">"&#123;%"</span> <span style="color: #7FFF7F;">"&amp;#123;%"</span> nil nil nil nil nil (point-min) (point-max))
     (perform-replace <span style="color: #7FFF7F;">"%&#125;"</span> <span style="color: #7FFF7F;">"%&amp;#125;"</span> nil nil nil nil nil (point-min) (point-max))
-    (perform-replace <span style="color: #7FFF7F;">"Emacs.html"</span>
-                     <span style="color: #7FFF7F;">"Emacs.html"</span> nil nil nil nil nil (point-min) (point-max))
     (perform-replace <span style="color: #7FFF7F;">"&lt;nav id=\"table-of-contents"</span> <span style="color: #7FFF7F;">"\n</span>
 <span style="color: #7FFF7F;">&lt;div id=\"toc-wrapper\"&gt;</span>
 <span style="color: #7FFF7F;">&lt;nav id=\"table-of-contents"</span> nil nil nil nil nil (point-min) (point-max))
