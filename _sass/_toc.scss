@@ -28,6 +28,7 @@
         text-align: center;
         right: 15px;
         display: inline-block;
+        padding: 17px 23px;
     }
     .toc-btn.toggled{
         display: none;
@@ -94,6 +95,7 @@
         position: fixed;
         top: 80px;
         right: calc( (100% - 750px) / 2 + 15px );
+        padding: 17px 23px;
     }
     .toc-btn.toggled{
         display: none;
@@ -180,7 +182,7 @@
         position:fixed;
         top:80px;
         left:0;
-        width:  300px;
+        width:  240px;
         margin-right: auto;
         overflow-x:hidden;
         overflow-y:scroll;
@@ -189,14 +191,14 @@
         height:-webkit-calc(100% - 80px);
         height:calc(100% - 80px);
         background:#343131;
-        z-index:200;
+        z-index: 200;
         scrollbar-base-color: #1F1D1D;
         scrollbar-arrow-color: #b3b3b3;
         scrollbar-shadow-color: #1F1D1D;
         scrollbar-track-color : #343131;
     }
     .container{
-        margin-left:  300px;
+        margin-left:  240px;
         width:  auto;
     }
     .navbar > .container {
