@@ -2,7 +2,7 @@
 #+DATE: 2017-01-16 23:56:40
 #+LANGUAGE: ja
 #+REF: cc-env/DebianInstall
-#+LAYOUT: cc-env
+#+LAYOUT: default
 #+SETUPFILE: ~/Public/_setup.org
 #+PERMALINK: /cc-env/DebianInstall.html
 Related: [[wiki:index][Index]]

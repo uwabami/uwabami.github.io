@@ -2,7 +2,7 @@
 #+DATE: 2017-01-17 12:43:29
 #+LANGUAGE: ja
 #+REF: cc-env
-#+LAYOUT: cc-env
+#+LAYOUT: default
 #+SETUPFILE: ../_setup.org
 #+PERMALINK: /cc-env/index.html
 Related [[wiki:index][Index]] [[wiki:Emacs][Emacs]]

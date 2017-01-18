@@ -1,24 +1,193 @@
 /* table of contents
 -------------------------------------------------- */
-#table-of-contents{
-    position:fixed;
-    top:80px;
-    left:0;
-    width:240px;
-    margin-right: auto;
-    overflow-x:hidden;
-    overflow-y:scroll;
-    height: 90%;
-    height:-moz-calc(100% - 80px);
-    height:-webkit-calc(100% - 80px);
-    height:calc(100% - 80px);
-    background:#343131;
-    z-index:200;
-    scrollbar-base-color: #1F1D1D;
-    scrollbar-arrow-color: #b3b3b3;
-    scrollbar-shadow-color: #1F1D1D;
-    scrollbar-track-color : #343131;
+
+/* layout
+-------------------------------------------------- */
+@media (max-width:  767px){
+    body {
+        overflow-x: hidden
+    }
+    #toc-wrapper {
+        padding-left: 0;
+    }
+    #toc-wrapper.toggled {
+        padding-left: 250px;
+    }
+    #toc-wrapper.toggled #table-of-contents {
+        width: 250px;
+    }
+    .toc-btn{
+        z-index: 200;
+        background-color: #2980B9;
+        color: #fcfcfc !important;
+        text-align: center;
+        font-weight: bold;
+        font-size: 90%;
+        position:fixed;
+        top: 80px;
+        text-align: center;
+    }
+    .toc-btn:link {
+        color: #fcfcfc !important;
+    }
+    .toc-btn:active{
+        color: #fcfcfc !important;
+    }
+    .toc-btn:hover{
+        color: #fcfcfc !important;
+    }
+    .toc-btn:visited{
+        color: #fcfcfc !important;
+    }
+    #table-of-contents{
+        position:fixed;
+        top: 80px;
+        left: 250px;
+        margin-left: -250px;
+        width: 0px ;
+        overflow-x:hidden;
+        overflow-y:scroll;
+        height: 90%;
+        height:-moz-calc(100% - 80px);
+        height:-webkit-calc(100% - 80px);
+        height:calc(100% - 80px);
+        background:#343131;
+        z-index:200;
+        scrollbar-base-color: #1F1D1D;
+        scrollbar-arrow-color: #b3b3b3;
+        scrollbar-shadow-color: #1F1D1D;
+        scrollbar-track-color : #343131;
+    }
+    .container{
+        margin:  0 auto;
+    }
 }
+@media (min-width:  768px) and (max-width:  991px){
+    body {
+        overflow-x: hidden
+    }
+    #toc-wrapper {
+        padding-left: 0;
+    }
+    #toc-wrapper.toggled {
+        padding-left: 300px;
+    }
+    #toc-wrapper.toggled #table-of-contents {
+        width: 300px;
+    }
+    .toc-btn{
+        z-index: 200;
+        background-color: #2980B9;
+        color: #fcfcfc !important;
+        text-align: center;
+        font-weight: bold;
+        font-size: 90%;
+        position:fixed;
+        top: 80px;
+        text-align: center;
+    }
+    .toc-btn:link {
+        color: #fcfcfc !important;
+    }
+    .toc-btn:active{
+        color: #fcfcfc !important;
+    }
+    .toc-btn:hover{
+        color: #fcfcfc !important;
+    }
+    .toc-btn:visited{
+        color: #fcfcfc !important;
+    }
+    #table-of-contents{
+        position:fixed;
+        top: 80px;
+        left: 300px;
+        margin-left: -300px;
+        width: 0px ;
+        overflow-x:hidden;
+        overflow-y:scroll;
+        height: 90%;
+        height:-moz-calc(100% - 80px);
+        height:-webkit-calc(100% - 80px);
+        height:calc(100% - 80px);
+        background:#343131;
+        z-index:200;
+        scrollbar-base-color: #1F1D1D;
+        scrollbar-arrow-color: #b3b3b3;
+        scrollbar-shadow-color: #1F1D1D;
+        scrollbar-track-color : #343131;
+    }
+    .container{
+        margin:  0 auto;
+    }
+}
+@media (min-width:  992px) and (max-width:  1199px) {
+    .toc-btn{
+        display: none;
+    }
+    #table-of-contents{
+        position:fixed;
+        top:80px;
+        left:0;
+        width:  240px;
+        margin-right: auto;
+        overflow-x:hidden;
+        overflow-y:scroll;
+        height: 90%;
+        height:-moz-calc(100% - 80px);
+        height:-webkit-calc(100% - 80px);
+        height:calc(100% - 80px);
+        background:#343131;
+        z-index:200;
+        scrollbar-base-color: #1F1D1D;
+        scrollbar-arrow-color: #b3b3b3;
+        scrollbar-shadow-color: #1F1D1D;
+        scrollbar-track-color : #343131;
+    }
+    .container{
+        margin-left:  240px;
+        width:  auto;
+    }
+    .navbar > .container {
+        margin:  0 auto !important;
+        width:  970px !important;
+    }
+}
+@media (min-width:  1200px) {
+    .toc-btn{
+        display: none;
+    }
+    #table-of-contents{
+        position:fixed;
+        top:80px;
+        left:0;
+        width:  300px;
+        margin-right: auto;
+        overflow-x:hidden;
+        overflow-y:scroll;
+        height: 90%;
+        height:-moz-calc(100% - 80px);
+        height:-webkit-calc(100% - 80px);
+        height:calc(100% - 80px);
+        background:#343131;
+        z-index:200;
+        scrollbar-base-color: #1F1D1D;
+        scrollbar-arrow-color: #b3b3b3;
+        scrollbar-shadow-color: #1F1D1D;
+        scrollbar-track-color : #343131;
+    }
+    .container{
+        margin-left:  300px;
+        width:  auto;
+    }
+    .navbar > .container {
+        margin:  0 auto !important;
+        width:  1170px !important;
+    }
+}
+
+/* style
+-------------------------------------------------- */
 
 #table-of-contents li{
     list-style: none;
@@ -182,47 +351,4 @@
 }
 #table-of-contents ul.nav li ul li ul li ul li {
     display:  none !important;
-}
-
-@media (max-width:  767px){
-    #table-of-contents{
-        display:  none !important;
-    }
-    .container{
-        margin:  0 auto;
-    }
-}
-@media (min-width:  768px) and (max-width:  991px){
-    #table-of-contents{
-        display:  none !important;
-    }
-    .container{
-        margin:  0 auto;
-    }
-}
-@media (min-width:  992px) and (max-width:  1199px) {
-    #table-of-contents{
-        width:  240px;
-    }
-    .container{
-        margin-left:  240px;
-        width:  auto;
-    }
-    .navbar > .container {
-        margin:  0 auto !important;
-        width:  970px !important;
-    }
-}
-@media (min-width:  1200px) {
-    #table-of-contents{
-        width:  300px;
-    }
-    .container{
-        margin-left:  300px;
-        width:  auto;
-    }
-    .navbar > .container {
-        margin:  0 auto !important;
-        width:  1170px !important;
-    }
 }

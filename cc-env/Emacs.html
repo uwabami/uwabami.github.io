@@ -1,213 +1,219 @@
 ---
 title: Emacs の設定
-date: 2017-01-18 02:26:30
+date: 2017-01-18 16:53:47
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
 permalink: /cc-env/Emacs.html
 ---
+
+
+<div id="toc-wrapper">
 <nav id="table-of-contents">
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org913a715">はじめに</a>
+<li><a href="#org7339e40">はじめに</a>
 <ul>
-<li><a href="#orgbd759d7">Emacs のパッケージ(<code>package.el</code>)と quelpa, use-package を使う</a></li>
-<li><a href="#org512beeb">Debian パッケージがインストールされているならば，それを優先する</a></li>
-<li><a href="#org285da96">設定は Org mode で書きたい</a></li>
+<li><a href="#org257bca7">Emacs のパッケージ(<code>package.el</code>)と quelpa, use-package を使う</a></li>
+<li><a href="#orgcda7e00">Debian パッケージがインストールされているならば，それを優先する</a></li>
+<li><a href="#org209087f">設定は Org mode で書きたい</a></li>
 </ul>
 </li>
-<li><a href="#orge99fdc5">ディレクトリ構成</a></li>
-<li><a href="#org0b2b512">Package 関連: <code>package.el</code>, use-package, quelpa</a>
+<li><a href="#orgb1d8793">ディレクトリ構成</a></li>
+<li><a href="#orgf6fb2ef">Package 関連: <code>package.el</code>, use-package, quelpa</a>
 <ul>
-<li><a href="#org247bfd9"><code>package.el</code></a></li>
-<li><a href="#orgb701048">use-package</a></li>
-<li><a href="#orge269a5e">quelpa</a></li>
+<li><a href="#org183f40e"><code>package.el</code></a></li>
+<li><a href="#orgfcf8c4b">use-package</a></li>
+<li><a href="#orge89a176">quelpa</a></li>
 </ul>
 </li>
-<li><a href="#org8ba43cd">独自関数</a>
+<li><a href="#orgd8967ba">独自関数</a>
 <ul>
-<li><a href="#org94268a7">カーソルのある位置の face を調べる関数</a></li>
-<li><a href="#org762cf00">機能を無効化するための関数の定義</a></li>
-<li><a href="#org10d598b">dpkg-status</a></li>
+<li><a href="#org34e2b2b">カーソルのある位置の face を調べる関数</a></li>
+<li><a href="#org5398ad8">機能を無効化するための関数の定義</a></li>
+<li><a href="#orgf83c6a9">dpkg-status</a></li>
 </ul>
 </li>
-<li><a href="#orga1a08d6">常に <code>cl-lib</code> を読み込む</a></li>
-<li><a href="#org2833e37">後方互換性: <code>el-x</code></a></li>
-<li><a href="#org3456a84">url-retrieve の置き換え: <code>mb-url</code></a></li>
-<li><a href="#orgb285d23">環境変数の読み込み: <code>exec-path-from-shell</code></a></li>
-<li><a href="#org9d32c71">言語の設定</a>
+<li><a href="#org45c59c5">常に <code>cl-lib</code> を読み込む</a></li>
+<li><a href="#orgbb4ce54">後方互換性: <code>el-x</code></a></li>
+<li><a href="#orgaf2e4f5">url-retrieve の置き換え: <code>mb-url</code></a></li>
+<li><a href="#org62d2900">環境変数の読み込み: <code>exec-path-from-shell</code></a></li>
+<li><a href="#org76cafc5">言語の設定</a>
 <ul>
-<li><a href="#org068618a">cp5022x.el</a></li>
-<li><a href="#org20c9057">East Asian Ambiguos 対応</a></li>
-<li><a href="#orgdf47467">OSの違いに起因する条件分岐</a></li>
+<li><a href="#org5a66173">cp5022x.el</a></li>
+<li><a href="#orged19ee2">East Asian Ambiguos 対応</a></li>
+<li><a href="#orge66d09c">OSの違いに起因する条件分岐</a></li>
 </ul>
 </li>
-<li><a href="#org8a2eeb6">主にEmacs本体に同梱されている拡張に関する設定</a>
+<li><a href="#org045a82e">主にEmacs本体に同梱されている拡張に関する設定</a>
 <ul>
-<li><a href="#orgf95ed47">標準機能の設定</a>
+<li><a href="#org90d79f2">標準機能の設定</a>
 <ul>
-<li><a href="#orgca82060">表示関連</a></li>
-<li><a href="#orgf82718c">編集関連</a></li>
-<li><a href="#org24778a8">ファイル，デイレクトリ整理</a></li>
+<li><a href="#org4b872e7">表示関連</a></li>
+<li><a href="#org258d76d">編集関連</a></li>
+<li><a href="#orgf2d360e">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
-<li><a href="#orgf4f8d34"><code>.elc</code> と <code>.el</code> の timestamp を比較し，新しい方を読み込む</a></li>
-<li><a href="#orgbab11bd">ガベージコレクションの頻度を下げる</a></li>
-<li><a href="#org466c879">scratch を殺さない. 消したら再生成</a></li>
-<li><a href="#org98d690e">空になったファイルを尋ねずに自動削除</a></li>
-<li><a href="#org91deb14"><code>abbrev</code>: 略語展開</a></li>
-<li><a href="#orgb4fc11b"><code>eldoc</code>: emacs-lisp document</a></li>
-<li><a href="#orge9e7e7d"><code>midnight</code>: 一定期間使用しなかった buffer を自動削除</a></li>
-<li><a href="#org385c401"><code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</a></li>
-<li><a href="#org1a8890d"><code>whitespace</code>: 空白の強調表示</a></li>
-<li><a href="#org5743792"><code>saveplace</code>: 前回の修正位置を記憶する.</a></li>
-<li><a href="#org096aa27"><code>time-stamp</code>: 保存時に timestamp を自動更新</a></li>
-<li><a href="#org6df69b0"><code>tramp</code>: 使わないので無効化?</a></li>
-<li><a href="#org38a210a"><code>bookmark</code>: bookmark ファイル</a></li>
-<li><a href="#org76c6528"><code>browse-url</code></a></li>
-<li><a href="#orgc93b416"><code>server</code>: Emacs server</a></li>
+<li><a href="#org56ff198"><code>.elc</code> と <code>.el</code> の timestamp を比較し，新しい方を読み込む</a></li>
+<li><a href="#orge9bc64c">ガベージコレクションの頻度を下げる</a></li>
+<li><a href="#orgdafccc3">scratch を殺さない. 消したら再生成</a></li>
+<li><a href="#org20289a3">空になったファイルを尋ねずに自動削除</a></li>
+<li><a href="#org1273635"><code>abbrev</code>: 略語展開</a></li>
+<li><a href="#orgeec0cb9"><code>eldoc</code>: emacs-lisp document</a></li>
+<li><a href="#org0ab00b4"><code>midnight</code>: 一定期間使用しなかった buffer を自動削除</a></li>
+<li><a href="#org602c2fa"><code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</a></li>
+<li><a href="#orgc9092fc"><code>whitespace</code>: 空白の強調表示</a></li>
+<li><a href="#org5c6fc8c"><code>saveplace</code>: 前回の修正位置を記憶する.</a></li>
+<li><a href="#org527b412"><code>time-stamp</code>: 保存時に timestamp を自動更新</a></li>
+<li><a href="#org760c0ef"><code>tramp</code>: 使わないので無効化?</a></li>
+<li><a href="#org98cf454"><code>bookmark</code>: bookmark ファイル</a></li>
+<li><a href="#org8713c61"><code>browse-url</code></a></li>
+<li><a href="#org5caa63b"><code>server</code>: Emacs server</a></li>
 </ul>
 </li>
-<li><a href="#org316cfac">日本語入力: ddskkの設定</a>
+<li><a href="#orgc0c3ba1">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#org2b49405">Emacs 本体側の設定</a></li>
-<li><a href="#orgbc8438c">DDSKK 本体の設定</a>
+<li><a href="#orgdb0d423">Emacs 本体側の設定</a></li>
+<li><a href="#org45420e0">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org11ace17">編集関連</a></li>
-<li><a href="#org3ec5032">インクリメンタルサーチ</a></li>
-<li><a href="#org9fa4fd2">辞書の設定</a></li>
-<li><a href="#org257bcd3">動的補完</a></li>
-<li><a href="#org6b1d65e">部首変換, 総画数変換</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org16addc9">Copy &amp; Paste: <code>xclip</code></a></li>
-<li><a href="#orgb7145b1">Elscreen <code>[/]</code></a></li>
-<li><a href="#org6fea635">認証関連: <code>password-store</code></a>
-<ul>
-<li><a href="#org212e70c">id-manager の設定</a></li>
-<li><a href="#orgad886a9">plstore</a></li>
-<li><a href="#org2c7a418">oauth2</a></li>
-<li><a href="#orge870c3b">password-store</a></li>
-</ul>
-</li>
-<li><a href="#org255627a">MUA の設定: <code>wanderlust</code></a>
-<ul>
-<li><a href="#org079cd3e">Emacs 本体側の設定</a></li>
-<li><a href="#orgc36dcb0">Wanderlust 本体の設定</a>
-<ul>
-<li><a href="#org7e2f43a">依存/追加ライブラリのインストールと読み込み</a></li>
-<li><a href="#orgb92b20f">個人情報の設定</a></li>
-<li><a href="#orgfc41232">基本設定</a></li>
-<li><a href="#org314cae5">キーバインド関連</a></li>
-<li><a href="#orgbd2a2f2">flag とフォルダを行き来する関数の追加</a></li>
-<li><a href="#orgf603052">summary-mode の表示のカスタマイズ</a></li>
-<li><a href="#org20058ae">振り分け設定</a></li>
-<li><a href="#org6a011c6">日本語添付ファイル名のデコード</a></li>
-<li><a href="#org70c2471">メッセージ表示</a></li>
-<li><a href="#org5f67fb8">作成/返信設定</a></li>
-<li><a href="#orgb822dc6">Face の設定</a></li>
-<li><a href="#org4dfe04a">GPG 署名</a></li>
-<li><a href="#org8293d5d">検索</a></li>
-</ul>
-</li>
-<li><a href="#org95766fb">Linux Desktop で <code>mailto:</code> リンクを扱うために</a></li>
-</ul>
-</li>
-<li><a href="#org74cf9e5">補完: <code>helm</code></a>
-<ul>
-<li><a href="#org42195e9">helm-flx</a></li>
-<li><a href="#org5a34175">helm-locate</a></li>
-<li><a href="#org691b05f">helm-descbinds</a></li>
-<li><a href="#org9f40cb5">helm-ag</a></li>
-</ul>
-</li>
-<li><a href="#orga17567d">補完: <code>yasnippet</code>, <code>auto-complete</code> <code>[/]</code></a>
-<ul>
-<li><a href="#org9dc1ce8">yasnippet</a></li>
-<li><a href="#org92614f1">auto-complete</a></li>
-</ul>
-</li>
-<li><a href="#org99a5379">校正，辞書等</a>
-<ul>
-<li><a href="#org0bab460">spell checker</a></li>
-<li><a href="#orga73a9ac">辞書</a></li>
-</ul>
-</li>
-<li><a href="#org29e19ae">カレンダー: <code>japanese-holidays</code></a></li>
-<li><a href="#org5d6ba7a">Org</a>
-<ul>
-<li><a href="#org5d6d472">基本設定: <code>org</code></a></li>
-<li><a href="#orgc7deac4">Orglink</a></li>
-<li><a href="#orge2149ec">Capture: メモ取り</a></li>
-<li><a href="#orgc10ca1e">Agenda: スケジュール，TODO 表示</a></li>
-<li><a href="#org4bfe930"><code>org-journal</code>: 日記</a></li>
-<li><a href="#org298dcc0">Babel</a>
-<ul>
-<li><a href="#org0365ec7">org-src</a></li>
-<li><a href="#org41620d1">org-ditaa</a></li>
-</ul>
-</li>
-<li><a href="#org7aadc48">Org-gcal</a>
-<ul>
-<li><a href="#org7655cfb">token 等の置き場所の変更</a></li>
-<li><a href="#org53c1f60">org-gcal 本体の設定</a></li>
-</ul>
-</li>
-<li><a href="#org558628e">OrgとRedmine の連携: <code>orgmine</code></a></li>
-<li><a href="#org5793a62">Org-Wiki</a></li>
-<li><a href="#orgea2a3ac">Export</a>
-<ul>
-<li><a href="#orge6ef1f4">一般設定</a></li>
-<li><a href="#org1bff7fd">Beamer export</a></li>
-<li><a href="#org31a2574">HTML 出力: <code>ox-html</code></a></li>
-</ul>
-</li>
-<li><a href="#org7362b93">Jekyll 用の設定</a>
-<ul>
-<li><a href="#org5470901">Jekyll 用の Backend の定義</a></li>
-<li><a href="#org5c7aa24">Project の定義</a></li>
+<li><a href="#orgbd75d27">編集関連</a></li>
+<li><a href="#org4c7caf5">インクリメンタルサーチ</a></li>
+<li><a href="#org3b4bac2">辞書の設定</a></li>
+<li><a href="#org8cd0b15">動的補完</a></li>
+<li><a href="#orgd39816e">部首変換, 総画数変換</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5f2d10c">Howm</a></li>
-<li><a href="#org407b1d1">プログラム環境</a>
+<li><a href="#org5144b49">Copy &amp; Paste: <code>xclip</code></a></li>
+<li><a href="#org7c8c067">Elscreen <code>[/]</code></a></li>
+<li><a href="#org0273573">認証関連: <code>password-store</code></a>
 <ul>
-<li><a href="#org55dde94">コードのタグ付け: <code>ggtags</code>, <code>helm-gtags</code></a></li>
-<li><a href="#org78116d6">プロジェクト管理: bbatsov/projectile</a></li>
-<li><a href="#org7c44570">VCS: <code>magit</code>, <code>git-gutter</code></a></li>
-<li><a href="#org1b7c7ff">flycheck</a></li>
-<li><a href="#orgf528ad1">rainbow-mode</a></li>
-<li><a href="#org18908e1">Textile</a></li>
-<li><a href="#org1a91986">Markdown</a></li>
-<li><a href="#org67d133a">SCSS</a></li>
-<li><a href="#org9cddc0a">YAML</a></li>
-<li><a href="#org397b3eb">設定ファイル: <code>generic-x</code></a></li>
-<li><a href="#orgacc128c">Ruby</a></li>
-<li><a href="#org3f63b26">C</a></li>
-<li><a href="#org7dc256c">Fortran</a></li>
-<li><a href="#org9f16ed0">AUCTeX</a></li>
-<li><a href="#org8a8c5cd">AUCTeX と Zotero との連携</a></li>
+<li><a href="#org3cdab34">id-manager の設定</a></li>
+<li><a href="#org6a44c10">plstore</a></li>
+<li><a href="#org75d3a8e">oauth2</a></li>
+<li><a href="#org03feeae">password-store</a></li>
 </ul>
 </li>
-<li><a href="#orgde0aba8">フォントと色</a></li>
-<li><a href="#org0b49426"><code>diminish</code>: モードラインの短縮表示</a></li>
-<li><a href="#orgaa1db07"><code>powerline</code>: モードラインを綺麗に</a></li>
-<li><a href="#orgc3e4eda">基本的なキーバインドの設定 <code>[/]</code></a></li>
-<li><a href="#org6c42a50">起動時間の計測</a></li>
-<li><a href="#org6e71c29">LICENSE</a></li>
+<li><a href="#org67f8009">MUA の設定: <code>wanderlust</code></a>
+<ul>
+<li><a href="#orgcef772b">Emacs 本体側の設定</a></li>
+<li><a href="#org4fac20b">Wanderlust 本体の設定</a>
+<ul>
+<li><a href="#org4d0633e">依存/追加ライブラリのインストールと読み込み</a></li>
+<li><a href="#org4bb7921">個人情報の設定</a></li>
+<li><a href="#orgeb3135d">基本設定</a></li>
+<li><a href="#orgcdd8e2a">キーバインド関連</a></li>
+<li><a href="#org447b2a7">flag とフォルダを行き来する関数の追加</a></li>
+<li><a href="#orga6ba174">summary-mode の表示のカスタマイズ</a></li>
+<li><a href="#org54592fe">振り分け設定</a></li>
+<li><a href="#orgd4262db">日本語添付ファイル名のデコード</a></li>
+<li><a href="#orgf096b96">メッセージ表示</a></li>
+<li><a href="#org429550d">作成/返信設定</a></li>
+<li><a href="#org5f32c67">Face の設定</a></li>
+<li><a href="#org5e00b33">GPG 署名</a></li>
+<li><a href="#org67ccc89">検索</a></li>
+</ul>
+</li>
+<li><a href="#org79a7e5d">Linux Desktop で <code>mailto:</code> リンクを扱うために</a></li>
+</ul>
+</li>
+<li><a href="#orgec000a7">補完: <code>helm</code></a>
+<ul>
+<li><a href="#org89c0bc4">helm-flx</a></li>
+<li><a href="#org6303e9d">helm-locate</a></li>
+<li><a href="#orgb068981">helm-descbinds</a></li>
+<li><a href="#org5522201">helm-ag</a></li>
+</ul>
+</li>
+<li><a href="#org3360837">補完: <code>yasnippet</code>, <code>auto-complete</code> <code>[/]</code></a>
+<ul>
+<li><a href="#org09fe55d">yasnippet</a></li>
+<li><a href="#org13b6088">auto-complete</a></li>
+</ul>
+</li>
+<li><a href="#org38e931c">校正，辞書等</a>
+<ul>
+<li><a href="#orgd5b21f3">spell checker</a></li>
+<li><a href="#org8b8853c">辞書</a></li>
+</ul>
+</li>
+<li><a href="#org31d81c4">カレンダー: <code>japanese-holidays</code></a></li>
+<li><a href="#orge3a1b07">Org</a>
+<ul>
+<li><a href="#org47d8bf2">基本設定: <code>org</code></a></li>
+<li><a href="#org113af80">Orglink</a></li>
+<li><a href="#orgd251acc">Capture: メモ取り</a></li>
+<li><a href="#org6aea546">Agenda: スケジュール，TODO 表示</a></li>
+<li><a href="#orgdcc640c">日記: <code>org-journal</code></a></li>
+<li><a href="#org7fbce2f">Babel</a>
+<ul>
+<li><a href="#org5a78024">org-src</a></li>
+<li><a href="#org2e5f023">org-ditaa</a></li>
+</ul>
+</li>
+<li><a href="#org049f0ba">Org-gcal</a>
+<ul>
+<li><a href="#orgdc3fc41">token 等の置き場所の変更</a></li>
+<li><a href="#org09be5ff">org-gcal 本体の設定</a></li>
+</ul>
+</li>
+<li><a href="#orgc71a475">OrgとRedmine の連携: <code>orgmine</code></a></li>
+<li><a href="#org8102b70">Org-Wiki</a></li>
+<li><a href="#org5b0e13a">Export</a>
+<ul>
+<li><a href="#orgdac00c8">一般設定</a></li>
+<li><a href="#org1a5b7cd">Beamer export</a></li>
+<li><a href="#org25026ef">HTML 出力: <code>ox-html</code></a></li>
+</ul>
+</li>
+<li><a href="#org4abb501">Jekyll 用の設定</a>
+<ul>
+<li><a href="#org4b19cc5">Jekyll 用の Backend の定義</a></li>
+<li><a href="#orgfd9d1a4">Project の定義</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1119e55">Howm</a></li>
+<li><a href="#orgb708304">プログラム環境</a>
+<ul>
+<li><a href="#orgfed21fb">コードのタグ付け: <code>ggtags</code>, <code>helm-gtags</code></a></li>
+<li><a href="#orgefbcaa4">プロジェクト管理: bbatsov/projectile</a></li>
+<li><a href="#org28430bc">VCS: <code>magit</code>, <code>git-gutter</code></a></li>
+<li><a href="#orgbd96de6">flycheck</a></li>
+<li><a href="#org4bfc6dd">rainbow-mode</a></li>
+<li><a href="#org81fc99d">Textile</a></li>
+<li><a href="#org73b4fcd">Markdown</a></li>
+<li><a href="#org7869f07">SCSS</a></li>
+<li><a href="#org6b5028b">YAML</a></li>
+<li><a href="#org869ad30">設定ファイル: <code>generic-x</code></a></li>
+<li><a href="#orgf78ca70">Ruby</a></li>
+<li><a href="#org36fe2e4">C</a></li>
+<li><a href="#orgbaf5813">Fortran</a></li>
+<li><a href="#org8df82b0">AUCTeX</a></li>
+<li><a href="#org7162da7">AUCTeX と Zotero との連携</a></li>
+</ul>
+</li>
+<li><a href="#org81cfc7d">フォントと色</a></li>
+<li><a href="#orged7a158"><code>diminish</code>: モードラインの短縮表示</a></li>
+<li><a href="#org3a38ed3"><code>powerline</code>: モードラインを綺麗に</a></li>
+<li><a href="#orgcfc033f">基本的なキーバインドの設定 <code>[/]</code></a></li>
+<li><a href="#org5a2f839">起動時間の計測</a></li>
+<li><a href="#org7abbc70">LICENSE</a></li>
 </ul>
 </div>
 </nav>
+<div class="col-sm-offset-11 col-sm-1 col-xs-offset-11 col-xs-1">
+  <a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">目次</a>
+</div>
 <p>
 Related: <a href='index.html'>Index</a>
 </p>
-<div id="outline-container-org913a715" class="outline-2">
-<h2 id="org913a715">はじめに</h2>
-<div class="outline-text-2" id="text-org913a715">
+<div id="outline-container-org7339e40" class="outline-2">
+<h2 id="org7339e40">はじめに</h2>
+<div class="outline-text-2" id="text-org7339e40">
 <p>
 ここでは，私の Emacs の設定についてまとめています．
 </p>
@@ -223,9 +229,9 @@ Sorry, your browser does not support SVG.</object>
 基本方針は以下の通り:
 </p>
 </div>
-<div id="outline-container-orgbd759d7" class="outline-3">
-<h3 id="orgbd759d7">Emacs のパッケージ(<code>package.el</code>)と <a href="https://github.com/quelpa/quelpa">quelpa</a>, <a href="https://github.com/jwiegley/use-package">use-package</a> を使う</h3>
-<div class="outline-text-3" id="text-orgbd759d7">
+<div id="outline-container-org257bca7" class="outline-3">
+<h3 id="org257bca7">Emacs のパッケージ(<code>package.el</code>)と <a href="https://github.com/quelpa/quelpa">quelpa</a>, <a href="https://github.com/jwiegley/use-package">use-package</a> を使う</h3>
+<div class="outline-text-3" id="text-org257bca7">
 <p>
 基本は <code>package.el</code> を使いますが、
 VCS からインストールしたいパッケージが幾つかあるので、
@@ -233,9 +239,9 @@ VCS からインストールしたいパッケージが幾つかあるので、
 </p>
 </div>
 </div>
-<div id="outline-container-org512beeb" class="outline-3">
-<h3 id="org512beeb">Debian パッケージがインストールされているならば，それを優先する</h3>
-<div class="outline-text-3" id="text-org512beeb">
+<div id="outline-container-orgcda7e00" class="outline-3">
+<h3 id="orgcda7e00">Debian パッケージがインストールされているならば，それを優先する</h3>
+<div class="outline-text-3" id="text-orgcda7e00">
 <p>
 :<a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">Eating your own dog food - Wikipedia</a>
 </p>
@@ -246,9 +252,9 @@ Emacsに関連するDebianパッケージを幾つかメンテナンスしてい
 </p>
 </div>
 </div>
-<div id="outline-container-org285da96" class="outline-3">
-<h3 id="org285da96">設定は <a href="http://orgmode.org/">Org mode</a> で書きたい</h3>
-<div class="outline-text-3" id="text-org285da96">
+<div id="outline-container-org209087f" class="outline-3">
+<h3 id="org209087f">設定は <a href="http://orgmode.org/">Org mode</a> で書きたい</h3>
+<div class="outline-text-3" id="text-org209087f">
 <p>
 以前こんなブログ記事を書きました: <a href="http://uwabami.junkhub.org/log/20111213.html#p01">Emacsの設定ファイルをorgで書く</a>
 </p>
@@ -271,9 +277,9 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し�
 </div>
 </div>
 </div>
-<div id="outline-container-orge99fdc5" class="outline-2">
-<h2 id="orge99fdc5">ディレクトリ構成</h2>
-<div class="outline-text-2" id="text-orge99fdc5">
+<div id="outline-container-orgb1d8793" class="outline-2">
+<h2 id="orgb1d8793">ディレクトリ構成</h2>
+<div class="outline-text-2" id="text-orgb1d8793">
 <p>
 分割した設定ファイル群やパッケージで install したパッケージ
 の置き場所は <code>user-emacs-directory</code> 以下にまとめています．
@@ -320,17 +326,17 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し�
 </p>
 </div>
 </div>
-<div id="outline-container-org0b2b512" class="outline-2">
-<h2 id="org0b2b512">Package 関連: <code>package.el</code>, <a href="https://github.com/jwiegley/use-package">use-package</a>, <a href="https://github.com/quelpa/quelpa">quelpa</a></h2>
-<div class="outline-text-2" id="text-org0b2b512">
+<div id="outline-container-orgf6fb2ef" class="outline-2">
+<h2 id="orgf6fb2ef">Package 関連: <code>package.el</code>, <a href="https://github.com/jwiegley/use-package">use-package</a>, <a href="https://github.com/quelpa/quelpa">quelpa</a></h2>
+<div class="outline-text-2" id="text-orgf6fb2ef">
 <p>
 <a href="https://github.com/jwiegley/use-package">use-package</a> のおかけで、
 無いと途方に暮れるパッケージ以外のインストールは無視できるようになります。
 </p>
 </div>
-<div id="outline-container-org247bfd9" class="outline-3">
-<h3 id="org247bfd9"><code>package.el</code></h3>
-<div class="outline-text-3" id="text-org247bfd9">
+<div id="outline-container-org183f40e" class="outline-3">
+<h3 id="org183f40e"><code>package.el</code></h3>
+<div class="outline-text-3" id="text-org183f40e">
 <p>
 パッケージは基本的に <code>pacakge.el</code> で導入するので、先ずはその設定.
 </p>
@@ -375,9 +381,9 @@ batch でのインストールは例えば
 </p>
 </div>
 </div>
-<div id="outline-container-orgb701048" class="outline-3">
-<h3 id="orgb701048"><a href="https://github.com/jwiegley/use-package">use-package</a></h3>
-<div class="outline-text-3" id="text-orgb701048">
+<div id="outline-container-orgfcf8c4b" class="outline-3">
+<h3 id="orgfcf8c4b"><a href="https://github.com/jwiegley/use-package">use-package</a></h3>
+<div class="outline-text-3" id="text-orgfcf8c4b">
 <p>
 個々のパッケージの設定には <a href="https://github.com/jwiegley/use-package">use-package</a> を利用します．
 </p>
@@ -388,9 +394,9 @@ batch でのインストールは例えば
 </div>
 </div>
 </div>
-<div id="outline-container-orge269a5e" class="outline-3">
-<h3 id="orge269a5e"><a href="https://github.com/quelpa/quelpa">quelpa</a></h3>
-<div class="outline-text-3" id="text-orge269a5e">
+<div id="outline-container-orge89a176" class="outline-3">
+<h3 id="orge89a176"><a href="https://github.com/quelpa/quelpa">quelpa</a></h3>
+<div class="outline-text-3" id="text-orge89a176">
 <p>
 melpa に登録されていないパッケージや自作の elisp 等をインストールできる様に
 <a href="https://github.com/quelpa/quelpa">quelpa</a> を入れておきます．とはいえ、これでパッケージを入れる訳ではないので、
@@ -410,16 +416,16 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-org8ba43cd" class="outline-2">
-<h2 id="org8ba43cd">独自関数</h2>
-<div class="outline-text-2" id="text-org8ba43cd">
+<div id="outline-container-orgd8967ba" class="outline-2">
+<h2 id="orgd8967ba">独自関数</h2>
+<div class="outline-text-2" id="text-orgd8967ba">
 <p>
 細かい独自関数，など．
 </p>
 </div>
-<div id="outline-container-org94268a7" class="outline-3">
-<h3 id="org94268a7">カーソルのある位置の face を調べる関数</h3>
-<div class="outline-text-3" id="text-org94268a7">
+<div id="outline-container-org34e2b2b" class="outline-3">
+<h3 id="org34e2b2b">カーソルのある位置の face を調べる関数</h3>
+<div class="outline-text-3" id="text-org34e2b2b">
 <p>
 わりと良く使う. 地味に便利
 </p>
@@ -431,9 +437,9 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-org762cf00" class="outline-3">
-<h3 id="org762cf00">機能を無効化するための関数の定義</h3>
-<div class="outline-text-3" id="text-org762cf00">
+<div id="outline-container-org5398ad8" class="outline-3">
+<h3 id="org5398ad8">機能を無効化するための関数の定義</h3>
+<div class="outline-text-3" id="text-org5398ad8">
 <p>
 <code>line-number-mode</code> など「有効無効をtoggleする関数」は
 慣習的に <code>0</code> 以下の数字を指定すると明示的に無効化できるので，
@@ -447,9 +453,9 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-org10d598b" class="outline-3">
-<h3 id="org10d598b">dpkg-status</h3>
-<div class="outline-text-3" id="text-org10d598b">
+<div id="outline-container-orgf83c6a9" class="outline-3">
+<h3 id="orgf83c6a9">dpkg-status</h3>
+<div class="outline-text-3" id="text-orgf83c6a9">
 <p>
 もっと良い方法がありそうなモンですが．
 </p>
@@ -462,9 +468,9 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-orga1a08d6" class="outline-2">
-<h2 id="orga1a08d6">常に <code>cl-lib</code> を読み込む</h2>
-<div class="outline-text-2" id="text-orga1a08d6">
+<div id="outline-container-org45c59c5" class="outline-2">
+<h2 id="org45c59c5">常に <code>cl-lib</code> を読み込む</h2>
+<div class="outline-text-2" id="text-org45c59c5">
 <p>
 以前は(今も?)「 <code>cl.el</code> は名前衝突があるので byte compile 時以外は読み込まない様にしよう」
 というお話でした．つまり，
@@ -487,9 +493,9 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-org2833e37" class="outline-2">
-<h2 id="org2833e37">後方互換性: <code>el-x</code></h2>
-<div class="outline-text-2" id="text-org2833e37">
+<div id="outline-container-orgbb4ce54" class="outline-2">
+<h2 id="orgbb4ce54">後方互換性: <code>el-x</code></h2>
+<div class="outline-text-2" id="text-orgbb4ce54">
 <p>
 古い <code>flet</code> と同じ挙動をする <code>dflet</code> を使うために <code>el-x</code> を導入しておく
 </p>
@@ -500,9 +506,9 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-org3456a84" class="outline-2">
-<h2 id="org3456a84">url-retrieve の置き換え: <code>mb-url</code></h2>
-<div class="outline-text-2" id="text-org3456a84">
+<div id="outline-container-orgaf2e4f5" class="outline-2">
+<h2 id="orgaf2e4f5">url-retrieve の置き換え: <code>mb-url</code></h2>
+<div class="outline-text-2" id="text-orgaf2e4f5">
 <p>
 標準関数の <code>url-retrieve</code> 等の proxy 環境下での挙動が怪しいので，
 <code>mb-url</code> で advice (上書き)することに．
@@ -517,9 +523,9 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-orgb285d23" class="outline-2">
-<h2 id="orgb285d23">環境変数の読み込み: <code>exec-path-from-shell</code></h2>
-<div class="outline-text-2" id="text-orgb285d23">
+<div id="outline-container-org62d2900" class="outline-2">
+<h2 id="org62d2900">環境変数の読み込み: <code>exec-path-from-shell</code></h2>
+<div class="outline-text-2" id="text-org62d2900">
 <p>
 zsh で設定した <code>PATH</code> などの環境変数を Emacs に引き継ぐために
 <a href="https://github.com/purcell/exec-path-from-shell">purcell/exec-path-from-shell</a> を使います．
@@ -564,9 +570,9 @@ zsh で設定した <code>PATH</code> などの環境変数を Emacs に引き�
 </div>
 </div>
 </div>
-<div id="outline-container-org9d32c71" class="outline-2">
-<h2 id="org9d32c71">言語の設定</h2>
-<div class="outline-text-2" id="text-org9d32c71">
+<div id="outline-container-org76cafc5" class="outline-2">
+<h2 id="org76cafc5">言語の設定</h2>
+<div class="outline-text-2" id="text-org76cafc5">
 <p>
 過去にはいろいろ設定していたのですが&#x2026;
 </p>
@@ -593,9 +599,9 @@ zsh で設定した <code>PATH</code> などの環境変数を Emacs に引き�
 <li><code>file-name-coding-system</code> が nil なら <code>default-file-name-coding-system</code> を利用</li>
 </ol>
 </div>
-<div id="outline-container-org068618a" class="outline-3">
-<h3 id="org068618a">cp5022x.el</h3>
-<div class="outline-text-3" id="text-org068618a">
+<div id="outline-container-org5a66173" class="outline-3">
+<h3 id="org5a66173">cp5022x.el</h3>
+<div class="outline-text-3" id="text-org5a66173">
 <p>
 Emacs23 から内部が Unicode ベースになっています．
 </p>
@@ -613,9 +619,9 @@ Emacs23 から内部が Unicode ベースになっています．
 </div>
 </div>
 </div>
-<div id="outline-container-org20c9057" class="outline-3">
-<h3 id="org20c9057">East Asian Ambiguos 対応</h3>
-<div class="outline-text-3" id="text-org20c9057">
+<div id="outline-container-orged19ee2" class="outline-3">
+<h3 id="orged19ee2">East Asian Ambiguos 対応</h3>
+<div class="outline-text-3" id="text-orged19ee2">
 <p>
 CJK 以外の East Asian Ambiguos，絵文字も2文字幅にするようにしています．
 拙作の修正ロケールはこちら: <a href="https://github.com/uwabami/locale-eaw-emoji">https://github.com/uwabami/locale-eaw-emoji</a>
@@ -633,9 +639,9 @@ CJK 以外の East Asian Ambiguos，絵文字も2文字幅にするようにし�
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf47467" class="outline-3">
-<h3 id="orgdf47467">OSの違いに起因する条件分岐</h3>
-<div class="outline-text-3" id="text-orgdf47467">
+<div id="outline-container-orge66d09c" class="outline-3">
+<h3 id="orge66d09c">OSの違いに起因する条件分岐</h3>
+<div class="outline-text-3" id="text-orge66d09c">
 <p>
 Mac と Linux では同じ Unicode でも正規化が異なります
 (具体的には Mac のファイルシステムである HFS+ では Unicode の正規化が異なります).
@@ -677,15 +683,15 @@ Windows の場合はファイル名などは cp932 にしているものの,
 </div>
 </div>
 </div>
-<div id="outline-container-org8a2eeb6" class="outline-2">
-<h2 id="org8a2eeb6">主にEmacs本体に同梱されている拡張に関する設定</h2>
-<div class="outline-text-2" id="text-org8a2eeb6">
-</div><div id="outline-container-orgf95ed47" class="outline-3">
-<h3 id="orgf95ed47">標準機能の設定</h3>
-<div class="outline-text-3" id="text-orgf95ed47">
-</div><div id="outline-container-orgca82060" class="outline-4">
-<h4 id="orgca82060">表示関連</h4>
-<div class="outline-text-4" id="text-orgca82060">
+<div id="outline-container-org045a82e" class="outline-2">
+<h2 id="org045a82e">主にEmacs本体に同梱されている拡張に関する設定</h2>
+<div class="outline-text-2" id="text-org045a82e">
+</div><div id="outline-container-org90d79f2" class="outline-3">
+<h3 id="org90d79f2">標準機能の設定</h3>
+<div class="outline-text-3" id="text-org90d79f2">
+</div><div id="outline-container-org4b872e7" class="outline-4">
+<h4 id="org4b872e7">表示関連</h4>
+<div class="outline-text-4" id="text-org4b872e7">
 <p>
 起動時のスプラッシュ画面を表示しない
 </p>
@@ -774,9 +780,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-orgf82718c" class="outline-4">
-<h4 id="orgf82718c">編集関連</h4>
-<div class="outline-text-4" id="text-orgf82718c">
+<div id="outline-container-org258d76d" class="outline-4">
+<h4 id="org258d76d">編集関連</h4>
+<div class="outline-text-4" id="text-org258d76d">
 <p>
 yes or no を y or n に
 </p>
@@ -913,9 +919,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-org24778a8" class="outline-4">
-<h4 id="org24778a8">ファイル，デイレクトリ整理</h4>
-<div class="outline-text-4" id="text-org24778a8">
+<div id="outline-container-orgf2d360e" class="outline-4">
+<h4 id="orgf2d360e">ファイル，デイレクトリ整理</h4>
+<div class="outline-text-4" id="text-orgf2d360e">
 <p>
 他にもイロイロありそう．
 </p>
@@ -931,9 +937,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-orgf4f8d34" class="outline-3">
-<h3 id="orgf4f8d34"><code>.elc</code> と <code>.el</code> の timestamp を比較し，新しい方を読み込む</h3>
-<div class="outline-text-3" id="text-orgf4f8d34">
+<div id="outline-container-org56ff198" class="outline-3">
+<h3 id="org56ff198"><code>.elc</code> と <code>.el</code> の timestamp を比較し，新しい方を読み込む</h3>
+<div class="outline-text-3" id="text-org56ff198">
 <p>
 <code>load-prefer-newer</code> は Emacs &gt;= 24.4 から．
 </p>
@@ -944,9 +950,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-orgbab11bd" class="outline-3">
-<h3 id="orgbab11bd">ガベージコレクションの頻度を下げる</h3>
-<div class="outline-text-3" id="text-orgbab11bd">
+<div id="outline-container-orge9bc64c" class="outline-3">
+<h3 id="orge9bc64c">ガベージコレクションの頻度を下げる</h3>
+<div class="outline-text-3" id="text-orge9bc64c">
 <p>
 とりあえず 128 MB にしておく.
 </p>
@@ -956,9 +962,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-org466c879" class="outline-3">
-<h3 id="org466c879">scratch を殺さない. 消したら再生成</h3>
-<div class="outline-text-3" id="text-org466c879">
+<div id="outline-container-orgdafccc3" class="outline-3">
+<h3 id="orgdafccc3">scratch を殺さない. 消したら再生成</h3>
+<div class="outline-text-3" id="text-orgdafccc3">
 <p>
 &#x2026;元ネタがどこだったのか忘れてしまった&#x2026;
 </p>
@@ -998,9 +1004,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-org98d690e" class="outline-3">
-<h3 id="org98d690e">空になったファイルを尋ねずに自動削除</h3>
-<div class="outline-text-3" id="text-org98d690e">
+<div id="outline-container-org20289a3" class="outline-3">
+<h3 id="org20289a3">空になったファイルを尋ねずに自動削除</h3>
+<div class="outline-text-3" id="text-org20289a3">
 <p>
 ゴミが残らないし，地味に便利．
 </p>
@@ -1017,9 +1023,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-org91deb14" class="outline-3">
-<h3 id="org91deb14"><code>abbrev</code>: 略語展開</h3>
-<div class="outline-text-3" id="text-org91deb14">
+<div id="outline-container-org1273635" class="outline-3">
+<h3 id="org1273635"><code>abbrev</code>: 略語展開</h3>
+<div class="outline-text-3" id="text-org1273635">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">abbrev</span>
   <span style="color: #7FBFFF;">:diminish</span> abbrev-mode
@@ -1033,9 +1039,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-orgb4fc11b" class="outline-3">
-<h3 id="orgb4fc11b"><code>eldoc</code>: emacs-lisp document</h3>
-<div class="outline-text-3" id="text-orgb4fc11b">
+<div id="outline-container-orgeec0cb9" class="outline-3">
+<h3 id="orgeec0cb9"><code>eldoc</code>: emacs-lisp document</h3>
+<div class="outline-text-3" id="text-orgeec0cb9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">eldoc</span>
   <span style="color: #7FBFFF;">:diminish</span> eldoc-mode
@@ -1046,9 +1052,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-orge9e7e7d" class="outline-3">
-<h3 id="orge9e7e7d"><code>midnight</code>: 一定期間使用しなかった buffer を自動削除</h3>
-<div class="outline-text-3" id="text-orge9e7e7d">
+<div id="outline-container-org0ab00b4" class="outline-3">
+<h3 id="org0ab00b4"><code>midnight</code>: 一定期間使用しなかった buffer を自動削除</h3>
+<div class="outline-text-3" id="text-org0ab00b4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">midnight</span>
   <span style="color: #7FBFFF;">:config</span>
@@ -1057,9 +1063,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-org385c401" class="outline-3">
-<h3 id="org385c401"><code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</h3>
-<div class="outline-text-3" id="text-org385c401">
+<div id="outline-container-org602c2fa" class="outline-3">
+<h3 id="org602c2fa"><code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</h3>
+<div class="outline-text-3" id="text-org602c2fa">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">uniquify</span>
   <span style="color: #7FBFFF;">:config</span>
@@ -1070,9 +1076,9 @@ Undo/Redo:
 </div>
 </div>
 
-<div id="outline-container-org1a8890d" class="outline-3">
-<h3 id="org1a8890d"><code>whitespace</code>: 空白の強調表示</h3>
-<div class="outline-text-3" id="text-org1a8890d">
+<div id="outline-container-orgc9092fc" class="outline-3">
+<h3 id="orgc9092fc"><code>whitespace</code>: 空白の強調表示</h3>
+<div class="outline-text-3" id="text-orgc9092fc">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">whitespace</span>
   <span style="color: #7FBFFF;">:diminish</span> global-whitespace-mode
@@ -1098,9 +1104,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-org5743792" class="outline-3">
-<h3 id="org5743792"><code>saveplace</code>: 前回の修正位置を記憶する.</h3>
-<div class="outline-text-3" id="text-org5743792">
+<div id="outline-container-org5c6fc8c" class="outline-3">
+<h3 id="org5c6fc8c"><code>saveplace</code>: 前回の修正位置を記憶する.</h3>
+<div class="outline-text-3" id="text-org5c6fc8c">
 <p>
 記憶の保存先は <code>~/.emacs.d/tmp/emacs-places</code> に変更.
 </p>
@@ -1113,9 +1119,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-org096aa27" class="outline-3">
-<h3 id="org096aa27"><code>time-stamp</code>: 保存時に timestamp を自動更新</h3>
-<div class="outline-text-3" id="text-org096aa27">
+<div id="outline-container-org527b412" class="outline-3">
+<h3 id="org527b412"><code>time-stamp</code>: 保存時に timestamp を自動更新</h3>
+<div class="outline-text-3" id="text-org527b412">
 <p>
 デフォルトではいろいろと衝突したので
 更新文字列を変更し， <code>＄Lastupdate: 2</code> (＄は半角) があったら timestamp を更新する様にした．
@@ -1136,9 +1142,9 @@ Undo/Redo:
 </p>
 </div>
 </div>
-<div id="outline-container-org6df69b0" class="outline-3">
-<h3 id="org6df69b0"><code>tramp</code>: 使わないので無効化?</h3>
-<div class="outline-text-3" id="text-org6df69b0">
+<div id="outline-container-org760c0ef" class="outline-3">
+<h3 id="org760c0ef"><code>tramp</code>: 使わないので無効化?</h3>
+<div class="outline-text-3" id="text-org760c0ef">
 <p>
 無効化したいんだけれど，うまくいってない，ような&#x2026;?
 </p>
@@ -1150,9 +1156,9 @@ Undo/Redo:
 </div>
 </div>
 </div>
-<div id="outline-container-org38a210a" class="outline-3">
-<h3 id="org38a210a"><code>bookmark</code>: bookmark ファイル</h3>
-<div class="outline-text-3" id="text-org38a210a">
+<div id="outline-container-org98cf454" class="outline-3">
+<h3 id="org98cf454"><code>bookmark</code>: bookmark ファイル</h3>
+<div class="outline-text-3" id="text-org98cf454">
 <p>
 イマイチ使いこなせてない. 場所だけ変更しておく.
 </p>
@@ -1163,9 +1169,9 @@ Undo/Redo:
 </div>
 </div>
 
-<div id="outline-container-org76c6528" class="outline-3">
-<h3 id="org76c6528"><code>browse-url</code></h3>
-<div class="outline-text-3" id="text-org76c6528">
+<div id="outline-container-org8713c61" class="outline-3">
+<h3 id="org8713c61"><code>browse-url</code></h3>
+<div class="outline-text-3" id="text-org8713c61">
 <p>
 Firefox の呼び出し方が変わったので，そのために関数を追加．
 詳細は <a href="http://www.emacswiki.org/emacs/BrowseUrl">http://www.emacswiki.org/emacs/BrowseUrl</a> を参照のこと．
@@ -1193,9 +1199,9 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
 </div>
 </div>
 </div>
-<div id="outline-container-orgc93b416" class="outline-3">
-<h3 id="orgc93b416"><code>server</code>: Emacs server</h3>
-<div class="outline-text-3" id="text-orgc93b416">
+<div id="outline-container-org5caa63b" class="outline-3">
+<h3 id="org5caa63b"><code>server</code>: Emacs server</h3>
+<div class="outline-text-3" id="text-org5caa63b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">server</span>
   <span style="color: #7FBFFF;">:config</span>
@@ -1206,9 +1212,9 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
 </div>
 </div>
 </div>
-<div id="outline-container-org316cfac" class="outline-2">
-<h2 id="org316cfac">日本語入力: <a href="init-ddskk.html">ddskkの設定</a></h2>
-<div class="outline-text-2" id="text-org316cfac">
+<div id="outline-container-orgc0c3ba1" class="outline-2">
+<h2 id="orgc0c3ba1">日本語入力: <a href="init-ddskk.html">ddskkの設定</a></h2>
+<div class="outline-text-2" id="text-orgc0c3ba1">
 <p>
 <a href="http://openlab.ring.gr.jp/skk/ddskk-ja.html">Daredevil SKK (DDSKK)</a> をメインで使用中．無いと途方に暮れる．
 ちなみにGTKが有効になっていると <code>gtk-immodule</code> なんかと衝突するので
@@ -1221,9 +1227,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org2b49405" class="outline-3">
-<h3 id="org2b49405">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org2b49405">
+<div id="outline-container-orgdb0d423" class="outline-3">
+<h3 id="orgdb0d423">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgdb0d423">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1243,9 +1249,9 @@ Emacs*useXIM: false
 </div>
 </div>
 </div>
-<div id="outline-container-orgbc8438c" class="outline-3">
-<h3 id="orgbc8438c">DDSKK 本体の設定</h3>
-<div class="outline-text-3" id="text-orgbc8438c">
+<div id="outline-container-org45420e0" class="outline-3">
+<h3 id="org45420e0">DDSKK 本体の設定</h3>
+<div class="outline-text-3" id="text-org45420e0">
 <p>
 sticky shift: <a href="http://homepage1.nifty.com/blankspace/emacs/sticky.html">sticky shift</a> を参照のこと.
 ddskk の 14.2 以降から同梱されるようになった(ありがたい)
@@ -1333,9 +1339,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org11ace17" class="outline-4">
-<h4 id="org11ace17">編集関連</h4>
-<div class="outline-text-4" id="text-org11ace17">
+<div id="outline-container-orgbd75d27" class="outline-4">
+<h4 id="orgbd75d27">編集関連</h4>
+<div class="outline-text-4" id="text-orgbd75d27">
 <p>
 キーバインド
 </p>
@@ -1412,9 +1418,9 @@ Enter で改行しない
 </div>
 </div>
 </div>
-<div id="outline-container-org3ec5032" class="outline-4">
-<h4 id="org3ec5032">インクリメンタルサーチ</h4>
-<div class="outline-text-4" id="text-org3ec5032">
+<div id="outline-container-org4c7caf5" class="outline-4">
+<h4 id="org4c7caf5">インクリメンタルサーチ</h4>
+<div class="outline-text-4" id="text-org4c7caf5">
 <p>
 minibuffer 内では強制的に skk off.
 </p>
@@ -1431,9 +1437,9 @@ minibuffer 内では強制的に skk off.
 </p>
 </div>
 </div>
-<div id="outline-container-org9fa4fd2" class="outline-4">
-<h4 id="org9fa4fd2">辞書の設定</h4>
-<div class="outline-text-4" id="text-org9fa4fd2">
+<div id="outline-container-org3b4bac2" class="outline-4">
+<h4 id="org3b4bac2">辞書の設定</h4>
+<div class="outline-text-4" id="text-org3b4bac2">
 <p>
 追加している辞書の一覧は
 </p>
@@ -1522,9 +1528,9 @@ src = <span style="color: #FFFF7F;">ARGV</span>[0]
 </div>
 </div>
 </div>
-<div id="outline-container-org257bcd3" class="outline-4">
-<h4 id="org257bcd3">動的補完</h4>
-<div class="outline-text-4" id="text-org257bcd3">
+<div id="outline-container-org8cd0b15" class="outline-4">
+<h4 id="org8cd0b15">動的補完</h4>
+<div class="outline-text-4" id="text-org8cd0b15">
 <p>
 まだ設定していない&#x2026;
 </p>
@@ -1548,9 +1554,9 @@ src = <span style="color: #FFFF7F;">ARGV</span>[0]
 </div>
 </div>
 </div>
-<div id="outline-container-org6b1d65e" class="outline-4">
-<h4 id="org6b1d65e">部首変換, 総画数変換</h4>
-<div class="outline-text-4" id="text-org6b1d65e">
+<div id="outline-container-orgd39816e" class="outline-4">
+<h4 id="orgd39816e">部首変換, 総画数変換</h4>
+<div class="outline-text-4" id="text-orgd39816e">
 <p>
 上手く使いこなせていない
 </p>
@@ -1564,9 +1570,9 @@ src = <span style="color: #FFFF7F;">ARGV</span>[0]
 </div>
 </div>
 </div>
-<div id="outline-container-org16addc9" class="outline-2">
-<h2 id="org16addc9">Copy &amp; Paste: <code>xclip</code></h2>
-<div class="outline-text-2" id="text-org16addc9">
+<div id="outline-container-org5144b49" class="outline-2">
+<h2 id="org5144b49">Copy &amp; Paste: <code>xclip</code></h2>
+<div class="outline-text-2" id="text-org5144b49">
 <p>
 <code>xclip</code> で clipboard とデータをやりとり．
 </p>
@@ -1583,9 +1589,9 @@ clipboard と PRIMARY の同期には <code>gpaste</code> を使っている．
 </p>
 </div>
 </div>
-<div id="outline-container-orgb7145b1" class="outline-2">
-<h2 id="orgb7145b1">Elscreen <code>[/]</code></h2>
-<div class="outline-text-2" id="text-orgb7145b1">
+<div id="outline-container-org7c8c067" class="outline-2">
+<h2 id="org7c8c067">Elscreen <code>[/]</code></h2>
+<div class="outline-text-2" id="text-org7c8c067">
 <p>
 modeline の表示そのものは無効化しておく．
 </p>
@@ -1606,12 +1612,12 @@ modeline の表示そのものは無効化しておく．
 </div>
 </div>
 </div>
-<div id="outline-container-org6fea635" class="outline-2">
-<h2 id="org6fea635">認証関連: <code>password-store</code></h2>
-<div class="outline-text-2" id="text-org6fea635">
-</div><div id="outline-container-org212e70c" class="outline-3">
-<h3 id="org212e70c">id-manager の設定</h3>
-<div class="outline-text-3" id="text-org212e70c">
+<div id="outline-container-org0273573" class="outline-2">
+<h2 id="org0273573">認証関連: <code>password-store</code></h2>
+<div class="outline-text-2" id="text-org0273573">
+</div><div id="outline-container-org3cdab34" class="outline-3">
+<h3 id="org3cdab34">id-manager の設定</h3>
+<div class="outline-text-3" id="text-org3cdab34">
 <p>
 ID と Password の簡単な組の管理をするのに非常に重宝している．
 </p>
@@ -1628,9 +1634,9 @@ ID と Password の簡単な組の管理をするのに非常に重宝してい�
 </div>
 </div>
 </div>
-<div id="outline-container-orgad886a9" class="outline-3">
-<h3 id="orgad886a9">plstore</h3>
-<div class="outline-text-3" id="text-orgad886a9">
+<div id="outline-container-org6a44c10" class="outline-3">
+<h3 id="org6a44c10">plstore</h3>
+<div class="outline-text-3" id="text-org6a44c10">
 <p>
 デフォルトは対称鍵暗号化なので， <code>GPG_KEY_ID</code> を設定しておく
 </p>
@@ -1643,9 +1649,9 @@ ID と Password の簡単な組の管理をするのに非常に重宝してい�
 </div>
 </div>
 </div>
-<div id="outline-container-org2c7a418" class="outline-3">
-<h3 id="org2c7a418">oauth2</h3>
-<div class="outline-text-3" id="text-org2c7a418">
+<div id="outline-container-org75d3a8e" class="outline-3">
+<h3 id="org75d3a8e">oauth2</h3>
+<div class="outline-text-3" id="text-org75d3a8e">
 <p>
 oauth2 の認証情報は <code>plstore</code> で保存される．
 ファイルの置き場所と暗号鍵の設定をしておく
@@ -1659,9 +1665,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 </div>
 </div>
 </div>
-<div id="outline-container-orge870c3b" class="outline-3">
-<h3 id="orge870c3b">password-store</h3>
-<div class="outline-text-3" id="text-orge870c3b">
+<div id="outline-container-org03feeae" class="outline-3">
+<h3 id="org03feeae">password-store</h3>
+<div class="outline-text-3" id="text-org03feeae">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">password-store</span>
   <span style="color: #7FBFFF;">:ensure</span> t
@@ -1672,16 +1678,16 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 </div>
 </div>
 </div>
-<div id="outline-container-org255627a" class="outline-2">
-<h2 id="org255627a">MUA の設定: <code>wanderlust</code></h2>
-<div class="outline-text-2" id="text-org255627a">
+<div id="outline-container-org67f8009" class="outline-2">
+<h2 id="org67f8009">MUA の設定: <code>wanderlust</code></h2>
+<div class="outline-text-2" id="text-org67f8009">
 <p>
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org079cd3e" class="outline-3">
-<h3 id="org079cd3e">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org079cd3e">
+<div id="outline-container-orgcef772b" class="outline-3">
+<h3 id="orgcef772b">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgcef772b">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -1721,17 +1727,17 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
 </div>
 </div>
 </div>
-<div id="outline-container-orgc36dcb0" class="outline-3">
-<h3 id="orgc36dcb0">Wanderlust 本体の設定</h3>
-<div class="outline-text-3" id="text-orgc36dcb0">
+<div id="outline-container-org4fac20b" class="outline-3">
+<h3 id="org4fac20b">Wanderlust 本体の設定</h3>
+<div class="outline-text-3" id="text-org4fac20b">
 <p>
 実際の設定は以下の通り
 </p>
 </div>
-<div id="outline-container-org7e2f43a" class="outline-4">
-<h4 id="org7e2f43a">依存/追加ライブラリのインストールと読み込み</h4>
-<div class="outline-text-4" id="text-org7e2f43a">
-</div><ul class="org-ul"><li><a id="orge16005b"></a>rail<br ><div class="outline-text-5" id="text-orge16005b">
+<div id="outline-container-org4d0633e" class="outline-4">
+<h4 id="org4d0633e">依存/追加ライブラリのインストールと読み込み</h4>
+<div class="outline-text-4" id="text-org4d0633e">
+</div><ul class="org-ul"><li><a id="org9d2287e"></a>rail<br ><div class="outline-text-5" id="text-org9d2287e">
 <p>
 SEMI や FLIM などの UA の表示に <a href="http://uwabami.github.com/rail/">rail</a> を使っている.
 ちなみに rail を有効にすると, 以下の様に User-Agent が表示される
@@ -1749,7 +1755,7 @@ SEMI や FLIM などの UA の表示に <a href="http://uwabami.github.com/rail/
 </pre>
 </div>
 </div></li>
-<li><a id="orge5de93e"></a>cp5022x を使う<br ><div class="outline-text-5" id="text-orge5de93e">
+<li><a id="orgbd7ad2a"></a>cp5022x を使う<br ><div class="outline-text-5" id="text-orgbd7ad2a">
 <p>
 ISO-2022-JP を CP50220 として扱う.
 <a href="http://d.hatena.ne.jp/kiwanami/20091103/1257243524">Wanderlustと文字コード</a> も参照のこと.
@@ -1760,7 +1766,7 @@ ISO-2022-JP を CP50220 として扱う.
 </pre>
 </div>
 </div></li>
-<li><a id="org3e0487b"></a>gcontacts-get-wl<br ><div class="outline-text-5" id="text-org3e0487b">
+<li><a id="orgc13c76d"></a>gcontacts-get-wl<br ><div class="outline-text-5" id="text-orgc13c76d">
 <p>
 <a href="https://github.com/uwabami/gcontacts-get-wl">gcontacts-get-wl</a> は
 Google Contacts の連絡先を Wanderlust の <code>.Address</code> に出力するだけのパッケージ．
@@ -1785,7 +1791,7 @@ oauth token は <code>pass</code> で管理している．中身は以下の通�
 </pre>
 </div>
 </div></li>
-<li><a id="orgd8c9a7d"></a>elscreen-wl<br ><div class="outline-text-5" id="text-orgd8c9a7d">
+<li><a id="orgcf9b6b8"></a>elscreen-wl<br ><div class="outline-text-5" id="text-orgcf9b6b8">
 <p>
 メール作成時に <code>elscreen</code> と連携してくれる．便利
 </p>
@@ -1794,7 +1800,7 @@ oauth token は <code>pass</code> で管理している．中身は以下の通�
 </pre>
 </div>
 </div></li>
-<li><a id="orge579370"></a>SEMI の追加設定<br ><div class="outline-text-5" id="text-orge579370">
+<li><a id="org866f837"></a>SEMI の追加設定<br ><div class="outline-text-5" id="text-org866f837">
 <p>
 HTML メールを表示するための設定: eww を使うことに．
 mime-setup がロードされる前に記述する必要あり.
@@ -1849,9 +1855,9 @@ text/plain を html より優先
 </div>
 </div></li></ul>
 </div>
-<div id="outline-container-orgb92b20f" class="outline-4">
-<h4 id="orgb92b20f">個人情報の設定</h4>
-<div class="outline-text-4" id="text-orgb92b20f">
+<div id="outline-container-org4bb7921" class="outline-4">
+<h4 id="org4bb7921">個人情報の設定</h4>
+<div class="outline-text-4" id="text-org4bb7921">
 <p>
 具体的な設定内容は以下のファイルに置いている
 </p>
@@ -1863,7 +1869,7 @@ text/plain を html より優先
 設定している内容は以下の通り
 </p>
 </div>
-<ul class="org-ul"><li><a id="org3ae0d77"></a>自身のメールアドレスと購読メーリングリストの設定<br ><div class="outline-text-5" id="text-org3ae0d77">
+<ul class="org-ul"><li><a id="org749e4ed"></a>自身のメールアドレスと購読メーリングリストの設定<br ><div class="outline-text-5" id="text-org749e4ed">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">From: &#12398;&#35373;&#23450;</span>
 (<span style="color: #FF7F7F;">setq</span> wl-from (concat user-full-name <span style="color: #7FFF7F;">" &lt;"</span> user-mail-address <span style="color: #7FFF7F;">"&gt;"</span>))
@@ -1886,7 +1892,7 @@ text/plain を html より優先
 </pre>
 </div>
 </div></li>
-<li><a id="orgf8d0e83"></a>送受信用サーバの設定<br ><div class="outline-text-5" id="text-orgf8d0e83">
+<li><a id="orge8f8bf2"></a>送受信用サーバの設定<br ><div class="outline-text-5" id="text-orge8f8bf2">
 <p>
 受信(IMAP)
 </p>
@@ -1908,7 +1914,7 @@ text/plain を html より優先
 </pre>
 </div>
 </div></li>
-<li><a id="org6f64e44"></a>From に応じて送信サーバをきりかえる.<br ><div class="outline-text-5" id="text-org6f64e44">
+<li><a id="org693a05f"></a>From に応じて送信サーバをきりかえる.<br ><div class="outline-text-5" id="text-org693a05f">
 <p>
 本来はメール作成時/返信時の template の切り替えなのだれど,
 送信時の SMTP の設定を from に合わせてきりかえるようにする.
@@ -1994,10 +2000,10 @@ from に応じて wl-from, wl-envelope-from,
 </div>
 </div></li></ul>
 </div>
-<div id="outline-container-orgfc41232" class="outline-4">
-<h4 id="orgfc41232">基本設定</h4>
-<div class="outline-text-4" id="text-orgfc41232">
-</div><ul class="org-ul"><li><a id="orgd552c12"></a>imap 関連<br ><div class="outline-text-5" id="text-orgd552c12">
+<div id="outline-container-orgeb3135d" class="outline-4">
+<h4 id="orgeb3135d">基本設定</h4>
+<div class="outline-text-4" id="text-orgeb3135d">
+</div><ul class="org-ul"><li><a id="org65e911b"></a>imap 関連<br ><div class="outline-text-5" id="text-org65e911b">
 <p>
 デフォルトの認証設定
 フォルダ名は UTF-7 でエンコードされているので,
@@ -2008,7 +2014,7 @@ from に応じて wl-from, wl-envelope-from,
 </pre>
 </div>
 </div></li>
-<li><a id="org0670426"></a>非同期チェック<br ><div class="outline-text-5" id="text-org0670426">
+<li><a id="org754c985"></a>非同期チェック<br ><div class="outline-text-5" id="text-org754c985">
 <p>
 なんか挙動が変な，ような&#x2026;．
 </p>
@@ -2017,7 +2023,7 @@ from に応じて wl-from, wl-envelope-from,
 </pre>
 </div>
 </div></li>
-<li><a id="orgb5c0c00"></a>フォルダの位置の default からの変更<br ><div class="outline-text-5" id="text-orgb5c0c00">
+<li><a id="orgae14b01"></a>フォルダの位置の default からの変更<br ><div class="outline-text-5" id="text-orgae14b01">
 <p>
 <code>~/.cache/wanderlust/</code> に集約している
 local の Mail folder の位置
@@ -2086,13 +2092,13 @@ GCALDaemon で LDAP サーバは使えなくなったのでコメントアウト
 </pre>
 </div>
 </div></li>
-<li><a id="org6521f47"></a>フォルダ編集時に backup を作成しない.<br ><div class="outline-text-5" id="text-org6521f47">
+<li><a id="org065fbe1"></a>フォルダ編集時に backup を作成しない.<br ><div class="outline-text-5" id="text-org065fbe1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-fldmgr-make-backup nil)
 </pre>
 </div>
 </div></li>
-<li><a id="orgc708bcd"></a>FCC, BCC の設定<br ><div class="outline-text-5" id="text-orgc708bcd">
+<li><a id="orge3942d0"></a>FCC, BCC の設定<br ><div class="outline-text-5" id="text-orge3942d0">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-fcc nil)
      <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">(setq wl-fcc "%Sent")</span>
@@ -2113,13 +2119,13 @@ bcc は常に自身に.
 </pre>
 </div>
 </div></li>
-<li><a id="org604a34e"></a>起動時に <code>%INBOX</code> のみをチェック<br ><div class="outline-text-5" id="text-org604a34e">
+<li><a id="org5154882"></a>起動時に <code>%INBOX</code> のみをチェック<br ><div class="outline-text-5" id="text-org5154882">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-auto-check-folder-name <span style="color: #7FFF7F;">"%INBOX"</span>)
 </pre>
 </div>
 </div></li>
-<li><a id="org1388e16"></a>フォルダ選択時の初期設定<br ><div class="outline-text-5" id="text-org1388e16">
+<li><a id="orgb0ab447"></a>フォルダ選択時の初期設定<br ><div class="outline-text-5" id="text-orgb0ab447">
 <p>
 imap の namespace を毎度入力するのが面倒なので，これを追加しておく.
 </p>
@@ -2128,7 +2134,7 @@ imap の namespace を毎度入力するのが面倒なので，これを追加�
 </pre>
 </div>
 </div></li>
-<li><a id="org39af8df"></a>confirm 関連の設定<br ><div class="outline-text-5" id="text-org39af8df">
+<li><a id="org6a45231"></a>confirm 関連の設定<br ><div class="outline-text-5" id="text-org6a45231">
 <p>
 スキャン時の問い合わせの無効化.
 ちなみに confirm を nil にしても 問い合わせが無いだけで
@@ -2158,7 +2164,7 @@ threshold は効くので, 明示的に nil に.
 </pre>
 </div>
 </div></li>
-<li><a id="orgdc0e5bb"></a>misc.<br ><div class="outline-text-5" id="text-orgdc0e5bb">
+<li><a id="org81f171f"></a>misc.<br ><div class="outline-text-5" id="text-org81f171f">
 <p>
 大きいメッセージを送信時に分割しない
 </p>
@@ -2202,7 +2208,7 @@ icon を使わない → GUI でもメニュー表示してないし, 体感的�
 </pre>
 </div>
 </div></li>
-<li><a id="org2e8a472"></a>dispose, delete の設定<br ><div class="outline-text-5" id="text-org2e8a472">
+<li><a id="orgac6557d"></a>dispose, delete の設定<br ><div class="outline-text-5" id="text-orgac6557d">
 <p>
 Gmail用に%INBOXでは削除を <code>wl-trash-folder</code> への移動ではなく，「delete」に．
 </p>
@@ -2220,7 +2226,7 @@ Gmail用に%INBOXでは削除を <code>wl-trash-folder</code> への移動では
 </pre>
 </div>
 </div></li>
-<li><a id="org2e9790b"></a>折り返しの設定<br ><div class="outline-text-5" id="text-org2e9790b">
+<li><a id="org2aedfed"></a>折り返しの設定<br ><div class="outline-text-5" id="text-org2aedfed">
 <p>
 message は折り返す.
 </p>
@@ -2236,7 +2242,7 @@ draft も折り返す
 </pre>
 </div>
 </div></li>
-<li><a id="org05a0330"></a>mode-line の設定<br ><div class="outline-text-5" id="text-org05a0330">
+<li><a id="org213b058"></a>mode-line の設定<br ><div class="outline-text-5" id="text-org213b058">
 <p>
 長いと嫌なのでイロイロ削る
 </p>
@@ -2247,9 +2253,9 @@ draft も折り返す
 </div>
 </div></li></ul>
 </div>
-<div id="outline-container-org314cae5" class="outline-4">
-<h4 id="org314cae5">キーバインド関連</h4>
-<div class="outline-text-4" id="text-org314cae5">
+<div id="outline-container-orgcdd8e2a" class="outline-4">
+<h4 id="orgcdd8e2a">キーバインド関連</h4>
+<div class="outline-text-4" id="text-orgcdd8e2a">
 <p>
 <code>use-package</code> で設定しておいた方が良いかなぁ&#x2026;
 </p>
@@ -2298,9 +2304,9 @@ draft も折り返す
 </div>
 </div>
 </div>
-<div id="outline-container-orgbd2a2f2" class="outline-4">
-<h4 id="orgbd2a2f2">flag とフォルダを行き来する関数の追加</h4>
-<div class="outline-text-4" id="text-orgbd2a2f2">
+<div id="outline-container-org447b2a7" class="outline-4">
+<h4 id="org447b2a7">flag とフォルダを行き来する関数の追加</h4>
+<div class="outline-text-4" id="text-org447b2a7">
 <p>
 "=" でフラグ付きフォルダと
 実際にメッセージのあるフォルダを行き来する.
@@ -2331,17 +2337,17 @@ Gmail の「スター付き」フォルダでも有効
 </div>
 </div>
 </div>
-<div id="outline-container-orgf603052" class="outline-4">
-<h4 id="orgf603052">summary-mode の表示のカスタマイズ</h4>
-<div class="outline-text-4" id="text-orgf603052">
-</div><ul class="org-ul"><li><a id="orgc19b508"></a>自分が差出人である mail は To:某 と表示<br ><div class="outline-text-5" id="text-orgc19b508">
+<div id="outline-container-orga6ba174" class="outline-4">
+<h4 id="orga6ba174">summary-mode の表示のカスタマイズ</h4>
+<div class="outline-text-4" id="text-orga6ba174">
+</div><ul class="org-ul"><li><a id="org01489a6"></a>自分が差出人である mail は To:某 と表示<br ><div class="outline-text-5" id="text-org01489a6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-summary-showto-folder-regexp <span style="color: #7FFF7F;">".*"</span>)
 (<span style="color: #FF7F7F;">setq</span> wl-summary-from-function 'wl-summary-default-from)
 </pre>
 </div>
 </div></li>
-<li><a id="org82f4793"></a>サマリ行の表示関連<br ><div class="outline-text-5" id="text-org82f4793">
+<li><a id="org2d15afe"></a>サマリ行の表示関連<br ><div class="outline-text-5" id="text-org2d15afe">
 <p>
 サマリ行のフォーマット指定
 </p>
@@ -2376,7 +2382,7 @@ Gmail の「スター付き」フォルダでも有効
 この変数は振り分け判定にも使用するのでそこで設定している
 </p>
 </div></li>
-<li><a id="orgfd65def"></a>Gmail 風に, 自分宛のメールに "&gt;" をつけて表示する<br ><div class="outline-text-5" id="text-orgfd65def">
+<li><a id="orgc6e112f"></a>Gmail 風に, 自分宛のメールに "&gt;" をつけて表示する<br ><div class="outline-text-5" id="text-orgc6e112f">
 <p>
 元ネタ <a href="http://d.hatena.ne.jp/khiker/20080206/wanderlust">http://d.hatena.ne.jp/khiker/20080206/wanderlust</a>
 </p>
@@ -2404,7 +2410,7 @@ Gmail の「スター付き」フォルダでも有効
 </pre>
 </div>
 </div></li>
-<li><a id="org58805b2"></a>添付ファイルがあったら, サマリ行に "@" を付ける<br ><div class="outline-text-5" id="text-org58805b2">
+<li><a id="orgf660a7a"></a>添付ファイルがあったら, サマリ行に "@" を付ける<br ><div class="outline-text-5" id="text-orgf660a7a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-summary-line-format-spec-alist
       (append wl-summary-line-format-spec-alist
@@ -2412,7 +2418,7 @@ Gmail の「スター付き」フォルダでも有効
 </pre>
 </div>
 </div></li>
-<li><a id="orgf7e444c"></a>クォートされた文字列もデコードする<br ><div class="outline-text-5" id="text-orgf7e444c">
+<li><a id="orgae012a6"></a>クォートされた文字列もデコードする<br ><div class="outline-text-5" id="text-orgae012a6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> mime-header-lexical-analyzer
       '(
@@ -2426,13 +2432,13 @@ Gmail の「スター付き」フォルダでも有効
 </pre>
 </div>
 </div></li>
-<li><a id="orgf88bfee"></a>Subject が変わってもスレッドを切らない<br ><div class="outline-text-5" id="text-orgf88bfee">
+<li><a id="org87667d6"></a>Subject が変わってもスレッドを切らない<br ><div class="outline-text-5" id="text-org87667d6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-summary-divide-thread-when-subject-changed nil)
 </pre>
 </div>
 </div></li>
-<li><a id="org57938f0"></a>Subject での Tab や複数スペースを無視<br ><div class="outline-text-5" id="text-org57938f0">
+<li><a id="org606b3ac"></a>Subject での Tab や複数スペースを無視<br ><div class="outline-text-5" id="text-org606b3ac">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defadvice</span> <span style="color: #BF7FFF;">std11-unfold-string</span> (after simply activate)
   (<span style="color: #FF7F7F;">setq</span> ad-return-value
@@ -2440,7 +2446,7 @@ Gmail の「スター付き」フォルダでも有効
 </pre>
 </div>
 </div></li>
-<li><a id="orgfd3a0b4"></a>重複メッセージを非表示に<br ><div class="outline-text-5" id="text-orgfd3a0b4">
+<li><a id="orgd125c78"></a>重複メッセージを非表示に<br ><div class="outline-text-5" id="text-orgd125c78">
 <p>
 フォルダ内の Message-ID が同じメールを非表示にする
 </p>
@@ -2452,7 +2458,7 @@ Gmail の「スター付き」フォルダでも有効
 </pre>
 </div>
 </div></li>
-<li><a id="orge48b153"></a>sort 順: 返信が来た順<br ><div class="outline-text-5" id="text-orge48b153">
+<li><a id="orge7152a3"></a>sort 順: 返信が来た順<br ><div class="outline-text-5" id="text-orge7152a3">
 <p>
 <code>flet</code> を書き換えるのが面倒で <code>el-x</code> にある <code>dflet</code> を使うように変更
 </p>
@@ -2485,9 +2491,9 @@ Gmail の「スター付き」フォルダでも有効
 </div>
 </div></li></ul>
 </div>
-<div id="outline-container-org20058ae" class="outline-4">
-<h4 id="org20058ae">振り分け設定</h4>
-<div class="outline-text-4" id="text-org20058ae">
+<div id="outline-container-org54592fe" class="outline-4">
+<h4 id="org54592fe">振り分け設定</h4>
+<div class="outline-text-4" id="text-org54592fe">
 <p>
 <code>$</code> 以外を振り分け対象に
 </p>
@@ -2496,7 +2502,7 @@ Gmail の「スター付き」フォルダでも有効
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="org1c94e9a"></a>振り分け判定に使用するヘッダ<br ><div class="outline-text-5" id="text-org1c94e9a">
+<ul class="org-ul"><li><a id="orgfe43d07"></a>振り分け判定に使用するヘッダ<br ><div class="outline-text-5" id="text-orgfe43d07">
 <p>
 添付の有無の表示にも使うので <code>Content-Type</code> も登録.
 あと <code>Delivered-To</code> はメールの検索の時に結構重宝している.
@@ -2527,9 +2533,9 @@ Gmail の「スター付き」フォルダでも有効
 </div>
 </div></li></ul>
 </div>
-<div id="outline-container-org6a011c6" class="outline-4">
-<h4 id="org6a011c6">日本語添付ファイル名のデコード</h4>
-<div class="outline-text-4" id="text-org6a011c6">
+<div id="outline-container-orgd4262db" class="outline-4">
+<h4 id="orgd4262db">日本語添付ファイル名のデコード</h4>
+<div class="outline-text-4" id="text-orgd4262db">
 <p>
 日本語の添付ファイルに関しては, いまだにうまくいかない時がある.
 </p>
@@ -2572,16 +2578,16 @@ Gmail の「スター付き」フォルダでも有効
 </div>
 </div>
 </div>
-<div id="outline-container-org70c2471" class="outline-4">
-<h4 id="org70c2471">メッセージ表示</h4>
-<div class="outline-text-4" id="text-org70c2471">
-</div><ul class="org-ul"><li><a id="orge5278d4"></a>いったん全て非表示に<br ><div class="outline-text-5" id="text-orge5278d4">
+<div id="outline-container-orgf096b96" class="outline-4">
+<h4 id="orgf096b96">メッセージ表示</h4>
+<div class="outline-text-4" id="text-orgf096b96">
+</div><ul class="org-ul"><li><a id="orga37bebb"></a>いったん全て非表示に<br ><div class="outline-text-5" id="text-orga37bebb">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-message-ignored-field-list '(<span style="color: #7FFF7F;">"^.*:"</span>))
 </pre>
 </div>
 </div></li>
-<li><a id="org1cc7c0b"></a>見たいヘッダだけ表示<br ><div class="outline-text-5" id="text-org1cc7c0b">
+<li><a id="orge8fe7ce"></a>見たいヘッダだけ表示<br ><div class="outline-text-5" id="text-orge8fe7ce">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-message-visible-field-list
       '(<span style="color: #7FFF7F;">"^Subject:"</span>
@@ -2594,7 +2600,7 @@ Gmail の「スター付き」フォルダでも有効
 </pre>
 </div>
 </div></li>
-<li><a id="orga267f4f"></a>表示順の変更<br ><div class="outline-text-5" id="text-orga267f4f">
+<li><a id="org9080ed9"></a>表示順の変更<br ><div class="outline-text-5" id="text-org9080ed9">
 <p>
 Mew 風&#x2026;
 </p>
@@ -2610,7 +2616,7 @@ Mew 風&#x2026;
 </pre>
 </div>
 </div></li>
-<li><a id="orgbfc12e3"></a>mime の画像表示の切り替え<br ><div class="outline-text-5" id="text-orgbfc12e3">
+<li><a id="org56a2d46"></a>mime の画像表示の切り替え<br ><div class="outline-text-5" id="text-org56a2d46">
 <p>
 <code>M-T</code> でトグル
 </p>
@@ -2627,7 +2633,7 @@ Mew 風&#x2026;
 </pre>
 </div>
 </div></li>
-<li><a id="orgf98cae2"></a>From, To を省略表示しない<br ><div class="outline-text-5" id="text-orgf98cae2">
+<li><a id="orgdf40805"></a>From, To を省略表示しない<br ><div class="outline-text-5" id="text-orgdf40805">
 <p>
 To や From にアドレスが沢山指定されていると省略されるので，これを無効化
 </p>
@@ -2637,9 +2643,9 @@ To や From にアドレスが沢山指定されていると省略されるの�
 </div>
 </div></li></ul>
 </div>
-<div id="outline-container-org5f67fb8" class="outline-4">
-<h4 id="org5f67fb8">作成/返信設定</h4>
-<div class="outline-text-4" id="text-org5f67fb8">
+<div id="outline-container-org429550d" class="outline-4">
+<h4 id="org429550d">作成/返信設定</h4>
+<div class="outline-text-4" id="text-org429550d">
 <p>
 自分宛のメールに返信する場合は <code>To:</code>, <code>Cc:</code> から自分のアドレスを削除
 </p>
@@ -2682,13 +2688,13 @@ To や From にアドレスが沢山指定されていると省略されるの�
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="org3694a8a"></a>draft mode で orgtbl を有効に<br ><div class="outline-text-5" id="text-org3694a8a">
+<ul class="org-ul"><li><a id="orga196e26"></a>draft mode で orgtbl を有効に<br ><div class="outline-text-5" id="text-orga196e26">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-hook 'wl-draft-mode-hook 'turn-on-orgtbl)
 </pre>
 </div>
 </div></li>
-<li><a id="orgf44c9bd"></a>c-sig<br ><div class="outline-text-5" id="text-orgf44c9bd">
+<li><a id="orgcdecb34"></a>c-sig<br ><div class="outline-text-5" id="text-orgcdecb34">
 <p>
 署名の選択に c-sig を使用している.
 設定は以下の通り. Mew 風に <code>C-c &lt;tab&gt;</code> で signature を挿入するようにしている
@@ -2711,9 +2717,9 @@ To や From にアドレスが沢山指定されていると省略されるの�
 </div>
 </div></li></ul>
 </div>
-<div id="outline-container-orgb822dc6" class="outline-4">
-<h4 id="orgb822dc6">Face の設定</h4>
-<div class="outline-text-4" id="text-orgb822dc6">
+<div id="outline-container-org5f32c67" class="outline-4">
+<h4 id="org5f32c67">Face の設定</h4>
+<div class="outline-text-4" id="text-org5f32c67">
 <p>
 デフォルトより細かく指定するために幾つかの face 定義を追加.
 </p>
@@ -2796,9 +2802,9 @@ To や From にアドレスが沢山指定されていると省略されるの�
 </div>
 </div>
 </div>
-<div id="outline-container-org4dfe04a" class="outline-4">
-<h4 id="org4dfe04a">GPG 署名</h4>
-<div class="outline-text-4" id="text-org4dfe04a">
+<div id="outline-container-org5e00b33" class="outline-4">
+<h4 id="org5e00b33">GPG 署名</h4>
+<div class="outline-text-4" id="text-org5e00b33">
 <p>
 以前は mailcrypt を使っていたけれど,
 epa があるので主にキーバインドの設定のみ.
@@ -2834,9 +2840,9 @@ epa があるので主にキーバインドの設定のみ.
 </div>
 </div>
 </div>
-<div id="outline-container-org8293d5d" class="outline-4">
-<h4 id="org8293d5d">検索</h4>
-<div class="outline-text-4" id="text-org8293d5d">
+<div id="outline-container-org67ccc89" class="outline-4">
+<h4 id="org67ccc89">検索</h4>
+<div class="outline-text-4" id="text-org67ccc89">
 <p>
 imap の検索か mu(maildir-utils) の検索.
 mu の検索が偶にセグフォるので悩み所
@@ -2868,9 +2874,9 @@ mu の検索が偶にセグフォるので悩み所
 </div>
 </div>
 </div>
-<div id="outline-container-org95766fb" class="outline-3">
-<h3 id="org95766fb">Linux Desktop で <code>mailto:</code> リンクを扱うために</h3>
-<div class="outline-text-3" id="text-org95766fb">
+<div id="outline-container-org79a7e5d" class="outline-3">
+<h3 id="org79a7e5d">Linux Desktop で <code>mailto:</code> リンクを扱うために</h3>
+<div class="outline-text-3" id="text-org79a7e5d">
 <p>
 ついでに <code>mailto</code> のリンクを emacsclient で扱うために，以下の関数を定義しておく
 </p>
@@ -2927,9 +2933,9 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 </div>
 </div>
 </div>
-<div id="outline-container-org74cf9e5" class="outline-2">
-<h2 id="org74cf9e5">補完: <code>helm</code></h2>
-<div class="outline-text-2" id="text-org74cf9e5">
+<div id="outline-container-orgec000a7" class="outline-2">
+<h2 id="orgec000a7">補完: <code>helm</code></h2>
+<div class="outline-text-2" id="text-orgec000a7">
 <p>
 以前はデフォルトの挙動が嫌で割とイロイロと設定していたのだけれど，
 最近はそんなに邪魔しない感じ&#x2026;なのかな? とりあえず現状は以下の通り．
@@ -2987,9 +2993,9 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 </pre>
 </div>
 </div>
-<div id="outline-container-org42195e9" class="outline-3">
-<h3 id="org42195e9">helm-flx</h3>
-<div class="outline-text-3" id="text-org42195e9">
+<div id="outline-container-org89c0bc4" class="outline-3">
+<h3 id="org89c0bc4">helm-flx</h3>
+<div class="outline-text-3" id="text-org89c0bc4">
 <p>
 曖昧検索は flx に任せる．かなり良い．
 </p>
@@ -3005,9 +3011,9 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 </div>
 </div>
 </div>
-<div id="outline-container-org5a34175" class="outline-3">
-<h3 id="org5a34175">helm-locate</h3>
-<div class="outline-text-3" id="text-org5a34175">
+<div id="outline-container-org6303e9d" class="outline-3">
+<h3 id="org6303e9d">helm-locate</h3>
+<div class="outline-text-3" id="text-org6303e9d">
 <p>
 default の <code>mlocate</code> の option を修正しておく．
 </p>
@@ -3020,9 +3026,9 @@ default の <code>mlocate</code> の option を修正しておく．
 </div>
 </div>
 </div>
-<div id="outline-container-org691b05f" class="outline-3">
-<h3 id="org691b05f">helm-descbinds</h3>
-<div class="outline-text-3" id="text-org691b05f">
+<div id="outline-container-orgb068981" class="outline-3">
+<h3 id="orgb068981">helm-descbinds</h3>
+<div class="outline-text-3" id="text-orgb068981">
 <p>
 <code>helm-M-x</code> の際にキーバインドが表示されるようになる
 </p>
@@ -3035,9 +3041,9 @@ default の <code>mlocate</code> の option を修正しておく．
 </div>
 </div>
 </div>
-<div id="outline-container-org9f40cb5" class="outline-3">
-<h3 id="org9f40cb5">helm-ag</h3>
-<div class="outline-text-3" id="text-org9f40cb5">
+<div id="outline-container-org5522201" class="outline-3">
+<h3 id="org5522201">helm-ag</h3>
+<div class="outline-text-3" id="text-org5522201">
 <p>
 ripgrep があればそっちを使うようにしてみた．
 </p>
@@ -3063,16 +3069,16 @@ ripgrep があればそっちを使うようにしてみた．
 </div>
 </div>
 </div>
-<div id="outline-container-orga17567d" class="outline-2">
-<h2 id="orga17567d">補完: <code>yasnippet</code>, <code>auto-complete</code> <code>[/]</code></h2>
-<div class="outline-text-2" id="text-orga17567d">
+<div id="outline-container-org3360837" class="outline-2">
+<h2 id="org3360837">補完: <code>yasnippet</code>, <code>auto-complete</code> <code>[/]</code></h2>
+<div class="outline-text-2" id="text-org3360837">
 <ul class="org-ul">
 <li class="off"><code>[&#xa0;]</code> 上手く設定できていないので保留</li>
 </ul>
 </div>
-<div id="outline-container-org9dc1ce8" class="outline-3">
-<h3 id="org9dc1ce8">yasnippet</h3>
-<div class="outline-text-3" id="text-org9dc1ce8">
+<div id="outline-container-org09fe55d" class="outline-3">
+<h3 id="org09fe55d">yasnippet</h3>
+<div class="outline-text-3" id="text-org09fe55d">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">yasnippet</span>
   <span style="color: #7FBFFF;">:disabled</span> t
@@ -3098,9 +3104,9 @@ ripgrep があればそっちを使うようにしてみた．
 </div>
 </div>
 </div>
-<div id="outline-container-org92614f1" class="outline-3">
-<h3 id="org92614f1">auto-complete</h3>
-<div class="outline-text-3" id="text-org92614f1">
+<div id="outline-container-org13b6088" class="outline-3">
+<h3 id="org13b6088">auto-complete</h3>
+<div class="outline-text-3" id="text-org13b6088">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">auto-complete-config</span>
   <span style="color: #7FBFFF;">:disabled</span> t
@@ -3137,12 +3143,12 @@ ripgrep があればそっちを使うようにしてみた．
 </div>
 </div>
 </div>
-<div id="outline-container-org99a5379" class="outline-2">
-<h2 id="org99a5379">校正，辞書等</h2>
-<div class="outline-text-2" id="text-org99a5379">
-</div><div id="outline-container-org0bab460" class="outline-3">
-<h3 id="org0bab460">spell checker</h3>
-<div class="outline-text-3" id="text-org0bab460">
+<div id="outline-container-org38e931c" class="outline-2">
+<h2 id="org38e931c">校正，辞書等</h2>
+<div class="outline-text-2" id="text-org38e931c">
+</div><div id="outline-container-orgd5b21f3" class="outline-3">
+<h3 id="orgd5b21f3">spell checker</h3>
+<div class="outline-text-3" id="text-orgd5b21f3">
 <p>
 ispell はコマンドとして <code>aspell</code> を利用する．
 </p>
@@ -3171,9 +3177,9 @@ flyspell-mode は別途有効化しておいた方が良いのかもしれない
 </div>
 </div>
 </div>
-<div id="outline-container-orga73a9ac" class="outline-3">
-<h3 id="orga73a9ac">辞書</h3>
-<div class="outline-text-3" id="text-orga73a9ac">
+<div id="outline-container-org8b8853c" class="outline-3">
+<h3 id="org8b8853c">辞書</h3>
+<div class="outline-text-3" id="text-org8b8853c">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">lookup</span>
   <span style="color: #7FBFFF;">:commands</span> (lookup lookup-region lookup-pattern)
@@ -3197,9 +3203,9 @@ flyspell-mode は別途有効化しておいた方が良いのかもしれない
 </div>
 </div>
 </div>
-<div id="outline-container-org29e19ae" class="outline-2">
-<h2 id="org29e19ae">カレンダー: <code>japanese-holidays</code></h2>
-<div class="outline-text-2" id="text-org29e19ae">
+<div id="outline-container-org31d81c4" class="outline-2">
+<h2 id="org31d81c4">カレンダー: <code>japanese-holidays</code></h2>
+<div class="outline-text-2" id="text-org31d81c4">
 <p>
 日本の祝日を表示するために <code>japanese-holidays</code> をインストール
 </p>
@@ -3236,16 +3242,16 @@ flyspell-mode は別途有効化しておいた方が良いのかもしれない
 </div>
 </div>
 </div>
-<div id="outline-container-org5d6ba7a" class="outline-2">
-<h2 id="org5d6ba7a">Org</h2>
-<div class="outline-text-2" id="text-org5d6ba7a">
+<div id="outline-container-orge3a1b07" class="outline-2">
+<h2 id="orge3a1b07">Org</h2>
+<div class="outline-text-2" id="text-orge3a1b07">
 <p>
 <code>org-mode</code> が無いと生きていけない体になりました
 </p>
 </div>
-<div id="outline-container-org5d6d472" class="outline-3">
-<h3 id="org5d6d472">基本設定: <code>org</code></h3>
-<div class="outline-text-3" id="text-org5d6d472">
+<div id="outline-container-org47d8bf2" class="outline-3">
+<h3 id="org47d8bf2">基本設定: <code>org</code></h3>
+<div class="outline-text-3" id="text-org47d8bf2">
 <p>
 目新しい設定はしていない，と思う．強いて言えば
 以前のメモの整理のために <a href="http://howm.osdn.jp/index-j.html">howm: Hitori Otegaru Wiki Modoki</a> も使っているので,
@@ -3310,9 +3316,9 @@ howm も有効にしている，ぐらい．
 </div>
 </div>
 </div>
-<div id="outline-container-orgc7deac4" class="outline-3">
-<h3 id="orgc7deac4">Orglink</h3>
-<div class="outline-text-3" id="text-orgc7deac4">
+<div id="outline-container-org113af80" class="outline-3">
+<h3 id="org113af80">Orglink</h3>
+<div class="outline-text-3" id="text-org113af80">
 <p>
 org 形式の link を他のモードでも使えるようにする
 </p>
@@ -3327,9 +3333,9 @@ org 形式の link を他のモードでも使えるようにする
 </div>
 </div>
 </div>
-<div id="outline-container-orge2149ec" class="outline-3">
-<h3 id="orge2149ec">Capture: メモ取り</h3>
-<div class="outline-text-3" id="text-orge2149ec">
+<div id="outline-container-orgd251acc" class="outline-3">
+<h3 id="orgd251acc">Capture: メモ取り</h3>
+<div class="outline-text-3" id="text-orgd251acc">
 <p>
 キーバインドは以前 changelog memo をやっていた時の癖で <code>C-x m</code> をメモにしている.
 他には wanderlust のメールを扱えるように <code>org-wl</code> を読み込んで template を追加したぐらい．
@@ -3374,9 +3380,9 @@ mu のインデックスの方が良いかもしれない，と最近思って�
 </div>
 </div>
 </div>
-<div id="outline-container-orgc10ca1e" class="outline-3">
-<h3 id="orgc10ca1e">Agenda: スケジュール，TODO 表示</h3>
-<div class="outline-text-3" id="text-orgc10ca1e">
+<div id="outline-container-org6aea546" class="outline-3">
+<h3 id="org6aea546">Agenda: スケジュール，TODO 表示</h3>
+<div class="outline-text-3" id="text-org6aea546">
 <p>
 GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で取得したデータも表示している．
 ついでに
@@ -3535,9 +3541,9 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </div>
 </div>
 </div>
-<div id="outline-container-org4bfe930" class="outline-3">
-<h3 id="org4bfe930"><code>org-journal</code>: 日記</h3>
-<div class="outline-text-3" id="text-org4bfe930">
+<div id="outline-container-orgdcc640c" class="outline-3">
+<h3 id="orgdcc640c">日記: <code>org-journal</code></h3>
+<div class="outline-text-3" id="text-orgdcc640c">
 <p>
 エントリ作成時に日付を入れるために <code>org-jounnal-new-entry</code> を <code>defadvice</code> している
 </p>
@@ -3545,7 +3551,9 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-journal</span>
   <span style="color: #7FBFFF;">:ensure</span> t
   <span style="color: #7FBFFF;">:if</span> (file-directory-p my:d:org)
-  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point))
+  <span style="color: #7FBFFF;">:commands</span> (org-journal-new-entry)
+  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point)
+         (<span style="color: #7FFF7F;">"C-x m"</span>   . org-journal-new-entry))
   <span style="color: #7FBFFF;">:init</span>
   (add-hook 'org-journal-mode-hook
             (<span style="color: #FF7F7F;">setq</span> truncate-lines t))
@@ -3571,7 +3579,8 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
                         (format-time-string org-journal-date-format)))
         ))
     )
-  (ad-activate 'org-journal-new-entry))
+  (ad-activate 'org-journal-new-entry)
+  )
   <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">Key bindings -- &#20351;&#12360;&#12390;&#12394;&#12356;...</span>
   <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">(define-key org-journal-mode-map (kbd "C-c C-f") 'org-journal-open-next-entry)</span>
   <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">(define-key org-journal-mode-map (kbd "C-c C-b") 'org-journal-open-previous-entry)</span>
@@ -3589,12 +3598,12 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </div>
 </div>
 </div>
-<div id="outline-container-org298dcc0" class="outline-3">
-<h3 id="org298dcc0">Babel</h3>
-<div class="outline-text-3" id="text-org298dcc0">
-</div><div id="outline-container-org0365ec7" class="outline-4">
-<h4 id="org0365ec7">org-src</h4>
-<div class="outline-text-4" id="text-org0365ec7">
+<div id="outline-container-org7fbce2f" class="outline-3">
+<h3 id="org7fbce2f">Babel</h3>
+<div class="outline-text-3" id="text-org7fbce2f">
+</div><div id="outline-container-org5a78024" class="outline-4">
+<h4 id="org5a78024">org-src</h4>
+<div class="outline-text-4" id="text-org5a78024">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-src</span>
   <span style="color: #7FBFFF;">:diminish</span> org-src-mode
@@ -3609,9 +3618,9 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </div>
 </div>
 </div>
-<div id="outline-container-org41620d1" class="outline-4">
-<h4 id="org41620d1">org-ditaa</h4>
-<div class="outline-text-4" id="text-org41620d1">
+<div id="outline-container-org2e5f023" class="outline-4">
+<h4 id="org2e5f023">org-ditaa</h4>
+<div class="outline-text-4" id="text-org2e5f023">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ob-ditaa</span>
   <span style="color: #7FBFFF;">:if</span> (file-exists-p (concat (getenv <span style="color: #7FFF7F;">"HOME"</span>) <span style="color: #7FFF7F;">"/bin/jditaa.jar"</span>))
@@ -3625,16 +3634,16 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </div>
 </div>
 </div>
-<div id="outline-container-org7aadc48" class="outline-3">
-<h3 id="org7aadc48">Org-gcal</h3>
-<div class="outline-text-3" id="text-org7aadc48">
+<div id="outline-container-org049f0ba" class="outline-3">
+<h3 id="org049f0ba">Org-gcal</h3>
+<div class="outline-text-3" id="text-org049f0ba">
 <p>
 Google カレンダーと org の予定を同期
 </p>
 </div>
-<div id="outline-container-org7655cfb" class="outline-4">
-<h4 id="org7655cfb">token 等の置き場所の変更</h4>
-<div class="outline-text-4" id="text-org7655cfb">
+<div id="outline-container-orgdc3fc41" class="outline-4">
+<h4 id="orgdc3fc41">token 等の置き場所の変更</h4>
+<div class="outline-text-4" id="text-orgdc3fc41">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">request</span>
   <span style="color: #7FBFFF;">:ensure</span> t
@@ -3646,9 +3655,9 @@ Google カレンダーと org の予定を同期
 </div>
 </div>
 </div>
-<div id="outline-container-org53c1f60" class="outline-4">
-<h4 id="org53c1f60">org-gcal 本体の設定</h4>
-<div class="outline-text-4" id="text-org53c1f60">
+<div id="outline-container-org09be5ff" class="outline-4">
+<h4 id="org09be5ff">org-gcal 本体の設定</h4>
+<div class="outline-text-4" id="text-org09be5ff">
 <p>
 実際の情報等は <code>password-store</code> を使って設定しておく.
 ついでに agenda 表示の際の色付けを設定．
@@ -3687,9 +3696,9 @@ password-store には multiline で設定を書く．例えば以下:
 </div>
 </div>
 </div>
-<div id="outline-container-org558628e" class="outline-3">
-<h3 id="org558628e">OrgとRedmine の連携: <code>orgmine</code></h3>
-<div class="outline-text-3" id="text-org558628e">
+<div id="outline-container-orgc71a475" class="outline-3">
+<h3 id="orgc71a475">OrgとRedmine の連携: <code>orgmine</code></h3>
+<div class="outline-text-3" id="text-orgc71a475">
 <p>
 素晴しい!! <a href="https://github.com/kametoku/orgmine">kametoku/orgmine: Emacs minor mode for org-mode with redmine integration</a>
 </p>
@@ -3719,9 +3728,9 @@ password-store には multiline で設定を書く．例えば以下:
 </div>
 </div>
 </div>
-<div id="outline-container-org5793a62" class="outline-3">
-<h3 id="org5793a62">Org-Wiki</h3>
-<div class="outline-text-3" id="text-org5793a62">
+<div id="outline-container-org8102b70" class="outline-3">
+<h3 id="org8102b70">Org-Wiki</h3>
+<div class="outline-text-3" id="text-org8102b70">
 <p>
 計算機関連のメモは <a href="https://github.com/caiorss/org-wiki">org-wiki</a> で書いています．
 </p>
@@ -3756,12 +3765,12 @@ password-store には multiline で設定を書く．例えば以下:
 </div>
 </div>
 </div>
-<div id="outline-container-orgea2a3ac" class="outline-3">
-<h3 id="orgea2a3ac">Export</h3>
-<div class="outline-text-3" id="text-orgea2a3ac">
-</div><div id="outline-container-orge6ef1f4" class="outline-4">
-<h4 id="orge6ef1f4">一般設定</h4>
-<div class="outline-text-4" id="text-orge6ef1f4">
+<div id="outline-container-org5b0e13a" class="outline-3">
+<h3 id="org5b0e13a">Export</h3>
+<div class="outline-text-3" id="text-org5b0e13a">
+</div><div id="outline-container-orgdac00c8" class="outline-4">
+<h4 id="orgdac00c8">一般設定</h4>
+<div class="outline-text-4" id="text-orgdac00c8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ox</span>
     <span style="color: #7FBFFF;">:config</span>
@@ -3772,9 +3781,9 @@ password-store には multiline で設定を書く．例えば以下:
 </div>
 </div>
 </div>
-<div id="outline-container-org1bff7fd" class="outline-4">
-<h4 id="org1bff7fd">Beamer export</h4>
-<div class="outline-text-4" id="text-org1bff7fd">
+<div id="outline-container-org1a5b7cd" class="outline-4">
+<h4 id="org1a5b7cd">Beamer export</h4>
+<div class="outline-text-4" id="text-org1a5b7cd">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ox-beamer</span>
   <span style="color: #7FBFFF;">:config</span>
@@ -3792,9 +3801,9 @@ LATEX<sub>CLASS</sub> に <code>my:beamer</code> を指定すると，上記設�
 </p>
 </div>
 </div>
-<div id="outline-container-org31a2574" class="outline-4">
-<h4 id="org31a2574">HTML 出力: <code>ox-html</code></h4>
-<div class="outline-text-4" id="text-org31a2574">
+<div id="outline-container-org25026ef" class="outline-4">
+<h4 id="org25026ef">HTML 出力: <code>ox-html</code></h4>
+<div class="outline-text-4" id="text-org25026ef">
 <p>
 後述の Jekyll 用の設定も参照のこと．
 </p>
@@ -3818,9 +3827,9 @@ LATEX<sub>CLASS</sub> に <code>my:beamer</code> を指定すると，上記設�
 </div>
 </div>
 </div>
-<div id="outline-container-org7362b93" class="outline-3">
-<h3 id="org7362b93">Jekyll 用の設定</h3>
-<div class="outline-text-3" id="text-org7362b93">
+<div id="outline-container-org4abb501" class="outline-3">
+<h3 id="org4abb501">Jekyll 用の設定</h3>
+<div class="outline-text-3" id="text-org4abb501">
 <p>
 Web サイトは Jekyll で作成しています．
 <a href="https://github.com/yoshinari-nomura/org-octopress">yoshinari-nomura/org-octopress: org-mode in octopress</a> の
@@ -3829,9 +3838,9 @@ html export の際に必要な yaml front matter を出力できるようにし�
 あと，src-block が liquid に解釈されない様に escape してます．
 </p>
 </div>
-<div id="outline-container-org5470901" class="outline-4">
-<h4 id="org5470901">Jekyll 用の Backend の定義</h4>
-<div class="outline-text-4" id="text-org5470901">
+<div id="outline-container-org4b19cc5" class="outline-4">
+<h4 id="org4b19cc5">Jekyll 用の Backend の定義</h4>
+<div class="outline-text-4" id="text-org4b19cc5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(org-export-define-derived-backend 'jekyll 'html
   <span style="color: #7FBFFF;">:menu-entry</span>
@@ -3846,6 +3855,8 @@ html export の際に必要な yaml front matter を出力できるようにし�
   '((<span style="color: #7FBFFF;">:layout</span>    <span style="color: #7FFF7F;">"LAYOUT"</span> nil <span style="color: #7FFF7F;">"default"</span>)
     (<span style="color: #7FBFFF;">:ref</span>       <span style="color: #7FFF7F;">"REF"</span> nil nil)
     (<span style="color: #7FBFFF;">:permalink</span> <span style="color: #7FFF7F;">"PERMALINK"</span> nil nil)
+    (<span style="color: #7FBFFF;">:redirect_from</span> <span style="color: #7FFF7F;">"redirect_from"</span> nil nil )
+    (<span style="color: #7FBFFF;">:redirect_to</span> <span style="color: #7FFF7F;">"redirect_to"</span> nil nil )
     )
   <span style="color: #7FBFFF;">:filters-alist</span>
   '((<span style="color: #7FBFFF;">:filter-final-output</span> . org-jekyll-finalized))
@@ -3856,6 +3867,7 @@ html export の際に必要な yaml front matter を出力できるようにし�
   (concat (org-jekyll--yaml-front-matter info) contents))
 <span style="color: #e5e5e6;">;;; </span><span style="color: #e5e5e6;">&#24190;&#12388;&#12363;&#12398;&#25991;&#23383;&#21015;&#12434;&#32622;&#25563;&#12377;&#12427;</span>
 <span style="color: #e5e5e6;">;;  </span><span style="color: #e5e5e6;">- liquid template&#12395;&#35492;&#35469;&#12373;&#12428;&#12427; `</span><span style="color: #FFBF7F;">&#123;%</span><span style="color: #e5e5e6;">', `</span><span style="color: #FFBF7F;">%&#125;</span><span style="color: #e5e5e6;">'</span>
+<span style="color: #e5e5e6;">;;  </span><span style="color: #e5e5e6;">- `:' &#12398; escape</span>
 <span style="color: #e5e5e6;">;;  </span><span style="color: #e5e5e6;">- table-of-contents &#12398;&#20966;&#29702;</span>
 (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">org-jekyll-finalized</span> (contents _backend info)
   <span style="color: #7FFF7F;">"Publish src-block to html, Escape liquid tags, e.g. &#123;%, %&#125;"</span>
@@ -3864,6 +3876,13 @@ html export の際に必要な yaml front matter を出力できるようにし�
     (perform-replace <span style="color: #7FFF7F;">"&amp;$58;"</span> <span style="color: #7FFF7F;">"&amp;#58;"</span> nil nil nil nil nil (point-min) (point-max))
     (perform-replace <span style="color: #7FFF7F;">"&#123;%"</span> <span style="color: #7FFF7F;">"&amp;#123;%"</span> nil nil nil nil nil (point-min) (point-max))
     (perform-replace <span style="color: #7FFF7F;">"%&#125;"</span> <span style="color: #7FFF7F;">"%&amp;#125;"</span> nil nil nil nil nil (point-min) (point-max))
+    (perform-replace <span style="color: #7FFF7F;">"&lt;nav id=\"table-of-contents"</span> <span style="color: #7FFF7F;">"\n</span>
+<span style="color: #7FFF7F;">&lt;div id=\"toc-wrapper\"&gt;</span>
+<span style="color: #7FFF7F;">&lt;nav id=\"table-of-contents"</span> nil nil nil nil nil (point-min) (point-max))
+    (perform-replace <span style="color: #7FFF7F;">"&lt;/nav&gt;"</span> <span style="color: #7FFF7F;">"&lt;/nav&gt;</span>
+<span style="color: #7FFF7F;">&lt;div class=\"col-sm-offset-11 col-sm-1 col-xs-offset-11 col-xs-1\"&gt;</span>
+<span style="color: #7FFF7F;">  &lt;a href=\"#toc-toggle\" class=\"btn toc-btn\" id=\"toc-toggle\"&gt;&#30446;&#27425;&lt;/a&gt;</span>
+<span style="color: #7FFF7F;">&lt;/div&gt;"</span> nil nil nil nil nil (point-min) (point-max))
     (set-auto-mode t)
     (buffer-substring-no-properties (point-min) (point-max))))
 <span style="color: #e5e5e6;">;;</span>
@@ -3884,6 +3903,10 @@ html export の際に必要な yaml front matter を出力できるようにし�
          (org-jekyll--get-option info <span style="color: #7FBFFF;">:ref</span> ))
         (jekyll-permalink
          (org-jekyll--get-option info <span style="color: #7FBFFF;">:permalink</span> ))
+        (jekyll-redirect-from
+         (org-jekyll--get-option info <span style="color: #7FBFFF;">:redirect_from</span> ))
+        (jekyll-redirect-to
+         (org-jekyll--get-option info <span style="color: #7FBFFF;">:redirect_to</span> ))
         (convert-to-yaml-list
          (<span style="color: #FF7F7F;">lambda</span> (arg)
            (mapconcat #'(lambda (text)(concat <span style="color: #7FFF7F;">"\n- "</span> text)) (split-string arg) <span style="color: #7FFF7F;">" "</span>))))
@@ -3897,6 +3920,10 @@ html export の際に必要な yaml front matter を出力できるようにし�
        (concat <span style="color: #7FFF7F;">"\nref: "</span> jekyll-ref))
      (<span style="color: #FF7F7F;">unless</span> (string-equal jekyll-permalink <span style="color: #7FFF7F;">""</span>)
        (concat <span style="color: #7FFF7F;">"\npermalink: "</span> jekyll-permalink))
+     (<span style="color: #FF7F7F;">unless</span> (string-equal jekyll-redirect-from <span style="color: #7FFF7F;">""</span>)
+       (concat <span style="color: #7FFF7F;">"\nredirect_from: "</span> jekyll-redirect-from))
+     (<span style="color: #FF7F7F;">unless</span> (string-equal jekyll-redirect-to <span style="color: #7FFF7F;">""</span>)
+       (concat <span style="color: #7FFF7F;">"\nredirect_to: "</span> jekyll-redirect-to))
      <span style="color: #7FFF7F;">"\n---\n"</span>)))
 
 (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">org-jekyll-export-as-html</span>
@@ -3916,9 +3943,9 @@ html export の際に必要な yaml front matter を出力できるようにし�
 </div>
 </div>
 </div>
-<div id="outline-container-org5c7aa24" class="outline-4">
-<h4 id="org5c7aa24">Project の定義</h4>
-<div class="outline-text-4" id="text-org5c7aa24">
+<div id="outline-container-orgfd9d1a4" class="outline-4">
+<h4 id="orgfd9d1a4">Project の定義</h4>
+<div class="outline-text-4" id="text-orgfd9d1a4">
 <p>
 <code>org-publish-all</code> 等で batch で一括出力できるようにしておきます．
 </p>
@@ -3935,20 +3962,11 @@ html export の際に必要な yaml front matter を出力できるようにし�
         '((<span style="color: #7FFF7F;">"web"</span>
            <span style="color: #7FBFFF;">:base-directory</span> <span style="color: #7FFF7F;">"~/Public/"</span>
            <span style="color: #7FBFFF;">:base-extension</span> <span style="color: #7FFF7F;">"org"</span>
-           <span style="color: #7FBFFF;">:exclude</span> <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">_.*</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">cc-env</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>
+           <span style="color: #7FBFFF;">:exclude</span> <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">_.*</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>
            <span style="color: #7FBFFF;">:publishing-directory</span> <span style="color: #7FFF7F;">"~/Public/"</span>
            <span style="color: #7FBFFF;">:publishing-function</span> org-publish-to-jekyll
            <span style="color: #7FBFFF;">:recursive</span> t
-           <span style="color: #7FBFFF;">:headline-level</span> 2
-           )
-          (<span style="color: #7FFF7F;">"cc-env"</span>
-           <span style="color: #7FBFFF;">:base-directory</span> <span style="color: #7FFF7F;">"~/Public/cc-env"</span>
-           <span style="color: #7FBFFF;">:base-extension</span> <span style="color: #7FFF7F;">"org"</span>
-           <span style="color: #7FBFFF;">:exclude</span> <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">_.*</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>
-           <span style="color: #7FBFFF;">:publishing-directory</span> <span style="color: #7FFF7F;">"~/Public/cc-env"</span>
-           <span style="color: #7FBFFF;">:publishing-function</span> org-publish-to-jekyll
-           <span style="color: #7FBFFF;">:with-toc</span> t
-           <span style="color: #7FBFFF;">:recursive</span> t
+           <span style="color: #7FBFFF;">:with-toc</span> nil
            <span style="color: #7FBFFF;">:headline-level</span> 2
            )
           ))
@@ -3959,9 +3977,9 @@ html export の際に必要な yaml front matter を出力できるようにし�
 </div>
 </div>
 </div>
-<div id="outline-container-org5f2d10c" class="outline-2">
-<h2 id="org5f2d10c">Howm</h2>
-<div class="outline-text-2" id="text-org5f2d10c">
+<div id="outline-container-org1119e55" class="outline-2">
+<h2 id="org1119e55">Howm</h2>
+<div class="outline-text-2" id="text-org1119e55">
 <p>
 Org を使う前は Howm を使っていました.
 過去のメモを検索するためだけに未だに Howm を使っています.
@@ -4072,12 +4090,12 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
 </div>
 </div>
 </div>
-<div id="outline-container-org407b1d1" class="outline-2">
-<h2 id="org407b1d1">プログラム環境</h2>
-<div class="outline-text-2" id="text-org407b1d1">
-</div><div id="outline-container-org55dde94" class="outline-3">
-<h3 id="org55dde94">コードのタグ付け: <code>ggtags</code>, <code>helm-gtags</code></h3>
-<div class="outline-text-3" id="text-org55dde94">
+<div id="outline-container-orgb708304" class="outline-2">
+<h2 id="orgb708304">プログラム環境</h2>
+<div class="outline-text-2" id="text-orgb708304">
+</div><div id="outline-container-orgfed21fb" class="outline-3">
+<h3 id="orgfed21fb">コードのタグ付け: <code>ggtags</code>, <code>helm-gtags</code></h3>
+<div class="outline-text-3" id="text-orgfed21fb">
 <p>
 無いと途方に暮れる．
 <del>Debian 版の GNU Global がすったもんだの挙句ようやく更新された!</del>
@@ -4106,9 +4124,9 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
 </div>
 </div>
 </div>
-<div id="outline-container-org78116d6" class="outline-3">
-<h3 id="org78116d6">プロジェクト管理: <a href="https://github.com/bbatsov/projectile">bbatsov/projectile</a></h3>
-<div class="outline-text-3" id="text-org78116d6">
+<div id="outline-container-orgefbcaa4" class="outline-3">
+<h3 id="orgefbcaa4">プロジェクト管理: <a href="https://github.com/bbatsov/projectile">bbatsov/projectile</a></h3>
+<div class="outline-text-3" id="text-orgefbcaa4">
 <p>
 これも無いと途方に暮れる．<a href="https://github.com/bbatsov/helm-projectile">bbatsov/helm-projectile</a> と一緒に使っている.
 </p>
@@ -4137,9 +4155,9 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
 </div>
 </div>
 </div>
-<div id="outline-container-org7c44570" class="outline-3">
-<h3 id="org7c44570">VCS: <code>magit</code>, <code>git-gutter</code></h3>
-<div class="outline-text-3" id="text-org7c44570">
+<div id="outline-container-org28430bc" class="outline-3">
+<h3 id="org28430bc">VCS: <code>magit</code>, <code>git-gutter</code></h3>
+<div class="outline-text-3" id="text-org28430bc">
 <p>
 magit は Emacs の Git Frontend.
 結局の所 CUI でコマンド叩く事も多いけれど，これはこれで重宝している．
@@ -4179,9 +4197,9 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-org1b7c7ff" class="outline-3">
-<h3 id="org1b7c7ff">flycheck</h3>
-<div class="outline-text-3" id="text-org1b7c7ff">
+<div id="outline-container-orgbd96de6" class="outline-3">
+<h3 id="orgbd96de6">flycheck</h3>
+<div class="outline-text-3" id="text-orgbd96de6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">flycheck</span>
   <span style="color: #7FBFFF;">:ensure</span> t
@@ -4216,9 +4234,9 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-orgf528ad1" class="outline-3">
-<h3 id="orgf528ad1">rainbow-mode</h3>
-<div class="outline-text-3" id="text-orgf528ad1">
+<div id="outline-container-org4bfc6dd" class="outline-3">
+<h3 id="org4bfc6dd">rainbow-mode</h3>
+<div class="outline-text-3" id="text-org4bfc6dd">
 <p>
 <code>#RRGGBB</code> のカラーコードに勝手に色が付く．CSS の編集中なんかで地味に便利．
 </p>
@@ -4230,9 +4248,9 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-org18908e1" class="outline-3">
-<h3 id="org18908e1">Textile</h3>
-<div class="outline-text-3" id="text-org18908e1">
+<div id="outline-container-org81fc99d" class="outline-3">
+<h3 id="org81fc99d">Textile</h3>
+<div class="outline-text-3" id="text-org81fc99d">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">textile-mode</span>
   <span style="color: #7FBFFF;">:ensure</span> t
@@ -4241,9 +4259,9 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-org1a91986" class="outline-3">
-<h3 id="org1a91986">Markdown</h3>
-<div class="outline-text-3" id="text-org1a91986">
+<div id="outline-container-org73b4fcd" class="outline-3">
+<h3 id="org73b4fcd">Markdown</h3>
+<div class="outline-text-3" id="text-org73b4fcd">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">markdown-mode</span>
   <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"pandoc"</span>)
@@ -4263,9 +4281,9 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-org67d133a" class="outline-3">
-<h3 id="org67d133a">SCSS</h3>
-<div class="outline-text-3" id="text-org67d133a">
+<div id="outline-container-org7869f07" class="outline-3">
+<h3 id="org7869f07">SCSS</h3>
+<div class="outline-text-3" id="text-org7869f07">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">scss-mode</span>
   <span style="color: #7FBFFF;">:ensure</span> t
@@ -4277,9 +4295,9 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-org9cddc0a" class="outline-3">
-<h3 id="org9cddc0a">YAML</h3>
-<div class="outline-text-3" id="text-org9cddc0a">
+<div id="outline-container-org6b5028b" class="outline-3">
+<h3 id="org6b5028b">YAML</h3>
+<div class="outline-text-3" id="text-org6b5028b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">yaml-mode</span>
   <span style="color: #7FBFFF;">:mode</span> <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">\.yml</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\.yaml</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>
@@ -4288,18 +4306,18 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-org397b3eb" class="outline-3">
-<h3 id="org397b3eb">設定ファイル: <code>generic-x</code></h3>
-<div class="outline-text-3" id="text-org397b3eb">
+<div id="outline-container-org869ad30" class="outline-3">
+<h3 id="org869ad30">設定ファイル: <code>generic-x</code></h3>
+<div class="outline-text-3" id="text-org869ad30">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">generic-x</span>)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgacc128c" class="outline-3">
-<h3 id="orgacc128c">Ruby</h3>
-<div class="outline-text-3" id="text-orgacc128c">
+<div id="outline-container-orgf78ca70" class="outline-3">
+<h3 id="orgf78ca70">Ruby</h3>
+<div class="outline-text-3" id="text-orgf78ca70">
 <p>
 素の <code>ruby-mode</code>. <code>Gemfile</code> も ruby-mode で扱う
 </p>
@@ -4357,9 +4375,9 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-org3f63b26" class="outline-3">
-<h3 id="org3f63b26">C</h3>
-<div class="outline-text-3" id="text-org3f63b26">
+<div id="outline-container-org36fe2e4" class="outline-3">
+<h3 id="org36fe2e4">C</h3>
+<div class="outline-text-3" id="text-org36fe2e4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">cc-mode</span>
   <span style="color: #7FBFFF;">:init</span>
@@ -4385,9 +4403,9 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-org7dc256c" class="outline-3">
-<h3 id="org7dc256c">Fortran</h3>
-<div class="outline-text-3" id="text-org7dc256c">
+<div id="outline-container-orgbaf5813" class="outline-3">
+<h3 id="orgbaf5813">Fortran</h3>
+<div class="outline-text-3" id="text-orgbaf5813">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">f90</span>
   <span style="color: #7FBFFF;">:mode</span> (<span style="color: #7FFF7F;">"\\.</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">f|F</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">90|95|03|08</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">$"</span> . f90-mode)
@@ -4417,9 +4435,9 @@ git-gutter で差分を視覚的に表示してくれる．
 </div>
 </div>
 </div>
-<div id="outline-container-org9f16ed0" class="outline-3">
-<h3 id="org9f16ed0">AUCTeX</h3>
-<div class="outline-text-3" id="text-org9f16ed0">
+<div id="outline-container-org8df82b0" class="outline-3">
+<h3 id="org8df82b0">AUCTeX</h3>
+<div class="outline-text-3" id="text-org8df82b0">
 <p>
 Debian パッケージ版を使う．やっている事は
 </p>
@@ -4503,9 +4521,9 @@ file encoding を取得する関数と latexmk の実行用関数をカスタマ
 </div>
 </div>
 </div>
-<div id="outline-container-org8a8c5cd" class="outline-3">
-<h3 id="org8a8c5cd">AUCTeX と Zotero との連携</h3>
-<div class="outline-text-3" id="text-org8a8c5cd">
+<div id="outline-container-org7162da7" class="outline-3">
+<h3 id="org7162da7">AUCTeX と Zotero との連携</h3>
+<div class="outline-text-3" id="text-org7162da7">
 <p>
 イマイチ使いこなせてないけれど．
 </p>
@@ -4524,9 +4542,9 @@ file encoding を取得する関数と latexmk の実行用関数をカスタマ
 </div>
 </div>
 </div>
-<div id="outline-container-orgde0aba8" class="outline-2">
-<h2 id="orgde0aba8">フォントと色</h2>
-<div class="outline-text-2" id="text-orgde0aba8">
+<div id="outline-container-org81cfc7d" class="outline-2">
+<h2 id="org81cfc7d">フォントと色</h2>
+<div class="outline-text-2" id="text-org81cfc7d">
 <p>
 そろそろテーマにした方が良い，とは思ってはいる．
 </p>
@@ -4680,9 +4698,9 @@ file encoding を取得する関数と latexmk の実行用関数をカスタマ
 </div>
 </div>
 </div>
-<div id="outline-container-org0b49426" class="outline-2">
-<h2 id="org0b49426"><code>diminish</code>: モードラインの短縮表示</h2>
-<div class="outline-text-2" id="text-org0b49426">
+<div id="outline-container-orged7a158" class="outline-2">
+<h2 id="orged7a158"><code>diminish</code>: モードラインの短縮表示</h2>
+<div class="outline-text-2" id="text-orged7a158">
 <p>
 <code>use-package</code> で読み込まれているので，可能な限りそちらで指定するように変更．
 </p>
@@ -4709,9 +4727,9 @@ file encoding を取得する関数と latexmk の実行用関数をカスタマ
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa1db07" class="outline-2">
-<h2 id="orgaa1db07"><code>powerline</code>: モードラインを綺麗に</h2>
-<div class="outline-text-2" id="text-orgaa1db07">
+<div id="outline-container-org3a38ed3" class="outline-2">
+<h2 id="org3a38ed3"><code>powerline</code>: モードラインを綺麗に</h2>
+<div class="outline-text-2" id="text-org3a38ed3">
 <p>
 <a href="https://github.com/milkypostman/powerline">milkypostman/powerline: emacs powerline</a> で modeline を良い感じに表示する．
 </p>
@@ -4803,9 +4821,9 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
 </div>
 </div>
 </div>
-<div id="outline-container-orgc3e4eda" class="outline-2">
-<h2 id="orgc3e4eda">基本的なキーバインドの設定 <code>[/]</code></h2>
-<div class="outline-text-2" id="text-orgc3e4eda">
+<div id="outline-container-orgcfc033f" class="outline-2">
+<h2 id="orgcfc033f">基本的なキーバインドの設定 <code>[/]</code></h2>
+<div class="outline-text-2" id="text-orgcfc033f">
 <ul class="org-ul">
 <li class="off"><code>[&#xa0;]</code> 設定が効かない事がある．読み込む順番が関係するのかな&#x2026;?</li>
 </ul>
@@ -4834,9 +4852,9 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
 </p>
 </div>
 </div>
-<div id="outline-container-org6c42a50" class="outline-2">
-<h2 id="org6c42a50">起動時間の計測</h2>
-<div class="outline-text-2" id="text-org6c42a50">
+<div id="outline-container-org5a2f839" class="outline-2">
+<h2 id="org5a2f839">起動時間の計測</h2>
+<div class="outline-text-2" id="text-org5a2f839">
 <p>
 <a href="http://memo.sugyan.com/entry/20120120/1327037494">起動時間を計測する 改訂版 - すぎゃーんメモ</a>
 </p>
@@ -4849,9 +4867,9 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
 </div>
 </div>
 </div>
-<div id="outline-container-org6e71c29" class="outline-2">
-<h2 id="org6e71c29">LICENSE</h2>
-<div class="outline-text-2" id="text-org6e71c29">
+<div id="outline-container-org7abbc70" class="outline-2">
+<h2 id="org7abbc70">LICENSE</h2>
+<div class="outline-text-2" id="text-org7abbc70">
 <p>
 幾つかの関数の元ネタとして Emacs 本体のコードを参照したので，GPL-3 or later です．
 </p>
