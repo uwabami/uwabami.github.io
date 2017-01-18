@@ -8,10 +8,10 @@
         overflow-x: hidden
     }
     #toc-wrapper {
-        padding-left: 0;
+        padding-right: 0;
     }
     #toc-wrapper.toggled {
-        padding-left: 300px;
+        padding-right: 300px;
     }
     #toc-wrapper.toggled #table-of-contents {
         width: 300px;
@@ -27,10 +27,11 @@
         top: 80px;
         text-align: center;
         right: 15px;
+        display: inline-block;
     }
-    /* .toc-btn.toggled{ */
-    /*     margin-left: -30px; */
-    /* } */
+    .toc-btn.toggled{
+        display: none;
+    }
     .toc-btn:link {
         color: #fcfcfc !important;
     }
@@ -46,8 +47,8 @@
     #table-of-contents{
         position:fixed;
         top: 80px;
-        left: 300px;
-        margin-left: -300px;
+        right: 300px;
+        margin-right: -300px;
         width: 0px ;
         overflow-x:hidden;
         overflow-y:scroll;
@@ -75,10 +76,10 @@
         overflow-x: hidden
     }
     #toc-wrapper {
-        padding-left: 0;
+        padding-right: 0;
     }
     #toc-wrapper.toggled {
-        padding-left: 300px;
+        padding-right: 300px;
     }
     #toc-wrapper.toggled #table-of-contents {
         width: 300px;
@@ -94,9 +95,9 @@
         top: 80px;
         right: calc( (100% - 750px) / 2 + 15px );
     }
-    /* .toc-btn.toggled{ */
-    /*     margin-left: -20px; */
-    /* } */
+    .toc-btn.toggled{
+        display: none;
+    }
     .toc-btn:link {
         color: #fcfcfc !important;
     }
@@ -112,8 +113,8 @@
     #table-of-contents{
         position:fixed;
         top: 80px;
-        left: 300px;
-        margin-left: -300px;
+        right: 300px;
+        margin-right: -300px;
         width: 0px ;
         overflow-x:hidden;
         overflow-y:scroll;
@@ -230,7 +231,8 @@
 }
 
 #table-of-contents ul{
-    margin-bottom: 0
+    margin-bottom: 0;
+    padding: 0 0 0 12px;
 }
 
 #table-of-contents li.divide-top{
@@ -267,7 +269,7 @@
 }
 
 #table-of-contents li ul li a{
-    /* background: #c9c9c9; */
+    background: #c9c9c9;
     padding: 0.4045em 2.427em
 }
 
@@ -285,7 +287,7 @@
 
 #table-of-contents li ul li a{
     margin-bottom: 0;
-    color: #b3b3b3;
+    color: #a3a3a3;
     font-weight: normal
 }
 
@@ -313,7 +315,12 @@
     display: block;
     color: #fcfcfc;
     font-size:  100%;
-    margin-bottom: 0.809em
+    margin-top: 0px;
+    margin-bottom: 0.809em;
+}
+#table-of-contents h2 a{
+    font-weight: bold;
+    color: #fcfcfc ;
 }
 
 #table-of-contents ul.nav li ul li {

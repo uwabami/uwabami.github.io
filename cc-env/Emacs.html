@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-18 23:53:56
+date: 2017-01-19 02:44:25
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgf95ed47">標準機能の設定</a>
 <ul>
 <li><a href="#orgca82060">表示関連</a></li>
-<li><a href="#org12ae9aa">編集関連</a></li>
+<li><a href="#orga3f4e1b">編集関連</a></li>
 <li><a href="#org24778a8">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -72,10 +72,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org316cfac">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#orgf1519de">Emacs 本体側の設定</a></li>
+<li><a href="#org2d2304d">Emacs 本体側の設定</a></li>
 <li><a href="#orgbc8438c">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org7ee708c">編集関連</a></li>
+<li><a href="#org18057c8">編集関連</a></li>
 <li><a href="#org3ec5032">インクリメンタルサーチ</a></li>
 <li><a href="#org9fa4fd2">辞書の設定</a></li>
 <li><a href="#org257bcd3">動的補完</a></li>
@@ -96,19 +96,77 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org255627a">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#orgd0e8c3c">Emacs 本体側の設定</a></li>
+<li><a href="#orgb1b926c">Emacs 本体側の設定</a></li>
 <li><a href="#orgc36dcb0">Wanderlust 本体の設定</a>
 <ul>
-<li><a href="#org7e2f43a">依存/追加ライブラリのインストールと読み込み</a></li>
-<li><a href="#orgb92b20f">個人情報の設定</a></li>
-<li><a href="#orgfc41232">基本設定</a></li>
+<li><a href="#org7e2f43a">依存/追加ライブラリのインストールと読み込み</a>
+<ul>
+<li><a href="#orge16005b">rail</a></li>
+<li><a href="#orge5de93e">cp5022x を使う</a></li>
+<li><a href="#org3e0487b">gcontacts-get-wl</a></li>
+<li><a href="#orgd8c9a7d">elscreen-wl</a></li>
+<li><a href="#orge579370">SEMI の追加設定</a></li>
+</ul>
+</li>
+<li><a href="#orgb92b20f">個人情報の設定</a>
+<ul>
+<li><a href="#org3ae0d77">自身のメールアドレスと購読メーリングリストの設定</a></li>
+<li><a href="#orgf8d0e83">送受信用サーバの設定</a></li>
+<li><a href="#org6f64e44">From に応じて送信サーバをきりかえる.</a></li>
+</ul>
+</li>
+<li><a href="#orgfc41232">基本設定</a>
+<ul>
+<li><a href="#orgd552c12">imap 関連</a></li>
+<li><a href="#org0670426">非同期チェック</a></li>
+<li><a href="#orgb5c0c00">フォルダの位置の default からの変更</a></li>
+<li><a href="#org6521f47">フォルダ編集時に backup を作成しない.</a></li>
+<li><a href="#orgc708bcd">FCC, BCC の設定</a></li>
+<li><a href="#org604a34e">起動時に <code>%INBOX</code> のみをチェック</a></li>
+<li><a href="#org1388e16">フォルダ選択時の初期設定</a></li>
+<li><a href="#org39af8df">confirm 関連の設定</a></li>
+<li><a href="#orgdc0e5bb">misc.</a></li>
+<li><a href="#org2e8a472">dispose, delete の設定</a></li>
+<li><a href="#org2e9790b">折り返しの設定</a></li>
+<li><a href="#org05a0330">mode-line の設定</a></li>
+</ul>
+</li>
 <li><a href="#org314cae5">キーバインド関連</a></li>
 <li><a href="#orgbd2a2f2">flag とフォルダを行き来する関数の追加</a></li>
-<li><a href="#orgf603052">summary-mode の表示のカスタマイズ</a></li>
-<li><a href="#org20058ae">振り分け設定</a></li>
+<li><a href="#orgf603052">summary-mode の表示のカスタマイズ</a>
+<ul>
+<li><a href="#orgc19b508">自分が差出人である mail は To:某 と表示</a></li>
+<li><a href="#org82f4793">サマリ行の表示関連</a></li>
+<li><a href="#orgfd65def">Gmail 風に, 自分宛のメールに "&gt;" をつけて表示する</a></li>
+<li><a href="#org58805b2">添付ファイルがあったら, サマリ行に "@" を付ける</a></li>
+<li><a href="#orgf7e444c">クォートされた文字列もデコードする</a></li>
+<li><a href="#orgf88bfee">Subject が変わってもスレッドを切らない</a></li>
+<li><a href="#org57938f0">Subject での Tab や複数スペースを無視</a></li>
+<li><a href="#orgfd3a0b4">重複メッセージを非表示に</a></li>
+<li><a href="#orge48b153">sort 順: 返信が来た順</a></li>
+</ul>
+</li>
+<li><a href="#org20058ae">振り分け設定</a>
+<ul>
+<li><a href="#org1c94e9a">振り分け判定に使用するヘッダ</a></li>
+</ul>
+</li>
 <li><a href="#org6a011c6">日本語添付ファイル名のデコード</a></li>
-<li><a href="#org70c2471">メッセージ表示</a></li>
-<li><a href="#org5f67fb8">作成/返信設定</a></li>
+<li><a href="#org70c2471">メッセージ表示</a>
+<ul>
+<li><a href="#orge5278d4">いったん全て非表示に</a></li>
+<li><a href="#org1cc7c0b">見たいヘッダだけ表示</a></li>
+<li><a href="#orga267f4f">表示順の変更</a></li>
+<li><a href="#orgbfc12e3">mime の画像表示の切り替え</a></li>
+<li><a href="#orgf98cae2">From, To を省略表示しない</a></li>
+</ul>
+</li>
+<li><a href="#org5f67fb8">作成/返信設定</a>
+<ul>
+<li><a href="#org3694a8a">draft mode で orgtbl を有効に</a></li>
+<li><a href="#orgf44c9bd">c-sig</a></li>
+</ul>
+</li>
 <li><a href="#orgb822dc6">Face の設定</a></li>
 <li><a href="#org4dfe04a">GPG 署名</a></li>
 <li><a href="#org8293d5d">検索</a></li>
@@ -202,8 +260,9 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org6e71c29">LICENSE</a></li>
 </ul>
 </div>
-</div></nav>
-<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">目次</a>
+</nav>
+</div>
+<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
 <p>
 Related: <a href='index.html'>Index</a>
 </p>
@@ -777,9 +836,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org12ae9aa" class="outline-4">
-<h4 id="org12ae9aa">編集関連</h4>
-<div class="outline-text-4" id="text-org12ae9aa">
+<div id="outline-container-orga3f4e1b" class="outline-4">
+<h4 id="orga3f4e1b">編集関連</h4>
+<div class="outline-text-4" id="text-orga3f4e1b">
 <p>
 yes or no を y or n に
 </p>
@@ -1224,9 +1283,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf1519de" class="outline-3">
-<h3 id="orgf1519de">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgf1519de">
+<div id="outline-container-org2d2304d" class="outline-3">
+<h3 id="org2d2304d">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org2d2304d">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1336,9 +1395,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org7ee708c" class="outline-4">
-<h4 id="org7ee708c">編集関連</h4>
-<div class="outline-text-4" id="text-org7ee708c">
+<div id="outline-container-org18057c8" class="outline-4">
+<h4 id="org18057c8">編集関連</h4>
+<div class="outline-text-4" id="text-org18057c8">
 <p>
 キーバインド
 </p>
@@ -1682,9 +1741,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-orgd0e8c3c" class="outline-3">
-<h3 id="orgd0e8c3c">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgd0e8c3c">
+<div id="outline-container-orgb1b926c" class="outline-3">
+<h3 id="orgb1b926c">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgb1b926c">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -1734,7 +1793,9 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
 <div id="outline-container-org7e2f43a" class="outline-4">
 <h4 id="org7e2f43a">依存/追加ライブラリのインストールと読み込み</h4>
 <div class="outline-text-4" id="text-org7e2f43a">
-</div><ul class="org-ul"><li><a id="orge16005b"></a>rail<br ><div class="outline-text-5" id="text-orge16005b">
+</div><div id="outline-container-orge16005b" class="outline-5">
+<h5 id="orge16005b">rail</h5>
+<div class="outline-text-5" id="text-orge16005b">
 <p>
 SEMI や FLIM などの UA の表示に <a href="http://uwabami.github.com/rail/">rail</a> を使っている.
 ちなみに rail を有効にすると, 以下の様に User-Agent が表示される
@@ -1751,8 +1812,11 @@ SEMI や FLIM などの UA の表示に <a href="http://uwabami.github.com/rail/
   (<span style="color: #FF7F7F;">setq</span> rail-emulate-genjis t))
 </pre>
 </div>
-</div></li>
-<li><a id="orge5de93e"></a>cp5022x を使う<br ><div class="outline-text-5" id="text-orge5de93e">
+</div>
+</div>
+<div id="outline-container-orge5de93e" class="outline-5">
+<h5 id="orge5de93e">cp5022x を使う</h5>
+<div class="outline-text-5" id="text-orge5de93e">
 <p>
 ISO-2022-JP を CP50220 として扱う.
 <a href="http://d.hatena.ne.jp/kiwanami/20091103/1257243524">Wanderlustと文字コード</a> も参照のこと.
@@ -1762,8 +1826,11 @@ ISO-2022-JP を CP50220 として扱う.
 (<span style="color: #FF7F7F;">setq</span> wl-mime-charset 'utf-8)
 </pre>
 </div>
-</div></li>
-<li><a id="org3e0487b"></a>gcontacts-get-wl<br ><div class="outline-text-5" id="text-org3e0487b">
+</div>
+</div>
+<div id="outline-container-org3e0487b" class="outline-5">
+<h5 id="org3e0487b">gcontacts-get-wl</h5>
+<div class="outline-text-5" id="text-org3e0487b">
 <p>
 <a href="https://github.com/uwabami/gcontacts-get-wl">gcontacts-get-wl</a> は
 Google Contacts の連絡先を Wanderlust の <code>.Address</code> に出力するだけのパッケージ．
@@ -1787,8 +1854,11 @@ oauth token は <code>pass</code> で管理している．中身は以下の通�
       gcontacts-get-ask nil)
 </pre>
 </div>
-</div></li>
-<li><a id="orgd8c9a7d"></a>elscreen-wl<br ><div class="outline-text-5" id="text-orgd8c9a7d">
+</div>
+</div>
+<div id="outline-container-orgd8c9a7d" class="outline-5">
+<h5 id="orgd8c9a7d">elscreen-wl</h5>
+<div class="outline-text-5" id="text-orgd8c9a7d">
 <p>
 メール作成時に <code>elscreen</code> と連携してくれる．便利
 </p>
@@ -1796,8 +1866,11 @@ oauth token は <code>pass</code> で管理している．中身は以下の通�
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">elscreen-wl</span>)
 </pre>
 </div>
-</div></li>
-<li><a id="orge579370"></a>SEMI の追加設定<br ><div class="outline-text-5" id="text-orge579370">
+</div>
+</div>
+<div id="outline-container-orge579370" class="outline-5">
+<h5 id="orge579370">SEMI の追加設定</h5>
+<div class="outline-text-5" id="text-orge579370">
 <p>
 HTML メールを表示するための設定: eww を使うことに．
 mime-setup がロードされる前に記述する必要あり.
@@ -1850,7 +1923,8 @@ text/plain を html より優先
       process-connection-type nil)
 </pre>
 </div>
-</div></li></ul>
+</div>
+</div>
 </div>
 <div id="outline-container-orgb92b20f" class="outline-4">
 <h4 id="orgb92b20f">個人情報の設定</h4>
@@ -1866,7 +1940,9 @@ text/plain を html より優先
 設定している内容は以下の通り
 </p>
 </div>
-<ul class="org-ul"><li><a id="org3ae0d77"></a>自身のメールアドレスと購読メーリングリストの設定<br ><div class="outline-text-5" id="text-org3ae0d77">
+<div id="outline-container-org3ae0d77" class="outline-5">
+<h5 id="org3ae0d77">自身のメールアドレスと購読メーリングリストの設定</h5>
+<div class="outline-text-5" id="text-org3ae0d77">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">From: &#12398;&#35373;&#23450;</span>
 (<span style="color: #FF7F7F;">setq</span> wl-from (concat user-full-name <span style="color: #7FFF7F;">" &lt;"</span> user-mail-address <span style="color: #7FFF7F;">"&gt;"</span>))
@@ -1888,8 +1964,11 @@ text/plain を html より優先
         ))
 </pre>
 </div>
-</div></li>
-<li><a id="orgf8d0e83"></a>送受信用サーバの設定<br ><div class="outline-text-5" id="text-orgf8d0e83">
+</div>
+</div>
+<div id="outline-container-orgf8d0e83" class="outline-5">
+<h5 id="orgf8d0e83">送受信用サーバの設定</h5>
+<div class="outline-text-5" id="text-orgf8d0e83">
 <p>
 受信(IMAP)
 </p>
@@ -1910,8 +1989,11 @@ text/plain を html より優先
 (<span style="color: #FF7F7F;">setq</span> wl-smtp-authenticate-type <span style="color: #7FFF7F;">"login"</span>)
 </pre>
 </div>
-</div></li>
-<li><a id="org6f64e44"></a>From に応じて送信サーバをきりかえる.<br ><div class="outline-text-5" id="text-org6f64e44">
+</div>
+</div>
+<div id="outline-container-org6f64e44" class="outline-5">
+<h5 id="org6f64e44">From に応じて送信サーバをきりかえる.</h5>
+<div class="outline-text-5" id="text-org6f64e44">
 <p>
 本来はメール作成時/返信時の template の切り替えなのだれど,
 送信時の SMTP の設定を from に合わせてきりかえるようにする.
@@ -1995,12 +2077,15 @@ from に応じて wl-from, wl-envelope-from,
 <pre class="src src-emacs-lisp">(remove-hook 'wl-draft-send-hook 'wl-draft-config-exec)
 </pre>
 </div>
-</div></li></ul>
+</div>
+</div>
 </div>
 <div id="outline-container-orgfc41232" class="outline-4">
 <h4 id="orgfc41232">基本設定</h4>
 <div class="outline-text-4" id="text-orgfc41232">
-</div><ul class="org-ul"><li><a id="orgd552c12"></a>imap 関連<br ><div class="outline-text-5" id="text-orgd552c12">
+</div><div id="outline-container-orgd552c12" class="outline-5">
+<h5 id="orgd552c12">imap 関連</h5>
+<div class="outline-text-5" id="text-orgd552c12">
 <p>
 デフォルトの認証設定
 フォルダ名は UTF-7 でエンコードされているので,
@@ -2010,8 +2095,11 @@ from に応じて wl-from, wl-envelope-from,
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-imap4-use-modified-utf7 t)
 </pre>
 </div>
-</div></li>
-<li><a id="org0670426"></a>非同期チェック<br ><div class="outline-text-5" id="text-org0670426">
+</div>
+</div>
+<div id="outline-container-org0670426" class="outline-5">
+<h5 id="org0670426">非同期チェック</h5>
+<div class="outline-text-5" id="text-org0670426">
 <p>
 なんか挙動が変な，ような&#x2026;．
 </p>
@@ -2019,8 +2107,11 @@ from に応じて wl-from, wl-envelope-from,
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-folder-check-async nil)
 </pre>
 </div>
-</div></li>
-<li><a id="orgb5c0c00"></a>フォルダの位置の default からの変更<br ><div class="outline-text-5" id="text-orgb5c0c00">
+</div>
+</div>
+<div id="outline-container-orgb5c0c00" class="outline-5">
+<h5 id="orgb5c0c00">フォルダの位置の default からの変更</h5>
+<div class="outline-text-5" id="text-orgb5c0c00">
 <p>
 <code>~/.cache/wanderlust/</code> に集約している
 local の Mail folder の位置
@@ -2088,14 +2179,20 @@ GCALDaemon で LDAP サーバは使えなくなったのでコメントアウト
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-passwd-alist-file-name (concat my:d:password-store <span style="color: #7FFF7F;">"/emacs/wl-passwd.gpg"</span>))
 </pre>
 </div>
-</div></li>
-<li><a id="org6521f47"></a>フォルダ編集時に backup を作成しない.<br ><div class="outline-text-5" id="text-org6521f47">
+</div>
+</div>
+<div id="outline-container-org6521f47" class="outline-5">
+<h5 id="org6521f47">フォルダ編集時に backup を作成しない.</h5>
+<div class="outline-text-5" id="text-org6521f47">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-fldmgr-make-backup nil)
 </pre>
 </div>
-</div></li>
-<li><a id="orgc708bcd"></a>FCC, BCC の設定<br ><div class="outline-text-5" id="text-orgc708bcd">
+</div>
+</div>
+<div id="outline-container-orgc708bcd" class="outline-5">
+<h5 id="orgc708bcd">FCC, BCC の設定</h5>
+<div class="outline-text-5" id="text-orgc708bcd">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-fcc nil)
      <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">(setq wl-fcc "%Sent")</span>
@@ -2115,14 +2212,20 @@ bcc は常に自身に.
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-bcc (concat user-mail-address))
 </pre>
 </div>
-</div></li>
-<li><a id="org604a34e"></a>起動時に <code>%INBOX</code> のみをチェック<br ><div class="outline-text-5" id="text-org604a34e">
+</div>
+</div>
+<div id="outline-container-org604a34e" class="outline-5">
+<h5 id="org604a34e">起動時に <code>%INBOX</code> のみをチェック</h5>
+<div class="outline-text-5" id="text-org604a34e">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-auto-check-folder-name <span style="color: #7FFF7F;">"%INBOX"</span>)
 </pre>
 </div>
-</div></li>
-<li><a id="org1388e16"></a>フォルダ選択時の初期設定<br ><div class="outline-text-5" id="text-org1388e16">
+</div>
+</div>
+<div id="outline-container-org1388e16" class="outline-5">
+<h5 id="org1388e16">フォルダ選択時の初期設定</h5>
+<div class="outline-text-5" id="text-org1388e16">
 <p>
 imap の namespace を毎度入力するのが面倒なので，これを追加しておく.
 </p>
@@ -2130,8 +2233,11 @@ imap の namespace を毎度入力するのが面倒なので，これを追加�
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-default-spec <span style="color: #7FFF7F;">"%"</span>)
 </pre>
 </div>
-</div></li>
-<li><a id="org39af8df"></a>confirm 関連の設定<br ><div class="outline-text-5" id="text-org39af8df">
+</div>
+</div>
+<div id="outline-container-org39af8df" class="outline-5">
+<h5 id="org39af8df">confirm 関連の設定</h5>
+<div class="outline-text-5" id="text-org39af8df">
 <p>
 スキャン時の問い合わせの無効化.
 ちなみに confirm を nil にしても 問い合わせが無いだけで
@@ -2160,8 +2266,11 @@ threshold は効くので, 明示的に nil に.
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-interactive-send t)
 </pre>
 </div>
-</div></li>
-<li><a id="orgdc0e5bb"></a>misc.<br ><div class="outline-text-5" id="text-orgdc0e5bb">
+</div>
+</div>
+<div id="outline-container-orgdc0e5bb" class="outline-5">
+<h5 id="orgdc0e5bb">misc.</h5>
+<div class="outline-text-5" id="text-orgdc0e5bb">
 <p>
 大きいメッセージを送信時に分割しない
 </p>
@@ -2204,8 +2313,11 @@ icon を使わない → GUI でもメニュー表示してないし, 体感的�
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-highlight-folder-with-icon nil)
 </pre>
 </div>
-</div></li>
-<li><a id="org2e8a472"></a>dispose, delete の設定<br ><div class="outline-text-5" id="text-org2e8a472">
+</div>
+</div>
+<div id="outline-container-org2e8a472" class="outline-5">
+<h5 id="org2e8a472">dispose, delete の設定</h5>
+<div class="outline-text-5" id="text-org2e8a472">
 <p>
 Gmail用に%INBOXでは削除を <code>wl-trash-folder</code> への移動ではなく，「delete」に．
 </p>
@@ -2222,8 +2334,11 @@ Gmail用に%INBOXでは削除を <code>wl-trash-folder</code> への移動では
              '(<span style="color: #7FFF7F;">".*Junk$"</span> . remove))
 </pre>
 </div>
-</div></li>
-<li><a id="org2e9790b"></a>折り返しの設定<br ><div class="outline-text-5" id="text-org2e9790b">
+</div>
+</div>
+<div id="outline-container-org2e9790b" class="outline-5">
+<h5 id="org2e9790b">折り返しの設定</h5>
+<div class="outline-text-5" id="text-org2e9790b">
 <p>
 message は折り返す.
 </p>
@@ -2238,8 +2353,11 @@ draft も折り返す
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-draft-truncate-lines nil)
 </pre>
 </div>
-</div></li>
-<li><a id="org05a0330"></a>mode-line の設定<br ><div class="outline-text-5" id="text-org05a0330">
+</div>
+</div>
+<div id="outline-container-org05a0330" class="outline-5">
+<h5 id="org05a0330">mode-line の設定</h5>
+<div class="outline-text-5" id="text-org05a0330">
 <p>
 長いと嫌なのでイロイロ削る
 </p>
@@ -2248,7 +2366,8 @@ draft も折り返す
 (<span style="color: #FF7F7F;">setq</span> wl-message-mode-line-format <span style="color: #7FFF7F;">""</span>) <span style="color: #e5e5e6;">; </span><span style="color: #e5e5e6;">"&lt;&lt; %f:%F&gt;&gt; [%m]"</span>
 </pre>
 </div>
-</div></li></ul>
+</div>
+</div>
 </div>
 <div id="outline-container-org314cae5" class="outline-4">
 <h4 id="org314cae5">キーバインド関連</h4>
@@ -2337,14 +2456,19 @@ Gmail の「スター付き」フォルダでも有効
 <div id="outline-container-orgf603052" class="outline-4">
 <h4 id="orgf603052">summary-mode の表示のカスタマイズ</h4>
 <div class="outline-text-4" id="text-orgf603052">
-</div><ul class="org-ul"><li><a id="orgc19b508"></a>自分が差出人である mail は To:某 と表示<br ><div class="outline-text-5" id="text-orgc19b508">
+</div><div id="outline-container-orgc19b508" class="outline-5">
+<h5 id="orgc19b508">自分が差出人である mail は To:某 と表示</h5>
+<div class="outline-text-5" id="text-orgc19b508">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-summary-showto-folder-regexp <span style="color: #7FFF7F;">".*"</span>)
 (<span style="color: #FF7F7F;">setq</span> wl-summary-from-function 'wl-summary-default-from)
 </pre>
 </div>
-</div></li>
-<li><a id="org82f4793"></a>サマリ行の表示関連<br ><div class="outline-text-5" id="text-org82f4793">
+</div>
+</div>
+<div id="outline-container-org82f4793" class="outline-5">
+<h5 id="org82f4793">サマリ行の表示関連</h5>
+<div class="outline-text-5" id="text-org82f4793">
 <p>
 サマリ行のフォーマット指定
 </p>
@@ -2378,8 +2502,11 @@ Gmail の「スター付き」フォルダでも有効
 <code>elmo-msgdb-extra-fields</code> を設定する必要がある.
 この変数は振り分け判定にも使用するのでそこで設定している
 </p>
-</div></li>
-<li><a id="orgfd65def"></a>Gmail 風に, 自分宛のメールに "&gt;" をつけて表示する<br ><div class="outline-text-5" id="text-orgfd65def">
+</div>
+</div>
+<div id="outline-container-orgfd65def" class="outline-5">
+<h5 id="orgfd65def">Gmail 風に, 自分宛のメールに "&gt;" をつけて表示する</h5>
+<div class="outline-text-5" id="text-orgfd65def">
 <p>
 元ネタ <a href="http://d.hatena.ne.jp/khiker/20080206/wanderlust">http://d.hatena.ne.jp/khiker/20080206/wanderlust</a>
 </p>
@@ -2406,16 +2533,22 @@ Gmail の「スター付き」フォルダでも有効
               '((?&gt; (my:wl-summary-line-for-me)))))
 </pre>
 </div>
-</div></li>
-<li><a id="org58805b2"></a>添付ファイルがあったら, サマリ行に "@" を付ける<br ><div class="outline-text-5" id="text-org58805b2">
+</div>
+</div>
+<div id="outline-container-org58805b2" class="outline-5">
+<h5 id="org58805b2">添付ファイルがあったら, サマリ行に "@" を付ける</h5>
+<div class="outline-text-5" id="text-org58805b2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-summary-line-format-spec-alist
       (append wl-summary-line-format-spec-alist
               '((?@ (wl-summary-line-attached)))))
 </pre>
 </div>
-</div></li>
-<li><a id="orgf7e444c"></a>クォートされた文字列もデコードする<br ><div class="outline-text-5" id="text-orgf7e444c">
+</div>
+</div>
+<div id="outline-container-orgf7e444c" class="outline-5">
+<h5 id="orgf7e444c">クォートされた文字列もデコードする</h5>
+<div class="outline-text-5" id="text-orgf7e444c">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> mime-header-lexical-analyzer
       '(
@@ -2428,22 +2561,31 @@ Gmail の「スター付き」フォルダでも有効
         eword-analyze-atom))
 </pre>
 </div>
-</div></li>
-<li><a id="orgf88bfee"></a>Subject が変わってもスレッドを切らない<br ><div class="outline-text-5" id="text-orgf88bfee">
+</div>
+</div>
+<div id="outline-container-orgf88bfee" class="outline-5">
+<h5 id="orgf88bfee">Subject が変わってもスレッドを切らない</h5>
+<div class="outline-text-5" id="text-orgf88bfee">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-summary-divide-thread-when-subject-changed nil)
 </pre>
 </div>
-</div></li>
-<li><a id="org57938f0"></a>Subject での Tab や複数スペースを無視<br ><div class="outline-text-5" id="text-org57938f0">
+</div>
+</div>
+<div id="outline-container-org57938f0" class="outline-5">
+<h5 id="org57938f0">Subject での Tab や複数スペースを無視</h5>
+<div class="outline-text-5" id="text-org57938f0">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defadvice</span> <span style="color: #BF7FFF;">std11-unfold-string</span> (after simply activate)
   (<span style="color: #FF7F7F;">setq</span> ad-return-value
         (elmo-replace-in-string ad-return-value <span style="color: #7FFF7F;">"[ \t]+"</span> <span style="color: #7FFF7F;">" "</span>)))
 </pre>
 </div>
-</div></li>
-<li><a id="orgfd3a0b4"></a>重複メッセージを非表示に<br ><div class="outline-text-5" id="text-orgfd3a0b4">
+</div>
+</div>
+<div id="outline-container-orgfd3a0b4" class="outline-5">
+<h5 id="orgfd3a0b4">重複メッセージを非表示に</h5>
+<div class="outline-text-5" id="text-orgfd3a0b4">
 <p>
 フォルダ内の Message-ID が同じメールを非表示にする
 </p>
@@ -2454,8 +2596,11 @@ Gmail の「スター付き」フォルダでも有効
         ))
 </pre>
 </div>
-</div></li>
-<li><a id="orge48b153"></a>sort 順: 返信が来た順<br ><div class="outline-text-5" id="text-orge48b153">
+</div>
+</div>
+<div id="outline-container-orge48b153" class="outline-5">
+<h5 id="orge48b153">sort 順: 返信が来た順</h5>
+<div class="outline-text-5" id="text-orge48b153">
 <p>
 <code>flet</code> を書き換えるのが面倒で <code>el-x</code> にある <code>dflet</code> を使うように変更
 </p>
@@ -2486,7 +2631,8 @@ Gmail の「スター付き」フォルダでも有効
 (<span style="color: #FF7F7F;">setq</span> wl-summary-default-sort-spec 'reply-date)
 </pre>
 </div>
-</div></li></ul>
+</div>
+</div>
 </div>
 <div id="outline-container-org20058ae" class="outline-4">
 <h4 id="org20058ae">振り分け設定</h4>
@@ -2499,7 +2645,9 @@ Gmail の「スター付き」フォルダでも有効
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="org1c94e9a"></a>振り分け判定に使用するヘッダ<br ><div class="outline-text-5" id="text-org1c94e9a">
+<div id="outline-container-org1c94e9a" class="outline-5">
+<h5 id="org1c94e9a">振り分け判定に使用するヘッダ</h5>
+<div class="outline-text-5" id="text-org1c94e9a">
 <p>
 添付の有無の表示にも使うので <code>Content-Type</code> も登録.
 あと <code>Delivered-To</code> はメールの検索の時に結構重宝している.
@@ -2528,7 +2676,8 @@ Gmail の「スター付き」フォルダでも有効
         ))
 </pre>
 </div>
-</div></li></ul>
+</div>
+</div>
 </div>
 <div id="outline-container-org6a011c6" class="outline-4">
 <h4 id="org6a011c6">日本語添付ファイル名のデコード</h4>
@@ -2578,13 +2727,18 @@ Gmail の「スター付き」フォルダでも有効
 <div id="outline-container-org70c2471" class="outline-4">
 <h4 id="org70c2471">メッセージ表示</h4>
 <div class="outline-text-4" id="text-org70c2471">
-</div><ul class="org-ul"><li><a id="orge5278d4"></a>いったん全て非表示に<br ><div class="outline-text-5" id="text-orge5278d4">
+</div><div id="outline-container-orge5278d4" class="outline-5">
+<h5 id="orge5278d4">いったん全て非表示に</h5>
+<div class="outline-text-5" id="text-orge5278d4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-message-ignored-field-list '(<span style="color: #7FFF7F;">"^.*:"</span>))
 </pre>
 </div>
-</div></li>
-<li><a id="org1cc7c0b"></a>見たいヘッダだけ表示<br ><div class="outline-text-5" id="text-org1cc7c0b">
+</div>
+</div>
+<div id="outline-container-org1cc7c0b" class="outline-5">
+<h5 id="org1cc7c0b">見たいヘッダだけ表示</h5>
+<div class="outline-text-5" id="text-org1cc7c0b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-message-visible-field-list
       '(<span style="color: #7FFF7F;">"^Subject:"</span>
@@ -2596,8 +2750,11 @@ Gmail の「スター付き」フォルダでも有効
         ))
 </pre>
 </div>
-</div></li>
-<li><a id="orga267f4f"></a>表示順の変更<br ><div class="outline-text-5" id="text-orga267f4f">
+</div>
+</div>
+<div id="outline-container-orga267f4f" class="outline-5">
+<h5 id="orga267f4f">表示順の変更</h5>
+<div class="outline-text-5" id="text-orga267f4f">
 <p>
 Mew 風&#x2026;
 </p>
@@ -2612,8 +2769,11 @@ Mew 風&#x2026;
         ))
 </pre>
 </div>
-</div></li>
-<li><a id="orgbfc12e3"></a>mime の画像表示の切り替え<br ><div class="outline-text-5" id="text-orgbfc12e3">
+</div>
+</div>
+<div id="outline-container-orgbfc12e3" class="outline-5">
+<h5 id="orgbfc12e3">mime の画像表示の切り替え</h5>
+<div class="outline-text-5" id="text-orgbfc12e3">
 <p>
 <code>M-T</code> でトグル
 </p>
@@ -2629,8 +2789,11 @@ Mew 風&#x2026;
      <span style="color: #7FFF7F;">"\M-T"</span> 'wl-summary-w3m-safe-toggle-inline-images))
 </pre>
 </div>
-</div></li>
-<li><a id="orgf98cae2"></a>From, To を省略表示しない<br ><div class="outline-text-5" id="text-orgf98cae2">
+</div>
+</div>
+<div id="outline-container-orgf98cae2" class="outline-5">
+<h5 id="orgf98cae2">From, To を省略表示しない</h5>
+<div class="outline-text-5" id="text-orgf98cae2">
 <p>
 To や From にアドレスが沢山指定されていると省略されるので，これを無効化
 </p>
@@ -2638,7 +2801,8 @@ To や From にアドレスが沢山指定されていると省略されるの�
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-message-use-header-narrowing nil)
 </pre>
 </div>
-</div></li></ul>
+</div>
+</div>
 </div>
 <div id="outline-container-org5f67fb8" class="outline-4">
 <h4 id="org5f67fb8">作成/返信設定</h4>
@@ -2685,13 +2849,18 @@ To や From にアドレスが沢山指定されていると省略されるの�
 </pre>
 </div>
 </div>
-<ul class="org-ul"><li><a id="org3694a8a"></a>draft mode で orgtbl を有効に<br ><div class="outline-text-5" id="text-org3694a8a">
+<div id="outline-container-org3694a8a" class="outline-5">
+<h5 id="org3694a8a">draft mode で orgtbl を有効に</h5>
+<div class="outline-text-5" id="text-org3694a8a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-hook 'wl-draft-mode-hook 'turn-on-orgtbl)
 </pre>
 </div>
-</div></li>
-<li><a id="orgf44c9bd"></a>c-sig<br ><div class="outline-text-5" id="text-orgf44c9bd">
+</div>
+</div>
+<div id="outline-container-orgf44c9bd" class="outline-5">
+<h5 id="orgf44c9bd">c-sig</h5>
+<div class="outline-text-5" id="text-orgf44c9bd">
 <p>
 署名の選択に c-sig を使用している.
 設定は以下の通り. Mew 風に <code>C-c &lt;tab&gt;</code> で signature を挿入するようにしている
@@ -2712,7 +2881,8 @@ To や From にアドレスが沢山指定されていると省略されるの�
   )
 </pre>
 </div>
-</div></li></ul>
+</div>
+</div>
 </div>
 <div id="outline-container-orgb822dc6" class="outline-4">
 <h4 id="orgb822dc6">Face の設定</h4>
@@ -3888,8 +4058,10 @@ html export の際に必要な yaml front matter を出力できるようにし�
     (perform-replace <span style="color: #7FFF7F;">"%&#125;"</span> <span style="color: #7FFF7F;">"%&amp;#125;"</span> nil nil nil nil nil (point-min) (point-max))
     (perform-replace <span style="color: #7FFF7F;">"&lt;nav id=\"table-of-contents"</span> <span style="color: #7FFF7F;">"&lt;div id=\"toc-wrapper\"&gt;</span>
 <span style="color: #7FFF7F;">&lt;nav id=\"table-of-contents"</span> nil nil nil nil nil (point-min) (point-max))
-    (perform-replace <span style="color: #7FFF7F;">"&lt;/nav&gt;"</span> <span style="color: #7FFF7F;">"&lt;/div&gt;&lt;/nav&gt;</span>
-<span style="color: #7FFF7F;">&lt;a href=\"#toc-toggle\" class=\"btn toc-btn\" id=\"toc-toggle\"&gt;&#30446;&#27425;&lt;/a&gt;"</span>
+    (perform-replace <span style="color: #7FFF7F;">"&lt;/nav&gt;"</span> (format <span style="color: #7FFF7F;">"&lt;/nav&gt;</span>
+<span style="color: #7FFF7F;">&lt;/div&gt;</span>
+<span style="color: #7FFF7F;">&lt;a href=\"#toc-toggle\" class=\"btn toc-btn\" id=\"toc-toggle\"&gt;%s&lt;/a&gt;"</span>
+                                      (org-html--translate <span style="color: #7FFF7F;">"Table of Contents"</span> info))
                      nil nil nil nil nil (point-min) (point-max))
     (set-auto-mode t)
     (buffer-substring-no-properties (point-min) (point-max))))
@@ -3975,7 +4147,7 @@ html export の際に必要な yaml front matter を出力できるようにし�
            <span style="color: #7FBFFF;">:publishing-function</span> org-publish-to-jekyll
            <span style="color: #7FBFFF;">:recursive</span> t
            <span style="color: #7FBFFF;">:with-toc</span> nil
-           <span style="color: #7FBFFF;">:headline-level</span> 2
+           <span style="color: #7FBFFF;">:headline-levels</span> 5
            )
           (<span style="color: #7FFF7F;">"cc-env"</span>
            <span style="color: #7FBFFF;">:base-directory</span> <span style="color: #7FFF7F;">"~/Public/cc-env/"</span>
@@ -3985,7 +4157,7 @@ html export の際に必要な yaml front matter を出力できるようにし�
            <span style="color: #7FBFFF;">:publishing-function</span> org-publish-to-jekyll
            <span style="color: #7FBFFF;">:recursive</span> t
            <span style="color: #7FBFFF;">:with-toc</span> t
-           <span style="color: #7FBFFF;">:headline-level</span> 2
+           <span style="color: #7FBFFF;">:headline-levels</span> 5
            )
           ))
   )
