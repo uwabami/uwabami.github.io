@@ -1,14 +1,12 @@
-#+TITLE: My Repository@Github
-#+DATE: 2017-01-15 19:52:52
+#+TITLE: Repository@Github
+#+DATE: 2017-01-19 03:55:02
 #+LANGUAGE: ja
 #+REF: software
 #+LAYOUT: default
 #+SETUPFILE: ../_setup.org
 #+PERMALINK: /software/index.html
 * これは何?
-  主に自分が使うために作成したソフトウェア、
-  ひきとったソフトウェア、
-  プレゼン用のテーマなどです.
+  Github で公開しているソフトウェアです．
   公開できるモノについては github にどんどん置いています. パッチウェルカム.
 * [[file:rdtool/index.org][RDtool: formatter for RD]]
   RD は Ruby における POD(Plain Old Documentation) のようなものです.
