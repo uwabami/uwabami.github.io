@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-19 02:44:25
+date: 2017-01-19 03:28:57
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgf95ed47">標準機能の設定</a>
 <ul>
 <li><a href="#orgca82060">表示関連</a></li>
-<li><a href="#orga3f4e1b">編集関連</a></li>
+<li><a href="#org2c50642">編集関連</a></li>
 <li><a href="#org24778a8">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -72,10 +72,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org316cfac">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#org2d2304d">Emacs 本体側の設定</a></li>
+<li><a href="#org8558ddc">Emacs 本体側の設定</a></li>
 <li><a href="#orgbc8438c">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org18057c8">編集関連</a></li>
+<li><a href="#orgc47da5b">編集関連</a></li>
 <li><a href="#org3ec5032">インクリメンタルサーチ</a></li>
 <li><a href="#org9fa4fd2">辞書の設定</a></li>
 <li><a href="#org257bcd3">動的補完</a></li>
@@ -96,7 +96,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org255627a">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#orgb1b926c">Emacs 本体側の設定</a></li>
+<li><a href="#org7746448">Emacs 本体側の設定</a></li>
 <li><a href="#orgc36dcb0">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#org7e2f43a">依存/追加ライブラリのインストールと読み込み</a>
@@ -237,7 +237,7 @@ permalink: /cc-env/Emacs.html
 <ul>
 <li><a href="#org55dde94">コードのタグ付け: <code>ggtags</code>, <code>helm-gtags</code></a></li>
 <li><a href="#org78116d6">プロジェクト管理: bbatsov/projectile</a></li>
-<li><a href="#org7c44570">VCS: <code>magit</code>, <code>git-gutter</code></a></li>
+<li><a href="#org68aeea3">VCS: <code>magit</code></a></li>
 <li><a href="#org1b7c7ff">flycheck</a></li>
 <li><a href="#orgf528ad1">rainbow-mode</a></li>
 <li><a href="#org18908e1">Textile</a></li>
@@ -836,9 +836,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-orga3f4e1b" class="outline-4">
-<h4 id="orga3f4e1b">編集関連</h4>
-<div class="outline-text-4" id="text-orga3f4e1b">
+<div id="outline-container-org2c50642" class="outline-4">
+<h4 id="org2c50642">編集関連</h4>
+<div class="outline-text-4" id="text-org2c50642">
 <p>
 yes or no を y or n に
 </p>
@@ -1283,9 +1283,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org2d2304d" class="outline-3">
-<h3 id="org2d2304d">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org2d2304d">
+<div id="outline-container-org8558ddc" class="outline-3">
+<h3 id="org8558ddc">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org8558ddc">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1395,9 +1395,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org18057c8" class="outline-4">
-<h4 id="org18057c8">編集関連</h4>
-<div class="outline-text-4" id="text-org18057c8">
+<div id="outline-container-orgc47da5b" class="outline-4">
+<h4 id="orgc47da5b">編集関連</h4>
+<div class="outline-text-4" id="text-orgc47da5b">
 <p>
 キーバインド
 </p>
@@ -1741,9 +1741,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-orgb1b926c" class="outline-3">
-<h3 id="orgb1b926c">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgb1b926c">
+<div id="outline-container-org7746448" class="outline-3">
+<h3 id="org7746448">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org7746448">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -4345,9 +4345,9 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
 </div>
 </div>
 </div>
-<div id="outline-container-org7c44570" class="outline-3">
-<h3 id="org7c44570">VCS: <code>magit</code>, <code>git-gutter</code></h3>
-<div class="outline-text-3" id="text-org7c44570">
+<div id="outline-container-org68aeea3" class="outline-3">
+<h3 id="org68aeea3">VCS: <code>magit</code></h3>
+<div class="outline-text-3" id="text-org68aeea3">
 <p>
 magit は Emacs の Git Frontend.
 結局の所 CUI でコマンド叩く事も多いけれど，これはこれで重宝している．
@@ -4355,31 +4355,6 @@ magit は Emacs の Git Frontend.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">magit</span>
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x g"</span> . magit-status))
-  )
-</pre>
-</div>
-<p>
-git-gutter で差分を視覚的に表示してくれる．
-@see <a href="http://qiita.com/syohex/items/a669b35fbbfcdda0cbf2">git-gutter.elの紹介 - Qiita</a>
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">git-gutter</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:if</span> (locate-library <span style="color: #7FFF7F;">"magit"</span>)
-  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x ="</span> . git-gutter:popup-hunk))
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> git-gutter:window-width 2
-        git-gutter:added-sign <span style="color: #7FFF7F;">"+ "</span>
-        git-gutter:deleted-sign-sign <span style="color: #7FFF7F;">"- "</span>
-        git-gutter:modified-sign <span style="color: #7FFF7F;">"::"</span>
-        git-gutter:unchanged-sign <span style="color: #7FFF7F;">"  "</span>     <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">&#31354;&#30333; 2&#12388;</span>
-        git-gutter:always-show-separator nil
-        <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">git-gutter:modified-sign "&#8660;"</span>
-        <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">git-gutter:added-sign "&#8658;"</span>
-        <span style="color: #e5e5e6;">;; </span><span style="color: #e5e5e6;">git-gutter:deleted-sign "&#8656;"</span>
-        git-gutter:lighter <span style="color: #7FFF7F;">""</span>
-        )
-  (global-git-gutter-mode +1)
   )
 </pre>
 </div>
