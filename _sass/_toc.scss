@@ -11,65 +11,6 @@
         padding-left: 0;
     }
     #toc-wrapper.toggled {
-        padding-left: 250px;
-    }
-    #toc-wrapper.toggled #table-of-contents {
-        width: 250px;
-    }
-    .toc-btn{
-        z-index: 200;
-        background-color: #2980B9;
-        color: #fcfcfc !important;
-        text-align: center;
-        font-weight: bold;
-        font-size: 90%;
-        position:fixed;
-        top: 80px;
-        text-align: center;
-    }
-    .toc-btn:link {
-        color: #fcfcfc !important;
-    }
-    .toc-btn:active{
-        color: #fcfcfc !important;
-    }
-    .toc-btn:hover{
-        color: #fcfcfc !important;
-    }
-    .toc-btn:visited{
-        color: #fcfcfc !important;
-    }
-    #table-of-contents{
-        position:fixed;
-        top: 80px;
-        left: 250px;
-        margin-left: -250px;
-        width: 0px ;
-        overflow-x:hidden;
-        overflow-y:scroll;
-        height: 90%;
-        height:-moz-calc(100% - 80px);
-        height:-webkit-calc(100% - 80px);
-        height:calc(100% - 80px);
-        background:#343131;
-        z-index:200;
-        scrollbar-base-color: #1F1D1D;
-        scrollbar-arrow-color: #b3b3b3;
-        scrollbar-shadow-color: #1F1D1D;
-        scrollbar-track-color : #343131;
-    }
-    .container{
-        margin:  0 auto;
-    }
-}
-@media (min-width:  768px) and (max-width:  991px){
-    body {
-        overflow-x: hidden
-    }
-    #toc-wrapper {
-        padding-left: 0;
-    }
-    #toc-wrapper.toggled {
         padding-left: 300px;
     }
     #toc-wrapper.toggled #table-of-contents {
@@ -82,10 +23,14 @@
         text-align: center;
         font-weight: bold;
         font-size: 90%;
-        position:fixed;
+        position: fixed;
         top: 80px;
         text-align: center;
+        right: 15px;
     }
+    /* .toc-btn.toggled{ */
+    /*     margin-left: -30px; */
+    /* } */
     .toc-btn:link {
         color: #fcfcfc !important;
     }
@@ -120,6 +65,75 @@
     .container{
         margin:  0 auto;
     }
+    .footer > .container {
+        margin:  0 auto !important;
+    }
+}
+
+@media (min-width:  768px) and (max-width:  991px){
+    body {
+        overflow-x: hidden
+    }
+    #toc-wrapper {
+        padding-left: 0;
+    }
+    #toc-wrapper.toggled {
+        padding-left: 300px;
+    }
+    #toc-wrapper.toggled #table-of-contents {
+        width: 300px;
+    }
+    .toc-btn{
+        z-index: 200;
+        background-color: #2980B9;
+        color: #fcfcfc !important;
+        text-align: center;
+        font-weight: bold;
+        font-size: 90%;
+        position: fixed;
+        top: 80px;
+        right: calc( (100% - 750px) / 2 + 15px );
+    }
+    /* .toc-btn.toggled{ */
+    /*     margin-left: -20px; */
+    /* } */
+    .toc-btn:link {
+        color: #fcfcfc !important;
+    }
+    .toc-btn:active{
+        color: #fcfcfc !important;
+    }
+    .toc-btn:hover{
+        color: #fcfcfc !important;
+    }
+    .toc-btn:visited{
+        color: #fcfcfc !important;
+    }
+    #table-of-contents{
+        position:fixed;
+        top: 80px;
+        left: 300px;
+        margin-left: -300px;
+        width: 0px ;
+        overflow-x:hidden;
+        overflow-y:scroll;
+        height: 90%;
+        height:-moz-calc(100% - 80px);
+        height:-webkit-calc(100% - 80px);
+        height:calc(100% - 80px);
+        background:#343131;
+        z-index:200;
+        scrollbar-base-color: #1F1D1D;
+        scrollbar-arrow-color: #b3b3b3;
+        scrollbar-shadow-color: #1F1D1D;
+        scrollbar-track-color : #343131;
+    }
+    .container{
+        margin:  0 auto;
+    }
+    .footer > .container {
+        margin:  0 auto !important;
+    }
 }
 @media (min-width:  992px) and (max-width:  1199px) {
     .toc-btn{
@@ -152,6 +166,10 @@
         margin:  0 auto !important;
         width:  970px !important;
     }
+    .footer > .container {
+        margin:  0 auto !important;
+        width:  970px !important;
+    }
 }
 @media (min-width:  1200px) {
     .toc-btn{
@@ -181,6 +199,10 @@
         width:  auto;
     }
     .navbar > .container {
+        margin:  0 auto !important;
+        width:  1170px !important;
+    }
+    footer > .container {
         margin:  0 auto !important;
         width:  1170px !important;
     }

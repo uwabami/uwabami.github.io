@@ -17,5 +17,7 @@ build: publish
 publish:
 	emacs -l ~/.emacs.d/init.elc --batch \
 	  --funcall org-publish-all
+	find cc-env -name \*.html | \
+	  xargs sed -i -e 's%../../.emacs.d/README.html%Emacs.html%g'
 clean:
 	bundle exec jekyll clean

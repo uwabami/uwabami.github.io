@@ -5,8 +5,10 @@ $( document ).ready(function() {
     $("#toc-toggle").click(function(e){
         e.preventDefault();
         $("#toc-wrapper").toggleClass("toggled");
+        $("#toc-toggle").toggleClass("toggled");
     });
-    $("a", "#table-of-contents").click(function(e){
+    $("a", "#table-of-contents").click(function(){
         $("#toc-wrapper").toggleClass("toggled");
+        $("#toc-toggle").toggleClass("toggled");
     });
 });
