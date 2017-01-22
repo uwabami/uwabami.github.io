@@ -1,5 +1,5 @@
 #+TITLE: Computer Memorandum
-#+DATE: 2017-01-19 01:43:32
+#+DATE: 2017-01-22 22:36:27
 #+LANGUAGE: ja
 #+REF: cc-env
 #+LAYOUT: cc-env
@@ -19,7 +19,7 @@ Related [[wiki:index][Index]] [[wiki:Emacs][Emacs]]
   *現在再構築中です*
   #+HTML: </div>
 
-* Debian 関係
+* Debian 関連
   Debian 一般に関する話は
   - 本家: 『[[http://www.debian.org/index.ja.html][Debian -- ユニバーサルオペレーティングシステム]]』
   - Debian JP Project: 『[[http://www.debian.or.jp/][Debian JP Project]]』
@@ -28,10 +28,11 @@ Related [[wiki:index][Index]] [[wiki:Emacs][Emacs]]
   - [[wiki:DebianInstall][Debian の install]]
   - [[wiki:DebianConfigure][Debian: Install 直後の雑多な設定]]: 細かい事柄はココに.中身が増えたら分ける予定
   - [[wiki:DebianMTA][MTA の設定]]
-* Emacs 関係
-  - [[wiki:Emacs][Emacs]] : 以前は使っているパッケージ毎に設定を分けていましたが
-    最近は Org で書かれた単一ファイルに設定を集約しています．
-    - [[id:7b56236e-e396-405e-a980-54958e8f47de][主にEmacs本体に同梱されている拡張に関する設定]]
+* Emacs 関連
+  以前は使っているパッケージ毎に設定を分けていましたが
+  最近は Org で書かれた単一ファイルに設定を集約しています．
+  - [[wiki:Emacs][Emacs]] : 全体の設定等
+    - [[file:~/.emacs.d/README.org::%E4%B8%BB%E3%81%ABEmacs%E6%9C%AC%E4%BD%93%E3%81%AB%E5%90%8C%E6%A2%B1%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E6%8B%A1%E5%BC%B5%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E8%A8%AD%E5%AE%9A][主にEmacs本体に同梱されている拡張に関する設定]]
 * このサイトができるまで。
   このサイトは、記事を Emacs の [[http://orgmode.org/][Org-mode]] で書いて、
   [[http://jekyllrb.com/][Jekyll]] で HTML に変換しています。

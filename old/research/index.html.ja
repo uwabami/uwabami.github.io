@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian
+">
+    <title>Youhei SASAKI's official site: Research Work</title>
+    <link rel="stylesheet" href="/member/uwabami/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/member/uwabami/css/main.css" >
+    <link rel="alternate" type="application/rss+xml" title="Youhei SASAKI's official site" href="http://www.gfd-dennou.org/member/uwabami/feed.xml" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/member/uwabami/js/html5shiv.min.js"></script>
+      <script src="/member/uwabami/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/member/uwabami/images/favicon.ico">
+  </head>
+
+
+  <body>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+            <a class="navbar-brand" href="/member/uwabami/index.html.ja">Youhei SASAKI's official site</a>
+            
+          </div> <!-- /.navbar-header -->
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              
+              <li class="active"><a href="/member/uwabami/research/index.html.ja">Research</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Software <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="http://uwabami.github.io/">Github</a></li>
+                  <li><a href="/member/uwabami/cc-env/index.html">Computer Memo</a></li>
+                </ul>
+              </li>
+              <li><a href="http://uwabami.junkhub.org/log/">Blog</a></li> 
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                
+                <!-- research -->
+                <a href="/member/uwabami/research/index.html.en">English</a>
+                
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="page-header col-xs-12">
+        <h1>Research Work</h1>
+<ul class="breadcrumb">
+
+<li><a href="/member/uwabami/index.html.ja#">Top</a> </li>
+<li><a href="/member/uwabami/research/index.html.ja">Research</a></li>
+
+</ul>
+
+      </div>
+      <div class="col-sm-12">
+<h2><a id="論文"><span class='anchor'>_</span></a>論文</h2>
+<h3><a id="査読有"><span class='anchor'>_</span></a>査読有</h3>
+<ul>
+  <li>Matsui, H., Heien, E., Aubert, J., Aurnou, J.M., Avery, M., Brown, B., Buffett, B.A., Busse, F.H., Christensen, U.R., Davies, C.J., Featherstone, N., Gastine, T., Glatzmaier, G.A., Gubbins, D., Guermond, J.-L.,Hayashi, Y.-Y., Hollerbach, R., Hwang, R.J., Jackson, A., Jones, C.A., Jiang, W., Kellogg, L.H., Kuang, W., Landeau, M., Marti, P.H., Olson, P., Ribeiro, A., <u>Sasaki, Y.</u>, Schaeffer, N., Simitev, R.D., Sheyko, A., Silva, L., Stanley, S., Takahashi, F., Takehiro, S.-I., Wicht, J., Willis, A.P., 2016:
+    Performance benchmarks for a next generation numerical dynamo model,
+    Geochemistry, Geophysics, Geosystem, <code>doi: 10.1002/2015GC006159</code></li>
+  <li>Marti, P., Schaeffer, N., Hollerbach, R., Cebron, D., Nore, C., Luddens, F.,Guermond, J.-L., Aubert, J., Takehiro, S., <u>Sasaki, Y.</u>, Hayashi, Y.-Y., Simitev, R., Busse, F., Vantieghem, S., Jackson, A., 2014:
+    Full sphere hydrodynamic and dynamo benchmarks,
+    Geophysical Journal International, 197, 119-134, <code>doi: 10.1093/gji/ggt518</code></li>
+  <li>Takehiro, S., <u>Sasaki, Y.</u>, Hayashi, Y.-Y., Yamada, M., 2013:
+    Differential Rotation and Angular Momentum Transport Caused by Thermal Convection in a Rotating Spherical Shell,
+    Progress in Physics of the Sun and Stars, 479, 285-294</li>
+  <li>Jackson, A. Sheyko, A., Marti, P., Tilgner, A., Cebron, D., Vantieghem, S., Simitev, R., Busse, F., Zhan, X., Schubert, G., Takehiro, S., Sasaki, Y., Hayashi, Y.-Y., Ribeiro, A., Nore, C., Guermondw, J.-L., 2013:
+    A spherical shell numerical dynamo benchmark with pseudo-vacuum magnetic boundary conditions,
+    Geophysical Journal International, 196, 712&#8211;723, <code>doi: 10.1093/gji/ggt425</code></li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Nishizawa, S., Hayashi, Y-Y., 2013:
+    Effects of latitudinally heterogeneous buoyancy flux conditions at the inner core boundary of an MHD dynamo in a rotating spherical shell,
+    Phys. Earth Planet. Inter., 223, 55-61, <code>doi:10.1016/j.pepi.2013.07.003</code></li>
+  <li>Takehiro, S., Takahashi, Y.O., Sugiyama, K., Odaka, M., Ishiwatari, M., <u>Sasaki, Y.</u>, Ishioka, K., Nishizawa, S., Nakajima, K., Hayashi, Y.-Y., 2012:
+    Construction of Hierarchical Models for the Fluid Dynamics in Earth and Planetary Sciences : DCMODEL project.,
+    In Proc. Inernational Conference on Simulation and Technology (JSST 2012), 301, Kobe, Japan, Sep. 27-28</li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Nakajima, K., Hayashi, Y.-Y., 2012:
+    Surface zonal flows induced by thermal convection in a rapidly rotating thin spherical shell,
+    In Porc. Inernational Conference on Simulation and Technology (JSST 2012), 307, Kobe, Japan, Sep. 27-28</li>
+  <li>Ishiwatari, M., Toyoda, E., Morikawa, Y., Takehiro, S., <u>Sasaki, Y.</u>, Nishizawa, S., Odaka, M., Otobe, N., Takahashi, Y. O., Nakajima, K., Horinouchi, T., Shiotani, M., Hayashi, Y.-Y., Gtool development group, 2012:
+    gtool5 - development of Fortran90 library for self-descriptive multi-dimensional data input/output interfaces,
+    Geosci. Model Dev., 5, 449-455., 2012, <code>doi:10.5194/gmd-5-449-2012</code></li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Hayashi, Y-Y., Kuramoto, K., 2011:
+    Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries.,
+    Phys. Earth Planet. Inter., 188, 203&#8211;213., <code>doi:10.1016/j.pepi.2011.06.019</code></li>
+</ul>
+<h3><a id="査読無し"><span class='anchor'>_</span></a>査読無し</h3>
+<ul>
+  <li>竹広真一, 佐々木洋平, 石岡圭一, 2014:
+    木星型惑星大気の縞状構造の成因の研究.
+    平成 26 (2014) 年度地球シミュレータ利用報告書</li>
+  <li>佐々木 洋平, 竹広 真一, 中島健介, 林祥介, 2013:
+    回転球殻内の非弾性流体熱対流の線形安定性,
+    ながれ(日本流体力学会学会誌), 32, 469-472</li>
+  <li>佐々木 洋平, 竹広 真一, 2011:
+    熱フラックス固定境界条件下での回転球殻熱対流の線形安定性,
+    ながれ 30 別冊, P. 57.</li>
+  <li>竹広 真一, 佐々木 洋平, 西澤 誠也, 中島 健介, 林 祥介, 2011:
+    回転球殻ダイナモに対する緯度方向不均一な内側浮力フラックス境界条件の影響,
+    ながれ 30 別冊, P. 57.</li>
+  <li>佐々木洋平, 竹広真一, 林祥介, 倉本圭, 2010:
+    上端応力無し, 下端滑り無し条件を課した回転球殻中に出現する弱磁場ダイナモ,
+    ながれ 29 別冊, 211</li>
+  <li>佐々木洋平, 竹広真一, 林祥介, 倉本圭, 2009:
+    回転球殻 MHD ダイナモ解に対する上部力学的境界条件の影響,
+    ながれ 28 別冊, 106</li>
+  <li>佐々木洋平, 竹広真一, 林祥介, 倉本 圭, 2008:
+    回転球殻 MHD ダイナモにおける力学的境界条件の影響,
+    ながれ, 27 別冊, 376.</li>
+  <li>佐々木洋平, 竹広真一, 倉本圭, 林祥介, 2007:
+    球殻の厚さを変えた回転球殻熱対流, ながれ, 26 別冊, 248.</li>
+  <li>佐々木洋平, 小高正嗣, 竹広真一, 林祥介, 2004:
+    ダイナモベンチマークにおける磁場生成維持機構の解析,
+    ながれ, 23 別冊, 608-609</li>
+  <li>佐々木洋平, 竹広真一, 林祥介, 2004:
+    SPMODEL群の一環としての回転球殻MHD ダイナモの数値モデルの構築,
+    ながれ, 22 別冊, 124-125</li>
+</ul>
+<h2><a id="学会/研究集会発表"><span class='anchor'>_</span></a>学会/研究集会発表</h2>
+<h3><a id="海外"><span class='anchor'>_</span></a>海外</h3>
+<ul>
+  <li>Sasaki and Takehiro, S.-I. 2015:
+    Penetration of magneto-hydrodynamic disturbances into a strongly stable outer layer caused by MHD dynamo in a rotating spherical shell,
+    Japan SEDI symposium 2015.</li>
+  <li>Sasaki,Y., Takehiro, S. 2014,
+    Penetration of magneto-hydrodynamic disturbances into an outer strongly stable layer caused by MHD dynamo in a rotating spherical shell,
+    The 14th symposium of SEDI, Study of the Earth&#8217;s Deep Interior, at the Shonan Village Center, Kanagawa, Japan, from August 3 to 8</li>
+  <li>Takehiro, S., Sasaki, Y., Takahashi, Y. O., Nakajima, K., Hayashi, Y.-Y., Kuramoto, K., 2013,
+    Diversity of atmospheric circulations of sycronized rotating Jovian type planets.
+    5th Subaru International Conference: Exoplanets and Disks:Their Formation and Diversity II,
+    Dec. 8 to 12 2013, Sheraton Kona Resort &amp; Spa Keauhou Bay, The Big island of Hawaii.</li>
+  <li>Sasaki, Y., Takehiro, S., Kuramoto, K., Hayashi, Y.-Y. 2013:
+    Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries,
+    Mathematical analysis of magneto-hydrodynamical processes in stars, Sep. 26, 2013, Kansai Seminar House, Sakyo-ku, Kyoto, Japan.</li>
+  <li>Yoshiyuki O. Takahashi, Kouichirou Sugiyama, Masatsugu Odaka, Masaki Ishiwatari, <u>Youhei Sasaki</u>, Seiya Nishizawa, Kensuke Nakajima, Shin-ichi Takehiro, Yoshi-Yuki Hayashi, 2012
+    Construction of Hierarchical Models for the Fluid Dynamics in Earth and Planetary Sciences : DCMODEL project,
+    AGU Fall Meeting 2012, Dec 5th, 2012, San Francisco, California, USA.</li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Nishizawa, S., Nakajima, K., Hayashi Y.-Y., 2012 :
+    Effects of latitudinally heterogeneous buoyancy flux conditions at the inner boundary on MHD dynamos in a rotating spherical shell.
+    The 13th Symposium of SEDI, Study of the Earth&#8217;s Deep Interior, at the University of Leeds, UK, in Parkinson Court, from July 1 to 6</li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Nakajima, K., Hayashi, Y.-Y., 2012:
+    Development of an anelastic convection model in rotating spherical  shells for stars, gas and icy giant planets,
+    The 13th Symposium of SEDI, Study of the Earth&#8217;s Deep Interior, at the University of Leeds, UK, in Parkinson Court, from July 1 to 6</li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Nishizawa, S., Nakajima, K., Hayashi, Y.-Y., 2012:
+    Effects of latitudinally heterogeneous buoyancy flux conditions at the inner boundary on MHD dynamos in a rotating spherical shell,
+    CPS 9th International School of Planetary Sciences.</li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Nakajima, K., Kuramoto, K., Hayashi, Y.-Y., 2012:
+    Development of an anelastic convection model in rotating spherical  shells for stars, gas and icy giant planets,
+    CPS 9th International School of Planetary Sciences.</li>
+  <li>Ishiwatari1, M., K. Ishioka, S.-I. Takehiro, Y.-Y. Hayashi, S. Nishizawa, Y. O. Takahashi, M. Odaka, <u>Y. Sasaki</u>, K.-I. Sugiyama, T. Yamashita, Y. Morikawa, K. Nakajima, and GFD Dennou Club, 2010:
+    DCMODEL: Hierarchical models for geophysical fluid dynamics and planetary atmospheres.
+    CPS 6th International School of Planetary Sciences, P-18, 4-9 January, 2010, Kobe, Japan</li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Kuramoto, K., Hayashi, Y.-Y., 2011:
+    Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries,
+    AGU Fall Meeting 2011, Dec. 5th, 2011, San Francisco, California, USA.</li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Hayashi, Y-Y., Kuramoto, K., 2011:
+    Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries,
+    CPS 7th International School of Planetary Sciences, at Seapal Suma, Kobe, Japan, from January 10 to 15, 2011.</li>
+  <li><u>Sasaki, Y.</u>, Takehiro, S., Hayashi, Y-Y., Kuramoto, K., 2010:
+    Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries,
+    The 12th Symposium of SEDI, Study of the Earth&#8217;s Deep Interior, at the University of California at Santa Barbara, California, USA, in the Corwin Pavilion, from July 18 to 23, 2010</li>
+</ul>
+<h3><a id="国内"><span class='anchor'>_</span></a>国内</h3>
+<ul>
+  <li>佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2015:
+    高速回転する薄い球殻内の熱対流により引き起こされる表層縞状構造の消滅.
+    2015 年日本流体力学会年会, 東工大大岡山キャンパス</li>
+  <li>佐々木洋平, 竹広真一, 2015:
+    回転球殻ダイナモにより引き起こされる磁気流体擾乱の強い安定成層への貫入.
+    日本地球惑星科学連合 2015 年大会.</li>
+  <li>佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2015:
+    高速に回転する薄い球殻内の熱対流により引き起こされる表層縞状構造の消滅.
+    日本地球惑星科学連合 2015 年大会.</li>
+  <li>佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2015:
+    高速に回転する薄い球殻内の熱対流により引き起こされる表層縞状構造の消滅.
+    2015 年 日本気象学会春季大会</li>
+  <li>佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2014:
+    高速回転する薄い球殻中の対流により引き起こされる表層の帯状流,
+    日本気象学会 2014 年度秋季大会, 福岡国際会議場</li>
+  <li>佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2014:
+    高速回転する薄い球殻内の熱対流により引き起こされる表層の帯状流,
+    2014 年日本流体力学会年会, 2014 年 9 月 15 日, 東北大学川内北キャンパス</li>
+  <li>佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2014:
+    高速に回転する薄い球殻内の熱対流により引き起こされる表層の帯状流,
+    日本地球惑星科学連合 2014 年大会, 2014年5月1日(木), 講演番号 PCG38-01</li>
+  <li>竹広真一, 佐々木洋平, 林祥介, 山田道夫, 2013:
+    回転球殻内の熱対流による角運動量輸送と太陽差分回転について,
+    2013 年日本流体力学会年会 2013 年 9 月 13 日 東京農工大学</li>
+  <li>佐々木洋平, 竹広真一, 中島 健介, 林祥介, 2013:
+    回転球殻内の非弾性流体熱対流の線型安定性,
+    2013 年日本流体力学会年会 2013 年 9 月 13 日, 東京農工大学</li>
+  <li>佐々木 洋平, 竹広 真一, 中島 健介, 林 祥介, 2013:
+    恒星・ガス惑星・氷惑星内部を念頭においた非弾性球殻対流モデル,
+    日本地球惑星科学連合 2013 年大会 2013 年 5 月 20 日: 幕張メッセ国際会議場.</li>
+  <li>竹広真一, 佐々木洋平, 林祥介, 山田道夫 2013:
+    回転球殻内の熱対流によって引き起こされる差分回転と角運動量輸送.
+    2013 年日本天文学会春季大会, 2013 年 3 月 22 日, 埼玉大学.</li>
+  <li>佐々木洋平, 竹広真一, 2013:
+    ガス惑星を念頭に置いた回転球殻対流,
+    系外惑星大気ワークショップ 2013 年 3 月 4 - 5 日, 東京大学</li>
+  <li>Shin-ichi Takehiro, Yoshiyuki O. Takahashi, Ko-ichiro Sugiyama, Masatsugu Odaka, Masaki Ishiwatari, Youhei Sasaki, Seiya Nishizawa, Keiichi Ishioka, Kensuke Nakajima, Yoshi-Yuki Hayashi, 2013:
+    Construction of Hierarchical Models for Fluid Dynamics in Earth and Planetary Sciences : DCMODEL project,
+    惑星大気小研究会, 2013 年 2 月 5 日, 惑星科学研究センター</li>
+  <li><u>佐々木洋平</u>, 竹広真一, 中島健介, 林祥介, 2012:
+    薄い回転球殻対流により引き起こされる表層の帯状流,
+    日本惑星科学会 2012年度秋季講演会,
+    2012年 10 月 25 日, 神戸大学統合研究拠点</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 西澤 誠也, 林 祥介, 2012:
+    階層的地球流体スペクトルモデル集 SPMODEL を用いた 惑星磁場ダイナモ計算
+    第132回 SGEPSS総会および講演会,
+    2012 年 10 月 23 日 (火), 札幌コンベンションセンター</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 中島 健介, 林 祥介, 2012:
+    薄い回転球殻対流により引き起こされる表層の帯状流,
+    日本気象学会 2012 年度秋季大会,
+    2012 年 10 月 3 日, 北海道大学学術交流会館(講演番号 C168)</li>
+  <li>竹広 真一, <u>佐々木 洋平</u>, 中島 健介, 林 祥介, 2012 :
+    熱フラックス固定条件下での高速回転する円筒内の熱対流の線形安定性に対するエクマン摩擦の影響,
+    日本流体力学会年会2012, 2012 年 9 月 17 日, 高知大学朝倉キャンパス</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 中島 健介, 林 祥介, 2012 :
+    薄い回転球殻対流により引き起こされる表層の帯状流,
+    日本流体力学会年会2012, 2012 年 9 月 16 日, 高知大学朝倉キャンパス</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 中島 健介, 林 祥介, 2012:
+    恒星・ガス惑星の深部大気対流モデルの構築,
+    日本地球惑星科学連合 2012 年大会, 講演番号JP-PS21</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 西澤 誠也, 中島 健介, 林 祥介, 2012:
+    回転球殻ダイナモに対する緯度方向不均一な内側浮力フラックス境界条件の影響.
+    日本地球惑星科学連合 2012 年大会., 講演番号JS-EM21</li>
+  <li>高橋 芳幸, 杉山 耕一朗, 小高 正嗣, 石渡 正樹, <u>佐々木 洋平</u>, 西澤誠也, 中島 健介 竹広 真一, 林 祥介, 2011:
+    共通のプログラムスタイルを持つ大気大循環モデルと雲解像モデルの開発,
+    日本惑星科学会 2011 年秋季講演会, 2011 年 11 月 25 日, 相模女子大学翠葉会館 (講演番号 S32-06).</li>
+  <li>高橋 芳幸, 杉山耕一朗, 小高 正嗣, 石渡 正樹, <u>佐々木 洋平</u>, 西澤 誠也, 中島 健介, 竹広 真一, 林 祥介, 2011:
+    惑星大気計算のための大循環モデルならびに雲解像モデルの構築,
+    日本気象学会 2011 年度秋季大会, 2011 年 11 月 16 日, 名古屋大学東山キャンパス (講演番号 D111).</li>
+  <li>竹広 真一, <u>佐々木 洋平</u>, 西澤 誠也, 中島 健介, 林 祥介, 2011 :
+    回転球殻ダイナモに対する緯度方向不均一な内側浮力フラックス境界条件の影響,
+    日本流体力学会年会 2011, 2011 年 9 月 7 日, 首都大学東京南大沢キャンパス.</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 倉本 圭, 林 祥介, 2011:
+    回転球殻MHDダイナモの初期磁場依存性,
+    日本地球惑星科学連合 2011 年大会, 2011 年 5 月 26 日, 幕張メッセ国際会議場 (講演番号 S-EM36).</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 2011:
+    熱フラックス固定境界条件下での回転球殻熱対流の線形安定性解析,
+    日本地球惑星科学連合 2011 年大会, 2011 年 5 月 22 日, 幕張メッセ国際会議場 (講演番号 MIS021-P02)</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 林 祥介, 2010:
+    回転球殻 MHDダイナモにおける上部力学的境界条件の影響,
+    国立天文台 CfCAユーザーズミーティング, 2010 年 1 月 12 ～ 13 日, 国立天文台三鷹キャンパス.</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 林 祥介, 2008:
+    回転球殻 MHD ダイナモにおける力学的境界条件の影響
+    国立天文台 CfCA ユーザーズミーティング, 2008 年 12 月 17日, 国立天文台三鷹キャンパス.</li>
+  <li><u>佐々木 洋平</u>, 竹広 真一, 林 祥介, 倉本 圭, 2008:
+    下端に粘着条件・上端に応力無し条件を課した回転球殻 MHD ダイナモ計算,
+    日本地球惑星科学連合 2008 年大会, 2008 年 5 月 28 日, 幕張メッセ国際会議場, 講演番号: E111-011</li>
+  <li><u>佐々木 洋平</u>, 小高 正嗣, 林 祥介, 竹広 真一, 2004:
+    ダイナモベンチマーク・ケース1 における磁場生成維持機構の解析,
+    地球惑星科学関連学会 2004年合同大会, 2004 年 5 月 12 日, 幕張メッセ国際会議場, 講演番号: E012-004</li>
+  <li><u>佐々木 洋平</u>, 竹広真一, 林祥介, 2002:
+    回転球殻 MHD ダイナモの数値モデルの構築,
+    理論天文学懇談会, 2002 年 12 月 24日(火) - 26 日(木), 国立天文台三鷹キャンパス</li>
+</ul>
+<h2><a id="教育"><span class='anchor'>_</span></a>教育</h2>
+<ul>
+  <li>2015:
+    <ul>
+      <li>京都大学 情報基礎[理学部](後期開講) 担当(分担)</li>
+      <li>摂南大学 数学基礎I, II[経営学部](通年) 担当</li>
+      <li>摂南大学 微積分 II[理工学部](前期開講) 担当</li>
+    </ul>
+  </li>
+  <li>2014:
+    <ul>
+      <li>京都大学 情報基礎[理学部](後期開講) 担当(分担)</li>
+      <li>摂南大学 数学基礎I, II[経営学部](通年) 担当</li>
+      <li>摂南大学 微積分 II[理工学部](前期開講) 担当</li>
+    </ul>
+  </li>
+  <li>2013:
+    <ul>
+      <li>京都大学 情報基礎[理学部](後期開講) 担当(分担)</li>
+      <li>摂南大学 数学基礎I, II[経営学部](通年) 担当</li>
+      <li>摂南大学 微積分 II[理工学部](前期開講) 担当</li>
+    </ul>
+  </li>
+  <li>2012:
+    <ul>
+      <li>京都大学 情報基礎[理学部](後期開講) 担当(分担)</li>
+      <li>摂南大学 数学基礎I, II[経営学部](通年) 担当</li>
+    </ul>
+  </li>
+  <li>2011:
+    <ul>
+      <li>京都大学 情報基礎[理学部](後期開講) 担当</li>
+    </ul>
+  </li>
+</ul>
+<h2><a id="その他"><span class='anchor'>_</span></a>その他</h2>
+<h3><a id="雑誌記事"><span class='anchor'>_</span></a>雑誌記事</h3>
+<ul>
+  <li><u>佐々木洋平</u>, 2013:
+    Ruby in Debian (2),
+    Software Design 2013年10月号「Debian Hot Topics」,
+    技術評論社</li>
+  <li><u>佐々木洋平</u>, 2013:
+    Ruby in Debian (1),
+    Software Design 2013年9月号「Debian Hot Topics」,
+    技術評論社</li>
+  <li><u>佐々木 洋平</u>, 2012:
+    Offlineimap + Dovecot で快適メール環境,
+    Ubuntu Weekly Recipe 第247回,
+    <a href="http://gihyo.jp/admin/serial/01/ubuntu-recipe/0247">http://gihyo.jp/admin/serial/01/ubuntu-recipe/0247</a></li>
+  <li><u>佐々木 洋平</u>, 2012:
+    Debian - Debian の魅力と特徴,
+    Software Design 2012年2月号, 第2特集「あなたをもっと自由にする OS - Debian を使い倒せ!」
+    技術評論社</li>
+</ul>
+
+
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.content -->
+</div> <!-- /.container -->
+<footer class="footer">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+      <p>
+        
+        &copy; 2006 - 2016
+        <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+        Lastupdate: 2016-11-22 18:04:10
+        <br />
+        <span class="generator"> Powered by
+          <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>
+          +
+          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll" >Jekyll</a>
+          +
+          <a href="http://nkmr6194.github.io/Umi/" target="_blank">Umi</a> &amp;
+          <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+        </span>
+      </p>
+
+      </div> <!-- /.col-sm-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</footer>
+<script src="/member/uwabami/js/jquery-1.9.1.min.js"></script>
+<script src="/member/uwabami/bootstrap/js/bootstrap.min.js"></script>
+<script src="/member/uwabami/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

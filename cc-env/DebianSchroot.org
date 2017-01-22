@@ -1,0 +1,120 @@
+#+TITLE: schroot:お手軽コンテナ(?)
+#+DATE: 2017-01-22 18:53:04
+#+LANGUAGE: ja
+#+REF: cc-env/DebianSchroot
+#+LAYOUT: cc-env
+#+SETUPFILE: ~/Public/_setup.org
+#+PERMALINK: /cc-env/DebianSchroot.html
+Related [[wiki:index][Index]]
+
+* 始めに.
+  前は 「sid の中で lenny を飼う」でしたけど.
+  まあ, やっている事は同じです.
+
+  chrootはカーネル、ハードウェア、ネットワーク、ポート、メモリ、
+  プロセス等々を共有しつつ,
+  ルートディレクトリ(/)を切り替えることでシステムを分離する技術です.
+  作成しているパッケージの後方互換の為に, 親環境は sid だけど
+  chroot の中で stable 環境を作成します.
+
+  親環境は amd64 の sid で, chroot で持つのは
+  - /src/chroot/stable-amd64
+  - /src/chroot/stable-i386
+  とします.
+* パッケージの導入
+  =debootstrap= と =schroot= を導入しておきます.
+  #+BEGIN_EXAMPLE
+% suro aptitude install debootstrap schroot
+  #+END_EXAMPLE
+* chroot 環境作成
+  以下は stable-amd64 を作成する場合のお話.
+
+  先ず =debootstrap= で =/src/chroot/stable-amd64= に必要なパッケージを導入しておきます.
+  #+BEGIN_EXAMPLE
+% sudo mkdir -p /src/chroot/stable-amd64
+% sudo debootstrap --variant=minbase \
+                   --arch=amd64 \
+                   jessie
+                   /srv/chroot/jessie-amd64 http://ftp.jp.debian.org/debian
+...
+I: Base system installed successfully.
+  #+END_EXAMPLE
+  で終了.
+
+  =minbase= で作成すると locale が設定されてなかったりするので,
+  schroot でログイン後に適宜設定すると良いだろう.
+
+* schroot の設定
+  schroot では, 個々の環境毎に「profile」を指定することで, 柔軟な環境設定が可能となっている.
+  例えば, 何も指定しない場合には =/etc/schroot/default= 以下のファイルが設定に使用され,
+  - =/etc/schroot/default/copyfiles=: =/etc/resolv.conf= のコピー
+  - =/etc/schroot/default/fstab=: =$HOME= 等の bind mount
+  - =/etc/schroot/default/nssdatabases=: 認証に使用するファイル等のコピー
+  が行なわれる(以前は =/etc/shadow= をコピーして, なんてやっていたが, 今は不要).
+
+  作成した =/src/chroot/stable-amd64= の設定を =/etc/schroot/schroot.conf= に,
+  例えば以下の様に書いておく:
+  #+BEGIN_SRC conf
+[stable-amd64]
+description=Debian stable amd64
+directory=/src/chroot/stable-amd64
+users=[この schroot 環境を利用できるユーザの名前]
+root-groups=[root としてログインできる親環境のグループの指定]
+aliases=stable,default
+type=directory
+profile=desktop
+  #+END_SRC
+  この場合,
+  - chroot 環境として実 directory を利用
+  - profile として =/etc/schroot/desktop= 以下のファイルを利用
+  となる.
+
+  以上が終わったら,
+  #+BEGIN_EXAMPLE
+% schroot -c default             [chroot 環境へ login]
+...
+% schroot -c default -p          [環境変数を引き継いで login]
+...
+% schroot -c default -p icedove     [直接 chroot 環境下の プログラムを起動]
+...
+% schroot -c default -u root     [root として login]
+  #+END_EXAMPLE
+  なんて事ができるようになる.
+
+  =type= には lvm-snapshot や aufs も指定できるので, その気になれば割と便利に使える筈(試していないけれど).
+* chroot 環境の log 管理
+  親環境が rsyslogd ならば, /etc/rsyslog.d/ あたりに
+  #+BEGIN_SRC conf
+$AddUnixListenSocket /var/chroot/stable-amd64/dev/log
+  #+END_SRC
+  と書いておくと chroot 環境の /dev/log も見に行ってくれる.
+* chroot 環境のデーモンの起動
+  以前のメモ.
+
+  武藤さんが載せていたスクリプトをそのまま仕込むことにする.
+  とりあえずは syslog-ng と cron だけ.
+  #+BEGIN_SRC sh
+#!/bin/sh
+revw(){
+  set -- "$@"
+  r=""
+  while [ $# -gt 0 ]; do
+    w=$1; shift
+    r="$w $r"
+  done
+  echo "$r"
+}
+echo "start services (chroot sid):"
+services="anacron cron"
+if [ "$1" = "stop" ]; then
+  services=$(revw $services)
+fi
+for s in $services; do
+  schroot -q -c stable-amd64 /etc/init.d/$s $1
+done
+  #+END_SRC
+  systemd 環境下だと systemctl で起動するのが良いのかなぁ.
+  試していないけれど.
+* 参考文献
+ - [[http://kmuto.jp/d/index.cgi/debian/debootstrap.htm][Etch/Sidの上にSarge環境を作る方法]]
+ - [[https://wiki.debian.org/Schroot][Schroot - Debian Wiki]]

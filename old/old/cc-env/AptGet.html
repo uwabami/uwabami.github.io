@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian
+">
+    <title>Youhei SASAKI's official site: Apt の設定</title>
+    <link rel="stylesheet" href="/member/uwabami/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/member/uwabami/css/main.css" >
+    <link rel="alternate" type="application/rss+xml" title="Youhei SASAKI's official site" href="http://www.gfd-dennou.org/member/uwabami/feed.xml" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/member/uwabami/js/html5shiv.min.js"></script>
+      <script src="/member/uwabami/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/member/uwabami/images/favicon.ico">
+  </head>
+
+
+  <body>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+            <a class="navbar-brand" href="/member/uwabami/index.html.ja">Youhei SASAKI's official site</a>
+            
+          </div> <!-- /.navbar-header -->
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              
+              <li><a href="/member/uwabami/research/index.html.ja">Research</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Software <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="http://uwabami.github.io/">Github</a></li>
+                  <li><a href="/member/uwabami/cc-env/index.html">Computer Memo</a></li>
+                </ul>
+              </li>
+              <li><a href="http://uwabami.junkhub.org/log/">Blog</a></li> 
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                
+                <!-- cc-env -->
+                <a href="/member/uwabami/cc-env/AptGet.html"><s>English</s></a>
+                
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="page-header col-xs-12">
+        <h1>Apt の設定</h1>
+<ul class="breadcrumb">
+
+<li><a href="/member/uwabami/index.html.ja#">Top</a> </li>
+<li><a href="/member/uwabami/cc-env/index.html">Cc-env</a></li>
+
+</ul>
+
+      </div>
+      <div class="col-sm-12">
+<div class="col-md-8 col-sm-12">
+<h2><a id="始めに"><span class='anchor'>_</span></a>始めに</h2>
+<p>apt は非常に便利です. etch 以降から</p>
+<ul>
+  <li>パッケージのリストの差分だけをダウンロードする様になった.</li>
+  <li>secure-apt という機能が追加: <a href="http://kmuto.jp/d/index.cgi/debian/apt-secure.htm">KeN&#8217;s GNU/Linux Diary|secure apt</a> などを参考に.
+    <ul>
+      <li>要するに「Release ファイルの GPG 署名を検証するよ」という話.</li>
+    </ul>
+  </li>
+</ul>
+<h2><a id="apt の pin 止め"><span class='anchor'>_</span></a>apt の pin 止め</h2>
+<p>特定のパッケージを &#123;testing|unstable|experimental} から借りたい,
+  とかいう場合には <code>/etc/apt/preferences</code> にその設定を書いておく.
+  例えば以下の通り.</p>
+<pre class="example">
+Package: *
+Pin: release a=experimental
+Pin-Priority: 90
+</pre>
+<p>Pin-Priority については以下を参照</p>
+<table class="table table-striped">
+  <tr><td>Pin-Priority</td><td></td></tr>
+  <tr><td>0</td><td>install しない</td></tr>
+  <tr><td>1-99</td><td>指定すれば install できるが update の対象にならない</td></tr>
+  <tr><td>100</td><td>現在 install されているパッケージの Priority</td></tr>
+  <tr><td>(500)</td><td>現在 install されていないパッケージの Priority</td></tr>
+  <tr><td>(989)</td><td>apt-pin の default</td></tr>
+  <tr><td>990</td><td>apt-get の target-release が指定されている場合の Priority</td></tr>
+  <tr><td>1000 以上</td><td>ダウングレードしても, そのパッケージを install する.</td></tr>
+</table>
+<p>上の例では 90 なので,
+  「指定すれば install できるが update の対象にはならない」状態.
+  もちろん依存関係は満たされていなければ, install はできない.</p>
+<h2><a id="apt-key への鍵の追加"><span class='anchor'>_</span></a>apt-key への鍵の追加</h2>
+<p>鍵は /etc/apt/trustdb.gpg に登録されている.</p>
+<pre class="example">
+% sudo  apt-key list
+</pre>
+<p>で登録済みの鍵を確認できる.</p>
+<p>GPG 鍵の取得, export, import はそれぞれ</p>
+<pre class="example">
+% gpg --keyserver [鍵サーバ] --recv-keys [鍵のID]
+% gpg --export  -a [鍵ID] &gt; key_file
+% sudo apt-key add key_file
+</pre>
+<p>みたいに.</p>
+<p>鍵の登録は</p>
+<pre class="example">
+% gpg --armor --export [鍵ID] | sudo apt-key add -
+</pre>
+<p>みたいしても良いかと.</p>
+<h2><a id="現在の sources.list"><span class='anchor'>_</span></a>現在の sources.list</h2>
+<div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Official</span>
+<span class="c1">#</span>
+<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span> <span class="n">contrib</span>
+<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span> <span class="n">contrib</span>
+<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">experimental</span> <span class="n">main</span>
+<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">experimental</span> <span class="n">main</span>
+<span class="c1"># UnOfficial</span>
+<span class="c1">#</span>
+<span class="c1"># Multimedia</span>
+<span class="c1"># GPG: deb-multimedia-keyring</span>
+<span class="c1">#</span>
+<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">www</span><span class="o">.</span><span class="n">deb</span><span class="o">-</span><span class="n">multimedia</span><span class="o">.</span><span class="n">org</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span>
+<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">www</span><span class="o">.</span><span class="n">deb</span><span class="o">-</span><span class="n">multimedia</span><span class="o">.</span><span class="n">org</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span>
+<span class="c1"># PSD</span>
+<span class="c1"># GPG: FF7F9516 F0E0B4E7</span>
+<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ppa</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">graysky</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="n">ubuntu</span> <span class="n">trusty</span> <span class="n">main</span>
+<span class="c1"># Dennou</span>
+<span class="c1"># GPG: 891D7E07</span>
+<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">dennou</span><span class="o">-</span><span class="n">k</span><span class="o">.</span><span class="n">gfd</span><span class="o">-</span><span class="n">dennou</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">cc</span><span class="o">-</span><span class="n">env</span><span class="o">/</span><span class="n">debian</span><span class="o">-</span><span class="n">dennou</span> <span class="n">sid</span> <span class="n">main</span>
+</pre></div>
+<h2><a id="apt の便利ツール"><span class='anchor'>_</span></a>apt の便利ツール</h2>
+<ul>
+  <li>apt-cache</li>
+  <li>apt-show-versions</li>
+  <li>apt-listchanges</li>
+  <li>apt-listbugs</li>
+</ul>
+<p>そのうち書く, かも.</p>
+<h2><a id="参考文献"><span class='anchor'>_</span></a>参考文献</h2>
+<ul>
+  <li><a href="http://kmuto.jp/d/index.cgi/debian/apt-secure.htm">KeN&#8217;s GNU/Linux Diary|secure apt</a></li>
+  <li><a href="http://jaqque.sbih.org/kplug/apt-pinning.html">Apt-Pinning for Beginners</a></li>
+</ul>
+
+
+</div> <!-- /.col-md-8 col-sm-12 -->
+<div class="col-md-4 hidden-sm hidden-xs">
+  <div class="LinkList">
+  </div> <!-- /.LinkList -->
+</div> <!-- /.col-md-4 hidden-sm -->
+
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.content -->
+</div> <!-- /.container -->
+<footer class="footer">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+      <p>
+        
+        &copy; 2006 - 2015
+        <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+        Lastupdate: 2015-04-04 02:15:54
+        <br />
+        <span class="generator"> Powered by
+          <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>
+          +
+          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll" >Jekyll</a>
+          +
+          <a href="http://nkmr6194.github.io/Umi/" target="_blank">Umi</a> &amp;
+          <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+        </span>
+      </p>
+
+      </div> <!-- /.col-sm-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</footer>
+<script src="/member/uwabami/js/jquery-1.9.1.min.js"></script>
+<script src="/member/uwabami/bootstrap/js/bootstrap.min.js"></script>
+<script src="/member/uwabami/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

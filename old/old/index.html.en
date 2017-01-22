@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian
+">
+    <title>Youhei SASAKI's official site</title>
+    <meta name="google-site-verification" content="eV6ftpub4rGjPL3tC-7VZq3pj2igU4ZJU1Ei_3aYuZE">
+    <link rel="stylesheet" href="/member/uwabami/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/member/uwabami/css/main.css" >
+    <link rel="alternate" type="application/rss+xml" title="Youhei SASAKI's official site" href="http://www.gfd-dennou.org/member/uwabami/feed.xml" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/member/uwabami/js/html5shiv.min.js"></script>
+      <script src="/member/uwabami/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/member/uwabami/images/favicon.ico">
+  </head>
+
+
+  <body>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+            <a class="navbar-brand" href="/member/uwabami/index.html.en">Youhei SASAKI's official site</a>
+            
+          </div> <!-- /.navbar-header -->
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              
+              <li><a href="/member/uwabami/research/index.html.en">Research</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Software <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="http://uwabami.github.io/">Github</a></li>
+                  <li><a href="/member/uwabami/cc-env/index.html">Computer Memo</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                
+                <!-- index.html.en -->
+                <a href="/member/uwabami/index.html.ja">日本語</a>
+                
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="page-header col-xs-12">
+        <h1>Youhei SASAKI's official site</h1>
+<ul class="breadcrumb">
+
+<li><a href="/member/uwabami/index.html.en#">Top</a> </li>
+
+</ul>
+
+      </div>
+      <div class="col-sm-12">
+<div class="col-sm-12">
+<h2><a id="Welcome!!"><span class='anchor'>_</span></a>Welcome!!</h2>
+  <div class="col-lg-4 col-md-5 col-sm-4">
+<p><img src="images/face.png" alt="images/face.png" /></p>
+  </div>
+  <div class="col-lg-8 col-md-7 col-sm-8">
+<dl>
+  <dt>Name</dt><dd><strong>Youhei SASAKI</strong></dd>
+  <dt>Affiliation</dt><dd><a href="http://www.math.kyoto-u.ac.jp/en/front">Department of Mathematics</a>, <a href="http://www.sci.kyoto-u.ac.jp/modules/tinycontent11/">Graduate school of science</a>, <a href="http://www.kyoto-u.ac.jp/en">Kyoto University</a></dd>
+  <dt>Contact</dt><dd><a href="mailto:uwabami@gfd-dennou.org">uwabami@gfd-dennou.org</a>, GPG key is <a href="gpg.key.asc.4096R.txt">0x9394F354891D7E07</a>.</dd>
+</dl>
+<div class="hidden-sm hidden-xs">
+<pre id="gpgkey">pub   rsa4096/0x9394F354891D7E07 2009-09-03 [SC]
+      Key fingerprint = 66A4 EA70 4FE2 4055 8D6A  C2E6 9394 F354 891D 7E07
+uid                   [ultimate] Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+uid                   [ultimate] Youhei SASAKI (JunkHub) &lt;uwabami@junkhub.org&gt;
+uid                   [ultimate] Youhei SASAKI (Debian JP Project) &lt;uwabami@debian.or.jp&gt;
+sub   rsa4096/0xB41AF9579DBFD29F 2009-09-03 [E]
+      Key fingerprint = 9891 32E5 2947 1AFD D095  77C9 B41A F957 9DBF D29F
+sub   rsa4096/0xBC8C7730B7DB0213 2016-12-12 [A]
+      Key fingerprint = 7C14 990C E4C0 CAE6 7D7E  B874 BC8C 7730 B7DB 0213</pre></div>
+</div><!--/.col-sm-8 -->
+</div><!--/.col-sm-12 -->
+<hr />
+<div class="col-sm-12">
+<h2><a id="Research Interest"><span class='anchor'>_</span></a>Research Interest</h2>
+<ul>
+  <li>Convection in rotating spherical shells</li>
+  <li>MHD Dynamo theory(magnetic field generation in celestial bodies)</li>
+  <li>Numerical Computing, High performance computing</li>
+  <li>Computer and network management.</li>
+</ul>
+<h3><a id="Project"><span class='anchor'>_</span></a>Project</h3>
+<ul>
+  <li><a href="http://www.gfd-dennou.org/library/spmodel/index.htm.en">SPMODEL Project</a>
+    <ul>
+      <li>SPMODEL project is now developing various hierarchical spectral models for geophysical fluid dynamics which can be easily used for research and education.</li>
+    </ul>
+  </li>
+  <li><a href="http://www.gfd-dennou.org/library/gtool/index.htm.en">Gtool project</a>
+    <ul>
+      <li>The gtool Project designs a netCDF conventions for gridded data used in geophysical sciences, and develops tools based on the conventions</li>
+    </ul>
+  </li>
+  <li><a href="http://www.gfd-dennou.org/library/ruby/index.htm">Dennou Ruby Project</a>
+    <ul>
+      <li>Using object-oriented script language Ruby for data analyses, visualization, and numerical simulations for geophysical studies.</li>
+    </ul>
+  </li>
+</ul>
+<hr />
+<h2><a id="Personal Activities"><span class='anchor'>_</span></a>Personal Activities</h2>
+<h3><a id="[[http://www.debian.org][Debian Project]]"><span class='anchor'>_</span></a><a href="http://www.debian.org">Debian Project</a></h3>
+<ul>
+  <li>DebianWiki: <a href="http://bit.ly/1luxhNI">Youhei SASAKI</a>
+    <ul>
+      <li>Current status my packages: <a href="http://bit.ly/1dstTi4">QA page</a>, <a href="http://bit.ly/1dsu4dk">My bugs</a>, <a href="http://bit.ly/1dsudxt">Maintainer Dashboard@UDD</a></li>
+      <li>I&#8217;m interest in Emacs, Ruby, TeX, Scientific Computing(especially,Computational Fluid Dynamics).</li>
+    </ul>
+  </li>
+  <li>2010-: I&#8217;m <a href="http://wiki.debian.org/DebianMaintainer">DebianMaintainer</a>(DM)</li>
+</ul>
+<h3><a id="[[http://www.debian.or.jp][Debian JP Project]]"><span class='anchor'>_</span></a><a href="http://www.debian.or.jp">Debian JP Project</a></h3>
+<ul>
+  <li>2009-: Debian JP Project offcial member
+    <ul>
+      <li>organization committee of <a href="http://wiki.debian.org/KansaiDebianMeeting">KansaiDebianMeeting</a>, Japan.</li>
+      <li>a member of admin team for <a href="http://www.gfd-dennou.org/index.htm.en">GFD Dennou Club</a>, Debian mirror in Japan
+        <ul>
+          <li>http://dennou-h.gfd-dennou.org/debian (at Hokkaido University)</li>
+          <li>http://dennou-k.gfd-dennou.org/debian (at Kyoto University)</li>
+          <li>http://dennou-q.gfd-dennou.org/debian (at Kyushu University)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>2011/04-2013/03: Project sub leader</li>
+  <li>2014/04- : Project sub leader</li>
+</ul>
+</div><!-- /.col-sm-12 -->
+
+
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.content -->
+</div> <!-- /.container -->
+<footer class="footer">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+      <p>
+        
+        &copy; 2006 - 2016
+        <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+        Lastupdate: 2016-12-20 11:17:13
+        <br />
+        <span class="generator"> Powered by
+          <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>
+          +
+          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll" >Jekyll</a>
+          +
+          <a href="http://nkmr6194.github.io/Umi/" target="_blank">Umi</a> &amp;
+          <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+        </span>
+      </p>
+
+      </div> <!-- /.col-sm-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</footer>
+<script src="/member/uwabami/js/jquery-1.9.1.min.js"></script>
+<script src="/member/uwabami/bootstrap/js/bootstrap.min.js"></script>
+<script src="/member/uwabami/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

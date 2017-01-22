@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian
+">
+    <title>Youhei SASAKI's official site: Debian: Install 直後の雑多な設定</title>
+    <link rel="stylesheet" href="/member/uwabami/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/member/uwabami/css/main.css" >
+    <link rel="alternate" type="application/rss+xml" title="Youhei SASAKI's official site" href="http://www.gfd-dennou.org/member/uwabami/feed.xml" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/member/uwabami/js/html5shiv.min.js"></script>
+      <script src="/member/uwabami/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/member/uwabami/images/favicon.ico">
+  </head>
+
+
+  <body>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+            <a class="navbar-brand" href="/member/uwabami/index.html.ja">Youhei SASAKI's official site</a>
+            
+          </div> <!-- /.navbar-header -->
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              
+              <li><a href="/member/uwabami/research/index.html.ja">Research</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Software <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="http://uwabami.github.io/">Github</a></li>
+                  <li><a href="/member/uwabami/cc-env/index.html">Computer Memo</a></li>
+                </ul>
+              </li>
+              <li><a href="http://uwabami.junkhub.org/log/">Blog</a></li> 
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                
+                <!-- cc-env -->
+                <a href="/member/uwabami/cc-env/PostDebianInstall.html"><s>English</s></a>
+                
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="page-header col-xs-12">
+        <h1>Debian: Install 直後の雑多な設定</h1>
+<ul class="breadcrumb">
+
+<li><a href="/member/uwabami/index.html.ja#">Top</a> </li>
+<li><a href="/member/uwabami/cc-env/index.html">Cc-env</a></li>
+
+</ul>
+
+      </div>
+      <div class="col-sm-12">
+<div class="col-md-8 col-sm-12">
+<h2><a id="始めに"><span class='anchor'>_</span></a>始めに</h2>
+<p>どんなシステムでも, かならずやっている雑多な設定などをメモ書き.
+  増えてきたらそのうち分離する予定.</p>
+<h2><a id="sudo の設定"><span class='anchor'>_</span></a>sudo の設定</h2>
+<p>squeeze 以降は sudo グループがあるので, 自分を sudo グループに追加して再ログインした後に作業する.</p>
+<pre class="example">
+# adduser [アカウント] sudo
+</pre>
+<p>squeeze より前なら visudo で自分を追加してユーザアカウントでログインして作業.</p>
+<pre class="example">
+# visudo
+</pre>
+<h2><a id="keymap の変更"><span class='anchor'>_</span></a>keymap の変更</h2>
+<p>console-setup で設定するようになった.
+  X のキーボード設定もこれで設定される.
+  <code>/etc/default/console-setup</code> が <code>/etc/default/keyboad</code> を見に行き,
+  ファイルが存在すればその内容を読むようになっている.
+  現状は以下の通り:</p>
+<div class="highlight"><pre><span></span><span class="nv">BACKSPACE</span><span class="o">=</span><span class="s2">&quot;guess&quot;</span>
+<span class="nv">XKBLAYOUT</span><span class="o">=</span><span class="s2">&quot;jp&quot;</span>
+<span class="nv">XKBMODEL</span><span class="o">=</span><span class="s2">&quot;pc105&quot;</span>
+<span class="nv">XKBVARIANT</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">XKBOPTIONS</span><span class="o">=</span><span class="s2">&quot;ctrl:nocaps&quot;</span>
+</pre></div>
+<p>その後で</p>
+<pre class="example">
+$ sudo /etc/init.d/console-setup restart
+</pre>
+<h2><a id="MTA の設定"><span class='anchor'>_</span></a>MTA の設定</h2>
+<ul>
+  <li>常にネットワークに接続されているデスクトップ/ワークステーションは
+    SSMTP を使用して上流のメールサーバに転送.</li>
+  <li>モバイル環境のノートでは Exim4 を local 配送のみに設定して使用中.
+    <ul>
+      <li>(2014/07/26) Exim4の設定を移動→<a href="MailConfigure.html::Exim4">送信:Exim4</a></li>
+    </ul>
+  </li>
+</ul>
+<h3><a id="SSMTP"><span class='anchor'>_</span></a>SSMTP</h3>
+<p>.qmail や .forward など, 上流のメールサーバで転送設定をしておく.</p>
+<p>SSMTP を動かしたい計算機でインストールと設定.
+  以下</p>
+<ul>
+  <li>メールサーバ:mail.my.domain</li>
+  <li>メールサーバのアカウント: account</li>
+  <li>SSMTP の動作する計算機: hostname.my.domain</li>
+</ul>
+<p>のつもりで.</p>
+<pre class="example">
+$ sudo -s
+# aptitude install ssmtp
+  ユーザ ID が 1000 未満のメールを受け取るユーザ: account-hostname@my.domain
+  メールハブの名前: mail.my.domain
+  リモート SMTP サーバのポート番号: [空白]
+  どのドメインとして送信するか: mail.my.domain
+  FQDN (完全修飾ドメイン名): hostname.my.domain
+  メールヘッダの From: 行の上書きを許可しますか?: NO
+</pre>
+<p>ついでに /etc/crontab に MAILTO を追記しておく.
+  SMTP-AUTH over SSL に対応したい場合は, /etc/ssmtp/ssmtp.conf に</p>
+<div class="highlight"><pre><span></span><span class="no">AuthUser</span><span class="o">=[</span><span class="no">SMTP</span><span class="o">-</span><span class="no">AUTH</span> <span class="err">のユーザ名</span><span class="o">]</span>
+<span class="no">AuthPass</span><span class="o">=[</span><span class="no">SMTP</span><span class="o">-</span><span class="no">AUTH</span> <span class="err">のパスワード</span><span class="o">]</span>
+<span class="no">UseTLS</span><span class="o">=</span><span class="no">YES</span>
+</pre></div>
+<p>と書いておくと良い.</p>
+<h2><a id="alsa の初期設定"><span class='anchor'>_</span></a>alsa の初期設定</h2>
+<p>あんまり複雑な事をしなくて良い機材だと楽.
+  とりあえず alsa で音がなるようにしておく.</p>
+<pre class="example">
+$ sudo aptitide install alsa-base alsa-utils mpg123
+$ sudo alsaconf
+$ alsamixer
+</pre>
+<p>alsamixer で mute を外していないと音が鳴らないので注意.</p>
+<p>VAIO type G ではイヤホン差しても外部出力が mute にならないので,
+  明示的に mute しておく必要がある.
+  また snd-hda-intel module の読み込み時に &#8220;model=basic&#8221; を指定しておかないと
+  alsamixer での表示が悲しい感じになる.
+  <code>/etc/modprobe.d/alsa-base.conf</code> の末尾に</p>
+<pre class="example">
+options snd-hda-intel model=basic
+</pre>
+<p>なんて追記しておくと良い.</p>
+
+
+</div> <!-- /.col-md-8 col-sm-12 -->
+<div class="col-md-4 hidden-sm hidden-xs">
+  <div class="LinkList">
+  </div> <!-- /.LinkList -->
+</div> <!-- /.col-md-4 hidden-sm -->
+
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.content -->
+</div> <!-- /.container -->
+<footer class="footer">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+      <p>
+        
+        &copy; 2006 - 2015
+        <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+        Lastupdate: 2015-06-02 17:11:54
+        <br />
+        <span class="generator"> Powered by
+          <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>
+          +
+          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll" >Jekyll</a>
+          +
+          <a href="http://nkmr6194.github.io/Umi/" target="_blank">Umi</a> &amp;
+          <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+        </span>
+      </p>
+
+      </div> <!-- /.col-sm-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</footer>
+<script src="/member/uwabami/js/jquery-1.9.1.min.js"></script>
+<script src="/member/uwabami/bootstrap/js/bootstrap.min.js"></script>
+<script src="/member/uwabami/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

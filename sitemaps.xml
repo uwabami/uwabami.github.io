@@ -7,10 +7,10 @@ permalink: /sitemaps.xml
   {% for page in site.pages %}
     {% if page.id contains "404" %}{% else %}
       <url>
-        <loc>{{site.base}}{{ page.url }}</loc>
+        <loc>{{ site.url}}{{site.baseurl}}{{ page.url }}</loc>
         {% assign versions=site.pages | where:"ref", page.ref %}
         {% for version in versions %}
-          <xhtml:link rel="alternate" hreflang="{{ version.lang }}" href="{{site.base}}{{ version.url }}" />
+        <xhtml:link rel="alternate" hreflang="{{ version.lang }}" href="{{site.url}}{{site.baseurl}}{{ version.url }}" />
         {% endfor %}
         <changefreq>monthly</changefreq>
       </url>

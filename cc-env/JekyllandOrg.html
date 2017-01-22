@@ -11,31 +11,31 @@ permalink: /cc-env/JekyllandOrg.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org301e779">はじめに</a></li>
-<li><a href="#orgfedd02a">作ったモノ</a></li>
-<li><a href="#orgb21f3e4">使い方</a></li>
-<li><a href="#org7f9bbff">解説(?)</a>
+<li><a href="#org08c775d">はじめに</a></li>
+<li><a href="#orgd94a14f">作ったモノ</a></li>
+<li><a href="#org0963252">使い方</a></li>
+<li><a href="#orgdc96632">解説(?)</a>
 <ul>
-<li><a href="#org76e22ab">org ファイルの変換</a></li>
-<li><a href="#orgbccacff">org-ruby の拡張(?)</a></li>
-<li><a href="#org8a99fcd">任意の org ファイルを Jekyll で扱うために</a>
+<li><a href="#orgb328ddc">org ファイルの変換</a></li>
+<li><a href="#orge9e7c0b">org-ruby の拡張(?)</a></li>
+<li><a href="#org354ee7a">任意の org ファイルを Jekyll で扱うために</a>
 <ul>
-<li><a href="#org38fd4da"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</a></li>
-<li><a href="#orga35a06b"><code>Jekyll::Convertible</code> の上書き</a></li>
-<li><a href="#org9a187d9"><code>Jekyll::OrgConverter</code> の追加</a></li>
+<li><a href="#org143de6f"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</a></li>
+<li><a href="#org7e8915c"><code>Jekyll::Convertible</code> の上書き</a></li>
+<li><a href="#org941d88c"><code>Jekyll::OrgConverter</code> の追加</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org104b7e3">まとめ…?</a></li>
+<li><a href="#orgd435d05">まとめ…?</a></li>
 </ul>
 </div>
 </nav>
 </div>
 <a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<div id="outline-container-org301e779" class="outline-2">
-<h2 id="org301e779">はじめに</h2>
-<div class="outline-text-2" id="text-org301e779">
+<div id="outline-container-org08c775d" class="outline-2">
+<h2 id="org08c775d">はじめに</h2>
+<div class="outline-text-2" id="text-org08c775d">
 <div class="alert alert-danger">
 <p>
 <strong>以下，最近は使っていないので，今でも動くのは定かではありません．patch welcome!</strong>
@@ -51,9 +51,9 @@ permalink: /cc-env/JekyllandOrg.html
 </p>
 </div>
 </div>
-<div id="outline-container-orgfedd02a" class="outline-2">
-<h2 id="orgfedd02a">作ったモノ</h2>
-<div class="outline-text-2" id="text-orgfedd02a">
+<div id="outline-container-orgd94a14f" class="outline-2">
+<h2 id="orgd94a14f">作ったモノ</h2>
+<div class="outline-text-2" id="text-orgd94a14f">
 <p>
 コードの詳細は Github をご覧下さい。
 </p>
@@ -62,9 +62,9 @@ permalink: /cc-env/JekyllandOrg.html
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb21f3e4" class="outline-2">
-<h2 id="orgb21f3e4">使い方</h2>
-<div class="outline-text-2" id="text-orgb21f3e4">
+<div id="outline-container-org0963252" class="outline-2">
+<h2 id="org0963252">使い方</h2>
+<div class="outline-text-2" id="text-org0963252">
 <p>
 jekyll の <code>_plugin</code> に submodule としてでも放り込んで下さい。
 </p>
@@ -80,7 +80,7 @@ org ファイルを html へ出力する際のタグのカスタマイズをし�
 <div class="org-src-container">
 <pre class="src src-org">    #+TITLE:
     #+DATE:
-<span style="color: #e5e5e6;">    #+LAYOUT:</span>
+<span style="color: #a5a5a6;">    #+LAYOUT:</span>
 </pre>
 </div>
 <p>
@@ -90,16 +90,16 @@ downcase したのち Front Matter として使用できます。
 </p>
 </div>
 </div>
-<div id="outline-container-org7f9bbff" class="outline-2">
-<h2 id="org7f9bbff">解説(?)</h2>
-<div class="outline-text-2" id="text-org7f9bbff">
+<div id="outline-container-orgdc96632" class="outline-2">
+<h2 id="orgdc96632">解説(?)</h2>
+<div class="outline-text-2" id="text-orgdc96632">
 <p>
 解説するようなモンでもないですけれど。
 </p>
 </div>
-<div id="outline-container-org76e22ab" class="outline-3">
-<h3 id="org76e22ab">org ファイルの変換</h3>
-<div class="outline-text-3" id="text-org76e22ab">
+<div id="outline-container-orgb328ddc" class="outline-3">
+<h3 id="orgb328ddc">org ファイルの変換</h3>
+<div class="outline-text-3" id="text-orgb328ddc">
 <p>
 ファイルの HTML への変換には <a href="https://github.com/wallyqs/org-ruby">wallyqs/org-ruby</a> を使っています。
 </p>
@@ -130,9 +130,9 @@ plugin が使えないため、
 </p>
 </div>
 </div>
-<div id="outline-container-orgbccacff" class="outline-3">
-<h3 id="orgbccacff">org-ruby の拡張(?)</h3>
-<div class="outline-text-3" id="text-orgbccacff">
+<div id="outline-container-orge9e7c0b" class="outline-3">
+<h3 id="orge9e7c0b">org-ruby の拡張(?)</h3>
+<div class="outline-text-3" id="text-orge9e7c0b">
 <p>
 最新の org-ruby では org-mode の search link を export してくれません。
 そんな訳で monkey patch です。
@@ -140,15 +140,15 @@ plugin が使えないため、
 小さな monkey patch のつもりが、ほぼコピペになってしまいました…。
 </p>
 <div class="org-src-container">
-<pre class="src src-ruby">     <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">! /usr/bin/env ruby</span>
-     <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode: ruby; coding: utf-8 -*-</span>
-     <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">file: org_monkey.rb</span>
-     <span style="color: #e5e5e6;">#</span>
-     <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Monkey Patch: Add support org search link</span>
+<pre class="src src-ruby">     <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">! /usr/bin/env ruby</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: ruby; coding: utf-8 -*-</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">file: org_monkey.rb</span>
+     <span style="color: #a5a5a6;">#</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Monkey Patch: Add support org search link</span>
      <span style="color: #7FBFFF;">require</span> <span style="color: #7FFF7F;">'org-ruby'</span>
 
      <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Orgmode</span>
-       <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">monkey patch Orgmode::to_html inline_formatter</span>
+       <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">monkey patch Orgmode::to_html inline_formatter</span>
        <span style="color: #FF7F7F;">class</span> <span style="color: #FFFF7F;">HtmlOutputBuffer</span> &lt; <span style="color: #FFFF7F;">OutputBuffer</span>
 
          <span style="color: #7FBFFF;">alias_method</span> <span style="color: #FFBF7F;">:_orig_add_line_attributes</span>, <span style="color: #FFBF7F;">:add_line_attributes</span>
@@ -181,14 +181,14 @@ plugin が使えないため、
 
            <span style="color: #7F7FFF;">@re_help</span>.rewrite_links str <span style="color: #FF7F7F;">do</span> |link, defi|
              [link, defi].compact.each <span style="color: #FF7F7F;">do</span> |text|
-               <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">We don't support search links right now. Get rid of it.</span>
-               <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-&gt; Support search links!!</span>
+               <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">We don't support search links right now. Get rid of it.</span>
+               <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-&gt; Support search links!!</span>
                text.sub!(<span style="color: #7FFF7F;">/\A(file:[^\s]+)::([^\s]*?)\Z/</span>, <span style="color: #7FFF7F;">"\\1#\\2"</span>)
                text.sub!(<span style="color: #7FFF7F;">/\Afile:(?=[^\s]+\Z)/</span>, <span style="color: #7FFF7F;">""</span>)
              <span style="color: #FF7F7F;">end</span>
 
-             <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">We don't add a description for images in links, because its</span>
-             <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">empty value forces the image to be inlined.</span>
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">We don't add a description for images in links, because its</span>
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">empty value forces the image to be inlined.</span>
              defi ||= link <span style="color: #FF7F7F;">unless</span> link =~ <span style="color: #7F7FFF;">@re_help</span>.org_image_file_regexp
 
              <span style="color: #FF7F7F;">if</span> defi =~ <span style="color: #7F7FFF;">@re_help</span>.org_image_file_regexp
@@ -217,14 +217,14 @@ plugin が使えないため、
 
            <span style="color: #FF7F7F;">if</span> <span style="color: #7F7FFF;">@options</span>[<span style="color: #FFBF7F;">:export_footnotes</span>] <span style="color: #FF7F7F;">then</span>
              <span style="color: #7F7FFF;">@re_help</span>.rewrite_footnote str <span style="color: #FF7F7F;">do</span> |name, defi|
-               <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">TODO escape name for url?</span>
+               <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">TODO escape name for url?</span>
                <span style="color: #7F7FFF;">@footnotes</span>[name] = defi <span style="color: #FF7F7F;">if</span> defi
                quote_tags(<span style="color: #7FFF7F;">"&lt;sup&gt;&lt;a class=\"footref\" name=\"fnr.</span><span style="color: #7F7FFF;">#{name}</span><span style="color: #7FFF7F;">\" href=\"#fn.</span><span style="color: #7F7FFF;">#{name}</span><span style="color: #7FFF7F;">\"&gt;"</span>) +
                  name + quote_tags(<span style="color: #7FFF7F;">"&lt;/a&gt;&lt;/sup&gt;"</span>)
              <span style="color: #FF7F7F;">end</span>
            <span style="color: #FF7F7F;">end</span>
 
-           <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Two backslashes \\ at the end of the line make a line break without breaking paragraph.</span>
+           <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Two backslashes \\ at the end of the line make a line break without breaking paragraph.</span>
            <span style="color: #FF7F7F;">if</span> <span style="color: #7F7FFF;">@output_type</span> != <span style="color: #FFBF7F;">:table_row</span> <span style="color: #FF7F7F;">and</span> <span style="color: #7F7FFF;">@output_type</span> != <span style="color: #FFBF7F;">:table_header</span> <span style="color: #FF7F7F;">then</span>
              str.sub! <span style="color: #7FFF7F;">/\\\\$/</span>, quote_tags(<span style="color: #7FFF7F;">"&lt;br /&gt;"</span>)
            <span style="color: #FF7F7F;">end</span>
@@ -249,9 +249,9 @@ plugin が使えないため、
 </div>
 </div>
 </div>
-<div id="outline-container-org8a99fcd" class="outline-3">
-<h3 id="org8a99fcd">任意の org ファイルを Jekyll で扱うために</h3>
-<div class="outline-text-3" id="text-org8a99fcd">
+<div id="outline-container-org354ee7a" class="outline-3">
+<h3 id="org354ee7a">任意の org ファイルを Jekyll で扱うために</h3>
+<div class="outline-text-3" id="text-org354ee7a">
 <p>
 Jekyll の原稿として org ファイルを使用する際の不満は、
 </p>
@@ -278,19 +278,19 @@ Jekyll の blog 記事の範疇に無いページ( いわゆる <code>Page</code
 そんな訳で、結局自分でプラグインを書きました。
 </p>
 </div>
-<div id="outline-container-org38fd4da" class="outline-4">
-<h4 id="org38fd4da"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
-<div class="outline-text-4" id="text-org38fd4da">
+<div id="outline-container-org143de6f" class="outline-4">
+<h4 id="org143de6f"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
+<div class="outline-text-4" id="text-org143de6f">
 <p>
 org ファイルに Front Matter 相当の情報が存在することを前提として処理、
 すなわち、拡張子が <code>.org</code> の場合は常に <code>true</code> を返すようにします。
 </p>
 <div class="org-src-container">
-<pre class="src src-ruby">     <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/usr/bin/env ruby</span>
-     <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode: ruby; coding: utf-8 -*-</span>
-     <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">file: org_utils.rb</span>
+<pre class="src src-ruby">     <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/usr/bin/env ruby</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: ruby; coding: utf-8 -*-</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">file: org_utils.rb</span>
      <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Jekyll</span>
-       <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Judge the file is Org mode?</span>
+       <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Judge the file is Org mode?</span>
        <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Utils</span>
          <span style="color: #7FBFFF;">alias_method</span> <span style="color: #FFBF7F;">:_orig_has_yaml_header?</span>, <span style="color: #FFBF7F;">:has_yaml_header?</span>
 
@@ -307,9 +307,9 @@ org ファイルに Front Matter 相当の情報が存在することを前提�
 </div>
 </div>
 </div>
-<div id="outline-container-orga35a06b" class="outline-4">
-<h4 id="orga35a06b"><code>Jekyll::Convertible</code> の上書き</h4>
-<div class="outline-text-4" id="text-orga35a06b">
+<div id="outline-container-org7e8915c" class="outline-4">
+<h4 id="org7e8915c"><code>Jekyll::Convertible</code> の上書き</h4>
+<div class="outline-text-4" id="text-org7e8915c">
 <p>
 <code>org</code> ファイルの <code>#+TITLE</code> 等を FRONT<sub>MATTER</sub> として扱った上で、
 html に出力します。
@@ -317,12 +317,12 @@ html に出力します。
 org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 </p>
 <div class="org-src-container">
-<pre class="src src-ruby">     <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">! /usr/bin/env ruby</span>
-     <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode: ruby; coding: utf-8 -*-</span>
+<pre class="src src-ruby">     <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">! /usr/bin/env ruby</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: ruby; coding: utf-8 -*-</span>
      <span style="color: #7FBFFF;">require</span> <span style="color: #7FFF7F;">'org-ruby'</span>
 
      <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Jekyll</span>
-       <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Handling Org options as YAML front matter, escape liquid tag</span>
+       <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Handling Org options as YAML front matter, escape liquid tag</span>
        <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Convertible</span>
          <span style="color: #7FBFFF;">alias_method</span> <span style="color: #FFBF7F;">:_orig_read_yaml</span>, <span style="color: #FFBF7F;">:read_yaml</span>
 
@@ -340,12 +340,12 @@ org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
              org.in_buffer_settings.each_pair <span style="color: #FF7F7F;">do</span> |k, v|
                yaml_front_matter.merge!(k.downcase =&gt; v)
              <span style="color: #FF7F7F;">end</span>
-             <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remove '#+HTML'</span>
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remove '#+HTML'</span>
              yaml_front_matter = yaml_front_matter.delete_if { |k, v| k == <span style="color: #7FFF7F;">'html'</span> }
-             <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remove '#+LATEX'</span>
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remove '#+LATEX'</span>
              yaml_front_matter = yaml_front_matter.delete_if { |k, v| k == <span style="color: #7FFF7F;">'latex'</span> }
              <span style="color: #FF7F7F;">self</span>.data = <span style="color: #FFFF7F;">SafeYAML</span>.load(yaml_front_matter.to_yaml + <span style="color: #7FFF7F;">"---\n"</span>)
-             <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remove '#+TITLE' avoid double exporting</span>
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remove '#+TITLE' avoid double exporting</span>
              org.in_buffer_settings.delete_if {|k, v| k == <span style="color: #7FFF7F;">'TITLE'</span> }
              <span style="color: #FF7F7F;">if</span> yaml_front_matter.key?(<span style="color: #7FFF7F;">'liquid'</span>)
                <span style="color: #FF7F7F;">self</span>.content = org.to_html
@@ -366,23 +366,23 @@ org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 </div>
 </div>
 </div>
-<div id="outline-container-org9a187d9" class="outline-4">
-<h4 id="org9a187d9"><code>Jekyll::OrgConverter</code> の追加</h4>
-<div class="outline-text-4" id="text-org9a187d9">
+<div id="outline-container-org941d88c" class="outline-4">
+<h4 id="org941d88c"><code>Jekyll::OrgConverter</code> の追加</h4>
+<div class="outline-text-4" id="text-org941d88c">
 <p>
 Converter の追加は Jekyll 本家のドキュメントにもあるので、
 割と簡単です。実際の処理は上書きした <code>Jekyll::Convertible</code> で行なわれています。
 ただ、search link を処理するために、最後にリンクを置換しています。
 </p>
 <div class="org-src-container">
-<pre class="src src-ruby">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/usr/bin/env ruby</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode: ruby; coding: utf-8 -*-</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">file: org.rb</span>
+<pre class="src src-ruby">      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/usr/bin/env ruby</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: ruby; coding: utf-8 -*-</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">file: org.rb</span>
       <span style="color: #7FBFFF;">require</span> <span style="color: #7FFF7F;">'org-ruby'</span>
 
       <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Jekyll</span>
-        <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Add New Converter handling org-mode</span>
-        <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">main logic -&gt; @see org_convertible.rb</span>
+        <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Add New Converter handling org-mode</span>
+        <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">main logic -&gt; @see org_convertible.rb</span>
         <span style="color: #FF7F7F;">class</span> <span style="color: #FFFF7F;">OrgConverter</span> &lt; <span style="color: #FFFF7F;">Converter</span>
           safe <span style="color: #FFBF7F;">true</span>
           priority <span style="color: #FFBF7F;">:low</span>
@@ -396,7 +396,7 @@ Converter の追加は Jekyll 本家のドキュメントにもあるので、
           <span style="color: #FF7F7F;">end</span>
 
           <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">convert</span>(content)
-            <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">ad hoc file link conversion</span>
+            <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">ad hoc file link conversion</span>
             content.gsub(<span style="color: #7FFF7F;">/&lt;a href="([^(http:\/\/|https:\/\/|mailto:)]\S+)\.org/</span>,
                          <span style="color: #7FFF7F;">"&lt;a href=\"\\1.html"</span>)
           <span style="color: #FF7F7F;">end</span>
@@ -408,9 +408,9 @@ Converter の追加は Jekyll 本家のドキュメントにもあるので、
 </div>
 </div>
 </div>
-<div id="outline-container-org104b7e3" class="outline-2">
-<h2 id="org104b7e3">まとめ…?</h2>
-<div class="outline-text-2" id="text-org104b7e3">
+<div id="outline-container-orgd435d05" class="outline-2">
+<h2 id="orgd435d05">まとめ…?</h2>
+<div class="outline-text-2" id="text-orgd435d05">
 <p>
 まあ、ちゃんと動いているみたいですし、これで良いのかなぁ。
 </p>

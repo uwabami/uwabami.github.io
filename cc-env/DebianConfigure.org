@@ -1,11 +1,11 @@
 #+TITLE: Debian: Install 直後の雑多な設定
-#+DATE: 2017-01-16 23:56:47
+#+DATE: 2017-01-22 22:36:52
 #+LANGUAGE: ja
 #+REF: cc-env/DebianConfigure
 #+LAYOUT: cc-env
 #+SETUPFILE: ~/Public/_setup.org
 #+PERMALINK: /cc-env/DebianConfigure.html
-Related [[wiki:index][Index]]
+Related [[wiki:index][Index]] [[file:index.org::Debian%20%E9%96%A2%E9%80%A3][Debian]]
 * 始めに
   どんなシステムでも, かならずやっている雑多な設定などをメモ書き.
   増えてきたらそのうち分離する予定.

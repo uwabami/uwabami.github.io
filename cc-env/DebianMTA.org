@@ -1,11 +1,11 @@
 #+TITLE: MTA の設定
-#+DATE: 2017-01-16 23:56:55
+#+DATE: 2017-01-22 22:36:51
 #+LANGUAGE: ja
 #+REF: cc-env/DebianMTA
 #+LAYOUT: cc-env
 #+SETUPFILE: ~/Public/_setup.org
 #+PERMALINK: /cc-env/DebianMTA.html
-Related: [[wiki:index][Index]]
+Related: [[wiki:index][Index]] [[file:index.org::Debian%20%E9%96%A2%E9%80%A3][Debian]]
 * 始めに
   メールに関するアレコレ.
   ネットワーク接続を意識したくないので,

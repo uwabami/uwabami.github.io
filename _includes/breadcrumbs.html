@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
   {% assign crumbs = page.url | split:'/' %}
-  <li><a href="/{{ site.index[page.lang] | prepend: site.baseurl }}">Top</a></li>
+  <li><a href="{{site.baseurl }}/{{ site.index[page.lang] }}">Top</a></li>
   {% assign link = "" %}
   {% for crumb in crumbs offset:1 %}
     {% unless forloop.first %}

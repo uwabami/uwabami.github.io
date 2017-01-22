@@ -10,7 +10,6 @@ preview: server
 server: build
 	JEKYLL_GITHUB_TOKEN=$(MY_JEKYLL_GITHUB_TOKEN) \
 	  bundle exec jekyll serve --watch --safe
-
 build: publish
 	JEKYLL_GITHUB_TOKEN=$(MY_JEKYLL_GITHUB_TOKEN) \
 	  bundle exec jekyll build --safe

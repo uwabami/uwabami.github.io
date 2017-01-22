@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian
+">
+    <title>Youhei SASAKI's official site: Debian の install メモ</title>
+    <link rel="stylesheet" href="/member/uwabami/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/member/uwabami/css/main.css" >
+    <link rel="alternate" type="application/rss+xml" title="Youhei SASAKI's official site" href="http://www.gfd-dennou.org/member/uwabami/feed.xml" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/member/uwabami/js/html5shiv.min.js"></script>
+      <script src="/member/uwabami/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/member/uwabami/images/favicon.ico">
+  </head>
+
+
+  <body>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+            <a class="navbar-brand" href="/member/uwabami/index.html.ja">Youhei SASAKI's official site</a>
+            
+          </div> <!-- /.navbar-header -->
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              
+              <li><a href="/member/uwabami/research/index.html.ja">Research</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Software <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="http://uwabami.github.io/">Github</a></li>
+                  <li><a href="/member/uwabami/cc-env/index.html">Computer Memo</a></li>
+                </ul>
+              </li>
+              <li><a href="http://uwabami.junkhub.org/log/">Blog</a></li> 
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                
+                <!-- cc-env -->
+                <a href="/member/uwabami/cc-env/DebianInstall.html"><s>English</s></a>
+                
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="page-header col-xs-12">
+        <h1>Debian の install メモ</h1>
+<ul class="breadcrumb">
+
+<li><a href="/member/uwabami/index.html.ja#">Top</a> </li>
+<li><a href="/member/uwabami/cc-env/index.html">Cc-env</a></li>
+
+</ul>
+
+      </div>
+      <div class="col-sm-12">
+<div class="col-md-8 col-sm-12">
+<h2><a id="始めに"><span class='anchor'>_</span></a>始めに</h2>
+<p>この文書は自作 DOS/V 機や
+  Laptop 機 へ Debian GNU/Linux をインストールした際のメモ.
+  特筆すべき事柄とかメモ程度の事しか書いてないので,
+  インストール作業自体は <a href="http://www.debian.org/releases/stable/i386/index.html.ja">Debian GNU/Linux インストールガイド</a>を参考に.</p>
+<h2><a id="Installer"><span class='anchor'>_</span></a>Installer</h2>
+<p>最近は USB メモリを使った installer ばっかり使っている.
+  <a href="http://www.debian.org/devel/debian-installer/index.ja.html">Debian-Installer を使ったインストール</a>より,</p>
+<ul>
+  <li>weekly-build: http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/
+    <ul>
+      <li>debian-testing-amd64-netinst.iso</li>
+    </ul>
+  </li>
+  <li>USB 用image ファイル: <a href="http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/hd-media/">hd-media(amd64)</a>
+    <ul>
+      <li>boot.img.gz</li>
+    </ul>
+  </li>
+</ul>
+<p>を落としてくる.
+  USB メモリを差して, これらを展開, 配置することでインストーラが作成される.</p>
+<p>ISO ファイルを取得するには, ミラーが近くにあるのであれば jigdo が便利.
+  jigdo については <a href="https://www.debian.org/CD/jigdo-cd/index.ja.html">jigdo をつかって Debian CD イメージをダウンロードする</a> を参照のこと.</p>
+<p>例えば, USB メモリが /dev/sdb の場合には</p>
+<pre class="example">
+$ sudo -s
+# zcat boot.img.gz &gt; /dev/sdb
+# mount -t vfat /dev/sdb /mnt
+# cp debian-testing-amd64-netinsto.iso /mnt
+# tar xvzf firmware.tar.gz  -C /mnt
+# umount /mnt
+</pre>
+<p>だけで良い. あとは作成したインストーラで起動して, install 開始.
+  最小構成で install した後に sid へ upgrade する.</p>
+<h2><a id="EFI 32bit installer"><span class='anchor'>_</span></a>EFI 32bit installer</h2>
+<p>古いMacPro 用に作成する必要があったのでメモを残しておく.</p>
+<ul>
+  <li>参考: <a href="https://wiki.debian.org/InstallingDebianOn/Apple/MacBook/2-1">InstallingDebianOn/Apple/MacBook/2-1 - Debian Wiki</a></li>
+  <li>Linux 環境で作成する.  <code>grub-efi-ia32-bin</code> をインストールする.</li>
+  <li>インストーラとして,
+    http://ftp.de.debian.org/debian/dists/jessie/main/installer-i386/current/images/netboot/mini.iso
+    を使うので, ダウンロードしておく</li>
+  <li>USB メモリの先頭に, 適当なサイズ(50MB もあれば十分) のFAT32(W95 FAT32) MBR パーティションを作成</li>
+  <li>マウントする(以下,  <code>/media/usb</code> にマウントしたとする)</li>
+  <li>IA32 EFI をインストール
+    <pre class="example">
+# grub-install --target=i386-efi \
+               --efi-directory=/media/usb \
+               --boot-directory=/media/usb/boot \
+               --removable
+    </pre>
+  </li>
+  <li><code>/media/usb/boot/grub/grub.cfg</code> ファイルを以下の内容で作成
+    <pre class="example">
+if loadfont /boot/grub/fonts/unicode.pf2 ; then
+    set gfxmode=800x600
+    insmod efi_gop
+    insmod efi_uga
+    insmod video_bochs
+    insmod video_cirrus
+    insmod gfxterm
+    insmod png
+    terminal_output gfxterm
+fi
+linux (hd0,msdos1)/linux
+initrd (hd0,msdos1)/initrd.gz
+boot
+    </pre>
+  </li>
+  <li><code>mini.iso</code> から <code>initrd.gz</code> と <code>linux</code> を取り出して, <code>/media/usb</code> 以下に置く</li>
+  <li><code>mini.iso</code> そのものを <code>/media/usb</code> に置く</li>
+</ul>
+<p>以上で, 32-bit EFI 用のインストーラが作成できる.
+  ネットワーク必須なので, 必要に応じて firmware も同梱してくと良いだろう.</p>
+<h2><a id="LetsNoteCF-SX3"><span class='anchor'>_</span></a>LetsNoteCF-SX3</h2>
+<p>2014/03/28 から Panasonic Let&#8217;s Note CF-SX3 を使用中.
+  大学生協カスタマイズで</p>
+<ul>
+  <li>SSD 512GB</li>
+  <li>メモリ 16GB</li>
+</ul>
+<p>にしました.</p>
+<h3><a id="ハードウェア情報"><span class='anchor'>_</span></a>ハードウェア情報</h3>
+<p>lspci の出力結果は以下:</p>
+<ul>
+  <li><a href="lspci-v-LetsNoteCF-SX3.txt">lspci -v (CF-SX3)</a></li>
+</ul>
+<h3><a id="install 前の準備"><span class='anchor'>_</span></a>install 前の準備</h3>
+<p>UEFI です.
+  legacy BIOS モードもあるので,
+  そちらで起動しても問題無いのかもしれしません.
+  ただ legacy BIOS モードだとデバイス初期化に失敗する機械
+  (MacBook Air とか)もあるらしいので,
+  ここでは UEFI でインストールすることにします.</p>
+<p>今迄通り, 起動画面で F2 を押すと UEFI の設定画面に移行できます.
+  そこで SecureBoot を無効化しておきます.</p>
+<p>初期の/リカバリ後のパーティション構成のうち,
+  第1/第2パーティションを弄ると何もできなくなりましたので,
+  ここは弄らずに Windows 領域を縮小します.</p>
+<p>あと Windows 側でバッテリーのキャリブレーションと
+  eco モードへの切り替えを行なっておきます.
+  eco モード(80%充電で充電停止)を Linux から設定できると楽なんですけれどね.</p>
+<p>Windows の「ディスク」ツールで, ディスクを縮小します.
+  ディスク縮小が自由にできない場合には,
+  Windows の「復旧」と「ページングファイル」を無効化すると良いでしょう.</p>
+<p>install 後のディスク構成は以下の通り:</p>
+<pre class="example">
+Model: ATA TOSHIBA THNSNF51 (scsi)
+Disk /dev/sda: 512GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+
+Number  Start   End     Size    File system  Name                          Flags
+ 1      1049kB  840MB   839MB   ntfs         Basic data partition          hidden, diag
+ 2      840MB   1113MB  273MB   fat32        EFI system partition          boot
+ 3      1113MB  1247MB  134MB                Microsoft reserved partition  msftres
+ 4      1247MB  84.8GB  83.5GB  ntfs         Basic data partition          msftdata
+ 5      84.8GB  84.9GB  128MB   ext4         Boot(Grub)
+ 6      84.9GB  512GB   427GB                                              lvm
+
+</pre>
+<p>こんだけディスク大きいと, 先頭に数GB取られてもまったく気にならない(笑).
+  Windows8 は殆ど使う気が無いので 80 GB まで減らしてます.</p>
+<p>初の UEFI にドキドキしつつ USB インストーラを試そうとしたら,
+  UEFI の画面で起動デバイスに選択できず.</p>
+<p>しょうがないので(数年振りに) installer として 2014/04/07 の
+  snapshot 版の DVD イメージを DVD に焼いて試してみたら,
+  boot デバイスの選択画面にもドライブが表われて,
+  さらに installer 自体が EFI モードで起動し,
+  特に何も設定せずとも grub-efi で幸せになれました
+  Windows 領域も認識して, dual boot で綺麗に動いてくれています.</p>
+<p>相変わらず Panasonic の機械は素直で良いですね.</p>
+<h2><a id="Let's Note S9"><span class='anchor'>_</span></a>Let&#8217;s Note S9</h2>
+<p>2010/03/10 から Panasonic Let&#8217;s Note S9 を使用中.
+  Corei5 で WiMAX です(ドキドキ).
+  大学生協カスタマイズから,</p>
+<ul>
+  <li>RAM: 8GB</li>
+  <li>HDD: 2.5inch SATA 512 GB</li>
+</ul>
+<p>に変更しました. 発売が 2 月末というできたてホヤホヤの機械です.
+  主要な機能が動くかどうかも定かではないのですが気合で, なんとか.</p>
+<h3><a id="ハードウェア情報"><span class='anchor'>_</span></a>ハードウェア情報</h3>
+<p>lspci の出力結果は以下を参照:</p>
+<ul>
+  <li><a href="lspci-v-LetsNoteS9.txt">lspci -v (CF-S9)</a></li>
+</ul>
+<h3><a id="install 前の準備"><span class='anchor'>_</span></a>install 前の準備</h3>
+<ul>
+  <li>添付のリカバリディスクでブートして動作確認
+    <ul>
+      <li>HDD 内のリカバリ領域を削除するのが目的. リカバリ領域無しでも出荷状態に戻せることを確認.</li>
+    </ul>
+  </li>
+  <li><a href="http://gparted.sourceforge.net/livecd.php">GParted</a> の LiveCD で起動して&#8230;
+    <ul>
+      <li>先頭のリカバリ領域を削除</li>
+      <li>C: のサイズを 20 GB に変更.</li>
+    </ul>
+  </li>
+</ul>
+<p>install 後のディスク構成は以下の通り:</p>
+<pre class="example">
+                             Disk Drive: /dev/sda
+                      Size: 500107862016 bytes, 500.1 GB
+            Heads: 255   Sectors per Track: 63   Cylinders: 60801
+
+   Name        Flags      Part Type  FS Type          [Label]        Size (MB)
+------------------------------------------------------------------------------
+   sda1        Boot        Primary   Linux ext3       [/boot]           131.61
+   sda3                    Primary   NTFS             []              26213.97
+   sda2                    Primary   Linux swap/Solaris               15998.17
+   sda4                    Primary   Linux ext3       [/]            457761.51
+</pre>
+<p>Windows 領域を sda2 に移すの忘れていた. 気持ち悪いけれど, まあ良いか.</p>
+<h2><a id="VAIO typeG"><span class='anchor'>_</span></a>VAIO typeG</h2>
+<p>2009/04/01 から SONY VAIO typeG を使用中. SonyStyle でちょっとカスタマイズして</p>
+<ul>
+  <li>CPU: Core2Duo SU9400</li>
+  <li>RAM: 4GB(2GBx2)</li>
+  <li>HDD: 2.5型 HDD 320GB, 光学ドライブ無し</li>
+</ul>
+<p>にしました. あとから気がついたけれど, 日本語配列の刻印無しキーボードも選択すれば良かったかな&#8230;</p>
+<h3><a id="ハードウェア情報"><span class='anchor'>_</span></a>ハードウェア情報</h3>
+<p>lspci の出力結果は以下を参照:</p>
+<ul>
+  <li><a href="lspci-v-VAIOtypeG.txt">lspci -v (VAIO TypeG)</a></li>
+</ul>
+<h3><a id="install 前の準備"><span class='anchor'>_</span></a>install 前の準備</h3>
+<ul>
+  <li>リカバリディスクを作成し, リカバリを実行する
+    <ul>
+      <li>どうあがいても最小構成で C: に 40 GB 割り当てようとする.</li>
+      <li>BIOS の upgrade 程度にしか使う気が無いのに, この無駄さ加減.</li>
+    </ul>
+  </li>
+  <li>Knoppix で起動. GParted を用いて
+    <ul>
+      <li>先頭のリカバリ領域を削除</li>
+      <li>後方の D: を削除</li>
+      <li>C: を sda2 に移動, サイズを 20 GB に変更.</li>
+    </ul>
+  </li>
+  <li>もういちどリカバリディスクで起動して, Windows の修復を実行</li>
+</ul>
+<p>install の結果としてディスク構成は以下の様になりました.</p>
+<pre class="example">
+                             Disk Drive: /dev/da
+                       Size: 320072933376 bytes, 320.0 GB
+             Heads: 255   Sectors per Track: 63   Cylinders: 38913
+
+   Name        Flags      Part Type  FS Type          [Label]       Size (MB)
+------------------------------------------------------------------------------
+   sda1                    Primary   Linux ext3       [/boot]         131.61
+   sda2        Boot        Primary   NTFS             []            20974.47
+   sda3                    Primary   Linux swap / Solaris            8003.20
+   sda4                    Primary   Linux ext3        [root]       290961.06
+</pre>
+<h2><a id="Let's Note CF-R4"><span class='anchor'>_</span></a>Let&#8217;s Note CF-R4</h2>
+<p>2009/04/01 まではメインで Panasonic Let&#8217;s Note CF-R4 を使用してました.</p>
+<h3><a id="ハードウェア情報"><span class='anchor'>_</span></a>ハードウェア情報</h3>
+<p>lspci の出力結果は以下を参照</p>
+<ul>
+  <li><a href="lspci-v-CF-R4.txt">lspci -v (CF-R4)</a></li>
+</ul>
+<h3><a id="install 前の準備"><span class='anchor'>_</span></a>install 前の準備</h3>
+<p>始めにリカバリー起動してパーティションの切り直し.
+  install の結果として今回は以下の様に.</p>
+<pre class="example">
+                             Disk Drive: /dev/hda
+                       Size: 60011642880 bytes, 60.0 GB
+             Heads: 255   Sectors per Track: 63   Cylinders: 7296
+
+   Name        Flags      Part Type  FS Type          [Label]        Size (MB)
+------------------------------------------------------------------------------
+   hda1                    Primary   NTFS             []               8595.42
+   hda2        Boot        Primary   Linux ext3       [/boot]           131.61
+   hda3                    Primary   Linux swap / Solaris              1998.75
+   hda4                    Primary   Linux ext3       [/]             49285.88
+</pre>
+<p>元の Windows 領域は 8GB に. 使う気は無いけど
+  バッテリーのエコモード切り替えや W05K のアクティベーションは Windows で
+  行なう必要があるので, 止むなく残す.</p>
+<p>boot と swap に分ける必要はあるのか定かではない. 癖のようなもの.
+  また, swap 領域を / より先に持ってきているのは TuxOnIce のため.
+  「resume する領域が先にあった方が良い」という情報をどこかで見た記憶があるので
+  そのようにしている. これも嘘かもしれない.</p>
+<h2><a id="install が終わったら."><span class='anchor'>_</span></a>install が終わったら.</h2>
+<p>install レポートを提出しましょう.
+  適当な <a href="PostDebianInstall#MTA">MTA</a> の設定が終わったら,</p>
+<pre class="example">
+# reportbug --configure
+$ reportbug -b installation-reports
+</pre>
+<p>です.</p>
+<h2><a id="参考文献"><span class='anchor'>_</span></a>参考文献</h2>
+<h3><a id="全般"><span class='anchor'>_</span></a>全般</h3>
+<ul>
+  <li><a href="http://www.debian.org/releases/stable/i386/index.html.ja">Debian GNU/Linux インストールガイド</a></li>
+  <li><a href="http://qref.sourceforge.net/Debian/reference/reference.ja.html">Debian リファレンス</a></li>
+</ul>
+<h3><a id="CF-R4"><span class='anchor'>_</span></a>CF-R4</h3>
+<ul>
+  <li><a href="http://kmuto.jp/open.cgi?Y2">Let&#8217;s note CF-Y2</a></li>
+  <li><a href="http://yoosee.net/wiki/?Debian%2Finstall%2FCF-Y4">Debian sarge on Let&#8217;s Note CF-Y4</a></li>
+  <li><a href="http://web.yl.is.s.u-tokyo.ac.jp/~furuse/comp/cf-w4.html">Debian Linux for CF-W4 (Let&#8217;s note)</a></li>
+</ul>
+<h3><a id="TypeG"><span class='anchor'>_</span></a>TypeG</h3>
+<ul>
+  <li><a href="http://flatray.com/linux/vaio-t/">Linux on SONY VAIO type T</a></li>
+</ul>
+
+
+</div> <!-- /.col-md-8 col-sm-12 -->
+<div class="col-md-4 hidden-sm hidden-xs">
+  <div class="LinkList">
+  </div> <!-- /.LinkList -->
+</div> <!-- /.col-md-4 hidden-sm -->
+
+      </div>
+    </div> <!-- /.row -->
+  </div> <!-- /.content -->
+</div> <!-- /.container -->
+<footer class="footer">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+      <p>
+        
+        &copy; 2006 - 2016
+        <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+        Lastupdate: 2016-11-22 17:56:18
+        <br />
+        <span class="generator"> Powered by
+          <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>
+          +
+          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll" >Jekyll</a>
+          +
+          <a href="http://nkmr6194.github.io/Umi/" target="_blank">Umi</a> &amp;
+          <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+        </span>
+      </p>
+
+      </div> <!-- /.col-sm-12 -->
+    </div> <!-- /.row -->
+  </div> <!-- /.container -->
+</footer>
+<script src="/member/uwabami/js/jquery-1.9.1.min.js"></script>
+<script src="/member/uwabami/bootstrap/js/bootstrap.min.js"></script>
+<script src="/member/uwabami/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

@@ -1,0 +1,223 @@
+---
+title: schroot&#58;お手軽コンテナ(?)
+date: 2017-01-22 18:53:04
+layout: cc-env
+lang: ja
+ref: cc-env/DebianSchroot
+permalink: /cc-env/DebianSchroot.html
+---
+<div id="toc-wrapper">
+<nav id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9e5b10f">始めに.</a></li>
+<li><a href="#orgdcb1a03">パッケージの導入</a></li>
+<li><a href="#org9d9a612">chroot 環境作成</a></li>
+<li><a href="#org69edf95">schroot の設定</a></li>
+<li><a href="#org494bca8">chroot 環境の log 管理</a></li>
+<li><a href="#orge8e0988">chroot 環境のデーモンの起動</a></li>
+<li><a href="#orgc657265">参考文献</a></li>
+</ul>
+</div>
+</nav>
+</div>
+<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
+<p>
+Related <a href='index.html'>Index</a>
+</p>
+
+<div id="outline-container-org9e5b10f" class="outline-2">
+<h2 id="org9e5b10f">始めに.</h2>
+<div class="outline-text-2" id="text-org9e5b10f">
+<p>
+前は 「sid の中で lenny を飼う」でしたけど.
+まあ, やっている事は同じです.
+</p>
+
+<p>
+chrootはカーネル、ハードウェア、ネットワーク、ポート、メモリ、
+プロセス等々を共有しつつ,
+ルートディレクトリ(/)を切り替えることでシステムを分離する技術です.
+作成しているパッケージの後方互換の為に, 親環境は sid だけど
+chroot の中で stable 環境を作成します.
+</p>
+
+<p>
+親環境は amd64 の sid で, chroot で持つのは
+</p>
+<ul class="org-ul">
+<li>/src/chroot/stable-amd64</li>
+<li>/src/chroot/stable-i386</li>
+</ul>
+<p>
+とします.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdcb1a03" class="outline-2">
+<h2 id="orgdcb1a03">パッケージの導入</h2>
+<div class="outline-text-2" id="text-orgdcb1a03">
+<p>
+<code>debootstrap</code> と <code>schroot</code> を導入しておきます.
+</p>
+<pre class="example">
+% suro aptitude install debootstrap schroot
+</pre>
+</div>
+</div>
+<div id="outline-container-org9d9a612" class="outline-2">
+<h2 id="org9d9a612">chroot 環境作成</h2>
+<div class="outline-text-2" id="text-org9d9a612">
+<p>
+以下は stable-amd64 を作成する場合のお話.
+</p>
+
+<p>
+先ず <code>debootstrap</code> で <code>/src/chroot/stable-amd64</code> に必要なパッケージを導入しておきます.
+</p>
+<pre class="example">
+% sudo mkdir -p /src/chroot/stable-amd64
+% sudo debootstrap --variant=minbase \
+                   --arch=amd64 \
+                   jessie
+                   /srv/chroot/jessie-amd64 http://ftp.jp.debian.org/debian
+...
+I: Base system installed successfully.
+</pre>
+<p>
+で終了.
+</p>
+
+<p>
+<code>minbase</code> で作成すると locale が設定されてなかったりするので,
+schroot でログイン後に適宜設定すると良いだろう.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org69edf95" class="outline-2">
+<h2 id="org69edf95">schroot の設定</h2>
+<div class="outline-text-2" id="text-org69edf95">
+<p>
+schroot では, 個々の環境毎に「profile」を指定することで, 柔軟な環境設定が可能となっている.
+例えば, 何も指定しない場合には <code>/etc/schroot/default</code> 以下のファイルが設定に使用され,
+</p>
+<ul class="org-ul">
+<li><code>/etc/schroot/default/copyfiles</code>: <code>/etc/resolv.conf</code> のコピー</li>
+<li><code>/etc/schroot/default/fstab</code>: <code>$HOME</code> 等の bind mount</li>
+<li><code>/etc/schroot/default/nssdatabases</code>: 認証に使用するファイル等のコピー</li>
+</ul>
+<p>
+が行なわれる(以前は <code>/etc/shadow</code> をコピーして, なんてやっていたが, 今は不要).
+</p>
+
+<p>
+作成した <code>/src/chroot/stable-amd64</code> の設定を <code>/etc/schroot/schroot.conf</code> に,
+例えば以下の様に書いておく:
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">[<span style="color: #FFFF7F;">stable-amd64</span>]
+<span style="color: #7F7FFF;">description</span>=Debian stable amd64
+<span style="color: #7F7FFF;">directory</span>=/src/chroot/stable-amd64
+<span style="color: #7F7FFF;">users</span>=[&#12371;&#12398; schroot &#29872;&#22659;&#12434;&#21033;&#29992;&#12391;&#12365;&#12427;&#12518;&#12540;&#12470;&#12398;&#21517;&#21069;]
+<span style="color: #7F7FFF;">root-groups</span>=[root &#12392;&#12375;&#12390;&#12525;&#12464;&#12452;&#12531;&#12391;&#12365;&#12427;&#35242;&#29872;&#22659;&#12398;&#12464;&#12523;&#12540;&#12503;&#12398;&#25351;&#23450;]
+<span style="color: #7F7FFF;">aliases</span>=stable,default
+<span style="color: #7F7FFF;">type</span>=directory
+<span style="color: #7F7FFF;">profile</span>=desktop
+</pre>
+</div>
+<p>
+この場合,
+</p>
+<ul class="org-ul">
+<li>chroot 環境として実 directory を利用</li>
+<li>profile として <code>/etc/schroot/desktop</code> 以下のファイルを利用</li>
+</ul>
+<p>
+となる.
+</p>
+
+<p>
+以上が終わったら,
+</p>
+<pre class="example">
+% schroot -c default             [chroot 環境へ login]
+...
+% schroot -c default -p          [環境変数を引き継いで login]
+...
+% schroot -c default -p icedove     [直接 chroot 環境下の プログラムを起動]
+...
+% schroot -c default -u root     [root として login]
+</pre>
+<p>
+なんて事ができるようになる.
+</p>
+
+<p>
+<code>type</code> には lvm-snapshot や aufs も指定できるので, その気になれば割と便利に使える筈(試していないけれど).
+</p>
+</div>
+</div>
+<div id="outline-container-org494bca8" class="outline-2">
+<h2 id="org494bca8">chroot 環境の log 管理</h2>
+<div class="outline-text-2" id="text-org494bca8">
+<p>
+親環境が rsyslogd ならば, <i>etc/rsyslog.d</i> あたりに
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">$AddUnixListenSocket /var/chroot/stable-amd64/dev/log
+</pre>
+</div>
+<p>
+と書いておくと chroot 環境の /dev/log も見に行ってくれる.
+</p>
+</div>
+</div>
+<div id="outline-container-orge8e0988" class="outline-2">
+<h2 id="orge8e0988">chroot 環境のデーモンの起動</h2>
+<div class="outline-text-2" id="text-orge8e0988">
+<p>
+以前のメモ.
+</p>
+
+<p>
+武藤さんが載せていたスクリプトをそのまま仕込むことにする.
+とりあえずは syslog-ng と cron だけ.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
+<span style="color: #BF7FFF;">revw</span>(){
+  <span style="color: #7FBFFF;">set</span> -- <span style="color: #7FFF7F;">"$@"</span>
+  <span style="color: #7F7FFF;">r</span>=<span style="color: #7FFF7F;">""</span>
+  <span style="color: #FF7F7F;">while</span> [ $<span style="color: #7F7FFF;">#</span> -gt 0 ]; <span style="color: #FF7F7F;">do</span>
+    <span style="color: #7F7FFF;">w</span>=$<span style="color: #7F7FFF;">1</span>; <span style="color: #7FBFFF;">shift</span>
+    <span style="color: #7F7FFF;">r</span>=<span style="color: #7FFF7F;">"$w $r"</span>
+  <span style="color: #FF7F7F;">done</span>
+  <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"$r"</span>
+}
+<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"start services (chroot sid):"</span>
+<span style="color: #7F7FFF;">services</span>=<span style="color: #7FFF7F;">"anacron cron"</span>
+<span style="color: #FF7F7F;">if</span> [ <span style="color: #7FFF7F;">"$1"</span> = <span style="color: #7FFF7F;">"stop"</span> ]; <span style="color: #FF7F7F;">then</span>
+  <span style="color: #7F7FFF;">services</span>=$(revw $<span style="color: #7F7FFF;">services</span>)
+<span style="color: #FF7F7F;">fi</span>
+<span style="color: #FF7F7F;">for</span> s<span style="color: #FF7F7F;"> in</span> $<span style="color: #7F7FFF;">services</span>; <span style="color: #FF7F7F;">do</span>
+  schroot -q -c stable-amd64 /etc/init.d/$<span style="color: #7F7FFF;">s</span> $<span style="color: #7F7FFF;">1</span>
+<span style="color: #FF7F7F;">done</span>
+</pre>
+</div>
+<p>
+systemd 環境下だと systemctl で起動するのが良いのかなぁ.
+試していないけれど.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc657265" class="outline-2">
+<h2 id="orgc657265">参考文献</h2>
+<div class="outline-text-2" id="text-orgc657265">
+<ul class="org-ul">
+<li><a href="http://kmuto.jp/d/index.cgi/debian/debootstrap.htm">Etch/Sidの上にSarge環境を作る方法</a></li>
+<li><a href="https://wiki.debian.org/Schroot">Schroot - Debian Wiki</a></li>
+</ul>
+</div>
+</div>

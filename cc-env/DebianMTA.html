@@ -1,6 +1,6 @@
 ---
 title: MTA の設定
-date: 2017-01-16 23:56:55
+date: 2017-01-22 22:36:51
 layout: cc-env
 lang: ja
 ref: cc-env/DebianMTA
@@ -11,30 +11,30 @@ permalink: /cc-env/DebianMTA.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge76097b">始めに</a></li>
-<li><a href="#org42bcb00">送信サーバの設定: Exim4</a></li>
-<li><a href="#org145c703">受信</a>
+<li><a href="#org52996ef">始めに</a></li>
+<li><a href="#org829cc37">送信サーバの設定: Exim4</a></li>
+<li><a href="#orgc0d732a">受信</a>
 <ul>
-<li><a href="#orgd84dc80">mbsync/isync</a>
+<li><a href="#orgde72086">mbsync/isync</a>
 <ul>
-<li><a href="#org6960fe8">インストール</a></li>
-<li><a href="#org6bd8cab">設定</a></li>
-<li><a href="#org2fd5aec">cron での動作</a></li>
+<li><a href="#orgdb4d030">インストール</a></li>
+<li><a href="#org4780716">設定</a></li>
+<li><a href="#orgd892dbe">cron での動作</a></li>
 </ul>
 </li>
-<li><a href="#orgf2617bc">dovecot</a>
+<li><a href="#org4d27884">dovecot</a>
 <ul>
-<li><a href="#org0701ea0">インストール</a></li>
-<li><a href="#orgd970bc3">設定</a></li>
-<li><a href="#org1ecc218">検索: Solr</a></li>
-<li><a href="#org52bd382">検索: Solr で日本語</a></li>
+<li><a href="#orgef95852">インストール</a></li>
+<li><a href="#orgb5cdd33">設定</a></li>
+<li><a href="#orge119696">検索: Solr</a></li>
+<li><a href="#org21f49f8">検索: Solr で日本語</a></li>
 </ul>
 </li>
-<li><a href="#org56f7c9b">offlineimap</a>
+<li><a href="#orgbf930e6">offlineimap</a>
 <ul>
-<li><a href="#org510d945">インストール</a></li>
-<li><a href="#org5978011">設定</a></li>
-<li><a href="#orge941236">cron での動作</a></li>
+<li><a href="#org761b8a4">インストール</a></li>
+<li><a href="#org2c706cd">設定</a></li>
+<li><a href="#org347e3ef">cron での動作</a></li>
 </ul>
 </li>
 </ul>
@@ -45,11 +45,11 @@ permalink: /cc-env/DebianMTA.html
 </div>
 <a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
 <p>
-Related: <a href='index.html'>Index</a>
+Related: <a href='index.html'>Index</a> <a href="index.html#org18ea7da">Debian</a>
 </p>
-<div id="outline-container-orge76097b" class="outline-2">
-<h2 id="orge76097b">始めに</h2>
-<div class="outline-text-2" id="text-orge76097b">
+<div id="outline-container-org52996ef" class="outline-2">
+<h2 id="org52996ef">始めに</h2>
+<div class="outline-text-2" id="text-org52996ef">
 <p>
 メールに関するアレコレ.
 ネットワーク接続を意識したくないので,
@@ -57,9 +57,9 @@ Related: <a href='index.html'>Index</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org42bcb00" class="outline-2">
-<h2 id="org42bcb00">送信サーバの設定: Exim4</h2>
-<div class="outline-text-2" id="text-org42bcb00">
+<div id="outline-container-org829cc37" class="outline-2">
+<h2 id="org829cc37">送信サーバの設定: Exim4</h2>
+<div class="outline-text-2" id="text-org829cc37">
 <p>
 smarthost での送信だけなら Exim4 が軽量で楽。
 他にも幾つか選択肢はある。気になるなら <a href="https://wiki.debian.org/Debate/DefaultMTA">Debian Wiki: DefaultMTA</a> あたり参照のこと。
@@ -121,9 +121,9 @@ smarthost での送信だけなら Exim4 が軽量で楽。
 </p>
 </div>
 </div>
-<div id="outline-container-org145c703" class="outline-2">
-<h2 id="org145c703">受信</h2>
-<div class="outline-text-2" id="text-org145c703">
+<div id="outline-container-orgc0d732a" class="outline-2">
+<h2 id="orgc0d732a">受信</h2>
+<div class="outline-text-2" id="text-orgc0d732a">
 <p>
 受信/閲覧は
 </p>
@@ -153,16 +153,16 @@ smarthost での送信だけなら Exim4 が軽量で楽。
 ということで、2015 年から <a href="http://isync.sourceforge.net/">isync: free IMAP and MailDir mailbox synchronizer</a> に移行した。
 </p>
 </div>
-<div id="outline-container-orgd84dc80" class="outline-3">
-<h3 id="orgd84dc80">mbsync/isync</h3>
-<div class="outline-text-3" id="text-orgd84dc80">
+<div id="outline-container-orgde72086" class="outline-3">
+<h3 id="orgde72086">mbsync/isync</h3>
+<div class="outline-text-3" id="text-orgde72086">
 <p>
 isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
 </p>
 </div>
-<div id="outline-container-org6960fe8" class="outline-4">
-<h4 id="org6960fe8">インストール</h4>
-<div class="outline-text-4" id="text-org6960fe8">
+<div id="outline-container-orgdb4d030" class="outline-4">
+<h4 id="orgdb4d030">インストール</h4>
+<div class="outline-text-4" id="text-orgdb4d030">
 <p>
 実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
 </p>
@@ -174,9 +174,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org6bd8cab" class="outline-4">
-<h4 id="org6bd8cab">設定</h4>
-<div class="outline-text-4" id="text-org6bd8cab">
+<div id="outline-container-org4780716" class="outline-4">
+<h4 id="org4780716">設定</h4>
+<div class="outline-text-4" id="text-org4780716">
 <p>
 設定ファイルは <code>~/.mbsyncrc</code>.
 設定例は以下:
@@ -312,18 +312,18 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org2fd5aec" class="outline-4">
-<h4 id="org2fd5aec">cron での動作</h4>
-<div class="outline-text-4" id="text-org2fd5aec">
+<div id="outline-container-orgd892dbe" class="outline-4">
+<h4 id="orgd892dbe">cron での動作</h4>
+<div class="outline-text-4" id="text-orgd892dbe">
 <p>
 認証に GPG を使っており、認証に Gnome Keyring を用いているので
 必要な環境変数を読み込んでから実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/bin/bash</span>
+<pre class="src src-sh">      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/bash</span>
       sleep 5
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Export the dbus session address on startup so it can be used by cron</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Export the dbus session address on startup so it can be used by cron</span>
       touch $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
       chmod 600 $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
       env | grep DBUS_SESSION_BUS_ADDRESS &gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
@@ -356,17 +356,17 @@ apt 万歳
 cron で実行されるスクリプトは, 例えば
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/bin/sh</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
-      <span style="color: #e5e5e6;">################################################################################</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">for personal settings</span>
+<pre class="src src-sh">      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/sh</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
+      <span style="color: #a5a5a6;">################################################################################</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for personal settings</span>
       <span style="color: #7F7FFF;">PID</span>=~/Maildir/mbsync.pid
       <span style="color: #7F7FFF;">CONF</span>=~/.mbsyncrc
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">for gnome-keyring:</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for gnome-keyring:</span>
       . ${<span style="color: #7F7FFF;">HOME</span>}/.Xdbus
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">check network is avaliable</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check network is avaliable</span>
       nm-online -x  2&gt;/dev/null || <span style="color: #FF7F7F;">exit</span> 0
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">check another offlineimap</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check another offlineimap</span>
       timelimit -T 300 -t 300 mbsync -c $<span style="color: #7F7FFF;">CONF</span> -a 2&gt;&amp;1 || <span style="color: #FF7F7F;">exit</span> 0
 </pre>
 </div>
@@ -377,12 +377,12 @@ cron で実行されるスクリプトは, 例えば
 </div>
 </div>
 </div>
-<div id="outline-container-orgf2617bc" class="outline-3">
-<h3 id="orgf2617bc">dovecot</h3>
-<div class="outline-text-3" id="text-orgf2617bc">
-</div><div id="outline-container-org0701ea0" class="outline-4">
-<h4 id="org0701ea0">インストール</h4>
-<div class="outline-text-4" id="text-org0701ea0">
+<div id="outline-container-org4d27884" class="outline-3">
+<h3 id="org4d27884">dovecot</h3>
+<div class="outline-text-3" id="text-org4d27884">
+</div><div id="outline-container-orgef95852" class="outline-4">
+<h4 id="orgef95852">インストール</h4>
+<div class="outline-text-4" id="text-orgef95852">
 <p>
 最低限 IMAP での接続ができれば良いので
 </p>
@@ -394,9 +394,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-orgd970bc3" class="outline-4">
-<h4 id="orgd970bc3">設定</h4>
-<div class="outline-text-4" id="text-orgd970bc3">
+<div id="outline-container-orgb5cdd33" class="outline-4">
+<h4 id="orgb5cdd33">設定</h4>
+<div class="outline-text-4" id="text-orgb5cdd33">
 <p>
 最低限の設定として、
 </p>
@@ -499,9 +499,9 @@ apt 万歳
 </div>
 </div>
 
-<div id="outline-container-org1ecc218" class="outline-4">
-<h4 id="org1ecc218">検索: Solr</h4>
-<div class="outline-text-4" id="text-org1ecc218">
+<div id="outline-container-orge119696" class="outline-4">
+<h4 id="orge119696">検索: Solr</h4>
+<div class="outline-text-4" id="text-orge119696">
 <p>
 Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。
 ここでは Solr を試してみる
@@ -557,9 +557,9 @@ IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定す
 </div>
 </div>
 
-<div id="outline-container-org52bd382" class="outline-4">
-<h4 id="org52bd382">検索: Solr で日本語</h4>
-<div class="outline-text-4" id="text-org52bd382">
+<div id="outline-container-org21f49f8" class="outline-4">
+<h4 id="org21f49f8">検索: Solr で日本語</h4>
+<div class="outline-text-4" id="text-org21f49f8">
 <p>
 <code>scheme.xml</code> の修正が必要。
 とりあえず
@@ -664,17 +664,17 @@ diff は以下:
 </div>
 </div>
 </div>
-<div id="outline-container-org56f7c9b" class="outline-3">
-<h3 id="org56f7c9b">offlineimap</h3>
-<div class="outline-text-3" id="text-org56f7c9b">
+<div id="outline-container-orgbf930e6" class="outline-3">
+<h3 id="orgbf930e6">offlineimap</h3>
+<div class="outline-text-3" id="text-orgbf930e6">
 <p>
 (2015/05/10) 以前使っていた時のメモ。もう使わないけれど、たまに検索でココを見に来ている人がいるみたいなので、残しておくことに。
 <a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.
 </p>
 </div>
-<div id="outline-container-org510d945" class="outline-4">
-<h4 id="org510d945">インストール</h4>
-<div class="outline-text-4" id="text-org510d945">
+<div id="outline-container-org761b8a4" class="outline-4">
+<h4 id="org761b8a4">インストール</h4>
+<div class="outline-text-4" id="text-org761b8a4">
 <p>
 apt万歳, ってことで.
 </p>
@@ -683,9 +683,9 @@ apt万歳, ってことで.
 </pre>
 </div>
 </div>
-<div id="outline-container-org5978011" class="outline-4">
-<h4 id="org5978011">設定</h4>
-<div class="outline-text-4" id="text-org5978011">
+<div id="outline-container-org2c706cd" class="outline-4">
+<h4 id="org2c706cd">設定</h4>
+<div class="outline-text-4" id="text-org2c706cd">
 <p>
 現状, 以下の通り:
 </p>
@@ -702,72 +702,72 @@ apt万歳, ってことで.
 </ul></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-conf">      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">offlineimaprc</span>
-      <span style="color: #e5e5e6;">#</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Copyright(C) 2011 Youhei SASAKI All rights reserved.</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">$Lastupdate: 2014-07-26 18:25:07$</span>
-      <span style="color: #e5e5e6;">#</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">License: WTFPL</span>
-      <span style="color: #e5e5e6;">#</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Code:</span>
+<pre class="src src-conf">      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">offlineimaprc</span>
+      <span style="color: #a5a5a6;">#</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Copyright(C) 2011 Youhei SASAKI All rights reserved.</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2014-07-26 18:25:07$</span>
+      <span style="color: #a5a5a6;">#</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: WTFPL</span>
+      <span style="color: #a5a5a6;">#</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Code:</span>
       [<span style="color: #FFFF7F;">general</span>]
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#12513;&#12479;&#12487;&#12540;&#12479;&#12398;&#26684;&#32013;&#20808;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12513;&#12479;&#12487;&#12540;&#12479;&#12398;&#26684;&#32013;&#20808;</span>
       <span style="color: #7F7FFF;">metadata</span> = ~/Mail/offlineimap
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#35036;&#21161;&#38306;&#25968;&#12364;&#23450;&#32681;&#12373;&#12428;&#12383;&#12501;&#12449;&#12452;&#12523;&#12398;&#32622;&#12365;&#22580;&#25152;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#35036;&#21161;&#38306;&#25968;&#12364;&#23450;&#32681;&#12373;&#12428;&#12383;&#12501;&#12449;&#12452;&#12523;&#12398;&#32622;&#12365;&#22580;&#25152;</span>
       <span style="color: #7F7FFF;">pythonfile</span> = ~/.mua/offlineimap_utils.py
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26399;&#12377;&#12427;&#12469;&#12540;&#12496;&#12398;&#35373;&#23450;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26399;&#12377;&#12427;&#12469;&#12540;&#12496;&#12398;&#35373;&#23450;</span>
       <span style="color: #7F7FFF;">accounts</span> = Main, Gmail
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26399;&#12377;&#12427;&#12450;&#12459;&#12454;&#12531;&#12488;&#12398;&#25968;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26399;&#12377;&#12427;&#12450;&#12459;&#12454;&#12531;&#12488;&#12398;&#25968;</span>
       <span style="color: #7F7FFF;">maxsyncaccounts</span> = 2
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">UI &#12398;&#35373;&#23450;. cron &#12391;&#21516;&#26399;&#12377;&#12427;&#22580;&#21512;&#12395;&#12399; quiet &#12398;&#26041;&#12364;&#33391;&#12356;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">UI &#12398;&#35373;&#23450;. cron &#12391;&#21516;&#26399;&#12377;&#12427;&#22580;&#21512;&#12395;&#12399; quiet &#12398;&#26041;&#12364;&#33391;&#12356;</span>
       <span style="color: #7F7FFF;">ui</span> = basic
       <span style="color: #7F7FFF;">socktimeout</span> = 600
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#39640;&#36895;&#21270;(?)</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#39640;&#36895;&#21270;(?)</span>
       <span style="color: #7F7FFF;">fsync</span> = false
 
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Gmail &#29992;&#12398;&#35373;&#23450;: &#12371;&#12371;&#12391;&#35373;&#23450;&#12377;&#12427;&#21517;&#21069;&#12399; accounts &#12395;&#25539;&#12360;&#12427;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Gmail &#29992;&#12398;&#35373;&#23450;: &#12371;&#12371;&#12391;&#35373;&#23450;&#12377;&#12427;&#21517;&#21069;&#12399; accounts &#12395;&#25539;&#12360;&#12427;</span>
       [<span style="color: #FFFF7F;">Account Gmail</span>]
       <span style="color: #7F7FFF;">localrepository</span> = LocalGmail
       <span style="color: #7F7FFF;">remoterepository</span> = RemoteGmail
       <span style="color: #7F7FFF;">maxsize</span> = 2000000000
       <span style="color: #7F7FFF;">status_backend</span> = sqlite
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">quick = 1 &#12384;&#12392;&#12501;&#12521;&#12464;&#12399;&#21516;&#26399;&#12373;&#12428;&#12394;&#12356;</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">'[Gmail]/&#20840;&#12390;&#12398;&#12513;&#12540;&#12523;' &#12434;&#21516;&#26399;&#12377;&#12427;&#12394;&#12425; quick = 1 &#12398;&#26041;&#12364;&#33391;&#12356;?</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">quick = 1 &#12384;&#12392;&#12501;&#12521;&#12464;&#12399;&#21516;&#26399;&#12373;&#12428;&#12394;&#12356;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">'[Gmail]/&#20840;&#12390;&#12398;&#12513;&#12540;&#12523;' &#12434;&#21516;&#26399;&#12377;&#12427;&#12394;&#12425; quick = 1 &#12398;&#26041;&#12364;&#33391;&#12356;?</span>
       <span style="color: #7F7FFF;">quick</span> = 0
 
       [<span style="color: #FFFF7F;">Repository LocalGmail</span>]
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Gmail &#12398;&#25163;&#20803;&#12398;&#35373;&#23450;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Gmail &#12398;&#25163;&#20803;&#12398;&#35373;&#23450;</span>
       <span style="color: #7F7FFF;">type</span> = Maildir
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Maildir &#12398;&#26684;&#32013;&#22580;&#25152;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Maildir &#12398;&#26684;&#32013;&#22580;&#25152;</span>
       <span style="color: #7F7FFF;">localfolders</span> = ~/Mail/imap/[Gmail]
       <span style="color: #7F7FFF;">restoreatime</span> = no
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">IMAP &#12398;&#12475;&#12497;&#12524;&#12540;&#12479;&#12398;&#22793;&#25563;: Mailbox &#12398; "." &#12364; "/" &#12392;&#12394;&#12426;,</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12364;&#20316;&#25104;&#12373;&#12428;&#12427;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">IMAP &#12398;&#12475;&#12497;&#12524;&#12540;&#12479;&#12398;&#22793;&#25563;: Mailbox &#12398; "." &#12364; "/" &#12392;&#12394;&#12426;,</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12364;&#20316;&#25104;&#12373;&#12428;&#12427;</span>
       <span style="color: #7F7FFF;">sep</span> = /
 
       [<span style="color: #FFFF7F;">Repository RemoteGmail</span>]
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Gmail &#12392;&#12398;&#25509;&#32154;&#35373;&#23450;: type = IMAP &#12391;&#12418;&#33391;&#12356;?</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Gmail &#12392;&#12398;&#25509;&#32154;&#35373;&#23450;: type = IMAP &#12391;&#12418;&#33391;&#12356;?</span>
       <span style="color: #7F7FFF;">type</span> = Gmail
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remote{pass,user}eval &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remote{pass,user}eval &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
       <span style="color: #7F7FFF;">remoteusereval</span> = get_username(<span style="color: #7FFF7F;">"imap.gmail.com"</span>)
       <span style="color: #7F7FFF;">remotepasseval</span> = get_password(<span style="color: #7FFF7F;">"imap.gmail.com"</span>)
       <span style="color: #7F7FFF;">maxsize</span> = 2000000000
       <span style="color: #7F7FFF;">realdelete</span> = no
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26178;&#25509;&#32154;&#25968;. &#20006;&#21015;&#23455;&#34892;&#21487;&#33021;&#12394;&#12398;&#12391;&#36969;&#23452;</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#12469;&#12540;&#12496;&#12395;&#24594;&#12425;&#12428;&#12394;&#12356;&#31243;&#24230;&#12395;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26178;&#25509;&#32154;&#25968;. &#20006;&#21015;&#23455;&#34892;&#21487;&#33021;&#12394;&#12398;&#12391;&#36969;&#23452;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12469;&#12540;&#12496;&#12395;&#24594;&#12425;&#12428;&#12394;&#12356;&#31243;&#24230;&#12395;</span>
       <span style="color: #7F7FFF;">maxconnections</span> = 5
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remote -&gt; local &#26178;&#12398;&#12501;&#12457;&#12523;&#12480;&#21517;&#22793;&#25563;(&#27491;&#35215;&#34920;&#29694;)</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remote -&gt; local &#26178;&#12398;&#12501;&#12457;&#12523;&#12480;&#21517;&#22793;&#25563;(&#27491;&#35215;&#34920;&#29694;)</span>
       <span style="color: #7F7FFF;">nametrans</span> = lambda foldername: re.sub(<span style="color: #7FFF7F;">'^INBOX'</span>,<span style="color: #7FFF7F;">''</span>, (re.sub(<span style="color: #7FFF7F;">'^\[Gmail\]/'</span>,<span style="color: #7FFF7F;">''</span>, foldername)))
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26399;&#12377;&#12427;&#12501;&#12457;&#12523;&#12480;&#12398;&#35373;&#23450;: Gmail &#20596;&#12391; IMAP &#12391;&#34920;&#31034;&#12377;&#12427;&#12521;&#12505;&#12523;&#35373;&#23450;&#12375;&#12390;&#12362;&#12367;, &#12391;&#12418;&#33391;&#12356;&#12363;&#12418;.</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26399;&#12377;&#12427;&#12501;&#12457;&#12523;&#12480;&#12398;&#35373;&#23450;: Gmail &#20596;&#12391; IMAP &#12391;&#34920;&#31034;&#12377;&#12427;&#12521;&#12505;&#12523;&#35373;&#23450;&#12375;&#12390;&#12362;&#12367;, &#12391;&#12418;&#33391;&#12356;&#12363;&#12418;.</span>
       <span style="color: #7F7FFF;">folderfilter</span> = lambda foldername: foldername in [
-                   <span style="color: #7FFF7F;">'INBOX'</span>,                   <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-&gt; '~/Mail/imap/[Gmail]' &#12395;&#12394;&#12427;</span>
-                   <span style="color: #7FFF7F;">'[Gmail]/&amp;j,dg0TDhMPww6w-'</span> <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-&gt; '~/Mail/imap/[Gmail]/&amp;j,dg0TDhMPww6w-' &#12395;&#12394;&#12427;</span>
+                   <span style="color: #7FFF7F;">'INBOX'</span>,                   <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-&gt; '~/Mail/imap/[Gmail]' &#12395;&#12394;&#12427;</span>
+                   <span style="color: #7FFF7F;">'[Gmail]/&amp;j,dg0TDhMPww6w-'</span> <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-&gt; '~/Mail/imap/[Gmail]/&amp;j,dg0TDhMPww6w-' &#12395;&#12394;&#12427;</span>
                    ]
       <span style="color: #7F7FFF;">sslcacertfile</span> = /etc/ssl/certs/ca-certificates.crt
 
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Main &#12469;&#12540;&#12496;&#12398;&#35373;&#23450;: &#12371;&#12371;&#12391;&#35373;&#23450;&#12377;&#12427;&#21517;&#21069;&#12399; [general] accounts &#12395;&#25539;&#12360;&#12427;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Main &#12469;&#12540;&#12496;&#12398;&#35373;&#23450;: &#12371;&#12371;&#12391;&#35373;&#23450;&#12377;&#12427;&#21517;&#21069;&#12399; [general] accounts &#12395;&#25539;&#12360;&#12427;</span>
       [<span style="color: #FFFF7F;">Account Main</span>]
       <span style="color: #7F7FFF;">localrepository</span> = LocalMain
       <span style="color: #7F7FFF;">remoterepository</span> = RemoteMain
@@ -776,33 +776,33 @@ apt万歳, ってことで.
       <span style="color: #7F7FFF;">quick</span> = 0
 
       [<span style="color: #FFFF7F;">Repository LocalMain</span>]
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#25163;&#20803;&#12398;&#35373;&#23450;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#25163;&#20803;&#12398;&#35373;&#23450;</span>
       <span style="color: #7F7FFF;">type</span> = Maildir
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Maildir &#12398;&#26684;&#32013;&#22580;&#25152;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Maildir &#12398;&#26684;&#32013;&#22580;&#25152;</span>
       <span style="color: #7F7FFF;">localfolders</span> = ~/Mail/imap
       <span style="color: #7F7FFF;">restoreatime</span> = no
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">local -&gt; remote &#12391;&#12398;&#21517;&#21069;&#22793;&#25563;</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">LocaltoRemoteTransnameINBOX &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">local -&gt; remote &#12391;&#12398;&#21517;&#21069;&#22793;&#25563;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">LocaltoRemoteTransnameINBOX &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
       <span style="color: #7F7FFF;">nametrans</span> = LocalToRemoteTransnameINBOX
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">'Maildir/imap/[Gmail]' &#12399;&#21516;&#26399;&#12375;&#12394;&#12356;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">'Maildir/imap/[Gmail]' &#12399;&#21516;&#26399;&#12375;&#12394;&#12356;</span>
       <span style="color: #7F7FFF;">folderfilter</span> = lambda folder: not folder.startswith(<span style="color: #7FFF7F;">'[Gmail]'</span>)
       <span style="color: #7F7FFF;">sep</span> = /
 
       [<span style="color: #FFFF7F;">Repository RemoteMain</span>]
       <span style="color: #7F7FFF;">type</span> = IMAP
       <span style="color: #7F7FFF;">ssl</span> = yes
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">certificates &#12364;&#12487;&#12501;&#12457;&#12523;&#12488;&#12391;&#25506;&#12379;&#12394;&#12356;?</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">certificates &#12364;&#12487;&#12501;&#12457;&#12523;&#12488;&#12391;&#25506;&#12379;&#12394;&#12356;?</span>
       <span style="color: #7F7FFF;">sslcacertfile</span> = /etc/ssl/certs/ca-certificates.crt
       <span style="color: #7F7FFF;">remotehost</span> = [main server]
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remote{pass,user}eval &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remote{pass,user}eval &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
       <span style="color: #7F7FFF;">remoteusereval</span> = get_username(<span style="color: #7FFF7F;">"[main server]"</span>)
       <span style="color: #7F7FFF;">remotepasseval</span> = get_password(<span style="color: #7FFF7F;">"[main server]"</span>)
       <span style="color: #7F7FFF;">maxsize</span> = 2000000000
       <span style="color: #7F7FFF;">maxconnections</span> = 5
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remote -&gt; local &#12391;&#12398;&#21517;&#21069;&#12398;&#22793;&#25563;</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">RemotetoLocalTransnameINBOX &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remote -&gt; local &#12391;&#12398;&#21517;&#21069;&#12398;&#22793;&#25563;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">RemotetoLocalTransnameINBOX &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
       <span style="color: #7F7FFF;">nametrans</span> = RemoteToLocalTransnameINBOX
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">&#21516;&#26399; *&#12375;&#12394;&#12356;* &#12501;&#12457;&#12523;&#12480;&#12398;&#36984;&#25246;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26399; *&#12375;&#12394;&#12356;* &#12501;&#12457;&#12523;&#12480;&#12398;&#36984;&#25246;</span>
       <span style="color: #7F7FFF;">folderfilter</span> = lambda foldername: foldername not in [
                   <span style="color: #7FFF7F;">'INBOX.Drafts'</span>,
                   <span style="color: #7FFF7F;">'INBOX.Trash'</span>,
@@ -821,22 +821,22 @@ apt万歳, ってことで.
 <code>offlineimap_utils.py</code> の中身は以下の通り:
 </p>
 <div class="org-src-container">
-<pre class="src src-python">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/usr/bin/python</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- coding: utf-8</span>
+<pre class="src src-python">      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/usr/bin/python</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- coding: utf-8</span>
       <span style="color: #FF7F7F;">import</span> sys
       <span style="color: #FF7F7F;">import</span> re
       <span style="color: #FF7F7F;">import</span> os
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;"># Auth via GnomeKeyring</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;"># Auth via GnomeKeyring</span>
       <span style="color: #FF7F7F;">import</span> gtk
       <span style="color: #FF7F7F;">from</span> getpass <span style="color: #FF7F7F;">import</span> getpass
       <span style="color: #FF7F7F;">import</span> gnomekeyring <span style="color: #FF7F7F;">as</span> gkey
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Ad hoc fix for Striptime behavior</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Ad hoc fix for Striptime behavior</span>
       <span style="color: #FF7F7F;">import</span> locale
       locale.setlocale(locale.LC_TIME, <span style="color: #7FFF7F;">'C'</span>)
 
-      <span style="color: #e5e5e6;">##################</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Gnome keyring  #</span>
-      <span style="color: #e5e5e6;">##################</span>
+      <span style="color: #a5a5a6;">##################</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Gnome keyring  #</span>
+      <span style="color: #a5a5a6;">##################</span>
 
       <span style="color: #FF7F7F;">class</span> <span style="color: #FFFF7F;">Keyring</span>(<span style="color: #7FBFFF;">object</span>):
           <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">__init__</span>(<span style="color: #FF7F7F;">self</span>, name, server, protocol):
@@ -888,10 +888,10 @@ apt万歳, ってことで.
               <span style="color: #7F7FFF;">keyring</span> = Keyring(<span style="color: #7FFF7F;">"offlineimap"</span>, server, <span style="color: #7FFF7F;">"imap"</span>)
               keyring.set_credentials((user, password))
 
-      <span style="color: #e5e5e6;">############################</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">NameTrans 'INBOX' suffix #</span>
-      <span style="color: #e5e5e6;">############################</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">add 'INBOX' suffix</span>
+      <span style="color: #a5a5a6;">############################</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">NameTrans 'INBOX' suffix #</span>
+      <span style="color: #a5a5a6;">############################</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">add 'INBOX' suffix</span>
       <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">LocalToRemoteTransnameINBOX</span>(foldername):
           <span style="color: #FF7F7F;">if</span> (foldername == <span style="color: #7FFF7F;">""</span>):
               <span style="color: #7F7FFF;">retval</span> = <span style="color: #7FFF7F;">"INBOX"</span>
@@ -899,7 +899,7 @@ apt万歳, ってことで.
               <span style="color: #7F7FFF;">retval</span> = <span style="color: #7FFF7F;">"INBOX."</span> + foldername
           <span style="color: #FF7F7F;">return</span> retval
 
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">remove 'INBOX' suffix</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remove 'INBOX' suffix</span>
       <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">RemoteToLocalTransnameINBOX</span>(foldername):
           <span style="color: #FF7F7F;">if</span> (foldername == <span style="color: #7FFF7F;">"INBOX"</span>):
               <span style="color: #7F7FFF;">retval</span> = <span style="color: #7FFF7F;">""</span>
@@ -913,18 +913,18 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 </p>
 </div>
 </div>
-<div id="outline-container-orge941236" class="outline-4">
-<h4 id="orge941236">cron での動作</h4>
-<div class="outline-text-4" id="text-orge941236">
+<div id="outline-container-org347e3ef" class="outline-4">
+<h4 id="org347e3ef">cron での動作</h4>
+<div class="outline-text-4" id="text-org347e3ef">
 <p>
 認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから
 実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/bin/bash</span>
+<pre class="src src-sh">      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/bash</span>
       sleep 5
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Export the dbus session address on startup so it can be used by cron</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Export the dbus session address on startup so it can be used by cron</span>
       touch $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
       chmod 600 $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
       env | grep DBUS_SESSION_BUS_ADDRESS &gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
@@ -955,24 +955,24 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 cron で実行されるスクリプトは, 例えば
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">      <span style="color: #e5e5e6;">#</span><span style="color: #e5e5e6;">!/bin/sh</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">-*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">$Lastupdate: 2014-07-15 11:52:22$</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">License: WTFPL</span>
-      <span style="color: #e5e5e6;">################################################################################</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">for personal settings</span>
+<pre class="src src-sh">      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/sh</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2014-07-15 11:52:22$</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: WTFPL</span>
+      <span style="color: #a5a5a6;">################################################################################</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for personal settings</span>
       <span style="color: #7F7FFF;">OFFLINEIMAP_PID</span>=~/Mail/offlineimap/pid
       <span style="color: #7F7FFF;">OFFLINEIMAP_CONF</span>=~/.offlineimaprc
       <span style="color: #7F7FFF;">UI</span>=quiet
       <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"******************************************************************"</span>
       <span style="color: #7FBFFF;">echo</span> <span style="font-weight: bold;">`LANG=C date`</span>
       <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"******************************************************************"</span>
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">for gnome-keyring:</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for gnome-keyring:</span>
       . ${<span style="color: #7F7FFF;">HOME</span>}/.Xdbus
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">check network is avaliable</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check network is avaliable</span>
       nm-online -x || <span style="color: #FF7F7F;">exit</span> 0
-      <span style="color: #e5e5e6;"># </span><span style="color: #e5e5e6;">check another offlineimap</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check another offlineimap</span>
       [ $(ps -p <span style="font-weight: bold;">`cat $OFFLINEIMAP_PID`</span> -o pid --no-heading) ] <span style="color: #7FFF7F;">\</span>
         || nice -n 19 offlineimap -c $<span style="color: #7F7FFF;">OFFLINEIMAP_CONF</span> -u $<span style="color: #7F7FFF;">UI</span> -o  2&gt;&amp;1
 </pre>

@@ -1,0 +1,11 @@
+document.writeln('<h3><a href="http://uwabami.junkhub.org/log/">平衡点</a>(blog): Recent entries</h3><ul>');document.close();
+document.writeln('<li class="RSSitems"><a href="http://uwabami.junkhub.org/log/20160302.html#p01">Emacs に powerline.el を入れた．</a></li>');document.close();
+document.writeln('<li class="RSSitems"><a href="http://uwabami.junkhub.org/log/20160226.html#p01">OpenBlocks AX3 用の SSD 4G を購入</a></li>');document.close();
+document.writeln('<li class="RSSitems"><a href="http://uwabami.junkhub.org/log/20151024.html#p02">複数 NIC が存在する場合のルーティング</a></li>');document.close();
+document.writeln('<li class="RSSitems"><a href="http://uwabami.junkhub.org/log/20151026.html#p01">Maple2015 のインストール</a></li>');document.close();
+document.writeln('<li class="RSSitems"><a href="http://uwabami.junkhub.org/log/20151024.html#p01">OpenBlocks AX3</a></li>');document.close();
+document.writeln('<li class="RSSitems"><a href="http://uwabami.junkhub.org/log/20151015.html#p01">console と GDM3 の keymap</a></li>');document.close();
+document.writeln('<li class="RSSitems"><a href="http://uwabami.junkhub.org/log/20151004.html#p01">gcontacts-get-wl 更新</a></li>');document.close();
+document.writeln('<li class="RSSitems"><a href="http://uwabami.junkhub.org/log/20150901.html#p01">Mac OS X での LDAP 認証(1)</a></li>');document.close();
+document.writeln('<li class="RSSitems"><a href="http://uwabami.junkhub.org/log/20150711.html#p01">誕生日</a></li>');document.close();
+document.writeln('</ul>');document.close();

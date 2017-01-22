@@ -1,0 +1,204 @@
+---
+title: Aptの設定
+date: 2017-01-22 18:54:15
+layout: cc-env
+lang: ja
+ref: cc-env/DebianApt
+permalink: /cc-env/DebianApt.html
+---
+<div id="toc-wrapper">
+<nav id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0ca7dc2">始めに</a></li>
+<li><a href="#orgff2748c">apt の pin 止め</a></li>
+<li><a href="#org62fed34">apt-key への鍵の追加</a></li>
+<li><a href="#orgce63b3a">現在の sources.list</a></li>
+<li><a href="#orgc65636a">apt の便利ツール</a></li>
+<li><a href="#org4e489bf">参考文献</a></li>
+</ul>
+</div>
+</nav>
+</div>
+<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
+<p>
+Related <a href='index.html'>Index</a>
+</p>
+<div id="outline-container-org0ca7dc2" class="outline-2">
+<h2 id="org0ca7dc2">始めに</h2>
+<div class="outline-text-2" id="text-org0ca7dc2">
+<p>
+apt は非常に便利です. etch 以降から
+</p>
+<ul class="org-ul">
+<li>パッケージのリストの差分だけをダウンロードする様になった.</li>
+<li>secure-apt という機能が追加: <a href="http://kmuto.jp/d/index.cgi/debian/apt-secure.htm">KeN's GNU/Linux Diary|secure apt</a> などを参考に.
+<ul class="org-ul">
+<li>要するに「Release ファイルの GPG 署名を検証するよ」という話.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgff2748c" class="outline-2">
+<h2 id="orgff2748c">apt の pin 止め</h2>
+<div class="outline-text-2" id="text-orgff2748c">
+<p>
+特定のパッケージを {testing|unstable|experimental} から借りたい,
+とかいう場合には <code>/etc/apt/preferences</code> にその設定を書いておく.
+例えば以下の通り.
+</p>
+<pre class="example">
+    Package: *
+    Pin: release a=experimental
+    Pin-Priority: 90
+</pre>
+
+<p>
+Pin-Priority については以下を参照
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">Pin-Priority</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-left">install しない</td>
+</tr>
+
+<tr>
+<td class="org-right">1-99</td>
+<td class="org-left">指定すれば install できるが update の対象にならない</td>
+</tr>
+
+<tr>
+<td class="org-right">100</td>
+<td class="org-left">現在 install されているパッケージの Priority</td>
+</tr>
+
+<tr>
+<td class="org-right">(500)</td>
+<td class="org-left">現在 install されていないパッケージの Priority</td>
+</tr>
+
+<tr>
+<td class="org-right">(989)</td>
+<td class="org-left">apt-pin の default</td>
+</tr>
+
+<tr>
+<td class="org-right">990</td>
+<td class="org-left">apt-get の target-release が指定されている場合の Priority</td>
+</tr>
+
+<tr>
+<td class="org-right">1000 以上</td>
+<td class="org-left">ダウングレードしても, そのパッケージを install する.</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+上の例では 90 なので,
+「指定すれば install できるが update の対象にはならない」状態.
+もちろん依存関係は満たされていなければ, install はできない.
+</p>
+</div>
+</div>
+<div id="outline-container-org62fed34" class="outline-2">
+<h2 id="org62fed34">apt-key への鍵の追加</h2>
+<div class="outline-text-2" id="text-org62fed34">
+<p>
+鍵は /etc/apt/trustdb.gpg に登録されている.
+</p>
+<pre class="example">
+    % sudo  apt-key list
+</pre>
+<p>
+で登録済みの鍵を確認できる.
+</p>
+
+<p>
+GPG 鍵の取得, export, import はそれぞれ
+</p>
+<pre class="example">
+    % gpg --keyserver [鍵サーバ] --recv-keys [鍵のID]
+    % gpg --export  -a [鍵ID] &gt; key_file
+    % sudo apt-key add key_file
+</pre>
+<p>
+みたいに.
+</p>
+
+<p>
+鍵の登録は
+</p>
+<pre class="example">
+    % gpg --armor --export [鍵ID] | sudo apt-key add -
+</pre>
+<p>
+みたいしても良いかと.
+</p>
+</div>
+</div>
+<div id="outline-container-orgce63b3a" class="outline-2">
+<h2 id="orgce63b3a">現在の sources.list</h2>
+<div class="outline-text-2" id="text-orgce63b3a">
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Official</span>
+<span style="color: #a5a5a6;">#</span>
+deb http://ftp.jp.debian.org/debian/ sid main non-free contrib
+deb-src http://ftp.jp.debian.org/debian/ sid main non-free contrib
+deb http://ftp.jp.debian.org/debian/ experimental main
+deb-src http://ftp.jp.debian.org/debian/ experimental main
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">UnOfficial</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Multimedia</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">GPG: deb-multimedia-keyring</span>
+<span style="color: #a5a5a6;">#</span>
+deb http://www.deb-multimedia.org sid main non-free
+deb-src http://www.deb-multimedia.org sid main non-free
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Dennou</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">GPG: 891D7E07</span>
+deb http://dennou-k.gfd-dennou.org/arch/cc-env/debian-dennou sid main
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc65636a" class="outline-2">
+<h2 id="orgc65636a">apt の便利ツール</h2>
+<div class="outline-text-2" id="text-orgc65636a">
+<ul class="org-ul">
+<li>apt-cache</li>
+<li>apt-show-versions</li>
+<li>apt-listchanges</li>
+<li>apt-listbugs</li>
+</ul>
+<p>
+そのうち書く, かも.
+</p>
+</div>
+</div>
+<div id="outline-container-org4e489bf" class="outline-2">
+<h2 id="org4e489bf">参考文献</h2>
+<div class="outline-text-2" id="text-org4e489bf">
+<ul class="org-ul">
+<li><a href="http://kmuto.jp/d/index.cgi/debian/apt-secure.htm">KeN's GNU/Linux Diary|secure apt</a></li>
+<li><a href="http://jaqque.sbih.org/kplug/apt-pinning.html">Apt-Pinning for Beginners</a></li>
+</ul>
+</div>
+</div>
