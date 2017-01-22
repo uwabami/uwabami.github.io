@@ -1,5 +1,5 @@
 #+TITLE: Computer Memorandum
-#+DATE: 2017-01-22 22:36:27
+#+DATE: 2017-01-22 22:45:45
 #+LANGUAGE: ja
 #+REF: cc-env
 #+LAYOUT: cc-env
@@ -27,7 +27,7 @@ Related [[wiki:index][Index]] [[wiki:Emacs][Emacs]]
  にある文書を参考に. 特に勉強会の文書は宝の山です.
   - [[wiki:DebianInstall][Debian の install]]
   - [[wiki:DebianConfigure][Debian: Install 直後の雑多な設定]]: 細かい事柄はココに.中身が増えたら分ける予定
-  - [[wiki:DebianMTA][MTA の設定]]
+  - [[wiki:DebianMail][Mail 環境の設定]]
 * Emacs 関連
   以前は使っているパッケージ毎に設定を分けていましたが
   最近は Org で書かれた単一ファイルに設定を集約しています．
