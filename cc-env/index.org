@@ -1,5 +1,5 @@
 #+TITLE: Computer Memorandum
-#+DATE: 2017-01-22 22:45:45
+#+DATE: 2017-01-23 01:24:49
 #+LANGUAGE: ja
 #+REF: cc-env
 #+LAYOUT: cc-env
@@ -32,7 +32,7 @@ Related [[wiki:index][Index]] [[wiki:Emacs][Emacs]]
   以前は使っているパッケージ毎に設定を分けていましたが
   最近は Org で書かれた単一ファイルに設定を集約しています．
   - [[wiki:Emacs][Emacs]] : 全体の設定等
-    - [[file:~/.emacs.d/README.org::%E4%B8%BB%E3%81%ABEmacs%E6%9C%AC%E4%BD%93%E3%81%AB%E5%90%8C%E6%A2%B1%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E6%8B%A1%E5%BC%B5%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E8%A8%AD%E5%AE%9A][主にEmacs本体に同梱されている拡張に関する設定]]
+  - [[id:1621568c-82d3-455a-8a12-5b356ba79e89][主にEmacs本体に同梱されている拡張に関する設定]]
 * このサイトができるまで。
   このサイトは、記事を Emacs の [[http://orgmode.org/][Org-mode]] で書いて、
   [[http://jekyllrb.com/][Jekyll]] で HTML に変換しています。

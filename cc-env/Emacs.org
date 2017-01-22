@@ -1,2 +1,2 @@
 Related: [[wiki:index][Index]]
-#+INCLUDE: ~/.emacs.d/README.org
+#+INCLUDE: /home/uwabami/.emacs.d/README.org

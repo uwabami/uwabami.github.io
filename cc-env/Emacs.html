@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-22 23:37:39
+date: 2017-01-23 01:25:16
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org70b93d0">標準機能の設定</a>
 <ul>
 <li><a href="#org26e64e9">表示関連</a></li>
-<li><a href="#orgf99ff7b">編集関連</a></li>
+<li><a href="#org8ead900">編集関連</a></li>
 <li><a href="#orge2b9fab">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -72,10 +72,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org64adec6">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#orgfab2e71">Emacs 本体側の設定</a></li>
+<li><a href="#orga107978">Emacs 本体側の設定</a></li>
 <li><a href="#orge42f010">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#orgfd441aa">編集関連</a></li>
+<li><a href="#orgdb258d0">編集関連</a></li>
 <li><a href="#orge4f5313">インクリメンタルサーチ</a></li>
 <li><a href="#org1008170">辞書の設定</a></li>
 <li><a href="#org7fe06e5">動的補完</a></li>
@@ -96,7 +96,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org5ecb2e0">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org6967bbd">Emacs 本体側の設定</a></li>
+<li><a href="#org356798e">Emacs 本体側の設定</a></li>
 <li><a href="#org5c5eb4a">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#org9d77bc1">依存/追加ライブラリのインストールと読み込み</a>
@@ -739,9 +739,10 @@ Windows の場合はファイル名などは cp932 にしているものの,
 </div>
 </div>
 <div id="outline-container-org8538ffb" class="outline-2">
-<h2 id="org8538ffb">主にEmacs本体に同梱されている拡張に関する設定</h2>
+<h2 id="org8538ffb"><a id="ID-1621568c-82d3-455a-8a12-5b356ba79e89"></a>主にEmacs本体に同梱されている拡張に関する設定</h2>
 <div class="outline-text-2" id="text-org8538ffb">
-</div><div id="outline-container-org70b93d0" class="outline-3">
+</div>
+<div id="outline-container-org70b93d0" class="outline-3">
 <h3 id="org70b93d0">標準機能の設定</h3>
 <div class="outline-text-3" id="text-org70b93d0">
 </div><div id="outline-container-org26e64e9" class="outline-4">
@@ -835,9 +836,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-orgf99ff7b" class="outline-4">
-<h4 id="orgf99ff7b">編集関連</h4>
-<div class="outline-text-4" id="text-orgf99ff7b">
+<div id="outline-container-org8ead900" class="outline-4">
+<h4 id="org8ead900">編集関連</h4>
+<div class="outline-text-4" id="text-org8ead900">
 <p>
 yes or no を y or n に
 </p>
@@ -1309,9 +1310,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfab2e71" class="outline-3">
-<h3 id="orgfab2e71">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgfab2e71">
+<div id="outline-container-orga107978" class="outline-3">
+<h3 id="orga107978">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orga107978">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1421,9 +1422,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfd441aa" class="outline-4">
-<h4 id="orgfd441aa">編集関連</h4>
-<div class="outline-text-4" id="text-orgfd441aa">
+<div id="outline-container-orgdb258d0" class="outline-4">
+<h4 id="orgdb258d0">編集関連</h4>
+<div class="outline-text-4" id="text-orgdb258d0">
 <p>
 キーバインド
 </p>
@@ -1767,9 +1768,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org6967bbd" class="outline-3">
-<h3 id="org6967bbd">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org6967bbd">
+<div id="outline-container-org356798e" class="outline-3">
+<h3 id="org356798e">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org356798e">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3520,8 +3521,7 @@ howm も有効にしている，ぐらい．
 (<span style="color: #FF7F7F;">bind-keys*</span>
  (<span style="color: #7FFF7F;">"C-c l"</span>   . org-store-link)
  (<span style="color: #7FFF7F;">"C-c C-l"</span>  . org-insert-link))
-(<span style="color: #FF7F7F;">setq</span> org-id-extra-files '((<span style="color: #7FFF7F;">"~/.emacs.d/README.org"</span>))
-      org-id-link-to-org-use-id 'create-if-interactive
+(<span style="color: #FF7F7F;">setq</span> org-id-link-to-org-use-id 'create-if-interactive
       org-id-location-files (concat my:d:tmp <span style="color: #7FFF7F;">"org-id-locations"</span>)
       )
 </pre>
