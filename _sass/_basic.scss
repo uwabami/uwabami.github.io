@@ -137,6 +137,72 @@ strong {
     background: white;
     padding: 2px 4px;
 }
+@media (max-width:  767px){
+    .top-btn{
+        z-index: 200;
+        position: fixed;
+        text-align: center;
+        right: 15px;
+        bottom: 5px;
+        display: inline-block;
+        padding: 17px 23px;
+        background-color: #2980B9;
+        color: #fcfcfc !important;
+        font-weight: bold;
+        font-size: 90%;
+    }
+    .top-btn:link {
+        color: #fcfcfc !important;
+    }
+    .top-btn:active{
+        color: #fcfcfc !important;
+    }
+    .top-btn:hover{
+        color: #fcfcfc !important;
+    }
+    .top-btn:visited{
+        color: #fcfcfc !important;
+    }
+}
+@media (min-width:  768px) and (max-width:  991px){
+    .top-btn{
+        z-index: 200;
+        position: fixed;
+        text-align: center;
+        right: calc( (100% - 750px) / 2 + 15px );
+        bottom: 5px;
+        display: inline-block;
+        padding: 17px 23px;
+        background-color: #2980B9;
+        color: #fcfcfc !important;
+        font-weight: bold;
+        font-size: 90%;
+    }
+    .top-btn:link {
+        color: #fcfcfc !important;
+    }
+    .top-btn:active{
+        color: #fcfcfc !important;
+    }
+    .top-btn:hover{
+        color: #fcfcfc !important;
+    }
+    .top-btn:visited{
+        color: #fcfcfc !important;
+    }
+}
+@media (min-width:  992px) and (max-width:  1199px) {
+    .top-btn{
+        display: none !important;
+
+    }
+}
+@media (min-width:  1200px) {
+    .top-btn{
+        display: none !important;
+    }
+}
+
 /* Fix bootstrap staticlink
 -------------------------------------------------- */
 *[id]:before {

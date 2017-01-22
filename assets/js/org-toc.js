@@ -7,9 +7,11 @@ $( document ).ready(function() {
         e.preventDefault();
         $("#toc-wrapper").toggleClass("toggled");
         $("#toc-toggle").toggleClass("toggled");
+        $(".top-btn").toggleClass("toggled");
     });
     $("a", "#table-of-contents").click(function(){
         $("#toc-wrapper").toggleClass("toggled");
         $("#toc-toggle").toggleClass("toggled");
+        $(".top-btn").toggleClass("toggled");
     });
 });

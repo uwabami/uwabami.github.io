@@ -1,5 +1,5 @@
 include: ["assets", "bootstrap"]
-exclude: ["Gemfile", ".git*", "*.org", "*.muse", "submodules", ".org-timestamps"]
+exclude: ["Gemfile", "Makefile", ".git*", "*.org", "*.muse", "submodules", ".org-timestamps"]
 title:
   ja: Youhei SASAKI's official site
   en: Youhei SASAKI's official site

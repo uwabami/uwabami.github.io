@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-22 18:55:01
+date: 2017-01-22 23:37:39
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org70b93d0">標準機能の設定</a>
 <ul>
 <li><a href="#org26e64e9">表示関連</a></li>
-<li><a href="#orgf67475e">編集関連</a></li>
+<li><a href="#orgf99ff7b">編集関連</a></li>
 <li><a href="#orge2b9fab">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -72,10 +72,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org64adec6">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#orgfa94deb">Emacs 本体側の設定</a></li>
+<li><a href="#orgfab2e71">Emacs 本体側の設定</a></li>
 <li><a href="#orge42f010">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org2fae1ce">編集関連</a></li>
+<li><a href="#orgfd441aa">編集関連</a></li>
 <li><a href="#orge4f5313">インクリメンタルサーチ</a></li>
 <li><a href="#org1008170">辞書の設定</a></li>
 <li><a href="#org7fe06e5">動的補完</a></li>
@@ -96,7 +96,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org5ecb2e0">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org524b22d">Emacs 本体側の設定</a></li>
+<li><a href="#org6967bbd">Emacs 本体側の設定</a></li>
 <li><a href="#org5c5eb4a">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#org9d77bc1">依存/追加ライブラリのインストールと読み込み</a>
@@ -835,9 +835,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-orgf67475e" class="outline-4">
-<h4 id="orgf67475e">編集関連</h4>
-<div class="outline-text-4" id="text-orgf67475e">
+<div id="outline-container-orgf99ff7b" class="outline-4">
+<h4 id="orgf99ff7b">編集関連</h4>
+<div class="outline-text-4" id="text-orgf99ff7b">
 <p>
 yes or no を y or n に
 </p>
@@ -1309,9 +1309,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfa94deb" class="outline-3">
-<h3 id="orgfa94deb">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgfa94deb">
+<div id="outline-container-orgfab2e71" class="outline-3">
+<h3 id="orgfab2e71">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgfab2e71">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1421,9 +1421,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org2fae1ce" class="outline-4">
-<h4 id="org2fae1ce">編集関連</h4>
-<div class="outline-text-4" id="text-org2fae1ce">
+<div id="outline-container-orgfd441aa" class="outline-4">
+<h4 id="orgfd441aa">編集関連</h4>
+<div class="outline-text-4" id="text-orgfd441aa">
 <p>
 キーバインド
 </p>
@@ -1767,9 +1767,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org524b22d" class="outline-3">
-<h3 id="org524b22d">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org524b22d">
+<div id="outline-container-org6967bbd" class="outline-3">
+<h3 id="org6967bbd">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org6967bbd">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3982,6 +3982,22 @@ password-store には multiline で設定を書く．例えば以下:
     <span style="color: #7FBFFF;">:config</span>
     (<span style="color: #FF7F7F;">setq</span> org-export-with-toc nil
           org-export-with-section-numbers nil)
+    <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">for Beamer</span>
+    (add-to-list 'org-export-options-alist
+                 '(<span style="color: #7FBFFF;">:shortdate</span>    <span style="color: #7FFF7F;">"SHORTDATE"</span> nil nil))
+    (add-to-list 'org-export-options-alist
+                 '(<span style="color: #7FBFFF;">:shorttitle</span>   <span style="color: #7FFF7F;">"SHORTTITLE"</span> nil nil))
+    <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">for Jekyll</span>
+    (add-to-list 'org-export-options-alist
+                 '(<span style="color: #7FBFFF;">:layout</span>    <span style="color: #7FFF7F;">"LAYOUT"</span> nil <span style="color: #7FFF7F;">"default"</span>))
+    (add-to-list 'org-export-options-alist
+                 '(<span style="color: #7FBFFF;">:ref</span>       <span style="color: #7FFF7F;">"REF"</span> nil nil))
+    (add-to-list 'org-export-options-alist
+                 '(<span style="color: #7FBFFF;">:permalink</span> <span style="color: #7FFF7F;">"PERMALINK"</span> nil nil))
+    (add-to-list 'org-export-options-alist
+                 '(<span style="color: #7FBFFF;">:redirect_from</span> <span style="color: #7FFF7F;">"redirect_from"</span> nil nil))
+    (add-to-list 'org-export-options-alist
+                 '(<span style="color: #7FBFFF;">:redirect_to</span> <span style="color: #7FFF7F;">"redirect_to"</span> nil nil))
     )
 </pre>
 </div>
@@ -4075,13 +4091,6 @@ html export の際に必要な yaml front matter を出力できるようにし�
         (?h <span style="color: #7FFF7F;">"To file"</span> (<span style="color: #FF7F7F;">lambda</span> (a s v b) (org-jekyll-export-to-html a s v)))))
   <span style="color: #7FBFFF;">:translate-alist</span>
   '((template  . org-jekyll-template)
-    )
-  <span style="color: #7FBFFF;">:options-alist</span>
-  '((<span style="color: #7FBFFF;">:layout</span>    <span style="color: #7FFF7F;">"LAYOUT"</span> nil <span style="color: #7FFF7F;">"default"</span>)
-    (<span style="color: #7FBFFF;">:ref</span>       <span style="color: #7FFF7F;">"REF"</span> nil nil)
-    (<span style="color: #7FBFFF;">:permalink</span> <span style="color: #7FFF7F;">"PERMALINK"</span> nil nil)
-    (<span style="color: #7FBFFF;">:redirect_from</span> <span style="color: #7FFF7F;">"redirect_from"</span> nil nil )
-    (<span style="color: #7FBFFF;">:redirect_to</span> <span style="color: #7FFF7F;">"redirect_to"</span> nil nil )
     )
   <span style="color: #7FBFFF;">:filters-alist</span>
   '((<span style="color: #7FBFFF;">:filter-final-output</span> . org-jekyll-finalized))

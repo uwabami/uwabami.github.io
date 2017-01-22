@@ -18,5 +18,7 @@ publish:
 	  --funcall org-publish-all
 	find cc-env -name \*.html | \
 	  xargs sed -i -e 's%../../.emacs.d/README.html%Emacs.html%g'
+	find cc-env -name \*.html | \
+	  xargs sed -i -e 's%file:///home/uwabami/.emacs.d/README.html%Emacs.html%g'
 clean:
 	bundle exec jekyll clean

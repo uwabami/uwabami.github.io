@@ -20,7 +20,6 @@
         z-index: 200;
         background-color: #2980B9;
         color: #fcfcfc !important;
-        text-align: center;
         font-weight: bold;
         font-size: 90%;
         position: fixed;
@@ -29,6 +28,9 @@
         right: 15px;
         display: inline-block;
         padding: 17px 23px;
+    }
+    .top-btn.toggled{
+        display: none;
     }
     .toc-btn.toggled{
         display: none;
@@ -94,8 +96,14 @@
         font-size: 90%;
         position: fixed;
         top: 80px;
+        right: 15px;
+        right: -moz-calc( (100% - 750px) / 2 + 15px );
+        right: -webkit-calc( (100% - 750px) / 2 + 15px );
         right: calc( (100% - 750px) / 2 + 15px );
         padding: 17px 23px;
+    }
+    .top-btn.toggled{
+        display: none;
     }
     .toc-btn.toggled{
         display: none;
