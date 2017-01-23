@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-23 01:25:16
+date: 2017-01-23 15:15:05
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org70b93d0">標準機能の設定</a>
 <ul>
 <li><a href="#org26e64e9">表示関連</a></li>
-<li><a href="#org8ead900">編集関連</a></li>
+<li><a href="#org8bcd05c">編集関連</a></li>
 <li><a href="#orge2b9fab">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -72,10 +72,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org64adec6">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#orga107978">Emacs 本体側の設定</a></li>
+<li><a href="#orge584cf5">Emacs 本体側の設定</a></li>
 <li><a href="#orge42f010">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#orgdb258d0">編集関連</a></li>
+<li><a href="#org306ce7f">編集関連</a></li>
 <li><a href="#orge4f5313">インクリメンタルサーチ</a></li>
 <li><a href="#org1008170">辞書の設定</a></li>
 <li><a href="#org7fe06e5">動的補完</a></li>
@@ -96,7 +96,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org5ecb2e0">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org356798e">Emacs 本体側の設定</a></li>
+<li><a href="#org5d346fa">Emacs 本体側の設定</a></li>
 <li><a href="#org5c5eb4a">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#org9d77bc1">依存/追加ライブラリのインストールと読み込み</a>
@@ -836,9 +836,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org8ead900" class="outline-4">
-<h4 id="org8ead900">編集関連</h4>
-<div class="outline-text-4" id="text-org8ead900">
+<div id="outline-container-org8bcd05c" class="outline-4">
+<h4 id="org8bcd05c">編集関連</h4>
+<div class="outline-text-4" id="text-org8bcd05c">
 <p>
 yes or no を y or n に
 </p>
@@ -1237,7 +1237,7 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point))
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">browse-url-firefox</span> (url <span style="color: #FFFF7F;">&amp;optional</span> new-window)
-    <span style="color: #7FFF7F;">"@see </span><span style="text-decoration: underline;">http://www.emacswiki.org/emacs/BrowseUrl</span><span style="color: #7FFF7F;">"</span>
+    <span style="color: #7FFF7F;">"@see </span><span style="color: #00ffff; text-decoration: underline;">http://www.emacswiki.org/emacs/BrowseUrl</span><span style="color: #7FFF7F;">"</span>
     (<span style="color: #FF7F7F;">interactive</span> (browse-url-interactive-arg <span style="color: #7FFF7F;">"URL: "</span>))
     (<span style="color: #FF7F7F;">setq</span> url (browse-url-encode-url url))
     (<span style="color: #FF7F7F;">let*</span> ((process-environment (browse-url-process-environment))
@@ -1310,9 +1310,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orga107978" class="outline-3">
-<h3 id="orga107978">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orga107978">
+<div id="outline-container-orge584cf5" class="outline-3">
+<h3 id="orge584cf5">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orge584cf5">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1422,9 +1422,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-orgdb258d0" class="outline-4">
-<h4 id="orgdb258d0">編集関連</h4>
-<div class="outline-text-4" id="text-orgdb258d0">
+<div id="outline-container-org306ce7f" class="outline-4">
+<h4 id="org306ce7f">編集関連</h4>
+<div class="outline-text-4" id="text-org306ce7f">
 <p>
 キーバインド
 </p>
@@ -1768,9 +1768,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org356798e" class="outline-3">
-<h3 id="org356798e">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org356798e">
+<div id="outline-container-org5d346fa" class="outline-3">
+<h3 id="org5d346fa">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org5d346fa">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3517,13 +3517,14 @@ howm も有効にしている，ぐらい．
 ファイル間のリンクを uuid で行なう設定
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">require</span> '<span style="color: #FFBF7F;">org-id</span> nil 'noerror)
-(<span style="color: #FF7F7F;">bind-keys*</span>
- (<span style="color: #7FFF7F;">"C-c l"</span>   . org-store-link)
- (<span style="color: #7FFF7F;">"C-c C-l"</span>  . org-insert-link))
-(<span style="color: #FF7F7F;">setq</span> org-id-link-to-org-use-id 'create-if-interactive
-      org-id-location-files (concat my:d:tmp <span style="color: #7FFF7F;">"org-id-locations"</span>)
-      )
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-id</span>
+  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c l"</span>   . org-store-link)
+         (<span style="color: #7FFF7F;">"C-c C-l"</span>  . org-insert-link))
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> org-id-link-to-org-use-id 'create-if-interactive
+        org-id-location-files (concat my:d:tmp <span style="color: #7FFF7F;">"org-id-locations"</span>)
+        )
+  )
 </pre>
 </div>
 <p>
@@ -4670,7 +4671,7 @@ file encoding を取得する関数と latexmk の実行用関数をカスタマ
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">dolist</span> (command '(<span style="color: #7FFF7F;">"pTeX"</span> <span style="color: #7FFF7F;">"pLaTeX"</span> <span style="color: #7FFF7F;">"pBibTeX"</span> <span style="color: #7FFF7F;">"jTeX"</span> <span style="color: #7FFF7F;">"jLaTeX"</span> <span style="color: #7FFF7F;">"jBibTeX"</span>))
     (delq (assoc command TeX-command-list) TeX-command-list))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">@see </span><span style="text-decoration: underline;">https://github.com/tom-tan/auctex-latexmk/auctex-latexmk.el</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">@see </span><span style="color: #00ffff; text-decoration: underline;">https://github.com/tom-tan/auctex-latexmk/auctex-latexmk.el</span>
   (<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:auctex-latexmk-encoding-alist</span>
     '((japanese-iso-8bit      . <span style="color: #7FFF7F;">"euc"</span>)
       (japanese-iso-8bit-unix . <span style="color: #7FFF7F;">"euc"</span>)
@@ -4922,7 +4923,7 @@ file encoding を取得する関数と latexmk の実行用関数をカスタマ
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defmacro</span> <span style="color: #BF7FFF;">my:diminish</span> (file mode <span style="color: #FFFF7F;">&amp;optional</span> new-name)
-  <span style="color: #7FFF7F;">"original: </span><span style="text-decoration: underline;">https://github.com/larstvei/dot-emacs/blob/master/init.org</span><span style="color: #7FFF7F;">"</span>
+  <span style="color: #7FFF7F;">"original: </span><span style="color: #00ffff; text-decoration: underline;">https://github.com/larstvei/dot-emacs/blob/master/init.org</span><span style="color: #7FFF7F;">"</span>
   `(<span style="color: #FF7F7F;">with-eval-after-load</span> ,file
      (diminish ,mode ,new-name)))
 (<span style="color: #FF7F7F;">my:diminish</span> <span style="color: #7FFF7F;">"isearch"</span>          'isearch-mode)
