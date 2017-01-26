@@ -1,12 +1,12 @@
 #+TITLE: Youhei SASAKI's Official site
-#+DATE: 2017-01-19 03:15:34
+#+DATE: 2017-01-26 19:56:39
 #+LANGUAGE: ja
 #+REF: index
 #+LAYOUT: top
 #+SETUPFILE: ./_setup.org
 * Welcome!!
   #+HTML: <div class="col-lg-4 col-md-5 col-sm-4">
-  #+ATTR_HTML: :class img-responsive center-block
+  #+ATTR_HTML: :class img-responsive
   [[file:images/face.jpeg]]
   #+HTML: </div>
   #+HTML: <div class="col-lg-8 col-md-7 col-sm-8">
@@ -16,7 +16,7 @@
            {{{envelope(uwabami@gfd-dennou.org)}}} {{{br}}}
            {{{nobr}}} {{{keybase(uwabami)}}} [[https://keybase.io/uwabami/pgp_keys.asc][0x9394F354891D7E07]] {{{twitter(uwabami)}}} {{{fb(sasakyh)}}}  {{{github(uwabami)}}} {{{end_nobr}}}
 #+BEGIN_EXPORT html
-<div class="hidden-sm hidden-xs"><pre id="gpgkey">pub   rsa4096/0x9394F354891D7E07 2009-09-03 [SC]
+<div class="gpgkey"><pre id="gpgkey">pub   rsa4096/0x9394F354891D7E07 2009-09-03 [SC]
       Key fingerprint = 66A4 EA70 4FE2 4055 8D6A  C2E6 9394 F354 891D 7E07
 uid       [ultimate] Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 uid       [ultimate] Youhei SASAKI (JunkHub) &lt;uwabami@junkhub.org&gt;
@@ -24,7 +24,8 @@ uid       [ultimate] Youhei SASAKI (Debian JP Project) &lt;uwabami@debian.or.jp&
 sub   rsa4096/0xB41AF9579DBFD29F 2009-09-03 [E]
       Key fingerprint = 9891 32E5 2947 1AFD D095  77C9 B41A F957 9DBF D29F
 sub   rsa4096/0xBC8C7730B7DB0213 2016-12-12 [A]
-      Key fingerprint = 7C14 990C E4C0 CAE6 7D7E  B874 BC8C 7730 B7DB 0213</pre></div>
+      Key fingerprint = 7C14 990C E4C0 CAE6 7D7E  B874 BC8C 7730 B7DB 0213</pre>
+</div>
 #+END_EXPORT
   #+HTML: </div><!--/.col-lg-8 -->
   #+HTML: <div class="clearfix"></div>

@@ -1,5 +1,5 @@
 #+TITLE: Youhei SASAKI's Official site
-#+DATE: 2017-01-19 03:25:18
+#+DATE: 2017-01-26 19:57:25
 #+LANGUAGE: en
 #+REF: index
 #+LAYOUT: default
@@ -17,7 +17,7 @@
                {{{envelope(uwabami@gfd-dennou.org)}}} {{{br}}}
                {{{nobr}}} {{{keybase(uwabami)}}} [[https://keybase.io/uwabami/pgp_keys.asc][0x9394F354891D7E07]] {{{twitter(uwabami)}}} {{{fb(sasakyh)}}}  {{{github(uwabami)}}} {{{end_nobr}}}
   #+BEGIN_EXPORT html
-<div class="hidden-sm hidden-xs"><pre id="gpgkey">pub   rsa4096/0x9394F354891D7E07 2009-09-03 [SC]
+<div class="gpgkey"><pre id="gpgkey">pub   rsa4096/0x9394F354891D7E07 2009-09-03 [SC]
       Key fingerprint = 66A4 EA70 4FE2 4055 8D6A  C2E6 9394 F354 891D 7E07
 uid       [ultimate] Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 uid       [ultimate] Youhei SASAKI (JunkHub) &lt;uwabami@junkhub.org&gt;
