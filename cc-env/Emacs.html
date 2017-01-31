@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-23 15:15:05
+date: 2017-01-31 13:32:26
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -35,7 +35,6 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org675db21">常に <code>cl-lib</code> を読み込む</a></li>
 <li><a href="#org8740212">後方互換性: <code>el-x</code></a></li>
-<li><a href="#orge1e220b">url-retrieve の置き換え: <code>mb-url</code></a></li>
 <li><a href="#orgfde46aa">環境変数の読み込み: <code>exec-path-from-shell</code></a></li>
 <li><a href="#org125a8bb">言語の設定</a>
 <ul>
@@ -49,7 +48,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org70b93d0">標準機能の設定</a>
 <ul>
 <li><a href="#org26e64e9">表示関連</a></li>
-<li><a href="#org8bcd05c">編集関連</a></li>
+<li><a href="#org095f458">編集関連</a></li>
 <li><a href="#orge2b9fab">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -72,10 +71,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org64adec6">日本語入力: ddskkの設定</a>
 <ul>
-<li><a href="#orge584cf5">Emacs 本体側の設定</a></li>
+<li><a href="#orgec84a4e">Emacs 本体側の設定</a></li>
 <li><a href="#orge42f010">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org306ce7f">編集関連</a></li>
+<li><a href="#org719a587">編集関連</a></li>
 <li><a href="#orge4f5313">インクリメンタルサーチ</a></li>
 <li><a href="#org1008170">辞書の設定</a></li>
 <li><a href="#org7fe06e5">動的補完</a></li>
@@ -96,7 +95,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org5ecb2e0">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org5d346fa">Emacs 本体側の設定</a></li>
+<li><a href="#orga45cad7">Emacs 本体側の設定</a></li>
 <li><a href="#org5c5eb4a">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#org9d77bc1">依存/追加ライブラリのインストールと読み込み</a>
@@ -200,16 +199,16 @@ permalink: /cc-env/Emacs.html
 <ul>
 <li><a href="#org3595c4f">基本設定: <code>org</code></a></li>
 <li><a href="#orgc0c44be">Org-Id, Orglink</a></li>
+<li><a href="#org21f568f">Org-capture: 日記</a></li>
 <li><a href="#orgf0c027b">Capture: メモ取り</a></li>
 <li><a href="#orga1a63ae">Agenda: スケジュール，TODO 表示</a></li>
-<li><a href="#orgd290f69">日記: <code>org-journal</code></a></li>
 <li><a href="#org48a9b97">Babel</a>
 <ul>
 <li><a href="#org25dd556">org-src</a></li>
 <li><a href="#org2504970">org-ditaa</a></li>
 </ul>
 </li>
-<li><a href="#org46bae42">Org と Google カレンダーの連携: <code>org-gcal</code></a>
+<li><a href="#org106d3e8">OrgとGoogle カレンダーの連携: <code>org-gcal</code></a>
 <ul>
 <li><a href="#orgb1f3471">token 等の置き場所の変更</a></li>
 <li><a href="#orgd76464f">org-gcal 本体の設定</a></li>
@@ -221,18 +220,15 @@ permalink: /cc-env/Emacs.html
 <ul>
 <li><a href="#orgc69da19">一般設定</a></li>
 <li><a href="#org75d562f">Beamer export</a></li>
-<li><a href="#orgf1f23b2">HTML 出力: <code>ox-html</code></a></li>
-</ul>
-</li>
-<li><a href="#org562ec0f">Org-Project</a>
-<ul>
+<li><a href="#org518e0d2">HTML export</a></li>
 <li><a href="#org8d00dfc">Jekyll 用の Backend の定義</a></li>
-<li><a href="#org2db7f36">Project の定義</a></li>
 </ul>
 </li>
+<li><a href="#org562ec0f">Org-Project</a></li>
 </ul>
 </li>
 <li><a href="#org5cb0ee2">Howm</a></li>
+<li><a href="#org8a3a45c">日記: <code>tDiary</code></a></li>
 <li><a href="#orgb877009">プログラム環境</a>
 <ul>
 <li><a href="#org9dbd0ef">コードのタグ付け: <code>ggtags</code>, <code>helm-gtags</code></a></li>
@@ -274,10 +270,10 @@ Related: <a href='index.html'>Index</a>
 </p>
 
 <p>
-<object type="image/svg+xml" data="https://travis-ci.org/uwabami/emacs.svg" class="org-svg">
-Sorry, your browser does not support SVG.</object>
+<img src="https://travis-ci.org/uwabami/emacs.svg?branch=master" class="travis_badge">
 <object type="image/svg+xml" data="https://img.shields.io/badge/License-GPLv3-blue.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
+<style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:120px;right:15px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/uwabami/emacs">Fork me on GitHub</a></span>
 </p>
 
 <p>
@@ -561,23 +557,6 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-orge1e220b" class="outline-2">
-<h2 id="orge1e220b">url-retrieve の置き換え: <code>mb-url</code></h2>
-<div class="outline-text-2" id="text-orge1e220b">
-<p>
-標準関数の <code>url-retrieve</code> 等の proxy 環境下での挙動が怪しいので，
-<code>mb-url</code> で advice (上書き)することに．
-<code>curl</code> のバッファが増殖するのだけれど，これはなんとかならないかなぁ&#x2026;
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">mb-url</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:config</span>
-  (advice-add 'url-http <span style="color: #7FBFFF;">:override</span> 'mb-url-http-curl))
-</pre>
-</div>
-</div>
-</div>
 <div id="outline-container-orgfde46aa" class="outline-2">
 <h2 id="orgfde46aa">環境変数の読み込み: <code>exec-path-from-shell</code></h2>
 <div class="outline-text-2" id="text-orgfde46aa">
@@ -836,9 +815,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org8bcd05c" class="outline-4">
-<h4 id="org8bcd05c">編集関連</h4>
-<div class="outline-text-4" id="text-org8bcd05c">
+<div id="outline-container-org095f458" class="outline-4">
+<h4 id="org095f458">編集関連</h4>
+<div class="outline-text-4" id="text-org095f458">
 <p>
 yes or no を y or n に
 </p>
@@ -1237,7 +1216,7 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point))
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">browse-url-firefox</span> (url <span style="color: #FFFF7F;">&amp;optional</span> new-window)
-    <span style="color: #7FFF7F;">"@see </span><span style="color: #00ffff; text-decoration: underline;">http://www.emacswiki.org/emacs/BrowseUrl</span><span style="color: #7FFF7F;">"</span>
+    <span style="color: #7FFF7F;">"@see </span><span style="text-decoration: underline;">http://www.emacswiki.org/emacs/BrowseUrl</span><span style="color: #7FFF7F;">"</span>
     (<span style="color: #FF7F7F;">interactive</span> (browse-url-interactive-arg <span style="color: #7FFF7F;">"URL: "</span>))
     (<span style="color: #FF7F7F;">setq</span> url (browse-url-encode-url url))
     (<span style="color: #FF7F7F;">let*</span> ((process-environment (browse-url-process-environment))
@@ -1310,9 +1289,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orge584cf5" class="outline-3">
-<h3 id="orge584cf5">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orge584cf5">
+<div id="outline-container-orgec84a4e" class="outline-3">
+<h3 id="orgec84a4e">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgec84a4e">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1422,9 +1401,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org306ce7f" class="outline-4">
-<h4 id="org306ce7f">編集関連</h4>
-<div class="outline-text-4" id="text-org306ce7f">
+<div id="outline-container-org719a587" class="outline-4">
+<h4 id="org719a587">編集関連</h4>
+<div class="outline-text-4" id="text-org719a587">
 <p>
 キーバインド
 </p>
@@ -1768,9 +1747,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org5d346fa" class="outline-3">
-<h3 id="org5d346fa">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org5d346fa">
+<div id="outline-container-orga45cad7" class="outline-3">
+<h3 id="orga45cad7">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orga45cad7">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3468,7 +3447,8 @@ howm も有効にしている，ぐらい．
         <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">GTD: &#29366;&#24907;&#12398;&#36861;&#21152;</span>
         org-todo-keywords '((sequence <span style="color: #7FFF7F;">"TODO(t)"</span> <span style="color: #7FFF7F;">"WAIT(w)"</span> <span style="color: #7FFF7F;">"|"</span> <span style="color: #7FFF7F;">"DONE(d)"</span> <span style="color: #7FFF7F;">"CANCEL(c)"</span> <span style="color: #7FFF7F;">"SOMEDAY(s)"</span>)
                             (type <span style="color: #7FFF7F;">"ARTICLE(a)"</span>)
-                            (type <span style="color: #7FFF7F;">"MEMO(m)"</span>))
+                            (type <span style="color: #7FFF7F;">"MEMO(m)"</span>)
+                            )
         <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">GTD: &#12479;&#12464;&#12398;&#36861;&#21152;</span>
         org-tag-alist '((<span style="color: #7FFF7F;">"OFFICE"</span>     . ?o)
                         (<span style="color: #7FFF7F;">"HOME"</span>       . ?h)
@@ -3520,9 +3500,10 @@ howm も有効にしている，ぐらい．
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-id</span>
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c l"</span>   . org-store-link)
          (<span style="color: #7FFF7F;">"C-c C-l"</span>  . org-insert-link))
+  <span style="color: #7FBFFF;">:init</span>
+  (<span style="color: #FF7F7F;">setq</span> org-id-location-files (concat my:d:tmp <span style="color: #7FFF7F;">"org-id-locations"</span>))
   <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> org-id-link-to-org-use-id 'create-if-interactive
-        org-id-location-files (concat my:d:tmp <span style="color: #7FFF7F;">"org-id-locations"</span>)
+  (<span style="color: #FF7F7F;">setq</span> org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
         )
   )
 </pre>
@@ -3544,6 +3525,63 @@ org 形式の link を他のモードのドキュメント，コメント等で�
 </p>
 </div>
 </div>
+<div id="outline-container-org21f568f" class="outline-3">
+<h3 id="org21f568f">Org-capture: 日記</h3>
+<div class="outline-text-3" id="text-org21f568f">
+<p>
+単一ファイルに記述すること，および
+エントリ作成時に日付を入れるために <code>org-jounnal-new-entry</code> を <code>advice</code> している
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-journal</span>
+  <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:if</span> (file-directory-p my:d:org)
+  <span style="color: #7FBFFF;">:init</span>
+  (add-hook 'org-journal-mode-hook
+            (<span style="color: #FF7F7F;">setq</span> truncate-lines t))
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">unbind-key</span> <span style="color: #7FFF7F;">"C-c C-j"</span> org-journal-mode-map)
+  (<span style="color: #FF7F7F;">bind-key</span>   <span style="color: #7FFF7F;">"C-c C-j"</span> 'browse-url-at-point)
+  (<span style="color: #FF7F7F;">setq</span> org-journal-dir my:d:org
+        org-journal-file-format <span style="color: #7FFF7F;">"journal.org"</span>
+        org-journal-date-format <span style="color: #7FFF7F;">"%x (%a)"</span>
+        org-journal-date-prefix <span style="color: #7FFF7F;">"* "</span>
+        org-journal-time-format <span style="color: #7FFF7F;">"&lt;%Y-%m-%d %R&gt; "</span>
+        org-journal-time-prefix <span style="color: #7FFF7F;">"** MEMO "</span>
+        org-journal-find-file 'find-file
+        )
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:org-journal-add-date-entry</span> (prefix <span style="color: #FFFF7F;">&amp;optional</span> time)
+    <span style="color: #7FFF7F;">"Insert date entry to `</span><span style="color: #FFBF7F;">org-journal-file</span><span style="color: #7FFF7F;">'"</span>
+    (find-file (expand-file-name org-journal-file-format org-journal-dir))
+    (org-journal-decrypt)
+    (<span style="color: #FF7F7F;">unless</span>
+        (string-match (format-time-string org-journal-date-format)
+                      (buffer-substring-no-properties (point-min) (point-max)))
+      (<span style="color: #FF7F7F;">progn</span>
+        (goto-char (point-max))
+        (insert (concat <span style="color: #7FFF7F;">"\n"</span> org-journal-date-prefix
+                        (format-time-string org-journal-date-format)))
+        ))
+    )
+  (advice-add 'org-journal-new-entry <span style="color: #7FBFFF;">:before</span> 'my:org-journal-add-date-entry)
+  )
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">Key bindings -- &#20351;&#12360;&#12390;&#12394;&#12356;...</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-f") 'org-journal-open-next-entry)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-b") 'org-journal-open-previous-entry)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-j") 'org-journal-new-entry)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map "j" 'org-journal-read-entry)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "C-j") 'org-journal-display-entry)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map "]" 'org-journal-next-entry)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map "[" 'org-journal-previous-entry)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "i j") 'org-journal-new-date-entry)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f f") 'org-journal-search-forever)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f w") 'org-journal-search-calendar-week)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f m") 'org-journal-search-calendar-month)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f y") 'org-journal-search-calendar-year)))</span>
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgf0c027b" class="outline-3">
 <h3 id="orgf0c027b">Capture: メモ取り</h3>
 <div class="outline-text-3" id="text-orgf0c027b">
@@ -3553,36 +3591,54 @@ org 形式の link を他のモードのドキュメント，コメント等で�
 mu のインデックスの方が良いかもしれない，と最近思っている．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-wl</span>
-  <span style="color: #7FBFFF;">:if</span> (<span style="color: #FF7F7F;">and</span> (my:dpkg-status <span style="color: #7FFF7F;">"wl-beta"</span>)
-           (file-directory-p org-directory)))
-(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-capture</span>
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-capture</span>
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x m"</span> . org-capture))
   <span style="color: #7FBFFF;">:if</span> (file-directory-p org-directory)
   <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> org-default-notes-file (concat org-directory <span style="color: #7FFF7F;">"Memo.org"</span>)
+  (<span style="color: #FF7F7F;">if</span> (<span style="color: #FF7F7F;">and</span> (my:dpkg-status <span style="color: #7FFF7F;">"wl-beta"</span>)
+           (file-directory-p org-directory))
+      (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-wl</span>))
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:org-journal-add-date-entry-capture</span> ()
+    (my:org-journal-add-date-entry nil)
+    (goto-char (point-max))
+    )
+  (<span style="color: #FF7F7F;">setq</span> org-default-notes-file (concat org-directory <span style="color: #7FFF7F;">"journal.org"</span>)
         org-capture-templates
         `(
           (<span style="color: #7FFF7F;">"t"</span> <span style="color: #7FFF7F;">"TODO"</span> plain
-           (file (concat org-directory <span style="color: #7FFF7F;">"Memo.org"</span>))
-           <span style="color: #7FFF7F;">"* TODO %^{title} %^g\n  %?\n  %a"</span>
-           <span style="color: #7FBFFF;">:prepend</span> nil
-           <span style="color: #7FBFFF;">:unnarrowed</span> t
-           <span style="color: #7FBFFF;">:kill-buffer</span> t
-           )
-          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"* TODO &lt;%&lt;%Y-%m-%d&gt;&gt; %:subject %^g\n  %?\n  %a\n  #+BEGIN_QUOTE\n%i\n  #+END_QUOTE"</span>
-          (<span style="color: #7FFF7F;">"e"</span> <span style="color: #7FFF7F;">"Email TODO"</span> plain
-           (file (concat org-directory <span style="color: #7FFF7F;">"Memo.org"</span>))
-           <span style="color: #7FFF7F;">"* TODO [[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(replace-regexp-in-string \"\\\\[</span><span style="color: #FFBF7F;">.*\\\\</span><span style="color: #7FFF7F;">] \" \"\" \"%:subject\")]]\n  :PROPERTIES:\n  :CREATED: %u\n  :END:%?\n"</span>
+           (<span style="color: #FF7F7F;">function</span> my:org-journal-add-date-entry-capture)
+           <span style="color: #7FFF7F;">"** TODO %^{title} %^g\n  %?\n  %a"</span>
            <span style="color: #7FBFFF;">:prepend</span> nil
            <span style="color: #7FBFFF;">:unnarrowed</span> nil
            <span style="color: #7FBFFF;">:kill-buffer</span> t
            )
-          (<span style="color: #7FFF7F;">"m"</span> <span style="color: #7FFF7F;">"Memo"</span> plain
-           (file (concat org-directory <span style="color: #7FFF7F;">"Memo.org"</span>))
-           <span style="color: #7FFF7F;">"* MEMO %t %^{titlle}\n  %?\n  %a"</span>
+          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"* TODO &lt;%&lt;%Y-%m-%d&gt;&gt; %:subject %^g\n  %?\n  %a\n  #+BEGIN_QUOTE\n%i\n  #+END_QUOTE"</span>
+          (<span style="color: #7FFF7F;">"e"</span> <span style="color: #7FFF7F;">"Email TODO"</span> plain
+           (<span style="color: #FF7F7F;">function</span> my:org-journal-add-date-entry-capture)
+           <span style="color: #7FFF7F;">"** TODO [[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(replace-regexp-in-string \"\\\\[</span><span style="color: #FFBF7F;">.*\\\\</span><span style="color: #7FFF7F;">] \" \"\" \"%:subject\")]]\n  :PROPERTIES:\n  :CREATED: %u\n  :END:%?\n"</span>
            <span style="color: #7FBFFF;">:prepend</span> nil
-           <span style="color: #7FBFFF;">:unnarrowed</span> t
+           <span style="color: #7FBFFF;">:unnarrowed</span> nil
+           <span style="color: #7FBFFF;">:kill-buffer</span> t
+           )
+          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">("s" "Email Schedule" plain</span>
+          <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">(file (expand-file-name "Schedule.org" org-directory))</span>
+          <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">"* %:subject\n[[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(replace-regexp-in-string \"\\\\[</span><span style="color: #FFBF7F;">.*\\\\</span><span style="color: #a5a5a6;">] \" \"\" \"%:subject\")]]\n %?\n%t\n"</span>
+          <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">:prepend nil</span>
+          <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">:unnarrowed nil</span>
+          <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">:kill-buffer t</span>
+          <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">)</span>
+          (<span style="color: #7FFF7F;">"m"</span> <span style="color: #7FFF7F;">"Memo/Journal Entry"</span> plain
+           (<span style="color: #FF7F7F;">function</span> my:org-journal-add-date-entry-capture)
+           <span style="color: #7FFF7F;">"** MEMO %T %?"</span>
+           <span style="color: #7FBFFF;">:prepend</span> nil
+           <span style="color: #7FBFFF;">:unnarrowed</span> nil
+           <span style="color: #7FBFFF;">:kill-buffer</span> t
+           )
+          (<span style="color: #7FFF7F;">"a"</span> <span style="color: #7FFF7F;">"Aritcle Entry"</span> plain
+           (<span style="color: #FF7F7F;">function</span> my:org-journal-add-date-entry-capture)
+           <span style="color: #7FFF7F;">"** ARTICLE %T %? "</span>
+           <span style="color: #7FBFFF;">:prepend</span> nil
+           <span style="color: #7FBFFF;">:unnarrowed</span> nil
            <span style="color: #7FBFFF;">:kill-buffer</span> t
            )
           ))
@@ -3607,6 +3663,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-agenda</span>
+  <span style="color: #7FBFFF;">:diminish</span> org-agenda-mode
   <span style="color: #7FBFFF;">:if</span> (file-directory-p my:d:org)
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c a"</span> . org-agenda))
   <span style="color: #7FBFFF;">:init</span>
@@ -3638,7 +3695,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
     <span style="color: #7FBFFF;">:group</span> 'org-agenda )
   (<span style="color: #FF7F7F;">defface</span> <span style="color: #7F7FFF;">my:org-agenda-calendar-twitter</span>
     '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#CCCCCC"</span>)))
-    <span style="color: #7FFF7F;">"Agenda &#34920;&#31034;&#20013;, Twiiter log &#12398;&#34920;&#31034; face"</span>
+    <span style="color: #7FFF7F;">"Agenda &#34920;&#31034;&#20013;, Twitter log &#12398;&#34920;&#31034; face"</span>
     <span style="color: #7FBFFF;">:group</span> 'org-agenda )
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26356;&#26032;&#29992;&#12398;&#38306;&#25968; - &#12392;&#12426;&#12354;&#12360;&#12378;&#21205;&#12356;&#12390;&#12356;&#12427;&#12398;&#12391;&#33391;&#12375;&#12392;&#12377;&#12427;&#12364;&#65292;&#12522;&#12501;&#12449;&#12463;&#12479;&#12522;&#12531;&#12464;&#12375;&#12383;&#12356;</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:org-agenda-day-face-function</span> (date)
@@ -3669,7 +3726,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
   (<span style="color: #FF7F7F;">setq</span> org-agenda-files nil)
   (<span style="color: #FF7F7F;">dolist</span> (file
            '(<span style="color: #7FFF7F;">"Archive.org"</span>
-             <span style="color: #7FFF7F;">"Diary.org"</span>
+             <span style="color: #7FFF7F;">"Holidays.org"</span>
              <span style="color: #7FFF7F;">"Memo.org"</span>
              <span style="color: #7FFF7F;">"Schedule.org"</span>
              <span style="color: #7FFF7F;">"GFD.org"</span>
@@ -3752,63 +3809,6 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </div>
 </div>
 </div>
-<div id="outline-container-orgd290f69" class="outline-3">
-<h3 id="orgd290f69">日記: <code>org-journal</code></h3>
-<div class="outline-text-3" id="text-orgd290f69">
-<p>
-エントリ作成時に日付を入れるために <code>org-jounnal-new-entry</code> を <code>defadvice</code> している
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-journal</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:if</span> (file-directory-p my:d:org)
-  <span style="color: #7FBFFF;">:commands</span> (org-journal-new-entry)
-  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point)
-         (<span style="color: #7FFF7F;">"C-x m"</span>   . org-journal-new-entry))
-  <span style="color: #7FBFFF;">:init</span>
-  (add-hook 'org-journal-mode-hook
-            (<span style="color: #FF7F7F;">setq</span> truncate-lines t))
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">unbind-key</span> <span style="color: #7FFF7F;">"C-c C-j"</span> org-journal-mode-map)
-  (<span style="color: #FF7F7F;">bind-key</span> <span style="color: #7FFF7F;">"C-c C-j"</span> 'browse-url-at-point)
-  (<span style="color: #FF7F7F;">setq</span> org-journal-dir org-directory
-        org-journal-file-format <span style="color: #7FFF7F;">"journal.org"</span>
-        org-journal-date-format <span style="color: #7FFF7F;">"%x (%a)"</span>
-        org-journal-date-prefix <span style="color: #7FFF7F;">"* "</span>
-        org-journal-time-format <span style="color: #7FFF7F;">"&lt;%Y-%m-%d %R&gt; "</span>
-        org-journal-time-prefix <span style="color: #7FFF7F;">"** "</span>)
-  (<span style="color: #FF7F7F;">defadvice</span> <span style="color: #BF7FFF;">org-journal-new-entry</span> (before my:org-journal-add-date-entry)
-    <span style="color: #7FFF7F;">"Insert date entry"</span>
-    (find-file-other-window (concat org-journal-dir org-journal-file-format))
-    (org-journal-decrypt)
-    (<span style="color: #FF7F7F;">unless</span>
-        (string-match (format-time-string org-journal-date-format)
-                      (buffer-substring-no-properties (point-min) (point-max)))
-      (<span style="color: #FF7F7F;">progn</span>
-        (goto-char (point-max))
-        (insert (concat <span style="color: #7FFF7F;">"\n"</span> org-journal-date-prefix
-                        (format-time-string org-journal-date-format)))
-        ))
-    )
-  (ad-activate 'org-journal-new-entry)
-  )
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">Key bindings -- &#20351;&#12360;&#12390;&#12394;&#12356;...</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-f") 'org-journal-open-next-entry)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-b") 'org-journal-open-previous-entry)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-j") 'org-journal-new-entry)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map "j" 'org-journal-read-entry)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "C-j") 'org-journal-display-entry)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map "]" 'org-journal-next-entry)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map "[" 'org-journal-previous-entry)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "i j") 'org-journal-new-date-entry)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f f") 'org-journal-search-forever)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f w") 'org-journal-search-calendar-week)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f m") 'org-journal-search-calendar-month)</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f y") 'org-journal-search-calendar-year)))</span>
-</pre>
-</div>
-</div>
-</div>
 <div id="outline-container-org48a9b97" class="outline-3">
 <h3 id="org48a9b97">Babel</h3>
 <div class="outline-text-3" id="text-org48a9b97">
@@ -3845,9 +3845,9 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </div>
 </div>
 </div>
-<div id="outline-container-org46bae42" class="outline-3">
-<h3 id="org46bae42">Org と Google カレンダーの連携: <code>org-gcal</code></h3>
-<div class="outline-text-3" id="text-org46bae42">
+<div id="outline-container-org106d3e8" class="outline-3">
+<h3 id="org106d3e8">OrgとGoogle カレンダーの連携: <code>org-gcal</code></h3>
+<div class="outline-text-3" id="text-org106d3e8">
 </div><div id="outline-container-orgb1f3471" class="outline-4">
 <h4 id="orgb1f3471">token 等の置き場所の変更</h4>
 <div class="outline-text-4" id="text-orgb1f3471">
@@ -4043,9 +4043,9 @@ LATEX<sub>CLASS</sub> に <code>my:beamer</code> を指定すると，上記設�
 </p>
 </div>
 </div>
-<div id="outline-container-orgf1f23b2" class="outline-4">
-<h4 id="orgf1f23b2">HTML 出力: <code>ox-html</code></h4>
-<div class="outline-text-4" id="text-orgf1f23b2">
+<div id="outline-container-org518e0d2" class="outline-4">
+<h4 id="org518e0d2">HTML export</h4>
+<div class="outline-text-4" id="text-org518e0d2">
 <p>
 後述の Jekyll 用の設定も参照のこと．
 </p>
@@ -4068,10 +4068,9 @@ LATEX<sub>CLASS</sub> に <code>my:beamer</code> を指定すると，上記設�
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-org562ec0f" class="outline-3">
-<h3 id="org562ec0f">Org-Project</h3>
-<div class="outline-text-3" id="text-org562ec0f">
+<div id="outline-container-org8d00dfc" class="outline-4">
+<h4 id="org8d00dfc">Jekyll 用の Backend の定義</h4>
+<div class="outline-text-4" id="text-org8d00dfc">
 <p>
 Web サイトは Jekyll で作成しています．
 <a href="https://github.com/yoshinari-nomura/org-octopress">yoshinari-nomura/org-octopress: org-mode in octopress</a> の
@@ -4079,10 +4078,6 @@ Web サイトは Jekyll で作成しています．
 html export の際に必要な yaml front matter を出力できるようにしてます．
 あと，src-block が liquid に解釈されない様に escape してます．
 </p>
-</div>
-<div id="outline-container-org8d00dfc" class="outline-4">
-<h4 id="org8d00dfc">Jekyll 用の Backend の定義</h4>
-<div class="outline-text-4" id="text-org8d00dfc">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(org-export-define-derived-backend 'jekyll 'html
   <span style="color: #7FBFFF;">:menu-entry</span>
@@ -4178,9 +4173,10 @@ html export の際に必要な yaml front matter を出力できるようにし�
 </div>
 </div>
 </div>
-<div id="outline-container-org2db7f36" class="outline-4">
-<h4 id="org2db7f36">Project の定義</h4>
-<div class="outline-text-4" id="text-org2db7f36">
+</div>
+<div id="outline-container-org562ec0f" class="outline-3">
+<h3 id="org562ec0f">Org-Project</h3>
+<div class="outline-text-3" id="text-org562ec0f">
 <p>
 <code>org-publish-all</code> 等で batch で一括出力できるようにしておきます．
 </p>
@@ -4216,7 +4212,6 @@ html export の際に必要な yaml front matter を出力できるようにし�
           ))
   )
 </pre>
-</div>
 </div>
 </div>
 </div>
@@ -4334,6 +4329,33 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
 </div>
 </div>
 </div>
+<div id="outline-container-org8a3a45c" class="outline-2">
+<h2 id="org8a3a45c">日記: <code>tDiary</code></h2>
+<div class="outline-text-2" id="text-org8a3a45c">
+<p>
+tdiary-mode をちまちまと弄っている所
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (locate-library <span style="color: #7FFF7F;">"tdiary-mode"</span>)
+  (quelpa '(tdiary-mode
+            <span style="color: #7FBFFF;">:fetcher</span> github
+            <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"uwabami/tdiary-mode"</span>)))
+(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">tdiary-mode</span>
+  <span style="color: #7FBFFF;">:if</span> (file-directory-p <span style="color: #7FFF7F;">"~/Dropbox/tdiary"</span>)
+  <span style="color: #7FBFFF;">:commands</span> (tdiary-mode tdiary-new tdiary-new-directory tdiary-replace)
+  <span style="color: #7FBFFF;">:config</span>
+  (load (expand-file-name <span style="color: #7FFF7F;">"emacs/tdiary-mode.gpg"</span> my:d:password-store))
+  (<span style="color: #FF7F7F;">setq</span> tdiary-browser-function 'browser-url
+        tdiary-coding-system 'utf-8-dos
+        tdiary-style-mode 'rd-mode
+        tdiary-hour-offset 2
+        tdiary-text-save-p t
+        tdiary-text-suffix <span style="color: #7FFF7F;">".rd"</span>)
+  )
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgb877009" class="outline-2">
 <h2 id="orgb877009">プログラム環境</h2>
 <div class="outline-text-2" id="text-orgb877009">
@@ -4420,10 +4442,11 @@ magit は Emacs の Git Frontend.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">flycheck</span>
   <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:disabled</span> t
   <span style="color: #7FBFFF;">:diminish</span> flycheck-mode
   <span style="color: #7FBFFF;">:init</span>
   <span style="color: #7FBFFF;">:config</span>
-  (global-flycheck-mode)
+<span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">(global-flycheck-mode)</span>
   (<span style="color: #FF7F7F;">setq-default</span> flycheck-disabled-checkers
                 '(
                   emacs-lisp-checkdoc
@@ -4662,57 +4685,41 @@ Debian パッケージ版を使う．やっている事は
 <li><code>japanese-latex-mode</code> において, 幾つかのコマンドが追加/上書きされているが，
 あまり使うことの無いコマンドが表示されるのが嫌なのでそれらを削除．</li>
 <li><p>
-<a href="https://github.com/tom-tan/auctex-latexmk/">auctex-latexmk</a> を参考に
-file encoding を取得する関数と latexmk の実行用関数をカスタマイズ
+コンパイルには <code>latexmk</code> を使う，です．
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">tex-jp</span>
-  <span style="color: #7FBFFF;">:if</span> (my:dpkg-status <span style="color: #7FFF7F;">"auctex"</span>)
+  <span style="color: #7FBFFF;">:if</span> (<span style="color: #FF7F7F;">and</span> (executable-find <span style="color: #7FFF7F;">"uplatex"</span>)
+           (my:dpkg-status <span style="color: #7FFF7F;">"auctex"</span>))
   <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">dolist</span> (command '(<span style="color: #7FFF7F;">"pTeX"</span> <span style="color: #7FFF7F;">"pLaTeX"</span> <span style="color: #7FFF7F;">"pBibTeX"</span> <span style="color: #7FFF7F;">"jTeX"</span> <span style="color: #7FFF7F;">"jLaTeX"</span> <span style="color: #7FFF7F;">"jBibTeX"</span>))
-    (delq (assoc command TeX-command-list) TeX-command-list))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">@see </span><span style="color: #00ffff; text-decoration: underline;">https://github.com/tom-tan/auctex-latexmk/auctex-latexmk.el</span>
-  (<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:auctex-latexmk-encoding-alist</span>
-    '((japanese-iso-8bit      . <span style="color: #7FFF7F;">"euc"</span>)
-      (japanese-iso-8bit-unix . <span style="color: #7FFF7F;">"euc"</span>)
-      (euc-jp                 . <span style="color: #7FFF7F;">"euc"</span>)
-      (euc-jp-unix            . <span style="color: #7FFF7F;">"euc"</span>)
-      (utf-8                  . <span style="color: #7FFF7F;">"utf8"</span>)
-      (utf-8-unix             . <span style="color: #7FFF7F;">"utf8"</span>)
-      (japanese-shift-jis     . <span style="color: #7FFF7F;">"sjis"</span>)
-      (japanese-shift-jis-dos . <span style="color: #7FFF7F;">"sjis"</span>))
-    <span style="color: #7FFF7F;">"Encoding mapping for platex."</span>)
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:TeX-run-latexmk</span> ()
-    <span style="color: #7FFF7F;">"Guess TeX file encoding and Excecute latexmk"</span>
-    (<span style="color: #FF7F7F;">let</span> ((TeX-sentinel-default-function 'Latexmk-sentinel)
-          (pair (assq buffer-file-coding-system my:auctex-latexmk-encoding-alist)))
-      (<span style="color: #FF7F7F;">unless</span> (null pair)
-        (setenv <span style="color: #7FFF7F;">"LATEXENC"</span> (cdr pair)))
-      (TeX-run-TeX name command file)
-      (setenv <span style="color: #7FFF7F;">"LATEXENC"</span> nil)))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">customize latexmk command</span>
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:latexmk-setup</span> ()
-    <span style="color: #7FFF7F;">"Add LatexMk command to TeX-command-list."</span>
-    (delq (assoc <span style="color: #7FFF7F;">"LaTeX"</span> TeX-command-list) TeX-command-list)
-    (add-to-list 'TeX-command-list
-                 '(<span style="color: #7FFF7F;">"LaTeX"</span> <span style="color: #7FFF7F;">"latexmk -gg -pdfdvi %t"</span> my:TeX-run-latexmk nil
-                   (plain-tex-mode latex-mode doctex-mode)
-                   <span style="color: #7FBFFF;">:help</span> <span style="color: #7FFF7F;">"Run LatexMk, with epLaTeX, dvipdfmx"</span>))
-    (add-to-list 'TeX-command-list
-                 '(<span style="color: #7FFF7F;">"LaTeXMk"</span> <span style="color: #7FFF7F;">"latexmk %t"</span> my:TeX-run-latexmk nil
-                   (plain-tex-mode latex-mode doctex-mode)
-                   <span style="color: #7FBFFF;">:help</span> <span style="color: #7FFF7F;">"Run LatexMk without any options"</span>))
-    (add-to-list 'TeX-command-list
-                 '(<span style="color: #7FFF7F;">"LaTeXMk(ps2pdfwr)"</span> <span style="color: #7FFF7F;">"latexmk -gg -pdfps %t"</span> my:TeX-run-latexmk nil
-                   (plain-tex-mode latex-mode doctex-mode)
-                   <span style="color: #7FBFFF;">:help</span> <span style="color: #7FFF7F;">"Run LatexMk, with (e)pLaTeX, dvips, ps2pdfwr"</span>))
-    (<span style="color: #FF7F7F;">setq</span> LaTeX-clean-intermediate-suffixes
-          (append
-           '(<span style="color: #7FFF7F;">"\\.nav"</span> <span style="color: #7FFF7F;">"\\.snm"</span> <span style="color: #7FFF7F;">"\\.fdb_latexmk"</span> <span style="color: #7FFF7F;">"\\.aux.bak"</span> <span style="color: #7FFF7F;">"\\.synctex.gz"</span>)
-           LaTeX-clean-intermediate-suffixes))
-    (<span style="color: #FF7F7F;">setq</span> TeX-command-output-list
-          '((<span style="color: #7FFF7F;">"latexmk"</span> (<span style="color: #7FFF7F;">"pdf"</span>)))))
-  (add-hook 'LaTeX-mode-hook 'my:latexmk-setup)
+  (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+  (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+  (add-hook 'LaTeX-mode-hook
+            (<span style="color: #FF7F7F;">function</span>
+             (<span style="color: #FF7F7F;">lambda</span> ()
+               (<span style="color: #FF7F7F;">dolist</span> (command '(<span style="color: #7FFF7F;">"pTeX"</span> <span style="color: #7FFF7F;">"LaTeX"</span> <span style="color: #7FFF7F;">"pLaTeX"</span> <span style="color: #7FFF7F;">"pBibTeX"</span> <span style="color: #7FFF7F;">"jTeX"</span> <span style="color: #7FFF7F;">"jLaTeX"</span> <span style="color: #7FFF7F;">"jBibTeX"</span>))
+                 (delq (assoc command TeX-command-list) TeX-command-list))
+               (<span style="color: #FF7F7F;">setq</span> TeX-command-default <span style="color: #7FFF7F;">"LaTeX"</span>
+                     japanese-LaTeX-command-default <span style="color: #7FFF7F;">"LaTeX"</span>
+                     TeX-PDF-mode t
+                     TeX-command-output-list '((<span style="color: #7FFF7F;">"LaTeX"</span> (<span style="color: #7FFF7F;">"pdf"</span>)))
+                     )
+               (add-to-list 'TeX-expand-list
+                            '(<span style="color: #7FFF7F;">"%(LATEXENC)"</span>
+                              (<span style="color: #FF7F7F;">lambda</span> ()
+                                (<span style="color: #FF7F7F;">let</span> ((str (japanese-TeX-get-encoding-string)))
+                                  (<span style="color: #FF7F7F;">if</span> str (format <span style="color: #7FFF7F;">"%s"</span> str) <span style="color: #7FFF7F;">""</span>)))))
+               (add-to-list 'TeX-command-list
+                            '(<span style="color: #7FFF7F;">"LaTeX"</span>
+                              <span style="color: #7FFF7F;">"LATEXENC=%(LATEXENC) latexmk -gg %t"</span>
+                              TeX-run-TeX nil (latex-mode) <span style="color: #7FBFFF;">:help</span> <span style="color: #7FFF7F;">"Run Latexmk"</span>)))))
+  (<span style="color: #FF7F7F;">setq</span> TeX-source-correlate-method 'synctex
+        TeX-source-correlate-start-server t
+        TeX-auto-save t
+        TeX-auto-local  (expand-file-name <span style="color: #7FFF7F;">"auctex/auto"</span> my:d:tmp)
+        TeX-style-local (expand-file-name <span style="color: #7FFF7F;">"auctex/style"</span> my:d:tmp)
+        TeX-parse-self t
+        TeX-auto-untabify t)
   )
 </pre>
 </div></li>
@@ -4923,7 +4930,7 @@ file encoding を取得する関数と latexmk の実行用関数をカスタマ
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defmacro</span> <span style="color: #BF7FFF;">my:diminish</span> (file mode <span style="color: #FFFF7F;">&amp;optional</span> new-name)
-  <span style="color: #7FFF7F;">"original: </span><span style="color: #00ffff; text-decoration: underline;">https://github.com/larstvei/dot-emacs/blob/master/init.org</span><span style="color: #7FFF7F;">"</span>
+  <span style="color: #7FFF7F;">"original: </span><span style="text-decoration: underline;">https://github.com/larstvei/dot-emacs/blob/master/init.org</span><span style="color: #7FFF7F;">"</span>
   `(<span style="color: #FF7F7F;">with-eval-after-load</span> ,file
      (diminish ,mode ,new-name)))
 (<span style="color: #FF7F7F;">my:diminish</span> <span style="color: #7FFF7F;">"isearch"</span>          'isearch-mode)
