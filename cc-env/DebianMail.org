@@ -1,11 +1,11 @@
 #+TITLE: Mail 環境の設定
-#+DATE: 2017-01-22 22:45:28
+#+DATE: 2017-02-12 18:12:32
 #+LANGUAGE: ja
 #+REF: cc-env/DebianMail
 #+LAYOUT: cc-env
 #+SETUPFILE: ~/Public/_setup.org
 #+PERMALINK: /cc-env/DebianMail.html
-Related: [[wiki:index][Index]] [[file:index.org::Debian%20%E9%96%A2%E9%80%A3][Debian]]
+Related: [[wiki:index][Index]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]]
 * 始めに
   メールに関するアレコレ.
   ネットワーク接続を意識したくないので,

@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-01-31 13:32:26
+date: 2017-02-12 18:09:21
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -35,6 +35,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org675db21">常に <code>cl-lib</code> を読み込む</a></li>
 <li><a href="#org8740212">後方互換性: <code>el-x</code></a></li>
+<li><a href="#orga5fc739">url-retrieve の置換: <code>mb-url</code></a></li>
 <li><a href="#orgfde46aa">環境変数の読み込み: <code>exec-path-from-shell</code></a></li>
 <li><a href="#org125a8bb">言語の設定</a>
 <ul>
@@ -48,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org70b93d0">標準機能の設定</a>
 <ul>
 <li><a href="#org26e64e9">表示関連</a></li>
-<li><a href="#org095f458">編集関連</a></li>
+<li><a href="#orgd40249b">編集関連</a></li>
 <li><a href="#orge2b9fab">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -65,16 +66,17 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgfa2f7df"><code>time-stamp</code>: 保存時に timestamp を自動更新</a></li>
 <li><a href="#org397d6f8"><code>tramp</code>: 使わないので無効化?</a></li>
 <li><a href="#org9e0801a"><code>bookmark</code>: bookmark ファイル</a></li>
+<li><a href="#orgb1c5cb3"><code>eww</code>: 内蔵ブラウザ <code>[0/1]</code></a></li>
 <li><a href="#org1ca4169"><code>browse-url</code></a></li>
 <li><a href="#orgf15319e"><code>server</code>: Emacs server</a></li>
 </ul>
 </li>
-<li><a href="#org64adec6">日本語入力: ddskkの設定</a>
+<li><a href="#org549f981">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#orgec84a4e">Emacs 本体側の設定</a></li>
+<li><a href="#org116d826">Emacs 本体側の設定</a></li>
 <li><a href="#orge42f010">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org719a587">編集関連</a></li>
+<li><a href="#orgbb672c2">編集関連</a></li>
 <li><a href="#orge4f5313">インクリメンタルサーチ</a></li>
 <li><a href="#org1008170">辞書の設定</a></li>
 <li><a href="#org7fe06e5">動的補完</a></li>
@@ -95,7 +97,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org5ecb2e0">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#orga45cad7">Emacs 本体側の設定</a></li>
+<li><a href="#org088408d">Emacs 本体側の設定</a></li>
 <li><a href="#org5c5eb4a">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#org9d77bc1">依存/追加ライブラリのインストールと読み込み</a>
@@ -172,6 +174,16 @@ permalink: /cc-env/Emacs.html
 </ul>
 </li>
 <li><a href="#orgad25a9f">Linux Desktop で <code>mailto:</code> リンクを扱うために</a></li>
+</ul>
+</li>
+<li><a href="#org6ef2942">Emacs-w3m</a></li>
+<li><a href="#org2ab94bf">補完: <code>ido</code></a>
+<ul>
+<li><a href="#org588ddb9"><code>ido</code> の設定</a></li>
+<li><a href="#org96e5b2a"><code>flx-ido</code>: flex match の強化</a></li>
+<li><a href="#orgbb15d1a"><code>ido-grid-mode</code>: 補完候補の grid 表示</a></li>
+<li><a href="#orgec2105d"><code>ido-recentf</code>: recentf を ido で</a></li>
+<li><a href="#org3cc0c0a"><code>ido</code> 関連の keybind</a></li>
 </ul>
 </li>
 <li><a href="#orga5490be">補完: <code>helm</code></a>
@@ -557,6 +569,25 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
+<div id="outline-container-orga5fc739" class="outline-2">
+<h2 id="orga5fc739">url-retrieve の置換: <code>mb-url</code></h2>
+<div class="outline-text-2" id="text-orga5fc739">
+<p>
+標準関数の url-retrieve 等の proxy 環境下での挙動が怪しいので,
+<a href="https://github.com/dochang/mb-url">dochang/mb-url: Multiple Backends for Emacs URL package</a>
+advice (上書き)する.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">mb-url</span>
+  <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"curl"</span>)
+  <span style="color: #7FBFFF;">:config</span>
+  (advice-add 'url-http <span style="color: #7FBFFF;">:override</span> 'mb-url-http-curl)
+  )
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgfde46aa" class="outline-2">
 <h2 id="orgfde46aa">環境変数の読み込み: <code>exec-path-from-shell</code></h2>
 <div class="outline-text-2" id="text-orgfde46aa">
@@ -815,9 +846,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org095f458" class="outline-4">
-<h4 id="org095f458">編集関連</h4>
-<div class="outline-text-4" id="text-org095f458">
+<div id="outline-container-orgd40249b" class="outline-4">
+<h4 id="orgd40249b">編集関連</h4>
+<div class="outline-text-4" id="text-orgd40249b">
 <p>
 yes or no を y or n に
 </p>
@@ -1204,6 +1235,58 @@ Undo/Redo:
 </div>
 </div>
 
+<div id="outline-container-orgb1c5cb3" class="outline-3">
+<h3 id="orgb1c5cb3"><code>eww</code>: 内蔵ブラウザ <code>[0/1]</code></h3>
+<div class="outline-text-3" id="text-orgb1c5cb3">
+<p>
+内蔵ブラウザの設定
+</p>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> <code>mb-url</code> で curl を使うようにすると、
+<code>google</code> から 403が返るようになる。これ、どうしたら良いのかな?</li>
+</ul>
+<p>
+幅と背景色の指定がメイン
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">eww</span>
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> eww-bookmarks-directory (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp)
+        )
+  (<span style="color: #FF7F7F;">unless</span> (file-directory-p (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp))
+    (make-directory (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp)))
+  (<span style="color: #FF7F7F;">setq</span> eww-search-prefix <span style="color: #7FFF7F;">"https://www.bing.com/search?q="</span>)
+  (<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:eww-disable-colorize</span> t)
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shr-colorize-region--disable</span> (orig start end fg <span style="color: #FFFF7F;">&amp;optional</span> bg <span style="color: #FFFF7F;">&amp;rest</span> _)
+    (<span style="color: #FF7F7F;">unless</span> my:eww-disable-colorize
+      (funcall orig start end fg)))
+  (advice-add 'shr-colorize-region <span style="color: #7FBFFF;">:around</span> 'shr-colorize-region--disable)
+  (advice-add 'eww-colorize-region <span style="color: #7FBFFF;">:around</span> 'shr-colorize-region--disable)
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-disable-color</span> ()
+    <span style="color: #7FFF7F;">"eww &#12391;&#25991;&#23383;&#33394;&#12434;&#21453;&#26144;&#12373;&#12379;&#12394;&#12356;"</span>
+    (<span style="color: #FF7F7F;">interactive</span>)
+    (<span style="color: #FF7F7F;">setq-local</span> my:eww-disable-colorize t)
+    (eww-reload))
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-enable-color</span> ()
+    <span style="color: #7FFF7F;">"eww &#12391;&#25991;&#23383;&#33394;&#12434;&#21453;&#26144;&#12373;&#12379;&#12427;"</span>
+    (<span style="color: #FF7F7F;">interactive</span>)
+    (<span style="color: #FF7F7F;">setq-local</span> my:eww-disable-colorize nil)
+    (eww-reload))
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12486;&#12461;&#12473;&#12488;&#24133;&#12434; 70 &#12395;&#22266;&#23450;</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">- </span><span style="text-decoration: underline;">Emacs&#32068;&#12415;&#36796;&#12415;Web&#12502;&#12521;&#12454;&#12470;EWW&#12391;&#12486;&#12461;&#12473;&#12488;&#12398;&#27178;&#24133;&#12434;&#25351;&#23450;&#12377;&#12427;&#26041;&#27861;</span>
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shr-insert-document--for-eww</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
+    (<span style="color: #FF7F7F;">let</span> ((shr-width 70)) (apply them)))
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-display-html--fill-column</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
+    (advice-add 'shr-insert-document <span style="color: #7FBFFF;">:around</span> 'shr-insert-document--for-eww)
+    (<span style="color: #FF7F7F;">unwind-protect</span>
+        (apply them)
+      (advice-remove 'shr-insert-document 'shr-insert-document--for-eww)))
+  (advice-add 'eww-display-html <span style="color: #7FBFFF;">:around</span> 'eww-display-html--fill-column)
+  )
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-org1ca4169" class="outline-3">
 <h3 id="org1ca4169"><code>browse-url</code></h3>
 <div class="outline-text-3" id="text-org1ca4169">
@@ -1232,33 +1315,6 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
   )
 </pre>
 </div>
-<p>
-内蔵ブラウザである eww の設定もついでにやっておく．
-検索エンジンとして <code>google</code> を指定したら，403が返ってきた．なんだろうね.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">eww</span>
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> eww-search-prefix <span style="color: #7FFF7F;">"https://www.bing.com/search?q="</span>)
-  (<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:eww-disable-colorize</span> t)
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shr-colorize-region--disable</span> (orig start end fg <span style="color: #FFFF7F;">&amp;optional</span> bg <span style="color: #FFFF7F;">&amp;rest</span> _)
-    (<span style="color: #FF7F7F;">unless</span> my:eww-disable-colorize
-      (funcall orig start end fg)))
-  (advice-add 'shr-colorize-region <span style="color: #7FBFFF;">:around</span> 'shr-colorize-region--disable)
-  (advice-add 'eww-colorize-region <span style="color: #7FBFFF;">:around</span> 'shr-colorize-region--disable)
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-disable-color</span> ()
-    <span style="color: #7FFF7F;">"eww &#12391;&#25991;&#23383;&#33394;&#12434;&#21453;&#26144;&#12373;&#12379;&#12394;&#12356;"</span>
-    (<span style="color: #FF7F7F;">interactive</span>)
-    (<span style="color: #FF7F7F;">setq-local</span> my:eww-disable-colorize t)
-    (eww-reload))
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-enable-color</span> ()
-    <span style="color: #7FFF7F;">"eww &#12391;&#25991;&#23383;&#33394;&#12434;&#21453;&#26144;&#12373;&#12379;&#12427;"</span>
-    (<span style="color: #FF7F7F;">interactive</span>)
-    (<span style="color: #FF7F7F;">setq-local</span> my:eww-disable-colorize nil)
-    (eww-reload))
-  )
-</pre>
-</div>
 </div>
 </div>
 <div id="outline-container-orgf15319e" class="outline-3">
@@ -1274,9 +1330,9 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
 </div>
 </div>
 </div>
-<div id="outline-container-org64adec6" class="outline-2">
-<h2 id="org64adec6">日本語入力: <a href="init-ddskk.html">ddskkの設定</a></h2>
-<div class="outline-text-2" id="text-org64adec6">
+<div id="outline-container-org549f981" class="outline-2">
+<h2 id="org549f981">日本語入力: <code>ddskk</code></h2>
+<div class="outline-text-2" id="text-org549f981">
 <p>
 <a href="http://openlab.ring.gr.jp/skk/ddskk-ja.html">Daredevil SKK (DDSKK)</a> をメインで使用中．無いと途方に暮れる．
 ちなみにGTKが有効になっていると <code>gtk-immodule</code> なんかと衝突するので
@@ -1289,9 +1345,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orgec84a4e" class="outline-3">
-<h3 id="orgec84a4e">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgec84a4e">
+<div id="outline-container-org116d826" class="outline-3">
+<h3 id="org116d826">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org116d826">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1401,9 +1457,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org719a587" class="outline-4">
-<h4 id="org719a587">編集関連</h4>
-<div class="outline-text-4" id="text-org719a587">
+<div id="outline-container-orgbb672c2" class="outline-4">
+<h4 id="orgbb672c2">編集関連</h4>
+<div class="outline-text-4" id="text-orgbb672c2">
 <p>
 キーバインド
 </p>
@@ -1441,11 +1497,11 @@ Enter で改行しない
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> skk-kuten-touten-alist
       '(
-        (jp    .    (<span style="color: #7FFF7F;">"&#12290;"</span> . <span style="color: #7FFF7F;">"&#12289;"</span> ))
-        (en-jp   .    (<span style="color: #7FFF7F;">"&#65294;"</span> . <span style="color: #7FFF7F;">"&#65292;"</span> ))
-        (en    .    (<span style="color: #7FFF7F;">". "</span> . <span style="color: #7FFF7F;">", "</span>))
+        (jp    . (<span style="color: #7FFF7F;">"&#12290;"</span> . <span style="color: #7FFF7F;">"&#12289;"</span>))
+        (en-jp . (<span style="color: #7FFF7F;">"&#65294;"</span> . <span style="color: #7FFF7F;">"&#65292;"</span>))
+        (en    . (<span style="color: #7FFF7F;">". "</span> . <span style="color: #7FFF7F;">", "</span>))
         ))
-(<span style="color: #FF7F7F;">setq-default</span> skk-kutouten-type 'en-jp)
+(<span style="color: #FF7F7F;">setq-default</span> skk-kutouten-type 'en)
 </pre>
 </div>
 <p>
@@ -1747,9 +1803,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-orga45cad7" class="outline-3">
-<h3 id="orga45cad7">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orga45cad7">
+<div id="outline-container-org088408d" class="outline-3">
+<h3 id="org088408d">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org088408d">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -1808,8 +1864,8 @@ SEMI や FLIM などの UA の表示に <a href="http://uwabami.github.com/rail/
 </p>
 
 <figure>
-<p><img src="http://uwabami.github.io/rail/images/wanderlust_with_or_without_rail.png" alt="wanderlust_with_or_without_rail.png">
-</p>
+<img src="http://uwabami.github.io/rail/images/wanderlust_with_or_without_rail.png" alt="wanderlust_with_or_without_rail.png">
+
 </figure>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">eval-when-compile</span> (<span style="color: #FF7F7F;">require</span> '<span style="color: #FFBF7F;">mime-def</span>))
@@ -1829,7 +1885,7 @@ ISO-2022-JP を CP50220 として扱う.
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'mime-charset-coding-system-alist '(iso-2022-jp . cp50220))
-(<span style="color: #FF7F7F;">setq</span> wl-mime-charset 'utf-8)
+(<span style="color: #FF7F7F;">setq</span> wl-mime-charset 'iso-2022-jp)
 </pre>
 </div>
 </div>
@@ -1884,9 +1940,9 @@ mime-setup がロードされる前に記述する必要あり.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> mime-view-text/html-previewer 'shr)
 (<span style="color: #FF7F7F;">setq</span> mime-setup-enable-inline-html 'shr)
-(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">mime-setup</span>
-  <span style="color: #7FBFFF;">:init</span>
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shr-colorize-region</span> (start end fg <span style="color: #FFFF7F;">&amp;optional</span> bg) nil))
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(use-package mime-setup</span>
+<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">:init</span>
+<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">(defun shr-colorize-region (start end fg &amp;optional bg) nil))</span>
 </pre>
 </div>
 <p>
@@ -1917,7 +1973,7 @@ MIME の例の保存先の変更
 text/plain を html より優先
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(set-alist 'mime-view-type-subtype-score-alist '(text . html) 0)
+<pre class="src src-emacs-lisp"><span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-alist 'mime-view-type-subtype-score-alist '(text . html) 0)</span>
 </pre>
 </div>
 <p>
@@ -2380,9 +2436,6 @@ draft も折り返す
 <div class="outline-text-4" id="text-org6bb1ef6">
 <p>
 <code>use-package</code> で設定しておいた方が良いかなぁ&#x2026;
-</p>
-
-<p>
 <code>&lt;f2&gt;</code> で Addrbook の更新
 </p>
 <div class="org-src-container">
@@ -2993,7 +3046,7 @@ epa があるので主にキーバインドの設定のみ.
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> mime-pgp-verify-when-preview nil)
 (add-hook 'wl-draft-mode-hook
           (<span style="color: #FF7F7F;">lambda</span> ()
-            (set-buffer-file-coding-system 'iso-2022-jp)
+            (set-buffer-file-coding-system 'utf-8)
             ))
 (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:epa-wl-decrypt-message</span> ()
   (<span style="color: #FF7F7F;">interactive</span>)
@@ -3005,10 +3058,12 @@ epa があるので主にキーバインドの設定のみ.
   (<span style="color: #FF7F7F;">save-selected-window</span>
     (wl-summary-jump-to-current-message)
     (wl-message-verify-pgp-nonmime)))
-(define-key wl-summary-mode-map <span style="color: #7FFF7F;">"\C-c : d"</span> 'my:epa-wl-decrypt-message)
-(define-key wl-summary-mode-map <span style="color: #7FFF7F;">"\C-c : v"</span> 'my:epa-wl-verify-message)
-(define-key wl-draft-mode-map <span style="color: #7FFF7F;">"\C-c : s"</span> 'epa-mail-sign)
-(define-key wl-draft-mode-map <span style="color: #7FFF7F;">"\C-c : e"</span> 'epa-mail-encrypt)
+(<span style="color: #FF7F7F;">bind-keys</span> <span style="color: #7FBFFF;">:map</span> wl-summary-mode-map
+           (<span style="color: #7FFF7F;">"C-c : d"</span> . my:epa-wl-decrypt-message)
+           (<span style="color: #7FFF7F;">"C-c : v"</span> . my:epa-wl-verify-message))
+(<span style="color: #FF7F7F;">bind-keys</span> <span style="color: #7FBFFF;">:map</span> wl-draft-mode-map
+           (<span style="color: #7FFF7F;">"C-c : s"</span> . epa-mail-sign)
+           (<span style="color: #7FFF7F;">"C-c : e"</span> . epa-mail-encrypt))
 </pre>
 </div>
 </div>
@@ -3101,6 +3156,169 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 <span style="color: #7F7FFF;">Categories</span>=GNOME;GTK;Office;Email;
 <span style="color: #7F7FFF;">StartupNotify</span>=false
 <span style="color: #7F7FFF;">MimeType</span>=application/mbox;message/rfc822;x-scheme-handler/mailto;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6ef2942" class="outline-2">
+<h2 id="org6ef2942">Emacs-w3m</h2>
+<div class="outline-text-2" id="text-org6ef2942">
+<p>
+あまり使わないけれど, 一応設定しておく.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">w3m</span>
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> w3m-search-default-engine <span style="color: #7FFF7F;">"google"</span>
+        w3m-use-cookies t)
+  (<span style="color: #FF7F7F;">with-eval-after-load</span> <span style="color: #7FFF7F;">"w3m-search"</span>
+    '(add-to-list 'w3m-search-engine-alist
+                  '(<span style="color: #7FFF7F;">"google"</span> <span style="color: #7FFF7F;">"https://encrypted.google.com/search?num=100&amp;ie=utf-8&amp;oe=utf-8&amp;hl=ja&amp;safe=off&amp;filter=0&amp;pws=0&amp;complete=0&amp;gbv=1&amp;q=%s"</span> utf-8)))
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2ab94bf" class="outline-2">
+<h2 id="org2ab94bf">補完: <code>ido</code></h2>
+<div class="outline-text-2" id="text-org2ab94bf">
+<p>
+補完を ido に任せているパッケージがちらほらあるので設定しておく．
+find-file は helm-find-file より ido + flx-ido + ido-grid-mode の方が
+好みなんだが，どうしようかなぁ&#x2026;
+</p>
+</div>
+<div id="outline-container-org588ddb9" class="outline-3">
+<h3 id="org588ddb9"><code>ido</code> の設定</h3>
+<div class="outline-text-3" id="text-org588ddb9">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido</span>
+  <span style="color: #7FBFFF;">:config</span>
+  (ido-mode t)
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(ido-everywhere t)  &lt;- Wanderlust &#12415;&#12383;&#12356;&#12395;&#65292;&#36942;&#21435;&#12398;&#36984;&#25246;&#12434;&#35226;&#12360;&#12390;&#12356;&#12427;&#22900;&#12392;&#30456;&#24615;&#24746;&#12356;&#12398;&#12391;.</span>
+  (<span style="color: #FF7F7F;">setq</span> ido-enable-prefix nil             <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">prefix match &#12434;&#26377;&#21177;&#12395;&#12377;&#12427;&#12392;&#65292;&#20837;&#21147;&#12434;&#20808;&#38957;&#19968;&#33268;&#21487;&#33021;</span>
+        ido-confirm-unique-completion t   <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">TAB &#12391;&#21517;&#21069;&#12398;&#19968;&#33268;&#12414;&#12391;&#34892;&#12394;&#12356;&#65292;&#12381;&#12398;&#24460; RET &#12391;&#23455;&#34892;</span>
+        ido-enable-flex-matching t        <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">flex matching &#12434;&#35430;&#12377;&#38555;&#12395;&#12399; prefix &#12434;&#28961;&#21177;&#21270;&#12377;&#12427;&#12371;&#12392;</span>
+        ido-enable-dot-prefix t           <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">. &#12434; prefix &#12392;&#12375;&#12390;&#25201;&#12358;</span>
+        ido-default-file-method   'selected-window
+        ido-default-buffer-method 'selected-window
+        ido-max-directory-size 100000
+        ido-enable-tramp-completion nil
+        ido-use-faces nil                 <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">flx-ido &#12398; highlight &#12434;&#20351;&#12358;</span>
+        ido-ignore-extensions t
+        ido-cannot-complete-command 'ido-next-match
+        ido-save-directory-list-file (concat my:d:tmp <span style="color: #7FFF7F;">"ido.last"</span>))
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#35036;&#23436;&#12391;&#28961;&#35222;&#12377;&#12427;&#25313;&#24373;&#23376;&#12398;&#36861;&#21152;&#65294;&#12381;&#12398;&#12358;&#12385;&#22679;&#12360;&#12427;&#65294;</span>
+  (<span style="color: #FF7F7F;">cl-loop</span> for ext in
+           '(<span style="color: #7FFF7F;">".dvi"</span>
+             <span style="color: #7FFF7F;">".fdb_latexmk"</span>
+             <span style="color: #7FFF7F;">".fls"</span>
+             <span style="color: #7FFF7F;">".ilg"</span>
+             <span style="color: #7FFF7F;">".jqz"</span>
+             <span style="color: #7FFF7F;">".mod"</span>
+             <span style="color: #7FFF7F;">".nav"</span>
+             <span style="color: #7FFF7F;">".out"</span>
+             <span style="color: #7FFF7F;">".snm"</span>
+             <span style="color: #7FFF7F;">".synctex.gz"</span>
+             <span style="color: #7FFF7F;">".vrb"</span>
+             )
+           do (add-to-list 'completion-ignored-extensions ext))
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido &#12398; buffer &#12391; skk &#12434;&#28961;&#21177;&#21270;&#12375;&#12390;&#12362;&#12367;.</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26085;&#26412;&#35486;&#12501;&#12449;&#12452;&#12523;&#21517;&#12399;, &#12392;&#12426;&#12354;&#12360;&#12378;&#32771;&#12360;&#12394;&#12356;&#12371;&#12392;&#12395;.</span>
+  (add-hook 'ido-minibuffer-setup-hook
+            (<span style="color: #FF7F7F;">lambda</span> ()
+              (<span style="color: #FF7F7F;">when</span> (fboundp 'skk-mode-exit)
+                (skk-mode-exit))))
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org96e5b2a" class="outline-3">
+<h3 id="org96e5b2a"><code>flx-ido</code>: flex match の強化</h3>
+<div class="outline-text-3" id="text-org96e5b2a">
+<p>
+曖昧マッチが非常に直感的になった．地味に便利で手放せない．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">flx-ido</span>
+  <span style="color: #7FBFFF;">:config</span>
+  (flx-ido-mode 1)
+  (<span style="color: #FF7F7F;">setq</span> flx-ido-use-faces t
+        flx-ido-threshold 10000)
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbb15d1a" class="outline-3">
+<h3 id="orgbb15d1a"><code>ido-grid-mode</code>: 補完候補の grid 表示</h3>
+<div class="outline-text-3" id="text-orgbb15d1a">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido-grid-mode</span>
+  <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> ido-grid-mode-max-columns 10
+        ido-grid-mode-max-rows 5   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12498;&#12519;&#12467;&#12498;&#12519;&#12467;&#12392;&#21205;&#12367;&#12398;&#12364;&#29033;&#12431;&#12375;&#12356;&#12398;&#12391;</span>
+        ido-grid-mode-min-rows 5   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#39640;&#12373; 5 &#34892;&#12395;&#22266;&#23450;&#12375;&#12390;&#12362;&#12367;&#65294;</span>
+        ido-grid-mode-scroll-up    #'ido-grid-mode-previous-row
+        ido-grid-mode-scroll-down  #'ido-grid-mode-next-row
+        ido-grid-mode-prefix-scrolls t
+        ido-grid-mode-start-collapsed nil
+        ido-grid-mode-keys nil     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">PageUp/C-p &#12392; PageDonw/C-n &#12364;&#36870;&#12398;&#26041;&#12364;&#22909;&#12415;.</span>
+        ido-grid-mode-prefix <span style="color: #7FFF7F;">"-&gt; "</span>
+        )
+  (ido-grid-mode t)
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:ido-minibuffer-truncate-line</span> ()
+    (set (make-local-variable 'truncate-lines) nil))
+  (add-hook 'ido-minibuffer-setup-hook 'my:ido-minibuffer-truncate-line)
+  (add-hook 'ido-setup-hook 'my:ido-minibuffer-truncate-line)
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgec2105d" class="outline-3">
+<h3 id="orgec2105d"><code>ido-recentf</code>: recentf を ido で</h3>
+<div class="outline-text-3" id="text-orgec2105d">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">ido-recentf-open</span> ()
+  <span style="color: #7FFF7F;">"Use `</span><span style="color: #FFBF7F;">ido-completing-read</span><span style="color: #7FFF7F;">' to \\[</span><span style="color: #FFBF7F;">find-file</span><span style="color: #7FFF7F;">] a recent file"</span>
+  (<span style="color: #FF7F7F;">interactive</span>)
+  (<span style="color: #FF7F7F;">if</span> (find-file (ido-completing-read <span style="color: #7FFF7F;">"Find recent file: "</span> recentf-list))
+      (message <span style="color: #7FFF7F;">"Opening file..."</span>)
+    (message <span style="color: #7FFF7F;">"Aborting"</span>)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3cc0c0a" class="outline-3">
+<h3 id="org3cc0c0a"><code>ido</code> 関連の keybind</h3>
+<div class="outline-text-3" id="text-org3cc0c0a">
+<p>
+<code>ido-grid-mode</code> の初期設定が気にくわない(<code>C-p,C-n</code> と <code>&lt;up&gt;&lt;down&gt;</code> は逆の方が好き)なので
+それを設定するのがメイン.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:ido-keybind-setup</span> ()
+  <span style="color: #7FFF7F;">"update ido keybind"</span>
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;prior&gt;"</span>) 'ido-grid-mode-previous-page)
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;next&gt;"</span>)  'ido-grid-mode-next-page)
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;left&gt;"</span>)  'ido-grid-mode-left)
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;right&gt;"</span>) 'ido-grid-mode-right)
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;up&gt;"</span>)    'ido-grid-mode-previous)
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;down&gt;"</span>)  'ido-grid-mode-next)
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-p"</span>)     'ido-grid-mode-previous)
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-n"</span>)     'ido-grid-mode-next)
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-h"</span>)     'ido-delete-backward-updir)
+  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-l"</span>)     'ido-delete-backward-updir)
+  )
+(add-hook 'ido-setup-hook 'my:ido-keybind-setup)
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12392;&#12426;&#12354;&#12360;&#12378; helm-find-files &#31561;&#12434;&#24403;&#20998;&#20351;&#12387;&#12390;&#12415;&#12427;&#20107;&#12395;&#65294;</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(global-set-key (kbd "C-x f")   'ido-find-file)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(global-set-key (kbd "C-x C-f") 'ido-find-file)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(global-set-key (kbd "C-x C-r") 'ido-recentf-open)</span>
 </pre>
 </div>
 </div>
@@ -3723,7 +3941,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
         (<span style="color: #FF7F7F;">when</span> face (<span style="color: #FF7F7F;">cl-return</span> face)))))
   <span style="color: #7FBFFF;">:config</span>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#20351;&#29992;&#12377;&#12427;&#12501;&#12449;&#12452;&#12523;</span>
-  (<span style="color: #FF7F7F;">setq</span> org-agenda-files nil)
+  (<span style="color: #FF7F7F;">setq</span> org-agenda-files '(<span style="color: #7FFF7F;">"~/Public/cc-env"</span>))
   (<span style="color: #FF7F7F;">dolist</span> (file
            '(<span style="color: #7FFF7F;">"Archive.org"</span>
              <span style="color: #7FFF7F;">"Holidays.org"</span>
@@ -3739,6 +3957,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
              <span style="color: #7FFF7F;">"redmine_KUSM.org"</span>
              ))
     (add-to-list 'org-agenda-files (concat org-directory file)))
+  (add-to-list 'org-agenda-files (expand-file-name <span style="color: #7FFF7F;">"README.org"</span> user-emacs-directory))
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#34920;&#31034;&#12398;&#12459;&#12473;&#12479;&#12510;&#12452;&#12474;</span>
   (<span style="color: #FF7F7F;">setq</span> org-agenda-span 'day                   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">day or week</span>
         org-agenda-format-date <span style="color: #7FFF7F;">"%Y/%m/%d (%a)"</span> <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">YY/MM/DD (&#26332;)</span>
@@ -4886,10 +5105,10 @@ Debian パッケージ版を使う．やっている事は
  '(howm-reminder-today-face          ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFBF7F"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
  '(howm-reminder-tomorrow-face       ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(ido-first-match     ((t (:inherit default ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(ido-only-match      ((t (:foreground "#FFFF4C" ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(ido-subdir          ((t (:foreground "#7F7FFF" :bold t))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(ido-grid-mode-match ((t (:inherit ido-first-match ))))</span>
+ '(ido-first-match     ((t (<span style="color: #7FBFFF;">:inherit</span> default ))))
+ '(ido-only-match      ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF4C"</span> ))))
+ '(ido-subdir          ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:bold</span> t))))
+ '(ido-grid-mode-match ((t (<span style="color: #7FBFFF;">:inherit</span> ido-first-match ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-grid-mode-common-match</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-grid-mode-jump-face</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-incomplete-regexp</span>

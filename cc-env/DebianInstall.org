@@ -1,27 +1,27 @@
-#+TITLE: Debian のインストール
-#+DATE: 2017-01-22 22:36:52
+#+TITLE: Debian の Install
+#+DATE: 2017-02-13 15:46:24
 #+LANGUAGE: ja
 #+REF: cc-env/DebianInstall
 #+LAYOUT: cc-env
 #+SETUPFILE: ~/Public/_setup.org
 #+PERMALINK: /cc-env/DebianInstall.html
-Related: [[wiki:index][Index]] [[wiki:index.org::Debian%20%E9%96%A2%E9%80%A3][Debian]]
+Related: [[wiki:index][Index]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]]
 * 始めに
   この文書は自作 DOS/V 機や
   Laptop 機 へ Debian GNU/Linux をインストールした際のメモ.
   特筆すべき事柄とかメモ程度の事しか書いてないので,
   インストール作業自体は [[http://www.debian.org/releases/stable/i386/index.html.ja][Debian GNU/Linux インストールガイド]]を参考に.
 * Installer
+  :PROPERTIES:
+  :ID:       819f8775-1a36-4804-9472-9d91db4c4a0e
+  :END:
   最近は USB メモリを使った installer ばっかり使っている.
   [[http://www.debian.org/devel/debian-installer/index.ja.html][Debian-Installer を使ったインストール]] より,
 
    - weekly-build: http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/
      - debian-testing-amd64-netinst.iso
-   - USB 用image ファイル: [[http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/hd-media/][hd-media(amd64)]]
-     - boot.img.gz
-
    を落としてくる.
-   USB メモリを差して, これらを展開, 配置することでインストーラが作成される.
+   USB メモリを差して, これらを =dd= で書き込むとインストーラが作成される.
 
    ISO ファイルを取得するには, ミラーが近くにあるのであれば jigdo が便利.
    jigdo については [[https://www.debian.org/CD/jigdo-cd/index.ja.html][jigdo をつかって Debian CD イメージをダウンロードする]] を参照のこと.
@@ -29,14 +29,9 @@ Related: [[wiki:index][Index]] [[wiki:index.org::Debian%20%E9%96%A2%E9%80%A3][De
    例えば, USB メモリが /dev/sdb の場合には
    #+BEGIN_EXAMPLE
 % sudo -s
-# zcat boot.img.gz > /dev/sdb
-# mount -t vfat /dev/sdb /mnt
-# cp debian-testing-amd64-netinsto.iso /mnt
-# tar xvzf firmware.tar.gz  -C /mnt
-# umount /mnt
+# sudo dd if=debian-stretch-DI-rc2-amd64-netinst.iso of=/dev/sdb
    #+END_EXAMPLE
    だけで良い. あとは作成したインストーラで起動して, install 開始.
-   最小構成で install した後に sid へ upgrade する.
 * EFI 32bit installer
   古いMacPro 用に作成する必要があったのでメモを残しておく.
    - 参考: [[https://wiki.debian.org/InstallingDebianOn/Apple/MacBook/2-1][InstallingDebianOn/Apple/MacBook/2-1 - Debian Wiki]]
@@ -74,7 +69,43 @@ boot
 
    以上で, 32-bit EFI 用のインストーラが作成できる.
    ネットワーク必須なので, 必要に応じて firmware も同梱してくと良いだろう.
-* LetsNoteCF-SX3
+* Let's Note CF-RZ6
+  2017/02 から利用中.
+
+  購入時の構成で, メモリ増設したらディスクまで増設されたので
+  - RAM: 16GB
+  - SSD: 1TB (!)
+  という構成になってしまいました. 搭載されている SSD の評判が良くないので,
+  そのうち換装するかもしれません.
+** 機器情報
+   lspci の出力は以下の通り
+** install 前の準備
+   UEFI でインストールします.
+   起動画面で F2 を押すと UEFI の設定画面に移行できます.
+   そこで SecureBoot を無効化しておきます.
+
+   初期の/リカバリ後のパーティション構成のうち,
+   C: に割り当てられている第2パーティションを縮小します.
+   Windows の「ディスク」ツールで「パーティションの縮小」から操作を選ぶのですが,
+   Windows の「復旧」と「ページングファイル」を無効化していない場合には,
+   好みのサイズに縮小できません(パーティションの途中にデータを置いているのでしょう).
+
+   Windows10 は殆んど使う気がないので, 128GB/1TB まで削りました.
+   こんだけディスク大きいと, 先頭に数GB取られてもまったく気にならない...(笑).
+   あとは Windows Update をかけておきます(これが長い...).
+
+   リカバリディスクも作成しておくと良いでしょう(これもまた長い...).
+** インストール作業
+   [[id:819f8775-1a36-4804-9472-9d91db4c4a0e][USBインストーラ]] を作成してインストールを進めます.
+   時節柄, 丁度 Stretch installer の RC2 が出ていたので, テストにもなりました.
+
+   言語設定で「Japanese - 日本語」を選ぶと, lvremove ができないのは相変わらずでしたが,
+   それ以外は特に気になる所もなく.
+
+   今回はファイルシステムとして btrfs を試すことにしました.
+   インストール後のパーティション構成は以下の通り.
+   相変わらず Panasonic の機械は素直で良いですね.
+* Let's Note CF-SX3
 
   2014/03/28 から Panasonic Let's Note CF-SX3 を使用中.
   大学生協カスタマイズで

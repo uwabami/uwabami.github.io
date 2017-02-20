@@ -1,6 +1,6 @@
 ---
-title: Debian のインストール
-date: 2017-01-22 22:36:52
+title: Debian の Install
+date: 2017-02-13 15:46:24
 layout: cc-env
 lang: ja
 ref: cc-env/DebianInstall
@@ -14,28 +14,35 @@ permalink: /cc-env/DebianInstall.html
 <li><a href="#org217152f">始めに</a></li>
 <li><a href="#org6db5c01">Installer</a></li>
 <li><a href="#org729ea5a">EFI 32bit installer</a></li>
-<li><a href="#org04e6311">LetsNoteCF-SX3</a>
+<li><a href="#org221d5c4">Let's Note CF-RZ6</a>
 <ul>
-<li><a href="#org608e8db">ハードウェア情報</a></li>
-<li><a href="#org2abc58b">install 前の準備</a></li>
+<li><a href="#orge811e4f">機器情報</a></li>
+<li><a href="#org7b972c2">install 前の準備</a></li>
+<li><a href="#orgcd7192c">インストール作業</a></li>
+</ul>
+</li>
+<li><a href="#orgff26584">Let's Note CF-SX3</a>
+<ul>
+<li><a href="#org505f8fa">ハードウェア情報</a></li>
+<li><a href="#org06a19a1">install 前の準備</a></li>
 </ul>
 </li>
 <li><a href="#org9722858">Let's Note S9</a>
 <ul>
-<li><a href="#org9fc62b9">ハードウェア情報</a></li>
-<li><a href="#org389ae80">install 前の準備</a></li>
+<li><a href="#orgbbe46cf">ハードウェア情報</a></li>
+<li><a href="#org759d750">install 前の準備</a></li>
 </ul>
 </li>
 <li><a href="#orgf5b01eb">VAIO typeG</a>
 <ul>
-<li><a href="#org33a43b2">ハードウェア情報</a></li>
-<li><a href="#org2564989">install 前の準備</a></li>
+<li><a href="#orgf7cd64a">ハードウェア情報</a></li>
+<li><a href="#org22f1f33">install 前の準備</a></li>
 </ul>
 </li>
 <li><a href="#org1457233">Let's Note CF-R4</a>
 <ul>
-<li><a href="#org42d3ded">ハードウェア情報</a></li>
-<li><a href="#org53a3209">install 前の準備</a></li>
+<li><a href="#org6f78357">ハードウェア情報</a></li>
+<li><a href="#org8bf0ad3">install 前の準備</a></li>
 </ul>
 </li>
 <li><a href="#org6c9d2e6">install が終わったら.</a></li>
@@ -52,7 +59,7 @@ permalink: /cc-env/DebianInstall.html
 </div>
 <a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
 <p>
-Related: <a href='index.html'>Index</a> <a href='index.org::Debian 関連.html'>Debian</a>
+Related: <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
 </p>
 <div id="outline-container-org217152f" class="outline-2">
 <h2 id="org217152f">始めに</h2>
@@ -66,7 +73,7 @@ Laptop 機 へ Debian GNU/Linux をインストールした際のメモ.
 </div>
 </div>
 <div id="outline-container-org6db5c01" class="outline-2">
-<h2 id="org6db5c01">Installer</h2>
+<h2 id="org6db5c01"><a id="ID-819f8775-1a36-4804-9472-9d91db4c4a0e"></a>Installer</h2>
 <div class="outline-text-2" id="text-org6db5c01">
 <p>
 最近は USB メモリを使った installer ばっかり使っている.
@@ -78,15 +85,10 @@ Laptop 機 へ Debian GNU/Linux をインストールした際のメモ.
 <ul class="org-ul">
 <li>debian-testing-amd64-netinst.iso</li>
 </ul></li>
-<li>USB 用image ファイル: <a href="http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/hd-media/">hd-media(amd64)</a>
-<ul class="org-ul">
-<li>boot.img.gz</li>
-</ul></li>
 </ul>
-
 <p>
 を落としてくる.
-USB メモリを差して, これらを展開, 配置することでインストーラが作成される.
+USB メモリを差して, これらを <code>dd</code> で書き込むとインストーラが作成される.
 </p>
 
 <p>
@@ -99,15 +101,10 @@ jigdo については <a href="https://www.debian.org/CD/jigdo-cd/index.ja.html"
 </p>
 <pre class="example">
 % sudo -s
-# zcat boot.img.gz &gt; /dev/sdb
-# mount -t vfat /dev/sdb /mnt
-# cp debian-testing-amd64-netinsto.iso /mnt
-# tar xvzf firmware.tar.gz  -C /mnt
-# umount /mnt
+# sudo dd if=debian-stretch-DI-rc2-amd64-netinst.iso of=/dev/sdb
 </pre>
 <p>
 だけで良い. あとは作成したインストーラで起動して, install 開始.
-最小構成で install した後に sid へ upgrade する.
 </p>
 </div>
 </div>
@@ -162,9 +159,85 @@ boot
 </p>
 </div>
 </div>
-<div id="outline-container-org04e6311" class="outline-2">
-<h2 id="org04e6311">LetsNoteCF-SX3</h2>
-<div class="outline-text-2" id="text-org04e6311">
+<div id="outline-container-org221d5c4" class="outline-2">
+<h2 id="org221d5c4">Let's Note CF-RZ6</h2>
+<div class="outline-text-2" id="text-org221d5c4">
+<p>
+2017/02 から利用中.
+</p>
+
+<p>
+購入時の構成で, メモリ増設したらディスクまで増設されたので
+</p>
+<ul class="org-ul">
+<li>RAM: 16GB</li>
+<li>SSD: 1TB (!)</li>
+</ul>
+<p>
+という構成になってしまいました. 搭載されている SSD の評判が良くないので,
+そのうち換装するかもしれません.
+</p>
+</div>
+<div id="outline-container-orge811e4f" class="outline-3">
+<h3 id="orge811e4f">機器情報</h3>
+<div class="outline-text-3" id="text-orge811e4f">
+<p>
+lspci の出力は以下の通り
+</p>
+</div>
+</div>
+<div id="outline-container-org7b972c2" class="outline-3">
+<h3 id="org7b972c2">install 前の準備</h3>
+<div class="outline-text-3" id="text-org7b972c2">
+<p>
+UEFI でインストールします.
+起動画面で F2 を押すと UEFI の設定画面に移行できます.
+そこで SecureBoot を無効化しておきます.
+</p>
+
+<p>
+初期の/リカバリ後のパーティション構成のうち,
+C: に割り当てられている第2パーティションを縮小します.
+Windows の「ディスク」ツールで「パーティションの縮小」から操作を選ぶのですが,
+Windows の「復旧」と「ページングファイル」を無効化していない場合には,
+好みのサイズに縮小できません(パーティションの途中にデータを置いているのでしょう).
+</p>
+
+<p>
+Windows10 は殆んど使う気がないので, 128GB/1TB まで削りました.
+こんだけディスク大きいと, 先頭に数GB取られてもまったく気にならない&#x2026;(笑).
+あとは Windows Update をかけておきます(これが長い&#x2026;).
+</p>
+
+<p>
+リカバリディスクも作成しておくと良いでしょう(これもまた長い&#x2026;).
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd7192c" class="outline-3">
+<h3 id="orgcd7192c">インストール作業</h3>
+<div class="outline-text-3" id="text-orgcd7192c">
+<p>
+<a href="#org6db5c01">USBインストーラ</a> を作成してインストールを進めます.
+時節柄, 丁度 Stretch installer の RC2 が出ていたので, テストにもなりました.
+</p>
+
+<p>
+言語設定で「Japanese - 日本語」を選ぶと, lvremove ができないのは相変わらずでしたが,
+それ以外は特に気になる所もなく.
+</p>
+
+<p>
+今回はファイルシステムとして btrfs を試すことにしました.
+インストール後のパーティション構成は以下の通り.
+相変わらず Panasonic の機械は素直で良いですね.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgff26584" class="outline-2">
+<h2 id="orgff26584">Let's Note CF-SX3</h2>
+<div class="outline-text-2" id="text-orgff26584">
 <p>
 2014/03/28 から Panasonic Let's Note CF-SX3 を使用中.
 大学生協カスタマイズで
@@ -177,9 +250,9 @@ boot
 にしました.
 </p>
 </div>
-<div id="outline-container-org608e8db" class="outline-3">
-<h3 id="org608e8db">ハードウェア情報</h3>
-<div class="outline-text-3" id="text-org608e8db">
+<div id="outline-container-org505f8fa" class="outline-3">
+<h3 id="org505f8fa">ハードウェア情報</h3>
+<div class="outline-text-3" id="text-org505f8fa">
 <p>
 lspci の出力結果は以下:
 </p>
@@ -335,9 +408,9 @@ lspci の出力結果は以下:
 </div>
 </div>
 </div>
-<div id="outline-container-org2abc58b" class="outline-3">
-<h3 id="org2abc58b">install 前の準備</h3>
-<div class="outline-text-3" id="text-org2abc58b">
+<div id="outline-container-org06a19a1" class="outline-3">
+<h3 id="org06a19a1">install 前の準備</h3>
+<div class="outline-text-3" id="text-org06a19a1">
 <p>
 UEFI です.
 legacy BIOS モードもあるので,
@@ -432,9 +505,9 @@ Corei5 で WiMAX です(ドキドキ).
 主要な機能が動くかどうかも定かではないのですが気合で, なんとか.
 </p>
 </div>
-<div id="outline-container-org9fc62b9" class="outline-3">
-<h3 id="org9fc62b9">ハードウェア情報</h3>
-<div class="outline-text-3" id="text-org9fc62b9">
+<div id="outline-container-orgbbe46cf" class="outline-3">
+<h3 id="orgbbe46cf">ハードウェア情報</h3>
+<div class="outline-text-3" id="text-orgbbe46cf">
 <p>
 lspci の出力結果は以下
 </p>
@@ -649,9 +722,9 @@ lspci の出力結果は以下
 </div>
 </div>
 </div>
-<div id="outline-container-org389ae80" class="outline-3">
-<h3 id="org389ae80">install 前の準備</h3>
-<div class="outline-text-3" id="text-org389ae80">
+<div id="outline-container-org759d750" class="outline-3">
+<h3 id="org759d750">install 前の準備</h3>
+<div class="outline-text-3" id="text-org759d750">
 <ul class="org-ul">
 <li>添付のリカバリディスクでブートして動作確認
 <ul class="org-ul">
@@ -700,9 +773,9 @@ Windows 領域を sda2 に移すの忘れていた. 気持ち悪いけれど, �
 にしました. あとから気がついたけれど, 日本語配列の刻印無しキーボードも選択すれば良かったかな&#x2026;
 </p>
 </div>
-<div id="outline-container-org33a43b2" class="outline-3">
-<h3 id="org33a43b2">ハードウェア情報</h3>
-<div class="outline-text-3" id="text-org33a43b2">
+<div id="outline-container-orgf7cd64a" class="outline-3">
+<h3 id="orgf7cd64a">ハードウェア情報</h3>
+<div class="outline-text-3" id="text-orgf7cd64a">
 <p>
 lspci の出力結果は以下を参照:
 </p>
@@ -897,9 +970,9 @@ lspci の出力結果は以下を参照:
 </div>
 </div>
 </div>
-<div id="outline-container-org2564989" class="outline-3">
-<h3 id="org2564989">install 前の準備</h3>
-<div class="outline-text-3" id="text-org2564989">
+<div id="outline-container-org22f1f33" class="outline-3">
+<h3 id="org22f1f33">install 前の準備</h3>
+<div class="outline-text-3" id="text-org22f1f33">
 <ul class="org-ul">
 <li>リカバリディスクを作成し, リカバリを実行する
 <ul class="org-ul">
@@ -939,9 +1012,9 @@ install の結果としてディスク構成は以下の様になりました.
 2009/04/01 まではメインで Panasonic Let's Note CF-R4 を使用してました.
 </p>
 </div>
-<div id="outline-container-org42d3ded" class="outline-3">
-<h3 id="org42d3ded">ハードウェア情報</h3>
-<div class="outline-text-3" id="text-org42d3ded">
+<div id="outline-container-org6f78357" class="outline-3">
+<h3 id="org6f78357">ハードウェア情報</h3>
+<div class="outline-text-3" id="text-org6f78357">
 <p>
 lspci の出力結果は以下を参照
 </p>
@@ -964,9 +1037,9 @@ lspci の出力結果は以下を参照
 </div>
 </div>
 </div>
-<div id="outline-container-org53a3209" class="outline-3">
-<h3 id="org53a3209">install 前の準備</h3>
-<div class="outline-text-3" id="text-org53a3209">
+<div id="outline-container-org8bf0ad3" class="outline-3">
+<h3 id="org8bf0ad3">install 前の準備</h3>
+<div class="outline-text-3" id="text-org8bf0ad3">
 <p>
 始めにリカバリー起動してパーティションの切り直し.
 install の結果として今回は以下の様に.
