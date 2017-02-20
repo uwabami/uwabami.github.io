@@ -1,0 +1,362 @@
+---
+title: Squid で広告避け
+date: 2017-02-20 18:55:06
+layout: cc-env
+lang: ja
+ref: cc-env/DebianSquid
+permalink: /cc-env/DebianSquid.html
+---
+<div id="toc-wrapper">
+<nav id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4211607">はじめに</a></li>
+<li><a href="#org88dcbf9">導入と設定</a>
+<ul>
+<li><a href="#orgdbbb6c1">広告避けの host ファイル</a></li>
+<li><a href="#org5417c13"><code>/etc/squid/common.conf</code></a></li>
+<li><a href="#org8ba06ca"><code>/etc/squid/squid.conf</code></a></li>
+<li><a href="#orga869cf5">systemd と仲良く: <code>/etc/systemd/system/squid.service</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div>
+<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
+<p>
+Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
+</p>
+
+<div id="outline-container-org4211607" class="outline-2">
+<h2 id="org4211607">はじめに</h2>
+<div class="outline-text-2" id="text-org4211607">
+<p>
+手元で squid を上げています.
+</p>
+
+<p>
+最初は職場, 居室, モバイル等でネットワーク環境が変わる際に
+いちいちプロキシの設定を変えるとかやってられん, ということで
+</p>
+<ul class="org-ul">
+<li>手元で透過 proxy を立ち上げる</li>
+<li>アプリケーションは常に proxy として localhost を見に行くようにする</li>
+<li>ネットワーク接続の切り替え時に 上流の proxy を切り替える</li>
+</ul>
+<p>
+という目的で上げていました.
+</p>
+
+<p>
+それに加えて
+</p>
+<ul class="org-ul">
+<li>そういえば squid って hosts ファイル読めたよね</li>
+<li>職場のプロキシが透過プロキシになってる</li>
+</ul>
+<p>
+ということで, これは広告避けにつかえるな, ということに.
+</p>
+
+<p>
+Web 広告については, まあ, いろんな意見があって良いと思います.
+邪魔にならない広告ならまあ良いんですけれど，
+</p>
+<ul class="org-ul">
+<li>Flash とか mp4 で動画バリバリ</li>
+<li>閲覧中にポップアップ</li>
+</ul>
+<p>
+とか, そういう奴が多すぎます.
+</p>
+</div>
+</div>
+<div id="outline-container-org88dcbf9" class="outline-2">
+<h2 id="org88dcbf9">導入と設定</h2>
+<div class="outline-text-2" id="text-org88dcbf9">
+<p>
+導入
+</p>
+<pre class="example">
+% sudo apt-get install squid
+</pre>
+<p>
+apt 万歳
+</p>
+
+<p>
+現状の設定は以下の通り:
+</p>
+</div>
+<div id="outline-container-orgdbbb6c1" class="outline-3">
+<h3 id="orgdbbb6c1">広告避けの host ファイル</h3>
+<div class="outline-text-3" id="text-orgdbbb6c1">
+<p>
+以下のスクリプトで適当に生成
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">! /bin/</span><span style="color: #FF7F7F;">bash</span>
+<span style="color: #7F7FFF;">URL</span>=()
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://adaway.org/hosts.txt"</span>)
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://hosts-file.net/ad_servers.txt"</span>)
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&amp;showintro=0&amp;mimetype=plaintext"</span>)
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"http://winhelp2002.mvps.org/hosts.txt"</span>)
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://sites.google.com/site/logroid/files/hosts.txt"</span>)
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://sites.google.com/site/hosts2ch/ja"</span>)
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://sites.google.com/site/cosmonoteshosts/hosts_Ultimate.txt"</span>)
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://raw.githubusercontent.com/multiverse2011/adawaylist-jp/master/hosts"</span>)
+
+<span style="color: #FF7F7F;">for</span> (( <span style="color: #7F7FFF;">i</span> = 0; i &lt; ${#<span style="color: #7F7FFF;">URL</span>[@]}; ++i )); <span style="color: #FF7F7F;">do</span>
+    <span style="color: #7FBFFF;">echo</span> wget -q <span style="color: #7FFF7F;">"${URL[$i]}"</span> -O tmp-$<span style="color: #7F7FFF;">i</span>.txt
+    wget -q <span style="color: #7FFF7F;">"${URL[$i]}"</span> -O tmp-$<span style="color: #7F7FFF;">i</span>.txt
+    <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"create tmp-$i-list.txt"</span>
+    cat tmp-$<span style="color: #7F7FFF;">i</span>.txt | <span style="color: #7FFF7F;">\</span>
+        grep -v localhost | <span style="color: #7FFF7F;">\</span>
+        grep -v 255.255.255.255 | <span style="color: #7FFF7F;">\</span>
+        grep -v ^# | <span style="color: #7FFF7F;">\</span>
+        grep -v ^white | <span style="color: #7FFF7F;">\</span>
+        sed <span style="color: #7FFF7F;">'/^$/d'</span> | <span style="color: #7FFF7F;">\</span>
+        sed -e <span style="color: #7FFF7F;">'s/\t/ /g'</span> | <span style="color: #7FFF7F;">\</span>
+        nkf -w -Lu -d &gt; tmp-$<span style="color: #7F7FFF;">i</span>-list.txt
+    <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">echo "create tmp-$i-white.txt"</span>
+    <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat tmp-$i.txt | \</span>
+    <span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">grep ^white | \</span>
+    <span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">sed 's/\t/ /' |\</span>
+    <span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">nkf -w -Lu -d &gt; tmp-$i-white.txt</span>
+    <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">echo "cleanup tmp-$i.txt"</span>
+    rm -f tmp-$<span style="color: #7F7FFF;">i</span>.txt
+<span style="color: #FF7F7F;">done</span>
+wget -q https://warui.intaa.net/adhosts/whitelist.txt -O tmp-white.txt
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">echo "merge white list"</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for f in `/bin/ls -1 tmp-?-white.txt`; do</span>
+<span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">cat $f | sed 's/^white //g' &gt;&gt; tmp-white.txt</span>
+<span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">rm -f $f</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">done</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat tmp-white.txt | sed '/^$/d' | sort -u &gt; adaway-white.txt</span>
+
+
+<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"merge tmp list"</span>
+<span style="color: #FF7F7F;">for</span> f<span style="color: #FF7F7F;"> in</span> <span style="color: #fa8072;">`/bin/ls -1 tmp-?-list.txt`</span>; <span style="color: #FF7F7F;">do</span>
+    cat $<span style="color: #7F7FFF;">f</span> &gt;&gt; tmp-list.txt
+    rm -f $<span style="color: #7F7FFF;">f</span>
+<span style="color: #FF7F7F;">done</span>
+cat tmp-list.txt | <span style="color: #7FFF7F;">\</span>
+    sed <span style="color: #7FFF7F;">'/^$/d'</span> | <span style="color: #7FFF7F;">\</span>
+    sed <span style="color: #7FFF7F;">'s/127.0.0.1/0.0.0.0/g'</span> | <span style="color: #7FFF7F;">\</span>
+    sort -u &gt; adaway.txt
+cat tmp-white.txt | <span style="color: #FF7F7F;">while </span><span style="color: #7FBFFF;">read</span> line
+<span style="color: #FF7F7F;">do</span>
+    sed -i -e <span style="color: #7FFF7F;">'/$line/d'</span> adaway.txt
+<span style="color: #FF7F7F;">done</span>
+<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"cleanup"</span>
+rm -f tmp-list.txt
+rm -f tmp-white.txt
+</pre>
+</div>
+<p>
+リストを保守して下さっている皆様に感謝.
+</p>
+</div>
+</div>
+<div id="outline-container-org5417c13" class="outline-3">
+<h3 id="org5417c13"><code>/etc/squid/common.conf</code></h3>
+<div class="outline-text-3" id="text-org5417c13">
+<p>
+昔プロキシを切り替えていた頃の名残で,
+上流を問わず全て同じ設定とする部分は <code>common.conf</code> に書いている.
+現状は
+</p>
+<ul class="org-ul">
+<li>キャッシュはしない(した方が良いのかな&#x2026;?)</li>
+<li>匿名化したいわけでも無いので, ヘッダは適当</li>
+<li>20080 番で動作</li>
+</ul>
+<p>
+といった所.
+</p>
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">Adblock</span>
+hosts_file /etc/squid/adaway.txt
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">DNS</span>
+dns_v4_first on
+dns_nameservers 127.0.0.1
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">ACL</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">ACL rules</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl SSL_ports port 443</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl SSL_ports port 993</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 80      # http</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 21      # ftp</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 443     # https</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 70      # gopher</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 210     # wais</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 1025-65535  # unregistered ports</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 280     # http-mgmt</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 488     # gss-http</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 591     # filemaker</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 777     # multiling http</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl CONNECT method CONNECT</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access deny !Safe_ports</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access deny CONNECT !SSL_ports</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access allow localhost</span>
+acl local src 192.168.122.0/24 127.0.0.1 ::1
+http_access allow local
+http_access deny all
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Only allow cachemgr access from localhost</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access allow localhost manager</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access allow local manager</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access deny manager</span>
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">ICAP</span>
+icap_enable off
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">ICMP</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable all ICMP request</span>
+<span style="color: #a5a5a6;">#</span>
+pinger_enable off
+query_icmp off
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">access port</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">20080 &#30058;&#12391;&#21205;&#20316;</span>
+<span style="color: #a5a5a6;">#</span>
+http_port 20080
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">Log Format</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Apache like</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">access_log /var/log/squid/access.log common</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">logformat common %&gt;a %ui %un [%tl] "%rm %ru HTTP/%rv" &gt;Hs %&lt;st %Ss:%Sh</span>
+access_log /dev/null
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">Cache</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">don't use any cache</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">no_cache deny all</span>
+cache_store_log none
+cache_access_log none
+cache_log /dev/null
+logfile_rotate 0
+coredump_dir /var/spool/squid
+ipcache_size 0
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cache_mem 256 MB</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cache_dir ufs /var/spool/squid 512 16 256</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">refresh_pattern -i (jpg|jpeg|png|gif|css|js)            1440     100%     10000 override-expire</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">refresh_pattern -i (html|htm)   1440 100% 10000 override-expire</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">refresh_pattern .               0     0%     0</span>
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">Anonymous</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Allow allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Authorization allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access WWW-Authenticate allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Proxy-Authorization allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Proxy-Authenticate allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Content-Encoding allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Content-Length allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Content-Type allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Date allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Expires allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Host allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access If-Modified-Since allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Last-Modified allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Location allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Pragma allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Accept allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Accept-Charset allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Accept-Encoding allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Accept-Language allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Content-Language allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Mime-Version allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Retry-After allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Title allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Cookie allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access Proxy-Connection allow all</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">request_header_access All deny all</span>
+
+request_header_access X-FORWARDED-FOR deny all
+reply_header_access X-FORWARDED-FOR deny all
+<span style="color: #a5a5a6;"># </span>
+request_header_access VIA deny all
+reply_header_access VIA deny all
+<span style="color: #a5a5a6;">#</span>
+request_header_access CACHE-CONTROL deny all
+reply_header_access CACHE-CONTROL deny all
+
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">forwarded_for transparent</span>
+forwarded_for off
+visible_hostname none
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">fast</span>
+pipeline_prefetch on
+shutdown_lifetime 0.01 seconds
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8ba06ca" class="outline-3">
+<h3 id="org8ba06ca"><code>/etc/squid/squid.conf</code></h3>
+<div class="outline-text-3" id="text-org8ba06ca">
+<p>
+中身は現状これだけ
+</p>
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">include common rules</span>
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">common rules</span>
+<span style="color: #a5a5a6;">#</span>
+include /etc/squid/common.conf
+always_direct allow all
+</pre>
+</div>
+<p>
+もはや分割する意味が無い, とも言える.
+</p>
+</div>
+</div>
+<div id="outline-container-orga869cf5" class="outline-3">
+<h3 id="orga869cf5">systemd と仲良く: <code>/etc/systemd/system/squid.service</code></h3>
+<div class="outline-text-3" id="text-orga869cf5">
+<p>
+キャッシュを動かす気も無いので子プロセスは生成されない.
+ということで, systemd 用の service ファイルを以下の様にでっち上げた.
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">[<span style="color: #FFFF7F;">Unit</span>]
+<span style="color: #7F7FFF;">Description</span>=Squid HTTP proxy
+<span style="color: #7F7FFF;">After</span>=syslog.target network.target named.service
+
+[<span style="color: #FFFF7F;">Service</span>]
+<span style="color: #7F7FFF;">ExecStartPre</span>=/usr/sbin/squid -z -f /etc/squid/squid.conf
+<span style="color: #7F7FFF;">ExecStart</span>=/usr/sbin/squid -Y -C -N -f /etc/squid/squid.conf
+<span style="color: #7F7FFF;">ExecReload</span>=/usr/sbin/squid -Y -C -N -f /etc/squid/squid.conf -k reconfigure
+<span style="color: #7F7FFF;">ExecStop</span>=/usr/sbin/squid -Y -C -N -f /etc/squid/squid.conf -k shutdown
+
+[<span style="color: #FFFF7F;">Install</span>]
+<span style="color: #7F7FFF;">WantedBy</span>=multi-user.target
+</pre>
+</div>
+<p>
+あとは
+</p>
+<pre class="example">
+% sudo systemctl daemon-reload
+% sudo systemctl enable squid
+% sudo systemctl start squid
+</pre>
+<p>
+で快適. 適宜 <code>HTTP_PROXY</code> 等を設定しておくと良いだろう.
+</p>
+</div>
+</div>
+</div>

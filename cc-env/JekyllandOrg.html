@@ -11,31 +11,31 @@ permalink: /cc-env/JekyllandOrg.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org08c775d">はじめに</a></li>
-<li><a href="#orgd94a14f">作ったモノ</a></li>
-<li><a href="#org0963252">使い方</a></li>
-<li><a href="#orgdc96632">解説(?)</a>
+<li><a href="#orgba9e615">はじめに</a></li>
+<li><a href="#org654d35f">作ったモノ</a></li>
+<li><a href="#orge025a38">使い方</a></li>
+<li><a href="#org8113c2d">解説(?)</a>
 <ul>
-<li><a href="#orgb328ddc">org ファイルの変換</a></li>
-<li><a href="#orge9e7c0b">org-ruby の拡張(?)</a></li>
-<li><a href="#org354ee7a">任意の org ファイルを Jekyll で扱うために</a>
+<li><a href="#orgf59705b">org ファイルの変換</a></li>
+<li><a href="#org74a5378">org-ruby の拡張(?)</a></li>
+<li><a href="#org6a4c908">任意の org ファイルを Jekyll で扱うために</a>
 <ul>
-<li><a href="#org143de6f"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</a></li>
-<li><a href="#org7e8915c"><code>Jekyll::Convertible</code> の上書き</a></li>
-<li><a href="#org941d88c"><code>Jekyll::OrgConverter</code> の追加</a></li>
+<li><a href="#orgec12c06"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</a></li>
+<li><a href="#orgbda45a0"><code>Jekyll::Convertible</code> の上書き</a></li>
+<li><a href="#org111075f"><code>Jekyll::OrgConverter</code> の追加</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd435d05">まとめ…?</a></li>
+<li><a href="#org4864e44">まとめ…?</a></li>
 </ul>
 </div>
 </nav>
 </div>
 <a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<div id="outline-container-org08c775d" class="outline-2">
-<h2 id="org08c775d">はじめに</h2>
-<div class="outline-text-2" id="text-org08c775d">
+<div id="outline-container-orgba9e615" class="outline-2">
+<h2 id="orgba9e615">はじめに</h2>
+<div class="outline-text-2" id="text-orgba9e615">
 <div class="alert alert-danger">
 <p>
 <strong>以下，最近は使っていないので，今でも動くのは定かではありません．patch welcome!</strong>
@@ -51,9 +51,9 @@ permalink: /cc-env/JekyllandOrg.html
 </p>
 </div>
 </div>
-<div id="outline-container-orgd94a14f" class="outline-2">
-<h2 id="orgd94a14f">作ったモノ</h2>
-<div class="outline-text-2" id="text-orgd94a14f">
+<div id="outline-container-org654d35f" class="outline-2">
+<h2 id="org654d35f">作ったモノ</h2>
+<div class="outline-text-2" id="text-org654d35f">
 <p>
 コードの詳細は Github をご覧下さい。
 </p>
@@ -62,9 +62,9 @@ permalink: /cc-env/JekyllandOrg.html
 </ul>
 </div>
 </div>
-<div id="outline-container-org0963252" class="outline-2">
-<h2 id="org0963252">使い方</h2>
-<div class="outline-text-2" id="text-org0963252">
+<div id="outline-container-orge025a38" class="outline-2">
+<h2 id="orge025a38">使い方</h2>
+<div class="outline-text-2" id="text-orge025a38">
 <p>
 jekyll の <code>_plugin</code> に submodule としてでも放り込んで下さい。
 </p>
@@ -78,8 +78,8 @@ org ファイルを html へ出力する際のタグのカスタマイズをし�
 原稿となる org ファイルには、最低限
 </p>
 <div class="org-src-container">
-<pre class="src src-org"><span style="color: #b2b2b2;">    #+TITLE:</span>
-<span style="color: #b2b2b2;">    #+DATE:</span>
+<pre class="src src-org"><span style="color: #b3b3b3;">    #+TITLE:</span>
+<span style="color: #b3b3b3;">    #+DATE:</span>
 <span style="color: #a5a5a6;">    #+LAYOUT:</span>
 </pre>
 </div>
@@ -90,16 +90,16 @@ downcase したのち Front Matter として使用できます。
 </p>
 </div>
 </div>
-<div id="outline-container-orgdc96632" class="outline-2">
-<h2 id="orgdc96632">解説(?)</h2>
-<div class="outline-text-2" id="text-orgdc96632">
+<div id="outline-container-org8113c2d" class="outline-2">
+<h2 id="org8113c2d">解説(?)</h2>
+<div class="outline-text-2" id="text-org8113c2d">
 <p>
 解説するようなモンでもないですけれど。
 </p>
 </div>
-<div id="outline-container-orgb328ddc" class="outline-3">
-<h3 id="orgb328ddc">org ファイルの変換</h3>
-<div class="outline-text-3" id="text-orgb328ddc">
+<div id="outline-container-orgf59705b" class="outline-3">
+<h3 id="orgf59705b">org ファイルの変換</h3>
+<div class="outline-text-3" id="text-orgf59705b">
 <p>
 ファイルの HTML への変換には <a href="https://github.com/wallyqs/org-ruby">wallyqs/org-ruby</a> を使っています。
 </p>
@@ -130,9 +130,9 @@ plugin が使えないため、
 </p>
 </div>
 </div>
-<div id="outline-container-orge9e7c0b" class="outline-3">
-<h3 id="orge9e7c0b">org-ruby の拡張(?)</h3>
-<div class="outline-text-3" id="text-orge9e7c0b">
+<div id="outline-container-org74a5378" class="outline-3">
+<h3 id="org74a5378">org-ruby の拡張(?)</h3>
+<div class="outline-text-3" id="text-org74a5378">
 <p>
 最新の org-ruby では org-mode の search link を export してくれません。
 そんな訳で monkey patch です。
@@ -249,9 +249,9 @@ plugin が使えないため、
 </div>
 </div>
 </div>
-<div id="outline-container-org354ee7a" class="outline-3">
-<h3 id="org354ee7a">任意の org ファイルを Jekyll で扱うために</h3>
-<div class="outline-text-3" id="text-org354ee7a">
+<div id="outline-container-org6a4c908" class="outline-3">
+<h3 id="org6a4c908">任意の org ファイルを Jekyll で扱うために</h3>
+<div class="outline-text-3" id="text-org6a4c908">
 <p>
 Jekyll の原稿として org ファイルを使用する際の不満は、
 </p>
@@ -278,9 +278,9 @@ Jekyll の blog 記事の範疇に無いページ( いわゆる <code>Page</code
 そんな訳で、結局自分でプラグインを書きました。
 </p>
 </div>
-<div id="outline-container-org143de6f" class="outline-4">
-<h4 id="org143de6f"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
-<div class="outline-text-4" id="text-org143de6f">
+<div id="outline-container-orgec12c06" class="outline-4">
+<h4 id="orgec12c06"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
+<div class="outline-text-4" id="text-orgec12c06">
 <p>
 org ファイルに Front Matter 相当の情報が存在することを前提として処理、
 すなわち、拡張子が <code>.org</code> の場合は常に <code>true</code> を返すようにします。
@@ -307,9 +307,9 @@ org ファイルに Front Matter 相当の情報が存在することを前提�
 </div>
 </div>
 </div>
-<div id="outline-container-org7e8915c" class="outline-4">
-<h4 id="org7e8915c"><code>Jekyll::Convertible</code> の上書き</h4>
-<div class="outline-text-4" id="text-org7e8915c">
+<div id="outline-container-orgbda45a0" class="outline-4">
+<h4 id="orgbda45a0"><code>Jekyll::Convertible</code> の上書き</h4>
+<div class="outline-text-4" id="text-orgbda45a0">
 <p>
 <code>org</code> ファイルの <code>#+TITLE</code> 等を FRONT<sub>MATTER</sub> として扱った上で、
 html に出力します。
@@ -366,9 +366,9 @@ org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 </div>
 </div>
 </div>
-<div id="outline-container-org941d88c" class="outline-4">
-<h4 id="org941d88c"><code>Jekyll::OrgConverter</code> の追加</h4>
-<div class="outline-text-4" id="text-org941d88c">
+<div id="outline-container-org111075f" class="outline-4">
+<h4 id="org111075f"><code>Jekyll::OrgConverter</code> の追加</h4>
+<div class="outline-text-4" id="text-org111075f">
 <p>
 Converter の追加は Jekyll 本家のドキュメントにもあるので、
 割と簡単です。実際の処理は上書きした <code>Jekyll::Convertible</code> で行なわれています。
@@ -408,9 +408,9 @@ Converter の追加は Jekyll 本家のドキュメントにもあるので、
 </div>
 </div>
 </div>
-<div id="outline-container-orgd435d05" class="outline-2">
-<h2 id="orgd435d05">まとめ…?</h2>
-<div class="outline-text-2" id="text-orgd435d05">
+<div id="outline-container-org4864e44" class="outline-2">
+<h2 id="org4864e44">まとめ…?</h2>
+<div class="outline-text-2" id="text-org4864e44">
 <p>
 まあ、ちゃんと動いているみたいですし、これで良いのかなぁ。
 </p>

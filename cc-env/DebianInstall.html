@@ -1,6 +1,6 @@
 ---
 title: Debian の Install
-date: 2017-02-13 15:46:24
+date: 2017-02-20 17:29:39
 layout: cc-env
 lang: ja
 ref: cc-env/DebianInstall
@@ -11,46 +11,46 @@ permalink: /cc-env/DebianInstall.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org217152f">始めに</a></li>
-<li><a href="#org6db5c01">Installer</a></li>
-<li><a href="#org729ea5a">EFI 32bit installer</a></li>
-<li><a href="#org221d5c4">Let's Note CF-RZ6</a>
+<li><a href="#org727fd38">始めに</a></li>
+<li><a href="#org6556f99">Installer</a></li>
+<li><a href="#org8159753">EFI 32bit installer</a></li>
+<li><a href="#org50c877c">Let's Note CF-RZ6</a>
 <ul>
-<li><a href="#orge811e4f">機器情報</a></li>
-<li><a href="#org7b972c2">install 前の準備</a></li>
-<li><a href="#orgcd7192c">インストール作業</a></li>
+<li><a href="#orgdd1b265">機器情報</a></li>
+<li><a href="#org88184aa">install 前の準備</a></li>
+<li><a href="#orgafbea51">インストール作業</a></li>
 </ul>
 </li>
-<li><a href="#orgff26584">Let's Note CF-SX3</a>
+<li><a href="#org8f9d357">Let's Note CF-SX3</a>
 <ul>
-<li><a href="#org505f8fa">ハードウェア情報</a></li>
-<li><a href="#org06a19a1">install 前の準備</a></li>
+<li><a href="#org22f23d5">ハードウェア情報</a></li>
+<li><a href="#org8018dc2">install 前の準備</a></li>
 </ul>
 </li>
-<li><a href="#org9722858">Let's Note S9</a>
+<li><a href="#org549b8b7">Let's Note S9</a>
 <ul>
-<li><a href="#orgbbe46cf">ハードウェア情報</a></li>
-<li><a href="#org759d750">install 前の準備</a></li>
+<li><a href="#orgcdaeb6b">ハードウェア情報</a></li>
+<li><a href="#org83e9baf">install 前の準備</a></li>
 </ul>
 </li>
-<li><a href="#orgf5b01eb">VAIO typeG</a>
+<li><a href="#org0fd2139">VAIO typeG</a>
 <ul>
-<li><a href="#orgf7cd64a">ハードウェア情報</a></li>
-<li><a href="#org22f1f33">install 前の準備</a></li>
+<li><a href="#orgc68e82d">ハードウェア情報</a></li>
+<li><a href="#orgd73f324">install 前の準備</a></li>
 </ul>
 </li>
-<li><a href="#org1457233">Let's Note CF-R4</a>
+<li><a href="#org203a36e">Let's Note CF-R4</a>
 <ul>
-<li><a href="#org6f78357">ハードウェア情報</a></li>
-<li><a href="#org8bf0ad3">install 前の準備</a></li>
+<li><a href="#org108070f">ハードウェア情報</a></li>
+<li><a href="#org99cc4a6">install 前の準備</a></li>
 </ul>
 </li>
-<li><a href="#org6c9d2e6">install が終わったら.</a></li>
-<li><a href="#org957139c">参考文献</a>
+<li><a href="#orgcee618a">install が終わったら.</a></li>
+<li><a href="#orgc93f267">参考文献</a>
 <ul>
-<li><a href="#org684f413">全般</a></li>
-<li><a href="#org1c15e24">TypeG</a></li>
-<li><a href="#orgab684fc">CF-R4</a></li>
+<li><a href="#org0882295">全般</a></li>
+<li><a href="#org81b9ba7">TypeG</a></li>
+<li><a href="#orgfa1d06b">CF-R4</a></li>
 </ul>
 </li>
 </ul>
@@ -61,9 +61,9 @@ permalink: /cc-env/DebianInstall.html
 <p>
 Related: <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
 </p>
-<div id="outline-container-org217152f" class="outline-2">
-<h2 id="org217152f">始めに</h2>
-<div class="outline-text-2" id="text-org217152f">
+<div id="outline-container-org727fd38" class="outline-2">
+<h2 id="org727fd38">始めに</h2>
+<div class="outline-text-2" id="text-org727fd38">
 <p>
 この文書は自作 DOS/V 機や
 Laptop 機 へ Debian GNU/Linux をインストールした際のメモ.
@@ -72,9 +72,9 @@ Laptop 機 へ Debian GNU/Linux をインストールした際のメモ.
 </p>
 </div>
 </div>
-<div id="outline-container-org6db5c01" class="outline-2">
-<h2 id="org6db5c01"><a id="ID-819f8775-1a36-4804-9472-9d91db4c4a0e"></a>Installer</h2>
-<div class="outline-text-2" id="text-org6db5c01">
+<div id="outline-container-org6556f99" class="outline-2">
+<h2 id="org6556f99"><a id="ID-819f8775-1a36-4804-9472-9d91db4c4a0e"></a>Installer</h2>
+<div class="outline-text-2" id="text-org6556f99">
 <p>
 最近は USB メモリを使った installer ばっかり使っている.
 <a href="http://www.debian.org/devel/debian-installer/index.ja.html">Debian-Installer を使ったインストール</a> より,
@@ -108,9 +108,9 @@ jigdo については <a href="https://www.debian.org/CD/jigdo-cd/index.ja.html"
 </p>
 </div>
 </div>
-<div id="outline-container-org729ea5a" class="outline-2">
-<h2 id="org729ea5a">EFI 32bit installer</h2>
-<div class="outline-text-2" id="text-org729ea5a">
+<div id="outline-container-org8159753" class="outline-2">
+<h2 id="org8159753">EFI 32bit installer</h2>
+<div class="outline-text-2" id="text-org8159753">
 <p>
 古いMacPro 用に作成する必要があったのでメモを残しておく.
 </p>
@@ -159,9 +159,9 @@ boot
 </p>
 </div>
 </div>
-<div id="outline-container-org221d5c4" class="outline-2">
-<h2 id="org221d5c4">Let's Note CF-RZ6</h2>
-<div class="outline-text-2" id="text-org221d5c4">
+<div id="outline-container-org50c877c" class="outline-2">
+<h2 id="org50c877c">Let's Note CF-RZ6</h2>
+<div class="outline-text-2" id="text-org50c877c">
 <p>
 2017/02 から利用中.
 </p>
@@ -178,17 +178,158 @@ boot
 そのうち換装するかもしれません.
 </p>
 </div>
-<div id="outline-container-orge811e4f" class="outline-3">
-<h3 id="orge811e4f">機器情報</h3>
-<div class="outline-text-3" id="text-orge811e4f">
+<div id="outline-container-orgdd1b265" class="outline-3">
+<h3 id="orgdd1b265">機器情報</h3>
+<div class="outline-text-3" id="text-orgdd1b265">
 <p>
 lspci の出力は以下の通り
 </p>
+<div class="org-src-container">
+<pre class="src src-text">00:00.0 Host bridge: Intel Corporation Device 590c (rev 02)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+    Flags: bus master, fast devsel, latency 0
+    Capabilities: &lt;access denied&gt;
+
+00:02.0 VGA compatible controller: Intel Corporation Device 591e (rev 02) (prog-if 00 [VGA controller])
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+    Flags: bus master, fast devsel, latency 0, IRQ 128
+    Memory at f5000000 (64-bit, non-prefetchable) [size=16M]
+    Memory at e0000000 (64-bit, prefetchable) [size=256M]
+    I/O ports at f000 [size=64]
+    [virtual] Expansion ROM at 000c0000 [disabled] [size=128K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: i915
+    Kernel modules: i915
+
+00:04.0 Signal processing controller: Intel Corporation Skylake Processor Thermal Subsystem (rev 02)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Skylake Processor Thermal Subsystem
+    Flags: fast devsel, IRQ 16
+    Memory at f7440000 (64-bit, non-prefetchable) [size=32K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: proc_thermal
+    Kernel modules: processor_thermal_device
+
+00:13.0 Non-VGA unclassified device: Intel Corporation Device 9d35 (rev 21)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+    Flags: bus master, fast devsel, latency 0, IRQ 20
+    Memory at f7457000 (64-bit, non-prefetchable) [size=4K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: intel_ish_ipc
+    Kernel modules: intel_ish_ipc
+
+00:14.0 USB controller: Intel Corporation Sunrise Point-LP USB 3.0 xHCI Controller (rev 21) (prog-if 30 [XHCI])
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Sunrise Point-LP USB 3.0 xHCI Controller
+    Flags: medium devsel, IRQ 125
+    Memory at f7430000 (64-bit, non-prefetchable) [size=64K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: xhci_hcd
+    Kernel modules: xhci_pci
+
+00:14.2 Signal processing controller: Intel Corporation Sunrise Point-LP Thermal subsystem (rev 21)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Sunrise Point-LP Thermal subsystem
+    Flags: fast devsel, IRQ 18
+    Memory at f7456000 (64-bit, non-prefetchable) [size=4K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: intel_pch_thermal
+    Kernel modules: intel_pch_thermal
+
+00:16.0 Communication controller: Intel Corporation Sunrise Point-LP CSME HECI #1 (rev 21)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Sunrise Point-LP CSME HECI
+    Flags: bus master, fast devsel, latency 0, IRQ 127
+    Memory at f7455000 (64-bit, non-prefetchable) [size=4K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: mei_me
+    Kernel modules: mei_me
+
+00:17.0 SATA controller: Intel Corporation Sunrise Point-LP SATA Controller [AHCI mode] (rev 21) (prog-if 01 [AHCI 1.0])
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Sunrise Point-LP SATA Controller [AHCI mode]
+    Flags: bus master, 66MHz, medium devsel, latency 0, IRQ 126
+    Memory at f7450000 (32-bit, non-prefetchable) [size=8K]
+    Memory at f7454000 (32-bit, non-prefetchable) [size=256]
+    I/O ports at f090 [size=8]
+    I/O ports at f080 [size=4]
+    I/O ports at f060 [size=32]
+    Memory at f7453000 (32-bit, non-prefetchable) [size=2K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: ahci
+    Kernel modules: ahci
+
+00:1c.0 PCI bridge: Intel Corporation Device 9d11 (rev f1) (prog-if 00 [Normal decode])
+    Flags: bus master, fast devsel, latency 0, IRQ 122
+    Bus: primary=00, secondary=01, subordinate=01, sec-latency=0
+    I/O behind bridge: 0000e000-0000efff
+    Memory behind bridge: f6a00000-f73fffff
+    Prefetchable memory behind bridge: 00000000f0a00000-00000000f13fffff
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: pcieport
+    Kernel modules: shpchp
+
+00:1c.2 PCI bridge: Intel Corporation Device 9d12 (rev f1) (prog-if 00 [Normal decode])
+    Flags: bus master, fast devsel, latency 0, IRQ 123
+    Bus: primary=00, secondary=02, subordinate=02, sec-latency=0
+    I/O behind bridge: 0000d000-0000dfff
+    Memory behind bridge: f6000000-f69fffff
+    Prefetchable memory behind bridge: 00000000f0000000-00000000f09fffff
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: pcieport
+    Kernel modules: shpchp
+
+00:1f.0 ISA bridge: Intel Corporation Device 9d56 (rev 21)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+    Flags: bus master, medium devsel, latency 0
+
+00:1f.2 Memory controller: Intel Corporation Sunrise Point-LP PMC (rev 21)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Sunrise Point-LP PMC
+    Flags: fast devsel
+    Memory at f744c000 (32-bit, non-prefetchable) [disabled] [size=16K]
+
+00:1f.3 Audio device: Intel Corporation Device 9d71 (rev 21)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Device 8338
+    Flags: bus master, fast devsel, latency 32, IRQ 142
+    Memory at f7448000 (64-bit, non-prefetchable) [size=16K]
+    Memory at f7420000 (64-bit, non-prefetchable) [size=64K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: snd_hda_intel
+    Kernel modules: snd_hda_intel, snd_soc_skl
+
+00:1f.4 SMBus: Intel Corporation Sunrise Point-LP SMBus (rev 21)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Sunrise Point-LP SMBus
+    Flags: medium devsel, IRQ 16
+    Memory at f7452000 (64-bit, non-prefetchable) [size=256]
+    I/O ports at f040 [size=32]
+    Kernel driver in use: i801_smbus
+    Kernel modules: i2c_i801
+
+00:1f.6 Ethernet controller: Intel Corporation Ethernet Connection (4) I219-LM (rev 21)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. Ethernet Connection (4) I219-LM
+    Flags: fast devsel, IRQ 124
+    Memory at f7400000 (32-bit, non-prefetchable) [disabled] [size=128K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: e1000e
+    Kernel modules: e1000e
+
+01:00.0 SD Host controller: O2 Micro, Inc. SD/MMC Card Reader Controller (rev 01) (prog-if 01)
+    Subsystem: Matsushita Electric Industrial Co., Ltd. SD/MMC Card Reader Controller
+    Flags: bus master, fast devsel, latency 0, IRQ 255
+    Memory at f6a01000 (32-bit, non-prefetchable) [size=4K]
+    Memory at f6a00000 (32-bit, non-prefetchable) [size=2K]
+    Capabilities: &lt;access denied&gt;
+    Kernel modules: sdhci_pci
+
+02:00.0 Network controller: Intel Corporation Device 24fd (rev 78)
+    Subsystem: Intel Corporation Device 1010
+    Flags: bus master, fast devsel, latency 0, IRQ 129
+    Memory at f6000000 (64-bit, non-prefetchable) [size=8K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: iwlwifi
+    Kernel modules: iwlwifi
+</pre>
 </div>
 </div>
-<div id="outline-container-org7b972c2" class="outline-3">
-<h3 id="org7b972c2">install 前の準備</h3>
-<div class="outline-text-3" id="text-org7b972c2">
+</div>
+<div id="outline-container-org88184aa" class="outline-3">
+<h3 id="org88184aa">install 前の準備</h3>
+<div class="outline-text-3" id="text-org88184aa">
 <p>
 UEFI でインストールします.
 起動画面で F2 を押すと UEFI の設定画面に移行できます.
@@ -214,30 +355,47 @@ Windows10 は殆んど使う気がないので, 128GB/1TB まで削りました.
 </p>
 </div>
 </div>
-<div id="outline-container-orgcd7192c" class="outline-3">
-<h3 id="orgcd7192c">インストール作業</h3>
-<div class="outline-text-3" id="text-orgcd7192c">
+<div id="outline-container-orgafbea51" class="outline-3">
+<h3 id="orgafbea51">インストール作業</h3>
+<div class="outline-text-3" id="text-orgafbea51">
 <p>
-<a href="#org6db5c01">USBインストーラ</a> を作成してインストールを進めます.
+<a href="#org6556f99">USBインストーラ</a> を作成してインストールを進めます.
 時節柄, 丁度 Stretch installer の RC2 が出ていたので, テストにもなりました.
 </p>
 
 <p>
-言語設定で「Japanese - 日本語」を選ぶと, lvremove ができないのは相変わらずでしたが,
+言語設定で「Japanese - 日本語」を選ぶと
+lvremove ができないのは相変わらずでしたが,
 それ以外は特に気になる所もなく.
 </p>
 
 <p>
 今回はファイルシステムとして btrfs を試すことにしました.
 インストール後のパーティション構成は以下の通り.
+</p>
+<pre class="example">
+Model: ATA SAMSUNG MZNLN1T0 (scsi)
+Disk /dev/sda: 1024GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags:
+
+Number  Start   End     Size    File system  Name                          Flags
+ 1      1049kB  274MB   273MB   fat32        EFI system partition          boot, esp
+ 2      274MB   290MB   16.8MB               Microsoft reserved partition  msftres
+ 3      290MB   138GB   137GB   ntfs         Basic data partition          msftdata
+ 4      138GB   138GB   128MB   ext4         boot
+ 5      138GB   1024GB  886GB                lvm                           lvm
+</pre>
+<p>
 相変わらず Panasonic の機械は素直で良いですね.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgff26584" class="outline-2">
-<h2 id="orgff26584">Let's Note CF-SX3</h2>
-<div class="outline-text-2" id="text-orgff26584">
+<div id="outline-container-org8f9d357" class="outline-2">
+<h2 id="org8f9d357">Let's Note CF-SX3</h2>
+<div class="outline-text-2" id="text-org8f9d357">
 <p>
 2014/03/28 から Panasonic Let's Note CF-SX3 を使用中.
 大学生協カスタマイズで
@@ -250,9 +408,9 @@ Windows10 は殆んど使う気がないので, 128GB/1TB まで削りました.
 にしました.
 </p>
 </div>
-<div id="outline-container-org505f8fa" class="outline-3">
-<h3 id="org505f8fa">ハードウェア情報</h3>
-<div class="outline-text-3" id="text-org505f8fa">
+<div id="outline-container-org22f23d5" class="outline-3">
+<h3 id="org22f23d5">ハードウェア情報</h3>
+<div class="outline-text-3" id="text-org22f23d5">
 <p>
 lspci の出力結果は以下:
 </p>
@@ -408,9 +566,9 @@ lspci の出力結果は以下:
 </div>
 </div>
 </div>
-<div id="outline-container-org06a19a1" class="outline-3">
-<h3 id="org06a19a1">install 前の準備</h3>
-<div class="outline-text-3" id="text-org06a19a1">
+<div id="outline-container-org8018dc2" class="outline-3">
+<h3 id="org8018dc2">install 前の準備</h3>
+<div class="outline-text-3" id="text-org8018dc2">
 <p>
 UEFI です.
 legacy BIOS モードもあるので,
@@ -486,9 +644,9 @@ Windows 領域も認識して, dual boot で綺麗に動いてくれています
 </div>
 </div>
 </div>
-<div id="outline-container-org9722858" class="outline-2">
-<h2 id="org9722858">Let's Note S9</h2>
-<div class="outline-text-2" id="text-org9722858">
+<div id="outline-container-org549b8b7" class="outline-2">
+<h2 id="org549b8b7">Let's Note S9</h2>
+<div class="outline-text-2" id="text-org549b8b7">
 <p>
 2010/03/10 から Panasonic Let's Note S9 を使用中.
 Corei5 で WiMAX です(ドキドキ).
@@ -505,9 +663,9 @@ Corei5 で WiMAX です(ドキドキ).
 主要な機能が動くかどうかも定かではないのですが気合で, なんとか.
 </p>
 </div>
-<div id="outline-container-orgbbe46cf" class="outline-3">
-<h3 id="orgbbe46cf">ハードウェア情報</h3>
-<div class="outline-text-3" id="text-orgbbe46cf">
+<div id="outline-container-orgcdaeb6b" class="outline-3">
+<h3 id="orgcdaeb6b">ハードウェア情報</h3>
+<div class="outline-text-3" id="text-orgcdaeb6b">
 <p>
 lspci の出力結果は以下
 </p>
@@ -722,9 +880,9 @@ lspci の出力結果は以下
 </div>
 </div>
 </div>
-<div id="outline-container-org759d750" class="outline-3">
-<h3 id="org759d750">install 前の準備</h3>
-<div class="outline-text-3" id="text-org759d750">
+<div id="outline-container-org83e9baf" class="outline-3">
+<h3 id="org83e9baf">install 前の準備</h3>
+<div class="outline-text-3" id="text-org83e9baf">
 <ul class="org-ul">
 <li>添付のリカバリディスクでブートして動作確認
 <ul class="org-ul">
@@ -758,9 +916,9 @@ Windows 領域を sda2 に移すの忘れていた. 気持ち悪いけれど, �
 </div>
 </div>
 </div>
-<div id="outline-container-orgf5b01eb" class="outline-2">
-<h2 id="orgf5b01eb">VAIO typeG</h2>
-<div class="outline-text-2" id="text-orgf5b01eb">
+<div id="outline-container-org0fd2139" class="outline-2">
+<h2 id="org0fd2139">VAIO typeG</h2>
+<div class="outline-text-2" id="text-org0fd2139">
 <p>
 2009/04/01 から SONY VAIO typeG を使用中. SonyStyle でちょっとカスタマイズして
 </p>
@@ -773,9 +931,9 @@ Windows 領域を sda2 に移すの忘れていた. 気持ち悪いけれど, �
 にしました. あとから気がついたけれど, 日本語配列の刻印無しキーボードも選択すれば良かったかな&#x2026;
 </p>
 </div>
-<div id="outline-container-orgf7cd64a" class="outline-3">
-<h3 id="orgf7cd64a">ハードウェア情報</h3>
-<div class="outline-text-3" id="text-orgf7cd64a">
+<div id="outline-container-orgc68e82d" class="outline-3">
+<h3 id="orgc68e82d">ハードウェア情報</h3>
+<div class="outline-text-3" id="text-orgc68e82d">
 <p>
 lspci の出力結果は以下を参照:
 </p>
@@ -970,9 +1128,9 @@ lspci の出力結果は以下を参照:
 </div>
 </div>
 </div>
-<div id="outline-container-org22f1f33" class="outline-3">
-<h3 id="org22f1f33">install 前の準備</h3>
-<div class="outline-text-3" id="text-org22f1f33">
+<div id="outline-container-orgd73f324" class="outline-3">
+<h3 id="orgd73f324">install 前の準備</h3>
+<div class="outline-text-3" id="text-orgd73f324">
 <ul class="org-ul">
 <li>リカバリディスクを作成し, リカバリを実行する
 <ul class="org-ul">
@@ -1005,16 +1163,16 @@ install の結果としてディスク構成は以下の様になりました.
 </div>
 </div>
 </div>
-<div id="outline-container-org1457233" class="outline-2">
-<h2 id="org1457233">Let's Note CF-R4</h2>
-<div class="outline-text-2" id="text-org1457233">
+<div id="outline-container-org203a36e" class="outline-2">
+<h2 id="org203a36e">Let's Note CF-R4</h2>
+<div class="outline-text-2" id="text-org203a36e">
 <p>
 2009/04/01 まではメインで Panasonic Let's Note CF-R4 を使用してました.
 </p>
 </div>
-<div id="outline-container-org6f78357" class="outline-3">
-<h3 id="org6f78357">ハードウェア情報</h3>
-<div class="outline-text-3" id="text-org6f78357">
+<div id="outline-container-org108070f" class="outline-3">
+<h3 id="org108070f">ハードウェア情報</h3>
+<div class="outline-text-3" id="text-org108070f">
 <p>
 lspci の出力結果は以下を参照
 </p>
@@ -1037,9 +1195,9 @@ lspci の出力結果は以下を参照
 </div>
 </div>
 </div>
-<div id="outline-container-org8bf0ad3" class="outline-3">
-<h3 id="org8bf0ad3">install 前の準備</h3>
-<div class="outline-text-3" id="text-org8bf0ad3">
+<div id="outline-container-org99cc4a6" class="outline-3">
+<h3 id="org99cc4a6">install 前の準備</h3>
+<div class="outline-text-3" id="text-org99cc4a6">
 <p>
 始めにリカバリー起動してパーティションの切り直し.
 install の結果として今回は以下の様に.
@@ -1072,9 +1230,9 @@ boot と swap に分ける必要はあるのか定かではない. 癖のよう�
 </div>
 </div>
 </div>
-<div id="outline-container-org6c9d2e6" class="outline-2">
-<h2 id="org6c9d2e6">install が終わったら.</h2>
-<div class="outline-text-2" id="text-org6c9d2e6">
+<div id="outline-container-orgcee618a" class="outline-2">
+<h2 id="orgcee618a">install が終わったら.</h2>
+<div class="outline-text-2" id="text-orgcee618a">
 <p>
 install レポートを提出しましょう.
 適当な <a href='DebianMTA.html'>MTA</a> の設定が終わったら,
@@ -1088,29 +1246,29 @@ $ reportbug -b installation-reports
 </p>
 </div>
 </div>
-<div id="outline-container-org957139c" class="outline-2">
-<h2 id="org957139c">参考文献</h2>
-<div class="outline-text-2" id="text-org957139c">
-</div><div id="outline-container-org684f413" class="outline-3">
-<h3 id="org684f413">全般</h3>
-<div class="outline-text-3" id="text-org684f413">
+<div id="outline-container-orgc93f267" class="outline-2">
+<h2 id="orgc93f267">参考文献</h2>
+<div class="outline-text-2" id="text-orgc93f267">
+</div><div id="outline-container-org0882295" class="outline-3">
+<h3 id="org0882295">全般</h3>
+<div class="outline-text-3" id="text-org0882295">
 <ul class="org-ul">
 <li><a href="http://www.debian.org/releases/stable/i386/index.html.ja">Debian GNU/Linux インストールガイド</a></li>
 <li><a href="http://qref.sourceforge.net/Debian/reference/reference.ja.html">Debian リファレンス</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1c15e24" class="outline-3">
-<h3 id="org1c15e24">TypeG</h3>
-<div class="outline-text-3" id="text-org1c15e24">
+<div id="outline-container-org81b9ba7" class="outline-3">
+<h3 id="org81b9ba7">TypeG</h3>
+<div class="outline-text-3" id="text-org81b9ba7">
 <ul class="org-ul">
 <li><a href="http://flatray.com/linux/vaio-t/">Linux on SONY VAIO type T</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgab684fc" class="outline-3">
-<h3 id="orgab684fc">CF-R4</h3>
-<div class="outline-text-3" id="text-orgab684fc">
+<div id="outline-container-orgfa1d06b" class="outline-3">
+<h3 id="orgfa1d06b">CF-R4</h3>
+<div class="outline-text-3" id="text-orgfa1d06b">
 <ul class="org-ul">
 <li><a href="http://kmuto.jp/open.cgi?Y2">Let's note CF-Y2</a></li>
 <li><a href="http://yoosee.net/wiki/?Debian/install/CF-Y4">Debian sarge on Let's Note CF-Y4</a></li>

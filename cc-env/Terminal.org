@@ -1,0 +1,74 @@
+#+TITLE: Terminal 生活
+#+DATE: 2017-02-20 18:42:49
+#+LANGUAGE: ja
+#+REF: cc-env/Terminal
+#+LAYOUT: cc-env
+#+SETUPFILE: ../_setup.org
+#+PERMALINK: /cc-env/Terminal.html
+Related [[wiki:index][Index]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]]
+
+* 始めに
+  普段の生活環境(?)であるターミナルの設定アレコレ.
+
+  現状は rxvt-unicode-256color をメインで利用中.
+  驚きの軽さが理由の全てかな.
+* EAW 対応: ロケールの入れ替え
+  EAW については
+  - [[https://ja.wikipedia.org/wiki/%E6%9D%B1%E3%82%A2%E3%82%B8%E3%82%A2%E3%81%AE%E6%96%87%E5%AD%97%E5%B9%85][東アジアの文字幅 - Wikipedia]]
+  - [[http://unicode.org/reports/tr11/][UAX #11: East Asian Width]]
+  などを参照.
+
+  手元の環境では
+  East Asian Ambiguous Char と絵文字の文字幅を強制的に "2" とする
+  修正ロケールを使っている.
+  - [[https://github.com/uwabami/locale-eaw-emoji][uwabami/locale-eaw-emoji: UAX#11 Ambiguous と UTR #51 Emoiji を全角とする修正 locale]]
+  微妙に間違っている気もしないではないが, まあ良いか, 的な.
+* rxvt-unicode-256color
+  :PROPERTIES:
+  :ID:       34961588-3e87-495a-a22e-8a0188439254
+  :END:
+  Debian では configure オプションの変えた urxvt のパッケージが提供されている
+#+BEGIN_EXAMPLE
+% apt-cache search rxvt-unicode
+rxvt-unicode - Unicode をフルサポートした RXVT ライクな端末エミュレータ
+rxvt-unicode-lite - 基本的な Unicode をサポートした RXVT ライクな端末エミュレータ
+rxvt-unicode-256color - multi-lingual terminal emulator with Unicode support for X11
+#+END_EXAMPLE
+  256色が使いたいので =rxvt-unicode-256color= を使っている.
+
+  ただ, フォント表示に関して幾つか気になるところがある.
+  詳細は[[http://emonkak.hatenablog.com/entry/2016/12/09/185009][rxvt-unicodeのフォントレンダリングを改善する - emonkak's Blog]]
+
+  パッチは
+
+  #+HTML: <script src="https://gist.github.com/uwabami/5e219e1ba87c26447a3635c0e7b53456.js"></script>
+
+  Debian パッケージをこのパッチを当てて rebuild して使っている.
+
+* tmux
+  :PROPERTIES:
+  :ID:       9d77e24a-42bc-46c4-999f-aabb0b079120
+  :END:
+  以前は GNU screen を使っていたのだけれども,
+  接続先の環境の多くが UTF-8 をサポートしてくれたので,
+  tmux に移行した.
+
+  ただ, tmux 2.3 の EAW 文字幅問題の扱いに多少(?)不満があるので,
+  以下二つのパッチを当てて rebuild して使っている.
+
+  一つ目は pane-border 等、全て ASCII で描くパッチ.
+
+  #+HTML: <script src="https://gist.github.com/uwabami/0847823ce058304a50c05276edcc854d.js"></script>
+
+  二つ目は en_US.UTF-8 決め打ちを止めるパッチ.
+
+  #+HTML: <script src="https://gist.github.com/uwabami/04d661a4ffe3d0aa5198d19a8f488620.js"></script>
+
+  これらのパッチを当てた Debian パッケージを作成し,
+  tmux.conf にて =set-option -g pane-border-ascii 0= を指定している.
+
+  tmux の設定は以下の通り.
+#+INCLUDE: "~/.tmux/tmux.conf" src conf
+  weechat を常に下に表示させておきたいので =C-t -= でトグルできるように
+  以下の =weechat-toggle.sh= を割り当てている.
+#+INCLUDE: "~/.tmux/weechat-toggle.sh" src sh
