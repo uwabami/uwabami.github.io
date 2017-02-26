@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-02-20 18:54:36
+date: 2017-02-26 15:36:05
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgae3d8c8">標準機能の設定</a>
 <ul>
 <li><a href="#org1b6b59a">表示関連</a></li>
-<li><a href="#orgee01144">編集関連</a></li>
+<li><a href="#orgd3d566f">編集関連</a></li>
 <li><a href="#org7eda492">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -73,10 +73,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org3bd8022">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#org01ebc4b">Emacs 本体側の設定</a></li>
+<li><a href="#org8733245">Emacs 本体側の設定</a></li>
 <li><a href="#orge62a055">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org76f2589">編集関連</a></li>
+<li><a href="#orgb3f8caf">編集関連</a></li>
 <li><a href="#org67f5019">インクリメンタルサーチ</a></li>
 <li><a href="#org6d86eb6">辞書の設定</a></li>
 <li><a href="#org199b263">動的補完</a></li>
@@ -97,7 +97,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org4ea74a5">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org48c71cb">Emacs 本体側の設定</a></li>
+<li><a href="#org039696e">Emacs 本体側の設定</a></li>
 <li><a href="#org711a3af">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#orgda20e29">依存/追加ライブラリのインストールと読み込み</a>
@@ -152,7 +152,6 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgafb5225">振り分け判定に使用するヘッダ</a></li>
 </ul>
 </li>
-<li><a href="#org7531906">日本語添付ファイル名のデコード</a></li>
 <li><a href="#org9d69599">メッセージ表示</a>
 <ul>
 <li><a href="#org44538b3">いったん全て非表示に</a></li>
@@ -164,6 +163,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org1af52e3">作成/返信設定</a>
 <ul>
+<li><a href="#org1beff99">メール本文の文字コード</a></li>
 <li><a href="#org85b54dc">draft mode で orgtbl を有効に</a></li>
 <li><a href="#orge2676d7">c-sig</a></li>
 </ul>
@@ -639,38 +639,20 @@ zsh で設定した <code>PATH</code> などの環境変数を Emacs に引き�
 <h2 id="orgbca86c9">言語の設定</h2>
 <div class="outline-text-2" id="text-orgbca86c9">
 <p>
-過去にはいろいろ設定していたのですが&#x2026;
-</p>
-<ul class="org-ul">
-<li><a href="http://masutaka.net/chalow/2009-07-09-1.html">Emacs講座 -第7回- 文字コード / マスタカの ChangeLog メモ</a></li>
-</ul>
-<blockquote>
-<p>
-いきなり矛盾しますが，最近の Emacs(例:23.3) では文字コードの設定は不要です．
-</p>
-</blockquote>
-<p>
-とありますが, json の parser の挙動が怪しいので, coding は設定しておきます.
+日本語, UTF-8 にしています.
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(set-language-environment <span style="color: #7FFF7F;">"Japanese"</span>)
 (prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
+(set-file-name-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-(<span style="color: #FF7F7F;">setq-default</span> buffer-file-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-default 'buffer-file-coding-system 'utf-8)
 </pre>
 </div>
 <p>
-ちなみに
-<code>prefer-coding-system</code> を設定すると
-<code>default-file-name-coding-system</code> が設定されます．
-優先順位は以下の通り:
+その他, 機種依存文字等についての設定をアレコレ.
 </p>
-<ol class="org-ol">
-<li><code>file-name-coding-system</code> を見る</li>
-<li><code>file-name-coding-system</code> が nil なら <code>default-file-name-coding-system</code> を利用</li>
-</ol>
 </div>
 <div id="outline-container-org65f7f9b" class="outline-3">
 <h3 id="org65f7f9b">cp5022x.el</h3>
@@ -687,6 +669,10 @@ Emacs23 から内部が Unicode ベースになっています．
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">cp5022x</span>
   <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:config</span>
+  (set-charset-priority 'ascii 'japanese-jisx0208 'latin-jisx0201
+                        'katakana-jisx0201 'iso-8859-1 'unicode)
+  (set-coding-system-priority 'utf-8 'euc-jp 'iso-2022-jp 'cp932)
   )
 </pre>
 </div>
@@ -707,7 +693,6 @@ CJK 以外の East Asian Ambiguos，絵文字も2文字幅にするようにし�
 (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">locale-eaw-emoji</span>
   <span style="color: #7FBFFF;">:config</span>
   (eaw-and-emoji-fullwidth))
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(setq nobreak-char-display nil)</span>
 </pre>
 </div>
 </div>
@@ -854,9 +839,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-orgee01144" class="outline-4">
-<h4 id="orgee01144">編集関連</h4>
-<div class="outline-text-4" id="text-orgee01144">
+<div id="outline-container-orgd3d566f" class="outline-4">
+<h4 id="orgd3d566f">編集関連</h4>
+<div class="outline-text-4" id="text-orgd3d566f">
 <p>
 yes or no を y or n に
 </p>
@@ -1281,7 +1266,7 @@ Undo/Redo:
     (<span style="color: #FF7F7F;">setq-local</span> my:eww-disable-colorize nil)
     (eww-reload))
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12486;&#12461;&#12473;&#12488;&#24133;&#12434; 70 &#12395;&#22266;&#23450;</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">- </span><span style="text-decoration: underline;"><a href="http://emacs.rubikitch.com/eww-width/">Emacs&#32068;&#12415;&#36796;&#12415;Web&#12502;&#12521;&#12454;&#12470;EWW&#12391;&#12486;&#12461;&#12473;&#12488;&#12398;&#27178;&#24133;&#12434;&#25351;&#23450;&#12377;&#12427;&#26041;&#27861;</a></span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">- </span><span style="color: #00ffff; text-decoration: underline;"><a href="http://emacs.rubikitch.com/eww-width/">Emacs&#32068;&#12415;&#36796;&#12415;Web&#12502;&#12521;&#12454;&#12470;EWW&#12391;&#12486;&#12461;&#12473;&#12488;&#12398;&#27178;&#24133;&#12434;&#25351;&#23450;&#12377;&#12427;&#26041;&#27861;</a></span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shr-insert-document--for-eww</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
     (<span style="color: #FF7F7F;">let</span> ((shr-width 70)) (apply them)))
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-display-html--fill-column</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
@@ -1307,7 +1292,7 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point))
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">browse-url-firefox</span> (url <span style="color: #FFFF7F;">&amp;optional</span> new-window)
-    <span style="color: #7FFF7F;">"@see </span><span style="text-decoration: underline;"><a href="http://www.emacswiki.org/emacs/BrowseUrl">http://www.emacswiki.org/emacs/BrowseUrl</a></span><span style="color: #7FFF7F;">"</span>
+    <span style="color: #7FFF7F;">"@see </span><span style="color: #00ffff; text-decoration: underline;"><a href="http://www.emacswiki.org/emacs/BrowseUrl">http://www.emacswiki.org/emacs/BrowseUrl</a></span><span style="color: #7FFF7F;">"</span>
     (<span style="color: #FF7F7F;">interactive</span> (browse-url-interactive-arg <span style="color: #7FFF7F;">"URL: "</span>))
     (<span style="color: #FF7F7F;">setq</span> url (browse-url-encode-url url))
     (<span style="color: #FF7F7F;">let*</span> ((process-environment (browse-url-process-environment))
@@ -1353,9 +1338,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org01ebc4b" class="outline-3">
-<h3 id="org01ebc4b">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org01ebc4b">
+<div id="outline-container-org8733245" class="outline-3">
+<h3 id="org8733245">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org8733245">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1465,9 +1450,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org76f2589" class="outline-4">
-<h4 id="org76f2589">編集関連</h4>
-<div class="outline-text-4" id="text-org76f2589">
+<div id="outline-container-orgb3f8caf" class="outline-4">
+<h4 id="orgb3f8caf">編集関連</h4>
+<div class="outline-text-4" id="text-orgb3f8caf">
 <p>
 キーバインド
 </p>
@@ -1811,9 +1796,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org48c71cb" class="outline-3">
-<h3 id="org48c71cb">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org48c71cb">
+<div id="outline-container-org039696e" class="outline-3">
+<h3 id="org039696e">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org039696e">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -1978,7 +1963,7 @@ MIME の例の保存先の変更
 </pre>
 </div>
 <p>
-text/plain を html より優先
+text/plain を html より優先 → 最近は html を表示している
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-alist 'mime-view-type-subtype-score-alist '(text . html) 0)</span>
@@ -2170,11 +2155,8 @@ from に応じて wl-from, wl-envelope-from,
 <div id="outline-container-org123ba63" class="outline-5">
 <h5 id="org123ba63">非同期チェック</h5>
 <div class="outline-text-5" id="text-org123ba63">
-<p>
-なんか挙動が変な，ような&#x2026;．
-</p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-folder-check-async nil)
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-folder-check-async t)
 </pre>
 </div>
 </div>
@@ -2219,14 +2201,10 @@ Drafts, Trash の置き場所
 </div>
 <p>
 アドレス帳 -&gt; gcontacts-get-wlを使う.
-GNOME を使っているのであれば <a href="https://tracker.debian.org/pkg/eweouz">eweouz</a> もおもしろそう．とりあえず読み込んでおく.
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-use-petname t)
 (<span style="color: #FF7F7F;">setq</span> wl-address-file  <span style="color: #7FFF7F;">"~/.mua/Address.wl"</span>)
-(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">eweouz</span>
-  <span style="color: #7FBFFF;">:config</span>
-  (add-hook 'wl-hook 'eweouz-insinuate-wl))
 </pre>
 </div>
 <p>
@@ -2491,6 +2469,12 @@ draft も折り返す
 <h4 id="org7765fba">flag とフォルダを行き来する関数の追加</h4>
 <div class="outline-text-4" id="text-org7765fba">
 <p>
+以前は flag 付きフォルダを設定していたので使っていたが,
+最近は <code>mu find flag:Flagged</code> の結果を仮想フォルダにしているので
+以下の関数は使っていない.
+</p>
+
+<p>
 "=" でフラグ付きフォルダと
 実際にメッセージのあるフォルダを行き来する.
 Gmail の「スター付き」フォルダでも有効
@@ -2500,7 +2484,7 @@ Gmail の「スター付き」フォルダでも有効
 (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:wl-summary-jump-to-referer-message</span> ()
   (<span style="color: #FF7F7F;">interactive</span>)
   (<span style="color: #FF7F7F;">when</span> (wl-summary-message-number)
-    (<span style="color: #FF7F7F;">if</span> (eq (elmo-folder-type-internal wl-summary-buffer-elmo-folder) 'flag)
+    (<span style="color: #FF7F7F;">if</span> (eq (<span style="color: #FF7F7F;">elmo-folder-type-internal</span> wl-summary-buffer-elmo-folder) 'flag)
         (<span style="color: #FF7F7F;">progn</span>
           (<span style="color: #FF7F7F;">let*</span> ((referer (elmo-flag-folder-referrer
                            wl-summary-buffer-elmo-folder
@@ -2513,7 +2497,7 @@ Gmail の「スター付き」フォルダでも有効
                            (car (car referer)))))
             (wl-summary-goto-folder-subr folder 'no-sync nil nil t)
             (wl-summary-jump-to-msg (cdr (assoc folder referer)))))
-      (<span style="color: #FF7F7F;">when</span> (eq (elmo-folder-type wl-summary-last-visited-folder) 'internal)
+      (<span style="color: #FF7F7F;">when</span> (eq (<span style="color: #FF7F7F;">elmo-folder-type</span> wl-summary-last-visited-folder) 'internal)
         (wl-summary-goto-last-visited-folder)))))
 (define-key wl-summary-mode-map <span style="color: #7FFF7F;">"="</span> 'my:wl-summary-jump-to-referer-message)
 </pre>
@@ -2746,51 +2730,6 @@ Gmail の「スター付き」フォルダでも有効
 </div>
 </div>
 </div>
-<div id="outline-container-org7531906" class="outline-4">
-<h4 id="org7531906">日本語添付ファイル名のデコード</h4>
-<div class="outline-text-4" id="text-org7531906">
-<p>
-日本語の添付ファイルに関しては, いまだにうまくいかない時がある.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my-mime-filename-coding-system-for-decode</span>
-  '(iso-2022-jp japanese-shift-jis japanese-iso-8bit))
-(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my-mime-decode-filename</span> (filename)
-  (<span style="color: #FF7F7F;">let</span> ((filename (<span style="color: #FF7F7F;">if</span> (string-match <span style="color: #7FFF7F;">"\n\t*"</span> filename)
-                      (replace-match <span style="color: #7FFF7F;">""</span> nil nil filename)
-                    filename))
-        (rest (eword-decode-string filename)))
-    (<span style="color: #FF7F7F;">or</span> (<span style="color: #FF7F7F;">when</span> (<span style="color: #FF7F7F;">and</span> my-mime-filename-coding-system-for-decode
-                   (string= rest filename))
-          (<span style="color: #FF7F7F;">let</span> ((dcs (mapcar (<span style="color: #FF7F7F;">function</span> coding-system-base)
-                             (detect-coding-string filename))))
-            (<span style="color: #FF7F7F;">unless</span> (memq 'emacs-mule dcs)
-              (<span style="color: #FF7F7F;">let</span> ((pcs my-mime-filename-coding-system-for-decode))
-                (<span style="color: #FF7F7F;">while</span> pcs
-                  (<span style="color: #FF7F7F;">if</span> (memq (coding-system-base (car pcs)) dcs)
-                      (<span style="color: #FF7F7F;">setq</span> rest (decode-coding-string filename (car pcs))
-                            pcs nil)
-                    (<span style="color: #FF7F7F;">setq</span> pcs (cdr pcs))))))))
-        rest)))
-(eval-after-load <span style="color: #7FFF7F;">"mime"</span>
-  '(<span style="color: #FF7F7F;">defadvice</span> <span style="color: #BF7FFF;">mime-entity-filename</span>
-       (after eword-decode-for-broken-MUA activate)
-     <span style="color: #7FFF7F;">"Decode encoded file name for BROKEN MUA."</span>
-     (<span style="color: #FF7F7F;">when</span> (stringp ad-return-value)
-       (<span style="color: #FF7F7F;">setq</span> ad-return-value (my-mime-decode-filename ad-return-value)))))
-(<span style="color: #FF7F7F;">require</span> '<span style="color: #FFBF7F;">std11</span> nil 'noerror)
-(eval-after-load <span style="color: #7FFF7F;">"std11"</span>
-  '(<span style="color: #FF7F7F;">defadvice</span> <span style="color: #BF7FFF;">std11-wrap-as-quoted-string</span>
-       (before encode-string activate)
-     <span style="color: #7FFF7F;">"Encode a string."</span>
-     (<span style="color: #FF7F7F;">require</span> '<span style="color: #FFBF7F;">eword-encode</span>)
-     (ad-set-arg 0 (eword-encode-string (ad-get-arg 0)))))
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#20108;&#37325;&#12456;&#12473;&#12465;&#12540;&#12503;&#12434;&#22238;&#36991;</span>
-    (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shell-quote-argument</span> (file) file)
-</pre>
-</div>
-</div>
-</div>
 <div id="outline-container-org9d69599" class="outline-4">
 <h4 id="org9d69599">メッセージ表示</h4>
 <div class="outline-text-4" id="text-org9d69599">
@@ -2914,6 +2853,21 @@ To や From にアドレスが沢山指定されていると省略されるの�
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-default-draft-cite-decorate-author nil)
 </pre>
+</div>
+</div>
+<div id="outline-container-org1beff99" class="outline-5">
+<h5 id="org1beff99">メール本文の文字コード</h5>
+<div class="outline-text-5" id="text-org1beff99">
+<p>
+丸囲み数字なんかが入ってしまうと
+勝手にエンコーディングが変わってしまって鬱陶しい. どうしたモンだろうかね.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(add-hook 'wl-draft-mode-hook
+          (<span style="color: #FF7F7F;">lambda</span> ()
+            (add-to-list 'mime-charset-type-list '(utf-8 8 nil))))
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-org85b54dc" class="outline-5">
@@ -3052,10 +3006,6 @@ epa があるので主にキーバインドの設定のみ.
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> mime-pgp-verify-when-preview nil)
-(add-hook 'wl-draft-mode-hook
-          (<span style="color: #FF7F7F;">lambda</span> ()
-            (set-buffer-file-coding-system 'utf-8)
-            ))
 (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:epa-wl-decrypt-message</span> ()
   (<span style="color: #FF7F7F;">interactive</span>)
   (<span style="color: #FF7F7F;">save-window-excursion</span>
@@ -3080,8 +3030,7 @@ epa があるので主にキーバインドの設定のみ.
 <h4 id="orga001041">検索</h4>
 <div class="outline-text-4" id="text-orga001041">
 <p>
-imap の検索か mu(maildir-utils) の検索.
-mu の検索が偶にセグフォるので悩み所
+mu(maildir-utils)を使う. 偶にセグフォるので悩み所
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">elmo-search</span>
@@ -4419,7 +4368,7 @@ html export の際に必要な yaml front matter を出力できるようにし�
   (<span style="color: #FF7F7F;">setq</span> org-publish-use-timestamps-flag t
         org-publish-timestamp-directory <span style="color: #7FFF7F;">"~/Public/.org-timestamps/"</span>
         org-publish-project-alist
-        '((<span style="color: #7FFF7F;">"web"</span>
+        '((<span style="color: #7FFF7F;">"org"</span>
            <span style="color: #7FBFFF;">:base-directory</span> <span style="color: #7FFF7F;">"~/Public/"</span>
            <span style="color: #7FBFFF;">:base-extension</span> <span style="color: #7FFF7F;">"org"</span>
            <span style="color: #7FBFFF;">:exclude</span> <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">_.*</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">cc-env</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>
@@ -4438,7 +4387,9 @@ html export の際に必要な yaml front matter を出力できるようにし�
            <span style="color: #7FBFFF;">:with-toc</span> t
            <span style="color: #7FBFFF;">:headline-levels</span> 5
            )
-          ))
+          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">("web" :components ("org" "cc-env"))</span>
+          )
+        )
   )
 </pre>
 </div>
@@ -5007,10 +4958,13 @@ Debian パッケージ版を使う．やっている事は
   (<span style="color: #FF7F7F;">interactive</span>)
   (<span style="color: #FF7F7F;">when</span> window-system
     (<span style="color: #FF7F7F;">progn</span>
-      (add-to-list 'default-frame-alist '(font . <span style="color: #7FFF7F;">"Monospace-12"</span>))
+      (set-face-attribute 'default nil
+                          <span style="color: #7FBFFF;">:family</span> <span style="color: #7FFF7F;">"RictyDiminished"</span>
+                          <span style="color: #7FBFFF;">:height</span> 150) <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">15pt</span>
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-fontset-font nil 'japanese-jisx0208</span>
+      <span style="color: #a5a5a6;">;;                   </span><span style="color: #a5a5a6;">(font-spec :family "SeptemberMMono"))</span>
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(setq face-font-rescale-alist '(("September.*" . 0.9)))</span>
       (set-background-color <span style="color: #7FFF7F;">"#242424"</span>)
-      (set-face-attribute 'default t <span style="color: #7FBFFF;">:font</span> <span style="color: #7FFF7F;">"Monospace"</span> <span style="color: #7FBFFF;">:height</span> 135)
-      (set-frame-font <span style="color: #7FFF7F;">"Monospace-13.5"</span> nil t)
       )))
 (<span style="color: #FF7F7F;">setq</span> frame-background-mode (frame-parameter nil 'background-mode))
 (<span style="color: #FF7F7F;">setq</span> default-frame-alist
@@ -5159,7 +5113,7 @@ Debian パッケージ版を使う．やっている事は
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defmacro</span> <span style="color: #BF7FFF;">my:diminish</span> (file mode <span style="color: #FFFF7F;">&amp;optional</span> new-name)
-  <span style="color: #7FFF7F;">"original: </span><span style="text-decoration: underline;"><a href="https://github.com/larstvei/dot-emacs/blob/master/init.org">https://github.com/larstvei/dot-emacs/blob/master/init.org</a></span><span style="color: #7FFF7F;">"</span>
+  <span style="color: #7FFF7F;">"original: </span><span style="color: #00ffff; text-decoration: underline;"><a href="https://github.com/larstvei/dot-emacs/blob/master/init.org">https://github.com/larstvei/dot-emacs/blob/master/init.org</a></span><span style="color: #7FFF7F;">"</span>
   `(<span style="color: #FF7F7F;">with-eval-after-load</span> ,file
      (diminish ,mode ,new-name)))
 (<span style="color: #FF7F7F;">my:diminish</span> <span style="color: #7FFF7F;">"isearch"</span>          'isearch-mode)
@@ -5215,10 +5169,10 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
 </p>
 <ul class="org-ul">
 <li>separater は環境によってズレるので，半角スペースに変更</li>
-<li>vc-mode でのアイコン表示に U+26d3 chain を使う</li>
+<li>vc-mode でのアイコン表示に U+26A1⚡ High Voltage を使う</li>
 </ul>
 <p>
-といった事をしている. East Asian ambiguous Width char の扱いは面倒です.
+といった事をしている. East Asian ambiguous Width char の扱いは面倒ですね
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">powerline</span>
@@ -5229,8 +5183,9 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
         )
 (<span style="color: #FF7F7F;">defpowerline</span> my:powerline-vc
   (<span style="color: #FF7F7F;">when</span> (<span style="color: #FF7F7F;">and</span> (buffer-file-name (current-buffer)) vc-mode)
-    (format <span style="color: #7FFF7F;">"%s %s"</span>
-            (char-to-string #x26d3)
+    (format <span style="color: #7FFF7F;">"%s%s"</span>
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(char-to-string #x26d3)</span>
+            (char-to-string #x26a1)
             (format-mode-line '(vc-mode vc-mode)))))
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:powerline-theme</span> ()
     <span style="color: #7FFF7F;">"Setup customize theme."</span>
@@ -5256,8 +5211,6 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
                      (powerline-raw <span style="color: #7FFF7F;">"%*"</span> mode-line 'l)
                      (powerline-raw mode-line-mule-info mode-line 'l)
                      (powerline-buffer-id mode-line-buffer-id 'l)
-                     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(when (and (boundp 'which-func-mode) which-func-mode)</span>
-                     <span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">(powerline-raw which-func-format nil 'l))</span>
                      (powerline-raw <span style="color: #7FFF7F;">" "</span>)
                      (funcall separator-left mode-line face1)
                      (powerline-major-mode face1 'l)
@@ -5266,6 +5219,7 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
                      (powerline-raw <span style="color: #7FFF7F;">" "</span> face1)
                      (funcall separator-left face1 face2)
                      (my:powerline-vc face2 'r)
+                     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(powerline-vc face2 'r)</span>
                      ))
                (rhs (list
                      (powerline-raw global-mode-string face2 'r)

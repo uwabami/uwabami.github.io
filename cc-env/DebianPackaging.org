@@ -1,0 +1,87 @@
+#+TITLE: パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest
+#+DATE: 2017-02-26 16:31:47
+#+LANGUAGE: ja
+#+REF: cc-env/DebianPackaging
+#+LAYOUT: cc-env
+#+SETUPFILE: ~/Public/_setup.org
+#+PERMALINK: /cc-env/DebianPackaging.html
+Related [[wiki:index][Index]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]]
+* はじめに
+  Debian パッケージを作成するため
+  - [[id:74d27536-cf49-4780-8b6d-2e7b22027785][=sbuild=: clean room build 環境]] :ビルド時の依存環境をテストしつつビルドする
+  - [[id:0b5136f9-4bea-4417-849a-96f5f95b6504][=lintian=: パッケージの品質のチェック]]
+  - [[id:bcb9e308-7a2d-4bab-8876-30b8eedaf43c][=piuparts=: パッケージとしてのテスト]]
+  - [[id:d2393bd8-c286-44ad-a23a-b50893ee82f3][=autopkgtest=: ビルドしたバイナリの実行テスト]]
+  ができるようにする.
+  今は sbuild の chroot 環境可ですが,
+  そのうち lxc を使ってそちらに投げるようにしたい.
+* =sbuild=: clean room build 環境
+  :PROPERTIES:
+  :ID:       74d27536-cf49-4780-8b6d-2e7b22027785
+  :END:
+  clean room build 環境としては
+  - pbuilder/cowbuilder/qemubuilder
+  - sbuild
+  の二通りがあります. どちらが良いのか, は完全に好みの問題だと思いますが
+  Debian 公式のビルドインフラが sbuild なので, 私は sbuild を使っています.
+  sbuild に関しては [[https://wiki.debian.org/sbuild][sbuild - Debian Wiki]] を参照下さい.
+** インストールと設定
+   ほぼ, 上述の wiki の通り
+   #+BEGIN_EXAMPLE
+sudo apt-get install sbuild
+sudo sbuild-adduser $LOGNAME
+newgrp sbuild
+   #+END_EXAMPLE
+   chroot の作成は以下
+   #+BEGIN_SRC sh
+for a in amd64 i386; do
+  for d in stable testing unstable ; do
+    sudo LANG=C sbuild-createchroot --arch=$a --include=eatmydata,gnupg $d \
+        /srv/chroot/$d-$a-sbuild http://dennou-k.gfd-dennou.org/debian
+  done
+done
+   #+END_SRC
+   これで, =/srv/chroot/= 以下に sbuild 用の chroot 環境ができる.
+   ついでに =/etc/schroot/chroot.d/= 以下に sbuild 用の設定ファイルができるので,
+   #+BEGIN_SRC conf
+union-type=overlay
+   #+END_SRC
+   を設定しておくと良い(overlayfs で動作する):
+   #+BEGIN_SRC sh
+for conf in $(grep -l ’^union-type=’ /etc/schroot/chroot.d/*-sbuild*); do
+    if ! grep -q "^union-overlay-directory=" "$conf" ; then
+        echo ’union-overlay-directory=/dev/shm’ | sudo tee --append "$conf"
+    fi
+done
+   #+END_SRC
+   sbuild の設定は =~/.sbuildrc= に以下の通りに書いておく
+#+INCLUDE: ~/.sbuildrc src conf
+* =lintian=: パッケージの品質のチェック
+  :PROPERTIES:
+  :ID:       0b5136f9-4bea-4417-849a-96f5f95b6504
+  :END:
+  作成したパッケージが Debian Policy に準拠しているかを
+  チェックするパッケージである lintian を導入します.
+  #+BEGIN_EXAMPLE
+% sudo apt-get install lintian
+  #+END_EXAMPLE
+  設定は以下の通り. =pedantic= と =info= は, まあ趣味でしょうか.
+#+INCLUDE: ~/.lintianrc src conf
+* =piuparts=: パッケージとしてのテスト
+  :PROPERTIES:
+  :ID:       bcb9e308-7a2d-4bab-8876-30b8eedaf43c
+  :END:
+  ビルドしたパッケージについて
+  インストール, アップグレード, リムーブ, パージのテストを行なえる
+  piuparts を導入しておく.
+  #+BEGIN_EXAMPLE
+% sudo apt-get install piuparts
+  #+END_EXAMPLE
+  実際の呼び出しは sbuild で行なうので, 特に設定していない
+* =autopkgtest=: ビルドしたバイナリの実行テスト
+  :PROPERTIES:
+  :ID:       d2393bd8-c286-44ad-a23a-b50893ee82f3
+  :END:
+  autopkgtest パッケージを導入しておく.
+  テスト環境は sbuild で作成した chroot を使う.
+  呼び出しも sbuild から行なうのて, 特に別途設定はしていない.

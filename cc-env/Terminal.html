@@ -135,7 +135,7 @@ tmux の設定は以下の通り.
 <pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
 <span style="color: #a5a5a6;">#</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI <a href="mailto:uwabami%40gfd-dennou.org">&lt;uwabami@gfd-dennou.org&gt;</a></span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2017-02-20 17:40:58$</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2017-02-23 10:53:18$</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: Public domain.</span>
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">general</span>
@@ -166,9 +166,9 @@ set -g display-time 4000
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#24460;&#26041;&#12473;&#12463;&#12525;&#12540;&#12523;&#34892;&#25968;(&#26082;&#23450;&#20516;&#12399;2000)</span>
 set -g history-limit 8192
 setw -g pane-active-border-fg <span style="color: #7FFF7F;">"#ff4c4c"</span>
-setw -g pane-active-border-bg <span style="color: #7FFF7F;">"#000000"</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">setw -g pane-active-border-bg "#242424"</span>
 setw -g pane-border-fg <span style="color: #7FFF7F;">"#4cffff"</span>
-setw -g pane-border-bg <span style="color: #7FFF7F;">"#000000"</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">setw -g pane-border-bg "#242424"</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">don't show other activity</span>
 set -g monitor-activity off
 set -g visual-activity off
