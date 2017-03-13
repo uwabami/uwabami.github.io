@@ -1,12 +1,12 @@
 #+TITLE: Research Work
-#+DATE: 2017-03-13 09:51:20
+#+DATE: 2017-03-13 10:32:16
 #+LANGUAGE: en
 #+REF: research
 #+LAYOUT: default
 #+SETUPFILE: ../_setup.org
 #+PERMALINK: /research/index.en.html
 * Publication
-   - Takehiro, S-i., Sasaki, Y., 2017:
+   - Takehiro, S-I., Sasaki, Y., 2017:
      Penetration of steady fluid motions into an outer stable layer excited by MHD thermal convection in rotating spherical shells,
      Physics of the Earth and Planetary Interiors,
      =doi: 10.1016/j.pepi.2017.03.001=
