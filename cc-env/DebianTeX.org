@@ -1,0 +1,140 @@
+#+TITLE: TeX 環境の構築
+#+DATE: 2017-03-16 14:25:13
+#+LANGUAGE: ja
+#+REF: cc-env/DebianTeX
+#+LAYOUT: cc-env
+#+SETUPFILE: ~/Public/_setup.org
+#+PERMALINK: /cc-env/DebianTeX.html
+Related [[wiki:index][Index]] [[wiki:Emacs][Emacs]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]]
+
+* Debian でのTeX 環境の構築
+  個人的には，
+  - pLaTeX: (計算機にそれほど詳しくない)他人とデータのやりとりをする時(共著なんか)
+  - XeLaTeX or LuaTeX: 個人で作業する時，もしくは複数人でも説明が楽な相手の場合
+  と使い分けています．
+  多分，多くの人々が現状では p(La)TeX をお使いかと思います．
+  共著作業の際に(年上の方々に)説明するのが楽ですし，
+  学会のTeXフォーマットが p(La)TeX 前提だったりするので，
+  わりと離れられませんよね.
+
+  Jessie の頃のお話ですが，
+  TeXLive リリースマネージャであり，
+  Debian の TeXLive のパッケージメンテナでもある Norbert Perining さんによる
+  [[http://www.preining.info/blog/2014/12/writing-japanese-in-latex-part-1-introduction/][Writing Japanese in LaTeX : Part 1 – Introduction | There and back again"]]
+  もご覧下さい.
+  英語の記事ですが，
+  現在使える TeX Engine での日本語組版についてのサマリがあります.
+* インストール
+  何も考えずに
+  #+BEGIN_EXAMPLE
+% sudo apt-get install texlive-full
+  #+END_EXAMPLE
+  でも良いですが，結構なサイズになります
+  (とはいえ，今時数GB程度だと気にならないかと思いますけれど)．
+
+  個別にインストールする場合は以下の通り．
+** とりあえず =pTeX,upTeX= を使えるようにする:
+   多分, 以下で OK
+   #+BEGIN_EXAMPLE
+% sudo apt-get install texlive-lang-japanese
+   #+END_EXAMPLE
+   上記パッケージを install することで =ptex2pdf= も使えるようになります．
+** =XeTeX, LuaTeX= も使えるようにする:
+   多分, 以下で OK
+   #+BEGIN_EXAMPLE
+% sudo apt-get install texlive-xetex
+% sudo apt-get install texlive-luatex
+   #+END_EXAMPLE
+** DVI と PDF の Viewer
+   #+BEGIN_EXAMPLE
+% sudo apt-get install evince xdvik-ja
+   #+END_EXAMPLE
+   Debian のデフォルトデスクトップ環境はGNOMEなので，
+   PDF の閲覧には Evince を使うのかな?
+   日本語の表示が可能な xdvi, いわゆる pxdvi は
+   [[https://packages.qa.debian.org/x/xdvik-ja.html][xdvik-ja]] としてパッケージを提供しています
+   (とはいえ，今なら直接 PDF を閲覧するのが良いと思いますが...)．
+* フォントの埋め込みと表示設定
+  まず, =cjk-gs-integrate= を使って,
+  Ghostscript に現在システムに導入されているフォントを教えてあげましょう.
+  #+BEGIN_EXAMPLE
+% sudo cjk-gs-integrate --link-texmf --force
+  #+END_EXAMPLE
+  この後, 実際に埋め込むフォントを設定しておきます.
+  #+BEGIN_EXAMPLE
+% sudo apt-get install fonts-ipaexfonts     # <-- install されていなかったら.
+% sudo kanji-config-updmap-sys ipaex
+  #+END_EXAMPLE
+* XeLaTeX, pdfLaTeX, LuaLaTeX での日本語処理.
+** XeTeX
+   とりあえず日本語での組版に困る事はないでしょう.
+   例えば以下のソースを =xelatex= で typeset することで，
+   IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
+   #+BEGIN_SRC japanese-latex
+\documentclass[a4paper]{bxjsarticle}
+\usepackage{zxjatype}
+\usepackage[ipa]{zxjafont}
+\usepackage{xltxtra}
+
+\begin{document}
+
+\section{幸田露伴「雲のいろ〳〵――卿雲」}
+景雲といひ、卿雲といひ、慶雲といへる、しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、歸するところは美しき雲といふまでなり。
+\end{document}
+   #+END_SRC
+** LuaTeX
+   例えば以下のソースを =lualatex=
+   で typeset することで，IPAex{明朝,ゴシック}が埋め込まれた PDF が生成されます．
+   #+BEGIN_SRC japanese-latex
+\documentclass{ltjsarticle}
+\usepackage[ipaex]{luatexja-preset}
+\begin{document}
+
+\section{幸田露伴「雲のいろ〳〵――卿雲」}
+景雲といひ、卿雲といひ、慶雲といへる、しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、歸するところは美しき雲といふまでなり。
+
+\end{document}
+   #+END_SRC
+** pdfLaTeX で日本語組版
+   例えば以下を =pdflatex= で typeset することで，PDF が生成されます．
+   #+BEGIN_SRC japanese-latex
+\documentclass[pdflatex,jadriver=standard]{bxjsarticle}
+\begin{document}
+
+\section{幸田露伴「雲のいろ〳〵――卿雲」}
+景雲といひ、卿雲といひ、慶雲といへる、しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、歸するところは美しき雲といふまでなり。
+
+\end{document}
+   #+END_SRC
+
+* 足りないスタイルとかあれこれ
+  =texlive-full= を入れておくと全部使えるようになる, で良いんだっけ?
+  最近は割と何も考えずに全部入れていたりする.
+
+  Emacs で上手く処理したい場合には, =auctex= とか入れておくと良いかと.
+  (最近 =YaTeX= 使ってないんだけれど, これ, LuaTeX なんかに対応してるんだっけ?)
+* 参考文献
+- [[http://uwabami.junkhub.org/log/20121202.html#p01][次期安定版 Debian 7.0 'Wheezy' での TeX 環境(特に pTeX 環境)について]]
+- [[http://uwabami.junkhub.org/log/20121208.html#p01][Ubuntu 12.04/Debian Squeeze での TeXLive (>=2012) 環境]]
+- [[http://www.preining.info/blog/2014/12/writing-japanese-in-latex-part-1-introduction/][Writing Japanese in LaTeX : Part 1 – Introduction | There and back again]]
+- [[https://packages.debian.org/jessie/texlive-full][Debian -- Details of package texlive-full in jessie]]
+- [[http://qiita.com/_yyu_/items/6404656f822ce14db935][LaTeX - TeX処理系御伽話]]
+- [[http://www.tug.org/texlive/debian.html][Debian support - TeX Live - TeX Users Group]]
+- TeX Wiki
+  * [[http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?upTeX%252CupLaTeX][http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?upTeX%2CupLaTeX]]
+  * [[http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Ghostscript][http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Ghostscript]]
+  * [[http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?XeTeX][http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?XeTeX]]
+  * [[http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?BXjscls][http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?BXjscls]]
+  * [[http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?LuaTeX-ja][http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?LuaTeX-ja]]

@@ -1,5 +1,5 @@
 #+TITLE: パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest
-#+DATE: 2017-02-26 16:31:47
+#+DATE: 2017-02-27 14:31:26
 #+LANGUAGE: ja
 #+REF: cc-env/DebianPackaging
 #+LAYOUT: cc-env
@@ -84,4 +84,4 @@ done
   :END:
   autopkgtest パッケージを導入しておく.
   テスト環境は sbuild で作成した chroot を使う.
-  呼び出しも sbuild から行なうのて, 特に別途設定はしていない.
+  呼び出しも sbuild から行なうので, 特に別途設定はしていない.

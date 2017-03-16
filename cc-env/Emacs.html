@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-02-26 15:36:05
+date: 2017-03-13 11:11:29
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgae3d8c8">標準機能の設定</a>
 <ul>
 <li><a href="#org1b6b59a">表示関連</a></li>
-<li><a href="#orgd3d566f">編集関連</a></li>
+<li><a href="#orgf58a565">編集関連</a></li>
 <li><a href="#org7eda492">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -73,10 +73,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org3bd8022">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#org8733245">Emacs 本体側の設定</a></li>
+<li><a href="#orgf9227cd">Emacs 本体側の設定</a></li>
 <li><a href="#orge62a055">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#orgb3f8caf">編集関連</a></li>
+<li><a href="#org7377cac">編集関連</a></li>
 <li><a href="#org67f5019">インクリメンタルサーチ</a></li>
 <li><a href="#org6d86eb6">辞書の設定</a></li>
 <li><a href="#org199b263">動的補完</a></li>
@@ -97,7 +97,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org4ea74a5">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org039696e">Emacs 本体側の設定</a></li>
+<li><a href="#orga0e813e">Emacs 本体側の設定</a></li>
 <li><a href="#org711a3af">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#orgda20e29">依存/追加ライブラリのインストールと読み込み</a>
@@ -180,10 +180,6 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org95f555e">補完: <code>ido</code></a>
 <ul>
 <li><a href="#org6b0690a"><code>ido</code> の設定</a></li>
-<li><a href="#orgddd0966"><code>flx-ido</code>: flex match の強化</a></li>
-<li><a href="#orgef37302"><code>ido-grid-mode</code>: 補完候補の grid 表示</a></li>
-<li><a href="#org95de6de"><code>ido-recentf</code>: recentf を ido で</a></li>
-<li><a href="#org1fb9564"><code>ido</code> 関連の keybind</a></li>
 </ul>
 </li>
 <li><a href="#orgab311d4">補完: <code>helm</code></a>
@@ -227,7 +223,6 @@ permalink: /cc-env/Emacs.html
 </ul>
 </li>
 <li><a href="#orgbc5264a">OrgとRedmine の連携: <code>orgmine</code></a></li>
-<li><a href="#org30efae7">Org-Wiki</a></li>
 <li><a href="#org24423f9">Org-Export</a>
 <ul>
 <li><a href="#org23717b7">一般設定</a></li>
@@ -237,6 +232,7 @@ permalink: /cc-env/Emacs.html
 </ul>
 </li>
 <li><a href="#org00e03ba">Org-Project</a></li>
+<li><a href="#org30efae7">Org-Wiki</a></li>
 </ul>
 </li>
 <li><a href="#org1a9456e">Howm</a></li>
@@ -473,7 +469,7 @@ melpa の同期はしません。
         quelpa-checkout-melpa-p nil
         quelpa-update-melpa-p nil
         quelpa-melpa-recipe-stores nil)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -583,7 +579,7 @@ advice (上書き)する.
   <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"curl"</span>)
   <span style="color: #7FBFFF;">:config</span>
   (advice-add 'url-http <span style="color: #7FBFFF;">:override</span> 'mb-url-http-curl)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -626,11 +622,11 @@ zsh で設定した <code>PATH</code> などの環境変数を Emacs に引き�
      <span style="color: #7FFF7F;">"GPG_KEY_ID"</span>
      <span style="color: #7FFF7F;">"GPG_AGENT_INFO"</span>
      <span style="color: #7FFF7F;">"PASSWORD_STORE_DIR"</span>
-     ))
+     <span style="color: #0000ff; background-color: #afeeee;">))</span>
   (<span style="color: #FF7F7F;">setq</span> user-full-name (concat (getenv <span style="color: #7FFF7F;">"DEBFULLNAME"</span>))
         user-mail-address (concat (getenv <span style="color: #7FFF7F;">"DEBEMAIL"</span>))
         my:d:password-store (getenv <span style="color: #7FFF7F;">"PASSWORD_STORE_DIR"</span>))
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -673,7 +669,7 @@ Emacs23 から内部が Unicode ベースになっています．
   (set-charset-priority 'ascii 'japanese-jisx0208 'latin-jisx0201
                         'katakana-jisx0201 'iso-8859-1 'unicode)
   (set-coding-system-priority 'utf-8 'euc-jp 'iso-2022-jp 'cp932)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -689,7 +685,7 @@ CJK 以外の East Asian Ambiguos，絵文字も2文字幅にするようにし�
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (package-installed-p 'locale-eaw-emoji)
   (quelpa '(locale-eaw-emoji
             <span style="color: #7FBFFF;">:fetcher</span> url
-            <span style="color: #7FBFFF;">:url</span> <span style="color: #7FFF7F;">"https://raw.githubusercontent.com/uwabami/locale-eaw-emoji/master/locale-eaw-emoji.el"</span>)))
+            <span style="color: #7FBFFF;">:url</span> <span style="color: #7FFF7F;">"https://raw.githubusercontent.com/uwabami/locale-eaw-emoji/</span><span style="color: #ffa500;">ma</span><span style="color: #ff0000; background-color: #ffff00;">ster/locale-eaw-emoji.el")))</span>
 (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">locale-eaw-emoji</span>
   <span style="color: #7FBFFF;">:config</span>
   (eaw-and-emoji-fullwidth))
@@ -735,7 +731,7 @@ Windows の場合はファイル名などは cp932 にしているものの,
   (<span style="color: #FF7F7F;">setq</span> ns-command-modifier 'meta)
   (<span style="color: #FF7F7F;">setq</span> ns-alternate-modifier 'super)
   (global-set-key [ns-drag-file] 'ns-find-file)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -834,14 +830,14 @@ Warning の抑制: これもほとんど見ないし．
         cl-functions
         interactive-only
         make-local
-        ))
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd3d566f" class="outline-4">
-<h4 id="orgd3d566f">編集関連</h4>
-<div class="outline-text-4" id="text-orgd3d566f">
+<div id="outline-container-orgf58a565" class="outline-4">
+<h4 id="orgf58a565">編集関連</h4>
+<div class="outline-text-4" id="text-orgf58a565">
 <p>
 yes or no を y or n に
 </p>
@@ -938,7 +934,7 @@ symlink は常においかける
         <span style="color: #7FFF7F;">"^/var/folders\\.*"</span>
         <span style="color: #7FFF7F;">"/TAGS$"</span>
         <span style="color: #7FFF7F;">"^/home/uwabami/.mozilla/firefox/jhitnbb2.default/itsalltext\\.*"</span>
-        ))
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 (add-hook 'after-init-hook 'recentf-mode)
 </pre>
 </div>
@@ -1091,9 +1087,9 @@ Undo/Redo:
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> abbrev-file-name (concat my:d:share <span style="color: #7FFF7F;">"abbrev_defs"</span>)
         save-abbrevs t
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
   (<span style="color: #FF7F7F;">setq-default</span> abbrev-mode t)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -1106,7 +1102,7 @@ Undo/Redo:
   <span style="color: #7FBFFF;">:diminish</span> eldoc-mode
   <span style="color: #7FBFFF;">:config</span>
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -1148,7 +1144,7 @@ Undo/Redo:
           trailing          <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&#34892;&#26411;&#12398;&#31354;&#30333;&#12434;&#23550;&#35937;&#12392;&#12377;&#12427;&#65294;</span>
           tabs              <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">tab</span>
           spaces            <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">space</span>
-          )
+          <span style="color: #0000ff; background-color: #afeeee;">)</span>
         whitespace-display-mappings
         '((space-mark ?\u3000 [?\u25a1])
           <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">WARNING: the mapping below has a problem. When a TAB</span>
@@ -1245,7 +1241,7 @@ Undo/Redo:
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">eww</span>
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> eww-bookmarks-directory (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp)
-        )
+        <span style="color: #0000ff; background-color: #afeeee;">)</span>
   (<span style="color: #FF7F7F;">unless</span> (file-directory-p (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp))
     (make-directory (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp)))
   (<span style="color: #FF7F7F;">setq</span> eww-search-prefix <span style="color: #7FFF7F;">"https://www.bing.com/search?q="</span>)
@@ -1266,7 +1262,7 @@ Undo/Redo:
     (<span style="color: #FF7F7F;">setq-local</span> my:eww-disable-colorize nil)
     (eww-reload))
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12486;&#12461;&#12473;&#12488;&#24133;&#12434; 70 &#12395;&#22266;&#23450;</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">- </span><span style="color: #00ffff; text-decoration: underline;"><a href="http://emacs.rubikitch.com/eww-width/">Emacs&#32068;&#12415;&#36796;&#12415;Web&#12502;&#12521;&#12454;&#12470;EWW&#12391;&#12486;&#12461;&#12473;&#12488;&#12398;&#27178;&#24133;&#12434;&#25351;&#23450;&#12377;&#12427;&#26041;&#27861;</a></span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">- [[http://emacs.rubikitch.com/eww-width/][Emacs&#32068;&#12415;&#36796;&#12415;Web&#12502;&#12521;&#12454;&#12470;EWW&#12391;&#12486;</span><span style="color: #ff0000; background-color: #ffff00;">&#12461;&#12473;&#12488;&#12398;&#27178;&#24133;&#12434;&#25351;&#23450;&#12377;&#12427;&#26041;&#27861;]]</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shr-insert-document--for-eww</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
     (<span style="color: #FF7F7F;">let</span> ((shr-width 70)) (apply them)))
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-display-html--fill-column</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
@@ -1275,7 +1271,7 @@ Undo/Redo:
         (apply them)
       (advice-remove 'shr-insert-document 'shr-insert-document--for-eww)))
   (advice-add 'eww-display-html <span style="color: #7FBFFF;">:around</span> 'eww-display-html--fill-column)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -1292,7 +1288,7 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point))
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">browse-url-firefox</span> (url <span style="color: #FFFF7F;">&amp;optional</span> new-window)
-    <span style="color: #7FFF7F;">"@see </span><span style="color: #00ffff; text-decoration: underline;"><a href="http://www.emacswiki.org/emacs/BrowseUrl">http://www.emacswiki.org/emacs/BrowseUrl</a></span><span style="color: #7FFF7F;">"</span>
+    <span style="color: #7FFF7F;">"@see http://www.emacswiki.org/emacs/BrowseUrl"</span>
     (<span style="color: #FF7F7F;">interactive</span> (browse-url-interactive-arg <span style="color: #7FFF7F;">"URL: "</span>))
     (<span style="color: #FF7F7F;">setq</span> url (browse-url-encode-url url))
     (<span style="color: #FF7F7F;">let*</span> ((process-environment (browse-url-process-environment))
@@ -1300,12 +1296,12 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
                             (<span style="color: #FF7F7F;">if</span> browse-url-firefox-new-window-is-tab
                                 '(<span style="color: #7FFF7F;">"-new-tab"</span>)
                               '(<span style="color: #7FFF7F;">"-new-window"</span>))))
-           (ff-args (append browse-url-firefox-arguments window-args (list url)))
+           (ff-args (append browse-url-firefox-arguments window-args (list url)<span style="color: #ff0000; background-color: #ffff00;">))</span>
            (process-name (concat <span style="color: #7FFF7F;">"firefox "</span> url))
            (process (apply 'start-process process-name nil
                            browse-url-firefox-program ff-args) ))))
   (<span style="color: #FF7F7F;">setq</span> browse-url-browser-function 'browse-url-firefox)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -1338,9 +1334,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org8733245" class="outline-3">
-<h3 id="org8733245">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org8733245">
+<div id="outline-container-orgf9227cd" class="outline-3">
+<h3 id="orgf9227cd">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgf9227cd">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1355,7 +1351,7 @@ Emacs*useXIM: false
         skk-init-file (concat user-emacs-directory <span style="color: #7FFF7F;">"init-ddskk"</span>)
         default-input-method <span style="color: #7FFF7F;">"japanese-skk"</span> )
   <span style="color: #7FBFFF;">:config</span>
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -1450,9 +1446,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb3f8caf" class="outline-4">
-<h4 id="orgb3f8caf">編集関連</h4>
-<div class="outline-text-4" id="text-orgb3f8caf">
+<div id="outline-container-org7377cac" class="outline-4">
+<h4 id="org7377cac">編集関連</h4>
+<div class="outline-text-4" id="text-org7377cac">
 <p>
 キーバインド
 </p>
@@ -1489,11 +1485,11 @@ Enter で改行しない
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> skk-kuten-touten-alist
-      '(
+      <span style="color: #0000ff; background-color: #afeeee;">'(</span>
         (jp    . (<span style="color: #7FFF7F;">"&#12290;"</span> . <span style="color: #7FFF7F;">"&#12289;"</span>))
         (en-jp . (<span style="color: #7FFF7F;">"&#65294;"</span> . <span style="color: #7FFF7F;">"&#65292;"</span>))
         (en    . (<span style="color: #7FFF7F;">". "</span> . <span style="color: #7FFF7F;">", "</span>))
-        ))
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 (<span style="color: #FF7F7F;">setq-default</span> skk-kutouten-type 'en)
 </pre>
 </div>
@@ -1510,7 +1506,7 @@ Enter で改行しない
                 (<span style="color: #7FFF7F;">"z "</span> nil <span style="color: #7FFF7F;">"&#12288;"</span>)
                 (<span style="color: #7FFF7F;">"\\"</span> nil <span style="color: #7FFF7F;">"\\"</span>)
                 (<span style="color: #7FFF7F;">"@"</span> nil <span style="color: #7FFF7F;">"@"</span>)
-                )))
+                <span style="color: #0000ff; background-color: #afeeee;">)))</span>
 </pre>
 </div>
 <p>
@@ -1620,7 +1616,7 @@ src = <span style="color: #FFFF7F;">ARGV</span>[0]
  (t
   (<span style="color: #FF7F7F;">setq</span> skk-get-jisyo-directory (concat my:d:tmp <span style="color: #7FFF7F;">"skk-jisyo"</span>)
         skk-large-jisyo (concat skk-get-jisyo-directory <span style="color: #7FFF7F;">"/SKK-JISYO.L"</span>)))
- )
+ <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 <p>
@@ -1659,7 +1655,7 @@ src = <span style="color: #FFFF7F;">ARGV</span>[0]
     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-face-bold-p 'skk-dcomp-multiple-trailing-face nil)</span>
     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">;; &#21205;&#30340;&#35036;&#23436;&#12398;&#35079;&#25968;&#34920;&#31034;&#37089;&#12398;&#36984;&#25246;&#23550;&#35937;&#12398;&#12501;&#12455;&#12452;&#12473;</span>
     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-face-foreground 'skk-dcomp-multiple-selected-face "White")</span>
-    <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-face-background 'skk-dcomp-multiple-selected-face "LightGoldenrod4")</span>
+    <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-face-background 'skk-dcomp-multiple-selected-face "LightGoldenrod4"</span><span style="color: #ff0000; background-color: #ffff00;">)</span>
     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-face-bold-p 'skk-dcomp-multiple-selected-face nil)</span>
 </pre>
 </div>
@@ -1783,7 +1779,7 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">password-store</span>
   <span style="color: #7FBFFF;">:ensure</span> t
   <span style="color: #7FBFFF;">:if</span> my:d:password-store
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -1796,9 +1792,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org039696e" class="outline-3">
-<h3 id="org039696e">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org039696e">
+<div id="outline-container-orga0e813e" class="outline-3">
+<h3 id="orga0e813e">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orga0e813e">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -1808,12 +1804,12 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
   <span style="color: #7FBFFF;">:if</span> (<span style="color: #FF7F7F;">and</span> (<span style="color: #FF7F7F;">or</span> (my:dpkg-status <span style="color: #7FFF7F;">"wl"</span>)
                (my:dpkg-status <span style="color: #7FFF7F;">"wl-beta"</span>))
            (my:dpkg-status <span style="color: #7FFF7F;">"rail"</span>))
-  <span style="color: #7FBFFF;">:commands</span> (wl wl-other-frame wl-draft wl-user-agent wl-user-agent-compose wl-draft-send wl-draft-kill)
+  <span style="color: #7FBFFF;">:commands</span> (wl wl-other-frame wl-draft wl-user-agent wl-user-agent-compose wl-<span style="color: #ff0000; background-color: #ffff00;">draft-send wl-draft-kill)</span>
   <span style="color: #7FBFFF;">:init</span>
   (<span style="color: #FF7F7F;">unless</span> (package-installed-p 'gcontacts-get-wl)
     (quelpa '(gcontacts-get-wl
               <span style="color: #7FBFFF;">:fetcher</span> url
-              <span style="color: #7FBFFF;">:url</span> <span style="color: #7FFF7F;">"https://raw.githubusercontent.com/uwabami/gcontacts-get-wl/master/gcontacts-get-wl.el"</span>)))
+              <span style="color: #7FBFFF;">:url</span> <span style="color: #7FFF7F;">"https://raw.githubusercontent.com/uwabami/gcontacts-get-wl/</span><span style="color: #ff0000; background-color: #ffff00;">master/gcontacts-get-wl.el")))</span>
   (define-mail-user-agent
     'wl-user-agent
     'wl-user-agent-compose
@@ -1833,7 +1829,7 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
     (make-directory (concat elmo-msgdb-directory <span style="color: #7FFF7F;">"/local"</span>)))
   (<span style="color: #FF7F7F;">unless</span> (file-directory-p (concat elmo-msgdb-directory <span style="color: #7FFF7F;">"/local/Trash"</span>))
     (make-directory (concat elmo-msgdb-directory <span style="color: #7FFF7F;">"/local/Trash"</span>)))
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -1904,7 +1900,7 @@ Google Contacts の連絡先を Wanderlust の <code>.Address</code> に出力�
 oauth token は <code>pass</code> で管理している．中身は以下の通り
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> gcontacts-get-oauth-client-ID <span style="color: #7FFF7F;">"XXXXXXXXXXXXXXXX.apps.googleusercontent.com"</span>
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> gcontacts-get-oauth-client-ID <span style="color: #7FFF7F;">"XXXXXXXXXXXXXXXX.apps.googleusercontent.</span><span style="color: #ffa500;">co</span><span style="color: #ff0000; background-color: #ffff00;">m"</span>
       gcontacts-get-oauth-client-secret <span style="color: #7FFF7F;">"YYYYYYYYYYYYYYYYYYYYYYYYY"</span>
       gcontacts-get-ask nil)
 </pre>
@@ -2007,16 +2003,16 @@ text/plain を html より優先 → 最近は html を表示している
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#33258;&#20998;&#12398;&#12513;&#12540;&#12523;&#12450;&#12489;&#12524;&#12473;&#12398;&#12522;&#12473;&#12488;</span>
 (<span style="color: #FF7F7F;">setq</span> wl-user-mail-address-list
       (list (wl-address-header-extract-address wl-from)
-            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"e-mail2@example.com"</span>
-            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"e-mail3@example.net" ...</span>
-            ))
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"</span><span style="color: #006400; background-color: #fffacd;">e-mail2@example.com</span><span style="color: #a5a5a6;">"</span>
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"</span><span style="color: #006400; background-color: #fffacd;">e-mail3@example.net</span><span style="color: #a5a5a6;">" ...</span>
+            <span style="color: #0000ff; background-color: #afeeee;">))</span>
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#33258;&#20998;&#12398;&#21442;&#21152;&#12375;&#12390;&#12356;&#12427;&#12513;&#12540;&#12522;&#12531;&#12464;&#12522;&#12473;&#12488;&#12398;&#12522;&#12473;&#12488;</span>
 (<span style="color: #FF7F7F;">setq</span> wl-subscribed-mailing-list
-      '(<span style="color: #7FFF7F;">"wl@lists.airs.net"</span>
-        <span style="color: #7FFF7F;">"apel-ja@m17n.org"</span>
-        <span style="color: #7FFF7F;">"emacs-mime-ja@m17n.org"</span>
-        <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"ml@example.com" ...</span>
-        ))
+      '(<span style="color: #7FFF7F;">"</span><span style="color: #006400; background-color: #fffacd;">wl@lists.airs.net</span><span style="color: #7FFF7F;">"</span>
+        <span style="color: #7FFF7F;">"</span><span style="color: #006400; background-color: #fffacd;">apel-ja@m17n.org</span><span style="color: #7FFF7F;">"</span>
+        <span style="color: #7FFF7F;">"</span><span style="color: #006400; background-color: #fffacd;">emacs-mime-ja@m17n.org</span><span style="color: #7FFF7F;">"</span>
+        <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"</span><span style="color: #006400; background-color: #fffacd;">ml@example.com</span><span style="color: #a5a5a6;">" ...</span>
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 </pre>
 </div>
 </div>
@@ -2064,34 +2060,34 @@ default に二重に指定しているのは，
          (wl-smtp-posting-port . 587)
          (wl-smtp-connection-type . 'starttls)
          (wl-smtp-authenticate-type . <span style="color: #7FFF7F;">"login"</span>)
-         )
+         <span style="color: #0000ff; background-color: #afeeee;">)</span>
         (<span style="color: #7FFF7F;">"example1"</span>
-         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name <a href="mailto:account%40example1.com">&lt;account@example1.com&gt;</a>"</span>)
+         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name </span><span style="color: #006400; background-color: #fffacd;"><a href="mailto:account%40example1.com">&lt;account@example1.com&gt;</a></span><span style="color: #7FFF7F;">"</span>)
          (wl-smtp-posting-server . <span style="color: #7FFF7F;">"smtp.example1.com"</span>)
          (wl-smtp-posting-user . <span style="color: #7FFF7F;">"your account"</span>)
          (wl-smtp-posting-port . 587)
          (wl-smtp-connection-type . 'starttls)
          (wl-smtp-authenticate-type . <span style="color: #7FFF7F;">"login"</span>)
-         )
+         <span style="color: #0000ff; background-color: #afeeee;">)</span>
         (<span style="color: #7FFF7F;">"example2"</span>
-         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name <a href="mailto:account%40example2.com">&lt;account@example2.com&gt;</a>"</span>)
+         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name </span><span style="color: #006400; background-color: #fffacd;"><a href="mailto:account%40example2.com">&lt;account@example2.com&gt;</a></span><span style="color: #7FFF7F;">"</span>)
          (wl-smtp-posting-server . <span style="color: #7FFF7F;">"smtp.example2.com"</span>)
          (wl-smtp-posting-user . <span style="color: #7FFF7F;">"your account"</span>)
          (wl-smtp-posting-port . 587)
          (wl-smtp-connection-type . 'starttls)
          (wl-smtp-authenticate-type . <span style="color: #7FFF7F;">"plain"</span>)
-         )
+         <span style="color: #0000ff; background-color: #afeeee;">)</span>
         (<span style="color: #7FFF7F;">"ssh:smtp"</span>
          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">need ssh tunnel</span>
          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ssh -f -N -L 20025:localhost:25 smtp.server.com</span>
-         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name <a href="mailto:account%40example3.com">&lt;account@example3.com&gt;</a>"</span>)
+         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name </span><span style="color: #006400; background-color: #fffacd;"><a href="mailto:account%40example3.com">&lt;account@example3.com&gt;</a></span><span style="color: #7FFF7F;">"</span>)
          (wl-smtp-posting-server . <span style="color: #7FFF7F;">"localhost"</span>)
          (wl-smtp-posting-user . <span style="color: #7FFF7F;">"your ssh account"</span>)
          (wl-smtp-posting-port . 20025)
          (wl-smtp-connection-type . 'nil)
          (wl-smtp-authenticate-type . 'nil)
-         )
-        ))
+         <span style="color: #0000ff; background-color: #afeeee;">)</span>
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 </pre>
 </div>
 <p>
@@ -2224,7 +2220,7 @@ GCALDaemon で LDAP サーバは使えなくなったのでコメントアウト
 パスワードの保存先
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-passwd-alist-file-name (concat my:d:password-store <span style="color: #7FFF7F;">"/emacs/wl-passwd.gpg"</span>))
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-passwd-alist-file-name (concat my:d:password-store <span style="color: #7FFF7F;">"/emacs/wl-</span><span style="color: #ffa500;">passwd</span><span style="color: #ff0000; background-color: #ffff00;">.gpg"))</span>
 </pre>
 </div>
 </div>
@@ -2602,7 +2598,7 @@ Gmail の「スター付き」フォルダでも有効
 <div class="outline-text-5" id="text-org2ec85f6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> mime-header-lexical-analyzer
-      '(
+      <span style="color: #0000ff; background-color: #afeeee;">'(</span>
         <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">eword-analyze-quoted-string</span>
         eword-analyze-domain-literal
         eword-analyze-comment
@@ -2642,9 +2638,9 @@ Gmail の「スター付き」フォルダでも有効
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-folder-process-duplicates-alist
-      '(
+      <span style="color: #0000ff; background-color: #afeeee;">'(</span>
         (<span style="color: #7FFF7F;">".*"</span> . hide)
-        ))
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 </pre>
 </div>
 </div>
@@ -2662,11 +2658,11 @@ Gmail の「スター付き」フォルダでも有効
                        (<span style="color: #FF7F7F;">cond</span> ((string&lt; x y) y)
                              ('t x)))
           (thread-number-get-date (x)
-                                  (timezone-make-date-sortable (elmo-msgdb-overview-entity-get-date
-                                                                (elmo-message-entity
-                                                                 wl-summary-buffer-elmo-folder x))))
+                                  (timezone-make-date-sortable (elmo-msgdb-<span style="color: #ffa500;">over</span><span style="color: #ff0000; background-color: #ffff00;">view-entity-get-date</span>
+                                                                (elmo-message-<span style="color: #ffa500;">e</span><span style="color: #ff0000; background-color: #ffff00;">ntity</span>
+                                                                 wl-summary-<span style="color: #ffa500;">buf</span><span style="color: #ff0000; background-color: #ffff00;">fer-elmo-folder x))))</span>
           (thread-get-family (x)
-                             (cons x (wl-thread-entity-get-descendant (wl-thread-get-entity x))))
+                             (cons x (wl-thread-entity-get-descendant (wl-<span style="color: #ffa500;">threa</span><span style="color: #ff0000; background-color: #ffff00;">d-get-entity x))))</span>
           (max-reply-date (x)
                           (<span style="color: #FF7F7F;">cond</span> ((eq 'nil x)
                                  'nil)
@@ -2705,7 +2701,7 @@ Gmail の「スター付き」フォルダでも有効
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-msgdb-extra-fields
-      '(
+      <span style="color: #0000ff; background-color: #afeeee;">'(</span>
         <span style="color: #7FFF7F;">"List-Post"</span>
         <span style="color: #7FFF7F;">"List-Id"</span>
         <span style="color: #7FFF7F;">"List-ID"</span>                  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12383;&#12414;&#12395; List-ID &#12391;&#26469;&#12427;&#12513;&#12540;&#12523;&#12354;&#12427;&#12424;&#12397;?</span>
@@ -2724,7 +2720,7 @@ Gmail の「スター付き」フォルダでも有効
         <span style="color: #7FFF7F;">"Subject"</span>
         <span style="color: #7FFF7F;">"Reply-To"</span>
         <span style="color: #7FFF7F;">"Auto-Submitted"</span>            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">Git commit/Cron notify</span>
-        ))
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 </pre>
 </div>
 </div>
@@ -2753,7 +2749,7 @@ Gmail の「スター付き」フォルダでも有効
         <span style="color: #7FFF7F;">"^Cc:"</span>
         <span style="color: #7FFF7F;">"^Date:"</span>
         <span style="color: #7FFF7F;">"^Message-ID:"</span>
-        ))
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 </pre>
 </div>
 </div>
@@ -2772,7 +2768,7 @@ Mew 風&#x2026;
         <span style="color: #7FFF7F;">"^Cc:"</span>
         <span style="color: #7FFF7F;">"^Date:"</span>
         <span style="color: #7FFF7F;">"^Message-ID:"</span>
-        ))
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 </pre>
 </div>
 </div>
@@ -2899,7 +2895,7 @@ To や From にアドレスが沢山指定されていると省略されるの�
             '(lambda ()
                (define-key (current-local-map) <span style="color: #7FFF7F;">"\C-c\C-w"</span>
                  'insert-signature-eref)))
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -2923,69 +2919,69 @@ To や From にアドレスが沢山指定されていると省略されるの�
          . wl-highlight-message-important-header-contents)
         (<span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">User-Agent</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">X-Mailer</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">X-Newsreader</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">[ \t]*:"</span> .
          wl-highlight-message-unimportant-header-contents)
-        ))
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:wl-set-face</span> (face spec)
   (make-face face)
   (<span style="color: #FF7F7F;">cond</span> ((fboundp 'face-spec-set)
          (face-spec-set face spec))
         (t
          (wl-declare-face face spec))))
-(my:wl-set-face 'wl-highlight-folder-closed-face                  '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4cff4c"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil <span style="color: #7FBFFF;">:weight</span> normal ))))
-(my:wl-set-face 'wl-highlight-folder-few-face                     '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:italic</span> nil <span style="color: #7FBFFF;">:weight</span> normal ))))
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-killed-face                  '((t (:foreground ,my:h:black :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-many-face                    '((t (:foreground ,my:h:magenta :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-opened-face                  '((t (:foreground "#4cffff" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-path-face                    '((t (:underline t :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-unknown-face                 '((t (:foreground "#4cffff" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-unread-face                  '((t (:foreground ,my:n:blue :bold nil :italic nil :weight normal ))))</span>
-(my:wl-set-face 'wl-highlight-folder-zero-face                    '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil <span style="color: #7FBFFF;">:weight</span> normal ))))
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-header-separator-face               '((t (:inherit highlight :bold t ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-message-citation-header             '((t (:foreground ,my:h:green :bold nil :italic nil ))))</span>
-(my:wl-set-face 'wl-highlight-message-cited-text-1                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7fff7f"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-2                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#ffff7f"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-3                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7f7fff"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-4                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7fffff"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-5                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#ff7fff"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-6                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#ff7f7f"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-7                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4cff4c"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-8                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#ffff4c"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-9                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4c4cff"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-10               '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4cffff"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-11               '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#ff4cff"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-cited-text-12               '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#ff4c4c"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-date-header-contents        '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-header-contents             '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#aaaaaa"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-headers                     '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFFFF"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-important-header-contents2  '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-signature                   '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#aaaaaa"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-important-header-contents   '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4CFF"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-subject-header-contents     '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-from-header-contents        '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF4C"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-message-unimportant-header-contents '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#aaaaaa"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil ))))
-(my:wl-set-face 'wl-highlight-summary-answered-face               '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil <span style="color: #7FBFFF;">:weight</span> normal ))))
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-copied-face                 '((t (:foreground "#4CFFFF" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-deleted-face                '((t (:foreground ,my:h:black :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-displaying-face             '((t (:underline t :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-disposed-face               '((t (:foreground "#aaaaaa" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-flagged-face                '((t (:foreground ,my:h:yellow :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-forwarded-face              '((t (:foreground ,my:h:blue :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-high-read-face              '((t (:foreground ,my:h:green :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-high-unread-face            '((t (:foreground ,my:h:orange :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-important-face              '((t (:foreground "#ffff4c" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-important-flag-face         '((t (:foreground "#ffff4c" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-killed-face                 '((t (:foreground ,my:h:black :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-l:read-face                 '((t (:foreground "#4CFF4C" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-l:unread-face               '((t (:foreground ,my:h:lightb :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-new-face                    '((t (:foreground "#ff4c4c" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-normal-face                 '((t (:foreground "#f6f3e8" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-prefetch-face               '((t (:foreground ,my:n:blue :bold nil :italic nil :weight normal ))))</span>
-(my:wl-set-face 'wl-highlight-summary-refiled-face                '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil <span style="color: #7FBFFF;">:weight</span> normal ))))
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-resend-face                 '((t (:foreground ,my:h:orange :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-target-face                 '((t (:foreground "#4CFFFF" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-temp-face                   '((t (:foreground ,my:n:violet :bold nil :italic nil :weight normal ))))</span>
-(my:wl-set-face 'wl-highlight-summary-thread-top-face             '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:italic</span> nil <span style="color: #7FBFFF;">:weight</span> normal ))))
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-unread-face                 '((t (:foreground "#ff4c4c" :bold nil :italic nil :weight normal ))))</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-thread-indent-face                  '((t (:underline t :bold nil :italic nil :weight normal ))))</span>
+(my:wl-set-face 'wl-highlight-folder-closed-face                  '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#4cff4c" :bold nil :italic nil :weight normal ))))</span>
+(my:wl-set-face 'wl-highlight-folder-few-face                     '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#FF4C4C" :bold t :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-killed-face                  '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:black :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-many-face                    '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:magenta :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-opened-face                  '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#4cffff" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-path-face                    '((t (:</span><span style="color: #ffa500;">und</span><span style="color: #ff0000; background-color: #ffff00;">erline t :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-unknown-face                 '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#4cffff" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-folder-unread-face                  '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:n:blue :bold nil :italic nil :weight normal ))))</span>
+(my:wl-set-face 'wl-highlight-folder-zero-face                    '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#F6F3E8" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-header-separator-face               '((t (:</span><span style="color: #ffa500;">inh</span><span style="color: #ff0000; background-color: #ffff00;">erit highlight :bold t ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-message-citation-header             '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:green :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-1                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#7fff7f" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-2                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#ffff7f" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-3                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#7f7fff" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-4                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#7fffff" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-5                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#ff7fff" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-6                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#ff7f7f" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-7                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#4cff4c" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-8                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#ffff4c" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-9                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#4c4cff" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-10               '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#4cffff" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-11               '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#ff4cff" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-cited-text-12               '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#ff4c4c" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-date-header-contents        '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#4CFF4C" :bold t :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-header-contents             '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#aaaaaa" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-headers                     '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#4CFFFF" :bold t :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-important-header-contents2  '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#4CFF4C" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-signature                   '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#aaaaaa" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-important-header-contents   '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#FF4CFF" :bold t :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-subject-header-contents     '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#FF4C4C" :bold t :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-from-header-contents        '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#FFFF4C" :bold t :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-message-unimportant-header-contents '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#aaaaaa" :bold nil :italic nil ))))</span>
+(my:wl-set-face 'wl-highlight-summary-answered-face               '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#4CFF4C" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-copied-face                 '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#4CFFFF" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-deleted-face                '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:black :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-displaying-face             '((t (:</span><span style="color: #ffa500;">und</span><span style="color: #ff0000; background-color: #ffff00;">erline t :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-disposed-face               '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#aaaaaa" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-flagged-face                '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:yellow :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-forwarded-face              '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:blue :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-high-read-face              '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:green :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-high-unread-face            '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:orange :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-important-face              '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#ffff4c" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-important-flag-face         '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#ffff4c" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-killed-face                 '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:black :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-l:read-face                 '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#4CFF4C" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-l:unread-face               '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:lightb :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-new-face                    '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#ff4c4c" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-normal-face                 '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#f6f3e8" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-prefetch-face               '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:n:blue :bold nil :italic nil :weight normal ))))</span>
+(my:wl-set-face 'wl-highlight-summary-refiled-face                '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#7F7FFF" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-resend-face                 '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:h:orange :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-target-face                 '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#4CFFFF" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-temp-face                   '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground ,my:n:violet :bold nil :italic nil :weight normal ))))</span>
+(my:wl-set-face 'wl-highlight-summary-thread-top-face             '((t (<span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">foregr</span><span style="color: #ff0000; background-color: #ffff00;">ound "#F6F3E8" :bold t :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-summary-unread-face                 '((t (:</span><span style="color: #ffa500;">for</span><span style="color: #ff0000; background-color: #ffff00;">eground "#ff4c4c" :bold nil :italic nil :weight normal ))))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:wl-set-face 'wl-highlight-thread-indent-face                  '((t (:</span><span style="color: #ffa500;">und</span><span style="color: #ff0000; background-color: #ffff00;">erline t :bold nil :italic nil :weight normal ))))</span>
 </pre>
 </div>
 </div>
@@ -3044,7 +3040,7 @@ mu(maildir-utils)を使う. 偶にセグフォるので悩み所
   (elmo-search-register-engine
    'mu 'local-file
    <span style="color: #7FBFFF;">:prog</span> <span style="color: #7FFF7F;">"mu"</span>
-   <span style="color: #7FBFFF;">:args</span> '(<span style="color: #7FFF7F;">"find"</span> <span style="color: #7FFF7F;">"-u"</span> elmo-search-split-pattern-list <span style="color: #7FFF7F;">"--fields"</span> <span style="color: #7FFF7F;">"l"</span> <span style="color: #7FFF7F;">"--sortfield"</span> <span style="color: #7FFF7F;">"date"</span> <span style="color: #7FFF7F;">"-r"</span>)
+   <span style="color: #7FBFFF;">:args</span> '(<span style="color: #7FFF7F;">"find"</span> <span style="color: #7FFF7F;">"-u"</span> elmo-search-split-pattern-list <span style="color: #7FFF7F;">"--fields"</span> <span style="color: #7FFF7F;">"l"</span> <span style="color: #7FFF7F;">"--</span><span style="color: #ffa500;">sortfie</span><span style="color: #ff0000; background-color: #ffff00;">ld" "date" "-r")</span>
    <span style="color: #7FBFFF;">:charset</span> 'utf-8)
   (<span style="color: #FF7F7F;">setq</span> elmo-search-default-engine 'mu)
   (<span style="color: #FF7F7F;">setq</span> wl-quicksearch-folder <span style="color: #7FFF7F;">"[]"</span>))
@@ -3075,7 +3071,7 @@ mu(maildir-utils)を使う. 偶にセグフォるので悩み所
         (<span style="color: #FF7F7F;">require</span> '<span style="color: #FFBF7F;">rfc2368</span>)
         (<span style="color: #FF7F7F;">let*</span> ((headers (mapcar (<span style="color: #FF7F7F;">lambda</span> (h) (cons (intern (car h)) (cdr h)))
                                 (rfc2368-parse-mailto-url mailto-url)))
-               (good-headers (remove-if (<span style="color: #FF7F7F;">lambda</span> (h) (member (car h) '(Body))) headers))
+               (good-headers (remove-if (<span style="color: #FF7F7F;">lambda</span> (h) (member (car h) '(Body))) <span style="color: #ffa500;">h</span><span style="color: #ff0000; background-color: #ffff00;">eaders))</span>
                (body (cdr (assoc 'Body headers))))
           (wl-draft good-headers nil nil body)))))
 </pre>
@@ -3133,8 +3129,8 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
         w3m-use-cookies t)
   (<span style="color: #FF7F7F;">with-eval-after-load</span> <span style="color: #7FFF7F;">"w3m-search"</span>
     '(add-to-list 'w3m-search-engine-alist
-                  '(<span style="color: #7FFF7F;">"google"</span> <span style="color: #7FFF7F;">"https://encrypted.google.com/search?num=100&amp;ie=utf-8&amp;oe=utf-8&amp;hl=ja&amp;safe=off&amp;filter=0&amp;pws=0&amp;complete=0&amp;gbv=1&amp;q=%s"</span> utf-8)))
-  )
+                  '(<span style="color: #7FFF7F;">"google"</span> <span style="color: #7FFF7F;">"https://encrypted.google.com/search?num=100&amp;ie=</span><span style="color: #ffa500;">ut</span><span style="color: #ff0000; background-color: #ffff00;">f-8&amp;oe=utf-8&amp;hl=ja&amp;safe=off&amp;filter=0&amp;pws=0&amp;complete=0&amp;gbv=1&amp;q=%s" utf-8)))</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -3144,8 +3140,8 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 <div class="outline-text-2" id="text-org95f555e">
 <p>
 補完を ido に任せているパッケージがちらほらあるので設定しておく．
-find-file は helm-find-file より ido + flx-ido + ido-grid-mode の方が
-好みなんだが，どうしようかなぁ&#x2026;
+find-file は helm-find-file より ido + flx-ido + ido-grid の方が好みなんだが,
+どうしようかなぁ&#x2026;
 </p>
 </div>
 <div id="outline-container-org6b0690a" class="outline-3">
@@ -3153,12 +3149,20 @@ find-file は helm-find-file より ido + flx-ido + ido-grid-mode の方が
 <div class="outline-text-3" id="text-org6b0690a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">:bind (("C-x f"   . ido-find-file)</span>
+  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x C-f" . ido-find-file)</span>
+  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x d"   . ido-dired)</span>
+  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x C-d" . ido-dired)</span>
+  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x b"   . ido-switch-buffer)</span>
+  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x C-b" . ido-switch-buffer)</span>
+  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x M-b" . ibuffer)</span>
+  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">)</span>
   <span style="color: #7FBFFF;">:config</span>
-  (ido-mode t)
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(ido-everywhere t)  &lt;- Wanderlust &#12415;&#12383;&#12356;&#12395;&#65292;&#36942;&#21435;&#12398;&#36984;&#25246;&#12434;&#35226;&#12360;&#12390;&#12356;&#12427;&#22900;&#12392;&#30456;&#24615;&#24746;&#12356;&#12398;&#12391;.</span>
-  (<span style="color: #FF7F7F;">setq</span> ido-enable-prefix nil             <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">prefix match &#12434;&#26377;&#21177;&#12395;&#12377;&#12427;&#12392;&#65292;&#20837;&#21147;&#12434;&#20808;&#38957;&#19968;&#33268;&#21487;&#33021;</span>
-        ido-confirm-unique-completion t   <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">TAB &#12391;&#21517;&#21069;&#12398;&#19968;&#33268;&#12414;&#12391;&#34892;&#12394;&#12356;&#65292;&#12381;&#12398;&#24460; RET &#12391;&#23455;&#34892;</span>
-        ido-enable-flex-matching t        <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">flex matching &#12434;&#35430;&#12377;&#38555;&#12395;&#12399; prefix &#12434;&#28961;&#21177;&#21270;&#12377;&#12427;&#12371;&#12392;</span>
+  (ido-mode -1)
+  (ido-everywhere nil)  <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&lt;- &#36942;&#21435;&#12398;&#36984;&#25246;&#12434;&#35226;&#12360;&#12390;&#12356;&#12427;&#22900;&#12392;&#30456;&#24615;&#24746;&#12356;&#12398;&#12391;&#28961;&#21177;&#21270;</span>
+  (<span style="color: #FF7F7F;">setq</span> ido-enable-prefix nil             <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">prefix match &#12434;&#26377;&#21177;&#12395;&#12377;&#12427;&#12392;&#65292;&#20837;&#21147;&#12434;</span><span style="color: #ff0000; background-color: #ffff00;">&#20808;&#38957;&#19968;&#33268;&#21487;&#33021;</span>
+        ido-confirm-unique-completion t   <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">TAB &#12391;&#21517;&#21069;&#12398;&#19968;&#33268;&#12414;&#12391;&#34892;&#12394;&#12356;&#65292;&#12381;&#12398;&#24460; </span><span style="color: #ff0000; background-color: #ffff00;">RET &#12391;&#23455;&#34892;</span>
+        ido-enable-flex-matching t        <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">flex matching &#12434;&#35430;&#12377;&#38555;&#12395;&#12399; prefix </span><span style="color: #ff0000; background-color: #ffff00;">&#12434;&#28961;&#21177;&#21270;&#12377;&#12427;&#12371;&#12392;</span>
         ido-enable-dot-prefix t           <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">. &#12434; prefix &#12392;&#12375;&#12390;&#25201;&#12358;</span>
         ido-default-file-method   'selected-window
         ido-default-buffer-method 'selected-window
@@ -3181,7 +3185,7 @@ find-file は helm-find-file より ido + flx-ido + ido-grid-mode の方が
              <span style="color: #7FFF7F;">".snm"</span>
              <span style="color: #7FFF7F;">".synctex.gz"</span>
              <span style="color: #7FFF7F;">".vrb"</span>
-             )
+             <span style="color: #0000ff; background-color: #afeeee;">)</span>
            do (add-to-list 'completion-ignored-extensions ext))
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido &#12398; buffer &#12391; skk &#12434;&#28961;&#21177;&#21270;&#12375;&#12390;&#12362;&#12367;.</span>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26085;&#26412;&#35486;&#12501;&#12449;&#12452;&#12523;&#21517;&#12399;, &#12392;&#12426;&#12354;&#12360;&#12378;&#32771;&#12360;&#12394;&#12356;&#12371;&#12392;&#12395;.</span>
@@ -3189,95 +3193,11 @@ find-file は helm-find-file より ido + flx-ido + ido-grid-mode の方が
             (<span style="color: #FF7F7F;">lambda</span> ()
               (<span style="color: #FF7F7F;">when</span> (fboundp 'skk-mode-exit)
                 (skk-mode-exit))))
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgddd0966" class="outline-3">
-<h3 id="orgddd0966"><code>flx-ido</code>: flex match の強化</h3>
-<div class="outline-text-3" id="text-orgddd0966">
-<p>
-曖昧マッチが非常に直感的になった．地味に便利で手放せない．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">flx-ido</span>
-  <span style="color: #7FBFFF;">:config</span>
-  (flx-ido-mode 1)
-  (<span style="color: #FF7F7F;">setq</span> flx-ido-use-faces t
-        flx-ido-threshold 10000)
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgef37302" class="outline-3">
-<h3 id="orgef37302"><code>ido-grid-mode</code>: 補完候補の grid 表示</h3>
-<div class="outline-text-3" id="text-orgef37302">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido-grid-mode</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> ido-grid-mode-max-columns 10
-        ido-grid-mode-max-rows 5   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12498;&#12519;&#12467;&#12498;&#12519;&#12467;&#12392;&#21205;&#12367;&#12398;&#12364;&#29033;&#12431;&#12375;&#12356;&#12398;&#12391;</span>
-        ido-grid-mode-min-rows 5   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#39640;&#12373; 5 &#34892;&#12395;&#22266;&#23450;&#12375;&#12390;&#12362;&#12367;&#65294;</span>
-        ido-grid-mode-scroll-up    #'ido-grid-mode-previous-row
-        ido-grid-mode-scroll-down  #'ido-grid-mode-next-row
-        ido-grid-mode-prefix-scrolls t
-        ido-grid-mode-start-collapsed nil
-        ido-grid-mode-keys nil     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">PageUp/C-p &#12392; PageDonw/C-n &#12364;&#36870;&#12398;&#26041;&#12364;&#22909;&#12415;.</span>
-        ido-grid-mode-prefix <span style="color: #7FFF7F;">"-&gt; "</span>
-        )
-  (ido-grid-mode t)
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:ido-minibuffer-truncate-line</span> ()
-    (set (make-local-variable 'truncate-lines) nil))
-  (add-hook 'ido-minibuffer-setup-hook 'my:ido-minibuffer-truncate-line)
-  (add-hook 'ido-setup-hook 'my:ido-minibuffer-truncate-line)
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org95de6de" class="outline-3">
-<h3 id="org95de6de"><code>ido-recentf</code>: recentf を ido で</h3>
-<div class="outline-text-3" id="text-org95de6de">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">ido-recentf-open</span> ()
-  <span style="color: #7FFF7F;">"Use `</span><span style="color: #FFBF7F;">ido-completing-read</span><span style="color: #7FFF7F;">' to \\[</span><span style="color: #FFBF7F;">find-file</span><span style="color: #7FFF7F;">] a recent file"</span>
-  (<span style="color: #FF7F7F;">interactive</span>)
-  (<span style="color: #FF7F7F;">if</span> (find-file (ido-completing-read <span style="color: #7FFF7F;">"Find recent file: "</span> recentf-list))
-      (message <span style="color: #7FFF7F;">"Opening file..."</span>)
-    (message <span style="color: #7FFF7F;">"Aborting"</span>)))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org1fb9564" class="outline-3">
-<h3 id="org1fb9564"><code>ido</code> 関連の keybind</h3>
-<div class="outline-text-3" id="text-org1fb9564">
-<p>
-<code>ido-grid-mode</code> の初期設定が気にくわない(<code>C-p,C-n</code> と <code>&lt;up&gt;&lt;down&gt;</code> は逆の方が好き)なので
-それを設定するのがメイン.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:ido-keybind-setup</span> ()
-  <span style="color: #7FFF7F;">"update ido keybind"</span>
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;prior&gt;"</span>) 'ido-grid-mode-previous-page)
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;next&gt;"</span>)  'ido-grid-mode-next-page)
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;left&gt;"</span>)  'ido-grid-mode-left)
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;right&gt;"</span>) 'ido-grid-mode-right)
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;up&gt;"</span>)    'ido-grid-mode-previous)
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"&lt;down&gt;"</span>)  'ido-grid-mode-next)
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-p"</span>)     'ido-grid-mode-previous)
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-n"</span>)     'ido-grid-mode-next)
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-h"</span>)     'ido-delete-backward-updir)
-  (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-l"</span>)     'ido-delete-backward-updir)
-  )
-(add-hook 'ido-setup-hook 'my:ido-keybind-setup)
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12392;&#12426;&#12354;&#12360;&#12378; helm-find-files &#31561;&#12434;&#24403;&#20998;&#20351;&#12387;&#12390;&#12415;&#12427;&#20107;&#12395;&#65294;</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(global-set-key (kbd "C-x f")   'ido-find-file)</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(global-set-key (kbd "C-x C-f") 'ido-find-file)</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(global-set-key (kbd "C-x C-r") 'ido-recentf-open)</span>
+  (add-hook 'ido-setup-hook
+            (<span style="color: #FF7F7F;">lambda</span> ()
+              (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-h"</span>)     'ido-delete-<span style="color: #ffa500;">backwa</span><span style="color: #ff0000; background-color: #ffff00;">rd-updir)</span>
+              (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-l"</span>)     'ido-delete-<span style="color: #ffa500;">backwa</span><span style="color: #ff0000; background-color: #ffff00;">rd-updir)))</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -3293,21 +3213,22 @@ find-file は helm-find-file より ido + flx-ido + ido-grid-mode の方が
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">    (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm</span>
       <span style="color: #7FBFFF;">:ensure</span> t
-      <span style="color: #7FBFFF;">:defines</span> helm-map
-      <span style="color: #7FBFFF;">:diminish</span> (helm-migemo-mode)
+      <span style="color: #7FBFFF;">:diminish</span> (helm-migemo-mode helm-mode)
       <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"M-x"</span>     . helm-M-x)
              (<span style="color: #7FFF7F;">"C-x f"</span>   . helm-find-files)
              (<span style="color: #7FFF7F;">"C-x C-f"</span> . helm-find-files)
              (<span style="color: #7FFF7F;">"C-x b"</span>   . helm-buffers-list)
              (<span style="color: #7FFF7F;">"C-x C-b"</span> . helm-buffers-list)
              (<span style="color: #7FFF7F;">"C-x C-r"</span> . helm-recentf)
-             )
+             <span style="color: #0000ff; background-color: #afeeee;">)</span>
       <span style="color: #7FBFFF;">:config</span>
-      (define-key helm-map (kbd <span style="color: #7FFF7F;">"TAB"</span>) 'helm-execute-persistent-action)
-      (define-key helm-map (kbd <span style="color: #7FFF7F;">"C-i"</span>) 'helm-execute-persistent-action)
-      (global-unset-key (kbd <span style="color: #7FFF7F;">"C-z"</span>))
-      (define-key helm-map (kbd <span style="color: #7FFF7F;">"C-z"</span>) 'helm-select-action)
+      (<span style="color: #FF7F7F;">with-eval-after-load</span> <span style="color: #7FFF7F;">"helm"</span>
+        (<span style="color: #FF7F7F;">bind-keys</span> <span style="color: #7FBFFF;">:map</span> helm-map
+                   (<span style="color: #7FFF7F;">"&lt;tab&gt;"</span>   . helm-execute-persistent-action)
+                   (<span style="color: #7FFF7F;">"C-i"</span>     . helm-execute-persistent-action)
+                   (<span style="color: #7FFF7F;">"C-z"</span>     . helm-select-action)))
       (my:disable-builtin-mode 'helm-mode)   <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">helm-mode &#12399;&#22522;&#26412;&#20351;&#12431;&#12394;&#12356;</span>
+      (global-unset-key (kbd <span style="color: #7FFF7F;">"C-z"</span>))
       (<span style="color: #FF7F7F;">setq</span> helm-command-prefix-key <span style="color: #7FFF7F;">"C-z"</span>    <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">helm-command-prefix-key</span>
             <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">dired &#12391;&#12398; skk &#12392;&#12398;&#31478;&#21512;(C-x C-j &#12398;&#22890;&#12356;&#21512;&#12356;)&#12434;&#36991;&#12369;&#12427;</span>
             dired-bind-jump nil
@@ -3318,28 +3239,43 @@ find-file は helm-find-file より ido + flx-ido + ido-grid-mode の方が
             <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#20313;&#35336;&#12394;&#12501;&#12449;&#12452;&#12523;&#12399;&#34920;&#31034;&#12375;&#12394;&#12356;</span>
             helm-ff-skip-boring-files t
             <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm-adaptive &#12398;&#20445;&#23384;&#20808;&#12398;&#22793;&#26356;</span>
-            helm-adaptive-history-file (concat my:d:tmp <span style="color: #7FFF7F;">"helm-adaptive-history"</span>)
+            helm-adaptive-history-file (concat my:d:tmp <span style="color: #7FFF7F;">"helm-adaptive-history"</span><span style="color: #ff0000; background-color: #ffff00;">)</span>
             <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">mode line &#12395;&#12399;&#20309;&#12418;&#34920;&#31034;&#12375;&#12394;&#12356;</span>
             helm-completion-mode-string <span style="color: #7FFF7F;">""</span>
-            )
+            <span style="color: #0000ff; background-color: #afeeee;">)</span>
       <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#19968;&#12388;&#19978;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;(../)&#12434;&#20505;&#35036;&#12363;&#12425;&#22806;&#12377;</span>
       (advice-add 'helm-ff-filter-candidate-one-by-one
                   <span style="color: #7FBFFF;">:around</span> (<span style="color: #FF7F7F;">lambda</span> (orig-func file)
-                            (<span style="color: #FF7F7F;">unless</span> (string-match <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(?:</span><span style="color: #7FFF7F;">/</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\`</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">\\.\\{2\\}\\'"</span> file)
+                            (<span style="color: #FF7F7F;">unless</span> (string-match <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(?:</span><span style="color: #7FFF7F;">/</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\`</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">\\.\\{2\\}\\'</span><span style="color: #ff0000; background-color: #ffff00;">" file)</span>
                               (funcall orig-func file))))
       <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#23384;&#22312;&#12375;&#12394;&#12356;&#12501;&#12449;&#12452;&#12523;&#12395;&#12399;&#20309;&#12418;&#12375;&#12394;&#12356;(default &#12399;&#26032;&#35215; buffer &#12364;&#12391;&#12365;&#12427;)</span>
       (advice-add 'helm-ff-kill-or-find-buffer-fname
                   <span style="color: #7FBFFF;">:around</span> (<span style="color: #FF7F7F;">lambda</span> (orig-func candidate)
                             (<span style="color: #FF7F7F;">when</span> (file-exists-p candidate)
                               (funcall orig-func candidate))))
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">minibuffer &#12391; C-f &#12391; default &#12398; find-file &#12395;&#31227;&#34892;</span>
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">write-file &#12420; insert-file &#12394;&#12435;&#12363;&#12391;&#24517;&#38920;.</span>
+      (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:default-ff</span> (<span style="color: #FFFF7F;">&amp;optional</span> no-op)
+        <span style="color: #7FFF7F;">"execute default find-file"</span>
+        (<span style="color: #FF7F7F;">interactive</span>)
+        (call-interactively 'find-file))
+      (<span style="color: #FF7F7F;">setq</span> helm-type-file-actios
+            (append helm-type-file-actions
+                    '((<span style="color: #7FFF7F;">"Default Find File"</span> . my:default-ff))))
+      (<span style="color: #FF7F7F;">with-eval-after-load</span> <span style="color: #7FFF7F;">"helm"</span>
+        (<span style="color: #FF7F7F;">bind-keys</span> <span style="color: #7FBFFF;">:map</span> helm-map
+                   (<span style="color: #7FFF7F;">"C-f"</span> . (<span style="color: #FF7F7F;">lambda</span> () (<span style="color: #FF7F7F;">interactive</span>)
+                              (helm-quit-and-execute-action 'my:default-ff)))))
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm &#12392; migemo &#12398;&#35373;&#23450;</span>
       (<span style="color: #FF7F7F;">if</span> (<span style="color: #FF7F7F;">and</span> (locate-library <span style="color: #7FFF7F;">"migemo"</span>)     <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&#12354;&#12428;&#12400; migemo &#12434;&#26377;&#21177;&#21270;</span>
                (executable-find <span style="color: #7FFF7F;">"cmigemo"</span>))
           (<span style="color: #FF7F7F;">setq</span> helm-migemo-mode t)
         (<span style="color: #FF7F7F;">setq</span> helm-migemo-mode nil))
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">40% &#22266;&#23450;</span>
       (helm-autoresize-mode)
       (<span style="color: #FF7F7F;">setq</span> helm-autoresize-min-height 40 <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">fixed 40%</span>
             helm-autoresize-max-height 40)
-      )
+      <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -3355,8 +3291,8 @@ find-file は helm-find-file より ido + flx-ido + ido-grid-mode の方が
   <span style="color: #7FBFFF;">:config</span>
   (helm-flx-mode +1)
   (<span style="color: #FF7F7F;">setq</span> helm-flx-for-helm-find-files t <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">t by default</span>
-        helm-flx-for-helm-locate t) <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">nil by default</span>
-  )
+        helm-flx-for-helm-locate t)    <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">nil by default</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -3370,6 +3306,7 @@ default の <code>mlocate</code> の option を修正しておく．
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-locate</span>
   <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"mlocate"</span>)
+  <span style="color: #7FBFFF;">:disabled</span> t
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> helm-locate-command <span style="color: #7FFF7F;">"mlocate %s -e -A --regex %s"</span>))
 </pre>
@@ -3394,26 +3331,18 @@ default の <code>mlocate</code> の option を修正しておく．
 <div id="outline-container-org9b4f555" class="outline-3">
 <h3 id="org9b4f555">helm-ag</h3>
 <div class="outline-text-3" id="text-org9b4f555">
-<p>
-ripgrep があればそっちを使うようにしてみた．
-</p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-ag</span>
   <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:if</span> (<span style="color: #FF7F7F;">or</span> (executable-find <span style="color: #7FFF7F;">"ag"</span>)
-          (executable-find <span style="color: #7FFF7F;">"rg"</span>))
+  <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"ag"</span>)
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"M-g ."</span> . helm-ag)
          (<span style="color: #7FFF7F;">"M-g ,"</span> . helm-ag-pop-stack)
          (<span style="color: #7FFF7F;">"C-M-s"</span> . helm-ag-this-file))
   <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">cond</span>
-   ((executable-find <span style="color: #7FFF7F;">"rg"</span>)
-    (<span style="color: #FF7F7F;">setq</span> helm-ag-base-command <span style="color: #7FFF7F;">"rg --vimgrep --no-heading"</span>))
-   (t
-    (<span style="color: #FF7F7F;">setq</span> helm-ag-base-command <span style="color: #7FFF7F;">"ag --nocolor --nogroup --ignore-case"</span>
-          helm-ag-command-option <span style="color: #7FFF7F;">"--all-text"</span>)))
-  (<span style="color: #FF7F7F;">setq</span> helm-ag-insert-at-point 'symbol)
-  )
+  (<span style="color: #FF7F7F;">setq</span> helm-ag-base-command <span style="color: #7FFF7F;">"ag --nocolor --nogroup --ignore-case"</span>
+        helm-ag-command-option <span style="color: #7FFF7F;">"--all-text"</span>
+        helm-ag-insert-at-point 'symbol)
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -3487,7 +3416,7 @@ ripgrep があればそっちを使うようにしてみた．
            (mapcan #'yas--table-all-keys (yas--get-snippet-tables)))))
   (ac-config-default)
   (global-auto-complete-mode t)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -3522,7 +3451,7 @@ flyspell-mode は別途有効化しておいた方が良いのかもしれない
         (funcall orig event poss word)
       (flyspell-emacs-popup-textual event poss word)))
   (advice-add 'flyspell-emacs-popup <span style="color: #7FBFFF;">:around</span> #'my:flyspell-popup-choose)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -3539,15 +3468,15 @@ flyspell-mode は別途有効化しておいた方が良いのかもしれない
          (<span style="color: #7FFF7F;">"C-c W"</span> . lookup-word))
   <span style="color: #7FBFFF;">:init</span>
   (<span style="color: #FF7F7F;">setq</span> lookup-search-agents
-        '(
+        <span style="color: #0000ff; background-color: #afeeee;">'(</span>
           (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/eijiro"</span>    <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#33521;&#36766;&#37070;"</span>)
           (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/waeijiro"</span>  <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#21644;&#33521;&#36766;&#37070;"</span>)
           (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/rikagaku5"</span> <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#29702;&#21270;&#23398;&#36766;&#20856; &#31532;5&#29256;"</span>)
           (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/koujien4"</span>  <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#24195;&#36766;&#33489; &#31532;4&#29256;"</span>)
-          (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/wadai5"</span>    <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#30740;&#31350;&#31038; &#21644;&#33521;&#22823;&#36766;&#20856; &#31532;5&#29256;"</span>)
-          (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/eidai6"</span>    <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#30740;&#31350;&#31038; &#33521;&#21644;&#22823;&#36766;&#20856; &#31532;6&#29256;"</span>)
-          (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/colloc"</span>    <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#30740;&#31350;&#31038; &#33521;&#21644;&#27963;&#29992;&#22823;&#36766;&#20856; "</span>)
-          )))
+          (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/wadai5"</span>    <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#30740;&#31350;&#31038; &#21644;&#33521;&#22823;&#36766;&#20856; &#31532;</span><span style="color: #ffa500;">5</span><span style="color: #ff0000; background-color: #ffff00;">&#29256;")</span>
+          (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/eidai6"</span>    <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#30740;&#31350;&#31038; &#33521;&#21644;&#22823;&#36766;&#20856; &#31532;</span><span style="color: #ffa500;">6</span><span style="color: #ff0000; background-color: #ffff00;">&#29256;")</span>
+          (ndeb <span style="color: #7FFF7F;">"/usr/local/share/dict/colloc"</span>    <span style="color: #7FBFFF;">:alias</span> <span style="color: #7FFF7F;">"&#30740;&#31350;&#31038; &#33521;&#21644;&#27963;&#29992;&#22823;&#36766;&#20856;</span><span style="color: #ff0000; background-color: #ffff00;"> ")</span>
+          <span style="color: #0000ff; background-color: #afeeee;">)))</span>
 </pre>
 </div>
 </div>
@@ -3621,11 +3550,13 @@ howm も有効にしている，ぐらい．
         org-emphasis-alist                     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#22522;&#26412; "-nw" &#12394;&#12398;&#12391;&#33394;&#22793;&#26356;</span>
         (cons '(<span style="color: #7FFF7F;">"+"</span> '(<span style="color: #7FBFFF;">:strike-through</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#999999"</span>))
               (cl-delete <span style="color: #7FFF7F;">"+"</span> org-emphasis-alist <span style="color: #7FBFFF;">:key</span> 'car <span style="color: #7FBFFF;">:test</span> 'equal))
+        org-completion-use-ido t
         <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">GTD: &#29366;&#24907;&#12398;&#36861;&#21152;</span>
-        org-todo-keywords '((sequence <span style="color: #7FFF7F;">"TODO(t)"</span> <span style="color: #7FFF7F;">"WAIT(w)"</span> <span style="color: #7FFF7F;">"|"</span> <span style="color: #7FFF7F;">"DONE(d)"</span> <span style="color: #7FFF7F;">"CANCEL(c)"</span> <span style="color: #7FFF7F;">"SOMEDAY(s)"</span>)
-                            (type <span style="color: #7FFF7F;">"ARTICLE(a)"</span>)
-                            (type <span style="color: #7FFF7F;">"MEMO(m)"</span>)
-                            )
+        org-<span style="color: #ff4500; font-weight: bold;">todo</span>-keywords
+        '((sequence <span style="color: #7FFF7F;">"</span><span style="color: #ff4500; font-weight: bold;">TODO</span><span style="color: #7FFF7F;">(t)"</span> <span style="color: #7FFF7F;">"WAIT(w)"</span> <span style="color: #7FFF7F;">"|"</span> <span style="color: #7FFF7F;">"DONE(d)"</span> <span style="color: #7FFF7F;">"CANCEL(c)"</span> <span style="color: #7FFF7F;">"SOMEDAY(s)"</span>)
+          (type <span style="color: #7FFF7F;">"ARTICLE(a)"</span>)
+          (type <span style="color: #7FFF7F;">"MEMO(m)"</span>)
+          <span style="color: #0000ff; background-color: #afeeee;">)</span>
         <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">GTD: &#12479;&#12464;&#12398;&#36861;&#21152;</span>
         org-tag-alist '((<span style="color: #7FFF7F;">"OFFICE"</span>     . ?o)
                         (<span style="color: #7FFF7F;">"HOME"</span>       . ?h)
@@ -3637,9 +3568,9 @@ howm も有効にしている，ぐらい．
                         (<span style="color: #7FFF7F;">"Emacs"</span>      . ?e)
                         (<span style="color: #7FFF7F;">"TeX"</span>        . ?t)
                         (<span style="color: #7FFF7F;">"Ruby"</span>       . ?r)
-                        )
-        )
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">GTD: TODO&#8594;...&#8594;DONE &#12392;&#12375;&#12383;&#12456;&#12531;&#12488;&#12522;&#12434; =Arhive.org= &#12395;&#31227;&#21205;</span>
+                        <span style="color: #0000ff; background-color: #afeeee;">)</span>
+        <span style="color: #0000ff; background-color: #afeeee;">)</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">GTD: </span><span style="color: #ff4500; font-weight: bold;">TODO</span><span style="color: #a5a5a6;">&#8594;...&#8594;DONE &#12392;&#12375;&#12383;&#12456;&#12531;&#12488;&#12522;&#12434; =Arhive.org= &#12395;&#31227;&#21205;</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:org-archive-done-tasks</span> ()
     (<span style="color: #FF7F7F;">interactive</span>)
     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ARCHIVE &#12479;&#12464;&#12434;&#20184;&#12369;&#12427;&#12384;&#12369;&#12394;&#12425;&#20197;&#19979;</span>
@@ -3647,8 +3578,8 @@ howm も有効にしている，ぐらい．
     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">org-archive-location &#12395; refile &#12375;&#12383;&#12356;&#12394;&#12425;&#20197;&#19979;</span>
     (org-map-entries 'org-archive-subtree <span style="color: #7FFF7F;">"/DONE"</span> 'file))
   (<span style="color: #FF7F7F;">setq</span> org-archive-location <span style="color: #7FFF7F;">"Archive.org::"</span>)
-  (add-hook 'org-todo-statistics-hook 'my:org-archive-done-tasks)
-  (add-hook 'org-todo-after-statistics-hook 'my:org-archive-done-tasks)
+  (add-hook 'org-<span style="color: #ff4500; font-weight: bold;">todo</span>-statistics-hook 'my:org-archive-done-tasks)
+  (add-hook 'org-<span style="color: #ff4500; font-weight: bold;">todo</span>-after-statistics-hook 'my:org-archive-done-tasks)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#25991;&#23383;&#12467;&#12540;&#12489;&#24375;&#21046; ... &#20170;&#26178;&#12356;&#12425;&#12394;&#12356;&#12363;&#12418;&#65294;</span>
   (modify-coding-system-alist 'file <span style="color: #7FFF7F;">"\\.org\\'"</span> 'utf-8)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">howm &#12501;&#12449;&#12452;&#12523;&#12418; org-mode &#12391;&#65294;</span>
@@ -3660,9 +3591,9 @@ howm も有効にしている，ぐらい．
     <span style="color: #7FFF7F;">"Change `</span><span style="color: #FFBF7F;">time-stamp-start</span><span style="color: #7FFF7F;">' in org-mode"</span>
     (set (make-local-variable 'time-stamp-start) <span style="color: #7FFF7F;">"#\\+DATE: 2"</span>)
     (set (make-local-variable 'time-stamp-end)   <span style="color: #7FFF7F;">"\$"</span>)
-    )
+    <span style="color: #0000ff; background-color: #afeeee;">)</span>
   (add-hook 'org-mode-hook 'my:org-timestamp-hook)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -3681,8 +3612,8 @@ howm も有効にしている，ぐらい．
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(setq org-id-location-file (concat my:d:tmp "org-id-locations"))</span>
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
-        )
-  )
+        <span style="color: #0000ff; background-color: #afeeee;">)</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 <p>
@@ -3694,7 +3625,7 @@ org 形式の link を他のモードのドキュメント，コメント等で�
   <span style="color: #7FBFFF;">:diminish</span> orglink-mode
   <span style="color: #7FBFFF;">:config</span>
   (global-orglink-mode +1)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 <p>
@@ -3726,7 +3657,7 @@ org 形式の link を他のモードのドキュメント，コメント等で�
         org-journal-time-format <span style="color: #7FFF7F;">"&lt;%Y-%m-%d %R&gt; "</span>
         org-journal-time-prefix <span style="color: #7FFF7F;">"** MEMO "</span>
         org-journal-find-file 'find-file
-        )
+        <span style="color: #0000ff; background-color: #afeeee;">)</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:org-journal-add-date-entry</span> (prefix <span style="color: #FFFF7F;">&amp;optional</span> time)
     <span style="color: #7FFF7F;">"Insert date entry to `</span><span style="color: #FFBF7F;">org-journal-file</span><span style="color: #7FFF7F;">'"</span>
     (find-file (expand-file-name org-journal-file-format org-journal-dir))
@@ -3738,13 +3669,13 @@ org 形式の link を他のモードのドキュメント，コメント等で�
         (goto-char (point-max))
         (insert (concat <span style="color: #7FFF7F;">"\n"</span> org-journal-date-prefix
                         (format-time-string org-journal-date-format)))
-        ))
-    )
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
+    <span style="color: #0000ff; background-color: #afeeee;">)</span>
   (advice-add 'org-journal-new-entry <span style="color: #7FBFFF;">:before</span> 'my:org-journal-add-date-entry)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">Key bindings -- &#20351;&#12360;&#12390;&#12394;&#12356;...</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-f") 'org-journal-open-next-entry)</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-b") 'org-journal-open-previous-entry)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-f") 'org-journal-open-next-</span><span style="color: #ffa500;">entr</span><span style="color: #ff0000; background-color: #ffff00;">y)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-b") 'org-journal-open-previous-</span><span style="color: #ff0000; background-color: #ffff00;">entry)</span>
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key org-journal-mode-map (kbd "C-c C-j") 'org-journal-new-entry)</span>
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map "j" 'org-journal-read-entry)</span>
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "C-j") 'org-journal-display-entry)</span>
@@ -3753,8 +3684,8 @@ org 形式の link を他のモードのドキュメント，コメント等で�
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "i j") 'org-journal-new-date-entry)</span>
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f f") 'org-journal-search-forever)</span>
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f w") 'org-journal-search-calendar-week)</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f m") 'org-journal-search-calendar-month)</span>
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f y") 'org-journal-search-calendar-year)))</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f m") 'org-journal-search-calendar-</span><span style="color: #ffa500;">month</span><span style="color: #ff0000; background-color: #ffff00;">)</span>
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(define-key calendar-mode-map (kbd "f y") 'org-journal-search-calendar-year)</span><span style="color: #ff0000; background-color: #ffff00;">))</span>
 </pre>
 </div>
 </div>
@@ -3778,28 +3709,28 @@ mu のインデックスの方が良いかもしれない，と最近思って�
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:org-journal-add-date-entry-capture</span> ()
     (my:org-journal-add-date-entry nil)
     (goto-char (point-max))
-    )
+    <span style="color: #0000ff; background-color: #afeeee;">)</span>
   (<span style="color: #FF7F7F;">setq</span> org-default-notes-file (concat org-directory <span style="color: #7FFF7F;">"journal.org"</span>)
         org-capture-templates
-        `(
-          (<span style="color: #7FFF7F;">"t"</span> <span style="color: #7FFF7F;">"TODO"</span> plain
+        <span style="color: #0000ff; background-color: #afeeee;">`(</span>
+          (<span style="color: #7FFF7F;">"t"</span> <span style="color: #7FFF7F;">"</span><span style="color: #ff4500; font-weight: bold;">TODO</span><span style="color: #7FFF7F;">"</span> plain
            (<span style="color: #FF7F7F;">function</span> my:org-journal-add-date-entry-capture)
-           <span style="color: #7FFF7F;">"** TODO %^{title} %^g\n  %?\n  %a"</span>
+           <span style="color: #7FFF7F;">"** </span><span style="color: #ff4500; font-weight: bold;">TODO</span><span style="color: #7FFF7F;"> %^{title} %^g\n  %?\n  %a"</span>
            <span style="color: #7FBFFF;">:prepend</span> nil
            <span style="color: #7FBFFF;">:unnarrowed</span> nil
            <span style="color: #7FBFFF;">:kill-buffer</span> t
-           )
-          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"* TODO &lt;%&lt;%Y-%m-%d&gt;&gt; %:subject %^g\n  %?\n  %a\n  #+BEGIN_QUOTE\n%i\n  #+END_QUOTE"</span>
-          (<span style="color: #7FFF7F;">"e"</span> <span style="color: #7FFF7F;">"Email TODO"</span> plain
+           <span style="color: #0000ff; background-color: #afeeee;">)</span>
+          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">"* </span><span style="color: #ff4500; font-weight: bold;">TODO</span><span style="color: #a5a5a6;"> &lt;%&lt;%Y-%m-%d&gt;&gt; %:subject %^g\n  %?\n  %a\n  #+BEGIN_QUOTE\</span><span style="color: #ffa500;">n</span><span style="color: #ff0000; background-color: #ffff00;">%i\n  #+END_QUOTE"</span>
+          (<span style="color: #7FFF7F;">"e"</span> <span style="color: #7FFF7F;">"Email </span><span style="color: #ff4500; font-weight: bold;">TODO</span><span style="color: #7FFF7F;">"</span> plain
            (<span style="color: #FF7F7F;">function</span> my:org-journal-add-date-entry-capture)
-           <span style="color: #7FFF7F;">"** TODO [[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(replace-regexp-in-string \"\\\\[</span><span style="color: #FFBF7F;">.*\\\\</span><span style="color: #7FFF7F;">] \" \"\" \"%:subject\")]]\n  :PROPERTIES:\n  :CREATED: %u\n  :END:%?\n"</span>
+           <span style="color: #7FFF7F;">"** </span><span style="color: #ff4500; font-weight: bold;">TODO</span><span style="color: #7FFF7F;"> [[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(replace-</span><span style="color: #ffa500;">rege</span><span style="color: #ff0000; background-color: #ffff00;">xp-in-string \"\\\\[.*\\\\] \" \"\" \"%:subject\")]]\n  :PROPERTIES:\n  :CREATED: %u\n  :END:%?\n"</span>
            <span style="color: #7FBFFF;">:prepend</span> nil
            <span style="color: #7FBFFF;">:unnarrowed</span> nil
            <span style="color: #7FBFFF;">:kill-buffer</span> t
-           )
+           <span style="color: #0000ff; background-color: #afeeee;">)</span>
           <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">("s" "Email Schedule" plain</span>
           <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">(file (expand-file-name "Schedule.org" org-directory))</span>
-          <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">"* %:subject\n[[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(replace-regexp-in-string \"\\\\[</span><span style="color: #FFBF7F;">.*\\\\</span><span style="color: #a5a5a6;">] \" \"\" \"%:subject\")]]\n %?\n%t\n"</span>
+          <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">"* %:subject\n[[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(</span><span style="color: #ffa500;">repl</span><span style="color: #ff0000; background-color: #ffff00;">ace-regexp-in-string \"\\\\[.*\\\\] \" \"\" \"%:subject\")]]\n %?\n%t\n"</span>
           <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">:prepend nil</span>
           <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">:unnarrowed nil</span>
           <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">:kill-buffer t</span>
@@ -3810,16 +3741,16 @@ mu のインデックスの方が良いかもしれない，と最近思って�
            <span style="color: #7FBFFF;">:prepend</span> nil
            <span style="color: #7FBFFF;">:unnarrowed</span> nil
            <span style="color: #7FBFFF;">:kill-buffer</span> t
-           )
+           <span style="color: #0000ff; background-color: #afeeee;">)</span>
           (<span style="color: #7FFF7F;">"a"</span> <span style="color: #7FFF7F;">"Aritcle Entry"</span> plain
            (<span style="color: #FF7F7F;">function</span> my:org-journal-add-date-entry-capture)
            <span style="color: #7FFF7F;">"** ARTICLE %T %? "</span>
            <span style="color: #7FBFFF;">:prepend</span> nil
            <span style="color: #7FBFFF;">:unnarrowed</span> nil
            <span style="color: #7FBFFF;">:kill-buffer</span> t
-           )
-          ))
-  )
+           <span style="color: #0000ff; background-color: #afeeee;">)</span>
+          <span style="color: #0000ff; background-color: #afeeee;">))</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -3874,7 +3805,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
     '((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#CCCCCC"</span>)))
     <span style="color: #7FFF7F;">"Agenda &#34920;&#31034;&#20013;, Twitter log &#12398;&#34920;&#31034; face"</span>
     <span style="color: #7FBFFF;">:group</span> 'org-agenda )
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26356;&#26032;&#29992;&#12398;&#38306;&#25968; - &#12392;&#12426;&#12354;&#12360;&#12378;&#21205;&#12356;&#12390;&#12356;&#12427;&#12398;&#12391;&#33391;&#12375;&#12392;&#12377;&#12427;&#12364;&#65292;&#12522;&#12501;&#12449;&#12463;&#12479;&#12522;&#12531;&#12464;&#12375;&#12383;&#12356;</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26356;&#26032;&#29992;&#12398;&#38306;&#25968; - &#12392;&#12426;&#12354;&#12360;&#12378;&#21205;&#12356;&#12390;&#12356;&#12427;&#12398;&#12391;&#33391;&#12375;&#12392;&#12377;&#12427;&#12364;&#65292;&#12522;&#12501;&#12449;&#12463;&#12479;&#12522;&#12531;&#12464;&#12375;&#12383;</span><span style="color: #ff0000; background-color: #ffff00;">&#12356;</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:org-agenda-day-face-function</span> (date)
     <span style="color: #7FFF7F;">"Compute DATE face for saturday, holidays."</span>
     (<span style="color: #FF7F7F;">cl-dolist</span> (file (org-agenda-files nil 'ifmode))
@@ -3914,9 +3845,9 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
              <span style="color: #7FFF7F;">"redmine_GFD.org"</span>
              <span style="color: #7FFF7F;">"redmine_FluidSoc.org"</span>
              <span style="color: #7FFF7F;">"redmine_KUSM.org"</span>
-             ))
+             <span style="color: #0000ff; background-color: #afeeee;">))</span>
     (add-to-list 'org-agenda-files (concat org-directory file)))
-  (add-to-list 'org-agenda-files (expand-file-name <span style="color: #7FFF7F;">"README.org"</span> user-emacs-directory))
+  (add-to-list 'org-agenda-files (expand-file-name <span style="color: #7FFF7F;">"README.org"</span> user-emacs-<span style="color: #ffa500;">dire</span><span style="color: #ff0000; background-color: #ffff00;">ctory))</span>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#34920;&#31034;&#12398;&#12459;&#12473;&#12479;&#12510;&#12452;&#12474;</span>
   (<span style="color: #FF7F7F;">setq</span> org-agenda-span 'day                   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">day or week</span>
         org-agenda-format-date <span style="color: #7FFF7F;">"%Y/%m/%d (%a)"</span> <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">YY/MM/DD (&#26332;)</span>
@@ -3924,31 +3855,31 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
         <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#34920;&#31034;&#38306;&#25968;</span>
         org-agenda-day-face-function 'my:org-agenda-day-face-function
         org-agenda-custom-commands             <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">GTD &#29992;&#12398;&#35373;&#23450;</span>
-        '(
-          (<span style="color: #7FFF7F;">"n"</span> <span style="color: #7FFF7F;">"agenda and all TODO list"</span>
-           (
+        <span style="color: #0000ff; background-color: #afeeee;">'(</span>
+          (<span style="color: #7FFF7F;">"n"</span> <span style="color: #7FFF7F;">"agenda and all </span><span style="color: #ff4500; font-weight: bold;">TODO</span><span style="color: #7FFF7F;"> list"</span>
+           <span style="color: #0000ff; background-color: #afeeee;">(</span>
             (agenda <span style="color: #7FFF7F;">""</span>
                     ((org-agenda-ndays 1)
                      (org-agenda-entry-types '(<span style="color: #7FBFFF;">:timestamp</span> <span style="color: #7FBFFF;">:sexp</span>))))
-            (todo <span style="color: #7FFF7F;">"TODO"</span>
+            (<span style="color: #ff4500; font-weight: bold;">todo</span> <span style="color: #7FFF7F;">"</span><span style="color: #ff4500; font-weight: bold;">TODO</span><span style="color: #7FFF7F;">"</span>
                   ((org-agenda-prefix-format <span style="color: #7FFF7F;">" %i %-22:c"</span>))
-                  )
-            (todo <span style="color: #7FFF7F;">"&#26032;&#35215;|&#30528;&#25163;|&#36914;&#34892;&#20013;|&#30906;&#35469;"</span>
+                  <span style="color: #0000ff; background-color: #afeeee;">)</span>
+            (<span style="color: #ff4500; font-weight: bold;">todo</span> <span style="color: #7FFF7F;">"&#26032;&#35215;|&#30528;&#25163;|&#36914;&#34892;&#20013;|&#30906;&#35469;"</span>
                   ((org-agenda-prefix-format <span style="color: #7FFF7F;">" %i %-22:c"</span>))
-                  )
-            (todo <span style="color: #7FFF7F;">"WAIT"</span>
+                  <span style="color: #0000ff; background-color: #afeeee;">)</span>
+            (<span style="color: #ff4500; font-weight: bold;">todo</span> <span style="color: #7FFF7F;">"WAIT"</span>
                   ((org-agenda-prefix-format <span style="color: #7FFF7F;">" %i %-22:c"</span>))
-                  )
-            (todo <span style="color: #7FFF7F;">"SOMEDAY"</span>
+                  <span style="color: #0000ff; background-color: #afeeee;">)</span>
+            (<span style="color: #ff4500; font-weight: bold;">todo</span> <span style="color: #7FFF7F;">"SOMEDAY"</span>
                   ((org-agenda-prefix-format <span style="color: #7FFF7F;">" %i %-22:c"</span>))
-                  )
-            ))
+                  <span style="color: #0000ff; background-color: #afeeee;">)</span>
+            <span style="color: #0000ff; background-color: #afeeee;">))</span>
           (<span style="color: #7FFF7F;">"N"</span> <span style="color: #7FFF7F;">"All memo entry"</span>
            (<span style="color: #a5a5a6;">;;</span>
-            (todo <span style="color: #7FFF7F;">"MEMO"</span>)
-            ))
-           )
-        )
+            (<span style="color: #ff4500; font-weight: bold;">todo</span> <span style="color: #7FFF7F;">"MEMO"</span>)
+            <span style="color: #0000ff; background-color: #afeeee;">))</span>
+           <span style="color: #0000ff; background-color: #afeeee;">)</span>
+        <span style="color: #0000ff; background-color: #afeeee;">)</span>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#33394;&#20184;&#12369;</span>
   (add-hook 'org-finalize-agenda-hook
             (<span style="color: #FF7F7F;">lambda</span> ()
@@ -3960,11 +3891,11 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
                 (goto-char (point-min))
                 (<span style="color: #FF7F7F;">while</span> (re-search-forward <span style="color: #7FFF7F;">"Schedule:"</span> nil t)
                   (add-text-properties (match-beginning 0) (point-at-eol)
-                                       '(face my:org-agenda-calendar-Schedule)))
+                                       '(face my:org-agenda-calendar-Schedule))<span style="color: #ff0000; background-color: #ffff00;">)</span>
                 (goto-char (point-min))
                 (<span style="color: #FF7F7F;">while</span> (re-search-forward <span style="color: #7FFF7F;">"DebianJP:"</span> nil t)
                   (add-text-properties (match-beginning 0) (point-at-eol)
-                                       '(face my:org-agenda-calendar-DebianJP)))
+                                       '(face my:org-agenda-calendar-DebianJP))<span style="color: #ff0000; background-color: #ffff00;">)</span>
                 (goto-char (point-min))
                 (<span style="color: #FF7F7F;">while</span> (re-search-forward <span style="color: #7FFF7F;">"GFD:"</span> nil t)
                   (add-text-properties (match-beginning 0) (point-at-eol)
@@ -3981,8 +3912,8 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
                 (<span style="color: #FF7F7F;">while</span> (re-search-forward <span style="color: #7FFF7F;">"&#20241;&#26085;:"</span> nil t)
                   (add-text-properties (match-beginning 0) (point-at-eol)
                                        '(face org-agenda-date-weekend)))
-                )))
-  )
+                <span style="color: #0000ff; background-color: #afeeee;">)))</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4001,8 +3932,8 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
         org-src-tab-acts-natively t      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">indent</span>
         org-edit-src-content-indentation 0
         org-src-preserve-indentation t
-        )
-  )
+        <span style="color: #0000ff; background-color: #afeeee;">)</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4017,7 +3948,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
   (<span style="color: #FF7F7F;">setq</span> org-ditaa-jar-path (concat (getenv <span style="color: #7FFF7F;">"HOME"</span>) <span style="color: #7FFF7F;">"/bin/jditaa.jar"</span>))
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((ditaa . t)))
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4074,8 +4005,8 @@ password-store には multiline で設定を書く．例えば以下:
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> org-gcal-client-id <span style="color: #7FFF7F;">"XXXXXXXXXXX"</span>
       org-gcal-client-secret <span style="color: #7FFF7F;">"XXXXXXXXXXX"</span>
       org-gcal-file-alist
-      '((<span style="color: #7FFF7F;">"XXXXX@gmail.com"</span> . <span style="color: #7FFF7F;">"~/org/Schedule.org"</span>)
-        (<span style="color: #7FFF7F;">"YYYYY@group.calendar.google.com"</span> . <span style="color: #7FFF7F;">"~/org/Project1.org"</span>)))
+      '((<span style="color: #7FFF7F;">"</span><span style="color: #006400; background-color: #fffacd;">XXXXX@gmail.com</span><span style="color: #7FFF7F;">"</span> . <span style="color: #7FFF7F;">"~/org/Schedule.org"</span>)
+        (<span style="color: #7FFF7F;">"</span><span style="color: #006400; background-color: #fffacd;">YYYYY@group.calendar.google.com</span><span style="color: #7FFF7F;">"</span> . <span style="color: #7FFF7F;">"~/org/Project1.org"</span>)))
 </pre>
 </div>
 </div>
@@ -4106,46 +4037,9 @@ password-store には multiline で設定を書く．例えば以下:
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> orgmine-note-block-begin <span style="color: #7FFF7F;">"#+BEGIN_SRC gfm"</span>   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#35201;&#35519;&#25972;</span>
         orgmine-note-block-end   <span style="color: #7FFF7F;">"#+END_SRC\n"</span>
-        orgmine-default-todo-keyword <span style="color: #7FFF7F;">"&#26032;&#35215;"</span>)
+        orgmine-default-<span style="color: #ff4500; font-weight: bold;">todo</span>-keyword <span style="color: #7FFF7F;">"&#26032;&#35215;"</span>)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12469;&#12540;&#12496;&#35373;&#23450;</span>
   (load (expand-file-name <span style="color: #7FFF7F;">"emacs/orgmine.gpg"</span> my:d:password-store)))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org30efae7" class="outline-3">
-<h3 id="org30efae7">Org-Wiki</h3>
-<div class="outline-text-3" id="text-org30efae7">
-<p>
-計算機関連のメモは <a href="https://github.com/caiorss/org-wiki">org-wiki</a> で書いています．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (package-installed-p 'org-wiki)
-  (quelpa '(org-wiki
-            <span style="color: #7FBFFF;">:fetcher</span> github
-            <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"caiorss/org-wiki"</span>)))
-(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-wiki</span>
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> org-wiki-location (concat (getenv <span style="color: #7FFF7F;">"HOME"</span>) <span style="color: #7FFF7F;">"/Public/cc-env/"</span>))
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:org-wiki-header</span> ()
-    <span style="color: #7FFF7F;">"Insert a header at the top of the file, customize for personal use"</span>
-    (<span style="color: #FF7F7F;">interactive</span>)
-    (<span style="color: #FF7F7F;">save-excursion</span>
-      (goto-char (point-min))
-      (insert (format
-               (string-trim <span style="color: #7FFF7F;">"</span>
-<span style="color: #7FFF7F;">#+TITLE:</span>
-<span style="color: #7FFF7F;">#+DATE: 20</span>
-<span style="color: #7FFF7F;">#+LANGUAGE: ja</span>
-<span style="color: #7FFF7F;">#+REF: cc-env/%s</span>
-<span style="color: #7FFF7F;">#+LAYOUT: default</span>
-<span style="color: #7FFF7F;">#+SETUPFILE: ~/Public/_setup.org</span>
-<span style="color: #7FFF7F;">#+PERMALINK: /cc-env/%s.html</span>
-<span style="color: #7FFF7F;">"</span>)
-               (file-name-base (buffer-file-name))
-               (file-name-base (buffer-file-name))))))
-  (advice-add 'org-wiki-header <span style="color: #7FBFFF;">:override</span> 'my:org-wiki-header)
-  )
 </pre>
 </div>
 </div>
@@ -4177,7 +4071,7 @@ password-store には multiline で設定を書く．例えば以下:
                  '(<span style="color: #7FBFFF;">:redirect_from</span> <span style="color: #7FFF7F;">"redirect_from"</span> nil nil))
     (add-to-list 'org-export-options-alist
                  '(<span style="color: #7FBFFF;">:redirect_to</span> <span style="color: #7FFF7F;">"redirect_to"</span> nil nil))
-    )
+    <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4195,7 +4089,7 @@ password-store には multiline で設定を書く．例えば以下:
                  (<span style="color: #7FFF7F;">"\\section\&#123;%s\}"</span> . <span style="color: #7FFF7F;">"\\section*\&#123;%s\}"</span>)
                  (<span style="color: #7FFF7F;">"\\subsection\&#123;%s\}"</span> . <span style="color: #7FFF7F;">"\\subsection*\&#123;%s\}"</span>)
                  (<span style="color: #7FFF7F;">"\\subsubsection\&#123;%s\}"</span> . <span style="color: #7FFF7F;">"\\subsubsection*\&#123;%s\}"</span>))
-               )
+               <span style="color: #0000ff; background-color: #afeeee;">)</span>
   <span style="color: #a5a5a6;">;;</span>
   (add-to-list 'org-latex-classes
                '(<span style="color: #7FFF7F;">"my:beamer-uplatex"</span>
@@ -4204,7 +4098,7 @@ password-store には multiline で設定を書く．例えば以下:
                  (<span style="color: #7FFF7F;">"\\section\&#123;%s\}"</span> . <span style="color: #7FFF7F;">"\\section*\&#123;%s\}"</span>)
                  (<span style="color: #7FFF7F;">"\\subsection\&#123;%s\}"</span> . <span style="color: #7FFF7F;">"\\subsection*\&#123;%s\}"</span>)
                  (<span style="color: #7FFF7F;">"\\subsubsection\&#123;%s\}"</span> . <span style="color: #7FFF7F;">"\\subsubsection*\&#123;%s\}"</span>))
-               )
+               <span style="color: #0000ff; background-color: #afeeee;">)</span>
   (add-to-list 'org-latex-classes
                '(<span style="color: #7FFF7F;">"my:beamer-pdflatex"</span>
                  <span style="color: #7FFF7F;">"\\documentclass[unicode,presentation]{beamer}</span>
@@ -4212,8 +4106,8 @@ password-store には multiline で設定を書く．例えば以下:
                  (<span style="color: #7FFF7F;">"\\section\&#123;%s\}"</span> . <span style="color: #7FFF7F;">"\\section*\&#123;%s\}"</span>)
                  (<span style="color: #7FFF7F;">"\\subsection\&#123;%s\}"</span> . <span style="color: #7FFF7F;">"\\subsection*\&#123;%s\}"</span>)
                  (<span style="color: #7FFF7F;">"\\subsubsection\&#123;%s\}"</span> . <span style="color: #7FFF7F;">"\\subsubsection*\&#123;%s\}"</span>))
-               )
-  )
+               <span style="color: #0000ff; background-color: #afeeee;">)</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 <p>
@@ -4241,7 +4135,7 @@ LATEX<sub>CLASS</sub> に <code>my:beamer</code> を指定すると，上記設�
           (strike-through . <span style="color: #7FFF7F;">"&lt;del&gt;%s&lt;/del&gt;"</span>)
           (underline      . <span style="color: #7FFF7F;">"&lt;span class=\"underline\"&gt;%s&lt;/span&gt;"</span>)
           (verbatim       . <span style="color: #7FFF7F;">"&lt;code&gt;%s&lt;/code&gt;"</span>)))
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4265,10 +4159,10 @@ html export の際に必要な yaml front matter を出力できるようにし�
         (?h <span style="color: #7FFF7F;">"To file"</span> (<span style="color: #FF7F7F;">lambda</span> (a s v b) (org-jekyll-export-to-html a s v)))))
   <span style="color: #7FBFFF;">:translate-alist</span>
   '((template  . org-jekyll-template)
-    )
+    <span style="color: #0000ff; background-color: #afeeee;">)</span>
   <span style="color: #7FBFFF;">:filters-alist</span>
   '((<span style="color: #7FBFFF;">:filter-final-output</span> . org-jekyll-finalized))
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">template</span>
 (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">org-jekyll-template</span> (contents info)
   <span style="color: #7FFF7F;">"Return complete document string after HTML conversion."</span>
@@ -4281,15 +4175,15 @@ html export の際に必要な yaml front matter を出力できるようにし�
   <span style="color: #7FFF7F;">"Publish src-block to html, Escape liquid tags, e.g. &#123;%, %&#125;"</span>
   (<span style="color: #FF7F7F;">with-temp-buffer</span>
     (insert contents)
-    (perform-replace <span style="color: #7FFF7F;">"&amp;$58;"</span> <span style="color: #7FFF7F;">"&amp;#58;"</span> nil nil nil nil nil (point-min) (point-max))
-    (perform-replace <span style="color: #7FFF7F;">"&#123;%"</span> <span style="color: #7FFF7F;">"&amp;#123;%"</span> nil nil nil nil nil (point-min) (point-max))
-    (perform-replace <span style="color: #7FFF7F;">"%&#125;"</span> <span style="color: #7FFF7F;">"%&amp;#125;"</span> nil nil nil nil nil (point-min) (point-max))
+    (perform-replace <span style="color: #7FFF7F;">"&amp;$58;"</span> <span style="color: #7FFF7F;">"&amp;#58;"</span> nil nil nil nil nil (point-min) (point-<span style="color: #ffa500;">max</span><span style="color: #ff0000; background-color: #ffff00;">))</span>
+    (perform-replace <span style="color: #7FFF7F;">"&#123;%"</span> <span style="color: #7FFF7F;">"&amp;#123;%"</span> nil nil nil nil nil (point-min) (point-max)<span style="color: #ff0000; background-color: #ffff00;">)</span>
+    (perform-replace <span style="color: #7FFF7F;">"%&#125;"</span> <span style="color: #7FFF7F;">"%&amp;#125;"</span> nil nil nil nil nil (point-min) (point-max)<span style="color: #ff0000; background-color: #ffff00;">)</span>
     (perform-replace <span style="color: #7FFF7F;">"&lt;nav id=\"table-of-contents"</span> <span style="color: #7FFF7F;">"&lt;div id=\"toc-wrapper\"&gt;</span>
 <span style="color: #7FFF7F;">&lt;nav id=\"table-of-contents"</span> nil nil nil nil nil (point-min) (point-max))
     (perform-replace <span style="color: #7FFF7F;">"&lt;/nav&gt;"</span> (format <span style="color: #7FFF7F;">"&lt;/nav&gt;</span>
 <span style="color: #7FFF7F;">&lt;/div&gt;</span>
 <span style="color: #7FFF7F;">&lt;a href=\"#toc-toggle\" class=\"btn toc-btn\" id=\"toc-toggle\"&gt;%s&lt;/a&gt;"</span>
-                                      (org-html--translate <span style="color: #7FFF7F;">"Table of Contents"</span> info))
+                                      (org-html--translate <span style="color: #7FFF7F;">"Table of Contents"</span> <span style="color: #ff0000; background-color: #ffff00;">info))</span>
                      nil nil nil nil nil (point-min) (point-max))
     (set-auto-mode t)
     (buffer-substring-no-properties (point-min) (point-max))))
@@ -4317,7 +4211,7 @@ html export の際に必要な yaml front matter を出力できるようにし�
          (org-jekyll--get-option info <span style="color: #7FBFFF;">:redirect_to</span> ))
         (convert-to-yaml-list
          (<span style="color: #FF7F7F;">lambda</span> (arg)
-           (mapconcat #'(lambda (text)(concat <span style="color: #7FFF7F;">"\n- "</span> text)) (split-string arg) <span style="color: #7FFF7F;">" "</span>))))
+           (mapconcat #'(lambda (text)(concat <span style="color: #7FFF7F;">"\n- "</span> text)) (split-string arg) <span style="color: #ff0000; background-color: #ffff00;">" "))))</span>
     (concat
      <span style="color: #7FFF7F;">"---"</span>
      <span style="color: #7FFF7F;">"\ntitle: "</span>      (s-replace <span style="color: #7FFF7F;">":"</span> <span style="color: #7FFF7F;">"&amp;$58;"</span> title)
@@ -4346,7 +4240,7 @@ html export の際に必要な yaml front matter を出力できるようにし�
   <span style="color: #7FFF7F;">"Export current buffer to a HTML file adding some YAML front matter."</span>
   (<span style="color: #FF7F7F;">interactive</span>)
   (<span style="color: #FF7F7F;">let</span> ((outfile (org-export-output-file-name <span style="color: #7FFF7F;">".html"</span> subtreep)))
-    (org-export-to-file 'jekyll outfile async subtreep visible-only body-only ext-plist)))
+    (org-export-to-file 'jekyll outfile async subtreep visible-only body-only <span style="color: #ffa500;">e</span><span style="color: #ff0000; background-color: #ffff00;">xt-plist)))</span>
 </pre>
 </div>
 </div>
@@ -4377,7 +4271,7 @@ html export の際に必要な yaml front matter を出力できるようにし�
            <span style="color: #7FBFFF;">:recursive</span> t
            <span style="color: #7FBFFF;">:with-toc</span> nil
            <span style="color: #7FBFFF;">:headline-levels</span> 5
-           )
+           <span style="color: #0000ff; background-color: #afeeee;">)</span>
           (<span style="color: #7FFF7F;">"cc-env"</span>
            <span style="color: #7FBFFF;">:base-directory</span> <span style="color: #7FFF7F;">"~/Public/cc-env/"</span>
            <span style="color: #7FBFFF;">:base-extension</span> <span style="color: #7FFF7F;">"org"</span>
@@ -4386,11 +4280,48 @@ html export の際に必要な yaml front matter を出力できるようにし�
            <span style="color: #7FBFFF;">:recursive</span> t
            <span style="color: #7FBFFF;">:with-toc</span> t
            <span style="color: #7FBFFF;">:headline-levels</span> 5
-           )
+           <span style="color: #0000ff; background-color: #afeeee;">)</span>
           <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">("web" :components ("org" "cc-env"))</span>
-          )
-        )
-  )
+          <span style="color: #0000ff; background-color: #afeeee;">)</span>
+        <span style="color: #0000ff; background-color: #afeeee;">)</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org30efae7" class="outline-3">
+<h3 id="org30efae7">Org-Wiki</h3>
+<div class="outline-text-3" id="text-org30efae7">
+<p>
+計算機関連のメモは <a href="https://github.com/caiorss/org-wiki">org-wiki</a> で書いています．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (package-installed-p 'org-wiki)
+ (quelpa '(org-wiki
+           <span style="color: #7FBFFF;">:fetcher</span> github
+           <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"caiorss/org-wiki"</span>)))
+(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-wiki</span>
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> org-wiki-location (concat (getenv <span style="color: #7FFF7F;">"HOME"</span>) <span style="color: #7FFF7F;">"/Public/cc-env/"</span>))
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:org-wiki-header</span> ()
+    <span style="color: #7FFF7F;">"Insert a header at the top of the file, customize for personal use"</span>
+    (<span style="color: #FF7F7F;">interactive</span>)
+    (<span style="color: #FF7F7F;">save-excursion</span>
+      (goto-char (point-min))
+      (insert (format
+               (string-trim <span style="color: #7FFF7F;">"</span>
+<span style="color: #7FFF7F;">#+TITLE:</span>
+<span style="color: #7FFF7F;">#+DATE: 20</span>
+<span style="color: #7FFF7F;">#+LANGUAGE: ja</span>
+<span style="color: #7FFF7F;">#+REF: cc-env/%s</span>
+<span style="color: #7FFF7F;">#+LAYOUT: default</span>
+<span style="color: #7FFF7F;">#+SETUPFILE: ~/Public/_setup.org</span>
+<span style="color: #7FFF7F;">#+PERMALINK: /cc-env/%s.html</span>
+<span style="color: #7FFF7F;">"</span>)
+               (file-name-base (buffer-file-name))
+               (file-name-base (buffer-file-name))))))
+  (advice-add 'org-wiki-header <span style="color: #7FBFFF;">:override</span> 'my:org-wiki-header)
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4457,12 +4388,12 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
   (<span style="color: #FF7F7F;">setq</span> howm-search-other-dir nil)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26908;&#32034;&#23550;&#35937;&#22806;&#12398;&#12501;&#12449;&#12452;&#12523;: ad hoc &#12395;&#12393;&#12435;&#12393;&#12435;&#22679;&#12360;&#12390;&#12356;&#12367;&#12394;&#12353;...</span>
   (<span style="color: #FF7F7F;">setq</span> howm-excluded-file-regexp
-        <span style="color: #7FFF7F;">"/\\.#</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">[~#]$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.bak$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">/CVS/</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.doc</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.pdf</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.txt$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.html$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.tex$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.dvi$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.fdb_latexmk$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.ppt$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.xls$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.howm-menu$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">.howm-keys$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.png$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.gif$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.tif$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.tiff$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.jpg$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.jpeg$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.el$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.aux$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.log$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">Makefile</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.txt$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">EUC-UCS2</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.fdb_latexmk$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">latexmkrc</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.gpg$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.org$"</span>)
+        <span style="color: #7FFF7F;">"/\\.#</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">[~#]$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.bak$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">/CVS/</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.doc</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.pdf</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.txt$</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\.html$</span><span style="color: #ff0000; background-color: #ffff00;">\\|\\.tex$\\|\\.dvi$\\|\\.fdb_latexmk$\\|\\.ppt$\\|\\.xls$\\|\\.howm-menu$\\|.howm-keys$\\|\\.png$\\|\\.gif$\\|\\.tif$\\|\\.tiff$\\|\\.jpg$\\|\\.jpeg$\\|\\.el$\\|\\.aux$\\|\\.log$\\|Makefile\\|\\.txt$\\|EUC-UCS2\\|\\.fdb_latexmk$\\|latexmkrc\\|\\.gpg$\\|\\.org$")</span>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">org-mode &#12398;&#26085;&#20184;&#26908;&#32034;&#29992;</span>
   (<span style="color: #FF7F7F;">setq</span> howm-reminder-regexp-grep-format
         (concat <span style="color: #7FFF7F;">"&lt;"</span> howm-date-regexp-grep <span style="color: #7FFF7F;">"[ :0-9]*&gt;%s"</span>))
   (<span style="color: #FF7F7F;">setq</span> howm-reminder-regexp-format
-        (concat <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">&lt;"</span> howm-date-regexp <span style="color: #7FFF7F;">"[ :0-9]*&gt;</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">%s</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">[0-9]*</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>))
+        (concat <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">&lt;"</span> howm-date-regexp <span style="color: #7FFF7F;">"[ :0-9]*&gt;</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">%s</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">[0-9]*</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #ff0000; background-color: #ffff00;">"))</span>
   <span style="color: #a5a5a6;">;;; </span><span style="color: #a5a5a6;">&#34920;&#31034;&#35373;&#23450;</span>
   (<span style="color: #FF7F7F;">setq</span> howm-menu-top nil
         howm-menu-lang 'ja)
@@ -4484,7 +4415,7 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">RET &#12391;&#12501;&#12449;&#12452;&#12523;&#12434;&#38283;&#12367;&#38555;, &#19968;&#35239;&#12496;&#12483;&#12501;&#12449;&#12434;&#28040;&#12377;. C-u RET &#12394;&#12425;&#27531;&#12427;</span>
   (<span style="color: #FF7F7F;">setq</span> howm-view-summary-persistent nil)
   <span style="color: #a5a5a6;">;;; </span><span style="color: #a5a5a6;">&#12513;&#12491;&#12517;&#12540;&#34920;&#31034;&#29992;&#12398;&#38306;&#25968;&#23450;&#32681;</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#27491;&#35215;&#34920;&#29694;&#12391;&#26908;&#32034;, &#36870;&#38918;,  &#34920;&#31034;&#20214;&#25968;&#12399; =howm-menu-recent-num=, &#12392;&#12356;&#12358; ad hoc &#12394;&#38306;&#25968;</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#27491;&#35215;&#34920;&#29694;&#12391;&#26908;&#32034;, &#36870;&#38918;,  &#34920;&#31034;&#20214;&#25968;&#12399; =howm-menu-recent-num=, &#12392;&#12356;&#12358; ad hoc &#12394;</span><span style="color: #ff0000; background-color: #ffff00;">&#38306;&#25968;</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:howm-menu-search</span> (key <span style="color: #FFFF7F;">&amp;optional</span> formatter regexp-p)
     <span style="color: #7FFF7F;">"Embed search result of KEY into menu, reverse-order, howm-menu-recent-num"</span>
     (<span style="color: #FF7F7F;">let</span> ((fixed-p (not regexp-p)))
@@ -4492,9 +4423,9 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
                          formatter
                          (howm-first-n
                           (howm-sort-items-by-reverse-date
-                           (howm-view-search-folder-items key (howm-folder) nil fixed-p)
-                           ) <span style="color: #FF7FBF; font-weight: bold;">howm-menu-recent-num)</span>
-                         )))
+                           (howm-view-search-folder-items key (howm-folder) nil<span style="color: #ff0000; background-color: #ffff00;"> fixed-p)</span>
+                           <span style="color: #0000ff; background-color: #afeeee;">)</span> <span style="color: #FF7FBF; font-weight: bold;">howm-menu-recent-num)</span>
+                         <span style="color: #0000ff; background-color: #afeeee;">)))</span>
   (<span style="color: #FF7F7F;">setq</span> howm-menu-allow
         (append '(my:howm-menu-search) howm-menu-allow))
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#32232;&#38598;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;&#12398;</span>
@@ -4503,8 +4434,8 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
         howm-template-date-format <span style="color: #7FFF7F;">"&lt;%Y-%m-%d %a %H:%M:%S&gt;"</span>
         howm-template-file-format <span style="color: #7FFF7F;">"==&gt;%s"</span>
         howm-template <span style="color: #7FFF7F;">"* MEMO %date %cursor\n%file\n"</span>
-        howm-reminder-today-format (format howm-insert-date-format howm-date-format))
-  )
+        howm-reminder-today-format (format howm-insert-date-format howm-date-<span style="color: #ffa500;">fo</span><span style="color: #ff0000; background-color: #ffff00;">rmat))</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4531,7 +4462,7 @@ tdiary-mode をちまちまと弄っている所
         tdiary-hour-offset 2
         tdiary-text-save-p t
         tdiary-text-suffix <span style="color: #7FFF7F;">".rd"</span>)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4590,13 +4521,13 @@ tdiary-mode をちまちまと弄っている所
                                    <span style="color: #7FFF7F;">""</span>
                                  (format <span style="color: #7FFF7F;">" [%s]"</span>
                                          (projectile-project-name))))
-        projectile-known-projects-file (concat my:d:tmp <span style="color: #7FFF7F;">"projectile-bookmarks.eld"</span>)
+        projectile-known-projects-file (concat my:d:tmp <span style="color: #7FFF7F;">"projectile-bookmarks.</span><span style="color: #ffa500;">e</span><span style="color: #ff0000; background-color: #ffff00;">ld")</span>
         <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">projectile-globally-ignored-files</span>
         <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">projectile-globally-ignored-directories</span>
-        )
+        <span style="color: #0000ff; background-color: #afeeee;">)</span>
   (projectile-global-mode)
-  (helm-projectile-on)
-  )
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(helm-projectile-on)</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4611,7 +4542,9 @@ magit は Emacs の Git Frontend.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">magit</span>
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x g"</span> . magit-status))
-  )
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> magit-completing-read-function 'magit-ido-completing-read)
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4628,9 +4561,9 @@ magit は Emacs の Git Frontend.
   <span style="color: #7FBFFF;">:config</span>
 <span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">(global-flycheck-mode)</span>
   (<span style="color: #FF7F7F;">setq-default</span> flycheck-disabled-checkers
-                '(
+                <span style="color: #0000ff; background-color: #afeeee;">'(</span>
                   emacs-lisp-checkdoc
-                  ))
+                  <span style="color: #0000ff; background-color: #afeeee;">))</span>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">gcc</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:setup-flycheck-gcc-project-path</span> ()
     <span style="color: #7FFF7F;">"gcc: Add projectile root for include path"</span>
@@ -4649,7 +4582,7 @@ magit は Emacs の Git Frontend.
          (make-variable-buffer-local 'flycheck-gfortran-include-path)
          root))))
   (add-hook 'c-mode-hook 'my:setup-flycheck-gfortran-project-path)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4663,7 +4596,7 @@ magit は Emacs の Git Frontend.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">rainbow-mode</span>
   <span style="color: #7FBFFF;">:diminish</span> rainbow-mode
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4674,7 +4607,7 @@ magit は Emacs の Git Frontend.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">textile-mode</span>
   <span style="color: #7FBFFF;">:ensure</span> t
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4695,8 +4628,8 @@ magit は Emacs の Git Frontend.
                (electric-indent-local-mode -1)))
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> markdown-command
-        <span style="color: #7FFF7F;">"pandoc --from markdown_github -t html5 --mathjax --highlight-style pygments"</span>)
-  )
+        <span style="color: #7FFF7F;">"pandoc --from markdown_github -t html5 --mathjax --highlight-style </span><span style="color: #ffa500;">pyg</span><span style="color: #ff0000; background-color: #ffff00;">ments")</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4721,7 +4654,7 @@ magit は Emacs の Git Frontend.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">yaml-mode</span>
   <span style="color: #7FBFFF;">:mode</span> <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">\.yml</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\.yaml</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4771,7 +4704,7 @@ magit は Emacs の Git Frontend.
   <span style="color: #7FBFFF;">:config</span>
   (ruby-block-mode t)
   (<span style="color: #FF7F7F;">setq</span> ruby-block-highlight-toggle 'overlay)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 <p>
@@ -4790,7 +4723,7 @@ magit は Emacs の Git Frontend.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">rabbit-mode</span>
   <span style="color: #7FBFFF;">:mode</span> <span style="color: #7FFF7F;">"\\.rab$"</span>
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4808,7 +4741,7 @@ magit は Emacs の Git Frontend.
                                             (block-open        before after)
                                             (substatement-open before after)))
                  (c-offsets-alist . ((brace-list-entry . +)))
-                 ))
+                 <span style="color: #0000ff; background-color: #afeeee;">))</span>
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq-default</span> c-default-style <span style="color: #7FFF7F;">"my:bsd-like"</span>)
   (add-hook 'c-mode-hook
@@ -4817,8 +4750,8 @@ magit は Emacs の Git Frontend.
               (electric-indent-local-mode -1)
               (set (make-local-variable 'eldoc-idle-delay) 0.20)
               (c-turn-on-eldoc-mode)
-              ))
-  )
+              <span style="color: #0000ff; background-color: #afeeee;">))</span>
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4850,7 +4783,7 @@ magit は Emacs の Git Frontend.
                     indent-tabs-mode nil
                     f90-font-lock-keywords f90-font-lock-keywords-2)
               (ggtags-mode 1)))
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4877,13 +4810,13 @@ Debian パッケージ版を使う．やっている事は
   (add-hook 'LaTeX-mode-hook
             (<span style="color: #FF7F7F;">function</span>
              (<span style="color: #FF7F7F;">lambda</span> ()
-               (<span style="color: #FF7F7F;">dolist</span> (command '(<span style="color: #7FFF7F;">"pTeX"</span> <span style="color: #7FFF7F;">"LaTeX"</span> <span style="color: #7FFF7F;">"pLaTeX"</span> <span style="color: #7FFF7F;">"pBibTeX"</span> <span style="color: #7FFF7F;">"jTeX"</span> <span style="color: #7FFF7F;">"jLaTeX"</span> <span style="color: #7FFF7F;">"jBibTeX"</span>))
+               (<span style="color: #FF7F7F;">dolist</span> (command '(<span style="color: #7FFF7F;">"pTeX"</span> <span style="color: #7FFF7F;">"LaTeX"</span> <span style="color: #7FFF7F;">"pLaTeX"</span> <span style="color: #7FFF7F;">"pBibTeX"</span> <span style="color: #7FFF7F;">"jTeX"</span> <span style="color: #7FFF7F;">"</span><span style="color: #ffa500;">jLa</span><span style="color: #ff0000; background-color: #ffff00;">TeX" "jBibTeX"))</span>
                  (delq (assoc command TeX-command-list) TeX-command-list))
                (<span style="color: #FF7F7F;">setq</span> TeX-command-default <span style="color: #7FFF7F;">"LaTeX"</span>
                      japanese-LaTeX-command-default <span style="color: #7FFF7F;">"LaTeX"</span>
                      TeX-PDF-mode t
                      TeX-command-output-list '((<span style="color: #7FFF7F;">"LaTeX"</span> (<span style="color: #7FFF7F;">"pdf"</span>)))
-                     )
+                     <span style="color: #0000ff; background-color: #afeeee;">)</span>
                (add-to-list 'TeX-expand-list
                             '(<span style="color: #7FFF7F;">"%(LATEXENC)"</span>
                               (<span style="color: #FF7F7F;">lambda</span> ()
@@ -4892,7 +4825,7 @@ Debian パッケージ版を使う．やっている事は
                (add-to-list 'TeX-command-list
                             '(<span style="color: #7FFF7F;">"LaTeX"</span>
                               <span style="color: #7FFF7F;">"LATEXENC=%(LATEXENC) latexmk -gg %t"</span>
-                              TeX-run-TeX nil (latex-mode) <span style="color: #7FBFFF;">:help</span> <span style="color: #7FFF7F;">"Run Latexmk"</span>)))))
+                              TeX-run-TeX nil (latex-mode) <span style="color: #7FBFFF;">:help</span> <span style="color: #7FFF7F;">"Run Latexmk"</span>)<span style="color: #ff0000; background-color: #ffff00;">))))</span>
   (<span style="color: #FF7F7F;">setq</span> TeX-source-correlate-method 'synctex
         TeX-source-correlate-start-server t
         TeX-auto-save t
@@ -4900,7 +4833,7 @@ Debian パッケージ版を使う．やっている事は
         TeX-style-local (expand-file-name <span style="color: #7FFF7F;">"auctex/style"</span> my:d:tmp)
         TeX-parse-self t
         TeX-auto-untabify t)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div></li>
 </ul>
@@ -4909,9 +4842,9 @@ Debian パッケージ版を使う．やっている事は
 </p>
 <div class="org-src-container">
 <pre class="src src-perl">      <span style="color: #a5a5a6;">#!/usr/bin/env perl</span>
-      $<span style="color: #7F7FFF;">kanji</span>  = defined $<span style="color: #7F7FFF;">ENV</span>{<span style="color: #7FFF7F;">"LATEXENC"</span>} ? <span style="color: #7FFF7F;">"-kanji=$ENV{\"LATEXENC\"}"</span> : <span style="color: #7FFF7F;">"-kanjii=utf8"</span> ;
-      $<span style="color: #7F7FFF;">latex</span>  = <span style="color: #7FFF7F;">"platex -interaction=nonstopmode -src-specials -shell-escape --synctex=1 $kanji"</span>;
-      $<span style="color: #7F7FFF;">latex_silent</span> = <span style="color: #7FFF7F;">"platex -interaction=batchmode -src-specials -shell-escape --synctex=1 $kanji"</span>;
+      $<span style="color: #7F7FFF;">kanji</span>  = defined $<span style="color: #7F7FFF;">ENV</span>{<span style="color: #7FFF7F;">"LATEXENC"</span>} ? <span style="color: #7FFF7F;">"-kanji=$ENV{\"LATEXENC\"}"</span> : <span style="color: #7FFF7F;">"-</span><span style="color: #ffa500;">kanj</span><span style="color: #ff0000; background-color: #ffff00;">ii=utf8" ;</span>
+      $<span style="color: #7F7FFF;">latex</span>  = <span style="color: #7FFF7F;">"platex -interaction=nonstopmode -src-specials -shell-escape --</span><span style="color: #ff0000; background-color: #ffff00;">synctex=1 $kanji";</span>
+      $<span style="color: #7F7FFF;">latex_silent</span> = <span style="color: #7FFF7F;">"platex -interaction=batchmode -src-specials -shell-</span><span style="color: #ffa500;">escap</span><span style="color: #ff0000; background-color: #ffff00;">e --synctex=1 $kanji";</span>
       $<span style="color: #7F7FFF;">bibtex</span> = <span style="color: #7FFF7F;">"pbibtex $kanji"</span>;
       $<span style="color: #7F7FFF;">makeindex</span> = <span style="color: #7FFF7F;">"touch -m %D"</span>;
       $<span style="color: #7F7FFF;">dvipdf</span> = <span style="color: #7FFF7F;">"dvipdfmx %O -o %D %S"</span>;
@@ -4940,7 +4873,7 @@ Debian パッケージ版を使う．やっている事は
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> zotelo-translator-charsets '((BibTeX . <span style="color: #7FFF7F;">"Unicode"</span>)
                                      (Default . <span style="color: #7FFF7F;">"Unicode"</span>)))
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -4965,14 +4898,14 @@ Debian パッケージ版を使う．やっている事は
       <span style="color: #a5a5a6;">;;                   </span><span style="color: #a5a5a6;">(font-spec :family "SeptemberMMono"))</span>
       <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(setq face-font-rescale-alist '(("September.*" . 0.9)))</span>
       (set-background-color <span style="color: #7FFF7F;">"#242424"</span>)
-      )))
+      <span style="color: #0000ff; background-color: #afeeee;">)))</span>
 (<span style="color: #FF7F7F;">setq</span> frame-background-mode (frame-parameter nil 'background-mode))
 (<span style="color: #FF7F7F;">setq</span> default-frame-alist
-      '(
+      <span style="color: #0000ff; background-color: #afeeee;">'(</span>
         (foreground-color . <span style="color: #7FFF7F;">"#F6F3E8"</span>)
         (scroll-bar-foreground-color . <span style="color: #7FFF7F;">"red"</span>)
         (vertical-scroll-bars . right)
-        ))
+        <span style="color: #0000ff; background-color: #afeeee;">))</span>
 (<span style="color: #FF7F7F;">when</span> (window-system)
   (my:load-window-config))
 </pre>
@@ -4984,7 +4917,7 @@ Debian パッケージ版を使う．やっている事は
 <pre class="src src-emacs-lisp">(custom-set-faces
  '(default                             ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> ))))
  <span style="color: #a5a5a6;">;;</span>
- '(cursor                              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> ))))
+ '(cursor                              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"</span><span style="color: #ff0000; background-color: #ffff00;">#4CFF4C" ))))</span>
  '(font-lock-builtin-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FBFFF"</span> ))))
  '(font-lock-comment-delimiter-face    ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#a5a5a6"</span> ))))
  '(font-lock-comment-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#a5a5a6"</span> ))))
@@ -4994,20 +4927,20 @@ Debian パッケージ版を使う．やっている事は
  '(font-lock-function-name-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#BF7FFF"</span>))))
  '(font-lock-keyword-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7F7F"</span>))))
  '(font-lock-link-face                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> ))))
- '(font-lock-negation-char-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:italic</span> nil))))
- '(font-lock-preprocessor-face         ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil))))
- '(font-lock-regexp-grouping-backslash ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#A5EE4C"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:italic</span> nil))))
- '(font-lock-regexp-grouping-construct ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:italic</span> nil))))
+ '(font-lock-negation-char-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">it</span><span style="color: #ff0000; background-color: #ffff00;">alic nil))))</span>
+ '(font-lock-preprocessor-face         ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">it</span><span style="color: #ff0000; background-color: #ffff00;">alic nil))))</span>
+ '(font-lock-regexp-grouping-backslash ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#A5EE4C"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">it</span><span style="color: #ff0000; background-color: #ffff00;">alic nil))))</span>
+ '(font-lock-regexp-grouping-construct ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">it</span><span style="color: #ff0000; background-color: #ffff00;">alic nil))))</span>
  '(font-lock-string-face               ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> ))))
  '(font-lock-type-face                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF7F"</span> ))))
  '(font-lock-variable-name-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> ))))
  '(font-lock-warning-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span> <span style="color: #7FBFFF;">:bold</span> t ))))
- '(fringe                              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#282828"</span> ))))
+ '(fringe                              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"</span><span style="color: #ff0000; background-color: #ffff00;">#282828" ))))</span>
  '(hl-line                             ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
  '(highlight                           ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
  '(minibuffer-prompt                   ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#BF7FFF"</span> ))))
- '(mode-line                           ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> ))))
- '(mode-line-inactive                  ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#999999"</span> <span style="color: #7FBFFF;">:bold</span> nil ))))
+ '(mode-line                           ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"</span><span style="color: #ff0000; background-color: #ffff00;">#222244" ))))</span>
+ '(mode-line-inactive                  ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"</span><span style="color: #ff0000; background-color: #ffff00;">#999999" :bold nil ))))</span>
  '(region                              ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">custom-set-faces was added by Custom.</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">If you edit it by hand, you could mess it up, so be careful.</span>
@@ -5019,10 +4952,10 @@ Debian パッケージ版を使う．やっている事は
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(variable-pitch ((t (:family "Monospace" :height 135 ))))</span>
  <span style="color: #a5a5a6;">;;</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">elscreen</span>
- '(elscreen-tab-control-face        ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#f6f3e8"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> t ))))
- '(elscreen-tab-current-screen-face ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#f6f3e8"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> t ))))
- '(elscreen-tab-other-screen-face   ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#aaaaaa"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> nil ))))
- '(elscreen-tab-background-face     ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#aaaaaa"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> nil ))))
+ '(elscreen-tab-control-face        ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#</span><span style="color: #ffa500;">f6</span><span style="color: #ff0000; background-color: #ffff00;">f3e8" :underline t :bold t ))))</span>
+ '(elscreen-tab-current-screen-face ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#</span><span style="color: #ffa500;">f6</span><span style="color: #ff0000; background-color: #ffff00;">f3e8" :underline t :bold t ))))</span>
+ '(elscreen-tab-other-screen-face   ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#</span><span style="color: #ffa500;">aa</span><span style="color: #ff0000; background-color: #ffff00;">aaaa" :underline t :bold nil ))))</span>
+ '(elscreen-tab-background-face     ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#</span><span style="color: #ffa500;">aa</span><span style="color: #ff0000; background-color: #ffff00;">aaaa" :underline t :bold nil ))))</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">dired</span>
  '(dired-directory                  ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-flagged</span>
@@ -5035,12 +4968,12 @@ Debian パッケージ版を使う．やっている事は
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-warning</span>
  '(flx-highlight-face               ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:undeline</span> t))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">git-gutter</span>
- '(git-gutter:added                  ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span>))))
- '(git-gutter:deleted                ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span>))))
- '(git-gutter:modified               ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF4C"</span>))))
+ '(git-gutter:added                  ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #ff0000; background-color: #ffff00;">"#4CFF4C"))))</span>
+ '(git-gutter:deleted                ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #ff0000; background-color: #ffff00;">"#FF7FBF"))))</span>
+ '(git-gutter:modified               ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #ff0000; background-color: #ffff00;">"#FFFF4C"))))</span>
  '(git-gutter:unchanged              ((t (<span style="color: #7FBFFF;">:inherit</span> default ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: header-line</span>
- '(helm-source-header               ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#224488"</span> <span style="color: #7FBFFF;">:bold</span> t))))
+ '(helm-source-header               ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#</span><span style="color: #ffa500;">22</span><span style="color: #ff0000; background-color: #ffff00;">4488" :bold t))))</span>
  '(helm-visible-mark                ((t (<span style="color: #7FBFFF;">:inherit</span> highlight ))))
  '(helm-selection                   ((t (<span style="color: #7FBFFF;">:inherit</span> highlight ))))
  '(helm-selection-line              ((t (<span style="color: #7FBFFF;">:inherit</span> highlight ))))
@@ -5056,23 +4989,25 @@ Debian パッケージ版を使う．やっている事は
  '(helm-grep-file                   ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
  '(helm-etags-file                  ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: file + executable</span>
- '(helm-ff-executable               ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> <span style="color: #7FBFFF;">:bold</span> t))))
+ '(helm-ff-executable               ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#</span><span style="color: #ffa500;">7F</span><span style="color: #ff0000; background-color: #ffff00;">FF7F" :bold t))))</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: symlink</span>
- '(helm-ff-symlink                  ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> <span style="color: #7FBFFF;">:bold</span> t))))
+ '(helm-ff-symlink                  ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span><span style="color: #ff0000; background-color: #ffff00;"> :bold t))))</span>
  '(helm-ff-dotted-symlink-directory ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-symlink ))))
- '(helm-ff-invalid-symlink          ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7F7F"</span> ))))
+ '(helm-ff-invalid-symlink          ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7F7F"</span><span style="color: #ff0000; background-color: #ffff00;"> ))))</span>
  <span style="color: #a5a5a6;">;;; </span><span style="color: #a5a5a6;">howm</span>
- '(howm-mode-keyword-face            ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-mode-title-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFFFF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-reminder-deadline-face       ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-reminder-late-deadline-face  ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF0000"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-reminder-today-face          ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFBF7F"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-reminder-tomorrow-face       ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
+ '(howm-mode-keyword-face            ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:background</span> nil<span style="color: #ff0000; background-color: #ffff00;"> ))))</span>
+ '(howm-mode-title-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFFFF"</span> <span style="color: #7FBFFF;">:background</span> nil<span style="color: #ff0000; background-color: #ffff00;"> ))))</span>
+ '(howm-reminder-deadline-face       ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">backgr</span><span style="color: #ff0000; background-color: #ffff00;">ound nil ))))</span>
+ '(howm-reminder-late-deadline-face  ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#</span><span style="color: #ffa500;">FF</span><span style="color: #ff0000; background-color: #ffff00;">0000" :background nil ))))</span>
+ '(howm-reminder-today-face          ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFBF7F"</span> <span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">backgr</span><span style="color: #ff0000; background-color: #ffff00;">ound nil ))))</span>
+ '(howm-reminder-tomorrow-face       ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span> <span style="color: #7FBFFF;">:</span><span style="color: #ffa500;">backgr</span><span style="color: #ff0000; background-color: #ffff00;">ound nil ))))</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido</span>
  '(ido-first-match     ((t (<span style="color: #7FBFFF;">:inherit</span> default ))))
  '(ido-only-match      ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF4C"</span> ))))
  '(ido-subdir          ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:bold</span> t))))
- '(ido-grid-mode-match ((t (<span style="color: #7FBFFF;">:inherit</span> ido-first-match ))))
+ '(ido-grid-common-match ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4c4c4c"</span>))))
+ '(ido-grid-mode-match ((t (<span style="color: #7FBFFF;">:inherit</span> ido-first-match))))
+ '(ido-vertical-first-match-face ((t (<span style="color: #7FBFFF;">:underline</span> (<span style="color: #7FBFFF;">:inherit</span> ido-first-match)))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-grid-mode-common-match</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-grid-mode-jump-face</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-incomplete-regexp</span>
@@ -5100,7 +5035,7 @@ Debian パッケージ版を使う．やっている事は
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header3-face  ((t (:inherit outline-3))))</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header4-face  ((t (:inherit outline-4))))</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header5-face  ((t (:inherit outline-5))))</span>
- )
+ <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -5113,7 +5048,7 @@ Debian パッケージ版を使う．やっている事は
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defmacro</span> <span style="color: #BF7FFF;">my:diminish</span> (file mode <span style="color: #FFFF7F;">&amp;optional</span> new-name)
-  <span style="color: #7FFF7F;">"original: </span><span style="color: #00ffff; text-decoration: underline;"><a href="https://github.com/larstvei/dot-emacs/blob/master/init.org">https://github.com/larstvei/dot-emacs/blob/master/init.org</a></span><span style="color: #7FFF7F;">"</span>
+  <span style="color: #7FFF7F;">"original: https://github.com/larstvei/dot-emacs/blob/master/init.org"</span>
   `(<span style="color: #FF7F7F;">with-eval-after-load</span> ,file
      (diminish ,mode ,new-name)))
 (<span style="color: #FF7F7F;">my:diminish</span> <span style="color: #7FFF7F;">"isearch"</span>          'isearch-mode)
@@ -5180,7 +5115,7 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
   (<span style="color: #FF7F7F;">setq</span> powerline-default-separator 'utf-8
         powerline-utf-8-separator-left  #x20
         powerline-utf-8-separator-right #x20
-        )
+        <span style="color: #0000ff; background-color: #afeeee;">)</span>
 (<span style="color: #FF7F7F;">defpowerline</span> my:powerline-vc
   (<span style="color: #FF7F7F;">when</span> (<span style="color: #FF7F7F;">and</span> (buffer-file-name (current-buffer)) vc-mode)
     (format <span style="color: #7FFF7F;">"%s%s"</span>
@@ -5196,18 +5131,18 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
      '(<span style="color: #7FFF7F;">"%e"</span>
        (<span style="color: #7FBFFF;">:eval</span>
         (<span style="color: #FF7F7F;">let*</span> ((active (powerline-selected-window-active))
-               (mode-line-buffer-id (<span style="color: #FF7F7F;">if</span> active 'mode-line-buffer-id 'mode-line-buffer-id-inactive))
+               (mode-line-buffer-id (<span style="color: #FF7F7F;">if</span> active 'mode-line-buffer-id 'mode-line-<span style="color: #ff0000; background-color: #ffff00;">buffer-id-inactive))</span>
                (mode-line (<span style="color: #FF7F7F;">if</span> active 'mode-line 'mode-line-inactive))
                (face1 (<span style="color: #FF7F7F;">if</span> active 'powerline-active1 'powerline-inactive1))
                (face2 (<span style="color: #FF7F7F;">if</span> active 'powerline-active2 'powerline-inactive2))
                (separator-left (intern (format <span style="color: #7FFF7F;">"powerline-%s-%s"</span>
                                                (powerline-current-separator)
-                                               (car powerline-default-separator-dir))))
+                                               (car powerline-default-<span style="color: #ffa500;">separator</span><span style="color: #ff0000; background-color: #ffff00;">-dir))))</span>
                (separator-right (intern (format <span style="color: #7FFF7F;">"powerline-%s-%s"</span>
                                                 (powerline-current-separator)
-                                                (cdr powerline-default-separator-dir))))
+                                                (cdr powerline-default-<span style="color: #ffa500;">separato</span><span style="color: #ff0000; background-color: #ffff00;">r-dir))))</span>
                (lhs (list
-                     (powerline-raw (substring skk-modeline-input-mode 2 -1) nil 'l)
+                     (powerline-raw (substring skk-modeline-input-mode 2 -1) <span style="color: #ffa500;">ni</span><span style="color: #ff0000; background-color: #ffff00;">l 'l)</span>
                      (powerline-raw <span style="color: #7FFF7F;">"%*"</span> mode-line 'l)
                      (powerline-raw mode-line-mule-info mode-line 'l)
                      (powerline-buffer-id mode-line-buffer-id 'l)
@@ -5220,7 +5155,7 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
                      (funcall separator-left face1 face2)
                      (my:powerline-vc face2 'r)
                      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(powerline-vc face2 'r)</span>
-                     ))
+                     <span style="color: #0000ff; background-color: #afeeee;">))</span>
                (rhs (list
                      (powerline-raw global-mode-string face2 'r)
                      (funcall separator-right face2 face1)
@@ -5229,13 +5164,13 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
                      (funcall separator-right face1 mode-line)
                      (powerline-raw <span style="color: #7FFF7F;">"  "</span>)
                      (powerline-raw <span style="color: #7FFF7F;">"%6p"</span> mode-line 'r)
-                     ))
-               )
+                     <span style="color: #0000ff; background-color: #afeeee;">))</span>
+               <span style="color: #0000ff; background-color: #afeeee;">)</span>
           (concat (powerline-render lhs)
                   (powerline-fill face2 (powerline-width rhs))
                   (powerline-render rhs)))))))
   (my:powerline-theme)
-  )
+  <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 </div>
@@ -5263,7 +5198,7 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
  (<span style="color: #7FFF7F;">"&lt;home&gt;"</span>  . beginning-of-buffer)
  (<span style="color: #7FFF7F;">"&lt;end&gt;"</span>   . end-of-buffer)
  (<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point)
- )
+ <span style="color: #0000ff; background-color: #afeeee;">)</span>
 </pre>
 </div>
 <p>
@@ -5281,7 +5216,7 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
 <pre class="src src-emacs-lisp">(add-hook 'after-init-hook
           (<span style="color: #FF7F7F;">lambda</span> ()
             (message <span style="color: #7FFF7F;">"init time: %.3f sec"</span>
-                     (float-time (time-subtract after-init-time before-init-time)))))
+                     (float-time (time-subtract after-init-time before-init-<span style="color: #ffa500;">tim</span><span style="color: #ff0000; background-color: #ffff00;">e)))))</span>
 </pre>
 </div>
 </div>
