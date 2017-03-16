@@ -1,5 +1,5 @@
 #+TITLE: 研究関連
-#+DATE: 2017-03-13 10:32:01
+#+DATE: 2017-03-16 17:35:15
 #+LANGUAGE: ja
 #+REF: research
 #+LAYOUT: default
@@ -70,6 +70,12 @@
      ながれ, 22 別冊, 124-125
 * 学会/研究集会発表
 ** 海外
+   - _Sasaki, Y._, Takehiro, S., Ishiwatari, M., Yamada, M., 2016:
+     Critical mode of anelastic thermal convection in a rotating spherical shell depends on radial distribution of thermal diffusivity,
+     SEDI The 15th Symposium, Nantes, France.
+   - Takehiro, S., _Sasaki, Y._, 2016:
+     Penetration of mean zonal flows into an outer stable layer excited by MHD thermal convection in rotating spherical shells,
+     SEDI The 15th Symposium, Nantes, France.
    - Sasaki and Takehiro, S.-I. 2015:
      Penetration of magneto-hydrodynamic disturbances into a strongly stable outer layer caused by MHD dynamo in a rotating spherical shell,
      Japan SEDI symposium 2015.
@@ -111,6 +117,28 @@
      Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries,
      The 12th Symposium of SEDI, Study of the Earth's Deep Interior, at the University of California at Santa Barbara, California, USA, in the Corwin Pavilion, from July 18 to 23, 2010
 ** 国内
+   - 佐々木洋平, 竹広真一, 石渡正樹, 山田道夫 2016:
+     回転球殻内の非弾性熱対流の臨界モードに対する熱拡散係数の動径分布の影響,
+     2016年日本流体力学会年会
+   - 竹広真一, 佐々木洋平 2016:
+     回転球殻中の磁気対流により引き起こされる平均帯状流の外側安定成層への貫入.
+     2016 年日本流体力学会年会
+   - 竹広真一, 佐々木洋平, 2016:
+     回転球殻中の磁気対流により引き起こされる平均帯状流の外側安定成層への貫入.
+     日本地球惑星科学連合 2016 年大会, 2016 年 5 月 23 日,
+     幕張メッセ国際会議場 講演セッション (講演番号: MIS10-P05)
+   - 佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2016:
+     高速回転する薄い球殻内の熱対流により生成される表層縞状構造への力学的境界条件の影響.
+     日本地球惑星科学連合 2016 年大会
+   - 佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2016:
+     高速回転する薄い球殻内の熱対流により引き起こされる表層縞状構造の消滅,
+     2016 年日本天文学会春季大会, 2016 年 3 月 15日, 首都大学東京 (講演番号 Z322b)
+   - 佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2016:
+     高速回転する薄い球殻内の熱対流により生成される表層縞状構造への力学的境界条件の影響.
+     惑星大気研究会「水惑星」 2016 年 3 月 10 日, 神戸大学惑星科学研究センター
+   - 佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2016:
+     高速回転する薄い球殻内の熱対流により生成される表層縞状構造への力学的境界条件の影響.
+     2016 年春季気象学会
    - 佐々木洋平, 竹広真一, 石岡圭一, 中島健介, 林祥介, 2015:
      高速回転する薄い球殻内の熱対流により引き起こされる表層縞状構造の消滅.
      2015 年日本流体力学会年会, 東工大大岡山キャンパス
