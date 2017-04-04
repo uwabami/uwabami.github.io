@@ -234,9 +234,9 @@ http_port 20080
 <span style="color: #a5a5a6;">#</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Apache like</span>
 <span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">access_log /var/log/squid/access.log common</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">logformat common %&gt;a %ui %un [%tl] "%rm %ru HTTP/%rv" &gt;Hs %&lt;st %Ss:%Sh</span>
-access_log /dev/null
+access_log /var/log/squid/access.log common
+logformat common %&gt;a %ui %un [%tl] <span style="color: #7FFF7F;">"%rm %ru HTTP/%rv"</span> &gt;Hs %&lt;st %Ss:%Sh
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">access_log /dev/null</span>
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">Cache</span>
 <span style="color: #a5a5a6;">#</span>
