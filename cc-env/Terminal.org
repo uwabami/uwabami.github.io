@@ -1,5 +1,5 @@
 #+TITLE: Terminal 生活
-#+DATE: 2017-02-20 18:42:49
+#+DATE: 2017-05-05 19:05:33
 #+LANGUAGE: ja
 #+REF: cc-env/Terminal
 #+LAYOUT: cc-env
@@ -60,7 +60,7 @@ rxvt-unicode-256color - multi-lingual terminal emulator with Unicode support for
 
   #+HTML: <script src="https://gist.github.com/uwabami/0847823ce058304a50c05276edcc854d.js"></script>
 
-  二つ目は en_US.UTF-8 決め打ちを止めるパッチ.
+  二つ目は =en_US.UTF-8= 決め打ちを止めるパッチ.
 
   #+HTML: <script src="https://gist.github.com/uwabami/04d661a4ffe3d0aa5198d19a8f488620.js"></script>
 
