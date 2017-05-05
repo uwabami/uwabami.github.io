@@ -120,25 +120,12 @@ apt 万歳
         sed <span style="color: #7FFF7F;">'/^$/d'</span> | <span style="color: #7FFF7F;">\</span>
         sed -e <span style="color: #7FFF7F;">'s/\t/ /g'</span> | <span style="color: #7FFF7F;">\</span>
         nkf -w -Lu -d &gt; tmp-$<span style="color: #7F7FFF;">i</span>-list.txt
-    <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">echo "create tmp-$i-white.txt"</span>
-    <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat tmp-$i.txt | \</span>
-    <span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">grep ^white | \</span>
-    <span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">sed 's/\t/ /' |\</span>
-    <span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">nkf -w -Lu -d &gt; tmp-$i-white.txt</span>
-    <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">echo "cleanup tmp-$i.txt"</span>
-    rm -f tmp-$<span style="color: #7F7FFF;">i</span>.txt
+        rm -f tmp-$<span style="color: #7F7FFF;">i</span>.txt
 <span style="color: #FF7F7F;">done</span>
 wget -q https://warui.intaa.net/adhosts/whitelist.txt -O tmp-white.txt
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">echo "merge white list"</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for f in `/bin/ls -1 tmp-?-white.txt`; do</span>
-<span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">cat $f | sed 's/^white //g' &gt;&gt; tmp-white.txt</span>
-<span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">rm -f $f</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">done</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat tmp-white.txt | sed '/^$/d' | sort -u &gt; adaway-white.txt</span>
-
 
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"merge tmp list"</span>
-<span style="color: #FF7F7F;">for</span> f<span style="color: #FF7F7F;"> in</span> <span style="color: #fa8072;">`/bin/ls -1 tmp-?-list.txt`</span>; <span style="color: #FF7F7F;">do</span>
+<span style="color: #FF7F7F;">for</span> f<span style="color: #FF7F7F;"> in</span> <span style="font-weight: bold;">`/bin/ls -1 tmp-?-list.txt`</span>; <span style="color: #FF7F7F;">do</span>
     cat $<span style="color: #7F7FFF;">f</span> &gt;&gt; tmp-list.txt
     rm -f $<span style="color: #7F7FFF;">f</span>
 <span style="color: #FF7F7F;">done</span>
@@ -150,6 +137,9 @@ cat tmp-white.txt | <span style="color: #FF7F7F;">while </span><span style="colo
 <span style="color: #FF7F7F;">do</span>
     sed -i -e <span style="color: #7FFF7F;">'/$line/d'</span> adaway.txt
 <span style="color: #FF7F7F;">done</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">whitelist</span>
+sed -i -e <span style="color: #7FFF7F;">'/apis.google.com/d'</span> adaway.txt
+
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"cleanup"</span>
 rm -f tmp-list.txt
 rm -f tmp-white.txt

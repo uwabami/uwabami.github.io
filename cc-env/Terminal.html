@@ -253,10 +253,10 @@ weechat を常に下に表示させておきたいので <code>C-t -</code> で�
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
 <span style="color: #7F7FFF;">tmp</span>=$<span style="color: #7F7FFF;">HOME</span>/.tmux/weechat.tmp
-<span style="color: #7F7FFF;">current_weechat_window</span>=<span style="color: #fa8072;">`tmux lsp -a -F "#I: #T" | grep weechat | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_weechat_pane</span>=<span style="color: #fa8072;">`tmux lsp -a -F "#P: #T" | grep weechat | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_active_window</span>=<span style="color: #fa8072;">`tmux lsw | grep active | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_active_pane</span>=<span style="color: #fa8072;">`tmux lsp | grep active | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_weechat_window</span>=<span style="font-weight: bold;">`tmux lsp -a -F "#I: #T" | grep weechat | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_weechat_pane</span>=<span style="font-weight: bold;">`tmux lsp -a -F "#P: #T" | grep weechat | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_active_window</span>=<span style="font-weight: bold;">`tmux lsw | grep active | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_active_pane</span>=<span style="font-weight: bold;">`tmux lsp | grep active | cut -d":" -f 1`</span>
 
 <span style="color: #FF7F7F;">if</span> [ ${<span style="color: #7F7FFF;">current_weechat_window</span>} -ne ${<span style="color: #7F7FFF;">current_active_window</span>} ] ; <span style="color: #FF7F7F;">then</span>
     tmux join-pane -l 10 -s :${<span style="color: #7F7FFF;">current_weechat_window</span>}.${<span style="color: #7F7FFF;">current_weechat_pane</span>} -t :${<span style="color: #7F7FFF;">current_active_window</span>}
