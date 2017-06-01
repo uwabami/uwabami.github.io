@@ -135,7 +135,7 @@ tmux の設定は以下の通り.
 <pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
 <span style="color: #a5a5a6;">#</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI <a href="mailto:uwabami%40gfd-dennou.org">&lt;uwabami@gfd-dennou.org&gt;</a></span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2017-02-23 10:53:18$</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2017-05-30 07:15:34$</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: Public domain.</span>
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">general</span>
@@ -201,12 +201,12 @@ bind C-t send-prefix       <span style="color: #a5a5a6;"># </span><span style="c
 bind r source-file ~/.tmux/tmux.conf \; display <span style="color: #7FFF7F;">"Reload config file"</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12467;&#12500;&#12540;&#12514;&#12540;&#12489;&#12391; vi + emacs &#39080;</span>
 setw -g mode-keys vi
-bind -t vi-copy C-a start-of-line
-bind -t vi-copy C-e end-of-line
-bind -t vi-copy v begin-selection
-bind -t vi-copy y copy-pipe <span style="color: #7FFF7F;">'xclip -in -selection clipboard &gt;/dev/null'</span>
-bind -t vi-copy NPage page-down
-bind -t vi-copy PPage page-up
+bind -T copy-mode-vi C-a send-keys -X start-of-line
+bind -T copy-mode-vi C-e send-keys -X end-of-line
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel <span style="color: #7FFF7F;">'xclip -in -selection clipboard &gt;/dev/null'</span>
+bind -T copy-mode-vi NPage send-keys -X page-down
+bind -T copy-mode-vi PPage send-keys -X page-up
 unbind ]
 bind ] run-shell <span style="color: #7FFF7F;">"xclip -o -selection clipboard | tmux load-buffer - &amp;&amp; tmux paste-buffer"</span>
 unbind %

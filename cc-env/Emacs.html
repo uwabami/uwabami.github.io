@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-05-05 18:32:36
+date: 2017-05-31 16:05:03
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgae3d8c8">標準機能の設定</a>
 <ul>
 <li><a href="#org1b6b59a">表示関連</a></li>
-<li><a href="#org58f6bd1">編集関連</a></li>
+<li><a href="#org1bfe1d6">編集関連</a></li>
 <li><a href="#org7eda492">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -73,10 +73,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org3bd8022">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#org8700be1">Emacs 本体側の設定</a></li>
+<li><a href="#org1512af8">Emacs 本体側の設定</a></li>
 <li><a href="#orge62a055">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org39f4e5e">編集関連</a></li>
+<li><a href="#org379612d">編集関連</a></li>
 <li><a href="#org67f5019">インクリメンタルサーチ</a></li>
 <li><a href="#org6d86eb6">辞書の設定</a></li>
 <li><a href="#org199b263">動的補完</a></li>
@@ -97,7 +97,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org4ea74a5">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org8513d6f">Emacs 本体側の設定</a></li>
+<li><a href="#orgc4396dc">Emacs 本体側の設定</a></li>
 <li><a href="#org711a3af">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#orgda20e29">依存/追加ライブラリのインストールと読み込み</a>
@@ -252,6 +252,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org6c5fc81">Ruby</a></li>
 <li><a href="#org8712e7f">C</a></li>
 <li><a href="#org3d4000d">Fortran</a></li>
+<li><a href="#orga73bc0b">Re:VIEW</a></li>
 <li><a href="#org6d6deb2">AUCTeX</a></li>
 <li><a href="#org4d21671">AUCTeX と Zotero との連携</a></li>
 </ul>
@@ -835,9 +836,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org58f6bd1" class="outline-4">
-<h4 id="org58f6bd1">編集関連</h4>
-<div class="outline-text-4" id="text-org58f6bd1">
+<div id="outline-container-org1bfe1d6" class="outline-4">
+<h4 id="org1bfe1d6">編集関連</h4>
+<div class="outline-text-4" id="text-org1bfe1d6">
 <p>
 yes or no を y or n に
 </p>
@@ -1334,9 +1335,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org8700be1" class="outline-3">
-<h3 id="org8700be1">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org8700be1">
+<div id="outline-container-org1512af8" class="outline-3">
+<h3 id="org1512af8">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org1512af8">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1446,9 +1447,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org39f4e5e" class="outline-4">
-<h4 id="org39f4e5e">編集関連</h4>
-<div class="outline-text-4" id="text-org39f4e5e">
+<div id="outline-container-org379612d" class="outline-4">
+<h4 id="org379612d">編集関連</h4>
+<div class="outline-text-4" id="text-org379612d">
 <p>
 キーバインド
 </p>
@@ -1792,9 +1793,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org8513d6f" class="outline-3">
-<h3 id="org8513d6f">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org8513d6f">
+<div id="outline-container-orgc4396dc" class="outline-3">
+<h3 id="orgc4396dc">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgc4396dc">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -4786,6 +4787,21 @@ magit は Emacs の Git Frontend.
                     indent-tabs-mode nil
                     f90-font-lock-keywords f90-font-lock-keywords-2)
               (ggtags-mode 1)))
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga73bc0b" class="outline-3">
+<h3 id="orga73bc0b">Re:VIEW</h3>
+<div class="outline-text-3" id="text-orga73bc0b">
+<p>
+ePUB 書くのに便利な <a href="https://github.com/kmuto/review/">kmuto/review: Re:VIEW is flexible document format/conversion system</a> の
+モード
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">review-mode</span>
+  <span style="color: #7FBFFF;">:mode</span> (<span style="color: #7FFF7F;">"\\.re$"</span> . review-mode)
   )
 </pre>
 </div>
