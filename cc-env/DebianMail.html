@@ -18,15 +18,15 @@ permalink: /cc-env/DebianMail.html
 <ul>
 <li><a href="#org7abcb25">mbsync/isync</a>
 <ul>
-<li><a href="#org96d0968">インストール</a></li>
-<li><a href="#org655707f">設定</a></li>
-<li><a href="#orgb21d314">cron での動作</a></li>
+<li><a href="#orgabfac31">インストール</a></li>
+<li><a href="#org813998b">設定</a></li>
+<li><a href="#org5d2d440">cron での動作</a></li>
 </ul>
 </li>
 <li><a href="#org9e83b12">dovecot</a>
 <ul>
-<li><a href="#org03c4ba6">インストール</a></li>
-<li><a href="#org2ac6b46">設定</a></li>
+<li><a href="#org5123ec2">インストール</a></li>
+<li><a href="#orga039fb0">設定</a></li>
 </ul>
 </li>
 <li><a href="#org981070b">以下, obsolete</a>
@@ -35,9 +35,9 @@ permalink: /cc-env/DebianMail.html
 <li><a href="#org445f854">検索: Solr で日本語</a></li>
 <li><a href="#org59e01d8">offlineimap</a>
 <ul>
-<li><a href="#orgabfac31">インストール</a></li>
-<li><a href="#org813998b">設定</a></li>
-<li><a href="#org5d2d440">cron での動作</a></li>
+<li><a href="#orgdbce8fb">インストール</a></li>
+<li><a href="#orgeafc4dd">設定</a></li>
+<li><a href="#org9a0907c">cron での動作</a></li>
 </ul>
 </li>
 </ul>
@@ -97,7 +97,7 @@ $ sudo -s
 そのあと, <code>/etc/exim4/passwd.client</code> 内で, スマートホストの設定
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">&#12473;&#12510;&#12540;&#12488;&#12507;&#12473;&#12488;&#36865;&#20449;&#12469;&#12540;&#12496;:[&#12450;&#12459;&#12454;&#12531;&#12488;]:[&#12497;&#12473;&#12527;&#12540;&#12489;]
+<pre class="src src-conf">スマートホスト送信サーバ:[アカウント]:[パスワード]
 </pre>
 </div>
 <p>
@@ -118,8 +118,8 @@ $ sudo -s
 <code>/etc/exim4/exim4.conf.template</code> あたりに
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">message_id_header_domain</span> = &#12489;&#12513;&#12452;&#12531;&#21517;
-<span style="color: #7F7FFF;">message_id_header_text</span>   = &#12507;&#12473;&#12488;&#21517;
+<pre class="src src-conf">message_id_header_domain = ドメイン名
+message_id_header_text   = ホスト名
 </pre>
 </div>
 <p>
@@ -130,7 +130,7 @@ $ sudo -s
 ローカル配送先を適宜設定したい場合には
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">MAILDIR_HOME_MAILDIR_LOCATION</span> = $home/Maildir/INBOX
+<pre class="src src-conf">MAILDIR_HOME_MAILDIR_LOCATION = $home/Maildir/INBOX
 </pre>
 </div>
 </div>
@@ -156,12 +156,12 @@ msmtp 自体の設定はいたって普通だが, queue が面倒?
 結局 Emacs からは <code>sendmail</code> として
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
-<span style="color: #7F7FFF;">ARGS</span>=<span style="color: #7FFF7F;">"$*"</span>
-msmtp-enqueue.sh $<span style="color: #7F7FFF;">ARGS</span> 1&gt;/dev/null
-<span style="color: #fa8072;">`LANG=ja_JP.UTF-8 nmcli dev status | grep -v &#31649;&#29702;&#28961;&#12375; | grep -q &#25509;&#32154;&#28168;&#12415;`</span> &amp;&amp; <span style="color: #7FFF7F;">\</span>
+<pre class="src src-sh">#!/bin/sh
+ARGS="$*"
+msmtp-enqueue.sh $ARGS 1&gt;/dev/null
+`LANG=ja_JP.UTF-8 nmcli dev status | grep -v 管理無し | grep -q 接続済み` &amp;&amp; \
     msmtp-runqueue.sh 2&gt;&amp;1 1&gt;/dev/null
-<span style="color: #FF7F7F;">exit</span> 0
+exit 0
 </pre>
 </div>
 <p>
@@ -213,9 +213,9 @@ msmtp-enqueue.sh $<span style="color: #7F7FFF;">ARGS</span> 1&gt;/dev/null
 isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
 </p>
 </div>
-<div id="outline-container-org96d0968" class="outline-4">
-<h4 id="org96d0968">インストール</h4>
-<div class="outline-text-4" id="text-org96d0968">
+<div id="outline-container-orgabfac31" class="outline-4">
+<h4 id="orgabfac31">インストール</h4>
+<div class="outline-text-4" id="text-orgabfac31">
 <p>
 実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
 </p>
@@ -227,9 +227,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org655707f" class="outline-4">
-<h4 id="org655707f">設定</h4>
-<div class="outline-text-4" id="text-org655707f">
+<div id="outline-container-org813998b" class="outline-4">
+<h4 id="org813998b">設定</h4>
+<div class="outline-text-4" id="text-org813998b">
 <p>
 設定ファイルは <code>~/.mbsyncrc</code>.
 設定例は以下:
@@ -266,7 +266,7 @@ apt 万歳
 <pre class="src src-conf">IMAPAccount mobile
 Host mobile.example.com
 User TheMobileUserAccount
-PassCmd <span style="color: #7FFF7F;">"echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine mobile.example.com .*password \\\([^ ]*\\) port.*,\\1,p')}"</span>
+PassCmd "echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine mobile.example.com .*password \\\([^ ]*\\) port.*,\\1,p')}"
 Port 993
 UseIMAPS yes
 RequireSSL yes
@@ -276,7 +276,7 @@ CertificateFile /etc/ssl/certs/ca-certificates.crt
 IMAPAccount work
 Host work.example.com
 User TheWorkUserAccount
-PassCmd <span style="color: #7FFF7F;">"echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine work.example.com .*password \\\([^ ]*\\) port.*,\\1,p')}"</span>
+PassCmd "echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine work.example.com .*password \\\([^ ]*\\) port.*,\\1,p')}"
 Port 993
 UseIMAPS yes
 RequireSSL yes
@@ -286,7 +286,7 @@ CertificateFile /etc/ssl/certs/ca-certificates.crt
 IMAPAccount gmail
 Host imap.gmail.com
 User GmailMailAddress
-PassCmd <span style="color: #7FFF7F;">"echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine imap.gmail.com .*password \\\([^ ]*\\) port.*,\\1,p')}"</span>
+PassCmd "echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine imap.gmail.com .*password \\\([^ ]*\\) port.*,\\1,p')}"
 Port 993
 UseIMAPS yes
 RequireSSL yes
@@ -332,7 +332,7 @@ Sync all
 SyncState *
 
 Channel gmail-junk
-Master <span style="color: #7FFF7F;">":gmail-remote:[Gmail]/&amp;j,dg0TDhMPww6w-"</span>
+Master ":gmail-remote:[Gmail]/&amp;j,dg0TDhMPww6w-"
 Slave :local:INBOX.Gmail.Junk
 Patterns *
 Create Both
@@ -365,38 +365,38 @@ mbsync -l mobile
 </p>
 </div>
 </div>
-<div id="outline-container-orgb21d314" class="outline-4">
-<h4 id="orgb21d314">cron での動作</h4>
-<div class="outline-text-4" id="text-orgb21d314">
+<div id="outline-container-org5d2d440" class="outline-4">
+<h4 id="org5d2d440">cron での動作</h4>
+<div class="outline-text-4" id="text-org5d2d440">
 <p>
 認証に GPG を使っており、認証に Gnome Keyring を用いているので
 必要な環境変数を読み込んでから実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">bash</span>
+<pre class="src src-sh">#!/bin/bash
 sleep 5
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Export the dbus session address on startup so it can be used by cron</span>
-touch $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
-chmod 600 $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
-env | grep DBUS_SESSION_BUS_ADDRESS &gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
-env | grep GPG_AGENT_INFO &gt;&gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
-<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'export DBUS_SESSION_BUS_ADDRESS'</span> &gt;&gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
-<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'export GPG_AGENT_INFO'</span> &gt;&gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+# Export the dbus session address on startup so it can be used by cron
+touch $HOME/.Xdbus
+chmod 600 $HOME/.Xdbus
+env | grep DBUS_SESSION_BUS_ADDRESS &gt; $HOME/.Xdbus
+env | grep GPG_AGENT_INFO &gt;&gt; $HOME/.Xdbus
+echo 'export DBUS_SESSION_BUS_ADDRESS' &gt;&gt; $HOME/.Xdbus
+echo 'export GPG_AGENT_INFO' &gt;&gt; $HOME/.Xdbus
 </pre>
 </div>
 <p>
 <code>~/.config/autostart</code> 以下に適当な名前で
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">[<span style="color: #FFFF7F;">Desktop Entry</span>]
-<span style="color: #7F7FFF;">Type</span>=Application
-<span style="color: #7F7FFF;">Exec</span>=/home/uwabami/.mua/export_x_info.sh
-<span style="color: #7F7FFF;">Hidden</span>=false
-<span style="color: #7F7FFF;">NoDisplay</span>=false
-<span style="color: #7F7FFF;">X-GNOME-Autostart-enabled</span>=true
-<span style="color: #7F7FFF;">Name</span>=Xdbus infomation exporter
-<span style="color: #7F7FFF;">Comment</span>=Xdbus infomation exporter
+<pre class="src src-conf">[Desktop Entry]
+Type=Application
+Exec=/home/uwabami/.mua/export_x_info.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Xdbus infomation exporter
+Comment=Xdbus infomation exporter
 </pre>
 </div>
 <p>
@@ -409,18 +409,18 @@ env | grep GPG_AGENT_INFO &gt;&gt; $<span style="color: #7F7FFF;">HOME</span>/.X
 cron で実行されるスクリプトは, 例えば
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
-<span style="color: #a5a5a6;">################################################################################</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for personal settings</span>
-<span style="color: #7F7FFF;">PID</span>=~/Maildir/mbsync.pid
-<span style="color: #7F7FFF;">CONF</span>=~/.mbsyncrc
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for gnome-keyring:</span>
-. ${<span style="color: #7F7FFF;">HOME</span>}/.Xdbus
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check network is avaliable</span>
-nm-online -x  2&gt;/dev/null || <span style="color: #FF7F7F;">exit</span> 0
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check another offlineimap</span>
-timelimit -T 300 -t 300 mbsync -c $<span style="color: #7F7FFF;">CONF</span> -a 2&gt;&amp;1 || <span style="color: #FF7F7F;">exit</span> 0
+<pre class="src src-sh">#!/bin/sh
+# -*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-
+################################################################################
+# for personal settings
+PID=~/Maildir/mbsync.pid
+CONF=~/.mbsyncrc
+# for gnome-keyring:
+. ${HOME}/.Xdbus
+# check network is avaliable
+nm-online -x  2&gt;/dev/null || exit 0
+# check another offlineimap
+timelimit -T 300 -t 300 mbsync -c $CONF -a 2&gt;&amp;1 || exit 0
 </pre>
 </div>
 <p>
@@ -433,9 +433,9 @@ timelimit -T 300 -t 300 mbsync -c $<span style="color: #7F7FFF;">CONF</span> -a 
 <div id="outline-container-org9e83b12" class="outline-3">
 <h3 id="org9e83b12">dovecot</h3>
 <div class="outline-text-3" id="text-org9e83b12">
-</div><div id="outline-container-org03c4ba6" class="outline-4">
-<h4 id="org03c4ba6">インストール</h4>
-<div class="outline-text-4" id="text-org03c4ba6">
+</div><div id="outline-container-org5123ec2" class="outline-4">
+<h4 id="org5123ec2">インストール</h4>
+<div class="outline-text-4" id="text-org5123ec2">
 <p>
 最低限 IMAP での接続ができれば良いので
 </p>
@@ -447,9 +447,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org2ac6b46" class="outline-4">
-<h4 id="org2ac6b46">設定</h4>
-<div class="outline-text-4" id="text-org2ac6b46">
+<div id="outline-container-orga039fb0" class="outline-4">
+<h4 id="orga039fb0">設定</h4>
+<div class="outline-text-4" id="text-orga039fb0">
 <p>
 最低限の設定として、
 </p>
@@ -473,7 +473,7 @@ apt 万歳
 </p>
 <div class="org-src-container">
 <pre class="src src-conf">...
-<span style="color: #7F7FFF;">listen</span> = 127.0.0.1
+listen = 127.0.0.1
 ...
 </pre>
 </div>
@@ -486,8 +486,8 @@ apt 万歳
 <code>/etc/dovecot/conf.d/10-auth.conf</code> 内で
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">disable_plain_text_auth</span> = no
-<span style="color: #7F7FFF;">auth_mechanisms</span> = plain
+<pre class="src src-conf">disable_plain_text_auth = no
+auth_mechanisms = plain
 !include auth-system.conf.ext
 </pre>
 </div>
@@ -495,11 +495,11 @@ apt 万歳
 を有効に。include されている auth-system.conf.ext の中身は
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #FFFF7F;">passdb</span> {
-  <span style="color: #7F7FFF;">driver</span> = pam
+<pre class="src src-conf">passdb {
+  driver = pam
 }
-<span style="color: #FFFF7F;">userdb</span> {
-  <span style="color: #7F7FFF;">driver</span> = passwd
+userdb {
+  driver = passwd
 }
 </pre>
 </div>
@@ -511,9 +511,9 @@ apt 万歳
 次に Maildir の設定。 <code>/etc/dovecot/conf.d/10-mail.conf</code> 内で
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">mail_location</span> = maildir:%h/Maildir:INBOX=%h/Maildir/INBOX:LAYOUT=fs
-<span style="color: #FFFF7F;">namespace inbox</span> {
-  <span style="color: #7F7FFF;">inbox</span> = yes
+<pre class="src src-conf">mail_location = maildir:%h/Maildir:INBOX=%h/Maildir/INBOX:LAYOUT=fs
+namespace inbox {
+  inbox = yes
 }
 </pre>
 </div>
@@ -525,23 +525,23 @@ apt 万歳
 最後に IMAP over SSL の設定。 <code>/etc/dovecot/conf.d/10-ssl.conf</code> で証明書の設定をする:
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">ssl_cert</span> = &lt;/etc/ssl/private/ssl-cert-dovecot.pem
-<span style="color: #7F7FFF;">ssl_key</span> = &lt;/etc/ssl/private/ssl-cert-dovecot.key
-<span style="color: #7F7FFF;">ssl_protocols</span> = !SSLv2 !SSLv3
+<pre class="src src-conf">ssl_cert = &lt;/etc/ssl/private/ssl-cert-dovecot.pem
+ssl_key = &lt;/etc/ssl/private/ssl-cert-dovecot.key
+ssl_protocols = !SSLv2 !SSLv3
 </pre>
 </div>
 <p>
 その後に <code>/etc/dovecot/conf.d/10-master.conf</code> 内の <code>imap-login</code> 部分を修正
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #FFFF7F;">service imap-login</span> {
-  <span style="color: #FFFF7F;">inet_listener imap</span> {
-    <span style="color: #7F7FFF;">port</span> = 0
-    <span style="color: #7F7FFF;">ssl</span> = no
+<pre class="src src-conf">service imap-login {
+  inet_listener imap {
+    port = 0
+    ssl = no
   }
-  <span style="color: #FFFF7F;">inet_listener imaps</span> {
-    <span style="color: #7F7FFF;">port</span> = 993
-    <span style="color: #7F7FFF;">ssl</span> = yes
+  inet_listener imaps {
+    port = 993
+    ssl = yes
   }
 }
 </pre>
@@ -579,9 +579,9 @@ Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。
 Jetty の起動設定は <code>/etc/default/jetty8</code> にあるので
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">NO_START</span>=0
-<span style="color: #7F7FFF;">JETTY_HOST</span>=localhost
-<span style="color: #7F7FFF;">JETTY_PORT</span>=8089
+<pre class="src src-conf">NO_START=0
+JETTY_HOST=localhost
+JETTY_PORT=8089
 </pre>
 </div>
 <p>
@@ -596,7 +596,7 @@ Jetty の起動設定は <code>/etc/default/jetty8</code> にあるので
 その後で <code>/etc/dovecot/conf.d/10-imap.conf</code> 内の mail<sub>plugins</sub> 行に
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">mail_plugins</span> = fts fts_solr
+<pre class="src src-conf">mail_plugins = fts fts_solr
 </pre>
 </div>
 <p>
@@ -605,10 +605,10 @@ IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定す
 最後に <code>/etc/dovecot/conf.d/90-plugin.conf</code> で
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #FFFF7F;">plugin</span> {
-  <span style="color: #7F7FFF;">fts_autoindex</span> = yes
-  <span style="color: #7F7FFF;">fts</span> = solr
-  <span style="color: #7F7FFF;">fts_solr</span> = break-imap-search url=http://localhost:8089/solr/
+<pre class="src src-conf">plugin {
+  fts_autoindex = yes
+  fts = solr
+  fts_solr = break-imap-search url=http://localhost:8089/solr/
 }
 </pre>
 </div>
@@ -636,89 +636,89 @@ IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定す
 diff は以下:
 </p>
 <div class="org-src-container">
-<pre class="src src-diff"><span style="background-color: #737373;">--- </span><span style="background-color: #999999; font-weight: bold;">solr-schema.xml 2015-05-10 20:52:33.375358006 +0900</span>
-<span style="background-color: #737373;">+++ </span><span style="background-color: #999999; font-weight: bold;">schema.xml  2015-05-10 20:37:37.358195292 +0900</span>
-<span style="background-color: #737373;">@@ -13,6 +13,62 @@</span>
-<span style="color: #dddddd;">     &lt;fieldType name="long" class="solr.TrieLongField" /&gt;</span>
-<span style="color: #dddddd;">     &lt;fieldType name="boolean" class="solr.BoolField" /&gt;</span>
+<pre class="src src-diff">--- solr-schema.xml 2015-05-10 20:52:33.375358006 +0900
++++ schema.xml  2015-05-10 20:37:37.358195292 +0900
+@@ -13,6 +13,62 @@
+     &lt;fieldType name="long" class="solr.TrieLongField" /&gt;
+     &lt;fieldType name="boolean" class="solr.BoolField" /&gt;
 
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;analyzer&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- normalize width before bigram, as e.g. half-width dakuten combine  --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- for any non-CJK --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.CJKBigramFilterFactory"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;/analyzer&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;/fieldType&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;fieldType name="text_ja" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="false"&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;analyzer&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;!-- Kuromoji Japanese morphological analyzer/tokenizer (JapaneseTokenizer)</span>
-<span style="background-color: #335533;">+</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           Kuromoji has a search mode (default) that does segmentation useful for search.  A heuristic</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           is used to segment compounds into its parts and the compound itself is kept as synonym.</span>
-<span style="background-color: #335533;">+</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           Valid values for attribute mode are:</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">              normal: regular segmentation</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">              search: segmentation useful for search with synonyms compounds (default)</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">            extended: same as search mode, but unigrams unknown words (experimental)</span>
-<span style="background-color: #335533;">+</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           For some applications it might be good to use search mode for indexing and normal mode for</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           queries to reduce recall and prevent parts of compounds from being matched and highlighted.</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           Use &lt;analyzer type="index"&gt; and &lt;analyzer type="query"&gt; for this and mode normal in query.</span>
-<span style="background-color: #335533;">+</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           Kuromoji also has a convenient user dictionary feature that allows overriding the statistical</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           model with your own entries for segmentation, part-of-speech tags and readings without a need</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           to specify weights.  Notice that user dictionaries have not been subject to extensive testing.</span>
-<span style="background-color: #335533;">+</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           User dictionary attributes are:</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">                     userDictionary: user dictionary filename</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">             userDictionaryEncoding: user dictionary encoding (default is UTF-8)</span>
-<span style="background-color: #335533;">+</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           See lang/userdict_ja.txt for a sample user dictionary file.</span>
-<span style="background-color: #335533;">+</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           See http://wiki.apache.org/solr/JapaneseLanguageSupport for more on Japanese language support.</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!--&lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search" userDictionary="lang/userdict_ja.txt"/&gt;--&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Reduces inflected verbs and adjectives to their base/dictionary forms (&#36766;&#26360;&#24418;) --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Removes tokens with certain part-of-speech tags --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt" enablePositionIncrements="true"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Normalizes full-width romaji to half-width and half-width kana to full-width (Unicode NFKC subset) --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Removes common tokens typically not useful for search, but have a negative effect on ranking --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ja.txt" enablePositionIncrements="true" /&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Normalizes common katakana spelling variations by removing any last long sound character (U+30FC) --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Lower-cases romaji characters --&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;/analyzer&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;/fieldType&gt;</span>
-<span style="background-color: #335533;">+</span>
-<span style="color: #dddddd;">     &lt;fieldType name="text" class="solr.TextField" positionIncrementGap="100"&gt;</span>
-<span style="color: #dddddd;">       &lt;analyzer type="index"&gt;</span>
-<span style="color: #dddddd;">         &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;</span>
-<span style="background-color: #737373;">@@ -43,14 +99,14 @@</span>
-<span style="color: #dddddd;">    &lt;field name="box" type="string" indexed="true" stored="true" required="true" /&gt;</span>
-<span style="color: #dddddd;">    &lt;field name="user" type="string" indexed="true" stored="true" required="true" /&gt;</span>
++    &lt;!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) --&gt;
++    &lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;
++      &lt;analyzer&gt;
++        &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
++        &lt;!-- normalize width before bigram, as e.g. half-width dakuten combine  --&gt;
++        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;
++        &lt;!-- for any non-CJK --&gt;
++        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;
++        &lt;filter class="solr.CJKBigramFilterFactory"/&gt;
++      &lt;/analyzer&gt;
++    &lt;/fieldType&gt;
++    &lt;fieldType name="text_ja" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="false"&gt;
++      &lt;analyzer&gt;
++      &lt;!-- Kuromoji Japanese morphological analyzer/tokenizer (JapaneseTokenizer)
++
++           Kuromoji has a search mode (default) that does segmentation useful for search.  A heuristic
++           is used to segment compounds into its parts and the compound itself is kept as synonym.
++
++           Valid values for attribute mode are:
++              normal: regular segmentation
++              search: segmentation useful for search with synonyms compounds (default)
++            extended: same as search mode, but unigrams unknown words (experimental)
++
++           For some applications it might be good to use search mode for indexing and normal mode for
++           queries to reduce recall and prevent parts of compounds from being matched and highlighted.
++           Use &lt;analyzer type="index"&gt; and &lt;analyzer type="query"&gt; for this and mode normal in query.
++
++           Kuromoji also has a convenient user dictionary feature that allows overriding the statistical
++           model with your own entries for segmentation, part-of-speech tags and readings without a need
++           to specify weights.  Notice that user dictionaries have not been subject to extensive testing.
++
++           User dictionary attributes are:
++                     userDictionary: user dictionary filename
++             userDictionaryEncoding: user dictionary encoding (default is UTF-8)
++
++           See lang/userdict_ja.txt for a sample user dictionary file.
++
++           See http://wiki.apache.org/solr/JapaneseLanguageSupport for more on Japanese language support.
++        --&gt;
++        &lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search"/&gt;
++        &lt;!--&lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search" userDictionary="lang/userdict_ja.txt"/&gt;--&gt;
++        &lt;!-- Reduces inflected verbs and adjectives to their base/dictionary forms (辞書形) --&gt;
++        &lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;
++        &lt;!-- Removes tokens with certain part-of-speech tags --&gt;
++        &lt;filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt" enablePositionIncrements="true"/&gt;
++        &lt;!-- Normalizes full-width romaji to half-width and half-width kana to full-width (Unicode NFKC subset) --&gt;
++        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;
++        &lt;!-- Removes common tokens typically not useful for search, but have a negative effect on ranking --&gt;
++        &lt;filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ja.txt" enablePositionIncrements="true" /&gt;
++        &lt;!-- Normalizes common katakana spelling variations by removing any last long sound character (U+30FC) --&gt;
++        &lt;filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4"/&gt;
++        &lt;!-- Lower-cases romaji characters --&gt;
++        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;
++      &lt;/analyzer&gt;
++    &lt;/fieldType&gt;
++
+     &lt;fieldType name="text" class="solr.TextField" positionIncrementGap="100"&gt;
+       &lt;analyzer type="index"&gt;
+         &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
+@@ -43,14 +99,14 @@
+    &lt;field name="box" type="string" indexed="true" stored="true" required="true" /&gt;
+    &lt;field name="user" type="string" indexed="true" stored="true" required="true" /&gt;
 
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">   &lt;field name="hdr" type="text" indexed="true" stored="false" /&gt;</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">   &lt;field name="body" type="text" indexed="true" stored="false" /&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">   &lt;field name="hdr" type="text_cjk" indexed="true" stored="false" /&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">   &lt;field name="body" type="text_cjk" indexed="true" stored="false" /&gt;</span>
+-   &lt;field name="hdr" type="text" indexed="true" stored="false" /&gt;
+-   &lt;field name="body" type="text" indexed="true" stored="false" /&gt;
++   &lt;field name="hdr" type="text_cjk" indexed="true" stored="false" /&gt;
++   &lt;field name="body" type="text_cjk" indexed="true" stored="false" /&gt;
 
-<span style="color: #dddddd;">    &lt;field name="from" type="text" indexed="true" stored="false" /&gt;</span>
-<span style="color: #dddddd;">    &lt;field name="to" type="text" indexed="true" stored="false" /&gt;</span>
-<span style="color: #dddddd;">    &lt;field name="cc" type="text" indexed="true" stored="false" /&gt;</span>
-<span style="color: #dddddd;">    &lt;field name="bcc" type="text" indexed="true" stored="false" /&gt;</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">   &lt;field name="subject" type="text" indexed="true" stored="false" /&gt;</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">   &lt;field name="subject" type="text_cjk" indexed="true" stored="false" /&gt;</span>
+    &lt;field name="from" type="text" indexed="true" stored="false" /&gt;
+    &lt;field name="to" type="text" indexed="true" stored="false" /&gt;
+    &lt;field name="cc" type="text" indexed="true" stored="false" /&gt;
+    &lt;field name="bcc" type="text" indexed="true" stored="false" /&gt;
+-   &lt;field name="subject" type="text" indexed="true" stored="false" /&gt;
++   &lt;field name="subject" type="text_cjk" indexed="true" stored="false" /&gt;
 
-<span style="color: #dddddd;">    &lt;!-- Used by Solr internally: --&gt;</span>
-<span style="color: #dddddd;">    &lt;field name="_version_" type="long" indexed="true" stored="true"/&gt;</span>
+    &lt;!-- Used by Solr internally: --&gt;
+    &lt;field name="_version_" type="long" indexed="true" stored="true"/&gt;
 </pre>
 </div>
 </div>
@@ -731,9 +731,9 @@ diff は以下:
 <a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.
 </p>
 </div>
-<div id="outline-container-orgabfac31" class="outline-5">
-<h5 id="orgabfac31">インストール</h5>
-<div class="outline-text-5" id="text-orgabfac31">
+<div id="outline-container-orgdbce8fb" class="outline-5">
+<h5 id="orgdbce8fb">インストール</h5>
+<div class="outline-text-5" id="text-orgdbce8fb">
 <p>
 apt万歳, ってことで.
 </p>
@@ -742,9 +742,9 @@ $ sudo apt-get install offlineimap
 </pre>
 </div>
 </div>
-<div id="outline-container-org813998b" class="outline-5">
-<h5 id="org813998b">設定</h5>
-<div class="outline-text-5" id="text-org813998b">
+<div id="outline-container-orgeafc4dd" class="outline-5">
+<h5 id="orgeafc4dd">設定</h5>
+<div class="outline-text-5" id="text-orgeafc4dd">
 <p>
 現状, 以下の通り:
 </p>
@@ -761,118 +761,118 @@ $ sudo apt-get install offlineimap
 </ul></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">offlineimaprc</span>
-<span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Copyright(C) 2011 Youhei SASAKI All rights reserved.</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2014-07-26 18:25:07$</span>
-<span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI <a href="mailto:uwabami%40gfd-dennou.org">&lt;uwabami@gfd-dennou.org&gt;</a></span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: WTFPL</span>
-<span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Code:</span>
-[<span style="color: #FFFF7F;">general</span>]
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12513;&#12479;&#12487;&#12540;&#12479;&#12398;&#26684;&#32013;&#20808;</span>
-<span style="color: #7F7FFF;">metadata</span> = ~/Mail/offlineimap
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#35036;&#21161;&#38306;&#25968;&#12364;&#23450;&#32681;&#12373;&#12428;&#12383;&#12501;&#12449;&#12452;&#12523;&#12398;&#32622;&#12365;&#22580;&#25152;</span>
-<span style="color: #7F7FFF;">pythonfile</span> = ~/.mua/offlineimap_utils.py
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26399;&#12377;&#12427;&#12469;&#12540;&#12496;&#12398;&#35373;&#23450;</span>
-<span style="color: #7F7FFF;">accounts</span> = Main, Gmail
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26399;&#12377;&#12427;&#12450;&#12459;&#12454;&#12531;&#12488;&#12398;&#25968;</span>
-<span style="color: #7F7FFF;">maxsyncaccounts</span> = 2
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">UI &#12398;&#35373;&#23450;. cron &#12391;&#21516;&#26399;&#12377;&#12427;&#22580;&#21512;&#12395;&#12399; quiet &#12398;&#26041;&#12364;&#33391;&#12356;</span>
-<span style="color: #7F7FFF;">ui</span> = basic
-<span style="color: #7F7FFF;">socktimeout</span> = 600
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#39640;&#36895;&#21270;(?)</span>
-<span style="color: #7F7FFF;">fsync</span> = false
+<pre class="src src-conf"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
+# offlineimaprc
+#
+# Copyright(C) 2011 Youhei SASAKI All rights reserved.
+# $Lastupdate: 2014-07-26 18:25:07$
+#
+# Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+# License: WTFPL
+#
+# Code:
+[general]
+# メタデータの格納先
+metadata = ~/Mail/offlineimap
+# 補助関数が定義されたファイルの置き場所
+pythonfile = ~/.mua/offlineimap_utils.py
+# 同期するサーバの設定
+accounts = Main, Gmail
+# 同期するアカウントの数
+maxsyncaccounts = 2
+# UI の設定. cron で同期する場合には quiet の方が良い
+ui = basic
+socktimeout = 600
+# 高速化(?)
+fsync = false
 
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Gmail &#29992;&#12398;&#35373;&#23450;: &#12371;&#12371;&#12391;&#35373;&#23450;&#12377;&#12427;&#21517;&#21069;&#12399; accounts &#12395;&#25539;&#12360;&#12427;</span>
-[<span style="color: #FFFF7F;">Account Gmail</span>]
-<span style="color: #7F7FFF;">localrepository</span> = LocalGmail
-<span style="color: #7F7FFF;">remoterepository</span> = RemoteGmail
-<span style="color: #7F7FFF;">maxsize</span> = 2000000000
-<span style="color: #7F7FFF;">status_backend</span> = sqlite
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">quick = 1 &#12384;&#12392;&#12501;&#12521;&#12464;&#12399;&#21516;&#26399;&#12373;&#12428;&#12394;&#12356;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">'[Gmail]/&#20840;&#12390;&#12398;&#12513;&#12540;&#12523;' &#12434;&#21516;&#26399;&#12377;&#12427;&#12394;&#12425; quick = 1 &#12398;&#26041;&#12364;&#33391;&#12356;?</span>
-<span style="color: #7F7FFF;">quick</span> = 0
+# Gmail 用の設定: ここで設定する名前は accounts に揃える
+[Account Gmail]
+localrepository = LocalGmail
+remoterepository = RemoteGmail
+maxsize = 2000000000
+status_backend = sqlite
+# quick = 1 だとフラグは同期されない
+# '[Gmail]/全てのメール' を同期するなら quick = 1 の方が良い?
+quick = 0
 
-[<span style="color: #FFFF7F;">Repository LocalGmail</span>]
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Gmail &#12398;&#25163;&#20803;&#12398;&#35373;&#23450;</span>
-<span style="color: #7F7FFF;">type</span> = Maildir
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Maildir &#12398;&#26684;&#32013;&#22580;&#25152;</span>
-<span style="color: #7F7FFF;">localfolders</span> = ~/Mail/imap/[Gmail]
-<span style="color: #7F7FFF;">restoreatime</span> = no
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">IMAP &#12398;&#12475;&#12497;&#12524;&#12540;&#12479;&#12398;&#22793;&#25563;: Mailbox &#12398; "." &#12364; "/" &#12392;&#12394;&#12426;,</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12364;&#20316;&#25104;&#12373;&#12428;&#12427;</span>
-<span style="color: #7F7FFF;">sep</span> = /
+[Repository LocalGmail]
+# Gmail の手元の設定
+type = Maildir
+# Maildir の格納場所
+localfolders = ~/Mail/imap/[Gmail]
+restoreatime = no
+# IMAP のセパレータの変換: Mailbox の "." が "/" となり,
+# ディレクトリが作成される
+sep = /
 
-[<span style="color: #FFFF7F;">Repository RemoteGmail</span>]
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Gmail &#12392;&#12398;&#25509;&#32154;&#35373;&#23450;: type = IMAP &#12391;&#12418;&#33391;&#12356;?</span>
-<span style="color: #7F7FFF;">type</span> = Gmail
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remote{pass,user}eval &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
-<span style="color: #7F7FFF;">remoteusereval</span> = get_username(<span style="color: #7FFF7F;">"imap.gmail.com"</span>)
-<span style="color: #7F7FFF;">remotepasseval</span> = get_password(<span style="color: #7FFF7F;">"imap.gmail.com"</span>)
-<span style="color: #7F7FFF;">maxsize</span> = 2000000000
-<span style="color: #7F7FFF;">realdelete</span> = no
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26178;&#25509;&#32154;&#25968;. &#20006;&#21015;&#23455;&#34892;&#21487;&#33021;&#12394;&#12398;&#12391;&#36969;&#23452;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12469;&#12540;&#12496;&#12395;&#24594;&#12425;&#12428;&#12394;&#12356;&#31243;&#24230;&#12395;</span>
-<span style="color: #7F7FFF;">maxconnections</span> = 5
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remote -&gt; local &#26178;&#12398;&#12501;&#12457;&#12523;&#12480;&#21517;&#22793;&#25563;(&#27491;&#35215;&#34920;&#29694;)</span>
-<span style="color: #7F7FFF;">nametrans</span> = lambda foldername: re.sub(<span style="color: #7FFF7F;">'^INBOX'</span>,<span style="color: #7FFF7F;">''</span>, (re.sub(<span style="color: #7FFF7F;">'^\[Gmail\]/'</span>,<span style="color: #7FFF7F;">''</span>, foldername)))
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26399;&#12377;&#12427;&#12501;&#12457;&#12523;&#12480;&#12398;&#35373;&#23450;: Gmail &#20596;&#12391; IMAP &#12391;&#34920;&#31034;&#12377;&#12427;&#12521;&#12505;&#12523;&#35373;&#23450;&#12375;&#12390;&#12362;&#12367;, &#12391;&#12418;&#33391;&#12356;&#12363;&#12418;.</span>
-<span style="color: #7F7FFF;">folderfilter</span> = lambda foldername: foldername in [
-             <span style="color: #7FFF7F;">'INBOX'</span>,                   <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-&gt; '~/Mail/imap/[Gmail]' &#12395;&#12394;&#12427;</span>
-             <span style="color: #7FFF7F;">'[Gmail]/&amp;j,dg0TDhMPww6w-'</span> <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-&gt; '~/Mail/imap/[Gmail]/&amp;j,dg0TDhMPww6w-' &#12395;&#12394;&#12427;</span>
+[Repository RemoteGmail]
+# Gmail との接続設定: type = IMAP でも良い?
+type = Gmail
+# remote{pass,user}eval は offlineimap_utils.py で定義した関数
+remoteusereval = get_username("imap.gmail.com")
+remotepasseval = get_password("imap.gmail.com")
+maxsize = 2000000000
+realdelete = no
+# 同時接続数. 並列実行可能なので適宜
+# サーバに怒られない程度に
+maxconnections = 5
+# remote -&gt; local 時のフォルダ名変換(正規表現)
+nametrans = lambda foldername: re.sub('^INBOX','', (re.sub('^\[Gmail\]/','', foldername)))
+# 同期するフォルダの設定: Gmail 側で IMAP で表示するラベル設定しておく, でも良いかも.
+folderfilter = lambda foldername: foldername in [
+             'INBOX',                   # -&gt; '~/Mail/imap/[Gmail]' になる
+             '[Gmail]/&amp;j,dg0TDhMPww6w-' # -&gt; '~/Mail/imap/[Gmail]/&amp;j,dg0TDhMPww6w-' になる
              ]
-<span style="color: #7F7FFF;">sslcacertfile</span> = /etc/ssl/certs/ca-certificates.crt
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Main &#12469;&#12540;&#12496;&#12398;&#35373;&#23450;: &#12371;&#12371;&#12391;&#35373;&#23450;&#12377;&#12427;&#21517;&#21069;&#12399; [general] accounts &#12395;&#25539;&#12360;&#12427;</span>
-[<span style="color: #FFFF7F;">Account Main</span>]
-<span style="color: #7F7FFF;">localrepository</span> = LocalMain
-<span style="color: #7F7FFF;">remoterepository</span> = RemoteMain
-<span style="color: #7F7FFF;">status_backend</span> = sqlite
-<span style="color: #7F7FFF;">maxsize</span> = 2000000000
-<span style="color: #7F7FFF;">quick</span> = 0
+# Main サーバの設定: ここで設定する名前は [general] accounts に揃える
+[Account Main]
+localrepository = LocalMain
+remoterepository = RemoteMain
+status_backend = sqlite
+maxsize = 2000000000
+quick = 0
 
-[<span style="color: #FFFF7F;">Repository LocalMain</span>]
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#25163;&#20803;&#12398;&#35373;&#23450;</span>
-<span style="color: #7F7FFF;">type</span> = Maildir
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Maildir &#12398;&#26684;&#32013;&#22580;&#25152;</span>
-<span style="color: #7F7FFF;">localfolders</span> = ~/Mail/imap
-<span style="color: #7F7FFF;">restoreatime</span> = no
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">local -&gt; remote &#12391;&#12398;&#21517;&#21069;&#22793;&#25563;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">LocaltoRemoteTransnameINBOX &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
-<span style="color: #7F7FFF;">nametrans</span> = LocalToRemoteTransnameINBOX
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">'Maildir/imap/[Gmail]' &#12399;&#21516;&#26399;&#12375;&#12394;&#12356;</span>
-<span style="color: #7F7FFF;">folderfilter</span> = lambda folder: not folder.startswith(<span style="color: #7FFF7F;">'[Gmail]'</span>)
-<span style="color: #7F7FFF;">sep</span> = /
+[Repository LocalMain]
+# 手元の設定
+type = Maildir
+# Maildir の格納場所
+localfolders = ~/Mail/imap
+restoreatime = no
+# local -&gt; remote での名前変換
+# LocaltoRemoteTransnameINBOX は offlineimap_utils.py で定義した関数
+nametrans = LocalToRemoteTransnameINBOX
+# 'Maildir/imap/[Gmail]' は同期しない
+folderfilter = lambda folder: not folder.startswith('[Gmail]')
+sep = /
 
-[<span style="color: #FFFF7F;">Repository RemoteMain</span>]
-<span style="color: #7F7FFF;">type</span> = IMAP
-<span style="color: #7F7FFF;">ssl</span> = yes
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">certificates &#12364;&#12487;&#12501;&#12457;&#12523;&#12488;&#12391;&#25506;&#12379;&#12394;&#12356;?</span>
-<span style="color: #7F7FFF;">sslcacertfile</span> = /etc/ssl/certs/ca-certificates.crt
-<span style="color: #7F7FFF;">remotehost</span> = [main server]
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remote{pass,user}eval &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
-<span style="color: #7F7FFF;">remoteusereval</span> = get_username(<span style="color: #7FFF7F;">"[main server]"</span>)
-<span style="color: #7F7FFF;">remotepasseval</span> = get_password(<span style="color: #7FFF7F;">"[main server]"</span>)
-<span style="color: #7F7FFF;">maxsize</span> = 2000000000
-<span style="color: #7F7FFF;">maxconnections</span> = 5
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remote -&gt; local &#12391;&#12398;&#21517;&#21069;&#12398;&#22793;&#25563;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">RemotetoLocalTransnameINBOX &#12399; offlineimap_utils.py &#12391;&#23450;&#32681;&#12375;&#12383;&#38306;&#25968;</span>
-<span style="color: #7F7FFF;">nametrans</span> = RemoteToLocalTransnameINBOX
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#21516;&#26399; *&#12375;&#12394;&#12356;* &#12501;&#12457;&#12523;&#12480;&#12398;&#36984;&#25246;</span>
-<span style="color: #7F7FFF;">folderfilter</span> = lambda foldername: foldername not in [
-            <span style="color: #7FFF7F;">'INBOX.Drafts'</span>,
-            <span style="color: #7FFF7F;">'INBOX.Trash'</span>,
-            <span style="color: #7FFF7F;">'INBOX.archive.zz2006'</span>,
-            <span style="color: #7FFF7F;">'INBOX.archive.zz2007'</span>,
-            <span style="color: #7FFF7F;">'INBOX.archive.zz2008'</span>,
-            <span style="color: #7FFF7F;">'INBOX.archive.zz2009'</span>,
-            <span style="color: #7FFF7F;">'INBOX.archive.zz2010'</span>,
-            <span style="color: #7FFF7F;">'INBOX.archive.zz2011'</span>,
-            <span style="color: #7FFF7F;">'INBOX.archive.zz2012'</span>,
-            <span style="color: #7FFF7F;">'INBOX.archive.zz2013'</span>
+[Repository RemoteMain]
+type = IMAP
+ssl = yes
+# certificates がデフォルトで探せない?
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotehost = [main server]
+# remote{pass,user}eval は offlineimap_utils.py で定義した関数
+remoteusereval = get_username("[main server]")
+remotepasseval = get_password("[main server]")
+maxsize = 2000000000
+maxconnections = 5
+# remote -&gt; local での名前の変換
+# RemotetoLocalTransnameINBOX は offlineimap_utils.py で定義した関数
+nametrans = RemoteToLocalTransnameINBOX
+# 同期 *しない* フォルダの選択
+folderfilter = lambda foldername: foldername not in [
+            'INBOX.Drafts',
+            'INBOX.Trash',
+            'INBOX.archive.zz2006',
+            'INBOX.archive.zz2007',
+            'INBOX.archive.zz2008',
+            'INBOX.archive.zz2009',
+            'INBOX.archive.zz2010',
+            'INBOX.archive.zz2011',
+            'INBOX.archive.zz2012',
+            'INBOX.archive.zz2013'
             ]
 </pre>
 </div>
@@ -880,91 +880,91 @@ $ sudo apt-get install offlineimap
 <code>offlineimap_utils.py</code> の中身は以下の通り:
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/usr/bin/python</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- coding: utf-8</span>
-<span style="color: #FF7F7F;">import</span> sys
-<span style="color: #FF7F7F;">import</span> re
-<span style="color: #FF7F7F;">import</span> os
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;"># Auth via GnomeKeyring</span>
-<span style="color: #FF7F7F;">import</span> gtk
-<span style="color: #FF7F7F;">from</span> getpass <span style="color: #FF7F7F;">import</span> getpass
-<span style="color: #FF7F7F;">import</span> gnomekeyring <span style="color: #FF7F7F;">as</span> gkey
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Ad hoc fix for Striptime behavior</span>
-<span style="color: #FF7F7F;">import</span> locale
-locale.setlocale(locale.LC_TIME, <span style="color: #7FFF7F;">'C'</span>)
+<pre class="src src-python">#!/usr/bin/python
+# -*- coding: utf-8
+import sys
+import re
+import os
+# # Auth via GnomeKeyring
+import gtk
+from getpass import getpass
+import gnomekeyring as gkey
+# Ad hoc fix for Striptime behavior
+import locale
+locale.setlocale(locale.LC_TIME, 'C')
 
-<span style="color: #a5a5a6;">##################</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Gnome keyring  #</span>
-<span style="color: #a5a5a6;">##################</span>
+##################
+# Gnome keyring  #
+##################
 
-<span style="color: #FF7F7F;">class</span> <span style="color: #FFFF7F;">Keyring</span>(<span style="color: #7FBFFF;">object</span>):
-    <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">__init__</span>(<span style="color: #FF7F7F;">self</span>, name, server, protocol):
-        <span style="color: #FF7F7F;">self</span>._name = name
-        <span style="color: #FF7F7F;">self</span>._server = server
-        <span style="color: #FF7F7F;">self</span>._protocol = protocol
-        <span style="color: #FF7F7F;">self</span>._keyring = gkey.get_default_keyring_sync()
+class Keyring(object):
+    def __init__(self, name, server, protocol):
+        self._name = name
+        self._server = server
+        self._protocol = protocol
+        self._keyring = gkey.get_default_keyring_sync()
 
-    <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">has_credentials</span>(<span style="color: #FF7F7F;">self</span>):
-        <span style="color: #FF7F7F;">try</span>:
-            <span style="color: #7F7FFF;">attrs</span> = {<span style="color: #7FFF7F;">"server"</span>: <span style="color: #FF7F7F;">self</span>._server, <span style="color: #7FFF7F;">"protocol"</span>: <span style="color: #FF7F7F;">self</span>._protocol}
-            <span style="color: #7F7FFF;">items</span> = gkey.find_items_sync(gkey.ITEM_NETWORK_PASSWORD, attrs)
-            <span style="color: #FF7F7F;">return</span> <span style="color: #7FBFFF;">len</span>(items) &gt; 0
-        <span style="color: #FF7F7F;">except</span> gkey.DeniedError:
-            <span style="color: #FF7F7F;">return</span> <span style="color: #FFBF7F;">False</span>
+    def has_credentials(self):
+        try:
+            attrs = {"server": self._server, "protocol": self._protocol}
+            items = gkey.find_items_sync(gkey.ITEM_NETWORK_PASSWORD, attrs)
+            return len(items) &gt; 0
+        except gkey.DeniedError:
+            return False
 
-    <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">get_credentials</span>(<span style="color: #FF7F7F;">self</span>):
-        <span style="color: #7F7FFF;">attrs</span> = {<span style="color: #7FFF7F;">"server"</span>: <span style="color: #FF7F7F;">self</span>._server, <span style="color: #7FFF7F;">"protocol"</span>: <span style="color: #FF7F7F;">self</span>._protocol}
-        <span style="color: #7F7FFF;">items</span> = gkey.find_items_sync(gkey.ITEM_NETWORK_PASSWORD, attrs)
-        <span style="color: #FF7F7F;">return</span> (items[0].attributes[<span style="color: #7FFF7F;">"user"</span>], items[0].secret)
+    def get_credentials(self):
+        attrs = {"server": self._server, "protocol": self._protocol}
+        items = gkey.find_items_sync(gkey.ITEM_NETWORK_PASSWORD, attrs)
+        return (items[0].attributes["user"], items[0].secret)
 
-    <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">set_credentials</span>(<span style="color: #FF7F7F;">self</span>, (user, pw)):
-        <span style="color: #7F7FFF;">attrs</span> = {
-                <span style="color: #7FFF7F;">"user"</span>: user,
-                <span style="color: #7FFF7F;">"server"</span>: <span style="color: #FF7F7F;">self</span>._server,
-                <span style="color: #7FFF7F;">"protocol"</span>: <span style="color: #FF7F7F;">self</span>._protocol,
+    def set_credentials(self, (user, pw)):
+        attrs = {
+                "user": user,
+                "server": self._server,
+                "protocol": self._protocol,
             }
         gkey.item_create_sync(gkey.get_default_keyring_sync(),
-                gkey.ITEM_NETWORK_PASSWORD, <span style="color: #FF7F7F;">self</span>._name, attrs, pw, <span style="color: #FFBF7F;">True</span>)
+                gkey.ITEM_NETWORK_PASSWORD, self._name, attrs, pw, True)
 
-<span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">get_username</span>(server):
-    <span style="color: #7F7FFF;">keyring</span> = Keyring(<span style="color: #7FFF7F;">"offlineimap"</span>, server, <span style="color: #7FFF7F;">"imap"</span>)
+def get_username(server):
+    keyring = Keyring("offlineimap", server, "imap")
     (username, password) = keyring.get_credentials()
-    <span style="color: #FF7F7F;">return</span> username
+    return username
 
-<span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">get_password</span>(server):
-    <span style="color: #7F7FFF;">keyring</span> = Keyring(<span style="color: #7FFF7F;">"offlineimap"</span>, server, <span style="color: #7FFF7F;">"imap"</span>)
+def get_password(server):
+    keyring = Keyring("offlineimap", server, "imap")
     (username, password) = keyring.get_credentials()
-    <span style="color: #FF7F7F;">return</span> password
+    return password
 
-<span style="color: #FF7F7F;">if</span> <span style="color: #7FBFFF;">__name__</span> == <span style="color: #7FFF7F;">'__main__'</span>:
-        <span style="color: #7F7FFF;">server</span> = <span style="color: #7FBFFF;">raw_input</span>(<span style="color: #7FFF7F;">"server: "</span>)
-        <span style="color: #7F7FFF;">user</span> = <span style="color: #7FBFFF;">raw_input</span>(<span style="color: #7FFF7F;">"username: "</span>)
-        <span style="color: #7F7FFF;">password</span> = getpass(<span style="color: #7FFF7F;">"password: "</span>)
-        <span style="color: #7F7FFF;">confirm</span> = getpass(<span style="color: #7FFF7F;">"confirm password: "</span>)
-        <span style="color: #FF7F7F;">if</span> password != confirm:
-            <span style="color: #FF7F7F;">print</span> <span style="color: #7FFF7F;">"password doesn't match confirmation!"</span>
-            sys.<span style="color: #FFBF7F;">exit</span>(1)
-        <span style="color: #7F7FFF;">keyring</span> = Keyring(<span style="color: #7FFF7F;">"offlineimap"</span>, server, <span style="color: #7FFF7F;">"imap"</span>)
+if __name__ == '__main__':
+        server = raw_input("server: ")
+        user = raw_input("username: ")
+        password = getpass("password: ")
+        confirm = getpass("confirm password: ")
+        if password != confirm:
+            print "password doesn't match confirmation!"
+            sys.exit(1)
+        keyring = Keyring("offlineimap", server, "imap")
         keyring.set_credentials((user, password))
 
-<span style="color: #a5a5a6;">############################</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">NameTrans 'INBOX' suffix #</span>
-<span style="color: #a5a5a6;">############################</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">add 'INBOX' suffix</span>
-<span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">LocalToRemoteTransnameINBOX</span>(foldername):
-    <span style="color: #FF7F7F;">if</span> (foldername == <span style="color: #7FFF7F;">""</span>):
-        <span style="color: #7F7FFF;">retval</span> = <span style="color: #7FFF7F;">"INBOX"</span>
-    <span style="color: #FF7F7F;">else</span>:
-        <span style="color: #7F7FFF;">retval</span> = <span style="color: #7FFF7F;">"INBOX."</span> + foldername
-    <span style="color: #FF7F7F;">return</span> retval
+############################
+# NameTrans 'INBOX' suffix #
+############################
+# add 'INBOX' suffix
+def LocalToRemoteTransnameINBOX(foldername):
+    if (foldername == ""):
+        retval = "INBOX"
+    else:
+        retval = "INBOX." + foldername
+    return retval
 
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remove 'INBOX' suffix</span>
-<span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">RemoteToLocalTransnameINBOX</span>(foldername):
-    <span style="color: #FF7F7F;">if</span> (foldername == <span style="color: #7FFF7F;">"INBOX"</span>):
-        <span style="color: #7F7FFF;">retval</span> = <span style="color: #7FFF7F;">""</span>
-    <span style="color: #FF7F7F;">else</span>:
-        <span style="color: #7F7FFF;">retval</span> = re.sub(<span style="color: #7FFF7F;">"^INBOX\."</span>, <span style="color: #7FFF7F;">""</span>, foldername)
-    <span style="color: #FF7F7F;">return</span> retval
+# remove 'INBOX' suffix
+def RemoteToLocalTransnameINBOX(foldername):
+    if (foldername == "INBOX"):
+        retval = ""
+    else:
+        retval = re.sub("^INBOX\.", "", foldername)
+    return retval
 </pre>
 </div>
 <p>
@@ -972,36 +972,36 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 </p>
 </div>
 </div>
-<div id="outline-container-org5d2d440" class="outline-5">
-<h5 id="org5d2d440">cron での動作</h5>
-<div class="outline-text-5" id="text-org5d2d440">
+<div id="outline-container-org9a0907c" class="outline-5">
+<h5 id="org9a0907c">cron での動作</h5>
+<div class="outline-text-5" id="text-org9a0907c">
 <p>
 認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから
 実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">bash</span>
+<pre class="src src-sh">#!/bin/bash
 sleep 5
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Export the dbus session address on startup so it can be used by cron</span>
-touch $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
-chmod 600 $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
-env | grep DBUS_SESSION_BUS_ADDRESS &gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
-<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'export DBUS_SESSION_BUS_ADDRESS'</span> &gt;&gt; $<span style="color: #7F7FFF;">HOME</span>/.Xdbus
+# Export the dbus session address on startup so it can be used by cron
+touch $HOME/.Xdbus
+chmod 600 $HOME/.Xdbus
+env | grep DBUS_SESSION_BUS_ADDRESS &gt; $HOME/.Xdbus
+echo 'export DBUS_SESSION_BUS_ADDRESS' &gt;&gt; $HOME/.Xdbus
 </pre>
 </div>
 <p>
 <code>~/.config/autostart</code> 以下に適当な名前で
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">[<span style="color: #FFFF7F;">Desktop Entry</span>]
-<span style="color: #7F7FFF;">Type</span>=Application
-<span style="color: #7F7FFF;">Exec</span>=/home/uwabami/.mua/export_x_info.sh
-<span style="color: #7F7FFF;">Hidden</span>=false
-<span style="color: #7F7FFF;">NoDisplay</span>=false
-<span style="color: #7F7FFF;">X-GNOME-Autostart-enabled</span>=true
-<span style="color: #7F7FFF;">Name</span>=Xdbus infomation exporter
-<span style="color: #7F7FFF;">Comment</span>=Xdbus infomation exporter
+<pre class="src src-conf">[Desktop Entry]
+Type=Application
+Exec=/home/uwabami/.mua/export_x_info.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Xdbus infomation exporter
+Comment=Xdbus infomation exporter
 </pre>
 </div>
 <p>
@@ -1014,26 +1014,26 @@ env | grep DBUS_SESSION_BUS_ADDRESS &gt; $<span style="color: #7F7FFF;">HOME</sp
 cron で実行されるスクリプトは, 例えば
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2014-07-15 11:52:22$</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI <a href="mailto:uwabami%40gfd-dennou.org">&lt;uwabami@gfd-dennou.org&gt;</a></span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: WTFPL</span>
-<span style="color: #a5a5a6;">################################################################################</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for personal settings</span>
-<span style="color: #7F7FFF;">OFFLINEIMAP_PID</span>=~/Mail/offlineimap/pid
-<span style="color: #7F7FFF;">OFFLINEIMAP_CONF</span>=~/.offlineimaprc
-<span style="color: #7F7FFF;">UI</span>=quiet
-<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"******************************************************************"</span>
-<span style="color: #7FBFFF;">echo</span> <span style="color: #fa8072;">`LANG=C date`</span>
-<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"******************************************************************"</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for gnome-keyring:</span>
-. ${<span style="color: #7F7FFF;">HOME</span>}/.Xdbus
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check network is avaliable</span>
-nm-online -x || <span style="color: #FF7F7F;">exit</span> 0
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check another offlineimap</span>
-[ $(ps -p <span style="color: #fa8072;">`cat $OFFLINEIMAP_PID`</span> -o pid --no-heading) ] <span style="color: #7FFF7F;">\</span>
-  || nice -n 19 offlineimap -c $<span style="color: #7F7FFF;">OFFLINEIMAP_CONF</span> -u $<span style="color: #7F7FFF;">UI</span> -o  2&gt;&amp;1
+<pre class="src src-sh">#!/bin/sh
+# -*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-
+# $Lastupdate: 2014-07-15 11:52:22$
+# Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+# License: WTFPL
+################################################################################
+# for personal settings
+OFFLINEIMAP_PID=~/Mail/offlineimap/pid
+OFFLINEIMAP_CONF=~/.offlineimaprc
+UI=quiet
+echo "******************************************************************"
+echo `LANG=C date`
+echo "******************************************************************"
+# for gnome-keyring:
+. ${HOME}/.Xdbus
+# check network is avaliable
+nm-online -x || exit 0
+# check another offlineimap
+[ $(ps -p `cat $OFFLINEIMAP_PID` -o pid --no-heading) ] \
+  || nice -n 19 offlineimap -c $OFFLINEIMAP_CONF -u $UI -o  2&gt;&amp;1
 </pre>
 </div>
 <p>

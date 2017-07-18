@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-05-31 16:05:03
+date: 2017-07-19 00:25:08
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgae3d8c8">標準機能の設定</a>
 <ul>
 <li><a href="#org1b6b59a">表示関連</a></li>
-<li><a href="#org1bfe1d6">編集関連</a></li>
+<li><a href="#org0f9d286">編集関連</a></li>
 <li><a href="#org7eda492">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -73,10 +73,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org3bd8022">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#org1512af8">Emacs 本体側の設定</a></li>
+<li><a href="#org7d71450">Emacs 本体側の設定</a></li>
 <li><a href="#orge62a055">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org379612d">編集関連</a></li>
+<li><a href="#org608bf7b">編集関連</a></li>
 <li><a href="#org67f5019">インクリメンタルサーチ</a></li>
 <li><a href="#org6d86eb6">辞書の設定</a></li>
 <li><a href="#org199b263">動的補完</a></li>
@@ -97,7 +97,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org4ea74a5">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#orgc4396dc">Emacs 本体側の設定</a></li>
+<li><a href="#org63cc41f">Emacs 本体側の設定</a></li>
 <li><a href="#org711a3af">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#orgda20e29">依存/追加ライブラリのインストールと読み込み</a>
@@ -177,25 +177,17 @@ permalink: /cc-env/Emacs.html
 </ul>
 </li>
 <li><a href="#orgee41b1b">Emacs-w3m</a></li>
-<li><a href="#org95f555e">補完: <code>ido</code></a>
+<li><a href="#org4792ff8">補完: <code>ido</code>, <code>flx-ido</code>, <code>smex</code></a>
 <ul>
 <li><a href="#org6b0690a"><code>ido</code> の設定</a></li>
+<li><a href="#orgd65025b"><code>flx-ido</code>: flex match の強化</a></li>
+<li><a href="#orga8e37ba"><code>ido-grid</code>: 補完候補の grid 表示</a></li>
+<li><a href="#orgbb975a1"><code>ido-recentf</code>: recentf を ido で</a></li>
+<li><a href="#orgac67847"><code>ido-describe-bindings</code>: key binding を表示?</a></li>
+<li><a href="#org312180a"><code>smex</code></a></li>
 </ul>
 </li>
-<li><a href="#orgab311d4">補完: <code>helm</code></a>
-<ul>
-<li><a href="#org27290ad">helm-flx</a></li>
-<li><a href="#orgb392607">helm-locate</a></li>
-<li><a href="#org2045945">helm-descbinds</a></li>
-<li><a href="#org9b4f555">helm-ag</a></li>
-</ul>
-</li>
-<li><a href="#org2b2a8b1">補完: <code>yasnippet</code>, <code>auto-complete</code> <code>[/]</code></a>
-<ul>
-<li><a href="#orga469e80">yasnippet</a></li>
-<li><a href="#org934e1a0">auto-complete</a></li>
-</ul>
-</li>
+<li><a href="#orgab311d4">補完: <code>helm</code></a></li>
 <li><a href="#org292f8bd">校正，辞書等</a>
 <ul>
 <li><a href="#orgebdf4fa">spell checker</a></li>
@@ -236,13 +228,11 @@ permalink: /cc-env/Emacs.html
 </ul>
 </li>
 <li><a href="#org1a9456e">Howm</a></li>
+<li><a href="#orgf23518a">フォントと色</a></li>
 <li><a href="#orgc4a9493">日記: <code>tDiary</code></a></li>
 <li><a href="#org155c83d">プログラム環境</a>
 <ul>
-<li><a href="#orgc1c606a">コードのタグ付け: <code>ggtags</code>, <code>helm-gtags</code></a></li>
-<li><a href="#orgac9d398">プロジェクト管理: bbatsov/projectile</a></li>
 <li><a href="#orgc3455b7">VCS: <code>magit</code></a></li>
-<li><a href="#orgd51590a">flycheck</a></li>
 <li><a href="#orgc435948">rainbow-mode</a></li>
 <li><a href="#org35095d6">Textile</a></li>
 <li><a href="#org32a2966">Markdown</a></li>
@@ -252,15 +242,13 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org6c5fc81">Ruby</a></li>
 <li><a href="#org8712e7f">C</a></li>
 <li><a href="#org3d4000d">Fortran</a></li>
-<li><a href="#orga73bc0b">Re:VIEW</a></li>
 <li><a href="#org6d6deb2">AUCTeX</a></li>
 <li><a href="#org4d21671">AUCTeX と Zotero との連携</a></li>
 </ul>
 </li>
-<li><a href="#orgf23518a">フォントと色</a></li>
+<li><a href="#org24a422e">基本的なキーバインドの設定 <code>[/]</code></a></li>
 <li><a href="#org16ee167"><code>diminish</code>: モードラインの短縮表示</a></li>
 <li><a href="#org3fe91e6"><code>powerline</code>: モードラインを綺麗に</a></li>
-<li><a href="#org24a422e">基本的なキーバインドの設定 <code>[/]</code></a></li>
 <li><a href="#org599bdcc">起動時間の計測</a></li>
 <li><a href="#org0f369f0">LICENSE</a></li>
 </ul>
@@ -777,6 +765,13 @@ Windows の場合はファイル名などは cp932 にしているものの,
 </pre>
 </div>
 <p>
+現在行のハイライト
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(global-hl-line-mode t)
+</pre>
+</div>
+<p>
 選択リージョンに色付け
 </p>
 <div class="org-src-container">
@@ -836,9 +831,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org1bfe1d6" class="outline-4">
-<h4 id="org1bfe1d6">編集関連</h4>
-<div class="outline-text-4" id="text-org1bfe1d6">
+<div id="outline-container-org0f9d286" class="outline-4">
+<h4 id="org0f9d286">編集関連</h4>
+<div class="outline-text-4" id="text-org0f9d286">
 <p>
 yes or no を y or n に
 </p>
@@ -1335,9 +1330,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org1512af8" class="outline-3">
-<h3 id="org1512af8">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org1512af8">
+<div id="outline-container-org7d71450" class="outline-3">
+<h3 id="org7d71450">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org7d71450">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1447,9 +1442,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org379612d" class="outline-4">
-<h4 id="org379612d">編集関連</h4>
-<div class="outline-text-4" id="text-org379612d">
+<div id="outline-container-org608bf7b" class="outline-4">
+<h4 id="org608bf7b">編集関連</h4>
+<div class="outline-text-4" id="text-org608bf7b">
 <p>
 キーバインド
 </p>
@@ -1607,9 +1602,9 @@ src = <span style="color: #FFFF7F;">ARGV</span>[0]
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">cond</span>
  ((getenv <span style="color: #7FFF7F;">"SKKSERVER"</span>)
-  (<span style="color: #FF7F7F;">setq</span> skk-server-host <span style="color: #7FFF7F;">"127.0.0.1"</span>)
-  (<span style="color: #FF7F7F;">setq</span> skk-server-portnum <span style="color: #7FFF7F;">"1178"</span>)
-  (<span style="color: #FF7F7F;">setq</span> skk-large-jisyo nil)
+  (<span style="color: #FF7F7F;">setq</span> skk-server-host <span style="color: #7FFF7F;">"127.0.0.1"</span>
+        skk-server-portnum <span style="color: #7FFF7F;">"1178"</span>
+        skk-large-jisyo  nil)
   (add-to-list 'skk-search-prog-list
                '(skk-server-completion-search) t)
   (add-to-list 'skk-search-prog-list
@@ -1793,9 +1788,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-orgc4396dc" class="outline-3">
-<h3 id="orgc4396dc">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgc4396dc">
+<div id="outline-container-org63cc41f" class="outline-3">
+<h3 id="org63cc41f">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org63cc41f">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3051,8 +3046,8 @@ mu(maildir-utils)を使う. 偶にセグフォるので悩み所
 検索時にメールが多すぎると怒られるので. 数字は適当.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-multi-divide-number 10000000)
-(<span style="color: #FF7F7F;">setq</span> elmo-multi-number 10000000)
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-multi-divide-number 1000000000)
+(<span style="color: #FF7F7F;">setq</span> elmo-multi-number 1000000000)
 </pre>
 </div>
 </div>
@@ -3136,13 +3131,17 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 </div>
 </div>
 </div>
-<div id="outline-container-org95f555e" class="outline-2">
-<h2 id="org95f555e">補完: <code>ido</code></h2>
-<div class="outline-text-2" id="text-org95f555e">
+<div id="outline-container-org4792ff8" class="outline-2">
+<h2 id="org4792ff8">補完: <code>ido</code>, <code>flx-ido</code>, <code>smex</code></h2>
+<div class="outline-text-2" id="text-org4792ff8">
 <p>
-補完を ido に任せているパッケージがちらほらあるので設定しておく．
-find-file は helm-find-file より ido + flx-ido + ido-grid の方が好みなんだが,
-どうしようかなぁ&#x2026;
+半年ぐらい Helm を使ってみたけど
+余計な事しすぎで色々設定してもシンドかったので，
+結局使うのを止めました．
+</p>
+
+<p>
+そんな訳で，当分 <code>ido</code> と <code>smex</code> を使うことに．
 </p>
 </div>
 <div id="outline-container-org6b0690a" class="outline-3">
@@ -3150,17 +3149,16 @@ find-file は helm-find-file より ido + flx-ido + ido-grid の方が好みな�
 <div class="outline-text-3" id="text-org6b0690a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">:bind (("C-x f"   . ido-find-file)</span>
-  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x C-f" . ido-find-file)</span>
-  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x d"   . ido-dired)</span>
-  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x C-d" . ido-dired)</span>
-  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x b"   . ido-switch-buffer)</span>
-  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x C-b" . ido-switch-buffer)</span>
-  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">("C-x M-b" . ibuffer)</span>
-  <span style="color: #a5a5a6;">;;        </span><span style="color: #a5a5a6;">)</span>
+  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x f"</span>   . ido-find-file)
+         (<span style="color: #7FFF7F;">"C-x C-f"</span> . ido-find-file)
+         (<span style="color: #7FFF7F;">"C-x d"</span>   . ido-dired)
+         (<span style="color: #7FFF7F;">"C-x C-d"</span> . ido-dired)
+         (<span style="color: #7FFF7F;">"C-x b"</span>   . ido-switch-buffer)
+         (<span style="color: #7FFF7F;">"C-x C-b"</span> . ido-switch-buffer)
+         (<span style="color: #7FFF7F;">"C-x M-b"</span> . ibuffer))
   <span style="color: #7FBFFF;">:config</span>
-  (ido-mode -1)
-  (ido-everywhere nil)  <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&lt;- &#36942;&#21435;&#12398;&#36984;&#25246;&#12434;&#35226;&#12360;&#12390;&#12356;&#12427;&#22900;&#12392;&#30456;&#24615;&#24746;&#12356;&#12398;&#12391;&#28961;&#21177;&#21270;</span>
+  (ido-mode t)
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(ido-everywhere t)  &lt;- Wanderlust &#12415;&#12383;&#12356;&#12395;&#65292;&#36942;&#21435;&#12398;&#36984;&#25246;&#12434;&#35226;&#12360;&#12390;&#12356;&#12427;&#22900;&#12392;&#30456;&#24615;&#24746;&#12356;&#12398;&#12391;.</span>
   (<span style="color: #FF7F7F;">setq</span> ido-enable-prefix nil             <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">prefix match &#12434;&#26377;&#21177;&#12395;&#12377;&#12427;&#12392;&#65292;&#20837;&#21147;&#12434;&#20808;&#38957;&#19968;&#33268;&#21487;&#33021;</span>
         ido-confirm-unique-completion t   <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">TAB &#12391;&#21517;&#21069;&#12398;&#19968;&#33268;&#12414;&#12391;&#34892;&#12394;&#12356;&#65292;&#12381;&#12398;&#24460; RET &#12391;&#23455;&#34892;</span>
         ido-enable-flex-matching t        <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">flex matching &#12434;&#35430;&#12377;&#38555;&#12395;&#12399; prefix &#12434;&#28961;&#21177;&#21270;&#12377;&#12427;&#12371;&#12392;</span>
@@ -3173,7 +3171,7 @@ find-file は helm-find-file より ido + flx-ido + ido-grid の方が好みな�
         ido-ignore-extensions t
         ido-cannot-complete-command 'ido-next-match
         ido-save-directory-list-file (concat my:d:tmp <span style="color: #7FFF7F;">"ido.last"</span>))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#35036;&#23436;&#12391;&#28961;&#35222;&#12377;&#12427;&#25313;&#24373;&#23376;&#12398;&#36861;&#21152;&#65294;&#12381;&#12398;&#12358;&#12385;&#22679;&#12360;&#12427;&#65294;</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#35036;&#23436;&#12391;&#28961;&#35222;&#12377;&#12427;&#25313;&#24373;&#23376;&#12398;&#36861;&#21152;</span>
   (<span style="color: #FF7F7F;">cl-loop</span> for ext in
            '(<span style="color: #7FFF7F;">".dvi"</span>
              <span style="color: #7FFF7F;">".fdb_latexmk"</span>
@@ -3188,8 +3186,11 @@ find-file は helm-find-file より ido + flx-ido + ido-grid の方が好みな�
              <span style="color: #7FFF7F;">".vrb"</span>
              )
            do (add-to-list 'completion-ignored-extensions ext))
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">ido-disable-line-trucation</span> ()
+    (set (make-local-variable 'truncate-lines) nil))
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido &#12398; buffer &#12391; skk &#12434;&#28961;&#21177;&#21270;&#12375;&#12390;&#12362;&#12367;.</span>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26085;&#26412;&#35486;&#12501;&#12449;&#12452;&#12523;&#21517;&#12399;, &#12392;&#12426;&#12354;&#12360;&#12378;&#32771;&#12360;&#12394;&#12356;&#12371;&#12392;&#12395;.</span>
+  (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
   (add-hook 'ido-minibuffer-setup-hook
             (<span style="color: #FF7F7F;">lambda</span> ()
               (<span style="color: #FF7F7F;">when</span> (fboundp 'skk-mode-exit)
@@ -3203,223 +3204,109 @@ find-file は helm-find-file より ido + flx-ido + ido-grid の方が好みな�
 </div>
 </div>
 </div>
+<div id="outline-container-orgd65025b" class="outline-3">
+<h3 id="orgd65025b"><code>flx-ido</code>: flex match の強化</h3>
+<div class="outline-text-3" id="text-orgd65025b">
+<p>
+曖昧マッチが非常に直感的になった．地味に便利で手放せない．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">flx-ido</span>
+  <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:config</span>
+  (flx-ido-mode 1)
+  (<span style="color: #FF7F7F;">setq</span> flx-ido-use-faces t
+        flx-ido-threshold 10000)
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga8e37ba" class="outline-3">
+<h3 id="orga8e37ba"><code>ido-grid</code>: 補完候補の grid 表示</h3>
+<div class="outline-text-3" id="text-orga8e37ba">
+<p>
+パッケージにある <code>ido-grid-mode</code> ではなく,
+<a href="https://github.com/larkery/ido-grid.el">larkery/ido-grid.el: reimplementation of ido-grid-mode to be simpler/faster</a>
+を使うことに.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (package-installed-p 'ido-grid)
+  (quelpa '(ido-grid
+            <span style="color: #7FBFFF;">:fetcher</span> github
+            <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"larkery/ido-grid.el"</span>)))
+(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido-grid</span>
+  <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> ido-grid-enabled t
+        ido-grid-start-small nil
+        ido-grid-rows 0.20)
+  (ido-grid-enable)
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbb975a1" class="outline-3">
+<h3 id="orgbb975a1"><code>ido-recentf</code>: recentf を ido で</h3>
+<div class="outline-text-3" id="text-orgbb975a1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">ido-recentf-open</span> ()
+  <span style="color: #7FFF7F;">"Use `</span><span style="color: #FFBF7F;">ido-completing-read</span><span style="color: #7FFF7F;">' to \\[</span><span style="color: #FFBF7F;">find-file</span><span style="color: #7FFF7F;">] a recent file"</span>
+  (<span style="color: #FF7F7F;">interactive</span>)
+  (<span style="color: #FF7F7F;">if</span> (find-file (ido-completing-read <span style="color: #7FFF7F;">"Find recent file: "</span> recentf-list))
+      (message <span style="color: #7FFF7F;">"Opening file..."</span>)
+    (message <span style="color: #7FFF7F;">"Aborting"</span>)))
+(<span style="color: #FF7F7F;">bind-key</span> <span style="color: #7FFF7F;">"C-x C-r"</span> 'ido-recentf-open)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgac67847" class="outline-3">
+<h3 id="orgac67847"><code>ido-describe-bindings</code>: key binding を表示?</h3>
+<div class="outline-text-3" id="text-orgac67847">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido-describe-bindings</span>
+  <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:bind</span> (<span style="color: #7FBFFF;">:map</span> help-map
+              (<span style="color: #7FFF7F;">"b"</span> . ido-describe-bindings))
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org312180a" class="outline-3">
+<h3 id="org312180a"><code>smex</code></h3>
+<div class="outline-text-3" id="text-org312180a">
+<p>
+<code>M-x</code> の強化
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">smex</span>
+  <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"M-x"</span> . smex))
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> smex-save-file (concat my:d:tmp <span style="color: #7FFF7F;">"smex-items"</span>))
+  )
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-orgab311d4" class="outline-2">
 <h2 id="orgab311d4">補完: <code>helm</code></h2>
 <div class="outline-text-2" id="text-orgab311d4">
 <p>
-以前はデフォルトの挙動が嫌で割とイロイロと設定していたのだけれど，
-最近はそんなに邪魔しない感じ&#x2026;なのかな? とりあえず現状は以下の通り．
+幾つかの拡張で <code>helm</code> が呼ばれるので,
+インストールするけれども明示的に無効化しておく
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">    (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm</span>
-      <span style="color: #7FBFFF;">:ensure</span> t
-      <span style="color: #7FBFFF;">:diminish</span> (helm-migemo-mode helm-mode)
-      <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"M-x"</span>     . helm-M-x)
-             (<span style="color: #7FFF7F;">"C-x f"</span>   . helm-find-files)
-             (<span style="color: #7FFF7F;">"C-x C-f"</span> . helm-find-files)
-             (<span style="color: #7FFF7F;">"C-x b"</span>   . helm-buffers-list)
-             (<span style="color: #7FFF7F;">"C-x C-b"</span> . helm-buffers-list)
-             (<span style="color: #7FFF7F;">"C-x C-r"</span> . helm-recentf)
-             )
-      <span style="color: #7FBFFF;">:config</span>
-      (<span style="color: #FF7F7F;">with-eval-after-load</span> <span style="color: #7FFF7F;">"helm"</span>
-        (<span style="color: #FF7F7F;">bind-keys</span> <span style="color: #7FBFFF;">:map</span> helm-map
-                   (<span style="color: #7FFF7F;">"&lt;tab&gt;"</span>   . helm-execute-persistent-action)
-                   (<span style="color: #7FFF7F;">"C-i"</span>     . helm-execute-persistent-action)
-                   (<span style="color: #7FFF7F;">"C-z"</span>     . helm-select-action)))
-      (my:disable-builtin-mode 'helm-mode)   <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">helm-mode &#12399;&#22522;&#26412;&#20351;&#12431;&#12394;&#12356;</span>
-      (global-unset-key (kbd <span style="color: #7FFF7F;">"C-z"</span>))
-      (<span style="color: #FF7F7F;">setq</span> helm-command-prefix-key <span style="color: #7FFF7F;">"C-z"</span>    <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">helm-command-prefix-key</span>
-            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">dired &#12391;&#12398; skk &#12392;&#12398;&#31478;&#21512;(C-x C-j &#12398;&#22890;&#12356;&#21512;&#12356;)&#12434;&#36991;&#12369;&#12427;</span>
-            dired-bind-jump nil
-            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">mode line &#12395;&#12399;&#20309;&#12418;&#34920;&#31034;&#12375;&#12394;&#12356;</span>
-            helm-completion-mode-string <span style="color: #7FFF7F;">""</span>
-            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">minibuffer &#12395; input method &#12398;&#29366;&#24907;&#12434;&#24341;&#12365;&#32153;&#12364;&#12394;&#12356;</span>
-            helm-inherit-input-method nil
-            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#20313;&#35336;&#12394;&#12501;&#12449;&#12452;&#12523;&#12399;&#34920;&#31034;&#12375;&#12394;&#12356;</span>
-            helm-ff-skip-boring-files t
-            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm-adaptive &#12398;&#20445;&#23384;&#20808;&#12398;&#22793;&#26356;</span>
-            helm-adaptive-history-file (concat my:d:tmp <span style="color: #7FFF7F;">"helm-adaptive-history"</span>)
-            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">mode line &#12395;&#12399;&#20309;&#12418;&#34920;&#31034;&#12375;&#12394;&#12356;</span>
-            helm-completion-mode-string <span style="color: #7FFF7F;">""</span>
-            )
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#19968;&#12388;&#19978;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;(../)&#12434;&#20505;&#35036;&#12363;&#12425;&#22806;&#12377;</span>
-      (advice-add 'helm-ff-filter-candidate-one-by-one
-                  <span style="color: #7FBFFF;">:around</span> (<span style="color: #FF7F7F;">lambda</span> (orig-func file)
-                            (<span style="color: #FF7F7F;">unless</span> (string-match <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(?:</span><span style="color: #7FFF7F;">/</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\`</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">\\.\\{2\\}\\'"</span> file)
-                              (funcall orig-func file))))
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#23384;&#22312;&#12375;&#12394;&#12356;&#12501;&#12449;&#12452;&#12523;&#12395;&#12399;&#20309;&#12418;&#12375;&#12394;&#12356;(default &#12399;&#26032;&#35215; buffer &#12364;&#12391;&#12365;&#12427;)</span>
-      (advice-add 'helm-ff-kill-or-find-buffer-fname
-                  <span style="color: #7FBFFF;">:around</span> (<span style="color: #FF7F7F;">lambda</span> (orig-func candidate)
-                            (<span style="color: #FF7F7F;">when</span> (file-exists-p candidate)
-                              (funcall orig-func candidate))))
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">minibuffer &#12391; C-f &#12391; default &#12398; find-file &#12395;&#31227;&#34892;</span>
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">write-file &#12420; insert-file &#12394;&#12435;&#12363;&#12391;&#24517;&#38920;.</span>
-      (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:default-ff</span> (<span style="color: #FFFF7F;">&amp;optional</span> no-op)
-        <span style="color: #7FFF7F;">"execute default find-file"</span>
-        (<span style="color: #FF7F7F;">interactive</span>)
-        (call-interactively 'find-file))
-      (<span style="color: #FF7F7F;">setq</span> helm-type-file-actios
-            (append helm-type-file-actions
-                    '((<span style="color: #7FFF7F;">"Default Find File"</span> . my:default-ff))))
-      (<span style="color: #FF7F7F;">with-eval-after-load</span> <span style="color: #7FFF7F;">"helm"</span>
-        (<span style="color: #FF7F7F;">bind-keys</span> <span style="color: #7FBFFF;">:map</span> helm-map
-                   (<span style="color: #7FFF7F;">"C-f"</span> . (<span style="color: #FF7F7F;">lambda</span> () (<span style="color: #FF7F7F;">interactive</span>)
-                              (helm-quit-and-execute-action 'my:default-ff)))))
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm &#12392; migemo &#12398;&#35373;&#23450;</span>
-      (<span style="color: #FF7F7F;">if</span> (<span style="color: #FF7F7F;">and</span> (locate-library <span style="color: #7FFF7F;">"migemo"</span>)     <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&#12354;&#12428;&#12400; migemo &#12434;&#26377;&#21177;&#21270;</span>
-               (executable-find <span style="color: #7FFF7F;">"cmigemo"</span>))
-          (<span style="color: #FF7F7F;">setq</span> helm-migemo-mode t)
-        (<span style="color: #FF7F7F;">setq</span> helm-migemo-mode nil))
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">40% &#22266;&#23450;</span>
-      (helm-autoresize-mode)
-      (<span style="color: #FF7F7F;">setq</span> helm-autoresize-min-height 40 <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">fixed 40%</span>
-            helm-autoresize-max-height 40)
-      )
-</pre>
-</div>
-</div>
-<div id="outline-container-org27290ad" class="outline-3">
-<h3 id="org27290ad">helm-flx</h3>
-<div class="outline-text-3" id="text-org27290ad">
-<p>
-曖昧検索は flx に任せる．かなり良い．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-flx</span>
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm</span>
   <span style="color: #7FBFFF;">:ensure</span> t
   <span style="color: #7FBFFF;">:config</span>
-  (helm-flx-mode +1)
-  (<span style="color: #FF7F7F;">setq</span> helm-flx-for-helm-find-files t <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">t by default</span>
-        helm-flx-for-helm-locate t)    <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">nil by default</span>
+  (helm-mode -1)
   )
 </pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgb392607" class="outline-3">
-<h3 id="orgb392607">helm-locate</h3>
-<div class="outline-text-3" id="text-orgb392607">
-<p>
-default の <code>mlocate</code> の option を修正しておく．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-locate</span>
-  <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"mlocate"</span>)
-  <span style="color: #7FBFFF;">:disabled</span> t
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> helm-locate-command <span style="color: #7FFF7F;">"mlocate %s -e -A --regex %s"</span>))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org2045945" class="outline-3">
-<h3 id="org2045945">helm-descbinds</h3>
-<div class="outline-text-3" id="text-org2045945">
-<p>
-<code>helm-M-x</code> の際にキーバインドが表示されるようになる
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-descbinds</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:config</span>
-  (helm-descbinds-mode))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org9b4f555" class="outline-3">
-<h3 id="org9b4f555">helm-ag</h3>
-<div class="outline-text-3" id="text-org9b4f555">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-ag</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"ag"</span>)
-  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"M-g ."</span> . helm-ag)
-         (<span style="color: #7FFF7F;">"M-g ,"</span> . helm-ag-pop-stack)
-         (<span style="color: #7FFF7F;">"C-M-s"</span> . helm-ag-this-file))
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> helm-ag-base-command <span style="color: #7FFF7F;">"ag --nocolor --nogroup --ignore-case"</span>
-        helm-ag-command-option <span style="color: #7FFF7F;">"--all-text"</span>
-        helm-ag-insert-at-point 'symbol)
-  )
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org2b2a8b1" class="outline-2">
-<h2 id="org2b2a8b1">補完: <code>yasnippet</code>, <code>auto-complete</code> <code>[/]</code></h2>
-<div class="outline-text-2" id="text-org2b2a8b1">
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 上手く設定できていないので保留</li>
-</ul>
-</div>
-<div id="outline-container-orga469e80" class="outline-3">
-<h3 id="orga469e80">yasnippet</h3>
-<div class="outline-text-3" id="text-orga469e80">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">yasnippet</span>
-  <span style="color: #7FBFFF;">:disabled</span> t
-  <span style="color: #7FBFFF;">:bind</span> (<span style="color: #7FBFFF;">:map</span> yas-minor-mode-map
-              (<span style="color: #7FFF7F;">"C-x y i"</span> . yas-insert-snippet)
-              (<span style="color: #7FFF7F;">"C-x y n"</span> . yas-new-snippet)
-              (<span style="color: #7FFF7F;">"C-x y v"</span> . yas-visit-snippet-file)
-              (<span style="color: #7FFF7F;">"&lt;tab&gt;"</span>   . nil)
-              (<span style="color: #7FFF7F;">"TAB"</span>     . nil)
-              (<span style="color: #7FFF7F;">"C-&lt;tab&gt;"</span> . yas-expand))
-  <span style="color: #7FBFFF;">:diminish</span> yas-minor-mode
-  <span style="color: #7FBFFF;">:init</span>
-  (<span style="color: #FF7F7F;">defconst</span> <span style="color: #7F7FFF;">my:d:yasnippet</span>
-    (expand-file-name <span style="color: #7FFF7F;">"yasnippet"</span> my:d:share))
-  (<span style="color: #FF7F7F;">unless</span> (file-directory-p my:d:yasnippet)
-    (make-directory my:d:yasnippet))
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> yas-snippet-dirs
-        (list my:d:yasnippet yas-installed-snippets-dir))
-  (yas-global-mode 1)
-  (<span style="color: #FF7F7F;">setq</span> yas-verbosity 2))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org934e1a0" class="outline-3">
-<h3 id="org934e1a0">auto-complete</h3>
-<div class="outline-text-3" id="text-org934e1a0">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">auto-complete-config</span>
-  <span style="color: #7FBFFF;">:disabled</span> t
-  <span style="color: #7FBFFF;">:diminish</span> auto-complete-mode
-  <span style="color: #7FBFFF;">:bind</span> (<span style="color: #7FBFFF;">:map</span> ac-menu-map
-              (<span style="color: #7FFF7F;">"C-n"</span>   . ac-next)
-              (<span style="color: #7FFF7F;">"C-p"</span>   . ac-previous)
-              <span style="color: #7FBFFF;">:map</span> ac-completing-map
-              (<span style="color: #7FFF7F;">"&lt;tab&gt;"</span> . ac-complete)
-              (<span style="color: #7FFF7F;">"RET"</span>   .  nil)
-              (<span style="color: #7FFF7F;">"M-/"</span>   . ac-stop))
-  <span style="color: #7FBFFF;">:config</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12362;&#12414;&#12376;&#12394;&#12356;</span>
-  (ac-flyspell-workaround)
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#36766;&#26360;&#36861;&#21152;</span>
-  (add-to-list 'ac-dictionary-directories (concat my:d:share <span style="color: #7FFF7F;">"ac-dict"</span>))
-  (<span style="color: #FF7F7F;">setq</span> ac-comphist-file (concat my:d:tmp <span style="color: #7FFF7F;">"ac-comphist.dat"</span>))
-  (<span style="color: #FF7F7F;">setq</span> ac-auto-start 4)                         <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">4 &#25991;&#23383;&#20197;&#19978;&#12391;&#36215;&#21205;</span>
-  (<span style="color: #FF7F7F;">setq</span> ac-auto-show-menu 1)                     <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">1&#31186;&#12391;&#12513;&#12491;&#12517;&#12540;&#34920;&#31034;</span>
-  (<span style="color: #FF7F7F;">setq</span> ac-use-comphist t)                       <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&#35036;&#23436;&#20505;&#35036;&#12434;&#12477;&#12540;&#12488;</span>
-  (<span style="color: #FF7F7F;">setq</span> ac-candidate-limit nil)                  <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&#35036;&#23436;&#20505;&#35036;&#34920;&#31034;&#12434;&#28961;&#21046;&#38480;&#12395;</span>
-  (<span style="color: #FF7F7F;">setq</span> ac-use-quick-help nil)                   <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">tool tip &#28961;&#12375;</span>
-  (<span style="color: #FF7F7F;">setq</span> ac-use-menu-map t)                       <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&#12461;&#12540;&#12496;&#12452;&#12531;&#12489;</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">yasnippet &#23550;&#24540;</span>
-  (<span style="color: #FF7F7F;">setf</span> (symbol-function 'yas-active-keys)
-        (<span style="color: #FF7F7F;">lambda</span> ()
-          (remove-duplicates
-           (mapcan #'yas--table-all-keys (yas--get-snippet-tables)))))
-  (ac-config-default)
-  (global-auto-complete-mode t)
-  )
-</pre>
-</div>
 </div>
 </div>
 </div>
@@ -4256,7 +4143,8 @@ html export の際に必要な yaml front matter を出力できるようにし�
 <code>org-publish-all</code> 等で batch で一括出力できるようにしておきます．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ox-publish</span>
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">htmlize</span>)
+(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ox-publish</span>
   <span style="color: #7FBFFF;">:if</span> (file-directory-p <span style="color: #7FFF7F;">"~/Public/.git"</span>)
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">org-publish-to-jekyll</span> (plist filename pub-dir)
@@ -4301,9 +4189,9 @@ html export の際に必要な yaml front matter を出力できるようにし�
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (package-installed-p 'org-wiki)
- (quelpa '(org-wiki
-           <span style="color: #7FBFFF;">:fetcher</span> github
-           <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"caiorss/org-wiki"</span>)))
+  (quelpa '(org-wiki
+            <span style="color: #7FBFFF;">:fetcher</span> github
+            <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"caiorss/org-wiki"</span>)))
 (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org-wiki</span>
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> org-wiki-location (concat (getenv <span style="color: #7FFF7F;">"HOME"</span>) <span style="color: #7FFF7F;">"/Public/cc-env/"</span>))
@@ -4318,9 +4206,10 @@ html export の際に必要な yaml front matter を出力できるようにし�
 <span style="color: #7FFF7F;">#+DATE: 20</span>
 <span style="color: #7FFF7F;">#+LANGUAGE: ja</span>
 <span style="color: #7FFF7F;">#+REF: cc-env/%s</span>
-<span style="color: #7FFF7F;">#+LAYOUT: default</span>
+<span style="color: #7FFF7F;">#+LAYOUT: cc-env</span>
 <span style="color: #7FFF7F;">#+SETUPFILE: ~/Public/_setup.org</span>
 <span style="color: #7FFF7F;">#+PERMALINK: /cc-env/%s.html</span>
+<span style="color: #7FFF7F;">Related [[wiki:index][Index]]</span>
 <span style="color: #7FFF7F;">"</span>)
                (file-name-base (buffer-file-name))
                (file-name-base (buffer-file-name))))))
@@ -4444,6 +4333,172 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
 </div>
 </div>
 </div>
+<div id="outline-container-orgf23518a" class="outline-2">
+<h2 id="orgf23518a">フォントと色</h2>
+<div class="outline-text-2" id="text-orgf23518a">
+<p>
+そろそろテーマにした方が良い，とは思ってはいる．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:load-window-config</span> ()
+  <span style="color: #7FFF7F;">"load window-system specific settings"</span>
+  (<span style="color: #FF7F7F;">interactive</span>)
+  (<span style="color: #FF7F7F;">when</span> window-system
+    (<span style="color: #FF7F7F;">progn</span>
+      (set-face-attribute 'default nil
+                          <span style="color: #7FBFFF;">:family</span> <span style="color: #7FFF7F;">"SeptemberMMono"</span>
+                          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">:family "Ricty Discord for Powerline"</span>
+                          <span style="color: #7FBFFF;">:height</span> 135) <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">135pt</span>
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-fontset-font nil 'japanese-jisx0208</span>
+      <span style="color: #a5a5a6;">;;                   </span><span style="color: #a5a5a6;">(font-spec :family "SeptemberMMono"))</span>
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(setq face-font-rescale-alist '(("September.*" . 1)))</span>
+      (set-background-color <span style="color: #7FFF7F;">"#242424"</span>)
+      )))
+(<span style="color: #FF7F7F;">setq</span> frame-background-mode (frame-parameter nil 'background-mode))
+(<span style="color: #FF7F7F;">setq</span> default-frame-alist
+      '(
+        (foreground-color . <span style="color: #7FFF7F;">"#F6F3E8"</span>)
+        (scroll-bar-foreground-color . <span style="color: #7FFF7F;">"red"</span>)
+        (vertical-scroll-bars . right)
+        ))
+(<span style="color: #FF7F7F;">when</span> (window-system)
+  (my:load-window-config))
+</pre>
+</div>
+<p>
+現在修正中．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(custom-set-faces
+ '(default                             ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> ))))
+ <span style="color: #a5a5a6;">;;</span>
+ '(cursor                              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> ))))
+ '(font-lock-builtin-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FBFFF"</span> ))))
+ '(font-lock-comment-delimiter-face    ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#a5a5a6"</span> ))))
+ '(font-lock-comment-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#a5a5a6"</span> ))))
+ '(font-lock-constant-face             ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFBF7F"</span> ))))
+ '(font-lock-doc-face                  ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> ))))
+ '(font-lock-doc-string-face           ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> ))))
+ '(font-lock-function-name-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#BF7FFF"</span>))))
+ '(font-lock-keyword-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7F7F"</span>))))
+ '(font-lock-link-face                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> ))))
+ '(font-lock-negation-char-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:italic</span> nil))))
+ '(font-lock-preprocessor-face         ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil))))
+ '(font-lock-regexp-grouping-backslash ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#A5EE4C"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:italic</span> nil))))
+ '(font-lock-regexp-grouping-construct ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:italic</span> nil))))
+ '(font-lock-string-face               ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> ))))
+ '(font-lock-type-face                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF7F"</span> ))))
+ '(font-lock-variable-name-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> ))))
+ '(font-lock-warning-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span> <span style="color: #7FBFFF;">:bold</span> t ))))
+ '(fringe                              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#282828"</span> ))))
+ '(hl-line                             ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
+ '(highlight                           ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
+ '(minibuffer-prompt                   ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#BF7FFF"</span> ))))
+ '(mode-line                           ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> ))))
+ '(mode-line-inactive                  ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#999999"</span> <span style="color: #7FBFFF;">:bold</span> nil ))))
+ '(region                              ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> ))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">custom-set-faces was added by Custom.</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">If you edit it by hand, you could mess it up, so be careful.</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">Your init file should contain only one such instance.</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">If there is more than one, they won't work right.</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(fixed-pitch ((t (:family "Ricty" ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(variable-pitch ((t (:family "Ricty" ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(fixed-pitch ((t (:family "Monospace" :height 135 ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(variable-pitch ((t (:family "Monospace" :height 135 ))))</span>
+ <span style="color: #a5a5a6;">;;</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">preview-latex</span>
+ '(font-latex-sectioning-0-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-1-face))))
+ '(font-latex-sectioning-1-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-2-face))))
+ '(font-latex-sectioning-2-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-3-face))))
+ '(font-latex-sectioning-3-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-4-face))))
+ '(font-latex-sectioning-4-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-5-face ))))
+ '(font-latex-sectioning-5-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-type-face <span style="color: #7FBFFF;">:bold</span> t))))
+ '(font-latex-slide-title-face  ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-type-face <span style="color: #7FBFFF;">:bold</span> t))))
+ '(font-latex-subscript-face    ((t nil)))
+ '(font-latex-superscript-face  ((t nil)))
+ '(font-latex-math-face         ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-constant-face ))))
+ '(font-latex-script-char-face  ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-preprocessor-face <span style="color: #7FBFFF;">:bold</span> t))))
+ '(font-latex-verbatim-face     ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-doc-string-face ))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">elscreen</span>
+ '(elscreen-tab-control-face        ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#f6f3e8"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> t ))))
+ '(elscreen-tab-current-screen-face ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#f6f3e8"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> t ))))
+ '(elscreen-tab-other-screen-face   ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#aaaaaa"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> nil ))))
+ '(elscreen-tab-background-face     ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#aaaaaa"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> nil ))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">dired</span>
+ '(dired-directory                  ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> ))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-flagged</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-header</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-ignored</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-mark</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-marked</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-perm-write</span>
+ '(dired-symlink                    ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> ))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-warning</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(flx-highlight-face               ((t (:bold t :undeline t))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">git-gutter</span>
+ '(git-gutter:added                  ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span>))))
+ '(git-gutter:deleted                ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span>))))
+ '(git-gutter:modified               ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF4C"</span>))))
+ '(git-gutter:unchanged              ((t (<span style="color: #7FBFFF;">:inherit</span> default ))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: header-line</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-source-header               ((t (:foreground "#F6F3E8" :background "#224488" :bold t))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-visible-mark                ((t (:inherit highlight ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-selection                   ((t (:inherit highlight ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-selection-line              ((t (:inherit highlight ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: directory</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-directory                ((t (:inherit dired-directory ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-bookmark-directory          ((t (:inherit helm-ff-directory ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-buffer-directory            ((t (:inherit helm-ff-directory ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-dotted-directory         ((t (:inherit helm-ff-directory ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: file</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-file                     ((t (:inherit default ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-bookmark-file               ((t (:inherit helm-ff-file ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-buffer-file                 ((t (:inherit helm-ff-file ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-grep-file                   ((t (:inherit helm-ff-file ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-etags-file                  ((t (:inherit helm-ff-file ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: file + executable</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-executable               ((t (:inherit helm-ff-file :foreground "#7FFF7F" :bold t))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: symlink</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-symlink                  ((t (:inherit default :foreground "#7FFFFF" :bold t))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-dotted-symlink-directory ((t (:inherit helm-ff-symlink ))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-invalid-symlink          ((t (:inherit default :foreground "#FF7F7F" ))))</span>
+ <span style="color: #a5a5a6;">;;; </span><span style="color: #a5a5a6;">howm</span>
+ '(howm-mode-keyword-face            ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
+ '(howm-mode-title-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFFFF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
+ '(howm-reminder-deadline-face       ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
+ '(howm-reminder-late-deadline-face  ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF0000"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
+ '(howm-reminder-today-face          ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFBF7F"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
+ '(howm-reminder-tomorrow-face       ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido</span>
+ '(ido-subdir          ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:bold</span> t))))
+ '(ido-only-match      ((t (<span style="color: #7FBFFF;">:underline</span> t))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">outline</span>
+ '(outline-1 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-function-name-face <span style="color: #7FBFFF;">:bold</span> t))))
+ '(outline-2 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-string-face <span style="color: #7FBFFF;">:bold</span> t))))
+ '(outline-3 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-keyword-face <span style="color: #7FBFFF;">:bold</span> t))))
+ '(outline-4 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-type-face <span style="color: #7FBFFF;">:bold</span> t ))))
+ '(outline-5 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-constant-face <span style="color: #7FBFFF;">:bold</span> t ))))
+ '(outline-6 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-variable-name-face <span style="color: #7FBFFF;">:bold</span> t))))
+ '(outline-7 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-builtin-face <span style="color: #7FBFFF;">:bold</span> t ))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(outline-8 ((t (:inherit font-lock-comment-face :bold t ))))</span>
+ <span style="color: #a5a5a6;">;;</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">org</span>
+ '(org-agenda-date-today           ((t (<span style="color: #7FBFFF;">:underline</span> t ))))
+ '(org-agenda-date                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFFFF"</span> ))))
+ '(org-agenda-date-weekend         ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7F7F"</span> <span style="color: #7FBFFF;">:bold</span> t))))
+ '(org-agenda-calendar-event       ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> ))))
+ '(org-hide                        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">review</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header1-face  ((t (:inherit outline-1))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header2-face  ((t (:inherit outline-2))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header3-face  ((t (:inherit outline-3))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header4-face  ((t (:inherit outline-4))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header5-face  ((t (:inherit outline-5))))</span>
+ )
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgc4a9493" class="outline-2">
 <h2 id="orgc4a9493">日記: <code>tDiary</code></h2>
 <div class="outline-text-2" id="text-orgc4a9493">
@@ -4474,69 +4529,7 @@ tdiary-mode をちまちまと弄っている所
 <div id="outline-container-org155c83d" class="outline-2">
 <h2 id="org155c83d">プログラム環境</h2>
 <div class="outline-text-2" id="text-org155c83d">
-</div><div id="outline-container-orgc1c606a" class="outline-3">
-<h3 id="orgc1c606a">コードのタグ付け: <code>ggtags</code>, <code>helm-gtags</code></h3>
-<div class="outline-text-3" id="text-orgc1c606a">
-<p>
-無いと途方に暮れる．
-<del>Debian 版の GNU Global がすったもんだの挙句ようやく更新された!</del>
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-gtags</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"gtags"</span>)
-  <span style="color: #7FBFFF;">:diminish</span> helm-gtags-mode
-  <span style="color: #7FBFFF;">:init</span>
-  (add-hook 'helm-gtags-mode-hook
-            (<span style="color: #FF7F7F;">lambda</span> ()
-              (local-set-key (kbd <span style="color: #7FFF7F;">"M-t"</span>) 'helm-gtags-find-tag)
-              (local-set-key (kbd <span style="color: #7FFF7F;">"M-r"</span>) 'helm-gtags-find-rtag)
-              (local-set-key (kbd <span style="color: #7FFF7F;">"M-s"</span>) 'helm-gtags-find-symbol)
-              (local-set-key (kbd <span style="color: #7FFF7F;">"C-t"</span>) 'helm-gtags-pop-stack)))
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> helm-gtags-path-style 'root
-        helm-gtags-ignore-case t)
-  (add-hook 'c-mode-hook    'helm-gtags-mode)
-  (add-hook 'cc-mode-hook   'helm-gtags-mode)
-  (add-hook 'f90-mode-hook  'helm-gtags-mode)
-  (add-hook 'ruby-mode-hook 'helm-gtags-mode)
-  (add-hook 'emacs-lisp-mode-hook 'helm-gtags-mode))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgac9d398" class="outline-3">
-<h3 id="orgac9d398">プロジェクト管理: <a href="https://github.com/bbatsov/projectile">bbatsov/projectile</a></h3>
-<div class="outline-text-3" id="text-orgac9d398">
-<p>
-これも無いと途方に暮れる．<a href="https://github.com/bbatsov/helm-projectile">bbatsov/helm-projectile</a> と一緒に使っている.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">projectile</span>
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> projectile-keymap-prefix (kbd <span style="color: #7FFF7F;">"C-c p"</span>)  <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">default</span>
-        projectile-enable-caching t
-        projectile-cache-file (concat my:d:tmp <span style="color: #7FFF7F;">"projectile.cache"</span>)
-        projectile-completion-system 'helm
-        projectile-tags-backend 'ggtags
-        projectile-mode-line '(<span style="color: #7FBFFF;">:eval</span>
-                               (<span style="color: #FF7F7F;">if</span>
-                                   (file-remote-p default-directory)
-                                   <span style="color: #7FFF7F;">""</span>
-                                 (format <span style="color: #7FFF7F;">" [%s]"</span>
-                                         (projectile-project-name))))
-        projectile-known-projects-file (concat my:d:tmp <span style="color: #7FFF7F;">"projectile-bookmarks.eld"</span>)
-        <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">projectile-globally-ignored-files</span>
-        <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">projectile-globally-ignored-directories</span>
-        )
-  (projectile-global-mode)
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(helm-projectile-on)</span>
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgc3455b7" class="outline-3">
+</div><div id="outline-container-orgc3455b7" class="outline-3">
 <h3 id="orgc3455b7">VCS: <code>magit</code></h3>
 <div class="outline-text-3" id="text-orgc3455b7">
 <p>
@@ -4548,44 +4541,6 @@ magit は Emacs の Git Frontend.
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x g"</span> . magit-status))
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> magit-completing-read-function 'magit-ido-completing-read)
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgd51590a" class="outline-3">
-<h3 id="orgd51590a">flycheck</h3>
-<div class="outline-text-3" id="text-orgd51590a">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">flycheck</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:disabled</span> t
-  <span style="color: #7FBFFF;">:diminish</span> flycheck-mode
-  <span style="color: #7FBFFF;">:init</span>
-  <span style="color: #7FBFFF;">:config</span>
-<span style="color: #a5a5a6;">;;  </span><span style="color: #a5a5a6;">(global-flycheck-mode)</span>
-  (<span style="color: #FF7F7F;">setq-default</span> flycheck-disabled-checkers
-                '(
-                  emacs-lisp-checkdoc
-                  ))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">gcc</span>
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:setup-flycheck-gcc-project-path</span> ()
-    <span style="color: #7FFF7F;">"gcc: Add projectile root for include path"</span>
-    (<span style="color: #FF7F7F;">let</span> ((root (<span style="color: #FF7F7F;">ignore-errors</span> (projectile-project-root))))
-      (<span style="color: #FF7F7F;">when</span> root
-        (add-to-list
-         (make-variable-buffer-local 'flycheck-gcc-include-path)
-         root))))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">gfortran</span>
-  (add-hook 'c-mode-hook 'my:setup-flycheck-gcc-project-path)
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:setup-flycheck-gfortran-project-path</span> ()
-    <span style="color: #7FFF7F;">"gfortran: Add projectile root for include path"</span>
-    (<span style="color: #FF7F7F;">let</span> ((root (<span style="color: #FF7F7F;">ignore-errors</span> (projectile-project-root))))
-      (<span style="color: #FF7F7F;">when</span> root
-        (add-to-list
-         (make-variable-buffer-local 'flycheck-gfortran-include-path)
-         root))))
-  (add-hook 'c-mode-hook 'my:setup-flycheck-gfortran-project-path)
   )
 </pre>
 </div>
@@ -4611,6 +4566,7 @@ magit は Emacs の Git Frontend.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">textile-mode</span>
   <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:diminish</span> textile-mode
   )
 </pre>
 </div>
@@ -4792,21 +4748,6 @@ magit は Emacs の Git Frontend.
 </div>
 </div>
 </div>
-<div id="outline-container-orga73bc0b" class="outline-3">
-<h3 id="orga73bc0b">Re:VIEW</h3>
-<div class="outline-text-3" id="text-orga73bc0b">
-<p>
-ePUB 書くのに便利な <a href="https://github.com/kmuto/review/">kmuto/review: Re:VIEW is flexible document format/conversion system</a> の
-モード
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">review-mode</span>
-  <span style="color: #7FBFFF;">:mode</span> (<span style="color: #7FFF7F;">"\\.re$"</span> . review-mode)
-  )
-</pre>
-</div>
-</div>
-</div>
 <div id="outline-container-org6d6deb2" class="outline-3">
 <h3 id="org6d6deb2">AUCTeX</h3>
 <div class="outline-text-3" id="text-org6d6deb2">
@@ -4826,6 +4767,7 @@ Debian パッケージ版を使う．やっている事は
   <span style="color: #7FBFFF;">:config</span>
   (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
   (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (add-hook 'LaTeX-mode-hook
             (<span style="color: #FF7F7F;">function</span>
              (<span style="color: #FF7F7F;">lambda</span> ()
@@ -4855,6 +4797,7 @@ Debian パッケージ版を使う．やっている事は
         font-latex-fontify-script nil
         font-latex-fontify-sectioning 1.0
         font-latex-script-display nil
+        reftex-plug-into-AUCTeX t
         )
   )
 </pre>
@@ -4890,188 +4833,42 @@ Debian パッケージ版を使う．やっている事は
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">zotelo</span>
   <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:if</span> (my:dpkg-status <span style="color: #7FFF7F;">"zotelo"</span>)
   <span style="color: #7FBFFF;">:init</span>
   (add-hook 'LaTeX-mode-hook 'zotelo-minor-mode)
+  (add-hook 'TeX-mode-hook   'zotelo-minor-mode)
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> zotelo-translator-charsets '((BibTeX . <span style="color: #7FFF7F;">"Unicode"</span>)
-                                     (Default . <span style="color: #7FFF7F;">"Unicode"</span>)))
-  )
+                                     (Default . <span style="color: #7FFF7F;">"Unicode"</span>))
+        zotelo-use-journal-abbreviation t)
+)
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf23518a" class="outline-2">
-<h2 id="orgf23518a">フォントと色</h2>
-<div class="outline-text-2" id="text-orgf23518a">
+<div id="outline-container-org24a422e" class="outline-2">
+<h2 id="org24a422e">基本的なキーバインドの設定 <code>[/]</code></h2>
+<div class="outline-text-2" id="text-org24a422e">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> 設定が効かない事がある．読み込む順番が関係するのかな&#x2026;?</li>
+</ul>
 <p>
-そろそろテーマにした方が良い，とは思ってはいる．
+既に手癖になってしまっているアレコレ．
+特に <code>[home]</code> と <code>[end]</code> は無いと途方に暮れます．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:load-window-config</span> ()
-  <span style="color: #7FFF7F;">"load window-system specific settings"</span>
-  (<span style="color: #FF7F7F;">interactive</span>)
-  (<span style="color: #FF7F7F;">when</span> window-system
-    (<span style="color: #FF7F7F;">progn</span>
-      (set-face-attribute 'default nil
-                          <span style="color: #7FBFFF;">:family</span> <span style="color: #7FFF7F;">"SeptemberMMono"</span>
-                          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">:family "Ricty Discord for Powerline"</span>
-                          <span style="color: #7FBFFF;">:height</span> 135) <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">135pt</span>
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-fontset-font nil 'japanese-jisx0208</span>
-      <span style="color: #a5a5a6;">;;                   </span><span style="color: #a5a5a6;">(font-spec :family "SeptemberMMono"))</span>
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(setq face-font-rescale-alist '(("September.*" . 1)))</span>
-      (set-background-color <span style="color: #7FFF7F;">"#242424"</span>)
-      )))
-(<span style="color: #FF7F7F;">setq</span> frame-background-mode (frame-parameter nil 'background-mode))
-(<span style="color: #FF7F7F;">setq</span> default-frame-alist
-      '(
-        (foreground-color . <span style="color: #7FFF7F;">"#F6F3E8"</span>)
-        (scroll-bar-foreground-color . <span style="color: #7FFF7F;">"red"</span>)
-        (vertical-scroll-bars . right)
-        ))
-(<span style="color: #FF7F7F;">when</span> (window-system)
-  (my:load-window-config))
-</pre>
-</div>
-<p>
-現在修正中．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(custom-set-faces
- '(default                             ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> ))))
- <span style="color: #a5a5a6;">;;</span>
- '(cursor                              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4CFF4C"</span> ))))
- '(font-lock-builtin-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FBFFF"</span> ))))
- '(font-lock-comment-delimiter-face    ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#a5a5a6"</span> ))))
- '(font-lock-comment-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#a5a5a6"</span> ))))
- '(font-lock-constant-face             ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFBF7F"</span> ))))
- '(font-lock-doc-face                  ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> ))))
- '(font-lock-doc-string-face           ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> ))))
- '(font-lock-function-name-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#BF7FFF"</span>))))
- '(font-lock-keyword-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7F7F"</span>))))
- '(font-lock-link-face                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> ))))
- '(font-lock-negation-char-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:italic</span> nil))))
- '(font-lock-preprocessor-face         ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:bold</span> nil <span style="color: #7FBFFF;">:italic</span> nil))))
- '(font-lock-regexp-grouping-backslash ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#A5EE4C"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:italic</span> nil))))
- '(font-lock-regexp-grouping-construct ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:bold</span> t   <span style="color: #7FBFFF;">:italic</span> nil))))
- '(font-lock-string-face               ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> ))))
- '(font-lock-type-face                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF7F"</span> ))))
- '(font-lock-variable-name-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> ))))
- '(font-lock-warning-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span> <span style="color: #7FBFFF;">:bold</span> t ))))
- '(fringe                              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#282828"</span> ))))
- '(hl-line                             ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
- '(highlight                           ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
- '(minibuffer-prompt                   ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#BF7FFF"</span> ))))
- '(mode-line                           ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> ))))
- '(mode-line-inactive                  ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#999999"</span> <span style="color: #7FBFFF;">:bold</span> nil ))))
- '(region                              ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">custom-set-faces was added by Custom.</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">If you edit it by hand, you could mess it up, so be careful.</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">Your init file should contain only one such instance.</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">If there is more than one, they won't work right.</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(fixed-pitch ((t (:family "Ricty" ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(variable-pitch ((t (:family "Ricty" ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(fixed-pitch ((t (:family "Monospace" :height 135 ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(variable-pitch ((t (:family "Monospace" :height 135 ))))</span>
- <span style="color: #a5a5a6;">;;</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">preview-latex</span>
- '(font-latex-sectioning-0-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-1-face))))
- '(font-latex-sectioning-1-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-2-face))))
- '(font-latex-sectioning-2-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-3-face))))
- '(font-latex-sectioning-3-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-4-face))))
- '(font-latex-sectioning-4-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-latex-sectioning-5-face ))))
- '(font-latex-sectioning-5-face ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-type-face <span style="color: #7FBFFF;">:bold</span> t))))
- '(font-latex-slide-title-face  ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-type-face <span style="color: #7FBFFF;">:bold</span> t))))
- '(font-latex-subscript-face    ((t nil)))
- '(font-latex-superscript-face  ((t nil)))
- '(font-latex-math-face         ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-constant-face ))))
- '(font-latex-script-char-face  ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-preprocessor-face <span style="color: #7FBFFF;">:bold</span> t))))
- '(font-latex-verbatim-face     ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-doc-string-face ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">elscreen</span>
- '(elscreen-tab-control-face        ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#f6f3e8"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> t ))))
- '(elscreen-tab-current-screen-face ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#f6f3e8"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> t ))))
- '(elscreen-tab-other-screen-face   ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#aaaaaa"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> nil ))))
- '(elscreen-tab-background-face     ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#aaaaaa"</span> <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:bold</span> nil ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">dired</span>
- '(dired-directory                  ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-flagged</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-header</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-ignored</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-mark</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-marked</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-perm-write</span>
- '(dired-symlink                    ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(dired-warning</span>
- '(flx-highlight-face               ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:undeline</span> t))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">git-gutter</span>
- '(git-gutter:added                  ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFF4C"</span>))))
- '(git-gutter:deleted                ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span>))))
- '(git-gutter:modified               ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF4C"</span>))))
- '(git-gutter:unchanged              ((t (<span style="color: #7FBFFF;">:inherit</span> default ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: header-line</span>
- '(helm-source-header               ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#224488"</span> <span style="color: #7FBFFF;">:bold</span> t))))
- '(helm-visible-mark                ((t (<span style="color: #7FBFFF;">:inherit</span> highlight ))))
- '(helm-selection                   ((t (<span style="color: #7FBFFF;">:inherit</span> highlight ))))
- '(helm-selection-line              ((t (<span style="color: #7FBFFF;">:inherit</span> highlight ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: directory</span>
- '(helm-ff-directory                ((t (<span style="color: #7FBFFF;">:inherit</span> dired-directory ))))
- '(helm-bookmark-directory          ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-directory ))))
- '(helm-buffer-directory            ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-directory ))))
- '(helm-ff-dotted-directory         ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-directory ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: file</span>
- '(helm-ff-file                     ((t (<span style="color: #7FBFFF;">:inherit</span> default ))))
- '(helm-bookmark-file               ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
- '(helm-buffer-file                 ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
- '(helm-grep-file                   ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
- '(helm-etags-file                  ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: file + executable</span>
- '(helm-ff-executable               ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> <span style="color: #7FBFFF;">:bold</span> t))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: symlink</span>
- '(helm-ff-symlink                  ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> <span style="color: #7FBFFF;">:bold</span> t))))
- '(helm-ff-dotted-symlink-directory ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-symlink ))))
- '(helm-ff-invalid-symlink          ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7F7F"</span> ))))
- <span style="color: #a5a5a6;">;;; </span><span style="color: #a5a5a6;">howm</span>
- '(howm-mode-keyword-face            ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-mode-title-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFFFF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-reminder-deadline-face       ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF4C4C"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-reminder-late-deadline-face  ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:underline</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF0000"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-reminder-today-face          ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFBF7F"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- '(howm-reminder-tomorrow-face       ((t (<span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido</span>
- '(ido-first-match     ((t (<span style="color: #7FBFFF;">:inherit</span> default ))))
- '(ido-only-match      ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF4C"</span> ))))
- '(ido-subdir          ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:bold</span> t))))
- '(ido-grid-common-match ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4c4c4c"</span>))))
- '(ido-grid-mode-match ((t (<span style="color: #7FBFFF;">:inherit</span> ido-first-match))))
- '(ido-vertical-first-match-face ((t (<span style="color: #7FBFFF;">:underline</span> (<span style="color: #7FBFFF;">:inherit</span> ido-first-match)))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-grid-mode-common-match</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-grid-mode-jump-face</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-incomplete-regexp</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-indicator</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido-virtual</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">outline</span>
- '(outline-1 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-function-name-face <span style="color: #7FBFFF;">:bold</span> t))))
- '(outline-2 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-string-face <span style="color: #7FBFFF;">:bold</span> t))))
- '(outline-3 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-keyword-face <span style="color: #7FBFFF;">:bold</span> t))))
- '(outline-4 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-type-face <span style="color: #7FBFFF;">:bold</span> t ))))
- '(outline-5 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-constant-face <span style="color: #7FBFFF;">:bold</span> t ))))
- '(outline-6 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-variable-name-face <span style="color: #7FBFFF;">:bold</span> t))))
- '(outline-7 ((t (<span style="color: #7FBFFF;">:inherit</span> font-lock-builtin-face <span style="color: #7FBFFF;">:bold</span> t ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(outline-8 ((t (:inherit font-lock-comment-face :bold t ))))</span>
- <span style="color: #a5a5a6;">;;</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">org</span>
- '(org-agenda-date-today           ((t (<span style="color: #7FBFFF;">:underline</span> t ))))
- '(org-agenda-date                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFFFF"</span> ))))
- '(org-agenda-date-weekend         ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7F7F"</span> <span style="color: #7FBFFF;">:bold</span> t))))
- '(org-agenda-calendar-event       ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> ))))
- '(org-hide                        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">review</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header1-face  ((t (:inherit outline-1))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header2-face  ((t (:inherit outline-2))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header3-face  ((t (:inherit outline-3))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header4-face  ((t (:inherit outline-4))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header5-face  ((t (:inherit outline-5))))</span>
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">bind-keys*</span>
+ (<span style="color: #7FFF7F;">"C-h"</span>     . backward-delete-char)
+ (<span style="color: #7FFF7F;">"C-c M-a"</span> . align-regexp)
+ (<span style="color: #7FFF7F;">"C-c ;"</span>   . comment-region)
+ (<span style="color: #7FFF7F;">"C-c M-;"</span> . uncomment-region)
+ (<span style="color: #7FFF7F;">"C-/"</span>     . undo)
+ (<span style="color: #7FFF7F;">"C-x M-b"</span> . ibuffer-other-window)
+ (<span style="color: #7FFF7F;">"C-c M-r"</span> . replace-regexp)
+ (<span style="color: #7FFF7F;">"C-c r"</span>   . replace-string)
+ (<span style="color: #7FFF7F;">"&lt;home&gt;"</span>  . beginning-of-buffer)
+ (<span style="color: #7FFF7F;">"&lt;end&gt;"</span>   . end-of-buffer)
+ (<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point)
  )
 </pre>
 </div>
@@ -5213,37 +5010,6 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
 </div>
 </div>
 </div>
-<div id="outline-container-org24a422e" class="outline-2">
-<h2 id="org24a422e">基本的なキーバインドの設定 <code>[/]</code></h2>
-<div class="outline-text-2" id="text-org24a422e">
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 設定が効かない事がある．読み込む順番が関係するのかな&#x2026;?</li>
-</ul>
-<p>
-既に手癖になってしまっているアレコレ．
-特に <code>[home]</code> と <code>[end]</code> は無いと途方に暮れます．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">bind-keys*</span>
- (<span style="color: #7FFF7F;">"C-h"</span>     . backward-delete-char)
- (<span style="color: #7FFF7F;">"C-c M-a"</span> . align-regexp)
- (<span style="color: #7FFF7F;">"C-c ;"</span>   . comment-region)
- (<span style="color: #7FFF7F;">"C-c M-;"</span> . uncomment-region)
- (<span style="color: #7FFF7F;">"C-/"</span>     . undo)
- (<span style="color: #7FFF7F;">"C-x M-b"</span> . ibuffer-other-window)
- (<span style="color: #7FFF7F;">"C-c M-r"</span> . replace-regexp)
- (<span style="color: #7FFF7F;">"C-c r"</span>   . replace-string)
- (<span style="color: #7FFF7F;">"&lt;home&gt;"</span>  . beginning-of-buffer)
- (<span style="color: #7FFF7F;">"&lt;end&gt;"</span>   . end-of-buffer)
- (<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point)
- )
-</pre>
-</div>
-<p>
-<a href="https://github.com/k1LoW/emacs-drill-instructor/wiki">鬼軍曹.el</a> とかで強制した方が良いのかも，とかごく偶に思いますが(思うだけ)．
-</p>
-</div>
-</div>
 <div id="outline-container-org599bdcc" class="outline-2">
 <h2 id="org599bdcc">起動時間の計測</h2>
 <div class="outline-text-2" id="text-org599bdcc">
@@ -5259,6 +5025,7 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
 </div>
 </div>
 </div>
+
 <div id="outline-container-org0f369f0" class="outline-2">
 <h2 id="org0f369f0">LICENSE</h2>
 <div class="outline-text-2" id="text-org0f369f0">

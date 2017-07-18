@@ -78,12 +78,12 @@ newgrp sbuild
 chroot の作成は以下
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #FF7F7F;">for</span> a<span style="color: #FF7F7F;"> in</span> amd64 i386; <span style="color: #FF7F7F;">do</span>
-  <span style="color: #FF7F7F;">for</span> d<span style="color: #FF7F7F;"> in</span> stable testing unstable ; <span style="color: #FF7F7F;">do</span>
-    sudo <span style="color: #7F7FFF;">LANG</span>=C sbuild-createchroot --arch=$<span style="color: #7F7FFF;">a</span> --include=eatmydata,gnupg $<span style="color: #7F7FFF;">d</span> <span style="color: #7FFF7F;">\</span>
-        /srv/chroot/$<span style="color: #7F7FFF;">d</span>-$<span style="color: #7F7FFF;">a</span>-sbuild http://dennou-k.gfd-dennou.org/debian
-  <span style="color: #FF7F7F;">done</span>
-<span style="color: #FF7F7F;">done</span>
+<pre class="src src-sh">for a in amd64 i386; do
+  for d in stable testing unstable ; do
+    sudo LANG=C sbuild-createchroot --arch=$a --include=eatmydata,gnupg $d \
+        /srv/chroot/$d-$a-sbuild http://dennou-k.gfd-dennou.org/debian
+  done
+done
 </pre>
 </div>
 <p>
@@ -91,71 +91,71 @@ chroot の作成は以下
 ついでに <code>/etc/schroot/chroot.d/</code> 以下に sbuild 用の設定ファイルができるので,
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">union-type</span>=overlay
+<pre class="src src-conf">union-type=overlay
 </pre>
 </div>
 <p>
 を設定しておくと良い(overlayfs で動作する):
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #FF7F7F;">for</span> conf<span style="color: #FF7F7F;"> in</span> $(grep -l &#8217;^union-type=&#8217; /etc/schroot/chroot.d/*-sbuild*); <span style="color: #FF7F7F;">do</span>
-    <span style="color: #FF7F7F;">if</span> <span style="color: #7FFFFF; font-weight: bold;">!</span> grep -q <span style="color: #7FFF7F;">"^union-overlay-directory="</span> <span style="color: #7FFF7F;">"$conf"</span> ; <span style="color: #FF7F7F;">then</span>
-        <span style="color: #7FBFFF;">echo</span> &#8217;union-overlay-directory=/dev/shm&#8217; | sudo tee --append <span style="color: #7FFF7F;">"$conf"</span>
-    <span style="color: #FF7F7F;">fi</span>
-<span style="color: #FF7F7F;">done</span>
+<pre class="src src-sh">for conf in $(grep -l ’^union-type=’ /etc/schroot/chroot.d/*-sbuild*); do
+    if ! grep -q "^union-overlay-directory=" "$conf" ; then
+        echo ’union-overlay-directory=/dev/shm’ | sudo tee --append "$conf"
+    fi
+done
 </pre>
 </div>
 <p>
 sbuild の設定は <code>~/.sbuildrc</code> に以下の通りに書いておく
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: cperl -*-</span>
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">basic</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">architecture: all &#12418; build &#12377;&#12427;</span>
-<span style="color: #7F7FFF;">$build_arch_all</span> = 1;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12487;&#12501;&#12457;&#12523;&#12488;&#12391; source packag &#12418; build &#12377;&#12427;</span>
-<span style="color: #7F7FFF;">$build_source</span> = 1;
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">debsign</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">GPG key id</span>
-<span style="color: #7F7FFF;">$key_id</span> = <span style="color: #7FFF7F;">'66A4EA704FE240558D6AC2E69394F354891D7E07'</span>;
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">lintinan</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; lintian &#12434;&#36208;&#12425;&#12379;&#12427;</span>
-<span style="color: #7F7FFF;">$run_lintian</span> = 1;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">lintian &#12398; option. &#12362;&#22909;&#12415;&#12391;&#12290;</span>
-<span style="color: #7F7FFF;">$lintian_opts</span> = [<span style="color: #7FFF7F;">'-i'</span>, <span style="color: #7FFF7F;">'-I'</span>];
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">piuparts</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; piuparts &#12434;&#36208;&#12425;&#12379;&#12427;</span>
-<span style="color: #7F7FFF;">$run_piuparts</span> = 0;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">piuparts &#12398; option&#12290;&#12371;&#12371;&#12391;&#12399; schroot &#12391;&#36208;&#12425;&#12379;&#12427;</span>
-<span style="color: #7F7FFF;">$piuparts_opts</span> = [<span style="color: #7FFF7F;">'-N'</span>, <span style="color: #7FFF7F;">'-d'</span>, <span style="color: #7FFF7F;">'%r'</span>, <span style="color: #7FFF7F;">'--keep-sources-list'</span>, <span style="color: #7FFF7F;">'--schroot'</span>, <span style="color: #7FFF7F;">'%r-%a-sbuild'</span>];
-<span style="color: #a5a5a6;">#</span>
-<span style="color: #7F7FFF;">$piuparts_root_args</span> = [<span style="color: #7FFF7F;">'sudo'</span>, <span style="color: #7FFF7F;">'--'</span>];
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">autopkgtest</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; autopkgtest &#12434;&#23455;&#34892;&#12377;&#12427;</span>
-<span style="color: #7F7FFF;">$run_autopkgtest</span> = 1;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">option</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$autopkgtest_opts = ['--user', 'debci', '-U', '--', 'lxc', 'adt-sid-%a'];</span>
-<span style="color: #7F7FFF;">$autopkgtest_opts</span> = [<span style="color: #7FFF7F;">'-U'</span>, <span style="color: #7FFF7F;">'--'</span>, <span style="color: #7FFF7F;">'schroot'</span>, <span style="color: #7FFF7F;">'%r-%a-sbuild'</span>];
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">root_args</span>
-<span style="color: #7F7FFF;">$autopkgtest_root_args</span> = [<span style="color: #7FFF7F;">'sudo'</span>, <span style="color: #7FFF7F;">'--'</span>];
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;"># autopkgtest</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$external_commands =</span>
-<span style="color: #FFFF7F;">#</span><span style="color: #a5a5a6;">   </span><span style="color: #a5a5a6;">{</span>
-<span style="color: #a5a5a6;">#    </span><span style="color: #a5a5a6;">'post-build-commands' =&gt;</span>
-<span style="color: #a5a5a6;">#    </span><span style="color: #a5a5a6;">[</span>
-<span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">[</span>
-<span style="color: #a5a5a6;">#      </span><span style="color: #a5a5a6;">'autopkgtest', '--user', 'debci', '-U', '%d',</span>
-<span style="color: #a5a5a6;">#      </span><span style="color: #a5a5a6;">'--', 'lxc', 'adt-sid-%a;',</span>
-<span style="color: #a5a5a6;">#      </span><span style="color: #a5a5a6;"># '%c',</span>
-<span style="color: #a5a5a6;">#      </span><span style="color: #a5a5a6;"># if autopkgtest's exit code is 8 then the package had no tests</span>
-<span style="color: #a5a5a6;">#      </span><span style="color: #a5a5a6;"># but this isn't a failure, so catch it</span>
-<span style="color: #a5a5a6;">#      </span><span style="color: #a5a5a6;">'aptexit=$?;',</span>
-<span style="color: #a5a5a6;">#      </span><span style="color: #a5a5a6;">'if', 'test', '$aptexit', '=', '8;', 'then',</span>
-<span style="color: #a5a5a6;">#      </span><span style="color: #a5a5a6;">'exit', '0;', 'else', 'exit', '$aptexit;', 'fi'</span>
-<span style="color: #a5a5a6;">#     </span><span style="color: #a5a5a6;">],</span>
-<span style="color: #a5a5a6;">#    </span><span style="color: #a5a5a6;">],</span>
-<span style="color: #a5a5a6;">#   </span><span style="color: #a5a5a6;">};</span>
+<pre class="src src-conf"># -*- mode: cperl -*-
+## basic
+# architecture: all も build する
+$build_arch_all = 1;
+# デフォルトで source packag も build する
+$build_source = 1;
+## debsign
+# GPG key id
+$key_id = '66A4EA704FE240558D6AC2E69394F354891D7E07';
+## lintinan
+# build 後に lintian を走らせる
+$run_lintian = 1;
+# lintian の option. お好みで。
+$lintian_opts = ['-i', '-I'];
+## piuparts
+# build 後に piuparts を走らせる
+$run_piuparts = 0;
+# piuparts の option。ここでは schroot で走らせる
+$piuparts_opts = ['-N', '-d', '%r', '--keep-sources-list', '--schroot', '%r-%a-sbuild'];
+#
+$piuparts_root_args = ['sudo', '--'];
+## autopkgtest
+# build 後に autopkgtest を実行する
+$run_autopkgtest = 1;
+# option
+# $autopkgtest_opts = ['--user', 'debci', '-U', '--', 'lxc', 'adt-sid-%a'];
+$autopkgtest_opts = ['-U', '--', 'schroot', '%r-%a-sbuild'];
+# root_args
+$autopkgtest_root_args = ['sudo', '--'];
+# #
+# # autopkgtest
+# $external_commands =
+#   {
+#    'post-build-commands' =&gt;
+#    [
+#     [
+#      'autopkgtest', '--user', 'debci', '-U', '%d',
+#      '--', 'lxc', 'adt-sid-%a;',
+#      # '%c',
+#      # if autopkgtest's exit code is 8 then the package had no tests
+#      # but this isn't a failure, so catch it
+#      'aptexit=$?;',
+#      'if', 'test', '$aptexit', '=', '8;', 'then',
+#      'exit', '0;', 'else', 'exit', '$aptexit;', 'fi'
+#     ],
+#    ],
+#   };
 </pre>
 </div>
 </div>
@@ -175,10 +175,10 @@ sbuild の設定は <code>~/.sbuildrc</code> に以下の通りに書いてお�
 設定は以下の通り. <code>pedantic</code> と <code>info</code> は, まあ趣味でしょうか.
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">display-info</span> = yes
-<span style="color: #7F7FFF;">pedantic</span> = yes
-<span style="color: #7F7FFF;">color</span> = auto
-<span style="color: #7F7FFF;">show-overrides</span> = yes
+<pre class="src src-conf">display-info = yes
+pedantic = yes
+color = auto
+show-overrides = yes
 </pre>
 </div>
 </div>
