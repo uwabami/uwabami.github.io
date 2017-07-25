@@ -1,0 +1,165 @@
+---
+title: LightDM の設定
+date: 2017-07-24 17:37:14
+layout: cc-env
+lang: ja
+ref: cc-env/DebianLightDM
+permalink: /cc-env/DebianLightDM.html
+---
+<div id="toc-wrapper">
+<nav id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org29f65f3">はじめに</a></li>
+<li><a href="#orge373761">導入</a></li>
+<li><a href="#org31bf841">設定</a>
+<ul>
+<li><a href="#org9be5190">ログイン画面に個人の画像を表示</a></li>
+<li><a href="#org0e8536b">GTK Greeter の設定</a></li>
+</ul>
+</li>
+<li><a href="#org7ad2305">その他, 気になる所</a></li>
+</ul>
+</div>
+</nav>
+</div>
+<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
+<p>
+Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
+</p>
+<div id="outline-container-org29f65f3" class="outline-2">
+<h2 id="org29f65f3">はじめに</h2>
+<div class="outline-text-2" id="text-org29f65f3">
+<p>
+コンソールにログインして startx するのが楽で良いのだけれど,
+gnome-keyring ⇔ owncloud の連携がイマイチ上手くいかない様なので,
+しょうがなくログインマネージャとして <a href="https://www.freedesktop.org/wiki/Software/LightDM/">LightDM</a> を使っている.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge373761" class="outline-2">
+<h2 id="orge373761">導入</h2>
+<div class="outline-text-2" id="text-orge373761">
+<p>
+最近 <a href="https://tracker.debian.org/pkg/slick-greeter">Debian Package Tracker - slick-greeter</a> なるモノも見つけたのだが
+今まで通り <a href="https://tracker.debian.org/pkg/lightdm-gtk-greeter">Debian Package Tracker - lightdm-gtk-greeter</a> を使っている.
+</p>
+<pre class="example">
+% sudo apt-get install lightdm lightdm-gtk-greeter accountsservice
+</pre>
+<p>
+ログイン画面に個人の画像を表示したくて
+<a href="https://tracker.debian.org/pkg/accountsservice">Debian Package Tracker - accountsservice</a> もインストールしていたりする.
+</p>
+</div>
+</div>
+<div id="outline-container-org31bf841" class="outline-2">
+<h2 id="org31bf841">設定</h2>
+<div class="outline-text-2" id="text-org31bf841">
+</div><div id="outline-container-org9be5190" class="outline-3">
+<h3 id="org9be5190">ログイン画面に個人の画像を表示</h3>
+<div class="outline-text-3" id="text-org9be5190">
+<p>
+AccountsService で画像を表示するために
+<code>/var/lib/AccountsService/icons/</code> に
+96x96 の画像をユーザ名で置いておく
+</p>
+<pre class="example">
+% ls -la /var/lib/AccountsService/icons
+合計 12
+drwxr-xr-x 1 root root    14 2017-02-14 17:12 ./
+drwxr-xr-x 1 root root    20 2017-02-13 16:55 ../
+-rw-r--r-- 1 root root 11763 2017-02-14 17:12 uwabami
+</pre>
+
+<p>
+LightDM 本体の設定は <code>/etc/lightdm.conf</code> で.
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">[<span style="color: #FFFF7F;">Seat:*</span>]
+<span style="color: #7F7FFF;">greeter-hide-users</span>=false
+</pre>
+</div>
+<p>
+を追加(もともとはコメントアウトされているので, それを <code>false</code> に変更)
+</p>
+</div>
+</div>
+<div id="outline-container-org0e8536b" class="outline-3">
+<h3 id="org0e8536b">GTK Greeter の設定</h3>
+<div class="outline-text-3" id="text-org0e8536b">
+<p>
+設定ファイルは <code>/etc/lightdm/lightdm-gtk-greeter.conf</code>: 今は以下の通り
+</p>
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">LightDM GTK+ Configuration</span>
+<span style="color: #a5a5a6;">#</span>
+[<span style="color: #FFFF7F;">greeter</span>]
+<span style="color: #7F7FFF;">background</span>=/usr/share/images/desktop-base/login-background.svg
+<span style="color: #7F7FFF;">theme-name</span>=Adwaita
+<span style="color: #7F7FFF;">icon-theme-name</span>=Faenza
+<span style="color: #7F7FFF;">font-name</span>=Ricty Diminished
+<span style="color: #7F7FFF;">xft-antialias</span>=true
+<span style="color: #7F7FFF;">xft-dpi</span>=144
+<span style="color: #7F7FFF;">xft-hintstyle</span>=hintfull
+<span style="color: #7F7FFF;">xft-rgba</span>=rgb
+<span style="color: #7F7FFF;">indicators</span> = ~host;~spacer;~clock;~spacer;~power
+<span style="color: #7F7FFF;">clock-format</span>=%Y/%m/%d %H:%M:%S
+<span style="color: #7F7FFF;">screensaver-timeout</span>=300
+</pre>
+</div>
+<p>
+必要となるパッケージとしては
+</p>
+<ul class="org-ul">
+<li><a href="https://tracker.debian.org/pkg/fonts-ricty-diminished">Debian Package Tracker - fonts-ricty-diminished</a></li>
+<li><a href="https://tracker.debian.org/pkg/faenza-icon-theme">Debian Package Tracker - faenza-icon-theme</a></li>
+</ul>
+<p>
+かな.
+</p>
+
+<p>
+ついでに hiDPI かつ GTK3 Dark theme に対応するために
+<code>/usr/share/xgreeters/lightdm-gtk-greeter.desktop</code> を以下の通り修正
+</p>
+<div class="org-src-container">
+<pre class="src src-conf">[<span style="color: #FFFF7F;">Desktop Entry</span>]
+<span style="color: #7F7FFF;">Name</span>=LightDM GTK+ Greeter
+<span style="color: #7F7FFF;">Comment</span>=This runs the GTK+ greeter, it should only be run from LightDM
+<span style="color: #7F7FFF;">Exec</span>=env GDK_SCALE=2 GTK_THEME=Adwaita:dark /usr/sbin/lightdm-gtk-greeter
+<span style="color: #7F7FFF;">Type</span>=Application
+<span style="color: #7F7FFF;">X-Ubuntu-Gettext-Domain</span>=lightdm
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7ad2305" class="outline-2">
+<h2 id="org7ad2305">その他, 気になる所</h2>
+<div class="outline-text-2" id="text-org7ad2305">
+<ul class="org-ul">
+<li>幾つか気になる点があって, どうしたモンだかなぁ <code>[0/1]</code>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> login,logout すると gnome-keyring-daemon が多重起動している気が.
+<ul class="org-ul">
+<li>これは PAM の設定次第なんだろうか.</li>
+<li>まあ, 一度ログインしたら電源落とすまでログアウトしないよね, と言われれば
+そうなんだが.</li>
+</ul></li>
+<li class="off"><code>[&#xa0;]</code> <code>dm-tool lock</code> をうまく使えれば, 他の screensaver は不要かもしれない
+<ul class="org-ul">
+<li>もしくは <code>light-locker</code> を使えば良いのかな. <code>i3lock</code> の方が好みなんだが.</li>
+<li>というか, lock してても <code>Ctrl+Alt+番号</code> で画面切り替わらない? もしかして.</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>
+とはいえ, 総じてやりたいことはできているので, これで良いか, という気分ではある.
+</p>
+</div>
+</div>

@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-07-19 00:40:30
+date: 2017-07-20 02:27:43
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgae3d8c8">標準機能の設定</a>
 <ul>
 <li><a href="#org1b6b59a">表示関連</a></li>
-<li><a href="#org608bf7b">編集関連</a></li>
+<li><a href="#orgeaa9f99">編集関連</a></li>
 <li><a href="#org7eda492">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -64,7 +64,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org47b60d9"><code>whitespace</code>: 空白の強調表示</a></li>
 <li><a href="#orgc074ac4"><code>saveplace</code>: 前回の修正位置を記憶する.</a></li>
 <li><a href="#orgd885246"><code>time-stamp</code>: 保存時に timestamp を自動更新</a></li>
-<li><a href="#org86a4ea6"><code>tramp</code>: 使わないので無効化?</a></li>
+<li><a href="#org07a421d"><code>tramp</code>: ssh 越しにファイルを編集</a></li>
 <li><a href="#orgf73514f"><code>bookmark</code>: bookmark ファイル</a></li>
 <li><a href="#org4ddc61b"><code>eww</code>: 内蔵ブラウザ <code>[0/1]</code></a></li>
 <li><a href="#org10aa1c4"><code>browse-url</code></a></li>
@@ -73,10 +73,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org3bd8022">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#org63cc41f">Emacs 本体側の設定</a></li>
+<li><a href="#org75e1d99">Emacs 本体側の設定</a></li>
 <li><a href="#orge62a055">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#orgeaa9f99">編集関連</a></li>
+<li><a href="#org1eba988">編集関連</a></li>
 <li><a href="#org67f5019">インクリメンタルサーチ</a></li>
 <li><a href="#org6d86eb6">辞書の設定</a></li>
 <li><a href="#org199b263">動的補完</a></li>
@@ -97,7 +97,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org4ea74a5">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org75e1d99">Emacs 本体側の設定</a></li>
+<li><a href="#org4d49572">Emacs 本体側の設定</a></li>
 <li><a href="#org711a3af">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#orgda20e29">依存/追加ライブラリのインストールと読み込み</a>
@@ -831,9 +831,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org608bf7b" class="outline-4">
-<h4 id="org608bf7b">編集関連</h4>
-<div class="outline-text-4" id="text-org608bf7b">
+<div id="outline-container-orgeaa9f99" class="outline-4">
+<h4 id="orgeaa9f99">編集関連</h4>
+<div class="outline-text-4" id="text-orgeaa9f99">
 <p>
 yes or no を y or n に
 </p>
@@ -1005,10 +1005,12 @@ Undo/Redo:
 <h3 id="org493fd75">ガベージコレクションの頻度を下げる</h3>
 <div class="outline-text-3" id="text-org493fd75">
 <p>
-とりあえず 128 MB にしておく.
+とりあえず 128 MB にしておく. ついでに message に gc が走っていることを表示
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> gc-cons-threshold (* 128 1024 1024))
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> gc-cons-threshold (* 128 1024 1024)
+      garbage-collection-messages t
+      )
 </pre>
 </div>
 </div>
@@ -1193,16 +1195,14 @@ Undo/Redo:
 </p>
 </div>
 </div>
-<div id="outline-container-org86a4ea6" class="outline-3">
-<h3 id="org86a4ea6"><code>tramp</code>: 使わないので無効化?</h3>
-<div class="outline-text-3" id="text-org86a4ea6">
-<p>
-無効化したいんだけれど，うまくいってない，ような&#x2026;?
-</p>
+<div id="outline-container-org07a421d" class="outline-3">
+<h3 id="org07a421d"><code>tramp</code>: ssh 越しにファイルを編集</h3>
+<div class="outline-text-3" id="text-org07a421d">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> tramp-mode nil
-      tramp-persistency-file-name (concat my:d:tmp <span style="color: #7FFF7F;">"tramp"</span>)
-      tramp-default-method <span style="color: #7FFF7F;">"scpx"</span>)
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">tramp</span>
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> tramp-persistency-file-name (concat my:d:tmp <span style="color: #7FFF7F;">"tramp"</span>))
+  )
 </pre>
 </div>
 </div>
@@ -1330,9 +1330,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org63cc41f" class="outline-3">
-<h3 id="org63cc41f">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org63cc41f">
+<div id="outline-container-org75e1d99" class="outline-3">
+<h3 id="org75e1d99">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org75e1d99">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1442,9 +1442,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-orgeaa9f99" class="outline-4">
-<h4 id="orgeaa9f99">編集関連</h4>
-<div class="outline-text-4" id="text-orgeaa9f99">
+<div id="outline-container-org1eba988" class="outline-4">
+<h4 id="org1eba988">編集関連</h4>
+<div class="outline-text-4" id="text-org1eba988">
 <p>
 キーバインド
 </p>
@@ -1788,9 +1788,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org75e1d99" class="outline-3">
-<h3 id="org75e1d99">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org75e1d99">
+<div id="outline-container-org4d49572" class="outline-3">
+<h3 id="org4d49572">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org4d49572">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3199,6 +3199,18 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
             (<span style="color: #FF7F7F;">lambda</span> ()
               (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-h"</span>)     'ido-delete-backward-updir)
               (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-l"</span>)     'ido-delete-backward-updir)))
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">tramp &#12399;&#12461;&#12515;&#12483;&#12471;&#12517;&#12363;&#12425;&#28040;&#12377;</span>
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:ido-remove-tramp-from-cache</span> nil
+    <span style="color: #7FFF7F;">"Remove any TRAMP entries from `</span><span style="color: #FFBF7F;">ido-dir-file-cache</span><span style="color: #7FFF7F;">'."</span>
+    (<span style="color: #FF7F7F;">interactive</span>)
+    (<span style="color: #FF7F7F;">setq</span> ido-dir-file-cache
+          (cl-remove-if
+           (<span style="color: #FF7F7F;">lambda</span> (x)
+             (string-match <span style="color: #7FFF7F;">"/</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">rsh</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">ssh</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">telnet</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">su</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">sudo</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">sshx</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">krlogin</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">ksu</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">rcp</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">scp</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">rsync</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">scpx</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">fcp</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">nc</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">ftp</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">smb</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">adb</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">:"</span> (car x)))
+           ido-dir-file-cache)))
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">ido-kill-emacs-hook</span> ()
+    (my:ido-remove-tramp-from-cache)
+    (ido-save-history))
   )
 </pre>
 </div>
@@ -3298,7 +3310,7 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 <div class="outline-text-2" id="text-orgab311d4">
 <p>
 幾つかの拡張で <code>helm</code> が呼ばれるので,
-インストールするけれども明示的に無効化しておく
+インストールするけれども明示的に無効化しておく.
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm</span>
