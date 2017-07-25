@@ -1,4 +1,4 @@
-#+DATE: 2017-07-24 17:37:14
+#+DATE: 2017-07-25 21:18:33
 #+TITLE: LightDM の設定
 #+LANGUAGE: ja
 #+REF: cc-env/DebianLightDM
@@ -52,7 +52,7 @@ greeter-hide-users=false
    #+INCLUDE: "/usr/share/xgreeters/lightdm-gtk-greeter.desktop" src conf
 
 * その他, 気になる所
-  - 幾つか気になる点があって, どうしたモンだかなぁ [0/1]
+  - 幾つか気になる点があって, どうしたモンだかなぁ [0/2]
     - [ ] login,logout すると gnome-keyring-daemon が多重起動している気が.
       - これは PAM の設定次第なんだろうか.
       - まあ, 一度ログインしたら電源落とすまでログアウトしないよね, と言われれば

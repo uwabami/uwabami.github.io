@@ -1,5 +1,5 @@
 #+TITLE: i3 の設定
-#+DATE: 2017-07-25 16:41:56
+#+DATE: 2017-07-25 21:23:59
 #+LANGUAGE: ja
 #+REF: cc-env/Debiani3
 #+LAYOUT: cc-env
@@ -35,7 +35,8 @@ Related [[wiki:index][Index]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]
     - [ ] [[https://01.org/connman][ConnMan | 01.org]] も試してみたいが, どうだろう.
     - [ ] pulseaudio の CUI なミキサーって良い奴無いかなぁ...
 
-* i3 を使うための準備
+* i3 の設定
+  設定ファイルは末尾に掲載している.
 ** xdg-open と run-mailcap
   いわゆる GNOME や KDE といった Desktop 環境ではないので,
   たとえば =xdg-open= の挙動が変わります.
@@ -79,8 +80,6 @@ Related [[wiki:index][Index]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]
 
   最後に =~/.mailcap=. とりあえずは以下の通り:
   #+INCLUDE:~/.mailcap src conf
-* i3 の設定
-  設定ファイルは末尾に掲載している.
 ** Alt+Tab でのフォーカスの切り替え
    =i3-msg -t get_tree= で状態が json で出力されるので,
    これを parse して良きに図らえば良い.
@@ -89,11 +88,9 @@ Related [[wiki:index][Index]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]
    [[https://github.com/westurner/i3t][westurner/i3t: i3t]] をありがたく使わせて頂くことに.
 
    設定は
-   #+BEGIN_SRC conf
-...
+   #+BEGIN_SRC conf-space
 set $i3t_alt_tab ~/.config/i3/i3t.py n
 bindsym $Alt+Tab exec $i3t_alt_tab
-...
    #+END_SRC
    みたいな感じで良い.
 ** Rofi: ランチャ
@@ -105,11 +102,9 @@ bindsym $Alt+Tab exec $i3t_alt_tab
    #+INCLUDE ~/.config/rofi/config src conf-xdefaults
 
    i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
-   #+BEGIN_SRC conf
-...
+   #+BEGIN_SRC conf-space
 bindsym $Alt+F2 $execi sh -c "rofi -show combi"
 bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"
-...
    #+END_SRC
 ** i3bar
    conky で情報を更新/整形して出力している.
@@ -118,8 +113,7 @@ bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"
    呼び出しは =i3bar-conky.sh= で:
    #+INCLUDE ~/.config/i3/i3bar-conky.sh src sh
    status ラインは以下の通り
-   #+BEGIN_SRC conf
-...
+   #+BEGIN_SRC conf-space
 # status bar
 bar {
     position    top
@@ -138,15 +132,16 @@ bar {
       binding_mode       #A00000 #900000 #f6f3e8
     }
 }
-...
    #+END_SRC
 ** screen lock: i3lock の設定
    suspend → resume した時に i3lock を走らせたいので
    =/etc/systemd/system/i3lock.service=:
+
    #+INCLUDE /etc/systemd/system/i3lock.service src systemd
+
    を作成して有効にしておく.
    本当は =~/.config/systemd/user= で設定したいのだけれど,
    権限が無いのか上手くいかない. polkit を適宜設定すれば良いのかもしれないけれど.
 * i3 の設定ファイル
   設定ファイル全体は以下の通り
-  #+INCLUDE: ~/.config/i3/config src conf
+  #+INCLUDE: ~/.config/i3/config src conf-space

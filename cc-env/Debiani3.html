@@ -1,6 +1,6 @@
 ---
 title: i3 の設定
-date: 2017-07-25 16:41:56
+date: 2017-07-25 21:23:59
 layout: cc-env
 lang: ja
 ref: cc-env/Debiani3
@@ -13,13 +13,9 @@ permalink: /cc-env/Debiani3.html
 <ul>
 <li><a href="#orga29ec40">始めに</a></li>
 <li><a href="#orgd1b8979">i3 と一緒に使っているもの</a></li>
-<li><a href="#org91b0274">i3 を使うための準備</a>
-<ul>
-<li><a href="#orgc1e6c05">xdg-open と run-mailcap</a></li>
-</ul>
-</li>
 <li><a href="#orgebcade6">i3 の設定</a>
 <ul>
+<li><a href="#orgc1e6c05">xdg-open と run-mailcap</a></li>
 <li><a href="#orged0ba87">Alt+Tab でのフォーカスの切り替え</a></li>
 <li><a href="#orge6159c8">Rofi: ランチャ</a></li>
 <li><a href="#orgdfc4692">i3bar</a></li>
@@ -88,10 +84,14 @@ Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb
 </div>
 </div>
 
-<div id="outline-container-org91b0274" class="outline-2">
-<h2 id="org91b0274">i3 を使うための準備</h2>
-<div class="outline-text-2" id="text-org91b0274">
-</div><div id="outline-container-orgc1e6c05" class="outline-3">
+<div id="outline-container-orgebcade6" class="outline-2">
+<h2 id="orgebcade6">i3 の設定</h2>
+<div class="outline-text-2" id="text-orgebcade6">
+<p>
+設定ファイルは末尾に掲載している.
+</p>
+</div>
+<div id="outline-container-orgc1e6c05" class="outline-3">
 <h3 id="orgc1e6c05">xdg-open と run-mailcap</h3>
 <div class="outline-text-3" id="text-orgc1e6c05">
 <p>
@@ -155,14 +155,6 @@ audio/*; xdg-open %s
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-orgebcade6" class="outline-2">
-<h2 id="orgebcade6">i3 の設定</h2>
-<div class="outline-text-2" id="text-orgebcade6">
-<p>
-設定ファイルは末尾に掲載している.
-</p>
-</div>
 <div id="outline-container-orged0ba87" class="outline-3">
 <h3 id="orged0ba87">Alt+Tab でのフォーカスの切り替え</h3>
 <div class="outline-text-3" id="text-orged0ba87">
@@ -180,10 +172,8 @@ audio/*; xdg-open %s
 設定は
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">...
-set $i3t_alt_tab ~/.config/i3/i3t.py n
-bindsym $Alt+Tab exec $i3t_alt_tab
-...
+<pre class="src src-conf-space"><span style="color: #7F7FFF;">set</span> $i3t_alt_tab ~/.config/i3/i3t.py n
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Tab exec $i3t_alt_tab
 </pre>
 </div>
 <p>
@@ -209,10 +199,8 @@ bindsym $Alt+Tab exec $i3t_alt_tab
 i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">...
-bindsym $Alt+F2 $execi sh -c <span style="color: #7FFF7F;">"rofi -show combi"</span>
-bindsym $Alt+Shift+Tab $execi sh -c <span style="color: #7FFF7F;">"rofi -show window"</span>
-...
+<pre class="src src-conf-space"><span style="color: #7F7FFF;">bindsym</span> $Alt+F2 $execi sh -c <span style="color: #7FFF7F;">"rofi -show combi"</span>
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+Tab $execi sh -c <span style="color: #7FFF7F;">"rofi -show window"</span>
 </pre>
 </div>
 </div>
@@ -229,26 +217,24 @@ conky の設定は以下: <code>~/.config/i3/conkyrc-i3bar</code>
 status ラインは以下の通り
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">...
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">status bar</span>
+<pre class="src src-conf-space"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">status bar</span>
 <span style="color: #FFFF7F;">bar</span> {
-    position    top
-    tray_output primary
-    tray_padding -2
-    font xft:FontAwesome,RictyDiminished 11.5
-    status_command $HOME/.config/i3/i3bar-conky.sh
+    <span style="color: #7F7FFF;">position</span>    top
+    <span style="color: #7F7FFF;">tray_output</span> primary
+    <span style="color: #7F7FFF;">tray_padding</span> -2
+    <span style="color: #7F7FFF;">font</span> xft:FontAwesome,RictyDiminished 11.5
+    <span style="color: #7F7FFF;">status_command</span> $HOME/.config/i3/i3bar-conky.sh
     <span style="color: #FFFF7F;">colors</span> {
-      background <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
-      statusline <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">F6F3E8</span>
-      separator  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
-      focused_workspace  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822 #222244 #F6F3E8</span>
-      active_workspace   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">555555 #555555 #F6F3E8</span>
-      inactive_workspace <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #888888</span>
-      urgent_workspace   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #F6F3E8</span>
-      binding_mode       <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #f6f3e8</span>
-    }
-}
-...
+      <span style="color: #7F7FFF;">background</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
+      <span style="color: #7F7FFF;">statusline</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">F6F3E8</span>
+      <span style="color: #7F7FFF;">separator</span>  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
+      <span style="color: #7F7FFF;">focused_workspace</span>  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822 #222244 #F6F3E8</span>
+      <span style="color: #7F7FFF;">active_workspace</span>   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">555555 #555555 #F6F3E8</span>
+      <span style="color: #7F7FFF;">inactive_workspace</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #888888</span>
+      <span style="color: #7F7FFF;">urgent_workspace</span>   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #F6F3E8</span>
+      <span style="color: #7F7FFF;">binding_mode</span>       <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #f6f3e8</span>
+    <span style="color: #7F7FFF;">}</span>
+<span style="color: #7F7FFF;">}</span>
 </pre>
 </div>
 </div>
@@ -259,7 +245,13 @@ status ラインは以下の通り
 <p>
 suspend → resume した時に i3lock を走らせたいので
 <code>/etc/systemd/system/i3lock.service</code>:
+</p>
+
+<p>
 #+INCLUDE /etc/systemd/system/i3lock.service src systemd
+</p>
+
+<p>
 を作成して有効にしておく.
 本当は <code>~/.config/systemd/user</code> で設定したいのだけれど,
 権限が無いのか上手くいかない. polkit を適宜設定すれば良いのかもしれないけれど.
@@ -274,160 +266,157 @@ suspend → resume した時に i3lock を走らせたいので
 設定ファイル全体は以下の通り
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">-*- mode:conf ; coding: utf-8 -*-</span>
+<pre class="src src-conf-space"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">-*- mode:conf-space ; coding: utf-8 -*-</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">macro</span>
-set $mod Mod4
-set $Alt Mod1
-set $execi exec --no-startup-id
-set $execa exec_always
-set $execai exec_always --no-startup-id
+<span style="color: #7F7FFF;">set</span> $mod Mod4
+<span style="color: #7F7FFF;">set</span> $Alt Mod1
+<span style="color: #7F7FFF;">set</span> $execi exec --no-startup-id
+<span style="color: #7F7FFF;">set</span> $execa exec_always
+<span style="color: #7F7FFF;">set</span> $execai exec_always --no-startup-id
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">font</span>
-font xft:Inconsolata for Powerline,SeptemberMMono,FontAwesome 12
+<span style="color: #7F7FFF;">font</span> xft:Inconsolata for Powerline,SeptemberMMono,FontAwesome 12
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">startup</span>
-$execi /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &amp;
-<span style="color: #7F7FFF;">$execi gnome-keyring-daemon --start --components</span>=pkcs11,secrets,gpg
-$execi xrandr --output eDP-1 --primary --mode 1440x900
-$execi $(sleep 3 &amp;  feh --bg-scale $HOME/Pictures/desktop.png )
-$execi xrdb -merge $HOME/.Xresources
-$execi autocutsel -f
-$execi compton -cb
-<span style="color: #7F7FFF;">$execi pulseaudio --start --log-target</span>=journal
+<span style="color: #7F7FFF;">$execi</span> /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &amp;
+<span style="color: #7F7FFF;">$execi</span> gnome-keyring-daemon --start --components=pkcs11,secrets,gpg
+<span style="color: #7F7FFF;">$execi</span> xrandr --output eDP-1 --primary --mode 1440x900
+<span style="color: #7F7FFF;">$execi</span> $(sleep 3 &amp;  feh --bg-scale $HOME/Pictures/desktop.png )
+<span style="color: #7F7FFF;">$execi</span> xrdb -merge $HOME/.Xresources
+<span style="color: #7F7FFF;">$execi</span> autocutsel -f
+<span style="color: #7F7FFF;">$execi</span> compton -cb
+<span style="color: #7F7FFF;">$execi</span> pulseaudio --start --log-target=journal
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">systemtray</span>
-$execi nm-applet
-$execi blueman-applet
-$execi owncloud
-$execi udiskie
-$execi dropbox start -i
+<span style="color: #7F7FFF;">$execi</span> nm-applet
+<span style="color: #7F7FFF;">$execi</span> blueman-applet
+<span style="color: #7F7FFF;">$execi</span> owncloud
+<span style="color: #7F7FFF;">$execi</span> udiskie
+<span style="color: #7F7FFF;">$execi</span> dropbox start -i
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">screensaver and power management</span>
-$execi xset -dpms   <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable DPMS</span>
-$execi xset s off   <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable auto screensaver</span>
-bindsym $mod+l $execi sh -c <span style="color: #7FFF7F;">"i3lock -n -c 242424"</span>
+<span style="color: #7F7FFF;">$execi</span> xset -dpms   <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable DPMS</span>
+<span style="color: #7F7FFF;">$execi</span> xset s off   <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable auto screensaver</span>
+<span style="color: #7F7FFF;">bindsym</span> $mod+l $execi sh -c <span style="color: #7FFF7F;">"i3lock -n -c 242424"</span>
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">start a terminal: rxvt-unicide daemon mode</span>
-bindsym Control+Shift+n exec urxvtcd
+<span style="color: #7F7FFF;">bindsym</span> Control+Shift+n exec urxvtcd
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">start launcher: rofi @see ~/.Xresources</span>
-bindsym $Alt+F2 $execi sh -c <span style="color: #7FFF7F;">"rofi -show combi"</span>
+<span style="color: #7F7FFF;">bindsym</span> $Alt+F2 $execi sh -c <span style="color: #7FFF7F;">"rofi -show combi"</span>
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">change focus</span>
-set $i3t_alt_tab ~/.config/i3/i3t.py n
-bindsym $Alt+Tab exec $i3t_alt_tab
-bindsym $Alt+Shift+Tab $execi sh -c <span style="color: #7FFF7F;">"rofi -show window"</span>
-bindsym $mod+Control+Right focus right
-bindsym $mod+Control+Left focus left
-bindsym $mod+Control+Up focus Up
-bindsym $mod+Control+Down focus down
+<span style="color: #7F7FFF;">set</span> $i3t_alt_tab ~/.config/i3/i3t.py n
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Tab exec $i3t_alt_tab
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+Tab $execi sh -c <span style="color: #7FFF7F;">"rofi -show window"</span>
+<span style="color: #7F7FFF;">bindsym</span> $mod+Control+Right focus right
+<span style="color: #7F7FFF;">bindsym</span> $mod+Control+Left focus left
+<span style="color: #7F7FFF;">bindsym</span> $mod+Control+Up focus Up
+<span style="color: #7F7FFF;">bindsym</span> $mod+Control+Down focus down
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">kill focused window</span>
-bindsym $Alt+F4 kill
-bindsym $mod+Shift+q kill
+<span style="color: #7F7FFF;">bindsym</span> $Alt+F4 kill
+<span style="color: #7F7FFF;">bindsym</span> $mod+Shift+q kill
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">toggle tiling / floating</span>
-bindsym $mod+space floating toggle
+<span style="color: #7F7FFF;">bindsym</span> $mod+space floating toggle
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">move focused window</span>
-bindsym $mod+Left move left
-bindsym $mod+Down move down
-bindsym $mod+Up move up
-bindsym $mod+Right move right
+<span style="color: #7F7FFF;">bindsym</span> $mod+Left move left
+<span style="color: #7F7FFF;">bindsym</span> $mod+Down move down
+<span style="color: #7F7FFF;">bindsym</span> $mod+Up move up
+<span style="color: #7F7FFF;">bindsym</span> $mod+Right move right
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">enter fullscreen mode for the focused container</span>
-bindsym $Alt+Return fullscreen toggle
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Return fullscreen toggle
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">change container layout (stacked, tabbed, toggle split)</span>
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+t layout toggle split
-workspace_layout tabbed
+<span style="color: #7F7FFF;">bindsym</span> $mod+s layout stacking
+<span style="color: #7F7FFF;">bindsym</span> $mod+w layout tabbed
+<span style="color: #7F7FFF;">bindsym</span> $mod+t layout toggle split
+<span style="color: #7F7FFF;">workspace_layout</span> tabbed
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">focus the parent container</span>
-bindsym $mod+a focus parent
+<span style="color: #7F7FFF;">bindsym</span> $mod+a focus parent
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">focus the child container</span>
-bindsym $mod+d focus child
+<span style="color: #7F7FFF;">bindsym</span> $mod+d focus child
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">resize window (you can also use the mouse for that)</span>
-bindsym $mod+r mode <span style="color: #7FFF7F;">"resize"</span>
-<span style="color: #FFFF7F;">mode </span><span style="color: #FFFF7F;">"resize"</span> {
+<span style="color: #7F7FFF;">bindsym</span> $mod+r mode <span style="color: #7FFF7F;">"resize"</span>
+<span style="color: #7F7FFF;">mode</span> <span style="color: #7FFF7F;">"resize"</span> {
         <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">These bindings trigger as soon as you enter the resize mode</span>
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        <span style="color: #7F7FFF;">bindsym</span> Left resize shrink width 10 px or 10 ppt
+        <span style="color: #7F7FFF;">bindsym</span> Down resize grow height 10 px or 10 ppt
+        <span style="color: #7F7FFF;">bindsym</span> Up resize shrink height 10 px or 10 ppt
+        <span style="color: #7F7FFF;">bindsym</span> Right resize grow width 10 px or 10 ppt
         <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">back to normal: Enter or Escape</span>
-        bindsym Return mode <span style="color: #7FFF7F;">"default"</span>
-        bindsym Escape mode <span style="color: #7FFF7F;">"default"</span>
-}
+        <span style="color: #7F7FFF;">bindsym</span> Return mode <span style="color: #7FFF7F;">"default"</span>
+        <span style="color: #7F7FFF;">bindsym</span> Escape mode <span style="color: #7FFF7F;">"default"</span>
+<span style="color: #7F7FFF;">}</span>
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">switch to workspace</span>
-bindsym $Alt+1 workspace 1
-bindsym $Alt+2 workspace 2
-bindsym $Alt+3 workspace 3
-bindsym $Alt+4 workspace 4
-bindsym $Alt+5 workspace 5
-bindsym $Alt+6 workspace 6
+<span style="color: #7F7FFF;">bindsym</span> $Alt+1 workspace 1
+<span style="color: #7F7FFF;">bindsym</span> $Alt+2 workspace 2
+<span style="color: #7F7FFF;">bindsym</span> $Alt+3 workspace 3
+<span style="color: #7F7FFF;">bindsym</span> $Alt+4 workspace 4
+<span style="color: #7F7FFF;">bindsym</span> $Alt+5 workspace 5
+<span style="color: #7F7FFF;">bindsym</span> $Alt+6 workspace 6
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">move focused container to workspace</span>
-bindsym $Alt+Shift+1 move container to workspace 1
-bindsym $Alt+Shift+2 move container to workspace 2
-bindsym $Alt+Shift+3 move container to workspace 3
-bindsym $Alt+Shift+4 move container to workspace 4
-bindsym $Alt+Shift+5 move container to workspace 5
-bindsym $Alt+Shift+6 move container to workspace 6
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+1 move container to workspace 1
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+2 move container to workspace 2
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+3 move container to workspace 3
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+4 move container to workspace 4
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+5 move container to workspace 5
+<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+6 move container to workspace 6
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">reload the configuration file</span>
-bindsym $mod+Shift+c reload
+<span style="color: #7F7FFF;">bindsym</span> $mod+Shift+c reload
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">restart i3 inplace</span>
-bindsym $mod+Shift+r restart
+<span style="color: #7F7FFF;">bindsym</span> $mod+Shift+r restart
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">exit</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">bindsym $mod+Shift+e exec i3-msg exit</span>
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">media key</span>
-bindsym XF86AudioRaiseVolume $execi pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume $execi pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute $execi pactl set-sink-mute 0 toggle
-bindsym XF86MonBrightnessUp $execi /usr/local/sbin/xbacklight -inc
-bindsym XF86MonBrightnessDown $execi /usr/local/sbin/xbacklight -dec
+<span style="color: #7F7FFF;">bindsym</span> XF86AudioRaiseVolume $execi pactl set-sink-volume 0 +5%
+<span style="color: #7F7FFF;">bindsym</span> XF86AudioLowerVolume $execi pactl set-sink-volume 0 -5%
+<span style="color: #7F7FFF;">bindsym</span> XF86AudioMute $execi pactl set-sink-mute 0 toggle
+<span style="color: #7F7FFF;">bindsym</span> XF86MonBrightnessUp $execi /usr/local/sbin/xbacklight -inc
+<span style="color: #7F7FFF;">bindsym</span> XF86MonBrightnessDown $execi /usr/local/sbin/xbacklight -dec
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">status bar</span>
 <span style="color: #FFFF7F;">bar</span> {
-    position    top
-    tray_output primary
-    tray_padding -2
-    font xft:FontAwesome,RictyDiminished 11.5
-    status_command $HOME/.config/i3/i3bar-conky.sh
+    <span style="color: #7F7FFF;">position</span>    top
+    <span style="color: #7F7FFF;">tray_output</span> primary
+    <span style="color: #7F7FFF;">tray_padding</span> -2
+    <span style="color: #7F7FFF;">font</span> xft:FontAwesome,RictyDiminished 11.5
+    <span style="color: #7F7FFF;">status_command</span> $HOME/.config/i3/i3bar-conky.sh
     <span style="color: #FFFF7F;">colors</span> {
-      background <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
-      statusline <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">F6F3E8</span>
-      separator  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
-      focused_workspace  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822 #222244 #F6F3E8</span>
-      active_workspace   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">555555 #555555 #F6F3E8</span>
-      inactive_workspace <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #888888</span>
-      urgent_workspace   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #F6F3E8</span>
-      binding_mode       <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #f6f3e8</span>
-    }
-}
+      <span style="color: #7F7FFF;">background</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
+      <span style="color: #7F7FFF;">statusline</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">F6F3E8</span>
+      <span style="color: #7F7FFF;">separator</span>  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
+      <span style="color: #7F7FFF;">focused_workspace</span>  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822 #222244 #F6F3E8</span>
+      <span style="color: #7F7FFF;">active_workspace</span>   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">555555 #555555 #F6F3E8</span>
+      <span style="color: #7F7FFF;">inactive_workspace</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #888888</span>
+      <span style="color: #7F7FFF;">urgent_workspace</span>   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #F6F3E8</span>
+      <span style="color: #7F7FFF;">binding_mode</span>       <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #f6f3e8</span>
+    <span style="color: #7F7FFF;">}</span>
+<span style="color: #7F7FFF;">}</span>
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">class                 border  bground text    indicator child_border</span>
-client.focused          <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822 #22224A #F6F3E8 #2B2B2B   #2B2B2B</span>
-client.focused_inactive <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B</span>
-client.unfocused        <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B</span>
-client.urgent           <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B</span>
-client.placeholder      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">000000 #0C0C0C #FFFFFF #000000   #0C0C0C</span>
+<span style="color: #7F7FFF;">client.focused</span>          <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822 #22224A #F6F3E8 #2B2B2B   #2B2B2B</span>
+<span style="color: #7F7FFF;">client.focused_inactive</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B</span>
+<span style="color: #7F7FFF;">client.unfocused</span>        <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B</span>
+<span style="color: #7F7FFF;">client.urgent</span>           <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B</span>
+<span style="color: #7F7FFF;">client.placeholder</span>      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">000000 #0C0C0C #FFFFFF #000000   #0C0C0C</span>
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">specific window settings</span>
-<span style="color: #7F7FFF;">for_window [window_role</span>=<span style="color: #7FFF7F;">"pop-up"</span>] floating enable
-<span style="color: #7F7FFF;">for_window [window_role</span>=<span style="color: #7FFF7F;">"task_dialog"</span>] floating enable
-<span style="color: #7F7FFF;">for_window [class</span>=<span style="color: #7FFF7F;">"(?i)ekiga"</span>] floating enable
-<span style="color: #7F7FFF;">for_window [class</span>=<span style="color: #7FFF7F;">"(?i)gnome-mpv"</span>] floating enable
+<span style="color: #7F7FFF;">for_window</span> [window_role=<span style="color: #7FFF7F;">"pop-up"</span>] floating enable
+<span style="color: #7F7FFF;">for_window</span> [window_role=<span style="color: #7FFF7F;">"task_dialog"</span>] floating enable
+<span style="color: #7F7FFF;">for_window</span> [class=<span style="color: #7FFF7F;">"(?i)ekiga"</span>] floating enable
+<span style="color: #7F7FFF;">for_window</span> [class=<span style="color: #7FFF7F;">"(?i)gnome-mpv"</span>] floating enable
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">startup</span>
-<span style="color: #7F7FFF;">assign [class</span>=<span style="color: #7FFF7F;">"(?i)Evince"</span> ] 2
-<span style="color: #7F7FFF;">assign [class</span>=<span style="color: #7FFF7F;">"(?i)Firefox"</span>] 4
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Use Mouse+$mod to drag floating windows to their wanted position</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">kill focused window</span>
+<span style="color: #7F7FFF;">assign</span> [class=<span style="color: #7FFF7F;">"(?i)Evince"</span> ] 2
+<span style="color: #7F7FFF;">assign</span> [class=<span style="color: #7FFF7F;">"(?i)Firefox"</span>] 4
 </pre>
 </div>
 </div>
