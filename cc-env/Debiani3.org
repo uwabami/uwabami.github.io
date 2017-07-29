@@ -1,5 +1,5 @@
 #+TITLE: i3 の設定
-#+DATE: 2017-07-29 20:40:44
+#+DATE: 2017-07-29 20:45:12
 #+LANGUAGE: ja
 #+REF: cc-env/Debiani3
 #+LAYOUT: cc-env
@@ -102,7 +102,7 @@ bindsym $Alt+Tab exec $i3t_alt_tab
    設定ファイルは =~/.config/rofi/config= か =~/.Xresources= で行なう.
    今はこんな塩梅:
 
-#+INCLUDE ~/.config/rofi/config src conf-xdefaults
+#+INCLUDE: ~/.config/rofi/config src conf-xdefaults
 
    i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
    #+BEGIN_SRC conf-space
@@ -111,13 +111,13 @@ bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"
    #+END_SRC
 ** i3bar
    conky で情報を更新/整形して出力している.
-   conky の設定は以下: =~/.config/i3/conkyrc-i3bar=
+   conky の設定は以下: =~/.config/i3/i3bar-conkyrc=
 
-#+INCLUDE ~/.config/i3/conkyrc-i3bar src conf
+#+INCLUDE: ~/.config/i3/i3bar-conkyrc src lua
 
-   呼び出しは =i3bar-conky.sh= で:
+   呼び出しは =run-conky.sh= で:
 
-#+INCLUDE ~/.config/i3/i3bar-conky.sh src sh
+#+INCLUDE: ~/.config/i3/run-conky.sh src sh
 
    status ラインは以下の通り
    #+BEGIN_SRC conf-space
@@ -144,7 +144,7 @@ bar {
    suspend → resume した時に i3lock を走らせたいので
    =/etc/systemd/system/i3lock.service=:
 
-#+INCLUDE /etc/systemd/system/i3lock.service src systemd
+#+INCLUDE: /etc/systemd/system/i3lock.service src systemd
 
    を作成して有効にしておく.
    本当は =~/.config/systemd/user= で設定したいのだけれど,

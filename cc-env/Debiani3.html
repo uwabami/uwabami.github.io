@@ -1,6 +1,6 @@
 ---
 title: i3 の設定
-date: 2017-07-29 20:40:44
+date: 2017-07-29 20:45:12
 layout: cc-env
 lang: ja
 ref: cc-env/Debiani3
@@ -192,9 +192,32 @@ symbolic link を作成しておきます.
 今はこんな塩梅:
 </p>
 
-<p>
-#+INCLUDE ~/.config/rofi/config src conf-xdefaults
-</p>
+<div class="org-src-container">
+<pre class="src src-conf-xdefaults"><span style="color: #a5a5a6;">! </span><span style="color: #a5a5a6;">-*- mode:conf-xdefaults; coding: utf-8 -*-</span>
+<span style="color: #a5a5a6;">!! </span><span style="color: #a5a5a6;">Rofi</span>
+<span style="color: #7F7FFF;">rofi.modi</span>: combi,window,drun,ssh,run
+<span style="color: #7F7FFF;">rofi.combi-modi</span>: window,drun
+<span style="color: #7F7FFF;">rofi.lines</span>: 6
+<span style="color: #7F7FFF;">rofi.font</span>: Inconsolata For Poweline 16
+<span style="color: #7F7FFF;">rofi.bw</span>: 2
+<span style="color: #7F7FFF;">rofi.location</span>: 0
+<span style="color: #7F7FFF;">rofi.padding</span>: 5
+<span style="color: #7F7FFF;">rofi.sidebar-mode</span>: true
+<span style="color: #7F7FFF;">rofi.hide-scrollbar</span>: true
+<span style="color: #7F7FFF;">rofi.fixed-num-lines</span>: true
+<span style="color: #7F7FFF;">rofi.kb-row-up</span>: Up,Control+p,Shift+Tab
+<span style="color: #7F7FFF;">rofi.kb-row-down</span>: Down,Control+n,Tab
+<span style="color: #7F7FFF;">rofi.kb-cancel</span>: Escape,Control+g,Control+bracketleft,Control+c
+<span style="color: #7F7FFF;">rofi.kb-mode-next</span>: Shift+Right,Control+i,Control+Tab
+<span style="color: #7F7FFF;">rofi.kb-mode-previous</span>: Shift+Left,Control+Shift+i
+<span style="color: #7F7FFF;">rofi.color-enabled</span>: true
+<span style="color: #7F7FFF;">rofi.color-window</span>: #3a4c54, #2a373e, #c3c6c8
+<span style="color: #7F7FFF;">rofi.color-normal</span>: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
+<span style="color: #7F7FFF;">rofi.color-active</span>: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
+<span style="color: #7F7FFF;">rofi.color-urgent</span>: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3
+<span style="color: #7F7FFF;">rofi.display-combi</span>: launch
+</pre>
+</div>
 
 <p>
 i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
@@ -211,20 +234,76 @@ i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
 <div class="outline-text-3" id="text-orgdfc4692">
 <p>
 conky で情報を更新/整形して出力している.
-conky の設定は以下: <code>~/.config/i3/conkyrc-i3bar</code>
+conky の設定は以下: <code>~/.config/i3/i3bar-conkyrc</code>
 </p>
 
-<p>
-#+INCLUDE ~/.config/i3/conkyrc-i3bar src conf
-</p>
+<div class="org-src-container">
+<pre class="src src-lua"><span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">-*- mode: lua; coding: utf-8 -*-</span>
+conky.config ={
+   out_to_x = <span style="color: #FFBF7F;">false</span>,
+   own_window = <span style="color: #FFBF7F;">false</span>,
+   background = <span style="color: #FFBF7F;">false</span>,
+   out_to_console = <span style="color: #FFBF7F;">true</span>,
+   max_text_width = 0,
+   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">Update interval in seconds</span>
+   update_interval = 1.0,
+   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">This is the number of times Conky will update before quitting.</span>
+   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">Set to zero to run forever.</span>
+   total_run_times = 0,
+   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">format</span>
+   use_spacer = left,
+   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">Force UTF8? note that UTF8 support required XFT</span>
+   override_utf8_locale = <span style="color: #FFBF7F;">false</span>,
+   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">number of net samples to average (1: disable averaging)</span>
+   net_avg_samples = 1,
+   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">number of cpu samples to average (1: disable averaging)</span>
+   cpu_avg_samples = 1,
+};
+
+<span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">output</span>
+conky.text = <span style="color: #7FFF7F;">[[</span>
+<span style="color: #7FFF7F;"># JSON for i3bar</span>
+<span style="color: #7FFF7F;">[</span>
+<span style="color: #7FFF7F;">  { "full_text" : " &#61568; ${cpu cpu0}%", "color" : "\#ff4c4c", "min_width" : 58, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  { "full_text" : " &#61568; ${cpu cpu1}%", "color" : "\#ff4c4c", "min_width" : 58, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  { "full_text" : " &#61568; ${cpu cpu2}%", "color" : "\#ff4c4c", "min_width" : 58, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  { "full_text" : " &#61568; ${cpu cpu3}%", "color" : "\#ff4c4c", "min_width" : 58, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  { "full_text" : " &#61494;  ${memperc}%", "color" : "\#4c4cff", "min_width" : 58, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  ${if_existing /proc/net/route bnep0}</span>
+<span style="color: #7FFF7F;">  { "full_text": " &#62100; ${addr bnep0}", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  ${else}${if_existing /proc/net/route ppp0}</span>
+<span style="color: #7FFF7F;">  { "full_text": " &#61746;  ${addr ppp0}", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  ${else}${if_existing /proc/net/route wlp2s0}</span>
+<span style="color: #7FFF7F;">  { "full_text": " &#61931; ${addr wlp2s0}", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  ${else}${if_existing /proc/net/route enp0s31f6}</span>
+<span style="color: #7FFF7F;">  { "full_text": " &#61705; ${addr enp0s31f6}", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  ${else}</span>
+<span style="color: #7FFF7F;">  { "full_text": " &#61611; down", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  ${endif}${endif}${endif}${endif}</span>
+<span style="color: #7FFF7F;">  { "full_text": " &#61555; ${time %Y/%m/%d}", "min_width" : 95, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  { "full_text": " &#61463; ${time %H:%M:%S}", "min_width" : 90, "align": "left", "separator": false  },</span>
+<span style="color: #7FFF7F;">  ${if_match "${acpiacadapter}" == "on-line" }</span>
+<span style="color: #7FFF7F;">  { "full_text": " &#61926;  ${battery_percent BAT1}%", "min_width" : 60, "align": "left", "separator": false }</span>
+<span style="color: #7FFF7F;">  ${else}</span>
+<span style="color: #7FFF7F;">  { "full_text": " &#62017; ${battery_percent BAT1}%", "min_width" : 60, "align": "left", "separator": false  }</span>
+<span style="color: #7FFF7F;">  ${endif}</span>
+<span style="color: #7FFF7F;">],</span>
+<span style="color: #7FFF7F;">]]</span>
+</pre>
+</div>
 
 <p>
-呼び出しは <code>i3bar-conky.sh</code> で:
+呼び出しは <code>run-conky.sh</code> で:
 </p>
 
-<p>
-#+INCLUDE ~/.config/i3/i3bar-conky.sh src sh
-</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">! /bin/</span><span style="color: #FF7F7F;">sh</span>
+
+<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'{"version":1}'</span>
+<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'[[],'</span>
+<span style="color: #FF7F7F;">exec</span> conky -c $<span style="color: #7F7FFF;">HOME</span>/.config/i3/i3bar-conkyrc
+</pre>
+</div>
 
 <p>
 status ラインは以下の通り
@@ -260,9 +339,21 @@ suspend → resume した時に i3lock を走らせたいので
 <code>/etc/systemd/system/i3lock.service</code>:
 </p>
 
-<p>
-#+INCLUDE /etc/systemd/system/i3lock.service src systemd
-</p>
+<div class="org-src-container">
+<pre class="src src-systemd"><span style="color: #FFFF7F;">[Unit]</span>
+<span style="color: #FF7F7F;">Description</span>=Starts i3lock at suspend time
+<span style="color: #FF7F7F;">After</span>=sleep.target
+
+<span style="color: #FFFF7F;">[Service]</span>
+<span style="color: #FF7F7F;">User</span>=uwabami
+<span style="color: #FF7F7F;">Type</span>=forking
+<span style="color: #FF7F7F;">Environment</span>=DISPLAY=:0
+<span style="color: #FF7F7F;">ExecStart</span>=/usr/bin/i3lock -p win -c 242424
+
+<span style="color: #FFFF7F;">[Install]</span>
+<span style="color: #FF7F7F;">WantedBy</span>=sleep.target
+</pre>
+</div>
 
 <p>
 を作成して有効にしておく.
