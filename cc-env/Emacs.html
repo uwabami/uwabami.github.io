@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-07-20 02:27:43
+date: 2017-07-28 18:18:20
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgae3d8c8">標準機能の設定</a>
 <ul>
 <li><a href="#org1b6b59a">表示関連</a></li>
-<li><a href="#org431ced1">編集関連</a></li>
+<li><a href="#org2c538e3">編集関連</a></li>
 <li><a href="#org7eda492">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -73,10 +73,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org3bd8022">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#orgea575c0">Emacs 本体側の設定</a></li>
+<li><a href="#org857ad86">Emacs 本体側の設定</a></li>
 <li><a href="#orge62a055">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#orgdef1a87">編集関連</a></li>
+<li><a href="#org9b5913c">編集関連</a></li>
 <li><a href="#org67f5019">インクリメンタルサーチ</a></li>
 <li><a href="#org6d86eb6">辞書の設定</a></li>
 <li><a href="#org199b263">動的補完</a></li>
@@ -97,7 +97,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org4ea74a5">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#orgacf0fca">Emacs 本体側の設定</a></li>
+<li><a href="#orgd7c0e64">Emacs 本体側の設定</a></li>
 <li><a href="#org711a3af">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#orgda20e29">依存/追加ライブラリのインストールと読み込み</a>
@@ -831,9 +831,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org431ced1" class="outline-4">
-<h4 id="org431ced1">編集関連</h4>
-<div class="outline-text-4" id="text-org431ced1">
+<div id="outline-container-org2c538e3" class="outline-4">
+<h4 id="org2c538e3">編集関連</h4>
+<div class="outline-text-4" id="text-org2c538e3">
 <p>
 yes or no を y or n に
 </p>
@@ -1005,14 +1005,19 @@ Undo/Redo:
 <h3 id="org493fd75">ガベージコレクションの頻度を下げる</h3>
 <div class="outline-text-3" id="text-org493fd75">
 <p>
-とりあえず 128 MB にしておく. ついでに message に gc が走っていることを表示
+message に gc が走っていることを表示する.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> gc-cons-threshold (* 128 1024 1024)
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">gc-cons-threshold (* 128 1024 1024)</span>
       garbage-collection-messages t
       )
 </pre>
 </div>
+<p>
+<code>gc-cons-threshold</code> はとりあえず default の設定に.
+<code>helm</code> や <code>flx</code> などのメモリ喰いな拡張を入れている場合には, 安易に <code>gc-cons-threshold</code> を上げるのは考えものである.
+つまり「gc が走る→大きな領域を掃除するのでその間 emacs が止まる」という事を頻繁に経験することになるだろう.
+</p>
 </div>
 </div>
 <div id="outline-container-org65a8528" class="outline-3">
@@ -1330,9 +1335,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orgea575c0" class="outline-3">
-<h3 id="orgea575c0">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgea575c0">
+<div id="outline-container-org857ad86" class="outline-3">
+<h3 id="org857ad86">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org857ad86">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1442,9 +1447,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-orgdef1a87" class="outline-4">
-<h4 id="orgdef1a87">編集関連</h4>
-<div class="outline-text-4" id="text-orgdef1a87">
+<div id="outline-container-org9b5913c" class="outline-4">
+<h4 id="org9b5913c">編集関連</h4>
+<div class="outline-text-4" id="text-org9b5913c">
 <p>
 キーバインド
 </p>
@@ -1788,9 +1793,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-orgacf0fca" class="outline-3">
-<h3 id="orgacf0fca">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgacf0fca">
+<div id="outline-container-orgd7c0e64" class="outline-3">
+<h3 id="orgd7c0e64">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgd7c0e64">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -1934,7 +1939,7 @@ mime-setup がロードされる前に記述する必要あり.
 どのアプリケーションで開くか → <code>xdg-open</code> に丸投げ．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> mime-view-mailcap-files '(<span style="color: #7FFF7F;">"~/.mailcap"</span>))
+<pre class="src src-emacs-lisp"><span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(setq mime-view-mailcap-files '("~/.mailcap"))</span>
 </pre>
 </div>
 <p>
@@ -4800,6 +4805,10 @@ Debian パッケージ版を使う．やっている事は
                               <span style="color: #7FFF7F;">"LATEXENC=%(LATEXENC) latexmk -gg %t"</span>
                               TeX-run-TeX nil (latex-mode) <span style="color: #7FBFFF;">:help</span> <span style="color: #7FFF7F;">"Run Latexmk"</span>)))))
   (<span style="color: #FF7F7F;">setq</span> TeX-source-correlate-method 'synctex
+        TeX-view-program-selection
+        '((output-dvi <span style="color: #7FFF7F;">"xdvi"</span>)        <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">built-in</span>
+          (output-pdf <span style="color: #7FFF7F;">"Zathura"</span>)     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">built-in</span>
+          (output-html <span style="color: #7FFF7F;">"xdg-open"</span>))  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">built-in</span>
         TeX-source-correlate-start-server t
         TeX-auto-save t
         TeX-auto-local  (expand-file-name <span style="color: #7FFF7F;">"auctex/auto"</span> my:d:tmp)

@@ -1,5 +1,5 @@
 #+TITLE: Computer Memorandum
-#+DATE: 2017-07-25 16:21:15
+#+DATE: 2017-07-29 20:42:00
 #+LANGUAGE: ja
 #+REF: cc-env
 #+LAYOUT: cc-env
@@ -32,9 +32,7 @@ Related [[wiki:index][Index]] [[wiki:Emacs][Emacs]] [[id:591f6b0d-55ff-48eb-b095
   - [[wiki:DebianConfigure][Debian: Install 直後の雑多な設定]]: 細かい事柄はココに.中身が増えたら分ける予定
   - [[wiki:DebianMail][Mail 環境の設定]]
   - [[wiki:Terminal][Terminal生活]]
-  - Desktop環境
-    - ディスプレイマネージャ: [[wiki:DebianLightDM][LightDMの設定]]
-    - ウィンドウマネージャ: [[wiki:Debiani3][i3の設定]]
+  - Desktop環境: [[wiki:Debiani3][i3の設定]]
   - [[wiki:DebianSquid][Squidで広告避け]]
   - [[wiki:DebianPackaging][パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest]]
   - [[wiki:DebianTeX][TeX環境]]

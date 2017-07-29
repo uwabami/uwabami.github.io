@@ -1,5 +1,5 @@
 #+TITLE: i3 の設定
-#+DATE: 2017-07-25 21:23:59
+#+DATE: 2017-07-29 20:40:44
 #+LANGUAGE: ja
 #+REF: cc-env/Debiani3
 #+LAYOUT: cc-env
@@ -79,7 +79,9 @@ Related [[wiki:index][Index]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]
   symbolic link を作成しておきます.
 
   最後に =~/.mailcap=. とりあえずは以下の通り:
-  #+INCLUDE:~/.mailcap src conf
+
+#+INCLUDE:~/.mailcap src conf
+
 ** Alt+Tab でのフォーカスの切り替え
    =i3-msg -t get_tree= で状態が json で出力されるので,
    これを parse して良きに図らえば良い.
@@ -99,7 +101,8 @@ bindsym $Alt+Tab exec $i3t_alt_tab
 
    設定ファイルは =~/.config/rofi/config= か =~/.Xresources= で行なう.
    今はこんな塩梅:
-   #+INCLUDE ~/.config/rofi/config src conf-xdefaults
+
+#+INCLUDE ~/.config/rofi/config src conf-xdefaults
 
    i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
    #+BEGIN_SRC conf-space
@@ -109,9 +112,13 @@ bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"
 ** i3bar
    conky で情報を更新/整形して出力している.
    conky の設定は以下: =~/.config/i3/conkyrc-i3bar=
-   #+INCLUDE ~/.config/i3/conkyrc-i3bar src conf
+
+#+INCLUDE ~/.config/i3/conkyrc-i3bar src conf
+
    呼び出しは =i3bar-conky.sh= で:
-   #+INCLUDE ~/.config/i3/i3bar-conky.sh src sh
+
+#+INCLUDE ~/.config/i3/i3bar-conky.sh src sh
+
    status ラインは以下の通り
    #+BEGIN_SRC conf-space
 # status bar
@@ -137,11 +144,12 @@ bar {
    suspend → resume した時に i3lock を走らせたいので
    =/etc/systemd/system/i3lock.service=:
 
-   #+INCLUDE /etc/systemd/system/i3lock.service src systemd
+#+INCLUDE /etc/systemd/system/i3lock.service src systemd
 
    を作成して有効にしておく.
    本当は =~/.config/systemd/user= で設定したいのだけれど,
    権限が無いのか上手くいかない. polkit を適宜設定すれば良いのかもしれないけれど.
 * i3 の設定ファイル
   設定ファイル全体は以下の通り
-  #+INCLUDE: ~/.config/i3/config src conf-space
+
+#+INCLUDE: ~/.config/i3/config src conf-space
