@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-07-28 18:18:20
+date: 2017-07-30 14:22:37
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -49,7 +49,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgae3d8c8">標準機能の設定</a>
 <ul>
 <li><a href="#org1b6b59a">表示関連</a></li>
-<li><a href="#org9f035ae">編集関連</a></li>
+<li><a href="#org30987f0">編集関連</a></li>
 <li><a href="#org7eda492">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -73,10 +73,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org3bd8022">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#orgd946bdb">Emacs 本体側の設定</a></li>
+<li><a href="#orgd49574f">Emacs 本体側の設定</a></li>
 <li><a href="#orge62a055">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org9c63962">編集関連</a></li>
+<li><a href="#orgfc482f8">編集関連</a></li>
 <li><a href="#org67f5019">インクリメンタルサーチ</a></li>
 <li><a href="#org6d86eb6">辞書の設定</a></li>
 <li><a href="#org199b263">動的補完</a></li>
@@ -97,7 +97,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org4ea74a5">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org7d2535a">Emacs 本体側の設定</a></li>
+<li><a href="#org7cd7a83">Emacs 本体側の設定</a></li>
 <li><a href="#org711a3af">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#orgda20e29">依存/追加ライブラリのインストールと読み込み</a>
@@ -831,9 +831,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org9f035ae" class="outline-4">
-<h4 id="org9f035ae">編集関連</h4>
-<div class="outline-text-4" id="text-org9f035ae">
+<div id="outline-container-org30987f0" class="outline-4">
+<h4 id="org30987f0">編集関連</h4>
+<div class="outline-text-4" id="text-org30987f0">
 <p>
 yes or no を y or n に
 </p>
@@ -1335,9 +1335,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd946bdb" class="outline-3">
-<h3 id="orgd946bdb">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgd946bdb">
+<div id="outline-container-orgd49574f" class="outline-3">
+<h3 id="orgd49574f">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgd49574f">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1447,9 +1447,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org9c63962" class="outline-4">
-<h4 id="org9c63962">編集関連</h4>
-<div class="outline-text-4" id="text-org9c63962">
+<div id="outline-container-orgfc482f8" class="outline-4">
+<h4 id="orgfc482f8">編集関連</h4>
+<div class="outline-text-4" id="text-orgfc482f8">
 <p>
 キーバインド
 </p>
@@ -1793,9 +1793,9 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org7d2535a" class="outline-3">
-<h3 id="org7d2535a">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org7d2535a">
+<div id="outline-container-org7cd7a83" class="outline-3">
+<h3 id="org7cd7a83">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org7cd7a83">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -4854,6 +4854,7 @@ Debian パッケージ版を使う．やっている事は
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">zotelo</span>
   <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:disabled</span> t
   <span style="color: #7FBFFF;">:init</span>
   (add-hook 'LaTeX-mode-hook 'zotelo-minor-mode)
   (add-hook 'TeX-mode-hook   'zotelo-minor-mode)

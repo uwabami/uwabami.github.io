@@ -63,6 +63,8 @@ footer p {
 .org-src-container {
     width: 95%;
     margin: auto;
+    max-height: 15em;
+    overflow-y: auto;
 }
 .org-src-container > .src {
     margin: 6px auto !important;

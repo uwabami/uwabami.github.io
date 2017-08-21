@@ -11,58 +11,58 @@ I hereby claim:
 To do so, I am signing this object:
 
 {
-    "body": {
-        "key": {
-            "eldest_kid": "01203fb5b294c773787e4f6acf1148d0352b648ad00fae5592cb7180519be3bbcf810a",
-            "fingerprint": "66a4ea704fe240558d6ac2e69394f354891d7e07",
-            "host": "keybase.io",
-            "key_id": "9394f354891d7e07",
-            "kid": "0101b3475da7369847369d62941db819de84c390dc11af51dcdfdae43f6da1c2b1940a",
-            "uid": "b2f1898119b08979d2c17d1da7c7d519",
-            "username": "uwabami"
-        },
-        "service": {
-            "hostname": "uwabami.github.io",
-            "protocol": "https:"
-        },
-        "type": "web_service_binding",
-        "version": 1
+  "body": {
+    "key": {
+      "eldest_kid": "012098c3b811912948cd4508316c61af14f206adf0a4c69d2a2e02de0fea2160d7b50a",
+      "fingerprint": "66a4ea704fe240558d6ac2e69394f354891d7e07",
+      "host": "keybase.io",
+      "key_id": "9394f354891d7e07",
+      "kid": "0101b3475da7369847369d62941db819de84c390dc11af51dcdfdae43f6da1c2b1940a",
+      "uid": "b2f1898119b08979d2c17d1da7c7d519",
+      "username": "uwabami"
     },
-    "ctime": 1495938610,
-    "expire_in": 157680000,
-    "prev": "d0197998480b602aec636195d9c0829780e6203297aa3cd4188ae93956ec8a3a",
-    "seqno": 15,
-    "tag": "signature"
+    "service": {
+      "hostname": "uwabami.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1503314470,
+  "expire_in": 157680000,
+  "prev": "9e440dda726a9068e4759ee781e7da2f90a021a1a78826ad12f44b358e9995a8",
+  "seqno": 52,
+  "tag": "signature"
 }
 
 which yields the signature:
 
 -----BEGIN PGP MESSAGE-----
 
-owFtUntQVFUcXhaSXHPE4dE0LDu5TjwUmXvu++KAbRk9HDHAFzXMch/nwuWxzwuI
-CGaGjjg4YaBEBj0ItJJItMeQIsyaEWCbMTBAQkFYMCDjMODY2Nq5FH800/3j3HN+
-5/t95/u+c95c7a8z+L1VPb/zWERZoF/PlKBL30AnlZgFu1Rsji8x58KlH8yToFu1
-5iqSOd6MARwjZIEScI4UGYZgWAaSMs2LMgAkK2EEhQs0yfIShsk8pCgOFwUGsBgF
-OAESgiDKLMB4c6xZVmxZ0OVwKTYV0dI0T0KewUgZ4iRGUayEKHFIcwRHygRFshyQ
-GIgxqDHb7tY6kDiBd8M4xY5qaGFdkvc/+GXdGBAIkqEkniFojiW1UaKRCyAJLOAk
-yJIiwWGSCAAvU0ASJVniIUnItMQDERcARy7pLliiE3AZsBwLkCuM5RhOwkXASACR
-i4yEvGpAN3TZ+HyI0AVFvMDnK+bSWDMqFioi1HLVjPwXEJelqNkFwj+eHC67ahft
-eWg7W1Ud7nitXS12aPgiKFj/ZbIKik1CWaKOQuhyK3abOR4gpKgqGjUgOYojWBpg
-sWa4z6G4oFXREBRDsxj6tHNgIaKUMJCBjKBkWEygMZyHIk3QgKMkTsRYnGNYDNLo
-7tGM5wlRIgHL8hDlTdFQZHlCy8YNnTa7Ro6E8lmI1K1k2Xi1wAXNpYZjeiJA52fQ
-RYStC5Abpx07xp/eVZnTdXv5AT6i116fzrAyaLmStmrNn/q2xMyYyTtnej8bjjSG
-Cx3BpoUn5z2pGX1p7a78qNCMI6nOBW9AWlxQ4dTL9X301SfeW2g2rOxvHp8enrGk
-fNXUsPH5kdGt/RestrjQ2ufu7+k3uT3zEUWPrh+KPBG+eXdH7+fHy9Lqbo0NJExd
-WdNQNTzU67vmO1VxeHA4I+lbC0sfOLlxYu7rmuEx4QGxKcR409k28P4PZc0f615t
-qLxcEra9e9KY8kWoM/XTTbN/WN9uCsuLaq5sa8O9vl25UemXAgP2/Z7X4FAz/aqf
-McHEG/diakzX6w+8cz5pjWXzwdq7zYvexO2RVUntv8Ghn7sGTs/6Rug5/8XOswnr
-s2yLzslte/VRHxjisgdrrC8JuLd/dUXOeB1x1HuobuZyeZhROfP49RVrY541Jib7
-Xutu2L/D8256psXTemJU31i9TgwKmy4I7G2aeLGzShFe+H5vS1XCNLjzV8i1LQMX
-aqKZhqciL24L3xk9VeHqLC++GnXv8Ovxky2WkxcFfveNemjS+bwj0aN1P/V1TTzo
-GDh0pf/oBn1SeauxeEUSFjZWG9i9nyRa64t9pi2zgTNbT58Lnih++EnwL2o2q34U
-rL+dUe2cO/tde2fcj3to9Tzuif9mOPlIzV3PYwvUqalL5+qZ6fSRyFX3b7ETv374
-xsNE/5Dugy3JXw6m9FQ7X7k517OWKM2xeBr/Bg==
-=tSH6
+owFtUm1QVFUYXmgJYUjN0fwADK4yKvFxz/2+65SGNkxDUzSZRSnrufecu1w+dpfd
+BeR7pgghIFAKKCh1TFIcAkEEagTDgiGBCn/IDA6kTAzYqIUKQkt1L8WPZjo/zpnz
+nud9zvM881Y88ZjB16Pyw/v7igPzvD2uTkuGuE96QDYh2VAmYcomkvDSgZMRdrrM
+SSoiTAQJKFIUZFoSABABJTKCjBiWFGjAyRyACmAUiuQgUkjIyJyIKEhhkkKYVDCk
+AEciXmJJSIQRimq1YIfdoVpdGi3HQQZDnmQUTDEkywqIgzKFOZEWGYVmGUEEiMck
+rzUm2Jx6hyZOgk4codq0mnYxL8n7H/yybhJINMOzCPI0JwqMviNOMwCQ5kVEWGBk
+WiSRDDQXLEAyUhDEDK1wCAKZkoDILOlOW6KTKAUIop6BRAoir/mUAY+ARi7ziAWi
+DnRihxWmYA2dlgElmKISuWGEVkxXZaznqhv5LyDCoroS0qR/PNkdNpdNtiVrzwku
+l91p0ttdmXYdn4El879MZkm1Ii1LrSMdO5yqzUqYgIaUXapODViSpgHD8GQYgQ/b
+VQc2qzqC5TmB1Jb+D07Xk8PMQYZEmgOKgyLJCVgLS8SYFwDmEaQUkYQkBSCAvCBo
+EAQohWEkmhWwKIosFAjdXKrVRphYShMKLRqpU7VYoSvNgYlc32JP2mjw8DUEPhVs
+VD6/bX/l1u7XyxJ7JpcH0MtTnz6Dr8/q5UrjkVXulS9PluRM1HQOjt37tiL/RXt8
+4ZFnhleMePcGdHw9UP3AUfcqjs7lQn7Z1bzS5eeZFLrRUgF+vfB7+Lvtl+40W1LO
+t95kS5TEFlvVkMeW9oKzJbfnz+wZ9ZzJOjvj3xSSqvqb++KDt1dMjQ7b5NY/zvVx
+AT+v2t8RYGjs8Lnvn2UM/Gx6fVtpUMKa36KarMpHvSUt68YOp5bB9qFS8tOyi5fv
+3V3Nnng4UN90fe7J09GzGytG2/yeNhbP73F0LZTwe3PGwff9+Vt3l5tOHaoN2RJZ
+9M7E4pd3si7lVQ0UHOim15VW7O8rF6tP/lReHhIZVA+NxqC52Phz456BOe6FNa99
+MWJ8T4nJ9CmPC67mkpK8D+5Q8zbFuLY/XBvFP19fNJe5aTGyNr97dK/7+rGI+Ocs
+cxtqu/oXb0hnThfFvLSz62iab3JX29Y33w5W1Iax6M2FlS8ceNQ09Ff4jc7ykfFr
+V05Y4zc09NgSeur7dr5/ZYWhMGbaPTU/uc/t1XI8KfTCttnLh6brg4i6npSBk9u8
+fwj9IK1q4tTxus5J+fH1WQVBgt9X30TNPjJFDr0RVNKaXT3gm9jeQGR/d9HR+2xw
+WM+uXndj5cdR52Mzm2seiAtzf1rHp2oyBn/sjrOGT75lvDk82B+zNiwBzB2buZt8
+ayh2ynB1s2AbGxv0mDlaNXEt2qs0BnXuiPwb
+=B69R
 -----END PGP MESSAGE-----
 
 And finally, I am proving ownership of this host by posting or
@@ -71,4 +71,3 @@ appending to this document.
 View my publicly-auditable identity here: https://keybase.io/uwabami
 
 ==================================================================
-
