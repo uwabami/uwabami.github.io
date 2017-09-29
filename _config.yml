@@ -16,5 +16,5 @@ twitter_username: uwabami
 github_username:  uwabami
 sass:
     style: compressed
-gems:
+plugins:
   - jekyll-github-metadata
