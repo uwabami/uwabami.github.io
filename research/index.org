@@ -1,5 +1,5 @@
 #+TITLE: 研究関連
-#+DATE: 2017-05-02 00:26:37
+#+DATE: 2017-09-29 16:12:27
 #+LANGUAGE: ja
 #+REF: research
 #+LAYOUT: default
@@ -7,7 +7,10 @@
 #+PERMALINK: /research/index.html
 * 論文
 ** 査読有
-   - Takehiro, S-I., Sasaki, Y., 2017:
+   - _Sasaki, Y._, Takehiro, S.-I., Ishiwatari, M., Yamada, M., 2017:
+     Effects of radial distribution of entropy diffusivity on critical modes of anelastic thermal convection in rotating spherical shells,
+     hysics of the Earth and Planetary Interiors, =doi:10.1016/j.pepi.2017.09.003=
+   - Takehiro, S-I., _Sasaki, Y._, 2017:
      Penetration of steady fluid motions into an outer stable layer excited by MHD thermal convection in rotating spherical shells,
      Physics of the Earth and Planetary Interiors,
      =doi: 10.1016/j.pepi.2017.03.001=
@@ -73,6 +76,18 @@
      ながれ, 22 別冊, 124-125
 * 学会/研究集会発表
 ** 海外
+   - _Sasaki, Y._, Takehiro, S.-I., Ishiwatari, M., Yamada, M., 2017:
+     Effects of radial distribution of entropy diffusivity on critical modes of anelastic thermal convection in rotating spherical shells (numerical analysis)
+     Compressible Convection Conference
+   - _Sasaki, Y._, Takehiro, S.-I., Ishiwatari, M., Yamada, M., 2017:
+     Rapidly rotating two-dimensional annulus model for anelastic critical thermal convection with tilting boundaries and radially varying entropy diffusivity
+     Compressible Convection Conference
+   - Takehiro, S., _Sasaki, Y._, 2017:
+     Erosion of a thermally induced stably stratified layer by compositional convection in the Earth's outer core.
+     AOGS 2017
+   - Takehiro, S., _Sasaki, Y._, 2017:
+     Erosion of a thermally induced stably stratified layer by compositional convection in the Earth's outer core,
+     IAG-IASPEI 2017
    - Takehiro, S., _Sasaki, Y._, Ishioka, K., Nakajima, K., Hayashi, Y.-Y., 2017:
      Mean zonal flows induced by Boussinesq thermal convection in rotating spherical shells as an application to the gas giant planets.
      WTK Aquaplanet Workshop, 21st January 2017, National Astronomical Observatory of Japan.
@@ -126,6 +141,18 @@
      Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries,
      The 12th Symposium of SEDI, Study of the Earth's Deep Interior, at the University of California at Santa Barbara, California, USA, in the Corwin Pavilion, from July 18 to 23, 2010
 ** 国内
+   - 竹広真一, 佐々木洋平, 2017:
+     回転球殻ダイナモにより引き起こされる磁気流体擾乱の強い安定成層への貫入,
+     2017 年日本流体力学会年会
+   - 竹広真一, _佐々木洋平_, 2017:
+     地球外核の上部安定成層に対する組成対流の貫入,
+     日本地球惑星科学連合 2017 年大会
+   - _佐々木洋平_, 竹広真一，石渡正樹，山田道夫, 2017:
+     回転球殻内の非弾性熱対流の臨界モードに対する熱拡散係数の動径分布の影響,
+     日本地球惑星科学連合 2017 年大会
+   - 竹広真一, 佐々木洋平, 2017:
+     地球外核の上部安定成層に対する組成対流の貫入,
+     新学術領域「核ーマントルの相互作用と共進化」成果報告会
    - 佐々木洋平, 竹広真一, 石渡正樹, 山田道夫 2016:
      回転球殻内の非弾性熱対流の臨界モードに対する熱拡散係数の動径分布の影響,
      2016年日本流体力学会年会

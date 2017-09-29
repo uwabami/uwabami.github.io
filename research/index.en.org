@@ -1,11 +1,14 @@
 #+TITLE: Research Work
-#+DATE: 2017-03-16 17:52:35
+#+DATE: 2017-09-29 16:13:30
 #+LANGUAGE: en
 #+REF: research
 #+LAYOUT: default
 #+SETUPFILE: ../_setup.org
 #+PERMALINK: /research/index.en.html
 * Publication
+   - _Sasaki, Y._, Takehiro, S.-I., Ishiwatari, M., Yamada, M., 2017:
+     Effects of radial distribution of entropy diffusivity on critical modes of anelastic thermal convection in rotating spherical shells,
+     hysics of the Earth and Planetary Interiors, =doi:10.1016/j.pepi.2017.09.003=
    - Takehiro, S-I., Sasaki, Y., 2017:
      Penetration of steady fluid motions into an outer stable layer excited by MHD thermal convection in rotating spherical shells,
      Physics of the Earth and Planetary Interiors,
@@ -39,6 +42,24 @@
      Phys. Earth Planet. Inter., 188, 203--213., =doi:10.1016/j.pepi.2011.06.019=
 
 * Presentation
+   - _Sasaki, Y._, Takehiro, S.-I., Ishiwatari, M., Yamada, M., 2017:
+     Effects of radial distribution of entropy diffusivity on critical modes of anelastic thermal convection in rotating spherical shells (numerical analysis)
+     Compressible Convection Conference
+   - _Sasaki, Y._, Takehiro, S.-I., Ishiwatari, M., Yamada, M., 2017:
+     Rapidly rotating two-dimensional annulus model for anelastic critical thermal convection with tilting boundaries and radially varying entropy diffusivity
+     Compressible Convection Conference
+   - Takehiro, S., _Sasaki, Y._, 2017:
+     Erosion of a thermally induced stably stratified layer by compositional convection in the Earth's outer core.
+     AOGS 2017
+   - Takehiro, S., _Sasaki, Y._, 2017:
+     Erosion of a thermally induced stably stratified layer by compositional convection in the Earth's outer core,
+     IAG-IASPEI 2017
+   - Takehiro, S., _Sasaki, Y._, Ishioka, K., Nakajima, K., Hayashi, Y.-Y., 2017:
+     Mean zonal flows induced by Boussinesq thermal convection in rotating spherical shells as an application to the gas giant planets.
+     WTK Aquaplanet Workshop, 21st January 2017, National Astronomical Observatory of Japan.
+   - Takehiro S., Takahashi, Y. O., Sugiyama, K., Odaka, M., Ishiwatari, M., Horinouchi, T., _Sasaki, Y._, Ishioka, K., Nakajima, K., Hayashi, Y.-Y., 2017:
+     GFD-Dennou Club DCMODEL project.
+     WTK Aquaplanet Workshop, 24th January 2017, CPS, Kobe University.
    - _Sasaki, Y._, Takehiro, S., Ishiwatari, M., Yamada, M., 2016:
      Critical mode of anelastic thermal convection in a rotating spherical shell depends on radial distribution of thermal diffusivity,
      SEDI The 15th Symposium, Nantes, France.
