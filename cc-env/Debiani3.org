@@ -1,5 +1,5 @@
 #+TITLE: i3 の設定
-#+DATE: 2017-07-29 20:45:12
+#+DATE: 2017-09-29 16:16:04
 #+LANGUAGE: ja
 #+REF: cc-env/Debiani3
 #+LAYOUT: cc-env
@@ -77,11 +77,6 @@ Related [[wiki:index][Index]] [[id:591f6b0d-55ff-48eb-b095-401cdfa0d536][Debian]
 
   あと, =~/.local/share/applications/mimeapps.list= から =~/.config/mimeapps.list= へ
   symbolic link を作成しておきます.
-
-  最後に =~/.mailcap=. とりあえずは以下の通り:
-
-#+INCLUDE:~/.mailcap src conf
-
 ** Alt+Tab でのフォーカスの切り替え
    =i3-msg -t get_tree= で状態が json で出力されるので,
    これを parse して良きに図らえば良い.

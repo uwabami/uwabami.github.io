@@ -134,22 +134,22 @@ tmux の設定は以下の通り.
 <div class="org-src-container">
 <pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
 <span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI <a href="mailto:uwabami%40gfd-dennou.org">&lt;uwabami@gfd-dennou.org&gt;</a></span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2017-07-14 07:56:09$</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2017-08-13 16:30:56$</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: Public domain.</span>
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">general</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">ESC &#12391;&#12398;&#36933;&#24310;&#35299;&#28040;: don't wait</span>
 set -sg escape-time 0
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Window, Pane &#12434; 0 &#22987;&#12414;&#12426;&#12395;</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Window &#12434; 0,  Pane &#12434; 1 &#22987;&#12414;&#12426;&#12395;</span>
 set -g base-index 0
 set -g pane-base-index 0
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">mouse &#25805;&#20316;&#12434;&#28961;&#21177;&#21270;</span>
 setw -g mouse off
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable bell action</span>
 set -g bell-action none
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Window renmae disabled</span>
-setw -g automatic-rename off
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Window renmae enabled</span>
+setw -g automatic-rename on
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">default &#12391;&#36215;&#21205;&#12377;&#12427;&#12467;&#12510;&#12531;&#12489;: zsh</span>
 set -g default-command zsh
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">prefix &#12398;&#26377;&#21177;&#26178;&#38291;: no wait</span>
@@ -159,24 +159,25 @@ set-option -g repeat-time 0
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">TERM&#31561;&#12398;&#35373;&#23450;</span>
 set -g default-terminal screen-256color
 set-environment -g NCURSES_NO_UTF8_ACS 0
-set-option -g pane-border-ascii 0
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">set-environment -g VTE_CJK_WIDTH 1</span>
+set -ag terminal-overrides <span style="color: #7FFF7F;">',*:U8=0'</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">set-option -g pane-border-ascii 0</span>
+set-environment -g VTE_CJK_WIDTH 1 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#8592;&#26368;&#36817;&#12385;&#12419;&#12435;&#12392;&#21177;&#12356;&#12390;&#12394;&#12356;&#27671;&#12364;&#12377;&#12427;.</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12513;&#12483;&#12475;&#12540;&#12472;&#34920;&#31034;&#26178;&#38291;(&#26082;&#23450;&#20516;&#12399;1000?)</span>
 set -g display-time 4000
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#24460;&#26041;&#12473;&#12463;&#12525;&#12540;&#12523;&#34892;&#25968;(&#26082;&#23450;&#20516;&#12399;2000)</span>
 set -g history-limit 8192
 setw -g pane-active-border-fg <span style="color: #7FFF7F;">"#ff4c4c"</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">setw -g pane-active-border-bg "#242424"</span>
+setw -g pane-active-border-bg <span style="color: #7FFF7F;">"#020202"</span>
 setw -g pane-border-fg <span style="color: #7FFF7F;">"#4cffff"</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">setw -g pane-border-bg "#242424"</span>
+setw -g pane-border-bg <span style="color: #7FFF7F;">"#020202"</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">don't show other activity</span>
 set -g monitor-activity off
 set -g visual-activity off
-set -g allow-rename off
+set -g allow-rename on
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">pane number display</span>
 set -g display-panes-time 4000
 
-set -g status-bg <span style="color: #7FFF7F;">"#242424"</span>
+set -g status-bg <span style="color: #7FFF7F;">"#020202"</span>
 set -g status-fg <span style="color: #7FFF7F;">"#888888"</span>
 set -g status-attr default
 setw -g window-status-current-fg <span style="color: #7FFF7F;">"#ff4c4c"</span>
@@ -189,8 +190,6 @@ setw -g status-left-length 25
 setw -g status-right-length 15
 setw -g status-left <span style="color: #7FFF7F;">"#[fg=#4c4cff][#[fg=#f6f3e8]#h#[fg=#4c4cff]]#[default] "</span>
 setw -g status-right <span style="color: #7FFF7F;">"#[fg=#4c4cff]|#[fg=#f6f3e8]#(date +%y/%m/%d)#[fg=#4c4cff]|#[default]"</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">5 &#20998;&#27598;&#12395;&#34920;&#31034;&#22793;&#26356;</span>
-set -g status-interval 300
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">keybind</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">prefix:</span>

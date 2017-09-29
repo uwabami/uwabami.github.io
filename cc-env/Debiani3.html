@@ -1,6 +1,6 @@
 ---
 title: i3 の設定
-date: 2017-07-29 20:45:12
+date: 2017-09-29 16:16:04
 layout: cc-env
 lang: ja
 ref: cc-env/Debiani3
@@ -140,19 +140,8 @@ Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb
 あと, <code>~/.local/share/applications/mimeapps.list</code> から <code>~/.config/mimeapps.list</code> へ
 symbolic link を作成しておきます.
 </p>
-
-<p>
-最後に <code>~/.mailcap</code>. とりあえずは以下の通り:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-conf"><span style="color: #a5a5a6;">###############################################################################</span>
-<span style="color: #7F7FFF;">application/pdf; zathura %s; test</span>=test -n <span style="color: #7FFF7F;">"$DISPLAY"</span>
-</pre>
 </div>
 </div>
-</div>
-
 <div id="outline-container-orged0ba87" class="outline-3">
 <h3 id="orged0ba87">Alt+Tab でのフォーカスの切り替え</h3>
 <div class="outline-text-3" id="text-orged0ba87">
@@ -340,18 +329,18 @@ suspend → resume した時に i3lock を走らせたいので
 </p>
 
 <div class="org-src-container">
-<pre class="src src-systemd"><span style="color: #FFFF7F;">[Unit]</span>
-<span style="color: #FF7F7F;">Description</span>=Starts i3lock at suspend time
-<span style="color: #FF7F7F;">After</span>=sleep.target
+<pre class="src src-systemd">[Unit]
+Description=Starts i3lock at suspend time
+After=sleep.target
 
-<span style="color: #FFFF7F;">[Service]</span>
-<span style="color: #FF7F7F;">User</span>=uwabami
-<span style="color: #FF7F7F;">Type</span>=forking
-<span style="color: #FF7F7F;">Environment</span>=DISPLAY=:0
-<span style="color: #FF7F7F;">ExecStart</span>=/usr/bin/i3lock -p win -c 242424
+[Service]
+User=uwabami
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3lock -p win -c 242424
 
-<span style="color: #FFFF7F;">[Install]</span>
-<span style="color: #FF7F7F;">WantedBy</span>=sleep.target
+[Install]
+WantedBy=sleep.target
 </pre>
 </div>
 
@@ -388,6 +377,7 @@ suspend → resume した時に i3lock を走らせたいので
 <span style="color: #7F7FFF;">$execi</span> xrandr --output eDP-1 --primary --mode 1440x900
 <span style="color: #7F7FFF;">$execi</span> $(sleep 5 &amp;  feh --bg-scale $HOME/Pictures/desktop.png --no-fehbg )
 <span style="color: #7F7FFF;">$execi</span> xrdb -merge $HOME/.Xresources
+<span style="color: #7F7FFF;">$execi</span> xmodmap $HOME/.Xmodmap
 <span style="color: #7F7FFF;">$execi</span> autocutsel -f
 <span style="color: #7F7FFF;">$execi</span> compton -cb
 <span style="color: #7F7FFF;">$execi</span> pulseaudio --start --log-target=journal
@@ -395,7 +385,7 @@ suspend → resume した時に i3lock を走らせたいので
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">systemtray</span>
 <span style="color: #7F7FFF;">$execi</span> nm-applet
 <span style="color: #7F7FFF;">$execi</span> blueman-applet
-<span style="color: #7F7FFF;">$execi</span> DESKTOP_SESSION=gnome owncloud
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$execi DESKTOP_SESSION=gnome owncloud</span>
 <span style="color: #7F7FFF;">$execi</span> udiskie
 <span style="color: #7F7FFF;">$execi</span> dropbox start -i
 
@@ -491,7 +481,7 @@ suspend → resume した時に i3lock を走らせたいので
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">status bar</span>
 <span style="color: #FFFF7F;">bar</span> {
     <span style="color: #7F7FFF;">position</span>    top
-    <span style="color: #7F7FFF;">tray_output</span> primary
+<span style="color: #a5a5a6;">#    </span><span style="color: #a5a5a6;">tray_output primary</span>
     <span style="color: #7F7FFF;">tray_padding</span> -2
     <span style="color: #7F7FFF;">font</span> xft:FontAwesome,RictyDiminished 11.5
     <span style="color: #7F7FFF;">status_command</span> $HOME/.config/i3/run-conky.sh
@@ -522,7 +512,8 @@ suspend → resume した時に i3lock を走らせたいので
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">startup</span>
 <span style="color: #7F7FFF;">assign</span> [class=<span style="color: #7FFF7F;">"(?i)Zathura"</span> ] 2
-<span style="color: #7F7FFF;">assign</span> [class=<span style="color: #7FFF7F;">"(?i)Zotero"</span>] 3
+<span style="color: #7F7FFF;">assign</span> [class=<span style="color: #7FFF7F;">"(?i)rabbit"</span> ] 3
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">assign [class="(?i)Zotero"] 3</span>
 <span style="color: #7F7FFF;">assign</span> [class=<span style="color: #7FFF7F;">"(?i)Firefox"</span>] 4
 </pre>
 </div>

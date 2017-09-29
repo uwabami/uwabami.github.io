@@ -103,7 +103,6 @@ apt 万歳
 <span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://hosts-file.net/ad_servers.txt"</span>)
 <span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&amp;showintro=0&amp;mimetype=plaintext"</span>)
 <span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"http://winhelp2002.mvps.org/hosts.txt"</span>)
-<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://sites.google.com/site/logroid/files/hosts.txt"</span>)
 <span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://sites.google.com/site/hosts2ch/ja"</span>)
 <span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://sites.google.com/site/cosmonoteshosts/hosts_Ultimate.txt"</span>)
 <span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://raw.githubusercontent.com/multiverse2011/adawaylist-jp/master/hosts"</span>)
@@ -120,9 +119,9 @@ apt 万歳
         sed <span style="color: #7FFF7F;">'/^$/d'</span> | <span style="color: #7FFF7F;">\</span>
         sed -e <span style="color: #7FFF7F;">'s/\t/ /g'</span> | <span style="color: #7FFF7F;">\</span>
         nkf -w -Lu -d &gt; tmp-$<span style="color: #7F7FFF;">i</span>-list.txt
-        rm -f tmp-$<span style="color: #7F7FFF;">i</span>.txt
+    rm -f tmp-$<span style="color: #7F7FFF;">i</span>.txt
 <span style="color: #FF7F7F;">done</span>
-wget -q https://warui.intaa.net/adhosts/whitelist.txt -O tmp-white.txt
+
 
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"merge tmp list"</span>
 <span style="color: #FF7F7F;">for</span> f<span style="color: #FF7F7F;"> in</span> <span style="font-weight: bold;">`/bin/ls -1 tmp-?-list.txt`</span>; <span style="color: #FF7F7F;">do</span>
@@ -133,14 +132,20 @@ cat tmp-list.txt | <span style="color: #7FFF7F;">\</span>
     sed <span style="color: #7FFF7F;">'/^$/d'</span> | <span style="color: #7FFF7F;">\</span>
     sed <span style="color: #7FFF7F;">'s/127.0.0.1/0.0.0.0/g'</span> | <span style="color: #7FFF7F;">\</span>
     sort -u &gt; adaway.txt
+wget -q https://warui.intaa.net/adhosts/whitelist.txt -O tmp-white.txt
 cat tmp-white.txt | <span style="color: #FF7F7F;">while </span><span style="color: #7FBFFF;">read</span> line
 <span style="color: #FF7F7F;">do</span>
     sed -i -e <span style="color: #7FFF7F;">'/$line/d'</span> adaway.txt
 <span style="color: #FF7F7F;">done</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">whitelist</span>
 sed -i -e <span style="color: #7FFF7F;">'/apis.google.com/d'</span> adaway.txt
-
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sed -i -e '/google-analytics.l.google.com/d' adaway.txt</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sed -i -e '/google-analytics.com/d' adaway.txt</span>
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">ipv6</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat adaway.txt | sed -e 's/0.0.0.0/::/g' &gt; adaway_ipv6.txt</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat adaway_ipv6.txt &gt;&gt; adaway.txt</span>
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"cleanup"</span>
+rm -f adaway_ipv6.txt
 rm -f tmp-list.txt
 rm -f tmp-white.txt
 </pre>
@@ -224,9 +229,9 @@ http_port 20080
 <span style="color: #a5a5a6;">#</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Apache like</span>
 <span style="color: #a5a5a6;">#</span>
-access_log /var/log/squid/access.log common
-logformat common %&gt;a %ui %un [%tl] <span style="color: #7FFF7F;">"%rm %ru HTTP/%rv"</span> &gt;Hs %&lt;st %Ss:%Sh
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">access_log /dev/null</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">access_log /var/log/squid/access.log common</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">logformat common %&gt;a %ui %un [%tl] "%rm %ru HTTP/%rv" &gt;Hs %&lt;st %Ss:%Sh</span>
+access_log /dev/null
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">Cache</span>
 <span style="color: #a5a5a6;">#</span>

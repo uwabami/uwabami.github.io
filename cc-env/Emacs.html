@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-07-30 14:22:37
+date: 2017-09-26 03:15:48
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -35,7 +35,6 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org9400654">常に <code>cl-lib</code> を読み込む</a></li>
 <li><a href="#orga1cffc7">後方互換性: <code>el-x</code></a></li>
-<li><a href="#org22fa324">url-retrieve の置換: <code>mb-url</code></a></li>
 <li><a href="#org8ee2cab">環境変数の読み込み: <code>exec-path-from-shell</code></a></li>
 <li><a href="#orgbca86c9">言語の設定</a>
 <ul>
@@ -49,7 +48,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgae3d8c8">標準機能の設定</a>
 <ul>
 <li><a href="#org1b6b59a">表示関連</a></li>
-<li><a href="#org30987f0">編集関連</a></li>
+<li><a href="#orgfc482f8">編集関連</a></li>
 <li><a href="#org7eda492">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -66,17 +65,17 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgd885246"><code>time-stamp</code>: 保存時に timestamp を自動更新</a></li>
 <li><a href="#org07a421d"><code>tramp</code>: ssh 越しにファイルを編集</a></li>
 <li><a href="#orgf73514f"><code>bookmark</code>: bookmark ファイル</a></li>
-<li><a href="#org4ddc61b"><code>eww</code>: 内蔵ブラウザ <code>[0/1]</code></a></li>
+<li><a href="#org4ddc61b"><code>eww</code>: 内蔵ブラウザ</a></li>
 <li><a href="#org10aa1c4"><code>browse-url</code></a></li>
 <li><a href="#org0c00ceb"><code>server</code>: Emacs server</a></li>
 </ul>
 </li>
 <li><a href="#org3bd8022">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#orgd49574f">Emacs 本体側の設定</a></li>
+<li><a href="#org7cd7a83">Emacs 本体側の設定</a></li>
 <li><a href="#orge62a055">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#orgfc482f8">編集関連</a></li>
+<li><a href="#org2b4cfd3">編集関連</a></li>
 <li><a href="#org67f5019">インクリメンタルサーチ</a></li>
 <li><a href="#org6d86eb6">辞書の設定</a></li>
 <li><a href="#org199b263">動的補完</a></li>
@@ -95,16 +94,22 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org60f38ee">password-store</a></li>
 </ul>
 </li>
+<li><a href="#orgab311d4">補完: <code>helm</code></a>
+<ul>
+<li><a href="#orgd76f30e">helm-flx</a></li>
+<li><a href="#orgffb0861">helm-locate</a></li>
+<li><a href="#org5096c53">helm-descbinds</a></li>
+</ul>
+</li>
 <li><a href="#org4ea74a5">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#org7cd7a83">Emacs 本体側の設定</a></li>
+<li><a href="#orgf412d50">Emacs 本体側の設定</a></li>
 <li><a href="#org711a3af">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#orgda20e29">依存/追加ライブラリのインストールと読み込み</a>
 <ul>
 <li><a href="#org0441655">rail</a></li>
 <li><a href="#orgbd36a3c">cp5022x を使う</a></li>
-<li><a href="#org388d928">gcontacts-get-wl</a></li>
 <li><a href="#org9e105e7">elscreen-wl</a></li>
 <li><a href="#org90753bd">SEMI の追加設定</a></li>
 </ul>
@@ -157,7 +162,6 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org44538b3">いったん全て非表示に</a></li>
 <li><a href="#org058953d">見たいヘッダだけ表示</a></li>
 <li><a href="#org1e1c6b9">表示順の変更</a></li>
-<li><a href="#orgc013465">mime の画像表示の切り替え</a></li>
 <li><a href="#orgf640153">From, To を省略表示しない</a></li>
 </ul>
 </li>
@@ -176,18 +180,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org915f645">Linux Desktop で <code>mailto:</code> リンクを扱うために</a></li>
 </ul>
 </li>
-<li><a href="#orgee41b1b">Emacs-w3m</a></li>
-<li><a href="#org4792ff8">補完: <code>ido</code>, <code>flx-ido</code>, <code>smex</code></a>
-<ul>
-<li><a href="#org6b0690a"><code>ido</code> の設定</a></li>
-<li><a href="#orgd65025b"><code>flx-ido</code>: flex match の強化</a></li>
-<li><a href="#orga8e37ba"><code>ido-grid</code>: 補完候補の grid 表示</a></li>
-<li><a href="#orgbb975a1"><code>ido-recentf</code>: recentf を ido で</a></li>
-<li><a href="#orgac67847"><code>ido-describe-bindings</code>: key binding を表示?</a></li>
-<li><a href="#org312180a"><code>smex</code></a></li>
-</ul>
-</li>
-<li><a href="#orgab311d4">補完: <code>helm</code></a></li>
+<li><a href="#org67a2477"><code>ace-link</code>: リンクへのジャンプ</a></li>
 <li><a href="#org292f8bd">校正，辞書等</a>
 <ul>
 <li><a href="#orgebdf4fa">spell checker</a></li>
@@ -230,8 +223,15 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org1a9456e">Howm</a></li>
 <li><a href="#orgf23518a">フォントと色</a></li>
 <li><a href="#orgc4a9493">日記: <code>tDiary</code></a></li>
+<li><a href="#orge4e94c6">MoinMoin: <code>moinmoin-mode</code>, <code>moomin.el</code></a>
+<ul>
+<li><a href="#orgc059fc5"><code>moinmoin-mode</code></a></li>
+<li><a href="#org46391ef"><code>moomin</code>: <code>emacs-request + helm + moinmoin-mode</code></a></li>
+</ul>
+</li>
 <li><a href="#org155c83d">プログラム環境</a>
 <ul>
+<li><a href="#orgb4b730c">折り畳み: <code>outline-magic</code></a></li>
 <li><a href="#orgc3455b7">VCS: <code>magit</code></a></li>
 <li><a href="#orgc435948">rainbow-mode</a></li>
 <li><a href="#org35095d6">Textile</a></li>
@@ -244,11 +244,17 @@ permalink: /cc-env/Emacs.html
 <li><a href="#org3d4000d">Fortran</a></li>
 <li><a href="#org6d6deb2">AUCTeX</a></li>
 <li><a href="#org4d21671">AUCTeX と Zotero との連携</a></li>
+<li><a href="#org56b5470">Common Lisp: <code>slime</code></a></li>
 </ul>
 </li>
 <li><a href="#org24a422e">基本的なキーバインドの設定 <code>[/]</code></a></li>
 <li><a href="#org16ee167"><code>diminish</code>: モードラインの短縮表示</a></li>
-<li><a href="#org3fe91e6"><code>powerline</code>: モードラインを綺麗に</a></li>
+<li><a href="#org3fe91e6"><code>powerline</code>: モードラインを綺麗に</a>
+<ul>
+<li><a href="#org7d9d2ab">ddskk の表示のカスタマイズ</a></li>
+<li><a href="#org298b261">powerline 本体の設定．</a></li>
+</ul>
+</li>
 <li><a href="#org599bdcc">起動時間の計測</a></li>
 <li><a href="#org0f369f0">LICENSE</a></li>
 </ul>
@@ -554,25 +560,6 @@ melpa の同期はしません。
 </div>
 </div>
 </div>
-<div id="outline-container-org22fa324" class="outline-2">
-<h2 id="org22fa324">url-retrieve の置換: <code>mb-url</code></h2>
-<div class="outline-text-2" id="text-org22fa324">
-<p>
-標準関数の url-retrieve 等の proxy 環境下での挙動が怪しいので,
-<a href="https://github.com/dochang/mb-url">dochang/mb-url: Multiple Backends for Emacs URL package</a>
-advice (上書き)する.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">mb-url</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"curl"</span>)
-  <span style="color: #7FBFFF;">:config</span>
-  (advice-add 'url-http <span style="color: #7FBFFF;">:override</span> 'mb-url-http-curl)
-  )
-</pre>
-</div>
-</div>
-</div>
 <div id="outline-container-org8ee2cab" class="outline-2">
 <h2 id="org8ee2cab">環境変数の読み込み: <code>exec-path-from-shell</code></h2>
 <div class="outline-text-2" id="text-org8ee2cab">
@@ -614,7 +601,7 @@ zsh で設定した <code>PATH</code> などの環境変数を Emacs に引き�
      ))
   (<span style="color: #FF7F7F;">setq</span> user-full-name (concat (getenv <span style="color: #7FFF7F;">"DEBFULLNAME"</span>))
         user-mail-address (concat (getenv <span style="color: #7FFF7F;">"DEBEMAIL"</span>))
-        my:d:password-store (getenv <span style="color: #7FFF7F;">"PASSWORD_STORE_DIR"</span>))
+        my:d:password-store (concat (getenv <span style="color: #7FFF7F;">"PASSWORD_STORE_DIR"</span>) <span style="color: #7FFF7F;">"/Emacs/"</span> system-name))
   )
 </pre>
 </div>
@@ -733,7 +720,8 @@ Windows の場合はファイル名などは cp932 にしているものの,
 <div id="outline-container-orgae3d8c8" class="outline-3">
 <h3 id="orgae3d8c8">標準機能の設定</h3>
 <div class="outline-text-3" id="text-orgae3d8c8">
-</div><div id="outline-container-org1b6b59a" class="outline-4">
+</div>
+<div id="outline-container-org1b6b59a" class="outline-4">
 <h4 id="org1b6b59a">表示関連</h4>
 <div class="outline-text-4" id="text-org1b6b59a">
 <p>
@@ -831,9 +819,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-org30987f0" class="outline-4">
-<h4 id="org30987f0">編集関連</h4>
-<div class="outline-text-4" id="text-org30987f0">
+<div id="outline-container-orgfc482f8" class="outline-4">
+<h4 id="orgfc482f8">編集関連</h4>
+<div class="outline-text-4" id="text-orgfc482f8">
 <p>
 yes or no を y or n に
 </p>
@@ -919,7 +907,7 @@ symlink は常においかける
 <code>recentf</code>: 最近使ったファイル履歴の保管
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> recentf-max-saved-items 10000)
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> recentf-max-saved-items 256)
 (<span style="color: #FF7F7F;">setq</span> recentf-save-file
       (expand-file-name (concat my:d:tmp <span style="color: #7FFF7F;">"recentf"</span>)))
 (<span style="color: #FF7F7F;">setq</span> recentf-auto-cleanup 'never)
@@ -929,7 +917,7 @@ symlink は常においかける
         <span style="color: #7FFF7F;">"^/private\\.*"</span>
         <span style="color: #7FFF7F;">"^/var/folders\\.*"</span>
         <span style="color: #7FFF7F;">"/TAGS$"</span>
-        <span style="color: #7FFF7F;">"^/home/uwabami/.mozilla/firefox/jhitnbb2.default/itsalltext\\.*"</span>
+        <span style="color: #7FFF7F;">"^/home/uwabami/.mozilla/\\.*"</span>
         ))
 (add-hook 'after-init-hook 'recentf-mode)
 </pre>
@@ -1008,9 +996,8 @@ Undo/Redo:
 message に gc が走っていることを表示する.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">gc-cons-threshold (* 128 1024 1024)</span>
-      garbage-collection-messages t
-      )
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> gc-cons-threshold (* 8 1024 1024)
+      garbage-collection-messages nil )
 </pre>
 </div>
 <p>
@@ -1142,22 +1129,23 @@ message に gc が走っていることを表示する.
   <span style="color: #7FBFFF;">:diminish</span> global-whitespace-mode
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> whitespace-line-column 72
-        whitespace-style
-        '(face              <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">face&#12434;&#20351;&#12387;&#12390;&#35222;&#35226;&#21270;&#12377;&#12427;&#65294;</span>
-          trailing          <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&#34892;&#26411;&#12398;&#31354;&#30333;&#12434;&#23550;&#35937;&#12392;&#12377;&#12427;&#65294;</span>
-          tabs              <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">tab</span>
-          spaces            <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">space</span>
-          )
-        whitespace-display-mappings
-        '((space-mark ?\u3000 [?\u25a1])
-          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">WARNING: the mapping below has a problem. When a TAB</span>
-          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">occupies exactly one column, it will display the character</span>
-          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">?\xBB at that column followed by a TAB which goes to the</span>
-          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">next TAB column. If this is a problem for you, please,</span>
-          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">comment the line below.</span>
-          (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t]))
-        whitespace-space-regexp <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">\u3000+</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>)
-  (global-whitespace-mode 1))
+        whitespace-style '(face              <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">face&#12434;&#20351;&#12387;&#12390;&#35222;&#35226;&#21270;&#12377;&#12427;&#65294;</span>
+                           trailing          <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&#34892;&#26411;&#12398;&#31354;&#30333;&#12434;&#23550;&#35937;&#12392;&#12377;&#12427;&#65294;</span>
+                           tabs              <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">tab</span>
+                           spaces            <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">space</span>
+                           )
+        whitespace-display-mappings '((space-mark ?\u3000 [?\u25a1])
+                                      (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t]))
+        whitespace-space-regexp <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">\u3000+</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span>
+        whitespace-global-modes '(not
+                                  eww-mode
+                                  term-mode
+                                  eshell-mode
+                                  org-agenda-mode
+                                  calendar-mode)
+        )
+  (global-whitespace-mode 1)
+  )
 </pre>
 </div>
 </div>
@@ -1226,52 +1214,58 @@ message に gc が走っていることを表示する.
 </div>
 
 <div id="outline-container-org4ddc61b" class="outline-3">
-<h3 id="org4ddc61b"><code>eww</code>: 内蔵ブラウザ <code>[0/1]</code></h3>
+<h3 id="org4ddc61b"><code>eww</code>: 内蔵ブラウザ</h3>
 <div class="outline-text-3" id="text-org4ddc61b">
 <p>
-内蔵ブラウザの設定
-</p>
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> <code>mb-url</code> で curl を使うようにすると、
-<code>google</code> から 403が返るようになる。これ、どうしたら良いのかな?</li>
-</ul>
-<p>
-幅と背景色の指定がメイン
+内蔵ブラウザの設定: 幅と背景色の指定がメイン
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">eww</span>
   <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> eww-bookmarks-directory (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp)
-        )
+  (<span style="color: #FF7F7F;">bind-keys</span> <span style="color: #7FBFFF;">:map</span> eww-mode-map
+             (<span style="color: #7FFF7F;">"r"</span>  . eww-reload)
+             (<span style="color: #7FFF7F;">"o"</span>  . eww)
+             (<span style="color: #7FFF7F;">"&amp;"</span>  . eww-browse-with-external-browser)
+             (<span style="color: #7FFF7F;">"b"</span>  . eww-back-url)
+             (<span style="color: #7FFF7F;">"]"</span>  . eww-next-url)
+             (<span style="color: #7FFF7F;">"["</span>  . eww-previous-url)
+             (<span style="color: #7FFF7F;">"g"</span>  . eww-top-url))
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">eww</span>
   (<span style="color: #FF7F7F;">unless</span> (file-directory-p (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp))
     (make-directory (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp)))
-  (<span style="color: #FF7F7F;">setq</span> eww-search-prefix <span style="color: #7FFF7F;">"https://www.bing.com/search?q="</span>)
-  (<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:eww-disable-colorize</span> t)
+  (<span style="color: #FF7F7F;">setq</span> eww-bookmarks-directory (expand-file-name <span style="color: #7FFF7F;">"eww"</span> my:d:tmp)
+        eww-search-prefix <span style="color: #7FFF7F;">"https://www.google.co.jp/search?q="</span>)
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#32972;&#26223;&#33394;&#31561;&#12398;&#35373;&#23450;</span>
+  (<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">eww-disable-colorize</span> t)
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shr-colorize-region--disable</span> (orig start end fg <span style="color: #FFFF7F;">&amp;optional</span> bg <span style="color: #FFFF7F;">&amp;rest</span> _)
-    (<span style="color: #FF7F7F;">unless</span> my:eww-disable-colorize
+    (<span style="color: #FF7F7F;">unless</span> eww-disable-colorize
       (funcall orig start end fg)))
   (advice-add 'shr-colorize-region <span style="color: #7FBFFF;">:around</span> 'shr-colorize-region--disable)
   (advice-add 'eww-colorize-region <span style="color: #7FBFFF;">:around</span> 'shr-colorize-region--disable)
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-disable-color</span> ()
     <span style="color: #7FFF7F;">"eww &#12391;&#25991;&#23383;&#33394;&#12434;&#21453;&#26144;&#12373;&#12379;&#12394;&#12356;"</span>
     (<span style="color: #FF7F7F;">interactive</span>)
-    (<span style="color: #FF7F7F;">setq-local</span> my:eww-disable-colorize t)
+    (<span style="color: #FF7F7F;">setq-local</span> eww-disable-colorize t)
     (eww-reload))
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-enable-color</span> ()
     <span style="color: #7FFF7F;">"eww &#12391;&#25991;&#23383;&#33394;&#12434;&#21453;&#26144;&#12373;&#12379;&#12427;"</span>
     (<span style="color: #FF7F7F;">interactive</span>)
-    (<span style="color: #FF7F7F;">setq-local</span> my:eww-disable-colorize nil)
+    (<span style="color: #FF7F7F;">setq-local</span> eww-disable-colorize nil)
     (eww-reload))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12486;&#12461;&#12473;&#12488;&#24133;&#12434; 70 &#12395;&#22266;&#23450;</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">- </span><span style="text-decoration: underline;"><a href="http://emacs.rubikitch.com/eww-width/">Emacs&#32068;&#12415;&#36796;&#12415;Web&#12502;&#12521;&#12454;&#12470;EWW&#12391;&#12486;&#12461;&#12473;&#12488;&#12398;&#27178;&#24133;&#12434;&#25351;&#23450;&#12377;&#12427;&#26041;&#27861;</a></span>
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shr-insert-document--for-eww</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
-    (<span style="color: #FF7F7F;">let</span> ((shr-width 70)) (apply them)))
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-display-html--fill-column</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
-    (advice-add 'shr-insert-document <span style="color: #7FBFFF;">:around</span> 'shr-insert-document--for-eww)
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12486;&#12461;&#12473;&#12488;&#24133;&#12398;&#25351;&#23450;. setq &#12391; shr-width &#12434;&#25351;&#23450;&#12375;&#12390;&#12418;&#21453;&#26144;&#12373;&#12428;&#12390;&#12356;&#12394;&#12356;, &#27096;&#12394;?</span>
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:shr-insert-document--for-eww</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
+    (<span style="color: #FF7F7F;">let</span> ((shr-width 68)) (apply them)))
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:eww-display-html--fill-column</span> (<span style="color: #FFFF7F;">&amp;rest</span> them)
+    (advice-add 'shr-insert-document <span style="color: #7FBFFF;">:around</span> 'my:shr-insert-document--for-eww)
     (<span style="color: #FF7F7F;">unwind-protect</span>
         (apply them)
-      (advice-remove 'shr-insert-document 'shr-insert-document--for-eww)))
-  (advice-add 'eww-display-html <span style="color: #7FBFFF;">:around</span> 'eww-display-html--fill-column)
+      (advice-remove 'shr-insert-document 'my:shr-insert-document--for-eww)))
+  (advice-add 'eww-display-html <span style="color: #7FBFFF;">:around</span> 'my:eww-display-html--fill-column)
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">buffer &#12434; rename</span>
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">eww-mode-hook--rename-buffer</span> ()
+    <span style="color: #7FFF7F;">"Rename eww browser's buffer so sites open in new page."</span>
+    (rename-buffer <span style="color: #7FFF7F;">"eww"</span> t))
+  (add-hook 'eww-mode-hook 'eww-mode-hook--rename-buffer)
   )
 </pre>
 </div>
@@ -1289,7 +1283,7 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-c C-j"</span> . browse-url-at-point))
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">browse-url-firefox</span> (url <span style="color: #FFFF7F;">&amp;optional</span> new-window)
-    <span style="color: #7FFF7F;">"@see </span><span style="text-decoration: underline;"><a href="http://www.emacswiki.org/emacs/BrowseUrl">http://www.emacswiki.org/emacs/BrowseUrl</a></span><span style="color: #7FFF7F;">"</span>
+    <span style="color: #7FFF7F;">"@see </span><span style="text-decoration: underline;">http://www.emacswiki.org/emacs/BrowseUrl</span><span style="color: #7FFF7F;">"</span>
     (<span style="color: #FF7F7F;">interactive</span> (browse-url-interactive-arg <span style="color: #7FFF7F;">"URL: "</span>))
     (<span style="color: #FF7F7F;">setq</span> url (browse-url-encode-url url))
     (<span style="color: #FF7F7F;">let*</span> ((process-environment (browse-url-process-environment))
@@ -1301,7 +1295,10 @@ Firefox の呼び出し方が変わったので，そのために関数を追加
            (process-name (concat <span style="color: #7FFF7F;">"firefox "</span> url))
            (process (apply 'start-process process-name nil
                            browse-url-firefox-program ff-args) ))))
-  (<span style="color: #FF7F7F;">setq</span> browse-url-browser-function 'browse-url-firefox)
+  (<span style="color: #FF7F7F;">if</span> (executable-find <span style="color: #7FFF7F;">"firefox"</span>)
+      (<span style="color: #FF7F7F;">setq</span> browse-url-browser-function 'browse-url-firefox
+            shr-external-browser 'browse-url-firefox)
+    (<span style="color: #FF7F7F;">setq</span> browse-url-browser-function 'eww-browse-url))
   )
 </pre>
 </div>
@@ -1335,9 +1332,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd49574f" class="outline-3">
-<h3 id="orgd49574f">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgd49574f">
+<div id="outline-container-org7cd7a83" class="outline-3">
+<h3 id="org7cd7a83">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org7cd7a83">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1447,9 +1444,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfc482f8" class="outline-4">
-<h4 id="orgfc482f8">編集関連</h4>
-<div class="outline-text-4" id="text-orgfc482f8">
+<div id="outline-container-org2b4cfd3" class="outline-4">
+<h4 id="org2b4cfd3">編集関連</h4>
+<div class="outline-text-4" id="text-org2b4cfd3">
 <p>
 キーバインド
 </p>
@@ -1723,7 +1720,8 @@ modeline の表示そのものは無効化しておく．
 <div id="outline-container-org4f17dc6" class="outline-2">
 <h2 id="org4f17dc6">認証関連: <code>password-store</code></h2>
 <div class="outline-text-2" id="text-org4f17dc6">
-</div><div id="outline-container-orgccb2a7d" class="outline-3">
+</div>
+<div id="outline-container-orgccb2a7d" class="outline-3">
 <h3 id="orgccb2a7d">id-manager の設定</h3>
 <div class="outline-text-3" id="text-orgccb2a7d">
 <p>
@@ -1786,6 +1784,117 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 </div>
 </div>
 </div>
+<div id="outline-container-orgab311d4" class="outline-2">
+<h2 id="orgab311d4">補完: <code>helm</code></h2>
+<div class="outline-text-2" id="text-orgab311d4">
+<p>
+以前はデフォルトの挙動が嫌で割とイロイロと設定していたのだけれど，
+最近はそんなに邪魔しない感じ&#x2026;なのかな? とりあえず現状は以下の通り．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">    (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm</span>
+      <span style="color: #7FBFFF;">:ensure</span> t
+      <span style="color: #7FBFFF;">:defines</span> helm-map
+      <span style="color: #7FBFFF;">:diminish</span> (helm-migemo-mode)
+      <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"M-x"</span>     . helm-M-x)
+             (<span style="color: #7FFF7F;">"C-x f"</span>   . helm-find-files)
+             (<span style="color: #7FFF7F;">"C-x C-f"</span> . helm-find-files)
+             (<span style="color: #7FFF7F;">"C-x b"</span>   . ibuffer-other-window)
+             (<span style="color: #7FFF7F;">"C-x C-b"</span>   . ibuffer-other-window)
+             <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">("C-x b"   . helm-buffers-list)</span>
+             (<span style="color: #7FFF7F;">"C-x C-r"</span> . helm-recentf)
+             )
+      <span style="color: #7FBFFF;">:config</span>
+      (ido-mode -1) <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido &#12399;&#20351;&#12431;&#12394;&#12356;</span>
+      (define-key helm-map (kbd <span style="color: #7FFF7F;">"TAB"</span>) 'helm-execute-persistent-action)
+      (define-key helm-map (kbd <span style="color: #7FFF7F;">"C-i"</span>) 'helm-execute-persistent-action)
+      (global-unset-key (kbd <span style="color: #7FFF7F;">"C-z"</span>))
+      (define-key helm-map (kbd <span style="color: #7FFF7F;">"C-z"</span>) 'helm-select-action)
+      (my:disable-builtin-mode 'helm-mode)   <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">helm-mode &#12399;&#22522;&#26412;&#20351;&#12431;&#12394;&#12356;</span>
+      (<span style="color: #FF7F7F;">setq</span> helm-command-prefix-key <span style="color: #7FFF7F;">"C-z"</span>    <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">helm-command-prefix-key</span>
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">dired &#12391;&#12398; skk &#12392;&#12398;&#31478;&#21512;(C-x C-j &#12398;&#22890;&#12356;&#21512;&#12356;)&#12434;&#36991;&#12369;&#12427;</span>
+            dired-bind-jump nil
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">mode line &#12395;&#12399;&#20309;&#12418;&#34920;&#31034;&#12375;&#12394;&#12356;</span>
+            helm-completion-mode-string <span style="color: #7FFF7F;">""</span>
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">minibuffer &#12395; input method &#12398;&#29366;&#24907;&#12434;&#24341;&#12365;&#32153;&#12364;&#12394;&#12356;</span>
+            helm-inherit-input-method nil
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#20313;&#35336;&#12394;&#12501;&#12449;&#12452;&#12523;&#12399;&#34920;&#31034;&#12375;&#12394;&#12356;</span>
+            helm-ff-skip-boring-files t
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm-adaptive &#12398;&#20445;&#23384;&#20808;&#12398;&#22793;&#26356;</span>
+            helm-adaptive-history-file (concat my:d:tmp <span style="color: #7FFF7F;">"helm-adaptive-history"</span>)
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">mode line &#12395;&#12399;&#20309;&#12418;&#34920;&#31034;&#12375;&#12394;&#12356;</span>
+            helm-completion-mode-string <span style="color: #7FFF7F;">""</span>
+            )
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#19968;&#12388;&#19978;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;(../)&#12434;&#20505;&#35036;&#12363;&#12425;&#22806;&#12377;</span>
+      (advice-add 'helm-ff-filter-candidate-one-by-one
+                  <span style="color: #7FBFFF;">:around</span> (<span style="color: #FF7F7F;">lambda</span> (orig-func file)
+                            (<span style="color: #FF7F7F;">unless</span> (string-match <span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(?:</span><span style="color: #7FFF7F;">/</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">\\`</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">\\.\\{2\\}\\'"</span> file)
+                              (funcall orig-func file))))
+      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#23384;&#22312;&#12375;&#12394;&#12356;&#12501;&#12449;&#12452;&#12523;&#12395;&#12399;&#20309;&#12418;&#12375;&#12394;&#12356;(default &#12399;&#26032;&#35215; buffer &#12364;&#12391;&#12365;&#12427;)</span>
+      (advice-add 'helm-ff-kill-or-find-buffer-fname
+                  <span style="color: #7FBFFF;">:around</span> (<span style="color: #FF7F7F;">lambda</span> (orig-func candidate)
+                            (<span style="color: #FF7F7F;">when</span> (file-exists-p candidate)
+                              (funcall orig-func candidate))))
+      (<span style="color: #FF7F7F;">if</span> (<span style="color: #FF7F7F;">and</span> (locate-library <span style="color: #7FFF7F;">"migemo"</span>)     <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">&#12354;&#12428;&#12400; migemo &#12434;&#26377;&#21177;&#21270;</span>
+               (executable-find <span style="color: #7FFF7F;">"cmigemo"</span>))
+          (<span style="color: #FF7F7F;">setq</span> helm-migemo-mode t)
+        (<span style="color: #FF7F7F;">setq</span> helm-migemo-mode nil))
+      (helm-autoresize-mode)
+      (<span style="color: #FF7F7F;">setq</span> helm-autoresize-min-height 30 <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">fixed 30%</span>
+            helm-autoresize-max-height 30)
+      )
+</pre>
+</div>
+</div>
+<div id="outline-container-orgd76f30e" class="outline-3">
+<h3 id="orgd76f30e">helm-flx</h3>
+<div class="outline-text-3" id="text-orgd76f30e">
+<p>
+曖昧検索は flx に任せる．かなり良い．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-flx</span>
+  <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:config</span>
+  (helm-flx-mode +1)
+  (<span style="color: #FF7F7F;">setq</span> helm-flx-for-helm-find-files t <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">t by default</span>
+        helm-flx-for-helm-locate t )   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">nil by default</span>
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgffb0861" class="outline-3">
+<h3 id="orgffb0861">helm-locate</h3>
+<div class="outline-text-3" id="text-orgffb0861">
+<p>
+default の <code>mlocate</code> の option を修正しておく．
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-locate</span>
+  <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"mlocate"</span>)
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> helm-locate-command <span style="color: #7FFF7F;">"mlocate %s -e -A --regex %s"</span>))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5096c53" class="outline-3">
+<h3 id="org5096c53">helm-descbinds</h3>
+<div class="outline-text-3" id="text-org5096c53">
+<p>
+<code>helm-M-x</code> の際にキーバインドが表示されるようになる
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm-descbinds</span>
+  <span style="color: #7FBFFF;">:ensure</span> t
+  <span style="color: #7FBFFF;">:config</span>
+  (helm-descbinds-mode))
+</pre>
+</div>
+</div>
+</div>
+</div>
 <div id="outline-container-org4ea74a5" class="outline-2">
 <h2 id="org4ea74a5"><a id="ID-544e8091-614a-4784-a889-78651a923d6c"></a>MUA の設定: <code>wanderlust</code></h2>
 <div class="outline-text-2" id="text-org4ea74a5">
@@ -1793,13 +1902,14 @@ oauth2 の認証情報は <code>plstore</code> で保存される．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-org7cd7a83" class="outline-3">
-<h3 id="org7cd7a83">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org7cd7a83">
+<div id="outline-container-orgf412d50" class="outline-3">
+<h3 id="orgf412d50">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgf412d50">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
 </p>
+
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">wl</span>
   <span style="color: #7FBFFF;">:if</span> (<span style="color: #FF7F7F;">and</span> (<span style="color: #FF7F7F;">or</span> (my:dpkg-status <span style="color: #7FFF7F;">"wl"</span>)
@@ -1807,10 +1917,6 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
            (my:dpkg-status <span style="color: #7FFF7F;">"rail"</span>))
   <span style="color: #7FBFFF;">:commands</span> (wl wl-other-frame wl-draft wl-user-agent wl-user-agent-compose wl-draft-send wl-draft-kill)
   <span style="color: #7FBFFF;">:init</span>
-  (<span style="color: #FF7F7F;">unless</span> (package-installed-p 'gcontacts-get-wl)
-    (quelpa '(gcontacts-get-wl
-              <span style="color: #7FBFFF;">:fetcher</span> url
-              <span style="color: #7FBFFF;">:url</span> <span style="color: #7FFF7F;">"https://raw.githubusercontent.com/uwabami/gcontacts-get-wl/master/gcontacts-get-wl.el"</span>)))
   (define-mail-user-agent
     'wl-user-agent
     'wl-user-agent-compose
@@ -1833,6 +1939,9 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
   )
 </pre>
 </div>
+<p>
+割と <code>/etc/emacs/site-start.d/65wl-beta.el</code> と重複している気がするが&#x2026;
+</p>
 </div>
 </div>
 <div id="outline-container-org711a3af" class="outline-3">
@@ -1845,7 +1954,8 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
 <div id="outline-container-orgda20e29" class="outline-4">
 <h4 id="orgda20e29">依存/追加ライブラリのインストールと読み込み</h4>
 <div class="outline-text-4" id="text-orgda20e29">
-</div><div id="outline-container-org0441655" class="outline-5">
+</div>
+<div id="outline-container-org0441655" class="outline-5">
 <h5 id="org0441655">rail</h5>
 <div class="outline-text-5" id="text-org0441655">
 <p>
@@ -1880,34 +1990,6 @@ ISO-2022-JP を CP50220 として扱う.
 </div>
 </div>
 </div>
-<div id="outline-container-org388d928" class="outline-5">
-<h5 id="org388d928">gcontacts-get-wl</h5>
-<div class="outline-text-5" id="text-org388d928">
-<p>
-<a href="https://github.com/uwabami/gcontacts-get-wl">gcontacts-get-wl</a> は
-Google Contacts の連絡先を Wanderlust の <code>.Address</code> に出力するだけのパッケージ．
-<a href="https://github.com/jd/google-contacts.el">google-contacs.el</a> の方が便利そうではあるものの「ふりがな」の扱いと，
-オフラインでの処理を考えて，結局安直な方法を選んでしまった．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">gcontacts-get-wl</span>
-  <span style="color: #7FBFFF;">:if</span> (my:dpkg-status <span style="color: #7FFF7F;">"wl-beta"</span>)
-  <span style="color: #7FBFFF;">:commands</span> (gcontacts-update-wl-address)
-  <span style="color: #7FBFFF;">:config</span>
-  (load (expand-file-name <span style="color: #7FFF7F;">"emacs/gcontacts-get.gpg"</span> my:d:password-store)))
-</pre>
-</div>
-<p>
-oauth token は <code>pass</code> で管理している．中身は以下の通り
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> gcontacts-get-oauth-client-ID <span style="color: #7FFF7F;">"XXXXXXXXXXXXXXXX.apps.googleusercontent.com"</span>
-      gcontacts-get-oauth-client-secret <span style="color: #7FFF7F;">"YYYYYYYYYYYYYYYYYYYYYYYYY"</span>
-      gcontacts-get-ask nil)
-</pre>
-</div>
-</div>
-</div>
 <div id="outline-container-org9e105e7" class="outline-5">
 <h5 id="org9e105e7">elscreen-wl</h5>
 <div class="outline-text-5" id="text-org9e105e7">
@@ -1930,9 +2012,9 @@ mime-setup がロードされる前に記述する必要あり.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> mime-view-text/html-previewer 'shr)
 (<span style="color: #FF7F7F;">setq</span> mime-setup-enable-inline-html 'shr)
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(use-package mime-setup</span>
-<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">:init</span>
-<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">(defun shr-colorize-region (start end fg &amp;optional bg) nil))</span>
+(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">mime-setup</span>)
+(<span style="color: #FF7F7F;">with-eval-after-load</span> 'shr
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">shr-colorize-region</span> (start end fg <span style="color: #FFFF7F;">&amp;optional</span> bg) nil))
 </pre>
 </div>
 <p>
@@ -1985,7 +2067,7 @@ text/plain を html より優先 → 最近は html を表示している
 具体的な設定内容は以下のファイルに置いている
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">     (load (concat my:d:password-store <span style="color: #7FFF7F;">"/emacs/wl-info.gpg"</span>))
+<pre class="src src-emacs-lisp">     (load (concat my:d:password-store <span style="color: #7FFF7F;">"/wl-info.gpg"</span>))
 </pre>
 </div>
 <p>
@@ -2063,7 +2145,7 @@ default に二重に指定しているのは，
          (wl-smtp-authenticate-type . <span style="color: #7FFF7F;">"login"</span>)
          )
         (<span style="color: #7FFF7F;">"example1"</span>
-         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name <a href="mailto:account%40example1.com">&lt;account@example1.com&gt;</a>"</span>)
+         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name &lt;<a href="mailto:account&#64;example1.com">account&#64;example1.com</a>&gt;"</span>)
          (wl-smtp-posting-server . <span style="color: #7FFF7F;">"smtp.example1.com"</span>)
          (wl-smtp-posting-user . <span style="color: #7FFF7F;">"your account"</span>)
          (wl-smtp-posting-port . 587)
@@ -2071,7 +2153,7 @@ default に二重に指定しているのは，
          (wl-smtp-authenticate-type . <span style="color: #7FFF7F;">"login"</span>)
          )
         (<span style="color: #7FFF7F;">"example2"</span>
-         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name <a href="mailto:account%40example2.com">&lt;account@example2.com&gt;</a>"</span>)
+         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name &lt;<a href="mailto:account&#64;example2.com">account&#64;example2.com</a>&gt;"</span>)
          (wl-smtp-posting-server . <span style="color: #7FFF7F;">"smtp.example2.com"</span>)
          (wl-smtp-posting-user . <span style="color: #7FFF7F;">"your account"</span>)
          (wl-smtp-posting-port . 587)
@@ -2081,7 +2163,7 @@ default に二重に指定しているのは，
         (<span style="color: #7FFF7F;">"ssh:smtp"</span>
          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">need ssh tunnel</span>
          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ssh -f -N -L 20025:localhost:25 smtp.server.com</span>
-         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name <a href="mailto:account%40example3.com">&lt;account@example3.com&gt;</a>"</span>)
+         (<span style="color: #7FFF7F;">"From"</span> . <span style="color: #7FFF7F;">"Your Name &lt;<a href="mailto:account&#64;example3.com">account&#64;example3.com</a>&gt;"</span>)
          (wl-smtp-posting-server . <span style="color: #7FFF7F;">"localhost"</span>)
          (wl-smtp-posting-user . <span style="color: #7FFF7F;">"your ssh account"</span>)
          (wl-smtp-posting-port . 20025)
@@ -2135,7 +2217,8 @@ from に応じて wl-from, wl-envelope-from,
 <div id="outline-container-orge28f739" class="outline-4">
 <h4 id="orge28f739">基本設定</h4>
 <div class="outline-text-4" id="text-orge28f739">
-</div><div id="outline-container-org3228f00" class="outline-5">
+</div>
+<div id="outline-container-org3228f00" class="outline-5">
 <h5 id="org3228f00">imap 関連</h5>
 <div class="outline-text-5" id="text-org3228f00">
 <p>
@@ -2183,7 +2266,7 @@ local フォルダの設定:
 folders の位置の変更
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-folders-file (concat my:d:password-store <span style="color: #7FFF7F;">"/emacs/wl-folders.gpg"</span>))
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-folders-file (concat my:d:password-store <span style="color: #7FFF7F;">"/wl-folders.gpg"</span>))
 </pre>
 </div>
 <p>
@@ -2197,11 +2280,11 @@ Drafts, Trash の置き場所
 </pre>
 </div>
 <p>
-アドレス帳 -&gt; gcontacts-get-wlを使う.
+アドレス帳
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> wl-use-petname t)
-(<span style="color: #FF7F7F;">setq</span> wl-address-file  <span style="color: #7FFF7F;">"~/.mua/Address.wl"</span>)
+(<span style="color: #FF7F7F;">setq</span> wl-address-file  <span style="color: #7FFF7F;">"~/.mua/Address"</span>)
 </pre>
 </div>
 <p>
@@ -2221,7 +2304,7 @@ GCALDaemon で LDAP サーバは使えなくなったのでコメントアウト
 パスワードの保存先
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-passwd-alist-file-name (concat my:d:password-store <span style="color: #7FFF7F;">"/emacs/wl-passwd.gpg"</span>))
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-passwd-alist-file-name (concat my:d:password-store <span style="color: #7FFF7F;">"/wl-passwd.gpg"</span>))
 </pre>
 </div>
 </div>
@@ -2419,13 +2502,6 @@ draft も折り返す
 <div class="outline-text-4" id="text-org94d465c">
 <p>
 <code>use-package</code> で設定しておいた方が良いかなぁ&#x2026;
-<code>&lt;f2&gt;</code> で Addrbook の更新
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(global-set-key [f2] 'gcontacts-update-wl-address)
-</pre>
-</div>
-<p>
 <code>C-c C-j</code> を browse-url に明け渡す
 </p>
 <div class="org-src-container">
@@ -2466,12 +2542,6 @@ draft も折り返す
 <h4 id="org7765fba">flag とフォルダを行き来する関数の追加</h4>
 <div class="outline-text-4" id="text-org7765fba">
 <p>
-以前は flag 付きフォルダを設定していたので使っていたが,
-最近は <code>mu find flag:Flagged</code> の結果を仮想フォルダにしているので
-以下の関数は使っていない.
-</p>
-
-<p>
 "=" でフラグ付きフォルダと
 実際にメッセージのあるフォルダを行き来する.
 Gmail の「スター付き」フォルダでも有効
@@ -2504,7 +2574,8 @@ Gmail の「スター付き」フォルダでも有効
 <div id="outline-container-org484fdc9" class="outline-4">
 <h4 id="org484fdc9">summary-mode の表示のカスタマイズ</h4>
 <div class="outline-text-4" id="text-org484fdc9">
-</div><div id="outline-container-org35e24c6" class="outline-5">
+</div>
+<div id="outline-container-org35e24c6" class="outline-5">
 <h5 id="org35e24c6">自分が差出人である mail は To:某 と表示</h5>
 <div class="outline-text-5" id="text-org35e24c6">
 <div class="org-src-container">
@@ -2730,7 +2801,8 @@ Gmail の「スター付き」フォルダでも有効
 <div id="outline-container-org9d69599" class="outline-4">
 <h4 id="org9d69599">メッセージ表示</h4>
 <div class="outline-text-4" id="text-org9d69599">
-</div><div id="outline-container-org44538b3" class="outline-5">
+</div>
+<div id="outline-container-org44538b3" class="outline-5">
 <h5 id="org44538b3">いったん全て非表示に</h5>
 <div class="outline-text-5" id="text-org44538b3">
 <div class="org-src-container">
@@ -2770,26 +2842,6 @@ Mew 風&#x2026;
         <span style="color: #7FFF7F;">"^Date:"</span>
         <span style="color: #7FFF7F;">"^Message-ID:"</span>
         ))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgc013465" class="outline-5">
-<h5 id="orgc013465">mime の画像表示の切り替え</h5>
-<div class="outline-text-5" id="text-orgc013465">
-<p>
-<code>M-T</code> でトグル
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">wl-summary-w3m-safe-toggle-inline-images</span> (<span style="color: #FFFF7F;">&amp;optional</span> arg)
-  <span style="color: #7FFF7F;">"Toggle displaying of all images in the message buffer.</span>
-<span style="color: #7FFF7F;">     If the prefix arg is given, all images are considered to be safe."</span>
-  (<span style="color: #FF7F7F;">interactive</span> <span style="color: #7FFF7F;">"P"</span>)
-  (<span style="color: #FF7F7F;">with-current-buffer</span> wl-message-buffer
-    (w3m-toggle-inline-images arg)))
-(eval-after-load <span style="color: #7FFF7F;">"wl-summary"</span>
-  '(define-key wl-summary-mode-map
-     <span style="color: #7FFF7F;">"\M-T"</span> 'wl-summary-w3m-safe-toggle-inline-images))
 </pre>
 </div>
 </div>
@@ -3033,10 +3085,8 @@ mu(maildir-utils)を使う. 偶にセグフォるので悩み所
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">elmo-search</span>
   <span style="color: #7FBFFF;">:bind</span> (<span style="color: #7FBFFF;">:map</span> wl-summary-mode-map
               (<span style="color: #7FFF7F;">"v"</span> . wl-quicksearch-goto-search-folder-wrapper)
-              (<span style="color: #7FFF7F;">"V"</span> . wl-quicksearch-goto-search-folder-wrapper)
               <span style="color: #7FBFFF;">:map</span> wl-folder-mode-map
-              (<span style="color: #7FFF7F;">"v"</span> . wl-quicksearch-goto-search-folder-wrapper)
-              (<span style="color: #7FFF7F;">"V"</span> . wl-quicksearch-goto-search-folder-wrapper))
+              (<span style="color: #7FFF7F;">"v"</span> . wl-quicksearch-goto-search-folder-wrapper))
   <span style="color: #7FBFFF;">:config</span>
   (elmo-search-register-engine
    'mu 'local-file
@@ -3117,211 +3167,20 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 </div>
 </div>
 </div>
-<div id="outline-container-orgee41b1b" class="outline-2">
-<h2 id="orgee41b1b">Emacs-w3m</h2>
-<div class="outline-text-2" id="text-orgee41b1b">
+<div id="outline-container-org67a2477" class="outline-2">
+<h2 id="org67a2477"><code>ace-link</code>: リンクへのジャンプ</h2>
+<div class="outline-text-2" id="text-org67a2477">
 <p>
-あまり使わないけれど, 一応設定しておく.
+主に eww でのリンクジャンプに使っていたのだけれど
+気がついたら便利に使う様になってしまった
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">w3m</span>
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> w3m-search-default-engine <span style="color: #7FFF7F;">"google"</span>
-        w3m-use-cookies t)
-  (<span style="color: #FF7F7F;">with-eval-after-load</span> <span style="color: #7FFF7F;">"w3m-search"</span>
-    '(add-to-list 'w3m-search-engine-alist
-                  '(<span style="color: #7FFF7F;">"google"</span> <span style="color: #7FFF7F;">"https://encrypted.google.com/search?num=100&amp;ie=utf-8&amp;oe=utf-8&amp;hl=ja&amp;safe=off&amp;filter=0&amp;pws=0&amp;complete=0&amp;gbv=1&amp;q=%s"</span> utf-8)))
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org4792ff8" class="outline-2">
-<h2 id="org4792ff8">補完: <code>ido</code>, <code>flx-ido</code>, <code>smex</code></h2>
-<div class="outline-text-2" id="text-org4792ff8">
-<p>
-半年ぐらい Helm を使ってみたけど
-余計な事しすぎで色々設定してもシンドかったので，
-結局使うのを止めました．
-</p>
-
-<p>
-そんな訳で，当分 <code>ido</code> と <code>smex</code> を使うことに．
-</p>
-</div>
-<div id="outline-container-org6b0690a" class="outline-3">
-<h3 id="org6b0690a"><code>ido</code> の設定</h3>
-<div class="outline-text-3" id="text-org6b0690a">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido</span>
-  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x f"</span>   . ido-find-file)
-         (<span style="color: #7FFF7F;">"C-x C-f"</span> . ido-find-file)
-         (<span style="color: #7FFF7F;">"C-x d"</span>   . ido-dired)
-         (<span style="color: #7FFF7F;">"C-x C-d"</span> . ido-dired)
-         (<span style="color: #7FFF7F;">"C-x b"</span>   . ido-switch-buffer)
-         (<span style="color: #7FFF7F;">"C-x C-b"</span> . ido-switch-buffer)
-         (<span style="color: #7FFF7F;">"C-x M-b"</span> . ibuffer))
-  <span style="color: #7FBFFF;">:config</span>
-  (ido-mode t)
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(ido-everywhere t)  &lt;- Wanderlust &#12415;&#12383;&#12356;&#12395;&#65292;&#36942;&#21435;&#12398;&#36984;&#25246;&#12434;&#35226;&#12360;&#12390;&#12356;&#12427;&#22900;&#12392;&#30456;&#24615;&#24746;&#12356;&#12398;&#12391;.</span>
-  (<span style="color: #FF7F7F;">setq</span> ido-enable-prefix nil             <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">prefix match &#12434;&#26377;&#21177;&#12395;&#12377;&#12427;&#12392;&#65292;&#20837;&#21147;&#12434;&#20808;&#38957;&#19968;&#33268;&#21487;&#33021;</span>
-        ido-confirm-unique-completion t   <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">TAB &#12391;&#21517;&#21069;&#12398;&#19968;&#33268;&#12414;&#12391;&#34892;&#12394;&#12356;&#65292;&#12381;&#12398;&#24460; RET &#12391;&#23455;&#34892;</span>
-        ido-enable-flex-matching t        <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">flex matching &#12434;&#35430;&#12377;&#38555;&#12395;&#12399; prefix &#12434;&#28961;&#21177;&#21270;&#12377;&#12427;&#12371;&#12392;</span>
-        ido-enable-dot-prefix t           <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">. &#12434; prefix &#12392;&#12375;&#12390;&#25201;&#12358;</span>
-        ido-default-file-method   'selected-window
-        ido-default-buffer-method 'selected-window
-        ido-max-directory-size 100000
-        ido-enable-tramp-completion nil
-        ido-use-faces nil                 <span style="color: #a5a5a6;">; </span><span style="color: #a5a5a6;">flx-ido &#12398; highlight &#12434;&#20351;&#12358;</span>
-        ido-ignore-extensions t
-        ido-cannot-complete-command 'ido-next-match
-        ido-save-directory-list-file (concat my:d:tmp <span style="color: #7FFF7F;">"ido.last"</span>))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#35036;&#23436;&#12391;&#28961;&#35222;&#12377;&#12427;&#25313;&#24373;&#23376;&#12398;&#36861;&#21152;</span>
-  (<span style="color: #FF7F7F;">cl-loop</span> for ext in
-           '(<span style="color: #7FFF7F;">".dvi"</span>
-             <span style="color: #7FFF7F;">".fdb_latexmk"</span>
-             <span style="color: #7FFF7F;">".fls"</span>
-             <span style="color: #7FFF7F;">".ilg"</span>
-             <span style="color: #7FFF7F;">".jqz"</span>
-             <span style="color: #7FFF7F;">".mod"</span>
-             <span style="color: #7FFF7F;">".nav"</span>
-             <span style="color: #7FFF7F;">".out"</span>
-             <span style="color: #7FFF7F;">".snm"</span>
-             <span style="color: #7FFF7F;">".synctex.gz"</span>
-             <span style="color: #7FFF7F;">".vrb"</span>
-             )
-           do (add-to-list 'completion-ignored-extensions ext))
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">ido-disable-line-trucation</span> ()
-    (set (make-local-variable 'truncate-lines) nil))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ido &#12398; buffer &#12391; skk &#12434;&#28961;&#21177;&#21270;&#12375;&#12390;&#12362;&#12367;.</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26085;&#26412;&#35486;&#12501;&#12449;&#12452;&#12523;&#21517;&#12399;, &#12392;&#12426;&#12354;&#12360;&#12378;&#32771;&#12360;&#12394;&#12356;&#12371;&#12392;&#12395;.</span>
-  (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
-  (add-hook 'ido-minibuffer-setup-hook
-            (<span style="color: #FF7F7F;">lambda</span> ()
-              (<span style="color: #FF7F7F;">when</span> (fboundp 'skk-mode-exit)
-                (skk-mode-exit))))
-  (add-hook 'ido-setup-hook
-            (<span style="color: #FF7F7F;">lambda</span> ()
-              (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-h"</span>)     'ido-delete-backward-updir)
-              (define-key ido-completion-map (kbd <span style="color: #7FFF7F;">"C-l"</span>)     'ido-delete-backward-updir)))
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">tramp &#12399;&#12461;&#12515;&#12483;&#12471;&#12517;&#12363;&#12425;&#28040;&#12377;</span>
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:ido-remove-tramp-from-cache</span> nil
-    <span style="color: #7FFF7F;">"Remove any TRAMP entries from `</span><span style="color: #FFBF7F;">ido-dir-file-cache</span><span style="color: #7FFF7F;">'."</span>
-    (<span style="color: #FF7F7F;">interactive</span>)
-    (<span style="color: #FF7F7F;">setq</span> ido-dir-file-cache
-          (cl-remove-if
-           (<span style="color: #FF7F7F;">lambda</span> (x)
-             (string-match <span style="color: #7FFF7F;">"/</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(</span><span style="color: #7FFF7F;">rsh</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">ssh</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">telnet</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">su</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">sudo</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">sshx</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">krlogin</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">ksu</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">rcp</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">scp</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">rsync</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">scpx</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">fcp</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">nc</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">ftp</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">smb</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">|</span><span style="color: #7FFF7F;">adb</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">:"</span> (car x)))
-           ido-dir-file-cache)))
-  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">ido-kill-emacs-hook</span> ()
-    (my:ido-remove-tramp-from-cache)
-    (ido-save-history))
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgd65025b" class="outline-3">
-<h3 id="orgd65025b"><code>flx-ido</code>: flex match の強化</h3>
-<div class="outline-text-3" id="text-orgd65025b">
-<p>
-曖昧マッチが非常に直感的になった．地味に便利で手放せない．
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">flx-ido</span>
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ace-link</span>
   <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:config</span>
-  (flx-ido-mode 1)
-  (<span style="color: #FF7F7F;">setq</span> flx-ido-use-faces t
-        flx-ido-threshold 10000)
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orga8e37ba" class="outline-3">
-<h3 id="orga8e37ba"><code>ido-grid</code>: 補完候補の grid 表示</h3>
-<div class="outline-text-3" id="text-orga8e37ba">
-<p>
-パッケージにある <code>ido-grid-mode</code> ではなく,
-<a href="https://github.com/larkery/ido-grid.el">larkery/ido-grid.el: reimplementation of ido-grid-mode to be simpler/faster</a>
-を使うことに.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (package-installed-p 'ido-grid)
-  (quelpa '(ido-grid
-            <span style="color: #7FBFFF;">:fetcher</span> github
-            <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"larkery/ido-grid.el"</span>)))
-(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido-grid</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> ido-grid-enabled t
-        ido-grid-start-small nil
-        ido-grid-rows 0.20)
-  (ido-grid-enable)
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgbb975a1" class="outline-3">
-<h3 id="orgbb975a1"><code>ido-recentf</code>: recentf を ido で</h3>
-<div class="outline-text-3" id="text-orgbb975a1">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">ido-recentf-open</span> ()
-  <span style="color: #7FFF7F;">"Use `</span><span style="color: #FFBF7F;">ido-completing-read</span><span style="color: #7FFF7F;">' to \\[</span><span style="color: #FFBF7F;">find-file</span><span style="color: #7FFF7F;">] a recent file"</span>
-  (<span style="color: #FF7F7F;">interactive</span>)
-  (<span style="color: #FF7F7F;">if</span> (find-file (ido-completing-read <span style="color: #7FFF7F;">"Find recent file: "</span> recentf-list))
-      (message <span style="color: #7FFF7F;">"Opening file..."</span>)
-    (message <span style="color: #7FFF7F;">"Aborting"</span>)))
-(<span style="color: #FF7F7F;">bind-key</span> <span style="color: #7FFF7F;">"C-x C-r"</span> 'ido-recentf-open)
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgac67847" class="outline-3">
-<h3 id="orgac67847"><code>ido-describe-bindings</code>: key binding を表示?</h3>
-<div class="outline-text-3" id="text-orgac67847">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">ido-describe-bindings</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:bind</span> (<span style="color: #7FBFFF;">:map</span> help-map
-              (<span style="color: #7FFF7F;">"b"</span> . ido-describe-bindings))
-  )
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org312180a" class="outline-3">
-<h3 id="org312180a"><code>smex</code></h3>
-<div class="outline-text-3" id="text-org312180a">
-<p>
-<code>M-x</code> の強化
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">smex</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"M-x"</span> . smex))
-  <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> smex-save-file (concat my:d:tmp <span style="color: #7FFF7F;">"smex-items"</span>))
-  )
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-orgab311d4" class="outline-2">
-<h2 id="orgab311d4">補完: <code>helm</code></h2>
-<div class="outline-text-2" id="text-orgab311d4">
-<p>
-幾つかの拡張で <code>helm</code> が呼ばれるので,
-インストールするけれども明示的に無効化しておく.
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">helm</span>
-  <span style="color: #7FBFFF;">:ensure</span> t
-  <span style="color: #7FBFFF;">:config</span>
-  (helm-mode -1)
+  <span style="color: #7FBFFF;">:bind</span> (<span style="color: #7FBFFF;">:map</span> eww-mode-map
+               (<span style="color: #7FFF7F;">"f"</span> . ace-link-eww)
+               <span style="color: #7FBFFF;">:map</span> eww-link-keymap
+               (<span style="color: #7FFF7F;">"f"</span> . ace-link-eww))
   )
 </pre>
 </div>
@@ -3330,7 +3189,8 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 <div id="outline-container-org292f8bd" class="outline-2">
 <h2 id="org292f8bd">校正，辞書等</h2>
 <div class="outline-text-2" id="text-org292f8bd">
-</div><div id="outline-container-orgebdf4fa" class="outline-3">
+</div>
+<div id="outline-container-orgebdf4fa" class="outline-3">
 <h3 id="orgebdf4fa">spell checker</h3>
 <div class="outline-text-3" id="text-orgebdf4fa">
 <p>
@@ -3442,13 +3302,13 @@ flyspell-mode は別途有効化しておいた方が良いのかもしれない
 howm も有効にしている，ぐらい．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:d:org</span> (concat (getenv <span style="color: #7FFF7F;">"HOME"</span>) <span style="color: #7FFF7F;">"/Dropbox/org/"</span>))
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:d:org</span> (concat (getenv <span style="color: #7FFF7F;">"HOME"</span>) <span style="color: #7FFF7F;">"/ownCloud/org/"</span>))
 (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org</span>
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x n s"</span> . org-narrow-to-subtree)
          (<span style="color: #7FFF7F;">"C-x n w"</span> . widen))
   <span style="color: #7FBFFF;">:init</span>
   <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> org-directory my:d:org                 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">Dropbox &#12395;&#20445;&#23384;&#12377;&#12427;</span>
+  (<span style="color: #FF7F7F;">setq</span> org-directory my:d:org                 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ownCloud &#12395;&#20445;&#23384;&#12377;&#12427;</span>
         org-return-follows-link t              <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">return &#12391;&#12522;&#12531;&#12463;&#12434;&#36799;&#12427;</span>
         org-startup-folded t                   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#35211;&#20986;&#12375;&#12434;&#30067;&#12435;&#12391;&#34920;&#31034;</span>
         org-startup-truncated t                <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#25240;&#12426;&#36820;&#12375;&#28961;&#12375;</span>
@@ -3788,7 +3648,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
            )
         )
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#33394;&#20184;&#12369;</span>
-  (add-hook 'org-finalize-agenda-hook
+  (add-hook 'org-agenda-finalize-hook
             (<span style="color: #FF7F7F;">lambda</span> ()
               (<span style="color: #FF7F7F;">save-excursion</span>
                 (goto-char (point-min))
@@ -3828,7 +3688,8 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 <div id="outline-container-orgb85b0f6" class="outline-3">
 <h3 id="orgb85b0f6">Babel</h3>
 <div class="outline-text-3" id="text-orgb85b0f6">
-</div><div id="outline-container-org77ec1ed" class="outline-4">
+</div>
+<div id="outline-container-org77ec1ed" class="outline-4">
 <h4 id="org77ec1ed">org-src</h4>
 <div class="outline-text-4" id="text-org77ec1ed">
 <div class="org-src-container">
@@ -3864,7 +3725,8 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 <div id="outline-container-org87df5bd" class="outline-3">
 <h3 id="org87df5bd">OrgとGoogle カレンダーの連携: <code>org-gcal</code></h3>
 <div class="outline-text-3" id="text-org87df5bd">
-</div><div id="outline-container-orgc96ae13" class="outline-4">
+</div>
+<div id="outline-container-orgc96ae13" class="outline-4">
 <h4 id="orgc96ae13">token 等の置き場所の変更</h4>
 <div class="outline-text-4" id="text-orgc96ae13">
 <div class="org-src-container">
@@ -3902,7 +3764,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
   (<span style="color: #FF7F7F;">setq</span> org-gcal-up-days    180) <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26410;&#26469; 6 month</span>
   (<span style="color: #FF7F7F;">setq</span> org-gcal-auto-archive nil)
   <span style="color: #7FBFFF;">:config</span>
-  (load (expand-file-name <span style="color: #7FFF7F;">"emacs/org-gcal.gpg"</span> my:d:password-store)))
+  (load (concat my:d:password-store <span style="color: #7FFF7F;">"/org-gcal.gpg"</span>)))
 </pre>
 </div>
 <p>
@@ -3940,13 +3802,13 @@ password-store には multiline で設定を書く．例えば以下:
                '(orgmine-note-block-begin . <span style="color: #7FFF7F;">"#+BEGIN_SRC textile"</span>))
   (add-hook 'org-mode-hook
             (<span style="color: #FF7F7F;">lambda</span> ()
-              (<span style="color: #FF7F7F;">if</span> (assoc <span style="color: #7FFF7F;">"om_project"</span> org-file-properties) (orgmine-mode))))
+              (<span style="color: #FF7F7F;">if</span> (assoc <span style="color: #7FFF7F;">"om_server"</span> org-file-properties) (orgmine-mode))))
   <span style="color: #7FBFFF;">:config</span>
   (<span style="color: #FF7F7F;">setq</span> orgmine-note-block-begin <span style="color: #7FFF7F;">"#+BEGIN_SRC gfm"</span>   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#35201;&#35519;&#25972;</span>
         orgmine-note-block-end   <span style="color: #7FFF7F;">"#+END_SRC\n"</span>
         orgmine-default-todo-keyword <span style="color: #7FFF7F;">"&#26032;&#35215;"</span>)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12469;&#12540;&#12496;&#35373;&#23450;</span>
-  (load (expand-file-name <span style="color: #7FFF7F;">"emacs/orgmine.gpg"</span> my:d:password-store)))
+  (load (concat my:d:password-store <span style="color: #7FFF7F;">"/orgmine.gpg"</span>)))
 </pre>
 </div>
 </div>
@@ -3954,7 +3816,8 @@ password-store には multiline で設定を書く．例えば以下:
 <div id="outline-container-org24423f9" class="outline-3">
 <h3 id="org24423f9">Org-Export</h3>
 <div class="outline-text-3" id="text-org24423f9">
-</div><div id="outline-container-org23717b7" class="outline-4">
+</div>
+<div id="outline-container-org23717b7" class="outline-4">
 <h4 id="org23717b7">一般設定</h4>
 <div class="outline-text-4" id="text-org23717b7">
 <div class="org-src-container">
@@ -4198,6 +4061,7 @@ html export の際に必要な yaml front matter を出力できるようにし�
 </div>
 </div>
 </div>
+
 <div id="outline-container-org30efae7" class="outline-3">
 <h3 id="org30efae7">Org-Wiki</h3>
 <div class="outline-text-3" id="text-org30efae7">
@@ -4252,7 +4116,7 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">howm</span>
   <span style="color: #7FBFFF;">:if</span> (<span style="color: #FF7F7F;">and</span> (my:dpkg-status <span style="color: #7FFF7F;">"howm"</span>)
-           (executable-find <span style="color: #7FFF7F;">"rg"</span>))
+           (executable-find <span style="color: #7FFF7F;">"ag"</span>))
   <span style="color: #7FBFFF;">:diminish</span> howm-mode
   <span style="color: #7FBFFF;">:bind</span> (<span style="color: #7FBFFF;">:map</span> howm-mode-map
               (<span style="color: #7FFF7F;">"C-c C-c"</span>     . nil)
@@ -4262,12 +4126,12 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
                               (<span style="color: #FF7F7F;">setq</span> truncate-lines t)))
   <span style="color: #7FBFFF;">:config</span>
   <span style="color: #a5a5a6;">;;; </span><span style="color: #a5a5a6;">&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12398;&#35373;&#23450;</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12513;&#12514;&#12398;&#20869;&#23481;&#12399; Dropbox &#12391;&#21516;&#26399;&#12377;&#12427;&#12371;&#12392;&#12395;</span>
-  (<span style="color: #FF7F7F;">setq</span> howm-directory <span style="color: #7FFF7F;">"~/Dropbox/org"</span>)
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12513;&#12514;&#12398;&#20869;&#23481;&#12399; ownCloud &#12391;&#21516;&#26399;&#12377;&#12427;&#12371;&#12392;&#12395;</span>
+  (<span style="color: #FF7F7F;">setq</span> howm-directory <span style="color: #7FFF7F;">"~/ownCloud/org"</span>)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12513;&#12491;&#12517;&#12540;&#12392;&#23653;&#27508;&#12434;&#26908;&#32034;&#23550;&#35937;&#12363;&#12425;&#38500;&#22806;&#12377;&#12427;&#12383;&#12417;&#12395;&#21029;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12408;</span>
-  (<span style="color: #FF7F7F;">setq</span> howm-keyword-file <span style="color: #7FFF7F;">"~/Dropbox/.howm/keys"</span>
-        howm-history-file <span style="color: #7FFF7F;">"~/Dropbox/.howm/history"</span>
-        howm-menu-file <span style="color: #7FFF7F;">"~/Dropbox/.howm/menu"</span>)
+  (<span style="color: #FF7F7F;">setq</span> howm-keyword-file <span style="color: #7FFF7F;">"~/ownCloud/howm/keys"</span>
+        howm-history-file <span style="color: #7FFF7F;">"~/ownCloud/howm/history"</span>
+        howm-menu-file <span style="color: #7FFF7F;">"~/ownCloud/howm/menu"</span>)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12513;&#12514;&#12501;&#12449;&#12452;&#12523;&#12399;&#26085;&#20184;&#26178;&#21051;&#27598;&#12395;&#20998;&#38626;</span>
   (<span style="color: #FF7F7F;">setq</span> howm-file-name-format <span style="color: #7FFF7F;">"%Y%m%d-%H%M%S.howm"</span>)
   <span style="color: #a5a5a6;">;;;  </span><span style="color: #a5a5a6;">&#12513;&#12514;&#12399;org&#12391;&#26360;&#12367;</span>
@@ -4279,21 +4143,29 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">title header &#12399; "*"</span>
   (<span style="color: #FF7F7F;">setq</span> howm-view-title-header <span style="color: #7FFF7F;">"*"</span>)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">:config</span>
-  (<span style="color: #FF7F7F;">when</span> (locate-library <span style="color: #7FFF7F;">"elscreen-howm"</span>)
-    (<span style="color: #FF7F7F;">require</span> '<span style="color: #FFBF7F;">elscreen-howm</span> nil 'noerror))
+  (<span style="color: #FF7F7F;">use-package</span> <span style="color: #7FFF7F;">"elscreen-howm"</span>)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#33394;&#20184;&#12369;&#12399; org-mode &#20219;&#12379;: howm &#12398; font-lock &#12434;&#28961;&#21177;&#21270;</span>
   (<span style="color: #FF7F7F;">setq</span> howm-use-color nil)
   <span style="color: #a5a5a6;">;;; </span><span style="color: #a5a5a6;">&#20197;&#19979;&#65292;&#27770;&#12414;&#12426;&#25991;&#21477;</span>
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26908;&#32034;&#12391;&#22823;&#25991;&#23383;&#23567;&#25991;&#23383;&#12434;&#21306;&#21029;&#12375;&#12394;&#12356;</span>
   (<span style="color: #FF7F7F;">setq</span> howm-keyword-case-fold-search t)
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">grep &#12398; &#20195;&#12431;&#12426;&#12395; rg (ripgrep) &#12434;&#20351;&#12358;</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">grep &#12398; &#20195;&#12431;&#12426;&#12395; ag &#12434;&#20351;&#12358;</span>
   (<span style="color: #FF7F7F;">setq</span> howm-view-use-grep t
-        howm-view-grep-command <span style="color: #7FFF7F;">"rg"</span>
-        howm-view-grep-option <span style="color: #7FFF7F;">"-nH --no-heading --color never"</span>
+        howm-view-grep-command <span style="color: #7FFF7F;">"ag"</span>
+        howm-view-grep-option <span style="color: #7FFF7F;">"--nocolor --nogroup"</span>
         howm-view-grep-extended-option nil
         howm-view-grep-fixed-option <span style="color: #7FFF7F;">"-F"</span>
         howm-view-grep-expr-option nil
         howm-view-grep-file-stdin-option nil)
+  (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:howm:add-dev-null</span> (args)
+    (<span style="color: #FF7F7F;">let</span> ((str   (car args))               <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26908;&#32034;&#25991;&#23383;&#21015;</span>
+          (files (nth 1 args)))            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12501;&#12449;&#12452;&#12523;&#12522;&#12473;&#12488;</span>
+      (<span style="color: #FF7F7F;">when</span> (= 1 (length files))           <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#21336;&#19968;&#12501;&#12449;&#12452;&#12523;&#65311;</span>
+        (<span style="color: #FF7F7F;">if</span> (file-regular-p (car files))   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#36890;&#24120;&#12501;&#12449;&#12452;&#12523;&#65311;</span>
+            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#21336;&#19968;&#12398;&#36890;&#24120;&#12501;&#12449;&#12452;&#12523;&#12364;&#25351;&#23450;&#12373;&#12428;&#12383;&#22580;&#21512;&#12395; /dev/null &#12434;&#36861;&#21152;</span>
+            (<span style="color: #FF7F7F;">setq</span> files (append files '(<span style="color: #7FFF7F;">"/dev/null"</span>)))))
+      (list str files)))
+  (advice-add 'howm-real-grep-single <span style="color: #7FBFFF;">:filter-args</span> #'my:howm:add-dev-null)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26908;&#32034;&#23550;&#35937;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12398;&#36861;&#21152;...&#12392;&#12426;&#12354;&#12360;&#12378;&#36861;&#21152;&#12375;&#12394;&#12356;&#12371;&#12392;&#12395;&#65294;</span>
   (<span style="color: #FF7F7F;">setq</span> howm-search-other-dir nil)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#26908;&#32034;&#23550;&#35937;&#22806;&#12398;&#12501;&#12449;&#12452;&#12523;: ad hoc &#12395;&#12393;&#12435;&#12393;&#12435;&#22679;&#12360;&#12390;&#12356;&#12367;&#12394;&#12353;...</span>
@@ -4357,20 +4229,20 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
 そろそろテーマにした方が良い，とは思ってはいる．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:load-window-config</span> ()
-  <span style="color: #7FFF7F;">"load window-system specific settings"</span>
-  (<span style="color: #FF7F7F;">interactive</span>)
-  (<span style="color: #FF7F7F;">when</span> window-system
-    (<span style="color: #FF7F7F;">progn</span>
-      (set-face-attribute 'default nil
-                          <span style="color: #7FBFFF;">:family</span> <span style="color: #7FFF7F;">"SeptemberMMono"</span>
-                          <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">:family "Ricty Discord for Powerline"</span>
-                          <span style="color: #7FBFFF;">:height</span> 135) <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">135pt</span>
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(set-fontset-font nil 'japanese-jisx0208</span>
-      <span style="color: #a5a5a6;">;;                   </span><span style="color: #a5a5a6;">(font-spec :family "SeptemberMMono"))</span>
-      <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(setq face-font-rescale-alist '(("September.*" . 1)))</span>
-      (set-background-color <span style="color: #7FFF7F;">"#242424"</span>)
-      )))
+<pre class="src src-emacs-lisp"><span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(defun my:load-window-config ()</span>
+<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">"load window-system specific settings"</span>
+<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">(interactive)</span>
+<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">(when window-system</span>
+<span style="color: #a5a5a6;">;;     </span><span style="color: #a5a5a6;">(progn</span>
+<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">(set-face-attribute 'default nil</span>
+<span style="color: #a5a5a6;">;;                           </span><span style="color: #a5a5a6;">:family "SeptemberMMono"</span>
+<span style="color: #a5a5a6;">;;                           </span><span style="color: #a5a5a6;">;; :family "Ricty Discord for Powerline"</span>
+<span style="color: #a5a5a6;">;;                           </span><span style="color: #a5a5a6;">:height 135) ;; 135pt</span>
+<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">;; (set-fontset-font nil 'japanese-jisx0208</span>
+<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">;;                   (font-spec :family "SeptemberMMono"))</span>
+<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">;; (setq face-font-rescale-alist '(("September.*" . 1)))</span>
+<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">(set-background-color "#242424")</span>
+<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">)))</span>
 (<span style="color: #FF7F7F;">setq</span> frame-background-mode (frame-parameter nil 'background-mode))
 (<span style="color: #FF7F7F;">setq</span> default-frame-alist
       '(
@@ -4378,8 +4250,8 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
         (scroll-bar-foreground-color . <span style="color: #7FFF7F;">"red"</span>)
         (vertical-scroll-bars . right)
         ))
-(<span style="color: #FF7F7F;">when</span> (window-system)
-  (my:load-window-config))
+<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(when (window-system)</span>
+<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">(my:load-window-config))</span>
 </pre>
 </div>
 <p>
@@ -4408,8 +4280,8 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
  '(font-lock-variable-name-face        ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> ))))
  '(font-lock-warning-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7FBF"</span> <span style="color: #7FBFFF;">:bold</span> t ))))
  '(fringe                              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#282828"</span> ))))
- '(hl-line                             ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
- '(highlight                           ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4C4C4C"</span> ))))
+ '(hl-line                             ((t (<span style="color: #7FBFFF;">:inherit</span> highlight <span style="color: #7FBFFF;">:underline</span> t ))))
+ '(highlight                           ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#333333"</span> ))))
  '(minibuffer-prompt                   ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#BF7FFF"</span> ))))
  '(mode-line                           ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#222244"</span> ))))
  '(mode-line-inactive                  ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#666666"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#999999"</span> <span style="color: #7FBFFF;">:bold</span> nil ))))
@@ -4458,27 +4330,27 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
  '(git-gutter:modified               ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FFFF4C"</span>))))
  '(git-gutter:unchanged              ((t (<span style="color: #7FBFFF;">:inherit</span> default ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: header-line</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-source-header               ((t (:foreground "#F6F3E8" :background "#224488" :bold t))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-visible-mark                ((t (:inherit highlight ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-selection                   ((t (:inherit highlight ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-selection-line              ((t (:inherit highlight ))))</span>
+ '(helm-source-header               ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#F6F3E8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#224488"</span> <span style="color: #7FBFFF;">:bold</span> t))))
+ '(helm-visible-mark                ((t (<span style="color: #7FBFFF;">:inherit</span> highlight ))))
+ '(helm-selection                   ((t (<span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#4c4c4c"</span> ))))
+ '(helm-selection-line              ((t (<span style="color: #7FBFFF;">:inherit</span> highlight ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: directory</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-directory                ((t (:inherit dired-directory ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-bookmark-directory          ((t (:inherit helm-ff-directory ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-buffer-directory            ((t (:inherit helm-ff-directory ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-dotted-directory         ((t (:inherit helm-ff-directory ))))</span>
+ '(helm-ff-directory                ((t (<span style="color: #7FBFFF;">:inherit</span> dired-directory ))))
+ '(helm-bookmark-directory          ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-directory ))))
+ '(helm-buffer-directory            ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-directory ))))
+ '(helm-ff-dotted-directory         ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-directory ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: file</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-file                     ((t (:inherit default ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-bookmark-file               ((t (:inherit helm-ff-file ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-buffer-file                 ((t (:inherit helm-ff-file ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-grep-file                   ((t (:inherit helm-ff-file ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-etags-file                  ((t (:inherit helm-ff-file ))))</span>
+ '(helm-ff-file                     ((t (<span style="color: #7FBFFF;">:inherit</span> default ))))
+ '(helm-bookmark-file               ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
+ '(helm-buffer-file                 ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
+ '(helm-grep-file                   ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
+ '(helm-etags-file                  ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file ))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: file + executable</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-executable               ((t (:inherit helm-ff-file :foreground "#7FFF7F" :bold t))))</span>
+ '(helm-ff-executable               ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-file <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFF7F"</span> <span style="color: #7FBFFF;">:bold</span> t))))
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">helm: symlink</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-symlink                  ((t (:inherit default :foreground "#7FFFFF" :bold t))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-dotted-symlink-directory ((t (:inherit helm-ff-symlink ))))</span>
- <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(helm-ff-invalid-symlink          ((t (:inherit default :foreground "#FF7F7F" ))))</span>
+ '(helm-ff-symlink                  ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7FFFFF"</span> <span style="color: #7FBFFF;">:bold</span> t))))
+ '(helm-ff-dotted-symlink-directory ((t (<span style="color: #7FBFFF;">:inherit</span> helm-ff-symlink ))))
+ '(helm-ff-invalid-symlink          ((t (<span style="color: #7FBFFF;">:inherit</span> default <span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#FF7F7F"</span> ))))
  <span style="color: #a5a5a6;">;;; </span><span style="color: #a5a5a6;">howm</span>
  '(howm-mode-keyword-face            ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#7F7FFF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
  '(howm-mode-title-face              ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#4CFFFF"</span> <span style="color: #7FBFFF;">:background</span> nil ))))
@@ -4511,6 +4383,12 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header3-face  ((t (:inherit outline-3))))</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header4-face  ((t (:inherit outline-4))))</span>
  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">'(review-mode-header5-face  ((t (:inherit outline-5))))</span>
+ <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">avy</span>
+ '(avy-background-face             ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#333333"</span> ))))
+ '(avy-lead-face                   ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#f6f3e8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#002400"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:box</span> t))))
+ '(avy-lead-face-0                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#020202"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#ffff00"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:box</span> t))))
+ '(avy-lead-face-1                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#f6f3e8"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#240024"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:box</span> t))))
+ '(avy-lead-face-2                 ((t (<span style="color: #7FBFFF;">:foreground</span> <span style="color: #7FFF7F;">"#020202"</span> <span style="color: #7FBFFF;">:background</span> <span style="color: #7FFF7F;">"#00ffff"</span> <span style="color: #7FBFFF;">:bold</span> t <span style="color: #7FBFFF;">:box</span> t))))
  )
 </pre>
 </div>
@@ -4528,10 +4406,10 @@ tdiary-mode をちまちまと弄っている所
             <span style="color: #7FBFFF;">:fetcher</span> github
             <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"uwabami/tdiary-mode"</span>)))
 (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">tdiary-mode</span>
-  <span style="color: #7FBFFF;">:if</span> (file-directory-p <span style="color: #7FFF7F;">"~/Dropbox/tdiary"</span>)
+  <span style="color: #7FBFFF;">:if</span> (file-directory-p <span style="color: #7FFF7F;">"~/ownCloud/tdiary"</span>)
   <span style="color: #7FBFFF;">:commands</span> (tdiary-mode tdiary-new tdiary-new-directory tdiary-replace)
   <span style="color: #7FBFFF;">:config</span>
-  (load (expand-file-name <span style="color: #7FFF7F;">"emacs/tdiary-mode.gpg"</span> my:d:password-store))
+  (load (concat my:d:password-store <span style="color: #7FFF7F;">"/tdiary-mode.gpg"</span>))
   (<span style="color: #FF7F7F;">setq</span> tdiary-browser-function 'browser-url
         tdiary-coding-system 'utf-8-dos
         tdiary-style-mode 'rd-mode
@@ -4543,10 +4421,78 @@ tdiary-mode をちまちまと弄っている所
 </div>
 </div>
 </div>
+<div id="outline-container-orge4e94c6" class="outline-2">
+<h2 id="orge4e94c6">MoinMoin: <code>moinmoin-mode</code>, <code>moomin.el</code></h2>
+<div class="outline-text-2" id="text-orge4e94c6">
+<p>
+Debian Wiki や職場の Wiki を編集するための
+MoinMoin の設定. 編集には <a href="https://github.com/lurdan/moomin-el">tototoshi/moomin-el: Edit MoinMoin with Emacs</a> を使う.
+</p>
+</div>
+<div id="outline-container-orgc059fc5" class="outline-3">
+<h3 id="orgc059fc5"><code>moinmoin-mode</code></h3>
+<div class="outline-text-3" id="text-orgc059fc5">
+<p>
+MoinMoin 本体の moinmoin-mode 自体は古くて
+screen-lines に依存していたりするので folk して更新中.
+<a href="https://github.com/uwabami/moinmoin-mode">uwabami/moinmoin-mode: Fork from EmacsForMoinMoin, for Emacs &gt;= 25</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (locate-library <span style="color: #7FFF7F;">"moinmoin-mode"</span>)
+  (quelpa '(moinmoin-mode
+            <span style="color: #7FBFFF;">:fetcher</span> github
+            <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"uwabami/moinmoin-mode"</span>)))
+(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">moinmoin-mode</span>)
+</pre>
+</div>
+<p>
+そのうち気になる所を弄る，ということで．
+</p>
+</div>
+</div>
+<div id="outline-container-org46391ef" class="outline-3">
+<h3 id="org46391ef"><code>moomin</code>: <code>emacs-request + helm + moinmoin-mode</code></h3>
+<div class="outline-text-3" id="text-org46391ef">
+<p>
+最新の奴だと動かなかったので folk して多少弄った版を使うことに.
+<a href="https://github.com/uwabami/moomin-el">uwabami/moomin-el: Edit MoinMoin with Emacs</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">unless</span> (locate-library <span style="color: #7FFF7F;">"moomin"</span>)
+  (quelpa '(moomin
+            <span style="color: #7FBFFF;">:fetcher</span> github
+            <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"uwabami/moomin-el"</span>)))
+(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">moomin</span>
+  <span style="color: #7FBFFF;">:if</span> (file-directory-p my:d:password-store)
+  <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x w"</span> . helm-moomin)
+         <span style="color: #7FBFFF;">:map</span> moinmoin-mode-map
+         (<span style="color: #7FFF7F;">"C-c C-c"</span> . moomin-save-current-buffer)
+         (<span style="color: #7FFF7F;">"C-c C-s"</span> . moomin-save-current-buffer)
+         (<span style="color: #7FFF7F;">"C-c C-o"</span> . moomin-browse-current-page)
+         (<span style="color: #7FFF7F;">"C-c C-r"</span> . moomin-reload-current-page))
+  <span style="color: #7FBFFF;">:config</span>
+  (load (concat my:d:password-store <span style="color: #7FFF7F;">"/moomin.gpg"</span>))
+  (<span style="color: #FF7F7F;">setq</span> moomin-history-file (concat my:d:tmp <span style="color: #7FFF7F;">"moomin_history"</span>))
+  )
+</pre>
+</div>
+</div>
+</div>
+</div>
 <div id="outline-container-org155c83d" class="outline-2">
 <h2 id="org155c83d">プログラム環境</h2>
 <div class="outline-text-2" id="text-org155c83d">
-</div><div id="outline-container-orgc3455b7" class="outline-3">
+</div>
+<div id="outline-container-orgb4b730c" class="outline-3">
+<h3 id="orgb4b730c">折り畳み: <code>outline-magic</code></h3>
+<div class="outline-text-3" id="text-orgb4b730c">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">outline-magic</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc3455b7" class="outline-3">
 <h3 id="orgc3455b7">VCS: <code>magit</code></h3>
 <div class="outline-text-3" id="text-orgc3455b7">
 <p>
@@ -4703,6 +4649,54 @@ magit は Emacs の Git Frontend.
   )
 </pre>
 </div>
+<p>
+<code>rdoc-mode</code>: 本体の方はどうも動かないなぁ&#x2026;
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defface</span> <span style="color: #7F7FFF;">rdoc-header-1</span>
+  '((t (<span style="color: #7FBFFF;">:inherit</span> outline-1)))
+  <span style="color: #7FFF7F;">"rdoc mode header level 1"</span>)
+
+(<span style="color: #FF7F7F;">defface</span> <span style="color: #7F7FFF;">rdoc-header-2</span>
+  '((t (<span style="color: #7FBFFF;">:inherit</span> outline-2)))
+  <span style="color: #7FFF7F;">"rdoc mode header level 2"</span>)
+
+(<span style="color: #FF7F7F;">defface</span> <span style="color: #7F7FFF;">rdoc-header-3</span>
+  '((t (<span style="color: #7FBFFF;">:inherit</span> outline-3)))
+  <span style="color: #7FFF7F;">"rdoc mode header level 3"</span>)
+
+(<span style="color: #FF7F7F;">defface</span> <span style="color: #7F7FFF;">rdoc-header-4</span>
+  '((t (<span style="color: #7FBFFF;">:inherit</span> outline-4)))
+  <span style="color: #7FFF7F;">"rdoc mode header level 4"</span>)
+
+(<span style="color: #FF7F7F;">define-generic-mode</span> '<span style="color: #BF7FFF;">rdoc-mode</span>
+  ()                    <span style="color: #a5a5a6;">;</span><span style="color: #a5a5a6;">comment-list</span>
+  '()                   <span style="color: #a5a5a6;">;</span><span style="color: #a5a5a6;">keyword-list</span>
+  '(                    <span style="color: #a5a5a6;">;</span><span style="color: #a5a5a6;">font-lock-list</span>
+    (<span style="color: #7FFF7F;">"^=[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">=].*"</span>                                             . 'rdoc-header-1)
+    (<span style="color: #7FFF7F;">"^==[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">=].*"</span>                                            . 'rdoc-header-2)
+    (<span style="color: #7FFF7F;">"^===[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">=].*"</span>                                           . 'rdoc-header-3)
+    (<span style="color: #7FFF7F;">"^====[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">=].*"</span>                                          . 'rdoc-header-4)
+    (<span style="color: #7FFF7F;">"^[\\*#]\\{1,9\\} "</span>                                    . 'bold)
+    (<span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(?:</span><span style="color: #7FFF7F;">[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">a-zA-Z0-9]</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">?\\*[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">*]+\\*</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(?:</span><span style="color: #7FFF7F;">[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">a-zA-Z0-9]</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span> . 'bold)
+    (<span style="color: #7FFF7F;">"</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(?:</span><span style="color: #7FFF7F;">[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">a-zA-Z0-9]</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">?\\_[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">_]+\\_</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">(?:</span><span style="color: #7FFF7F;">[</span><span style="color: #7FFFFF; font-weight: bold;">^</span><span style="color: #7FFF7F;">a-zA-Z0-9]</span><span style="color: #A5EE4C; font-weight: bold;">\\</span><span style="color: #7F7FFF; font-weight: bold;">)</span><span style="color: #7FFF7F;">"</span> . 'italic)
+    )
+  '(<span style="color: #7FFF7F;">"README_FOR_APP"</span> <span style="color: #7FFF7F;">"\\.rdoc$"</span>)    <span style="color: #a5a5a6;">;</span><span style="color: #a5a5a6;">auto-mode-list</span>
+  '((<span style="color: #FF7F7F;">lambda</span> () (auto-fill-mode t))) <span style="color: #a5a5a6;">;</span><span style="color: #a5a5a6;">function-list</span>
+  <span style="color: #7FFF7F;">"Major mode for editing RDOC files."</span>)
+</pre>
+</div>
+<p>
+<code>rd-mode</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">rd-mode</span>
+  <span style="color: #7FBFFF;">:mode</span> <span style="color: #7FFF7F;">"\\.rd$"</span>
+  <span style="color: #7FBFFF;">:config</span>
+  (add-hook 'rd-mode-hook
+            'rd-show-other-block-all))
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-org8712e7f" class="outline-3">
@@ -4805,11 +4799,10 @@ Debian パッケージ版を使う．やっている事は
                               <span style="color: #7FFF7F;">"LATEXENC=%(LATEXENC) latexmk -gg %t"</span>
                               TeX-run-TeX nil (latex-mode) <span style="color: #7FBFFF;">:help</span> <span style="color: #7FFF7F;">"Run Latexmk"</span>)))))
   (<span style="color: #FF7F7F;">setq</span> TeX-source-correlate-method 'synctex
-        TeX-view-program-selection
-        '((output-dvi <span style="color: #7FFF7F;">"xdvi"</span>)        <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">built-in</span>
-          (output-pdf <span style="color: #7FFF7F;">"Zathura"</span>)     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">built-in</span>
-          (output-html <span style="color: #7FFF7F;">"xdg-open"</span>))  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">built-in</span>
         TeX-source-correlate-start-server t
+        TeX-view-program-selection '((output-dvi <span style="color: #7FFF7F;">"xdvi"</span>)
+                                     (output-pdf <span style="color: #7FFF7F;">"Evince"</span>)
+                                     (output-html <span style="color: #7FFF7F;">"xdg-open"</span>))
         TeX-auto-save t
         TeX-auto-local  (expand-file-name <span style="color: #7FFF7F;">"auctex/auto"</span> my:d:tmp)
         TeX-style-local (expand-file-name <span style="color: #7FFF7F;">"auctex/style"</span> my:d:tmp)
@@ -4867,6 +4860,20 @@ Debian パッケージ版を使う．やっている事は
 </div>
 </div>
 </div>
+
+<div id="outline-container-org56b5470" class="outline-3">
+<h3 id="org56b5470">Common Lisp: <code>slime</code></h3>
+<div class="outline-text-3" id="text-org56b5470">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">slime</span>
+  <span style="color: #7FBFFF;">:commands</span> slime
+  <span style="color: #7FBFFF;">:config</span>
+  (<span style="color: #FF7F7F;">setq</span> inferior-lisp-program <span style="color: #7FFF7F;">"/usr/bin/sbcl"</span>)
+  )
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-org24a422e" class="outline-2">
 <h2 id="org24a422e">基本的なキーバインドの設定 <code>[/]</code></h2>
@@ -4880,6 +4887,7 @@ Debian パッケージ版を使う．やっている事は
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">bind-keys*</span>
+ (<span style="color: #7FFF7F;">"&lt;f2&gt;"</span>    . eww)
  (<span style="color: #7FFF7F;">"C-h"</span>     . backward-delete-char)
  (<span style="color: #7FFF7F;">"C-c M-a"</span> . align-regexp)
  (<span style="color: #7FFF7F;">"C-c ;"</span>   . comment-region)
@@ -4904,7 +4912,7 @@ Debian パッケージ版を使う．やっている事は
 </p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defmacro</span> <span style="color: #BF7FFF;">my:diminish</span> (file mode <span style="color: #FFFF7F;">&amp;optional</span> new-name)
-  <span style="color: #7FFF7F;">"original: </span><span style="text-decoration: underline;"><a href="https://github.com/larstvei/dot-emacs/blob/master/init.org">https://github.com/larstvei/dot-emacs/blob/master/init.org</a></span><span style="color: #7FFF7F;">"</span>
+  <span style="color: #7FFF7F;">"original: </span><span style="text-decoration: underline;">https://github.com/larstvei/dot-emacs/blob/master/init.org</span><span style="color: #7FFF7F;">"</span>
   `(<span style="color: #FF7F7F;">with-eval-after-load</span> ,file
      (diminish ,mode ,new-name)))
 (<span style="color: #FF7F7F;">my:diminish</span> <span style="color: #7FFF7F;">"isearch"</span>          'isearch-mode)
@@ -4932,6 +4940,14 @@ Debian パッケージ版を使う．やっている事は
 <p>
 <a href="https://github.com/milkypostman/powerline">milkypostman/powerline: emacs powerline</a> で modeline を良い感じに表示する．
 </p>
+</div>
+
+<div id="outline-container-org7d9d2ab" class="outline-3">
+<h3 id="org7d9d2ab">ddskk の表示のカスタマイズ</h3>
+<div class="outline-text-3" id="text-org7d9d2ab">
+<p>
+以下, <strong>obsolete</strong>
+</p>
 
 <p>
 SKK の状態がヒョコヒョコ動くのが嫌なので，
@@ -4955,8 +4971,13 @@ ddskk そのものに modeline を更新する関数があるので無効化す�
   (force-mode-line-update t))
 </pre>
 </div>
+</div>
+</div>
+<div id="outline-container-org298b261" class="outline-3">
+<h3 id="org298b261">powerline 本体の設定．</h3>
+<div class="outline-text-3" id="text-org298b261">
 <p>
-powerline 本体の設定．default-theme をベースに見たい物だけ表示するようにしてみた．
+default-theme をベースに見たい物だけ表示するようにしてみた．
 変更点として,
 </p>
 <ul class="org-ul">
@@ -4976,13 +4997,12 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
 (<span style="color: #FF7F7F;">defpowerline</span> my:powerline-vc
   (<span style="color: #FF7F7F;">when</span> (<span style="color: #FF7F7F;">and</span> (buffer-file-name (current-buffer)) vc-mode)
     (format <span style="color: #7FFF7F;">"%s%s"</span>
-            <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(char-to-string #x26d3)</span>
             (char-to-string #x26a1)
             (format-mode-line '(vc-mode vc-mode)))))
   (<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:powerline-theme</span> ()
     <span style="color: #7FFF7F;">"Setup customize theme."</span>
     (<span style="color: #FF7F7F;">interactive</span>)
-    (my:skk-modeline-input-mode)
+    <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(my:skk-modeline-input-mode)</span>
     (<span style="color: #FF7F7F;">setq-default</span>
      mode-line-format
      '(<span style="color: #7FFF7F;">"%e"</span>
@@ -5000,8 +5020,8 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
                                                 (cdr powerline-default-separator-dir))))
                (lhs (list
                      (powerline-raw (substring skk-modeline-input-mode 2 -1) nil 'l)
-                     (powerline-raw <span style="color: #7FFF7F;">"%*"</span> mode-line 'l)
                      (powerline-raw mode-line-mule-info mode-line 'l)
+                     (powerline-raw <span style="color: #7FFF7F;">"%*"</span> mode-line 'l)
                      (powerline-buffer-id mode-line-buffer-id 'l)
                      (powerline-raw <span style="color: #7FFF7F;">" "</span>)
                      (funcall separator-left mode-line face1)
@@ -5011,7 +5031,6 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
                      (powerline-raw <span style="color: #7FFF7F;">" "</span> face1)
                      (funcall separator-left face1 face2)
                      (my:powerline-vc face2 'r)
-                     <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(powerline-vc face2 'r)</span>
                      ))
                (rhs (list
                      (powerline-raw global-mode-string face2 'r)
@@ -5029,6 +5048,7 @@ powerline 本体の設定．default-theme をベースに見たい物だけ表�
   (my:powerline-theme)
   )
 </pre>
+</div>
 </div>
 </div>
 </div>
