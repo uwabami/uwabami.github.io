@@ -99,14 +99,15 @@ apt 万歳
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">! /bin/</span><span style="color: #FF7F7F;">bash</span>
 <span style="color: #7F7FFF;">URL</span>=()
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">adaway default</span>
 <span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://adaway.org/hosts.txt"</span>)
-<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://hosts-file.net/ad_servers.txt"</span>)
-<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&amp;showintro=0&amp;mimetype=plaintext"</span>)
 <span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"http://winhelp2002.mvps.org/hosts.txt"</span>)
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&amp;showintro=0&amp;mimetype=plaintext"</span>)
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://hosts-file.net/ad_servers.txt"</span>)
 <span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://sites.google.com/site/hosts2ch/ja"</span>)
-<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://sites.google.com/site/cosmonoteshosts/hosts_Ultimate.txt"</span>)
-<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://raw.githubusercontent.com/multiverse2011/adawaylist-jp/master/hosts"</span>)
-
+<span style="color: #7F7FFF;">URL</span>=(<span style="color: #7FFF7F;">"${URL[@]}"</span> <span style="color: #7FFF7F;">"https://warui.intaa.net/adhosts/hosts.txt"</span>)
+<span style="color: #a5a5a6;">#</span>
+<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"download hosts list"</span>
 <span style="color: #FF7F7F;">for</span> (( <span style="color: #7F7FFF;">i</span> = 0; i &lt; ${#<span style="color: #7F7FFF;">URL</span>[@]}; ++i )); <span style="color: #FF7F7F;">do</span>
     <span style="color: #7FBFFF;">echo</span> wget -q <span style="color: #7FFF7F;">"${URL[$i]}"</span> -O tmp-$<span style="color: #7F7FFF;">i</span>.txt
     wget -q <span style="color: #7FFF7F;">"${URL[$i]}"</span> -O tmp-$<span style="color: #7F7FFF;">i</span>.txt
@@ -121,16 +122,17 @@ apt 万歳
         nkf -w -Lu -d &gt; tmp-$<span style="color: #7F7FFF;">i</span>-list.txt
     rm -f tmp-$<span style="color: #7F7FFF;">i</span>.txt
 <span style="color: #FF7F7F;">done</span>
-
-
+<span style="color: #a5a5a6;">#</span>
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"merge tmp list"</span>
 <span style="color: #FF7F7F;">for</span> f<span style="color: #FF7F7F;"> in</span> <span style="font-weight: bold;">`/bin/ls -1 tmp-?-list.txt`</span>; <span style="color: #FF7F7F;">do</span>
-    cat $<span style="color: #7F7FFF;">f</span> &gt;&gt; tmp-list.txt
+    cat $<span style="color: #7F7FFF;">f</span> | grep -v ^# &gt;&gt; tmp-list.txt
     rm -f $<span style="color: #7F7FFF;">f</span>
 <span style="color: #FF7F7F;">done</span>
 cat tmp-list.txt | <span style="color: #7FFF7F;">\</span>
     sed <span style="color: #7FFF7F;">'/^$/d'</span> | <span style="color: #7FFF7F;">\</span>
+    sed -e <span style="color: #7FFF7F;">'s/#.*$//g'</span> | <span style="color: #7FFF7F;">\</span>
     sed <span style="color: #7FFF7F;">'s/127.0.0.1/0.0.0.0/g'</span> | <span style="color: #7FFF7F;">\</span>
+    sed <span style="color: #7FFF7F;">'/^0\.0\.0\.0 *$/d'</span> | <span style="color: #7FFF7F;">\</span>
     sort -u &gt; adaway.txt
 wget -q https://warui.intaa.net/adhosts/whitelist.txt -O tmp-white.txt
 cat tmp-white.txt | <span style="color: #FF7F7F;">while </span><span style="color: #7FBFFF;">read</span> line
@@ -138,7 +140,7 @@ cat tmp-white.txt | <span style="color: #FF7F7F;">while </span><span style="colo
     sed -i -e <span style="color: #7FFF7F;">'/$line/d'</span> adaway.txt
 <span style="color: #FF7F7F;">done</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">whitelist</span>
-sed -i -e <span style="color: #7FFF7F;">'/apis.google.com/d'</span> adaway.txt
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sed -i -e '/apis.google.com/d' adaway.txt</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sed -i -e '/google-analytics.l.google.com/d' adaway.txt</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sed -i -e '/google-analytics.com/d' adaway.txt</span>
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">ipv6</span>

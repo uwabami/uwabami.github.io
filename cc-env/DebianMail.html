@@ -18,15 +18,15 @@ permalink: /cc-env/DebianMail.html
 <ul>
 <li><a href="#org7abcb25">mbsync/isync</a>
 <ul>
-<li><a href="#org291dcf9">インストール</a></li>
-<li><a href="#orga5915e5">設定</a></li>
-<li><a href="#org479f002">cron での動作</a></li>
+<li><a href="#org08d2ab0">インストール</a></li>
+<li><a href="#org09b28cd">設定</a></li>
+<li><a href="#org31e96fb">cron での動作</a></li>
 </ul>
 </li>
 <li><a href="#org9e83b12">dovecot</a>
 <ul>
-<li><a href="#org4948049">インストール</a></li>
-<li><a href="#org328613f">設定</a></li>
+<li><a href="#orgd3468d9">インストール</a></li>
+<li><a href="#org4ba5dac">設定</a></li>
 </ul>
 </li>
 <li><a href="#org981070b">以下, obsolete</a>
@@ -35,9 +35,9 @@ permalink: /cc-env/DebianMail.html
 <li><a href="#org445f854">検索: Solr で日本語</a></li>
 <li><a href="#org59e01d8">offlineimap</a>
 <ul>
-<li><a href="#orge2ff00a">インストール</a></li>
-<li><a href="#org86198e7">設定</a></li>
-<li><a href="#org3d72a1c">cron での動作</a></li>
+<li><a href="#orgbac42fc">インストール</a></li>
+<li><a href="#org8f2b998">設定</a></li>
+<li><a href="#orgb24699c">cron での動作</a></li>
 </ul>
 </li>
 </ul>
@@ -159,8 +159,7 @@ msmtp 自体の設定はいたって普通だが, queue が面倒?
 <pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
 <span style="color: #7F7FFF;">ARGS</span>=<span style="color: #7FFF7F;">"$*"</span>
 msmtp-enqueue.sh $<span style="color: #7F7FFF;">ARGS</span> 1&gt;/dev/null
-/bin/ping dennou-k.gfd-dennou.org -c 1 2&gt;&amp;1 1&gt;/dev/null
-<span style="color: #FF7F7F;">if</span> [ x<span style="color: #7FFF7F;">"$?"</span> = x<span style="color: #7FFF7F;">"0"</span> ]; <span style="color: #FF7F7F;">then</span>
+<span style="color: #FF7F7F;">if</span> [ x<span style="color: #7FFF7F;">"$(LANG=C nmcli n connectivity)"</span> = x<span style="color: #7FFF7F;">"full"</span> ]; <span style="color: #FF7F7F;">then</span>
     msmtp-runqueue.sh 2&gt;&amp;1 1&gt;/dev/null
 <span style="color: #FF7F7F;">fi</span>
 <span style="color: #FF7F7F;">exit</span> 0
@@ -215,9 +214,9 @@ msmtp-enqueue.sh $<span style="color: #7F7FFF;">ARGS</span> 1&gt;/dev/null
 isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
 </p>
 </div>
-<div id="outline-container-org291dcf9" class="outline-4">
-<h4 id="org291dcf9">インストール</h4>
-<div class="outline-text-4" id="text-org291dcf9">
+<div id="outline-container-org08d2ab0" class="outline-4">
+<h4 id="org08d2ab0">インストール</h4>
+<div class="outline-text-4" id="text-org08d2ab0">
 <p>
 実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
 </p>
@@ -229,9 +228,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-orga5915e5" class="outline-4">
-<h4 id="orga5915e5">設定</h4>
-<div class="outline-text-4" id="text-orga5915e5">
+<div id="outline-container-org09b28cd" class="outline-4">
+<h4 id="org09b28cd">設定</h4>
+<div class="outline-text-4" id="text-org09b28cd">
 <p>
 設定ファイルは <code>~/.mbsyncrc</code>.
 設定例は以下:
@@ -367,9 +366,9 @@ mbsync -l mobile
 </p>
 </div>
 </div>
-<div id="outline-container-org479f002" class="outline-4">
-<h4 id="org479f002">cron での動作</h4>
-<div class="outline-text-4" id="text-org479f002">
+<div id="outline-container-org31e96fb" class="outline-4">
+<h4 id="org31e96fb">cron での動作</h4>
+<div class="outline-text-4" id="text-org31e96fb">
 <p>
 認証に GPG を使っており、認証に Gnome Keyring を用いているので
 必要な環境変数を読み込んでから実行するようにする.
@@ -436,9 +435,9 @@ timelimit -T 300 -t 300 mbsync -c $<span style="color: #7F7FFF;">CONF</span> -a 
 <h3 id="org9e83b12">dovecot</h3>
 <div class="outline-text-3" id="text-org9e83b12">
 </div>
-<div id="outline-container-org4948049" class="outline-4">
-<h4 id="org4948049">インストール</h4>
-<div class="outline-text-4" id="text-org4948049">
+<div id="outline-container-orgd3468d9" class="outline-4">
+<h4 id="orgd3468d9">インストール</h4>
+<div class="outline-text-4" id="text-orgd3468d9">
 <p>
 最低限 IMAP での接続ができれば良いので
 </p>
@@ -450,9 +449,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org328613f" class="outline-4">
-<h4 id="org328613f">設定</h4>
-<div class="outline-text-4" id="text-org328613f">
+<div id="outline-container-org4ba5dac" class="outline-4">
+<h4 id="org4ba5dac">設定</h4>
+<div class="outline-text-4" id="text-org4ba5dac">
 <p>
 最低限の設定として、
 </p>
@@ -734,9 +733,9 @@ diff は以下:
 <a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.
 </p>
 </div>
-<div id="outline-container-orge2ff00a" class="outline-5">
-<h5 id="orge2ff00a">インストール</h5>
-<div class="outline-text-5" id="text-orge2ff00a">
+<div id="outline-container-orgbac42fc" class="outline-5">
+<h5 id="orgbac42fc">インストール</h5>
+<div class="outline-text-5" id="text-orgbac42fc">
 <p>
 apt万歳, ってことで.
 </p>
@@ -745,9 +744,9 @@ $ sudo apt-get install offlineimap
 </pre>
 </div>
 </div>
-<div id="outline-container-org86198e7" class="outline-5">
-<h5 id="org86198e7">設定</h5>
-<div class="outline-text-5" id="text-org86198e7">
+<div id="outline-container-org8f2b998" class="outline-5">
+<h5 id="org8f2b998">設定</h5>
+<div class="outline-text-5" id="text-org8f2b998">
 <p>
 現状, 以下の通り:
 </p>
@@ -975,9 +974,9 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 </p>
 </div>
 </div>
-<div id="outline-container-org3d72a1c" class="outline-5">
-<h5 id="org3d72a1c">cron での動作</h5>
-<div class="outline-text-5" id="text-org3d72a1c">
+<div id="outline-container-orgb24699c" class="outline-5">
+<h5 id="orgb24699c">cron での動作</h5>
+<div class="outline-text-5" id="text-orgb24699c">
 <p>
 認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから
 実行するようにする.

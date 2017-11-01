@@ -1,5 +1,5 @@
 #+TITLE: 研究関連
-#+DATE: 2017-09-29 16:41:00
+#+DATE: 2017-10-30 13:39:50
 #+LANGUAGE: ja
 #+REF: research
 #+LAYOUT: default
@@ -141,6 +141,15 @@
      Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries,
      The 12th Symposium of SEDI, Study of the Earth's Deep Interior, at the University of California at Santa Barbara, California, USA, in the Corwin Pavilion, from July 18 to 23, 2010
 ** 国内
+   - _佐々木 洋平_,  石岡 圭一, 竹広 真一, 中島 健介, 石渡 正樹, 林 祥介, 2017:
+     高速回転する薄い球殻内の熱対流により生成される表層縞帯状構造の消滅
+     気象学会 2017年秋季大会
+   - _佐々木 洋平_,  石岡 圭一, 竹広 真一, 中島 健介, 石渡 正樹, 林 祥介, 2017:
+     高速回転する薄い球殻内の熱対流により生成される表層縞帯状構造の消滅
+     第142回 地球電磁気･地球惑星圏学会, 総会・講演会(2017年 秋学会)
+   - _佐々木 洋平_,  石岡 圭一, 竹広 真一, 中島 健介, 石渡 正樹, 林 祥介, 2017:
+     高速回転する薄い球殻内の熱対流により生成される表層縞帯状構造の消滅
+     日本惑星科学会、2017年周秋季講演会
    - 竹広真一, 佐々木洋平, 2017:
      回転球殻ダイナモにより引き起こされる磁気流体擾乱の強い安定成層への貫入,
      2017 年日本流体力学会年会
