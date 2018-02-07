@@ -184,7 +184,7 @@ symbolic link を作成しておきます.
 <div class="org-src-container">
 <pre class="src src-conf-xdefaults"><span style="color: #a5a5a6;">! </span><span style="color: #a5a5a6;">-*- mode:conf-xdefaults; coding: utf-8 -*-</span>
 <span style="color: #a5a5a6;">!! </span><span style="color: #a5a5a6;">Rofi</span>
-<span style="color: #7F7FFF;">rofi.modi</span>: combi,window,drun,ssh,run
+<span style="color: #7F7FFF;">rofi.modi</span>: run,window,drun,ssh
 <span style="color: #7F7FFF;">rofi.combi-modi</span>: window,drun
 <span style="color: #7F7FFF;">rofi.lines</span>: 6
 <span style="color: #7F7FFF;">rofi.font</span>: Inconsolata For Poweline 16
@@ -195,7 +195,7 @@ symbolic link を作成しておきます.
 <span style="color: #7F7FFF;">rofi.hide-scrollbar</span>: true
 <span style="color: #7F7FFF;">rofi.fixed-num-lines</span>: true
 <span style="color: #7F7FFF;">rofi.kb-row-up</span>: Up,Control+p,Shift+Tab
-<span style="color: #7F7FFF;">rofi.kb-row-down</span>: Down,Control+n,Tab
+<span style="color: #7F7FFF;">rofi.kb-row-down</span>: Down,Control+n
 <span style="color: #7F7FFF;">rofi.kb-cancel</span>: Escape,Control+g,Control+bracketleft,Control+c
 <span style="color: #7F7FFF;">rofi.kb-mode-next</span>: Shift+Right,Control+i,Control+Tab
 <span style="color: #7F7FFF;">rofi.kb-mode-previous</span>: Shift+Left,Control+Shift+i
@@ -204,7 +204,6 @@ symbolic link を作成しておきます.
 <span style="color: #7F7FFF;">rofi.color-normal</span>: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
 <span style="color: #7F7FFF;">rofi.color-active</span>: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
 <span style="color: #7F7FFF;">rofi.color-urgent</span>: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3
-<span style="color: #7F7FFF;">rofi.display-combi</span>: launch
 </pre>
 </div>
 
@@ -337,7 +336,7 @@ After=sleep.target
 User=uwabami
 Type=forking
 Environment=DISPLAY=:0
-ExecStart=/usr/bin/i3lock -p win -c 242424
+ExecStart=/usr/bin/i3lock -p win -c 444444
 
 [Install]
 WantedBy=sleep.target
@@ -385,7 +384,7 @@ WantedBy=sleep.target
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">systemtray</span>
 <span style="color: #7F7FFF;">$execi</span> nm-applet
 <span style="color: #7F7FFF;">$execi</span> blueman-applet
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$execi DESKTOP_SESSION=gnome owncloud</span>
+<span style="color: #7F7FFF;">$execi</span> DESKTOP_SESSION=gnome owncloud
 <span style="color: #7F7FFF;">$execi</span> udiskie
 <span style="color: #7F7FFF;">$execi</span> dropbox start -i
 
@@ -397,12 +396,13 @@ WantedBy=sleep.target
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">start a terminal: rxvt-unicide daemon mode</span>
 <span style="color: #7F7FFF;">bindsym</span> Control+Shift+n exec urxvtcd
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">start launcher: rofi @see ~/.Xresources</span>
-<span style="color: #7F7FFF;">bindsym</span> $Alt+F2 $execi sh -c <span style="color: #7FFF7F;">"rofi -show combi"</span>
+<span style="color: #7F7FFF;">bindsym</span> $Alt+F2 $execi sh -c <span style="color: #7FFF7F;">"rofi -show run"</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">bindsym $Alt+F2 $execi gmrun</span>
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">change focus</span>
 <span style="color: #7F7FFF;">set</span> $i3t_alt_tab ~/.config/i3/i3t.py n
 <span style="color: #7F7FFF;">bindsym</span> $Alt+Tab exec $i3t_alt_tab
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+Tab $execi sh -c <span style="color: #7FFF7F;">"rofi -show window"</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"</span>
 <span style="color: #7F7FFF;">bindsym</span> $mod+Control+Right focus right
 <span style="color: #7F7FFF;">bindsym</span> $mod+Control+Left focus left
 <span style="color: #7F7FFF;">bindsym</span> $mod+Control+Up focus Up

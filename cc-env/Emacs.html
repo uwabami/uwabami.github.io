@@ -1,6 +1,6 @@
 ---
 title: Emacs の設定
-date: 2017-10-18 18:59:37
+date: 2018-02-06 01:46:42
 layout: cc-env
 lang: ja
 ref: cc-env/Emacs
@@ -48,7 +48,7 @@ permalink: /cc-env/Emacs.html
 <li><a href="#orgae3d8c8">標準機能の設定</a>
 <ul>
 <li><a href="#org1b6b59a">表示関連</a></li>
-<li><a href="#orgce456cb">編集関連</a></li>
+<li><a href="#org8552fee">編集関連</a></li>
 <li><a href="#org7eda492">ファイル，デイレクトリ整理</a></li>
 </ul>
 </li>
@@ -72,10 +72,10 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org3bd8022">日本語入力: <code>ddskk</code></a>
 <ul>
-<li><a href="#org261592b">Emacs 本体側の設定</a></li>
+<li><a href="#orgc9afdd7">Emacs 本体側の設定</a></li>
 <li><a href="#orge62a055">DDSKK 本体の設定</a>
 <ul>
-<li><a href="#org8552fee">編集関連</a></li>
+<li><a href="#orga4077d5">編集関連</a></li>
 <li><a href="#org67f5019">インクリメンタルサーチ</a></li>
 <li><a href="#org6d86eb6">辞書の設定</a></li>
 <li><a href="#org199b263">動的補完</a></li>
@@ -84,6 +84,7 @@ permalink: /cc-env/Emacs.html
 </li>
 </ul>
 </li>
+<li><a href="#org6ebf1fa">インクリメンタル検索: <code>migemo</code></a></li>
 <li><a href="#orgb61010b">Copy &amp; Paste: <code>xclip</code></a></li>
 <li><a href="#org4d685e8">Elscreen <code>[/]</code></a></li>
 <li><a href="#org4f17dc6">認証関連: <code>password-store</code></a>
@@ -103,7 +104,7 @@ permalink: /cc-env/Emacs.html
 </li>
 <li><a href="#org4ea74a5">MUA の設定: <code>wanderlust</code></a>
 <ul>
-<li><a href="#orgc9afdd7">Emacs 本体側の設定</a></li>
+<li><a href="#org2f3e111">Emacs 本体側の設定</a></li>
 <li><a href="#org711a3af">Wanderlust 本体の設定</a>
 <ul>
 <li><a href="#orgda20e29">依存/追加ライブラリのインストールと読み込み</a>
@@ -818,9 +819,9 @@ Warning の抑制: これもほとんど見ないし．
 </div>
 </div>
 </div>
-<div id="outline-container-orgce456cb" class="outline-4">
-<h4 id="orgce456cb">編集関連</h4>
-<div class="outline-text-4" id="text-orgce456cb">
+<div id="outline-container-org8552fee" class="outline-4">
+<h4 id="org8552fee">編集関連</h4>
+<div class="outline-text-4" id="text-org8552fee">
 <p>
 yes or no を y or n に
 </p>
@@ -1331,9 +1332,9 @@ Emacs*useXIM: false
 </pre>
 </div>
 </div>
-<div id="outline-container-org261592b" class="outline-3">
-<h3 id="org261592b">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-org261592b">
+<div id="outline-container-orgc9afdd7" class="outline-3">
+<h3 id="orgc9afdd7">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-orgc9afdd7">
 <p>
 実際の設定は別ファイルで行なわれるため
 ここでは設定ファイルの位置変更を変更している．
@@ -1443,9 +1444,9 @@ mode-line が動くのが許せないので，ちょっと修正
 </pre>
 </div>
 </div>
-<div id="outline-container-org8552fee" class="outline-4">
-<h4 id="org8552fee">編集関連</h4>
-<div class="outline-text-4" id="text-org8552fee">
+<div id="outline-container-orga4077d5" class="outline-4">
+<h4 id="orga4077d5">編集関連</h4>
+<div class="outline-text-4" id="text-orga4077d5">
 <p>
 キーバインド
 </p>
@@ -1674,6 +1675,25 @@ src = <span style="color: #FFFF7F;">ARGV</span>[0]
 </div>
 </div>
 </div>
+<div id="outline-container-org6ebf1fa" class="outline-2">
+<h2 id="org6ebf1fa">インクリメンタル検索: <code>migemo</code></h2>
+<div class="outline-text-2" id="text-org6ebf1fa">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">migemo</span>
+  <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"cmigemo"</span>)
+  <span style="color: #7FBFFF;">:config</span>
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(setq migemo-command "cmigemo"</span>
+  <span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">migemo-options '("-q" "--emacs")</span>
+  <span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict"</span>
+  <span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">migemo-user-dictionary nil</span>
+  <span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">migemo-regex-dictionary nil</span>
+  <span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">migemo-coding-system 'utf-8-unix)</span>
+  (migemo-init)
+  )
+</pre>
+</div>
+</div>
+</div>
 <div id="outline-container-orgb61010b" class="outline-2">
 <h2 id="orgb61010b">Copy &amp; Paste: <code>xclip</code></h2>
 <div class="outline-text-2" id="text-orgb61010b">
@@ -1685,7 +1705,7 @@ src = <span style="color: #FFFF7F;">ARGV</span>[0]
   <span style="color: #7FBFFF;">:ensure</span> t
   <span style="color: #7FBFFF;">:if</span> (executable-find <span style="color: #7FFF7F;">"xclip"</span>)
   <span style="color: #7FBFFF;">:config</span>
-  (turn-on-xclip))
+  (xclip-mode 1))
 </pre>
 </div>
 <p>
@@ -1901,9 +1921,9 @@ default の <code>mlocate</code> の option を修正しておく．
 MUA として Wanderlust を使っている
 </p>
 </div>
-<div id="outline-container-orgc9afdd7" class="outline-3">
-<h3 id="orgc9afdd7">Emacs 本体側の設定</h3>
-<div class="outline-text-3" id="text-orgc9afdd7">
+<div id="outline-container-org2f3e111" class="outline-3">
+<h3 id="org2f3e111">Emacs 本体側の設定</h3>
+<div class="outline-text-3" id="text-org2f3e111">
 <p>
 Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
 ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．
@@ -3110,8 +3130,8 @@ mu(maildir-utils)を使う. 偶にセグフォるので悩み所
 検索時にメールが多すぎると怒られるので. 数字は適当.
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-multi-divide-number 1000000000)
-(<span style="color: #FF7F7F;">setq</span> elmo-multi-number 1000000000)
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">setq</span> elmo-multi-divide-number 2000000000)
+(<span style="color: #FF7F7F;">setq</span> elmo-multi-number 2000000000)
 </pre>
 </div>
 </div>
@@ -3311,13 +3331,13 @@ flyspell-mode は別途有効化しておいた方が良いのかもしれない
 howm も有効にしている，ぐらい．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:d:org</span> (concat (getenv <span style="color: #7FFF7F;">"HOME"</span>) <span style="color: #7FFF7F;">"/ownCloud/org/"</span>))
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defvar</span> <span style="color: #7F7FFF;">my:d:org</span> (concat (getenv <span style="color: #7FFF7F;">"HOME"</span>) <span style="color: #7FFF7F;">"/Nextcloud/org/"</span>))
 (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">org</span>
   <span style="color: #7FBFFF;">:bind</span> ((<span style="color: #7FFF7F;">"C-x n s"</span> . org-narrow-to-subtree)
          (<span style="color: #7FFF7F;">"C-x n w"</span> . widen))
   <span style="color: #7FBFFF;">:init</span>
   <span style="color: #7FBFFF;">:config</span>
-  (<span style="color: #FF7F7F;">setq</span> org-directory my:d:org                 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">ownCloud &#12395;&#20445;&#23384;&#12377;&#12427;</span>
+  (<span style="color: #FF7F7F;">setq</span> org-directory my:d:org                 <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">Nextcloud &#12395;&#20445;&#23384;&#12377;&#12427;</span>
         org-return-follows-link t              <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">return &#12391;&#12522;&#12531;&#12463;&#12434;&#36799;&#12427;</span>
         org-startup-folded t                   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#35211;&#20986;&#12375;&#12434;&#30067;&#12435;&#12391;&#34920;&#31034;</span>
         org-startup-truncated t                <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#25240;&#12426;&#36820;&#12375;&#28961;&#12375;</span>
@@ -4117,17 +4137,13 @@ html export の際に必要な yaml front matter を出力できるようにし�
 Org を使う前は Howm を使っていました.
 過去のメモを検索するためだけに未だに Howm を使っています.
 </p>
-
-<p>
-Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> がとても速いらしいので， <code>howm</code> と <code>ripgrep</code> がある時だけ
-読み込むようにしています．
-</p>
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">howm</span>
   <span style="color: #7FBFFF;">:if</span> (<span style="color: #FF7F7F;">and</span> (my:dpkg-status <span style="color: #7FFF7F;">"howm"</span>)
            (executable-find <span style="color: #7FFF7F;">"ag"</span>))
   <span style="color: #7FBFFF;">:diminish</span> howm-mode
   <span style="color: #7FBFFF;">:bind</span> (<span style="color: #7FBFFF;">:map</span> howm-mode-map
+              (<span style="color: #7FFF7F;">"C-c , ,"</span>     . howm-menu)
               (<span style="color: #7FFF7F;">"C-c C-c"</span>     . nil)
               (<span style="color: #7FFF7F;">"C-x C-z C-c"</span> . howm-save-and-kill-buffer/screen))
   <span style="color: #7FBFFF;">:init</span>
@@ -4135,12 +4151,12 @@ Rust で書かれた <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>
                               (<span style="color: #FF7F7F;">setq</span> truncate-lines t)))
   <span style="color: #7FBFFF;">:config</span>
   <span style="color: #a5a5a6;">;;; </span><span style="color: #a5a5a6;">&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12398;&#35373;&#23450;</span>
-  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12513;&#12514;&#12398;&#20869;&#23481;&#12399; ownCloud &#12391;&#21516;&#26399;&#12377;&#12427;&#12371;&#12392;&#12395;</span>
-  (<span style="color: #FF7F7F;">setq</span> howm-directory <span style="color: #7FFF7F;">"~/ownCloud/org"</span>)
+  <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12513;&#12514;&#12398;&#20869;&#23481;&#12399; Nextcloud &#12391;&#21516;&#26399;&#12377;&#12427;&#12371;&#12392;&#12395;</span>
+  (<span style="color: #FF7F7F;">setq</span> howm-directory <span style="color: #7FFF7F;">"~/Nextcloud/org"</span>)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12513;&#12491;&#12517;&#12540;&#12392;&#23653;&#27508;&#12434;&#26908;&#32034;&#23550;&#35937;&#12363;&#12425;&#38500;&#22806;&#12377;&#12427;&#12383;&#12417;&#12395;&#21029;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12408;</span>
-  (<span style="color: #FF7F7F;">setq</span> howm-keyword-file <span style="color: #7FFF7F;">"~/ownCloud/howm/keys"</span>
-        howm-history-file <span style="color: #7FFF7F;">"~/ownCloud/howm/history"</span>
-        howm-menu-file <span style="color: #7FFF7F;">"~/ownCloud/howm/menu"</span>)
+  (<span style="color: #FF7F7F;">setq</span> howm-keyword-file <span style="color: #7FFF7F;">"~/Nextcloud/howm/keys"</span>
+        howm-history-file <span style="color: #7FFF7F;">"~/Nextcloud/howm/history"</span>
+        howm-menu-file <span style="color: #7FFF7F;">"~/Nextcloud/howm/menu"</span>)
   <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">&#12513;&#12514;&#12501;&#12449;&#12452;&#12523;&#12399;&#26085;&#20184;&#26178;&#21051;&#27598;&#12395;&#20998;&#38626;</span>
   (<span style="color: #FF7F7F;">setq</span> howm-file-name-format <span style="color: #7FFF7F;">"%Y%m%d-%H%M%S.howm"</span>)
   <span style="color: #a5a5a6;">;;;  </span><span style="color: #a5a5a6;">&#12513;&#12514;&#12399;org&#12391;&#26360;&#12367;</span>
@@ -4243,7 +4259,7 @@ tdiary-mode をちまちまと弄っている所
             <span style="color: #7FBFFF;">:fetcher</span> github
             <span style="color: #7FBFFF;">:repo</span> <span style="color: #7FFF7F;">"uwabami/tdiary-mode"</span>)))
 (<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">tdiary-mode</span>
-  <span style="color: #7FBFFF;">:if</span> (file-directory-p <span style="color: #7FFF7F;">"~/ownCloud/tdiary"</span>)
+  <span style="color: #7FBFFF;">:if</span> (file-directory-p <span style="color: #7FFF7F;">"~/Nextcloud/tdiary"</span>)
   <span style="color: #7FBFFF;">:commands</span> (tdiary-mode tdiary-new tdiary-new-directory tdiary-replace)
   <span style="color: #7FBFFF;">:config</span>
   (load (concat my:d:password-store <span style="color: #7FFF7F;">"/tdiary-mode.gpg"</span>))
@@ -4734,7 +4750,8 @@ Debian パッケージ版を使う．やっている事は
 <code>use-package</code> で読み込まれているので，可能な限りそちらで指定するように変更．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defmacro</span> <span style="color: #BF7FFF;">my:diminish</span> (file mode <span style="color: #FFFF7F;">&amp;optional</span> new-name)
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">use-package</span> <span style="color: #FFBF7F;">diminish</span> <span style="color: #7FBFFF;">:ensure</span> t)
+(<span style="color: #FF7F7F;">defmacro</span> <span style="color: #BF7FFF;">my:diminish</span> (file mode <span style="color: #FFFF7F;">&amp;optional</span> new-name)
   <span style="color: #7FFF7F;">"original: </span><span style="text-decoration: underline;">https://github.com/larstvei/dot-emacs/blob/master/init.org</span><span style="color: #7FFF7F;">"</span>
   `(<span style="color: #FF7F7F;">with-eval-after-load</span> ,file
      (diminish ,mode ,new-name)))
@@ -4882,20 +4899,16 @@ default-theme をベースに見たい物だけ表示するようにしてみた
 そろそろテーマにした方が良い，とは思ってはいる．
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(defun my:load-window-config ()</span>
-<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">"load window-system specific settings"</span>
-<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">(interactive)</span>
-<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">(when window-system</span>
-<span style="color: #a5a5a6;">;;     </span><span style="color: #a5a5a6;">(progn</span>
-<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">(set-face-attribute 'default nil</span>
-<span style="color: #a5a5a6;">;;                           </span><span style="color: #a5a5a6;">:family "SeptemberMMono"</span>
-<span style="color: #a5a5a6;">;;                           </span><span style="color: #a5a5a6;">;; :family "Ricty Discord for Powerline"</span>
-<span style="color: #a5a5a6;">;;                           </span><span style="color: #a5a5a6;">:height 135) ;; 135pt</span>
-<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">;; (set-fontset-font nil 'japanese-jisx0208</span>
-<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">;;                   (font-spec :family "SeptemberMMono"))</span>
-<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">;; (setq face-font-rescale-alist '(("September.*" . 1)))</span>
-<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">(set-background-color "#242424")</span>
-<span style="color: #a5a5a6;">;;       </span><span style="color: #a5a5a6;">)))</span>
+<pre class="src src-emacs-lisp">(<span style="color: #FF7F7F;">defun</span> <span style="color: #BF7FFF;">my:load-window-config</span> ()
+  <span style="color: #7FFF7F;">"load window-system specific settings"</span>
+  (<span style="color: #FF7F7F;">interactive</span>)
+  (<span style="color: #FF7F7F;">when</span> window-system
+    (<span style="color: #FF7F7F;">progn</span>
+      (set-face-attribute 'default nil
+                          <span style="color: #7FBFFF;">:family</span> <span style="color: #7FFF7F;">"Ricty Discord for Powerline"</span>
+                          <span style="color: #7FBFFF;">:height</span> 135) <span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">135pt</span>
+      (set-background-color <span style="color: #7FFF7F;">"#242424"</span>)
+      )))
 (<span style="color: #FF7F7F;">setq</span> frame-background-mode (frame-parameter nil 'background-mode))
 (<span style="color: #FF7F7F;">setq</span> default-frame-alist
       '(
@@ -4903,8 +4916,8 @@ default-theme をベースに見たい物だけ表示するようにしてみた
         (scroll-bar-foreground-color . <span style="color: #7FFF7F;">"red"</span>)
         (vertical-scroll-bars . right)
         ))
-<span style="color: #a5a5a6;">;; </span><span style="color: #a5a5a6;">(when (window-system)</span>
-<span style="color: #a5a5a6;">;;   </span><span style="color: #a5a5a6;">(my:load-window-config))</span>
+(<span style="color: #FF7F7F;">when</span> (window-system)
+  (my:load-window-config))
 </pre>
 </div>
 <p>

@@ -1,6 +1,6 @@
 ---
 title: パッケージ作成環境&#58; sbuild, lintian, piuparts, autopkgtest
-date: 2017-09-09 17:35:29
+date: 2017-11-25 17:40:05
 layout: cc-env
 lang: ja
 ref: cc-env/DebianPackaging
@@ -275,7 +275,7 @@ sbuild/schroot の release は <code>unstable</code> だったりするところ
 </p>
 
 <p>
-sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは external<sub>commands</sub> で
+sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>external_commands</code> で
 呼び出すことにする.
 </p>
 <div class="org-src-container">
@@ -340,10 +340,10 @@ $<span style="color: #7F7FFF;">autopkgtest_opts</span> = [<span style="color: #7
 $<span style="color: #7F7FFF;">autopkgtest_root_args</span> = [<span style="color: #7FFF7F;">'sudo'</span>, <span style="color: #7FFF7F;">'--'</span>];
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#22806;&#37096;&#12473;&#12463;&#12522;&#12503;&#12488;&#12391; autopkgtest, rdepends &#12398; autopkgstest</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$external_commands = {</span>
-<span style="color: #a5a5a6;">#                       </span><span style="color: #a5a5a6;">'post-build-commands' =&gt;</span>
-<span style="color: #a5a5a6;">#                       </span><span style="color: #a5a5a6;">['/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e'],</span>
-<span style="color: #a5a5a6;">#                      </span><span style="color: #a5a5a6;">};</span>
+$<span style="color: #7F7FFF;">external_commands</span> = {
+                      <span style="color: #7FFF7F;">'post-build-commands'</span> =&gt;
+                      [<span style="color: #7FFF7F;">'/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e'</span>],
+                     };
 </pre>
 </div>
 </div>

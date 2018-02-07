@@ -131,8 +131,7 @@ apt 万歳
 cat tmp-list.txt | <span style="color: #7FFF7F;">\</span>
     sed <span style="color: #7FFF7F;">'/^$/d'</span> | <span style="color: #7FFF7F;">\</span>
     sed -e <span style="color: #7FFF7F;">'s/#.*$//g'</span> | <span style="color: #7FFF7F;">\</span>
-    sed <span style="color: #7FFF7F;">'s/127.0.0.1/0.0.0.0/g'</span> | <span style="color: #7FFF7F;">\</span>
-    sed <span style="color: #7FFF7F;">'/^0\.0\.0\.0 *$/d'</span> | <span style="color: #7FFF7F;">\</span>
+    sed -e <span style="color: #7FFF7F;">'s/^0\.0\.0\.0/127\.0\.0\.1/g'</span> | <span style="color: #7FFF7F;">\</span>
     sort -u &gt; adaway.txt
 wget -q https://warui.intaa.net/adhosts/whitelist.txt -O tmp-white.txt
 cat tmp-white.txt | <span style="color: #FF7F7F;">while </span><span style="color: #7FBFFF;">read</span> line
@@ -140,12 +139,14 @@ cat tmp-white.txt | <span style="color: #FF7F7F;">while </span><span style="colo
     sed -i -e <span style="color: #7FFF7F;">'/$line/d'</span> adaway.txt
 <span style="color: #FF7F7F;">done</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">whitelist</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sed -i -e '/apis.google.com/d' adaway.txt</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sed -i -e '/google-analytics.l.google.com/d' adaway.txt</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sed -i -e '/google-analytics.com/d' adaway.txt</span>
+sed -i -e <span style="color: #7FFF7F;">'/apis.google.com/d'</span> adaway.txt
+sed -i -e <span style="color: #7FFF7F;">'/google-analytics.l.google.com/d'</span> adaway.txt
+sed -i -e <span style="color: #7FFF7F;">'/google-analytics.com/d'</span> adaway.txt
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">nginx hosts</span>
+cat adaway.txt | sed -e <span style="color: #7FFF7F;">'s/127.0.0.1/server_name/g'</span> -e <span style="color: #7FFF7F;">'s/$/;/g'</span> &gt; adaway_hosts.txt
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">ipv6</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat adaway.txt | sed -e 's/0.0.0.0/::/g' &gt; adaway_ipv6.txt</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat adaway_ipv6.txt &gt;&gt; adaway.txt</span>
+cat adaway.txt | sed -e <span style="color: #7FFF7F;">'s/127.0.0.1/::1/g'</span> &gt; adaway_ipv6.txt
+cat adaway_ipv6.txt &gt;&gt; adaway.txt
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"cleanup"</span>
 rm -f adaway_ipv6.txt
 rm -f tmp-list.txt
@@ -178,7 +179,7 @@ rm -f tmp-white.txt
 hosts_file /etc/squid/adaway.txt
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">DNS</span>
-dns_v4_first on
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">dns_v4_first on</span>
 dns_nameservers 127.0.0.1
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">ACL</span>

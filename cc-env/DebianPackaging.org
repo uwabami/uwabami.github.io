@@ -1,5 +1,5 @@
 #+TITLE: パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest
-#+DATE: 2017-09-09 17:35:29
+#+DATE: 2017-11-25 17:40:05
 #+LANGUAGE: ja
 #+REF: cc-env/DebianPackaging
 #+LAYOUT: cc-env
@@ -158,7 +158,7 @@ $piuparts_root_args = ['sudo', '--'];
    面倒なのは lxc を使う場合には =stretch=, =buster=, =sid= とコードネームなのに対して,
    sbuild/schroot の release は =unstable= だったりするところ.
 
-   sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは external_commands で
+   sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは =external_commands= で
    呼び出すことにする.
    #+BEGIN_SRC perl
 ## autopkgtest
