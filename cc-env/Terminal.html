@@ -135,7 +135,7 @@ tmux の設定は以下の通り.
 <pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
 <span style="color: #a5a5a6;">#</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2017-10-27 12:44:29$</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2018-02-16 17:39:39$</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: Public domain.</span>
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">general</span>
@@ -159,7 +159,9 @@ set-option -g repeat-time 0
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">TERM&#31561;&#12398;&#35373;&#23450;</span>
 set -g default-terminal screen-256color
 set-environment -g NCURSES_NO_UTF8_ACS 0
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#32619;&#32218;&#32032;&#29255;&#12398;&#25201;&#12356;: rxvt &#12394;&#12425;&#12467;&#12524;&#12391;&#33391;&#12356;&#12398;&#12384;&#12364;...</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">set -ag terminal-overrides ',*:U8=0'</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#32619;&#32218;&#32032;&#29255;&#12398;&#25201;&#12356;: VTE &#31995;&#12399;&#12431;&#12374;&#12431;&#12374; Unicode &#12395;&#32622;&#12365;&#25563;&#12360;&#12427;, &#12398;&#12391; ASCII &#12391;&#25551;&#30011;&#12377;&#12427;</span>
 set-option -g pane-border-ascii 0
 set-environment -g VTE_CJK_WIDTH 1 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#8592;&#26368;&#36817;&#12385;&#12419;&#12435;&#12392;&#21177;&#12356;&#12390;&#12394;&#12356;&#27671;&#12364;&#12377;&#12427;.</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12513;&#12483;&#12475;&#12540;&#12472;&#34920;&#31034;&#26178;&#38291;(&#26082;&#23450;&#20516;&#12399;1000?)</span>
@@ -252,8 +254,8 @@ weechat を常に下に表示させておきたいので <code>C-t -</code> で�
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
 <span style="color: #7F7FFF;">tmp</span>=$<span style="color: #7F7FFF;">HOME</span>/.tmux/weechat.tmp
-<span style="color: #7F7FFF;">current_weechat_window</span>=<span style="font-weight: bold;">`tmux lsp -a -F "#I: #T" | grep weechat | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_weechat_pane</span>=<span style="font-weight: bold;">`tmux lsp -a -F "#P: #T" | grep weechat | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_weechat_window</span>=<span style="font-weight: bold;">`tmux lsp -a -F "#I: #T" | grep WeeChat | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_weechat_pane</span>=<span style="font-weight: bold;">`tmux lsp -a -F "#P: #T" | grep WeeChat | cut -d":" -f 1`</span>
 <span style="color: #7F7FFF;">current_active_window</span>=<span style="font-weight: bold;">`tmux lsw | grep active | cut -d":" -f 1`</span>
 <span style="color: #7F7FFF;">current_active_pane</span>=<span style="font-weight: bold;">`tmux lsp | grep active | cut -d":" -f 1`</span>
 

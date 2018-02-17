@@ -1,0 +1,214 @@
+#+TITLE: weechat の設定
+#+DATE: 2018-02-17 18:21:23
+#+LANGUAGE: ja
+#+REF: cc-env/weechat
+#+LAYOUT: cc-env
+#+SETUPFILE: ~/Public/_setup.org
+#+PERMALINK: /cc-env/weechat.html
+Related [[wiki:index][Index]]
+* はじめに
+  IRC クライアントとして [[https://weechat.org/][weechat]] を使っています.
+  高機能ですが、なかなかにカスタマイズのしがいのあるクライアント.
+  自分で何をしたのか忘れがちなので、やった事は都度メモしておくことに.
+
+  以下, v1.9.1 について書いてます.
+
+* 初回起動: サーバの追加等
+
+  特に何も設定せずに起動すると、以下の様な塩梅.
+
+  #+ATTR_HTML: :class img-responsive
+  [[file:weechat/Weechat0.png]]
+
+** proxy の設定
+   :PROPERTIES:
+   :ID:       5959520f-3f33-4cbd-a705-65884f604adb
+   :END:
+
+  今の所
+  * VPS に znc を入れて IRC バウンサとして動作
+  * VPS 自体には autossh で dynamic port forwad で接続
+  という状況なので, 先ずは socks5 proxy の設定から
+  #+BEGIN_EXAMPLE
+  /proxy add <name> <type> <address> <port> [<username> <password>]
+  #+END_EXAMPLE
+
+** サーバの追加
+
+   上記で proxy が定義されているので,
+   通常通りサーバを追加した後で proxy を設定しておく.
+   #+BEGIN_EXAMPLE
+   /server add <name> <server>/<port>
+   /set irc.server.<name>.proxy <proxy_name>
+   /set irc.server.<name>.password <znc channel password>
+   #+END_EXAMPLE
+   - <proxy_name> は[[id:5959520f-3f33-4cbd-a705-65884f604adb][proxy の設定]]で追加した proxy の名前
+   - <znc channel password> は znc のチャンネル区別に使うパスワード
+   といった感じ.
+
+   他に設定しておくことがあれば
+   #+BEGIN_EXAMPLE
+   /server listfull
+   #+END_EXAMPLE
+   の結果を眺めてアレコレしておく.
+
+* カスタマイズ: 見た目編
+  サーバ毎に別 buffer
+  #+BEGIN_EXAMPLE
+  /set irc.look.server_buffer independent
+  #+END_EXAMPLE
+  サーバ毎のチャンネルをインデント
+  #+BEGIN_EXAMPLE
+  /set buffers.look.indenting on
+  #+END_EXAMPLE
+  新しいチャンネルはサーバ buffer の一番最後に追加
+  #+BEGIN_EXAMPLE
+  /set irc.look.new_channel_position near_server
+  #+END_EXAMPLE
+  バッファリストは右側に
+  #+BEGIN_EXAMPLE
+  /set weechat.bar.buflist.position = right
+  #+END_EXAMPLE
+  新しい private message もサーバ buffer の一番最後に追加
+  #+BEGIN_EXAMPLE
+  /set irc.look.new_pv_position near_server
+  #+END_EXAMPLE
+  Windowを分割すると入力も散らばる→一つにまとめて最下部に。
+  #+BEGIN_EXAMPLE
+  /bar add rootinput root bottom 1 0 [buffer_name]+[input_prompt]+(away),[input_search],[input_paste],input_text
+  /bar del input
+  #+END_EXAMPLE
+  時刻表示のフォーマット
+  #+BEGIN_EXAMPLE
+  /set weechat.look.buffer_time_format "${15}%H${6}:${15}%M${6}:${15}%S"
+  #+END_EXAMPLE
+  prefix は左よせ
+  #+BEGIN_EXAMPLE
+  /set weechat.look.prefix_align left
+  #+END_EXAMPLE
+  prefix の最大値を 10 に制限...もう少し増やした方が良いかな...
+  #+BEGIN_EXAMPLE
+  /set weechat.look.prefix_align_max 10
+  #+END_EXAMPLE
+  nicklist を 15 に固定
+  #+BEGIN_EXAMPLE
+  /set weechat.bar.nicklist.size_max 15
+  /set weechat.bar.nicklist.size 15
+  #+END_EXAMPLE
+  buflist を 15 に固定
+  #+BEGIN_EXAMPLE
+  /set weechat.bar.buflist.size 15
+  /set weechat.bar.buflist.size_max 15
+  #+END_EXAMPLE
+  prompt
+  #+BEGIN_EXAMPLE
+  /set weechat.bar.rootinput.items "[input_prompt]+(away),[input_search],[input_paste],input_text"
+  #+END_EXAMPLE
+  status line
+  #+BEGIN_EXAMPLE
+  /set weechat.bar.status.items "[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,[lag],[hotlist],completion,scroll"
+  #+END_EXAMPLE
+  レイアウトを自動的に保存
+  #+BEGIN_EXAMPLE
+  /set weechat.look.save_layout_on_exit all
+  #+END_EXAMPLE
+  マウスは使わない
+  #+BEGIN_EXAMPLE
+  /mouse disable
+  #+END_EXAMPLE
+  ハイライトするキーワードの追加
+  #+BEGIN_EXAMPLE
+  /set weechat.look.highlight "$nick,uwabami,ささき,佐々木"
+  #+END_EXAMPLE
+* カスタマイズ: plugin
+** log の無効化
+   log 取りは znc に任せているので、weechat でログを取る必要はない。
+   というわけで、log plugin を無効化しておく(他にも色々切ってるけれど).
+   読み込んでいるのは以下.
+   #+BEGIN_EXAMPLE
+   /set weechat.plugin.autoload "lua,ruby,python,perl,irc,script,alias,charset,buflist"
+   #+END_EXAMPLE
+** script でインストールしたアレコレ
+   以前は weeget を使っていたが、/script でイロイロ拡張がインストールできる.
+   今使っているのは以下
+   #+BEGIN_EXAMPLE
+   /script install go.py
+   /script install colorize_nicks.py
+   /script install colorize_line.pl
+   /script install buffer_autoset.py
+   /script install emoji_aliases.py
+   #+END_EXAMPLE
+   あとは https://github.com/tkengo/weechat-url-hinter の =open= を
+   =xdg-open= に書き換えた版を =~/.weechat/ruby/= 以下に置いて使っている.
+* カスタマイズ: 色
+  これが地味に凝りだすと大変だったりする。
+  使える色は =weechat --colors= で確認できる。
+
+  #+ATTR_HTML: :class img-responsive
+  [[file:weechat/Weechat-colors.png]]
+
+  ハイライトの色: 黒背景に黄色の文字
+  #+BEGIN_EXAMPLE
+   /set weechat.color.chat_highlight 11
+   /set weechat.color.chat_highlight_bg 8
+  #+END_EXAMPLE
+  nick colors: 黒背景で、256色使う際に視認性が良さげな色を並べただけ。
+  #+BEGIN_EXAMPLE
+   /set weechat.color_chat_nicks "32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,110,111,112,113,114,115,116,117,118,119,120,121,122,123,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229"
+  #+END_EXAMPLE
+  title bar: 黒背景に黄色文字
+  #+BEGIN_EXAMPLE
+   /set weechat.bar.title.color_fg 11
+   /set weechat.bar.title.color_fg 8
+  #+END_EXAMPLE
+  status color: 黒背景に黄色文字
+  #+BEGIN_EXAMPLE
+  /set weechat.bar.status_color_bg 8
+  #+END_EXAMPLE
+  =go= plugin の色:
+  #+BEGIN_EXAMPLE
+  /set var.python.go.auto_jump = "off"
+  /set var.python.go.buffer_number = "on"
+  /set var.python.go.color_name = "white,default"
+  /set var.python.go.color_name_highlight = "lightred,default"
+  /set var.python.go.color_name_highlight_selected = "lightred,default"
+  /set var.python.go.color_name_selected = "white,default"
+  /set var.python.go.color_number = "lightgreen,default"
+  /set var.python.go.color_number_selected = "yellow,default"
+  /set var.python.go.fuzzy_search = "off"
+  /set var.python.go.message = "Go: "
+  /set var.python.go.short_name = "off"
+  /set var.python.go.sort = "number,beginning"
+  /set var.python.go.use_core_instead_weechat = "off"
+  #+END_EXAMPLE
+  buflist: 現在行の色
+  #+BEGIN_EXAMPLE
+  /set buflist.format.buffer_current "${color:,8}${format_buffer}"
+  #+END_EXAMPLE
+* カスタマイズ: キーバインド
+  =Ctrl-S=: nicklist の toggle
+  #+BEGIN_EXAMPLE
+  /key bind ctrl-S /bar toggle nicklist
+  #+END_EXAMPLE
+  =Ctrl-B=: buflist の toggle
+  #+BEGIN_EXAMPLE
+  /key bind ctrl-B /bar toggle buflist
+  #+END_EXAMPLE
+  =Ctrl-G=: /go
+  #+BEGIN_EXAMPLE
+  /key bind ctrl-G /go
+  #+END_EXAMPLE
+  alias: =/b=
+  #+BEGIN_EXAMPLE
+  /set alias.cmd.b = "/buffer"
+  #+END_EXAMPLE
+  alias: =/bl=
+  #+BEGIN_EXAMPLE
+  /set alias.cmd.bl = "msg *backlog $channel $1"
+  #+END_EXAMPLE
+  alias: =/znc=
+  #+BEGIN_EXAMPLE
+  /set alias.cmd.znc = "/quote znc"
+  #+END_EXAMPLE
+* 参考文献
+  - WeeChat ユーザーズガイド: https://weechat.org/files/doc/devel/weechat_user.ja.html
