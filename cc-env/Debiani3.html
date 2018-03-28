@@ -107,31 +107,31 @@ Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb
 というわけで, 安直には <code>xdg-open</code> を修正すれば良いですね:
 </p>
 <div class="org-src-container">
-<pre class="src src-diff"><span style="font-weight: bold;">--- </span><span style="font-weight: bold;">/usr/bin/xdg-open.orig</span><span style="font-weight: bold;">  2015-10-06 04:19:48.000000000 +0900</span>
-<span style="font-weight: bold;">+++ </span><span style="font-weight: bold;">/usr/bin/xdg-open</span><span style="font-weight: bold;">   2017-07-24 21:18:32.191564009 +0900</span>
-<span style="font-weight: bold;">@@ -787,20 +787,9 @@</span>
-         if [ -n "$DISPLAY" ]; then
-             filetype=`xdg-mime query filetype "$file" | sed "s/;.*//"`
-             open_generic_xdg_mime "$file" "$filetype"
--        fi
--
--        if which run-mailcap 2&gt;/dev/null 1&gt;&amp;2; then
--            run-mailcap --action=view "$file"
--            if [ $? -eq 0 ]; then
--                exit_success
--            fi
--        fi
--
--        if [ -n "$DISPLAY" ] &amp;&amp; mimeopen -v 2&gt;/dev/null 1&gt;&amp;2; then
--            mimeopen -L -n "$file"
--            if [ $? -eq 0 ]; then
--                exit_success
--            fi
-+        else
-+            echo "can't handle: please set mime type via xdg-mime"
-+            exit_failure_operation_failed
-         fi
-     fi
+<pre class="src src-diff"><span style="background-color: #767676;">--- </span><span style="background-color: #949494; font-weight: bold;">/usr/bin/xdg-open.orig</span><span style="background-color: #767676;">  2015-10-06 04:19:48.000000000 +0900</span>
+<span style="background-color: #767676;">+++ </span><span style="background-color: #949494; font-weight: bold;">/usr/bin/xdg-open</span><span style="background-color: #767676;">   2017-07-24 21:18:32.191564009 +0900</span>
+<span style="background-color: #767676;">@@ -787,20 +787,9 @@</span>
+<span style="color: #dddddd;">         if [ -n "$DISPLAY" ]; then</span>
+<span style="color: #dddddd;">             filetype=`xdg-mime query filetype "$file" | sed "s/;.*//"`</span>
+<span style="color: #dddddd;">             open_generic_xdg_mime "$file" "$filetype"</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">        fi</span>
+<span style="background-color: #553333;">-</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">        if which run-mailcap 2&gt;/dev/null 1&gt;&amp;2; then</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            run-mailcap --action=view "$file"</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            if [ $? -eq 0 ]; then</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">                exit_success</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            fi</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">        fi</span>
+<span style="background-color: #553333;">-</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">        if [ -n "$DISPLAY" ] &amp;&amp; mimeopen -v 2&gt;/dev/null 1&gt;&amp;2; then</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            mimeopen -L -n "$file"</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            if [ $? -eq 0 ]; then</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">                exit_success</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            fi</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        else</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">            echo "can't handle: please set mime type via xdg-mime"</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">            exit_failure_operation_failed</span>
+<span style="color: #dddddd;">         fi</span>
+<span style="color: #dddddd;">     fi</span>
 
 </pre>
 </div>
@@ -328,18 +328,18 @@ suspend → resume した時に i3lock を走らせたいので
 </p>
 
 <div class="org-src-container">
-<pre class="src src-systemd">[Unit]
-Description=Starts i3lock at suspend time
-After=sleep.target
+<pre class="src src-systemd"><span style="color: #FFFF7F;">[Unit]</span>
+<span style="color: #FF7F7F;">Description</span>=Starts i3lock at suspend time
+<span style="color: #FF7F7F;">After</span>=sleep.target
 
-[Service]
-User=uwabami
-Type=forking
-Environment=DISPLAY=:0
-ExecStart=/usr/bin/i3lock -p win -c 444444
+<span style="color: #FFFF7F;">[Service]</span>
+<span style="color: #FF7F7F;">User</span>=uwabami
+<span style="color: #FF7F7F;">Type</span>=<span style="color: #7FBFFF;">forking</span>
+<span style="color: #FF7F7F;">Environment</span>=DISPLAY=:0
+<span style="color: #FF7F7F;">ExecStart</span>=/usr/bin/i3lock -p win -c 444444
 
-[Install]
-WantedBy=sleep.target
+<span style="color: #FFFF7F;">[Install]</span>
+<span style="color: #FF7F7F;">WantedBy</span>=sleep.target
 </pre>
 </div>
 

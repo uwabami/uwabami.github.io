@@ -229,24 +229,24 @@ LXC の基本設定や dnsmasq での DHCP 取得ができるようになって�
 結局
 </p>
 <div class="org-src-container">
-<pre class="src src-diff"><span style="font-weight: bold;">--- </span><span style="font-weight: bold;">/usr/bin/autopkgtest-build-lxc.orig</span><span style="font-weight: bold;"> 2017-09-07 20:15:12.615081394 +0900</span>
-<span style="font-weight: bold;">+++ </span><span style="font-weight: bold;">/usr/bin/autopkgtest-build-lxc</span><span style="font-weight: bold;">  2017-09-07 20:16:31.584016755 +0900</span>
-<span style="font-weight: bold;">@@ -150,14 +150,14 @@</span>
+<pre class="src src-diff"><span style="background-color: #767676;">--- </span><span style="background-color: #949494; font-weight: bold;">/usr/bin/autopkgtest-build-lxc.orig</span><span style="background-color: #767676;"> 2017-09-07 20:15:12.615081394 +0900</span>
+<span style="background-color: #767676;">+++ </span><span style="background-color: #949494; font-weight: bold;">/usr/bin/autopkgtest-build-lxc</span><span style="background-color: #767676;">  2017-09-07 20:16:31.584016755 +0900</span>
+<span style="background-color: #767676;">@@ -150,14 +150,14 @@</span>
 
- if [ ! -e $LXCDIR/$NAME ]; then
-     # first-time run: just create the container
--    $LXC_CREATE_PREFIX lxc-create -B best --name=$NAME $LXC_ARGS
-+    $LXC_CREATE_PREFIX lxc-create --name=$NAME $LXC_ARGS
-     setup $NAME
- else
-     # remove LXC rootfs caches; on btrfs this might be a subvolume, otherwise
-     # rm it
-     btrfs subvolume delete /var/cache/lxc/$RELEASE/rootfs-* 2&gt;/dev/null || rm -rf /var/cache/lxc/$RELEASE/rootfs-*
-     # create a new rootfs in a temp container
--    $LXC_CREATE_PREFIX lxc-create -B best --name=${NAME}.new $LXC_ARGS
-+    $LXC_CREATE_PREFIX lxc-create --name=${NAME}.new $LXC_ARGS
-     setup ${NAME}.new
-     sed -i "s/${NAME}.new/${NAME}/" $LXCDIR/${NAME}.new/rootfs/etc/hostname $LXCDIR/${NAME}.new/rootfs/etc/hosts
+<span style="color: #dddddd;"> if [ ! -e $LXCDIR/$NAME ]; then</span>
+<span style="color: #dddddd;">     # first-time run: just create the container</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">    $LXC_CREATE_PREFIX lxc-create -B best --name=$NAME $LXC_ARGS</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    $LXC_CREATE_PREFIX lxc-create --name=$NAME $LXC_ARGS</span>
+<span style="color: #dddddd;">     setup $NAME</span>
+<span style="color: #dddddd;"> else</span>
+<span style="color: #dddddd;">     # remove LXC rootfs caches; on btrfs this might be a subvolume, otherwise</span>
+<span style="color: #dddddd;">     # rm it</span>
+<span style="color: #dddddd;">     btrfs subvolume delete /var/cache/lxc/$RELEASE/rootfs-* 2&gt;/dev/null || rm -rf /var/cache/lxc/$RELEASE/rootfs-*</span>
+<span style="color: #dddddd;">     # create a new rootfs in a temp container</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">    $LXC_CREATE_PREFIX lxc-create -B best --name=${NAME}.new $LXC_ARGS</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    $LXC_CREATE_PREFIX lxc-create --name=${NAME}.new $LXC_ARGS</span>
+<span style="color: #dddddd;">     setup ${NAME}.new</span>
+<span style="color: #dddddd;">     sed -i "s/${NAME}.new/${NAME}/" $LXCDIR/${NAME}.new/rootfs/etc/hostname $LXCDIR/${NAME}.new/rootfs/etc/hosts</span>
      # replace the original rootfs; can't make this more atomic unfortunately
 </pre>
 </div>
@@ -341,9 +341,9 @@ $<span style="color: #7F7FFF;">autopkgtest_root_args</span> = [<span style="colo
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#22806;&#37096;&#12473;&#12463;&#12522;&#12503;&#12488;&#12391; autopkgtest, rdepends &#12398; autopkgstest</span>
 $<span style="color: #7F7FFF;">external_commands</span> = {
-                      <span style="color: #7FFF7F;">'post-build-commands'</span> =&gt;
-                      [<span style="color: #7FFF7F;">'/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e'</span>],
-                     };
+                     <span style="color: #7FFF7F;">'post-build-commands'</span> =&gt;
+                     [<span style="color: #7FFF7F;">'/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e'</span>],
+                   };
 </pre>
 </div>
 </div>
@@ -383,7 +383,7 @@ post-build-commands で呼び出す autopkgtest の呼び出しは以下
 
 <span style="color: #FF7F7F;">case</span> $<span style="color: #7F7FFF;">arch_dist</span><span style="color: #FF7F7F;"> in</span>
     unstable-amd64*)
-        <span style="color: #7F7FFF;">ad</span>=sid-amd64
+        <span style="color: #7F7FFF;">ad</span>=unstable-amd64
         ;;
     testing-amd64*)
         <span style="color: #7F7FFF;">ad</span>=buster-amd64
@@ -392,7 +392,7 @@ post-build-commands で呼び出す autopkgtest の呼び出しは以下
         <span style="color: #7F7FFF;">ad</span>=stretch-amd64
         ;;
     unstable-i386*)
-        <span style="color: #7F7FFF;">ad</span>=sid-386
+        <span style="color: #7F7FFF;">ad</span>=unstable-386
         ;;
     testing-i3864*)
         <span style="color: #7F7FFF;">ad</span>=buster-i386

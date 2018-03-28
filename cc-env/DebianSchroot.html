@@ -117,14 +117,14 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 例えば以下の様に書いておく:
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">[stable-amd64]
-description=Debian stable amd64
-directory=/src/chroot/stable-amd64
-users=[この schroot 環境を利用できるユーザの名前]
-root-groups=[root としてログインできる親環境のグループの指定]
-aliases=stable,default
-type=directory
-profile=desktop
+<pre class="src src-conf">[<span style="color: #FFFF7F;">stable-amd64</span>]
+<span style="color: #7F7FFF;">description</span>=Debian stable amd64
+<span style="color: #7F7FFF;">directory</span>=/src/chroot/stable-amd64
+<span style="color: #7F7FFF;">users</span>=[&#12371;&#12398; schroot &#29872;&#22659;&#12434;&#21033;&#29992;&#12391;&#12365;&#12427;&#12518;&#12540;&#12470;&#12398;&#21517;&#21069;]
+<span style="color: #7F7FFF;">root-groups</span>=[root &#12392;&#12375;&#12390;&#12525;&#12464;&#12452;&#12531;&#12391;&#12365;&#12427;&#35242;&#29872;&#22659;&#12398;&#12464;&#12523;&#12540;&#12503;&#12398;&#25351;&#23450;]
+<span style="color: #7F7FFF;">aliases</span>=stable,default
+<span style="color: #7F7FFF;">type</span>=directory
+<span style="color: #7F7FFF;">profile</span>=desktop
 </pre>
 </div>
 <p>
@@ -186,24 +186,24 @@ profile=desktop
 とりあえずは syslog-ng と cron だけ.
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">#!/bin/sh
-revw(){
-  set -- "$@"
-  r=""
-  while [ $# -gt 0 ]; do
-    w=$1; shift
-    r="$w $r"
-  done
-  echo "$r"
+<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
+<span style="color: #BF7FFF;">revw</span>(){
+  <span style="color: #7FBFFF;">set</span> -- <span style="color: #7FFF7F;">"$@"</span>
+  <span style="color: #7F7FFF;">r</span>=<span style="color: #7FFF7F;">""</span>
+  <span style="color: #FF7F7F;">while</span> [ $<span style="color: #7F7FFF;">#</span> -gt 0 ]; <span style="color: #FF7F7F;">do</span>
+    <span style="color: #7F7FFF;">w</span>=$<span style="color: #7F7FFF;">1</span>; <span style="color: #7FBFFF;">shift</span>
+    <span style="color: #7F7FFF;">r</span>=<span style="color: #7FFF7F;">"$w $r"</span>
+  <span style="color: #FF7F7F;">done</span>
+  <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"$r"</span>
 }
-echo "start services (chroot sid):"
-services="anacron cron"
-if [ "$1" = "stop" ]; then
-  services=$(revw $services)
-fi
-for s in $services; do
-  schroot -q -c stable-amd64 /etc/init.d/$s $1
-done
+<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"start services (chroot sid):"</span>
+<span style="color: #7F7FFF;">services</span>=<span style="color: #7FFF7F;">"anacron cron"</span>
+<span style="color: #FF7F7F;">if</span> [ <span style="color: #7FFF7F;">"$1"</span> = <span style="color: #7FFF7F;">"stop"</span> ]; <span style="color: #FF7F7F;">then</span>
+  <span style="color: #7F7FFF;">services</span>=$(revw $<span style="color: #7F7FFF;">services</span>)
+<span style="color: #FF7F7F;">fi</span>
+<span style="color: #FF7F7F;">for</span> s<span style="color: #FF7F7F;"> in</span> $<span style="color: #7F7FFF;">services</span>; <span style="color: #FF7F7F;">do</span>
+  schroot -q -c stable-amd64 /etc/init.d/$<span style="color: #7F7FFF;">s</span> $<span style="color: #7F7FFF;">1</span>
+<span style="color: #FF7F7F;">done</span>
 </pre>
 </div>
 <p>

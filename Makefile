@@ -14,10 +14,10 @@ build: publish
 	JEKYLL_GITHUB_TOKEN=$(MY_JEKYLL_GITHUB_TOKEN) \
 	  bundle exec jekyll build --safe
 publish:
-	emacs -l ~/.emacs.d/init.elc --batch \
-	  --eval '(org-publish-project "web")'
-	emacs -l ~/.emacs.d/init.elc --batch \
-	  --eval '(org-publish-project "cc-env")'
+# 	emacs -l ~/.emacs.d/init.elc --batch \
+# 	  --eval '(org-publish-project "web")'
+# 	emacs -l ~/.emacs.d/init.elc --batch \
+# 	  --eval '(org-publish-project "cc-env")'
 	find cc-env -name \*.html | \
 	  xargs sed -i -e 's%../../.emacs.d/README.html%Emacs.html%g'
 	find cc-env -name \*.html | \

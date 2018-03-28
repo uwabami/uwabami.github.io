@@ -135,7 +135,7 @@ tmux の設定は以下の通り.
 <pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
 <span style="color: #a5a5a6;">#</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2018-02-16 17:39:39$</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2018-03-11 23:02:11$</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: Public domain.</span>
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">general</span>
@@ -149,7 +149,7 @@ setw -g mouse off
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable bell action</span>
 set -g bell-action none
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Window renmae enabled</span>
-setw -g automatic-rename on
+setw -g automatic-rename off
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">default &#12391;&#36215;&#21205;&#12377;&#12427;&#12467;&#12510;&#12531;&#12489;: zsh</span>
 set -g default-command zsh
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">prefix &#12398;&#26377;&#21177;&#26178;&#38291;: no wait</span>
@@ -254,10 +254,12 @@ weechat を常に下に表示させておきたいので <code>C-t -</code> で�
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
 <span style="color: #7F7FFF;">tmp</span>=$<span style="color: #7F7FFF;">HOME</span>/.tmux/weechat.tmp
-<span style="color: #7F7FFF;">current_weechat_window</span>=<span style="font-weight: bold;">`tmux lsp -a -F "#I: #T" | grep WeeChat | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_weechat_pane</span>=<span style="font-weight: bold;">`tmux lsp -a -F "#P: #T" | grep WeeChat | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_active_window</span>=<span style="font-weight: bold;">`tmux lsw | grep active | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_active_pane</span>=<span style="font-weight: bold;">`tmux lsp | grep active | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_weechat_window</span>=<span style="color: #ff875f;">`tmux lsp -a -F "#I: #T" | grep WeeChat | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_weechat_pane</span>=<span style="color: #ff875f;">`tmux lsp -a -F "#P: #T" | grep WeeChat | cut -d":" -f 1`</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">current_weechat_window=`tmux lsp -a -F "#I: #T" | grep screen | cut -d":" -f 1`</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">current_weechat_pane=`tmux lsp -a -F "#P: #T" | grep screen | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_active_window</span>=<span style="color: #ff875f;">`tmux lsw | grep active | cut -d":" -f 1`</span>
+<span style="color: #7F7FFF;">current_active_pane</span>=<span style="color: #ff875f;">`tmux lsp | grep active | cut -d":" -f 1`</span>
 
 <span style="color: #FF7F7F;">if</span> [ ${<span style="color: #7F7FFF;">current_weechat_window</span>} -ne ${<span style="color: #7F7FFF;">current_active_window</span>} ] ; <span style="color: #FF7F7F;">then</span>
     tmux join-pane -l 10 -s :${<span style="color: #7F7FFF;">current_weechat_window</span>}.${<span style="color: #7F7FFF;">current_weechat_pane</span>} -t :${<span style="color: #7F7FFF;">current_active_window</span>}

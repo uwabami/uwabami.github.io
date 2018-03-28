@@ -124,7 +124,7 @@ apt 万歳
 <span style="color: #FF7F7F;">done</span>
 <span style="color: #a5a5a6;">#</span>
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"merge tmp list"</span>
-<span style="color: #FF7F7F;">for</span> f<span style="color: #FF7F7F;"> in</span> <span style="font-weight: bold;">`/bin/ls -1 tmp-?-list.txt`</span>; <span style="color: #FF7F7F;">do</span>
+<span style="color: #FF7F7F;">for</span> f<span style="color: #FF7F7F;"> in</span> <span style="color: #ff875f;">`/bin/ls -1 tmp-?-list.txt`</span>; <span style="color: #FF7F7F;">do</span>
     cat $<span style="color: #7F7FFF;">f</span> | grep -v ^# &gt;&gt; tmp-list.txt
     rm -f $<span style="color: #7F7FFF;">f</span>
 <span style="color: #FF7F7F;">done</span>
@@ -142,13 +142,14 @@ cat tmp-white.txt | <span style="color: #FF7F7F;">while </span><span style="colo
 sed -i -e <span style="color: #7FFF7F;">'/apis.google.com/d'</span> adaway.txt
 sed -i -e <span style="color: #7FFF7F;">'/google-analytics.l.google.com/d'</span> adaway.txt
 sed -i -e <span style="color: #7FFF7F;">'/google-analytics.com/d'</span> adaway.txt
+sed -i -e <span style="color: #7FFF7F;">'s/127.0.0.1 //g'</span> adaway.txt
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">nginx hosts</span>
-cat adaway.txt | sed -e <span style="color: #7FFF7F;">'s/127.0.0.1/server_name/g'</span> -e <span style="color: #7FFF7F;">'s/$/;/g'</span> &gt; adaway_hosts.txt
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat adaway.txt | sed -e 's/127.0.0.1/server_name/g' -e 's/$/;/g' &gt; adaway_hosts.txt</span>
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">ipv6</span>
-cat adaway.txt | sed -e <span style="color: #7FFF7F;">'s/127.0.0.1/::1/g'</span> &gt; adaway_ipv6.txt
-cat adaway_ipv6.txt &gt;&gt; adaway.txt
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat adaway.txt | sed -e 's/127.0.0.1/::1/g' &gt; adaway_ipv6.txt</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">cat adaway.txt &gt;&gt; adaway_ipv6.txt</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">mv adaway_ipv6.txt adaway.txt</span>
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"cleanup"</span>
-rm -f adaway_ipv6.txt
 rm -f tmp-list.txt
 rm -f tmp-white.txt
 </pre>
@@ -175,12 +176,16 @@ rm -f tmp-white.txt
 といった所.
 </p>
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">Adblock</span>
-hosts_file /etc/squid/adaway.txt
-
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">DNS</span>
+<pre class="src src-conf"><span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">DNS</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">dns_v4_first on</span>
 dns_nameservers 127.0.0.1
+dns_nameservers ::1
+
+<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">Adblock</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">hosts_file /etc/squid/adaway.txt</span>
+acl ad_black dstdomain <span style="color: #7FFF7F;">"/etc/squid/adaway.txt"</span>
+http_access deny ad_black
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">deny_info http://127.0.0.1/%s ad_black</span>
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">ACL</span>
 <span style="color: #a5a5a6;">#</span>
@@ -200,11 +205,11 @@ dns_nameservers 127.0.0.1
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 591     # filemaker</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl Safe_ports port 777     # multiling http</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">acl CONNECT method CONNECT</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access deny !Safe_ports</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access deny CONNECT !SSL_ports</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access deny !Safe_ports</span>
 <span style="color: #a5a5a6;">#</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">http_access allow localhost</span>
-acl local src 192.168.122.0/24 127.0.0.1 ::1
+acl local src 192.168.122.0/24 127.0.0.1 ::1 fe80::/10
 http_access allow local
 http_access deny all
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Only allow cachemgr access from localhost</span>
@@ -314,7 +319,7 @@ shutdown_lifetime 0.01 seconds
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">common rules</span>
 <span style="color: #a5a5a6;">#</span>
 include /etc/squid/common.conf
-always_direct allow all
+always_direct allow local
 </pre>
 </div>
 <p>

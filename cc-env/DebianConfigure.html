@@ -65,11 +65,11 @@ X のキーボード設定もこれで設定される.
 現状は以下の通り:
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">BACKSPACE="guess"
-XKBLAYOUT="jp"
-XKBMODEL="pc105"
-XKBVARIANT=""
-XKBOPTIONS="ctrl:nocaps"
+<pre class="src src-conf"><span style="color: #7F7FFF;">BACKSPACE</span>=<span style="color: #7FFF7F;">"guess"</span>
+<span style="color: #7F7FFF;">XKBLAYOUT</span>=<span style="color: #7FFF7F;">"jp"</span>
+<span style="color: #7F7FFF;">XKBMODEL</span>=<span style="color: #7FFF7F;">"pc105"</span>
+<span style="color: #7F7FFF;">XKBVARIANT</span>=<span style="color: #7FFF7F;">""</span>
+<span style="color: #7F7FFF;">XKBOPTIONS</span>=<span style="color: #7FFF7F;">"ctrl:nocaps"</span>
 </pre>
 </div>
 <p>
@@ -126,9 +126,9 @@ $ sudo -s
 SMTP-AUTH over SSL に対応したい場合は, /etc/ssmtp/ssmtp.conf に
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">AuthUser=[SMTP-AUTH のユーザ名]
-AuthPass=[SMTP-AUTH のパスワード]
-UseTLS=YES
+<pre class="src src-conf"><span style="color: #7F7FFF;">AuthUser</span>=[SMTP-AUTH &#12398;&#12518;&#12540;&#12470;&#21517;]
+<span style="color: #7F7FFF;">AuthPass</span>=[SMTP-AUTH &#12398;&#12497;&#12473;&#12527;&#12540;&#12489;]
+<span style="color: #7F7FFF;">UseTLS</span>=YES
 </pre>
 </div>
 <p>
@@ -161,7 +161,7 @@ alsamixer での表示が悲しい感じになる.
 <code>/etc/modprobe.d/alsa-base.conf</code> の末尾に
 </p>
 <div class="org-src-container">
-<pre class="src src-conf">options snd-hda-intel model=basic
+<pre class="src src-conf"><span style="color: #7F7FFF;">options snd-hda-intel model</span>=basic
 </pre>
 </div>
 <p>

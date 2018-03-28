@@ -18,15 +18,15 @@ permalink: /cc-env/DebianMail.html
 <ul>
 <li><a href="#org7abcb25">mbsync/isync</a>
 <ul>
-<li><a href="#org46665e6">インストール</a></li>
-<li><a href="#orga298b2d">設定</a></li>
-<li><a href="#orgf370422">cron での動作</a></li>
+<li><a href="#org615a0d6">インストール</a></li>
+<li><a href="#org35390b3">設定</a></li>
+<li><a href="#org229caff">cron での動作</a></li>
 </ul>
 </li>
 <li><a href="#org9e83b12">dovecot</a>
 <ul>
-<li><a href="#org8dec811">インストール</a></li>
-<li><a href="#orgd04173d">設定</a></li>
+<li><a href="#org9e07a71">インストール</a></li>
+<li><a href="#orgcc913eb">設定</a></li>
 </ul>
 </li>
 <li><a href="#org981070b">以下, obsolete</a>
@@ -35,9 +35,9 @@ permalink: /cc-env/DebianMail.html
 <li><a href="#org445f854">検索: Solr で日本語</a></li>
 <li><a href="#org59e01d8">offlineimap</a>
 <ul>
-<li><a href="#org615a0d6">インストール</a></li>
-<li><a href="#org35390b3">設定</a></li>
-<li><a href="#org229caff">cron での動作</a></li>
+<li><a href="#orgc232316">インストール</a></li>
+<li><a href="#org09c2561">設定</a></li>
+<li><a href="#org6912f3d">cron での動作</a></li>
 </ul>
 </li>
 </ul>
@@ -214,9 +214,9 @@ msmtp-enqueue.sh $<span style="color: #7F7FFF;">ARGS</span> 1&gt;/dev/null
 isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
 </p>
 </div>
-<div id="outline-container-org46665e6" class="outline-4">
-<h4 id="org46665e6">インストール</h4>
-<div class="outline-text-4" id="text-org46665e6">
+<div id="outline-container-org615a0d6" class="outline-4">
+<h4 id="org615a0d6">インストール</h4>
+<div class="outline-text-4" id="text-org615a0d6">
 <p>
 実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
 </p>
@@ -228,9 +228,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-orga298b2d" class="outline-4">
-<h4 id="orga298b2d">設定</h4>
-<div class="outline-text-4" id="text-orga298b2d">
+<div id="outline-container-org35390b3" class="outline-4">
+<h4 id="org35390b3">設定</h4>
+<div class="outline-text-4" id="text-org35390b3">
 <p>
 設定ファイルは <code>~/.mbsyncrc</code>.
 設定例は以下:
@@ -366,9 +366,9 @@ mbsync -l mobile
 </p>
 </div>
 </div>
-<div id="outline-container-orgf370422" class="outline-4">
-<h4 id="orgf370422">cron での動作</h4>
-<div class="outline-text-4" id="text-orgf370422">
+<div id="outline-container-org229caff" class="outline-4">
+<h4 id="org229caff">cron での動作</h4>
+<div class="outline-text-4" id="text-org229caff">
 <p>
 認証に GPG を使っており、認証に Gnome Keyring を用いているので
 必要な環境変数を読み込んでから実行するようにする.
@@ -435,9 +435,9 @@ timelimit -T 300 -t 300 mbsync -c $<span style="color: #7F7FFF;">CONF</span> -a 
 <h3 id="org9e83b12">dovecot</h3>
 <div class="outline-text-3" id="text-org9e83b12">
 </div>
-<div id="outline-container-org8dec811" class="outline-4">
-<h4 id="org8dec811">インストール</h4>
-<div class="outline-text-4" id="text-org8dec811">
+<div id="outline-container-org9e07a71" class="outline-4">
+<h4 id="org9e07a71">インストール</h4>
+<div class="outline-text-4" id="text-org9e07a71">
 <p>
 最低限 IMAP での接続ができれば良いので
 </p>
@@ -449,9 +449,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-orgd04173d" class="outline-4">
-<h4 id="orgd04173d">設定</h4>
-<div class="outline-text-4" id="text-orgd04173d">
+<div id="outline-container-orgcc913eb" class="outline-4">
+<h4 id="orgcc913eb">設定</h4>
+<div class="outline-text-4" id="text-orgcc913eb">
 <p>
 最低限の設定として、
 </p>
@@ -638,88 +638,88 @@ IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定す
 diff は以下:
 </p>
 <div class="org-src-container">
-<pre class="src src-diff"><span style="font-weight: bold;">--- </span><span style="font-weight: bold;">solr-schema.xml 2015-05-10 20:52:33.375358006 +0900</span>
-<span style="font-weight: bold;">+++ </span><span style="font-weight: bold;">schema.xml  2015-05-10 20:37:37.358195292 +0900</span>
-<span style="font-weight: bold;">@@ -13,6 +13,62 @@</span>
-     &lt;fieldType name="long" class="solr.TrieLongField" /&gt;
-     &lt;fieldType name="boolean" class="solr.BoolField" /&gt;
+<pre class="src src-diff"><span style="background-color: #767676;">--- </span><span style="background-color: #949494; font-weight: bold;">solr-schema.xml 2015-05-10 20:52:33.375358006 +0900</span>
+<span style="background-color: #767676;">+++ </span><span style="background-color: #949494; font-weight: bold;">schema.xml  2015-05-10 20:37:37.358195292 +0900</span>
+<span style="background-color: #767676;">@@ -13,6 +13,62 @@</span>
+<span style="color: #dddddd;">     &lt;fieldType name="long" class="solr.TrieLongField" /&gt;</span>
+<span style="color: #dddddd;">     &lt;fieldType name="boolean" class="solr.BoolField" /&gt;</span>
 
-+    &lt;!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) --&gt;
-+    &lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;
-+      &lt;analyzer&gt;
-+        &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
-+        &lt;!-- normalize width before bigram, as e.g. half-width dakuten combine  --&gt;
-+        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;
-+        &lt;!-- for any non-CJK --&gt;
-+        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;
-+        &lt;filter class="solr.CJKBigramFilterFactory"/&gt;
-+      &lt;/analyzer&gt;
-+    &lt;/fieldType&gt;
-+    &lt;fieldType name="text_ja" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="false"&gt;
-+      &lt;analyzer&gt;
-+      &lt;!-- Kuromoji Japanese morphological analyzer/tokenizer (JapaneseTokenizer)
-+
-+           Kuromoji has a search mode (default) that does segmentation useful for search.  A heuristic
-+           is used to segment compounds into its parts and the compound itself is kept as synonym.
-+
-+           Valid values for attribute mode are:
-+              normal: regular segmentation
-+              search: segmentation useful for search with synonyms compounds (default)
-+            extended: same as search mode, but unigrams unknown words (experimental)
-+
-+           For some applications it might be good to use search mode for indexing and normal mode for
-+           queries to reduce recall and prevent parts of compounds from being matched and highlighted.
-+           Use &lt;analyzer type="index"&gt; and &lt;analyzer type="query"&gt; for this and mode normal in query.
-+
-+           Kuromoji also has a convenient user dictionary feature that allows overriding the statistical
-+           model with your own entries for segmentation, part-of-speech tags and readings without a need
-+           to specify weights.  Notice that user dictionaries have not been subject to extensive testing.
-+
-+           User dictionary attributes are:
-+                     userDictionary: user dictionary filename
-+             userDictionaryEncoding: user dictionary encoding (default is UTF-8)
-+
-+           See lang/userdict_ja.txt for a sample user dictionary file.
-+
-+           See http://wiki.apache.org/solr/JapaneseLanguageSupport for more on Japanese language support.
-+        --&gt;
-+        &lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search"/&gt;
-+        &lt;!--&lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search" userDictionary="lang/userdict_ja.txt"/&gt;--&gt;
-+        &lt;!-- Reduces inflected verbs and adjectives to their base/dictionary forms (&#36766;&#26360;&#24418;) --&gt;
-+        &lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;
-+        &lt;!-- Removes tokens with certain part-of-speech tags --&gt;
-+        &lt;filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt" enablePositionIncrements="true"/&gt;
-+        &lt;!-- Normalizes full-width romaji to half-width and half-width kana to full-width (Unicode NFKC subset) --&gt;
-+        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;
-+        &lt;!-- Removes common tokens typically not useful for search, but have a negative effect on ranking --&gt;
-+        &lt;filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ja.txt" enablePositionIncrements="true" /&gt;
-+        &lt;!-- Normalizes common katakana spelling variations by removing any last long sound character (U+30FC) --&gt;
-+        &lt;filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4"/&gt;
-+        &lt;!-- Lower-cases romaji characters --&gt;
-+        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;
-+      &lt;/analyzer&gt;
-+    &lt;/fieldType&gt;
-+
-     &lt;fieldType name="text" class="solr.TextField" positionIncrementGap="100"&gt;
-       &lt;analyzer type="index"&gt;
-         &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
-<span style="font-weight: bold;">@@ -43,14 +99,14 @@</span>
-    &lt;field name="box" type="string" indexed="true" stored="true" required="true" /&gt;
-    &lt;field name="user" type="string" indexed="true" stored="true" required="true" /&gt;
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;analyzer&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- normalize width before bigram, as e.g. half-width dakuten combine  --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- for any non-CJK --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.CJKBigramFilterFactory"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;/analyzer&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;/fieldType&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;fieldType name="text_ja" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="false"&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;analyzer&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;!-- Kuromoji Japanese morphological analyzer/tokenizer (JapaneseTokenizer)</span>
+<span style="background-color: #335533;">+</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           Kuromoji has a search mode (default) that does segmentation useful for search.  A heuristic</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           is used to segment compounds into its parts and the compound itself is kept as synonym.</span>
+<span style="background-color: #335533;">+</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           Valid values for attribute mode are:</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">              normal: regular segmentation</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">              search: segmentation useful for search with synonyms compounds (default)</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">            extended: same as search mode, but unigrams unknown words (experimental)</span>
+<span style="background-color: #335533;">+</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           For some applications it might be good to use search mode for indexing and normal mode for</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           queries to reduce recall and prevent parts of compounds from being matched and highlighted.</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           Use &lt;analyzer type="index"&gt; and &lt;analyzer type="query"&gt; for this and mode normal in query.</span>
+<span style="background-color: #335533;">+</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           Kuromoji also has a convenient user dictionary feature that allows overriding the statistical</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           model with your own entries for segmentation, part-of-speech tags and readings without a need</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           to specify weights.  Notice that user dictionaries have not been subject to extensive testing.</span>
+<span style="background-color: #335533;">+</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           User dictionary attributes are:</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">                     userDictionary: user dictionary filename</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">             userDictionaryEncoding: user dictionary encoding (default is UTF-8)</span>
+<span style="background-color: #335533;">+</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           See lang/userdict_ja.txt for a sample user dictionary file.</span>
+<span style="background-color: #335533;">+</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">           See http://wiki.apache.org/solr/JapaneseLanguageSupport for more on Japanese language support.</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!--&lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search" userDictionary="lang/userdict_ja.txt"/&gt;--&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Reduces inflected verbs and adjectives to their base/dictionary forms (&#36766;&#26360;&#24418;) --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Removes tokens with certain part-of-speech tags --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt" enablePositionIncrements="true"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Normalizes full-width romaji to half-width and half-width kana to full-width (Unicode NFKC subset) --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Removes common tokens typically not useful for search, but have a negative effect on ranking --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ja.txt" enablePositionIncrements="true" /&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Normalizes common katakana spelling variations by removing any last long sound character (U+30FC) --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;!-- Lower-cases romaji characters --&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">      &lt;/analyzer&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    &lt;/fieldType&gt;</span>
+<span style="background-color: #335533;">+</span>
+<span style="color: #dddddd;">     &lt;fieldType name="text" class="solr.TextField" positionIncrementGap="100"&gt;</span>
+<span style="color: #dddddd;">       &lt;analyzer type="index"&gt;</span>
+<span style="color: #dddddd;">         &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;</span>
+<span style="background-color: #767676;">@@ -43,14 +99,14 @@</span>
+<span style="color: #dddddd;">    &lt;field name="box" type="string" indexed="true" stored="true" required="true" /&gt;</span>
+<span style="color: #dddddd;">    &lt;field name="user" type="string" indexed="true" stored="true" required="true" /&gt;</span>
 
--   &lt;field name="hdr" type="text" indexed="true" stored="false" /&gt;
--   &lt;field name="body" type="text" indexed="true" stored="false" /&gt;
-+   &lt;field name="hdr" type="text_cjk" indexed="true" stored="false" /&gt;
-+   &lt;field name="body" type="text_cjk" indexed="true" stored="false" /&gt;
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">   &lt;field name="hdr" type="text" indexed="true" stored="false" /&gt;</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">   &lt;field name="body" type="text" indexed="true" stored="false" /&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">   &lt;field name="hdr" type="text_cjk" indexed="true" stored="false" /&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">   &lt;field name="body" type="text_cjk" indexed="true" stored="false" /&gt;</span>
 
-    &lt;field name="from" type="text" indexed="true" stored="false" /&gt;
-    &lt;field name="to" type="text" indexed="true" stored="false" /&gt;
-    &lt;field name="cc" type="text" indexed="true" stored="false" /&gt;
-    &lt;field name="bcc" type="text" indexed="true" stored="false" /&gt;
--   &lt;field name="subject" type="text" indexed="true" stored="false" /&gt;
-+   &lt;field name="subject" type="text_cjk" indexed="true" stored="false" /&gt;
+<span style="color: #dddddd;">    &lt;field name="from" type="text" indexed="true" stored="false" /&gt;</span>
+<span style="color: #dddddd;">    &lt;field name="to" type="text" indexed="true" stored="false" /&gt;</span>
+<span style="color: #dddddd;">    &lt;field name="cc" type="text" indexed="true" stored="false" /&gt;</span>
+<span style="color: #dddddd;">    &lt;field name="bcc" type="text" indexed="true" stored="false" /&gt;</span>
+<span style="background-color: #553333;">-</span><span style="background-color: #553333;">   &lt;field name="subject" type="text" indexed="true" stored="false" /&gt;</span>
+<span style="background-color: #335533;">+</span><span style="background-color: #335533;">   &lt;field name="subject" type="text_cjk" indexed="true" stored="false" /&gt;</span>
 
-    &lt;!-- Used by Solr internally: --&gt;
+<span style="color: #dddddd;">    &lt;!-- Used by Solr internally: --&gt;</span>
     &lt;field name="_version_" type="long" indexed="true" stored="true"/&gt;
 </pre>
 </div>
@@ -733,9 +733,9 @@ diff は以下:
 <a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.
 </p>
 </div>
-<div id="outline-container-org615a0d6" class="outline-5">
-<h5 id="org615a0d6">インストール</h5>
-<div class="outline-text-5" id="text-org615a0d6">
+<div id="outline-container-orgc232316" class="outline-5">
+<h5 id="orgc232316">インストール</h5>
+<div class="outline-text-5" id="text-orgc232316">
 <p>
 apt万歳, ってことで.
 </p>
@@ -744,9 +744,9 @@ $ sudo apt-get install offlineimap
 </pre>
 </div>
 </div>
-<div id="outline-container-org35390b3" class="outline-5">
-<h5 id="org35390b3">設定</h5>
-<div class="outline-text-5" id="text-org35390b3">
+<div id="outline-container-org09c2561" class="outline-5">
+<h5 id="org09c2561">設定</h5>
+<div class="outline-text-5" id="text-org09c2561">
 <p>
 現状, 以下の通り:
 </p>
@@ -974,9 +974,9 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 </p>
 </div>
 </div>
-<div id="outline-container-org229caff" class="outline-5">
-<h5 id="org229caff">cron での動作</h5>
-<div class="outline-text-5" id="text-org229caff">
+<div id="outline-container-org6912f3d" class="outline-5">
+<h5 id="org6912f3d">cron での動作</h5>
+<div class="outline-text-5" id="text-org6912f3d">
 <p>
 認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから
 実行するようにする.
@@ -1027,14 +1027,14 @@ cron で実行されるスクリプトは, 例えば
 <span style="color: #7F7FFF;">OFFLINEIMAP_CONF</span>=~/.offlineimaprc
 <span style="color: #7F7FFF;">UI</span>=quiet
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"******************************************************************"</span>
-<span style="color: #7FBFFF;">echo</span> <span style="font-weight: bold;">`LANG=C date`</span>
+<span style="color: #7FBFFF;">echo</span> <span style="color: #ff875f;">`LANG=C date`</span>
 <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"******************************************************************"</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">for gnome-keyring:</span>
 . ${<span style="color: #7F7FFF;">HOME</span>}/.Xdbus
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check network is avaliable</span>
 nm-online -x || <span style="color: #FF7F7F;">exit</span> 0
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">check another offlineimap</span>
-[ $(ps -p <span style="font-weight: bold;">`cat $OFFLINEIMAP_PID`</span> -o pid --no-heading) ] <span style="color: #7FFF7F;">\</span>
+[ $(ps -p <span style="color: #ff875f;">`cat $OFFLINEIMAP_PID`</span> -o pid --no-heading) ] <span style="color: #7FFF7F;">\</span>
   || nice -n 19 offlineimap -c $<span style="color: #7F7FFF;">OFFLINEIMAP_CONF</span> -u $<span style="color: #7F7FFF;">UI</span> -o  2&gt;&amp;1
 </pre>
 </div>
