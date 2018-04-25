@@ -11,22 +11,22 @@ permalink: /cc-env/DebianPackaging.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga984f73">はじめに</a></li>
-<li><a href="#org6bb6b14"><span class="todo TODO">TODO</span> <code>sbuild</code>: clean room build 環境</a>
+<li><a href="#org4d40b64">はじめに</a></li>
+<li><a href="#org8aa32d5"><span class="todo TODO">TODO</span> <code>sbuild</code>: clean room build 環境</a>
 <ul>
-<li><a href="#org58ae8dd">インストールと設定</a></li>
+<li><a href="#orgfb81f87">インストールと設定</a></li>
 </ul>
 </li>
-<li><a href="#org590e009"><code>lintian</code>: パッケージの品質のチェック</a></li>
-<li><a href="#orgd973f90"><code>piuparts</code>: パッケージとしてのテスト</a></li>
-<li><a href="#org923b744"><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</a>
+<li><a href="#org84e0b97"><code>lintian</code>: パッケージの品質のチェック</a></li>
+<li><a href="#org2a70239"><code>piuparts</code>: パッケージとしてのテスト</a></li>
+<li><a href="#orge944eab"><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</a>
 <ul>
-<li><a href="#org336e175">初期設定</a></li>
-<li><a href="#org5d833fe">sbuild からの呼び出し</a></li>
+<li><a href="#org306264f">初期設定</a></li>
+<li><a href="#orge0b4b3a">sbuild からの呼び出し</a></li>
 </ul>
 </li>
-<li><a href="#orgfd061e9"><code>~/.sbuildrc</code></a></li>
-<li><a href="#org38e5d92"><code>~/.sbuild.d/sbuild-debci-rdepends</code></a></li>
+<li><a href="#org2b64db1"><code>~/.sbuildrc</code></a></li>
+<li><a href="#org038cc56"><code>~/.sbuild.d/sbuild-debci-rdepends</code></a></li>
 </ul>
 </div>
 </nav>
@@ -35,26 +35,26 @@ permalink: /cc-env/DebianPackaging.html
 <p>
 Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
 </p>
-<div id="outline-container-orga984f73" class="outline-2">
-<h2 id="orga984f73">はじめに</h2>
-<div class="outline-text-2" id="text-orga984f73">
+<div id="outline-container-org4d40b64" class="outline-2">
+<h2 id="org4d40b64">はじめに</h2>
+<div class="outline-text-2" id="text-org4d40b64">
 <p>
 Debian パッケージを作成するため
 </p>
 <ul class="org-ul">
-<li><a href="#org6bb6b14"><code>sbuild</code>: clean room build 環境</a> :ビルド時の依存環境をテストしつつビルドする</li>
-<li><a href="#org590e009"><code>lintian</code>: パッケージの品質のチェック</a></li>
-<li><a href="#orgd973f90"><code>piuparts</code>: パッケージとしてのテスト</a></li>
-<li><a href="#org923b744"><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</a></li>
+<li><a href="#org8aa32d5"><code>sbuild</code>: clean room build 環境</a> :ビルド時の依存環境をテストしつつビルドする</li>
+<li><a href="#org84e0b97"><code>lintian</code>: パッケージの品質のチェック</a></li>
+<li><a href="#org2a70239"><code>piuparts</code>: パッケージとしてのテスト</a></li>
+<li><a href="#orge944eab"><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</a></li>
 </ul>
 <p>
 ができるようにしておきます.
 </p>
 </div>
 </div>
-<div id="outline-container-org6bb6b14" class="outline-2">
-<h2 id="org6bb6b14"><a id="ID-74d27536-cf49-4780-8b6d-2e7b22027785"></a><span class="todo TODO">TODO</span> <code>sbuild</code>: clean room build 環境</h2>
-<div class="outline-text-2" id="text-org6bb6b14">
+<div id="outline-container-org8aa32d5" class="outline-2">
+<h2 id="org8aa32d5"><a id="ID-74d27536-cf49-4780-8b6d-2e7b22027785"></a><span class="todo TODO">TODO</span> <code>sbuild</code>: clean room build 環境</h2>
+<div class="outline-text-2" id="text-org8aa32d5">
 <p>
 clean room build 環境としては
 </p>
@@ -72,9 +72,9 @@ sbuild に関しては <a href="https://wiki.debian.org/sbuild">sbuild - Debian 
 <li class="off"><code>[&#xa0;]</code> sbuild の build 環境に lxc って使えたりしないかな&#x2026;?</li>
 </ul>
 </div>
-<div id="outline-container-org58ae8dd" class="outline-3">
-<h3 id="org58ae8dd">インストールと設定</h3>
-<div class="outline-text-3" id="text-org58ae8dd">
+<div id="outline-container-orgfb81f87" class="outline-3">
+<h3 id="orgfb81f87">インストールと設定</h3>
+<div class="outline-text-3" id="text-orgfb81f87">
 <p>
 ほぼ, 上述の wiki の通り:
 </p>
@@ -123,9 +123,9 @@ sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
 </div>
 </div>
 </div>
-<div id="outline-container-org590e009" class="outline-2">
-<h2 id="org590e009"><a id="ID-0b5136f9-4bea-4417-849a-96f5f95b6504"></a><code>lintian</code>: パッケージの品質のチェック</h2>
-<div class="outline-text-2" id="text-org590e009">
+<div id="outline-container-org84e0b97" class="outline-2">
+<h2 id="org84e0b97"><a id="ID-0b5136f9-4bea-4417-849a-96f5f95b6504"></a><code>lintian</code>: パッケージの品質のチェック</h2>
+<div class="outline-text-2" id="text-org84e0b97">
 <p>
 作成したパッケージが Debian Policy に準拠しているかを
 チェックするパッケージである lintian を導入.
@@ -160,9 +160,9 @@ $<span style="color: #7F7FFF;">lintian_opts</span> = [<span style="color: #7FFF7
 </p>
 </div>
 </div>
-<div id="outline-container-orgd973f90" class="outline-2">
-<h2 id="orgd973f90"><a id="ID-bcb9e308-7a2d-4bab-8876-30b8eedaf43c"></a><code>piuparts</code>: パッケージとしてのテスト</h2>
-<div class="outline-text-2" id="text-orgd973f90">
+<div id="outline-container-org2a70239" class="outline-2">
+<h2 id="org2a70239"><a id="ID-bcb9e308-7a2d-4bab-8876-30b8eedaf43c"></a><code>piuparts</code>: パッケージとしてのテスト</h2>
+<div class="outline-text-2" id="text-org2a70239">
 <p>
 ビルドしたパッケージについて
 インストール, アップグレード, リムーブ, パージのテストを行なえる
@@ -186,16 +186,16 @@ $<span style="color: #7F7FFF;">piuparts_root_args</span> = [<span style="color: 
 </div>
 </div>
 </div>
-<div id="outline-container-org923b744" class="outline-2">
-<h2 id="org923b744"><a id="ID-d2393bd8-c286-44ad-a23a-b50893ee82f3"></a><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</h2>
-<div class="outline-text-2" id="text-org923b744">
+<div id="outline-container-orge944eab" class="outline-2">
+<h2 id="orge944eab"><a id="ID-d2393bd8-c286-44ad-a23a-b50893ee82f3"></a><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</h2>
+<div class="outline-text-2" id="text-orge944eab">
 <p>
 autopkgtest パッケージを導入しておく.
 </p>
 </div>
-<div id="outline-container-org336e175" class="outline-3">
-<h3 id="org336e175">初期設定</h3>
-<div class="outline-text-3" id="text-org336e175">
+<div id="outline-container-org306264f" class="outline-3">
+<h3 id="org306264f">初期設定</h3>
+<div class="outline-text-3" id="text-org306264f">
 <p>
 autopkgtest 環境として, schroot を使うか lxc を使うか, がある.
 当然ながら schroot の方が overhead が少ないのだが,
@@ -266,9 +266,9 @@ LXC の基本設定や dnsmasq での DHCP 取得ができるようになって�
 </ul>
 </div>
 </div>
-<div id="outline-container-org5d833fe" class="outline-3">
-<h3 id="org5d833fe">sbuild からの呼び出し</h3>
-<div class="outline-text-3" id="text-org5d833fe">
+<div id="outline-container-orge0b4b3a" class="outline-3">
+<h3 id="orge0b4b3a">sbuild からの呼び出し</h3>
+<div class="outline-text-3" id="text-orge0b4b3a">
 <p>
 面倒なのは lxc を使う場合には <code>stretch</code>, <code>buster</code>, <code>sid</code> とコードネームなのに対して,
 sbuild/schroot の release は <code>unstable</code> だったりするところ.
@@ -301,9 +301,9 @@ $<span style="color: #7F7FFF;">external_commands</span> = {
 </div>
 </div>
 </div>
-<div id="outline-container-orgfd061e9" class="outline-2">
-<h2 id="orgfd061e9"><code>~/.sbuildrc</code></h2>
-<div class="outline-text-2" id="text-orgfd061e9">
+<div id="outline-container-org2b64db1" class="outline-2">
+<h2 id="org2b64db1"><code>~/.sbuildrc</code></h2>
+<div class="outline-text-2" id="text-org2b64db1">
 <p>
 現在の <code>~/.sbuildrc</code> は以下の通り
 </p>
@@ -327,30 +327,30 @@ $<span style="color: #7F7FFF;">lintian_opts</span> = [<span style="color: #7FFF7
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">piuparts</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; piuparts &#12434;&#36208;&#12425;&#12379;&#12427;</span>
-$<span style="color: #7F7FFF;">run_piuparts</span> = 1;
+$<span style="color: #7F7FFF;">run_piuparts</span> = 0;
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">piuparts &#12398; option. &#12371;&#12371;&#12391;&#12399; sbuild &#29992;&#12395;&#20316;&#25104;&#12375;&#12383; schroot &#12391;&#36208;&#12425;&#12379;&#12427;</span>
-$<span style="color: #7F7FFF;">piuparts_opts</span> = [<span style="color: #7FFF7F;">'-N'</span>, <span style="color: #7FFF7F;">'--warn-on-leftovers-after-purge'</span>, <span style="color: #7FFF7F;">'-d'</span>, <span style="color: #7FFF7F;">'%r'</span>, <span style="color: #7FFF7F;">'--keep-sources-list'</span>, <span style="color: #7FFF7F;">'--schroot'</span>, <span style="color: #7FFF7F;">'%r-%a-sbuild'</span>];
+$<span style="color: #7F7FFF;">piuparts_opts</span> = [<span style="color: #7FFF7F;">'-N'</span>, <span style="color: #7FFF7F;">'--warn-on-leftovers-after-purge'</span>, <span style="color: #7FFF7F;">'-d'</span>, <span style="color: #7FFF7F;">'%r'</span>, <span style="color: #7FFF7F;">'--keep-sources-list'</span>, <span style="color: #7FFF7F;">'--log-level=info'</span>, <span style="color: #7FFF7F;">'--schroot'</span>, <span style="color: #7FFF7F;">'%r-%a-sbuild'</span>];
 $<span style="color: #7F7FFF;">piuparts_root_args</span> = [<span style="color: #7FFF7F;">'sudo'</span>, <span style="color: #7FFF7F;">'--'</span>];
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">autopkgtest</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; autopkgtest &#12398;&#23455;&#34892; &#8658; &#23455;&#34892;&#12375;&#12394;&#12356;. post-build-commands &#12391;&#23455;&#34892;</span>
-$<span style="color: #7F7FFF;">run_autopkgtest</span> = 0;
+$<span style="color: #7F7FFF;">run_autopkgtest</span> = 1;
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sbuild &#29992;&#12395;&#20316;&#25104;&#12375;&#12383; schroot &#12391;&#36208;&#12425;&#12379;&#12427;&#22580;&#21512;&#12399;&#20197;&#19979;&#12434;&#26377;&#21177;&#12395;</span>
 $<span style="color: #7F7FFF;">autopkgtest_opts</span> = [<span style="color: #7FFF7F;">'-U'</span>, <span style="color: #7FFF7F;">'--'</span>, <span style="color: #7FFF7F;">'schroot'</span>, <span style="color: #7FFF7F;">'%r-%a-sbuild'</span>];
 $<span style="color: #7F7FFF;">autopkgtest_root_args</span> = [<span style="color: #7FFF7F;">'sudo'</span>, <span style="color: #7FFF7F;">'--'</span>];
 
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#22806;&#37096;&#12473;&#12463;&#12522;&#12503;&#12488;&#12391; autopkgtest, rdepends &#12398; autopkgstest</span>
 $<span style="color: #7F7FFF;">external_commands</span> = {
-                     <span style="color: #7FFF7F;">'post-build-commands'</span> =&gt;
-                     [<span style="color: #7FFF7F;">'/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e'</span>],
-                   };
+                      <span style="color: #7FFF7F;">'post-build-commands'</span> =&gt;
+                      [<span style="color: #7FFF7F;">'/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e'</span>],
+                     };
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org38e5d92" class="outline-2">
-<h2 id="org38e5d92"><code>~/.sbuild.d/sbuild-debci-rdepends</code></h2>
-<div class="outline-text-2" id="text-org38e5d92">
+<div id="outline-container-org038cc56" class="outline-2">
+<h2 id="org038cc56"><code>~/.sbuild.d/sbuild-debci-rdepends</code></h2>
+<div class="outline-text-2" id="text-org038cc56">
 <p>
 post-build-commands で呼び出す autopkgtest の呼び出しは以下
 </p>
@@ -426,7 +426,7 @@ autopkgtest --user debci $<span style="color: #7F7FFF;">1</span> -- lxc --sudo a
                 <span style="color: #7F7FFF;">failed_rdeps</span>=<span style="color: #7FFF7F;">"$failed_rdeps $pkg"</span>
             <span style="color: #FF7F7F;">fi</span>
         <span style="color: #FF7F7F;">else</span>
-            <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"I: ${pkg} does not declare a DEP-8 test suite. Maybe try a manual test5A"</span>
+            <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"I: ${pkg} does not declare a DEP-8 test suite. Maybe try a manual test"</span>
         <span style="color: #FF7F7F;">fi</span>
     <span style="color: #FF7F7F;">done</span>
     <span style="color: #FF7F7F;">for</span> pkg<span style="color: #FF7F7F;"> in</span> $<span style="color: #7F7FFF;">failed_rdeps</span>; <span style="color: #FF7F7F;">do</span>

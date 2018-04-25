@@ -11,10 +11,10 @@ permalink: /cc-env/Terminal.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8bb3898">始めに</a></li>
-<li><a href="#orgffbbc60">EAW 対応: ロケールの入れ替え</a></li>
-<li><a href="#org1a344a2">rxvt-unicode-256color</a></li>
-<li><a href="#orga0d92ff">tmux</a></li>
+<li><a href="#org50f6264">始めに</a></li>
+<li><a href="#org990e464">EAW 対応: ロケールの入れ替え</a></li>
+<li><a href="#org447df85">rxvt-unicode-256color</a></li>
+<li><a href="#orgf44b97f">tmux</a></li>
 </ul>
 </div>
 </nav>
@@ -24,9 +24,9 @@ permalink: /cc-env/Terminal.html
 Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
 </p>
 
-<div id="outline-container-org8bb3898" class="outline-2">
-<h2 id="org8bb3898">始めに</h2>
-<div class="outline-text-2" id="text-org8bb3898">
+<div id="outline-container-org50f6264" class="outline-2">
+<h2 id="org50f6264">始めに</h2>
+<div class="outline-text-2" id="text-org50f6264">
 <p>
 普段の生活環境(?)であるターミナルの設定アレコレ.
 </p>
@@ -37,9 +37,9 @@ Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb
 </p>
 </div>
 </div>
-<div id="outline-container-orgffbbc60" class="outline-2">
-<h2 id="orgffbbc60">EAW 対応: ロケールの入れ替え</h2>
-<div class="outline-text-2" id="text-orgffbbc60">
+<div id="outline-container-org990e464" class="outline-2">
+<h2 id="org990e464">EAW 対応: ロケールの入れ替え</h2>
+<div class="outline-text-2" id="text-org990e464">
 <p>
 EAW については
 </p>
@@ -64,9 +64,9 @@ East Asian Ambiguous Char と絵文字の文字幅を強制的に "2" とする
 </p>
 </div>
 </div>
-<div id="outline-container-org1a344a2" class="outline-2">
-<h2 id="org1a344a2"><a id="ID-34961588-3e87-495a-a22e-8a0188439254"></a>rxvt-unicode-256color</h2>
-<div class="outline-text-2" id="text-org1a344a2">
+<div id="outline-container-org447df85" class="outline-2">
+<h2 id="org447df85"><a id="ID-34961588-3e87-495a-a22e-8a0188439254"></a>rxvt-unicode-256color</h2>
+<div class="outline-text-2" id="text-org447df85">
 <p>
 Debian では configure オプションの変えた urxvt のパッケージが提供されている
 </p>
@@ -97,9 +97,9 @@ Debian パッケージをこのパッチを当てて rebuild して使ってい�
 </div>
 </div>
 
-<div id="outline-container-orga0d92ff" class="outline-2">
-<h2 id="orga0d92ff"><a id="ID-9d77e24a-42bc-46c4-999f-aabb0b079120"></a>tmux</h2>
-<div class="outline-text-2" id="text-orga0d92ff">
+<div id="outline-container-orgf44b97f" class="outline-2">
+<h2 id="orgf44b97f"><a id="ID-9d77e24a-42bc-46c4-999f-aabb0b079120"></a>tmux</h2>
+<div class="outline-text-2" id="text-orgf44b97f">
 <p>
 以前は GNU screen を使っていたのだけれども,
 接続先の環境の多くが UTF-8 をサポートしてくれたので,
@@ -135,7 +135,7 @@ tmux の設定は以下の通り.
 <pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
 <span style="color: #a5a5a6;">#</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2018-03-11 23:02:11$</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2018-04-23 01:32:35$</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: Public domain.</span>
 
 <span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">general</span>
@@ -169,9 +169,11 @@ set -g display-time 4000
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#24460;&#26041;&#12473;&#12463;&#12525;&#12540;&#12523;&#34892;&#25968;(&#26082;&#23450;&#20516;&#12399;2000)</span>
 set -g history-limit 8192
 setw -g pane-active-border-fg <span style="color: #7FFF7F;">"#ff4c4c"</span>
-setw -g pane-active-border-bg <span style="color: #7FFF7F;">"#020202"</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">setw -g pane-active-border-bg "#020202"</span>
+setw -g pane-active-border-bg default
 setw -g pane-border-fg <span style="color: #7FFF7F;">"#4cffff"</span>
-setw -g pane-border-bg <span style="color: #7FFF7F;">"#020202"</span>
+<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">setw -g pane-border-bg "#020202"</span>
+setw -g pane-border-bg default
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">don't show other activity</span>
 set -g monitor-activity off
 set -g visual-activity off

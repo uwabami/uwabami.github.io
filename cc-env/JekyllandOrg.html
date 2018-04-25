@@ -11,31 +11,31 @@ permalink: /cc-env/JekyllandOrg.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgba9e615">はじめに</a></li>
-<li><a href="#org654d35f">作ったモノ</a></li>
-<li><a href="#orge025a38">使い方</a></li>
-<li><a href="#org8113c2d">解説(?)</a>
+<li><a href="#org5f1717e">はじめに</a></li>
+<li><a href="#org9b30f6c">作ったモノ</a></li>
+<li><a href="#orgfebee08">使い方</a></li>
+<li><a href="#orga995cd2">解説(?)</a>
 <ul>
-<li><a href="#orgf59705b">org ファイルの変換</a></li>
-<li><a href="#org74a5378">org-ruby の拡張(?)</a></li>
-<li><a href="#org6a4c908">任意の org ファイルを Jekyll で扱うために</a>
+<li><a href="#orgb90fd49">org ファイルの変換</a></li>
+<li><a href="#org56b7adc">org-ruby の拡張(?)</a></li>
+<li><a href="#org0d110dc">任意の org ファイルを Jekyll で扱うために</a>
 <ul>
-<li><a href="#orgec12c06"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</a></li>
-<li><a href="#orgbda45a0"><code>Jekyll::Convertible</code> の上書き</a></li>
-<li><a href="#org111075f"><code>Jekyll::OrgConverter</code> の追加</a></li>
+<li><a href="#org8244732"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</a></li>
+<li><a href="#org7040beb"><code>Jekyll::Convertible</code> の上書き</a></li>
+<li><a href="#org05865fe"><code>Jekyll::OrgConverter</code> の追加</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org4864e44">まとめ…?</a></li>
+<li><a href="#org544be73">まとめ…?</a></li>
 </ul>
 </div>
 </nav>
 </div>
 <a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<div id="outline-container-orgba9e615" class="outline-2">
-<h2 id="orgba9e615">はじめに</h2>
-<div class="outline-text-2" id="text-orgba9e615">
+<div id="outline-container-org5f1717e" class="outline-2">
+<h2 id="org5f1717e">はじめに</h2>
+<div class="outline-text-2" id="text-org5f1717e">
 <div class="alert alert-danger">
 <p>
 <strong>以下，最近は使っていないので，今でも動くのは定かではありません．patch welcome!</strong>
@@ -51,9 +51,9 @@ permalink: /cc-env/JekyllandOrg.html
 </p>
 </div>
 </div>
-<div id="outline-container-org654d35f" class="outline-2">
-<h2 id="org654d35f">作ったモノ</h2>
-<div class="outline-text-2" id="text-org654d35f">
+<div id="outline-container-org9b30f6c" class="outline-2">
+<h2 id="org9b30f6c">作ったモノ</h2>
+<div class="outline-text-2" id="text-org9b30f6c">
 <p>
 コードの詳細は Github をご覧下さい。
 </p>
@@ -62,9 +62,9 @@ permalink: /cc-env/JekyllandOrg.html
 </ul>
 </div>
 </div>
-<div id="outline-container-orge025a38" class="outline-2">
-<h2 id="orge025a38">使い方</h2>
-<div class="outline-text-2" id="text-orge025a38">
+<div id="outline-container-orgfebee08" class="outline-2">
+<h2 id="orgfebee08">使い方</h2>
+<div class="outline-text-2" id="text-orgfebee08">
 <p>
 jekyll の <code>_plugin</code> に submodule としてでも放り込んで下さい。
 </p>
@@ -78,9 +78,9 @@ org ファイルを html へ出力する際のタグのカスタマイズをし�
 原稿となる org ファイルには、最低限
 </p>
 <div class="org-src-container">
-<pre class="src src-org">    #+TITLE:
-    #+DATE:
-    #+LAYOUT:
+<pre class="src src-org"><span style="color: #b2b2b2;">    #+TITLE:</span>
+<span style="color: #b2b2b2;">    #+DATE:</span>
+<span style="color: #a5a5a6;">    #+LAYOUT:</span>
 </pre>
 </div>
 <p>
@@ -90,16 +90,16 @@ downcase したのち Front Matter として使用できます。
 </p>
 </div>
 </div>
-<div id="outline-container-org8113c2d" class="outline-2">
-<h2 id="org8113c2d">解説(?)</h2>
-<div class="outline-text-2" id="text-org8113c2d">
+<div id="outline-container-orga995cd2" class="outline-2">
+<h2 id="orga995cd2">解説(?)</h2>
+<div class="outline-text-2" id="text-orga995cd2">
 <p>
 解説するようなモンでもないですけれど。
 </p>
 </div>
-<div id="outline-container-orgf59705b" class="outline-3">
-<h3 id="orgf59705b">org ファイルの変換</h3>
-<div class="outline-text-3" id="text-orgf59705b">
+<div id="outline-container-orgb90fd49" class="outline-3">
+<h3 id="orgb90fd49">org ファイルの変換</h3>
+<div class="outline-text-3" id="text-orgb90fd49">
 <p>
 ファイルの HTML への変換には <a href="https://github.com/wallyqs/org-ruby">wallyqs/org-ruby</a> を使っています。
 </p>
@@ -130,9 +130,9 @@ plugin が使えないため、
 </p>
 </div>
 </div>
-<div id="outline-container-org74a5378" class="outline-3">
-<h3 id="org74a5378">org-ruby の拡張(?)</h3>
-<div class="outline-text-3" id="text-org74a5378">
+<div id="outline-container-org56b7adc" class="outline-3">
+<h3 id="org56b7adc">org-ruby の拡張(?)</h3>
+<div class="outline-text-3" id="text-org56b7adc">
 <p>
 最新の org-ruby では org-mode の search link を export してくれません。
 そんな訳で monkey patch です。
@@ -140,118 +140,118 @@ plugin が使えないため、
 小さな monkey patch のつもりが、ほぼコピペになってしまいました…。
 </p>
 <div class="org-src-container">
-<pre class="src src-ruby">     #! /usr/bin/env ruby
-     # -*- mode: ruby; coding: utf-8 -*-
-     # file: org_monkey.rb
-     #
-     # Monkey Patch: Add support org search link
-     require 'org-ruby'
+<pre class="src src-ruby">     <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">! /usr/bin/env ruby</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: ruby; coding: utf-8 -*-</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">file: org_monkey.rb</span>
+     <span style="color: #a5a5a6;">#</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Monkey Patch: Add support org search link</span>
+     <span style="color: #7FBFFF;">require</span> <span style="color: #7FFF7F;">'org-ruby'</span>
 
-     module Orgmode
-       # monkey patch Orgmode::to_html inline_formatter
-       class HtmlOutputBuffer &lt; OutputBuffer
+     <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Orgmode</span>
+       <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">monkey patch Orgmode::to_html inline_formatter</span>
+       <span style="color: #FF7F7F;">class</span> <span style="color: #FFFF7F;">HtmlOutputBuffer</span> &lt; <span style="color: #FFFF7F;">OutputBuffer</span>
 
-         alias_method :_orig_add_line_attributes, :add_line_attributes
-         def add_line_attributes(headline)
+         <span style="color: #7FBFFF;">alias_method</span> <span style="color: #FFBF7F;">:_orig_add_line_attributes</span>, <span style="color: #FFBF7F;">:add_line_attributes</span>
+         <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">add_line_attributes</span>(headline)
            _orig_add_line_attributes(headline)
-           @output &lt;&lt; "&lt;a id=\"#{headline.headline_text}\"&gt;&lt;span class='anchor'&gt;_&lt;/span&gt;&lt;/a&gt;"
-         end
+           <span style="color: #7F7FFF;">@output</span> &lt;&lt; <span style="color: #7FFF7F;">"&lt;a id=\"</span><span style="color: #7F7FFF;">#{headline.headline_text}</span><span style="color: #7FFF7F;">\"&gt;&lt;span class='anchor'&gt;_&lt;/span&gt;&lt;/a&gt;"</span>
+         <span style="color: #FF7F7F;">end</span>
 
-         alias_method :_orig_inline_formatting, :inline_formatting
-         def inline_formatting(str)
-           @re_help.rewrite_emphasis str do |marker, s|
-             if marker == "=" or marker == "~"
+         <span style="color: #7FBFFF;">alias_method</span> <span style="color: #FFBF7F;">:_orig_inline_formatting</span>, <span style="color: #FFBF7F;">:inline_formatting</span>
+         <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">inline_formatting</span>(str)
+           <span style="color: #7F7FFF;">@re_help</span>.rewrite_emphasis str <span style="color: #FF7F7F;">do</span> |marker, s|
+             <span style="color: #FF7F7F;">if</span> marker == <span style="color: #7FFF7F;">"="</span> <span style="color: #FF7F7F;">or</span> marker == <span style="color: #7FFF7F;">"~"</span>
                s = escapeHTML s
-               "&lt;#{Tags[marker][:open]}&gt;#{s}&lt;/#{Tags[marker][:close]}&gt;"
-             else
-               quote_tags("&lt;#{Tags[marker][:open]}&gt;") + s +
-                 quote_tags("&lt;/#{Tags[marker][:close]}&gt;")
-             end
-           end
+               <span style="color: #7FFF7F;">"&lt;</span><span style="color: #7F7FFF;">#{Tags[marker][:open]}</span><span style="color: #7FFF7F;">&gt;</span><span style="color: #7F7FFF;">#{s}</span><span style="color: #7FFF7F;">&lt;/</span><span style="color: #7F7FFF;">#{Tags[marker][:close]}</span><span style="color: #7FFF7F;">&gt;"</span>
+             <span style="color: #FF7F7F;">else</span>
+               quote_tags(<span style="color: #7FFF7F;">"&lt;</span><span style="color: #7F7FFF;">#{Tags[marker][:open]}</span><span style="color: #7FFF7F;">&gt;"</span>) + s +
+                 quote_tags(<span style="color: #7FFF7F;">"&lt;/</span><span style="color: #7F7FFF;">#{Tags[marker][:close]}</span><span style="color: #7FFF7F;">&gt;"</span>)
+             <span style="color: #FF7F7F;">end</span>
+           <span style="color: #FF7F7F;">end</span>
 
-           if @options[:use_sub_superscripts] then
-             @re_help.rewrite_subp str do |type, text|
-               if type == "_" then
-                 quote_tags("&lt;sub&gt;") + text + quote_tags("&lt;/sub&gt;")
-               elsif type == "^" then
-                 quote_tags("&lt;sup&gt;") + text + quote_tags("&lt;/sup&gt;")
-               end
-             end
-           end
+           <span style="color: #FF7F7F;">if</span> <span style="color: #7F7FFF;">@options</span>[<span style="color: #FFBF7F;">:use_sub_superscripts</span>] <span style="color: #FF7F7F;">then</span>
+             <span style="color: #7F7FFF;">@re_help</span>.rewrite_subp str <span style="color: #FF7F7F;">do</span> |type, text|
+               <span style="color: #FF7F7F;">if</span> type == <span style="color: #7FFF7F;">"_"</span> <span style="color: #FF7F7F;">then</span>
+                 quote_tags(<span style="color: #7FFF7F;">"&lt;sub&gt;"</span>) + text + quote_tags(<span style="color: #7FFF7F;">"&lt;/sub&gt;"</span>)
+               <span style="color: #FF7F7F;">elsif</span> type == <span style="color: #7FFF7F;">"^"</span> <span style="color: #FF7F7F;">then</span>
+                 quote_tags(<span style="color: #7FFF7F;">"&lt;sup&gt;"</span>) + text + quote_tags(<span style="color: #7FFF7F;">"&lt;/sup&gt;"</span>)
+               <span style="color: #FF7F7F;">end</span>
+             <span style="color: #FF7F7F;">end</span>
+           <span style="color: #FF7F7F;">end</span>
 
-           @re_help.rewrite_links str do |link, defi|
-             [link, defi].compact.each do |text|
-               # We don't support search links right now. Get rid of it.
-               # -&gt; Support search links!!
-               text.sub!(/\A(file:[^\s]+)::([^\s]*?)\Z/, "\\1#\\2")
-               text.sub!(/\Afile:(?=[^\s]+\Z)/, "")
-             end
+           <span style="color: #7F7FFF;">@re_help</span>.rewrite_links str <span style="color: #FF7F7F;">do</span> |link, defi|
+             [link, defi].compact.each <span style="color: #FF7F7F;">do</span> |text|
+               <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">We don't support search links right now. Get rid of it.</span>
+               <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-&gt; Support search links!!</span>
+               text.sub!(<span style="color: #7FFF7F;">/\A(file:[^\s]+)::([^\s]*?)\Z/</span>, <span style="color: #7FFF7F;">"\\1#\\2"</span>)
+               text.sub!(<span style="color: #7FFF7F;">/\Afile:(?=[^\s]+\Z)/</span>, <span style="color: #7FFF7F;">""</span>)
+             <span style="color: #FF7F7F;">end</span>
 
-             # We don't add a description for images in links, because its
-             # empty value forces the image to be inlined.
-             defi ||= link unless link =~ @re_help.org_image_file_regexp
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">We don't add a description for images in links, because its</span>
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">empty value forces the image to be inlined.</span>
+             defi ||= link <span style="color: #FF7F7F;">unless</span> link =~ <span style="color: #7F7FFF;">@re_help</span>.org_image_file_regexp
 
-             if defi =~ @re_help.org_image_file_regexp
-               defi = quote_tags "&lt;img src=\"#{defi}\" alt=\"#{defi}\" /&gt;"
-             end
+             <span style="color: #FF7F7F;">if</span> defi =~ <span style="color: #7F7FFF;">@re_help</span>.org_image_file_regexp
+               defi = quote_tags <span style="color: #7FFF7F;">"&lt;img src=\"</span><span style="color: #7F7FFF;">#{defi}</span><span style="color: #7FFF7F;">\" alt=\"</span><span style="color: #7F7FFF;">#{defi}</span><span style="color: #7FFF7F;">\" /&gt;"</span>
+             <span style="color: #FF7F7F;">end</span>
 
-             if defi
-               link = @options[:link_abbrevs][link] if @options[:link_abbrevs].has_key? link
-               quote_tags("&lt;a href=\"#{link}\"&gt;") + defi + quote_tags("&lt;/a&gt;")
-             else
-               quote_tags "&lt;img src=\"#{link}\" alt=\"#{link}\" /&gt;"
-             end
-           end
+             <span style="color: #FF7F7F;">if</span> defi
+               link = <span style="color: #7F7FFF;">@options</span>[<span style="color: #FFBF7F;">:link_abbrevs</span>][link] <span style="color: #FF7F7F;">if</span> <span style="color: #7F7FFF;">@options</span>[<span style="color: #FFBF7F;">:link_abbrevs</span>].has_key? link
+               quote_tags(<span style="color: #7FFF7F;">"&lt;a href=\"</span><span style="color: #7F7FFF;">#{link}</span><span style="color: #7FFF7F;">\"&gt;"</span>) + defi + quote_tags(<span style="color: #7FFF7F;">"&lt;/a&gt;"</span>)
+             <span style="color: #FF7F7F;">else</span>
+               quote_tags <span style="color: #7FFF7F;">"&lt;img src=\"</span><span style="color: #7F7FFF;">#{link}</span><span style="color: #7FFF7F;">\" alt=\"</span><span style="color: #7F7FFF;">#{link}</span><span style="color: #7FFF7F;">\" /&gt;"</span>
+             <span style="color: #FF7F7F;">end</span>
+           <span style="color: #FF7F7F;">end</span>
 
-           if @output_type == :table_row
-             str.gsub! /^\|\s*/, quote_tags("&lt;td&gt;")
-             str.gsub! /\s*\|$/, quote_tags("&lt;/td&gt;")
-             str.gsub! /\s*\|\s*/, quote_tags("&lt;/td&gt;&lt;td&gt;")
-           end
+           <span style="color: #FF7F7F;">if</span> <span style="color: #7F7FFF;">@output_type</span> == <span style="color: #FFBF7F;">:table_row</span>
+             str.gsub! <span style="color: #7FFF7F;">/^\|\s*/</span>, quote_tags(<span style="color: #7FFF7F;">"&lt;td&gt;"</span>)
+             str.gsub! <span style="color: #7FFF7F;">/\s*\|$/</span>, quote_tags(<span style="color: #7FFF7F;">"&lt;/td&gt;"</span>)
+             str.gsub! <span style="color: #7FFF7F;">/\s*\|\s*/</span>, quote_tags(<span style="color: #7FFF7F;">"&lt;/td&gt;&lt;td&gt;"</span>)
+           <span style="color: #FF7F7F;">end</span>
 
-           if @output_type == :table_header
-             str.gsub! /^\|\s*/, quote_tags("&lt;th&gt;")
-             str.gsub! /\s*\|$/, quote_tags("&lt;/th&gt;")
-             str.gsub! /\s*\|\s*/, quote_tags("&lt;/th&gt;&lt;th&gt;")
-           end
+           <span style="color: #FF7F7F;">if</span> <span style="color: #7F7FFF;">@output_type</span> == <span style="color: #FFBF7F;">:table_header</span>
+             str.gsub! <span style="color: #7FFF7F;">/^\|\s*/</span>, quote_tags(<span style="color: #7FFF7F;">"&lt;th&gt;"</span>)
+             str.gsub! <span style="color: #7FFF7F;">/\s*\|$/</span>, quote_tags(<span style="color: #7FFF7F;">"&lt;/th&gt;"</span>)
+             str.gsub! <span style="color: #7FFF7F;">/\s*\|\s*/</span>, quote_tags(<span style="color: #7FFF7F;">"&lt;/th&gt;&lt;th&gt;"</span>)
+           <span style="color: #FF7F7F;">end</span>
 
-           if @options[:export_footnotes] then
-             @re_help.rewrite_footnote str do |name, defi|
-               # TODO escape name for url?
-               @footnotes[name] = defi if defi
-               quote_tags("&lt;sup&gt;&lt;a class=\"footref\" name=\"fnr.#{name}\" href=\"#fn.#{name}\"&gt;") +
-                 name + quote_tags("&lt;/a&gt;&lt;/sup&gt;")
-             end
-           end
+           <span style="color: #FF7F7F;">if</span> <span style="color: #7F7FFF;">@options</span>[<span style="color: #FFBF7F;">:export_footnotes</span>] <span style="color: #FF7F7F;">then</span>
+             <span style="color: #7F7FFF;">@re_help</span>.rewrite_footnote str <span style="color: #FF7F7F;">do</span> |name, defi|
+               <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">TODO escape name for url?</span>
+               <span style="color: #7F7FFF;">@footnotes</span>[name] = defi <span style="color: #FF7F7F;">if</span> defi
+               quote_tags(<span style="color: #7FFF7F;">"&lt;sup&gt;&lt;a class=\"footref\" name=\"fnr.</span><span style="color: #7F7FFF;">#{name}</span><span style="color: #7FFF7F;">\" href=\"#fn.</span><span style="color: #7F7FFF;">#{name}</span><span style="color: #7FFF7F;">\"&gt;"</span>) +
+                 name + quote_tags(<span style="color: #7FFF7F;">"&lt;/a&gt;&lt;/sup&gt;"</span>)
+             <span style="color: #FF7F7F;">end</span>
+           <span style="color: #FF7F7F;">end</span>
 
-           # Two backslashes \\ at the end of the line make a line break without breaking paragraph.
-           if @output_type != :table_row and @output_type != :table_header then
-             str.sub! /\\\\$/, quote_tags("&lt;br /&gt;")
-           end
+           <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Two backslashes \\ at the end of the line make a line break without breaking paragraph.</span>
+           <span style="color: #FF7F7F;">if</span> <span style="color: #7F7FFF;">@output_type</span> != <span style="color: #FFBF7F;">:table_row</span> <span style="color: #FF7F7F;">and</span> <span style="color: #7F7FFF;">@output_type</span> != <span style="color: #FFBF7F;">:table_header</span> <span style="color: #FF7F7F;">then</span>
+             str.sub! <span style="color: #7FFF7F;">/\\\\$/</span>, quote_tags(<span style="color: #7FFF7F;">"&lt;br /&gt;"</span>)
+           <span style="color: #FF7F7F;">end</span>
 
            escape_string! str
-           Orgmode.special_symbols_to_html str
-           str = @re_help.restore_code_snippets str
-         end
+           <span style="color: #FFFF7F;">Orgmode</span>.special_symbols_to_html str
+           str = <span style="color: #7F7FFF;">@re_help</span>.restore_code_snippets str
+         <span style="color: #FF7F7F;">end</span>
 
-         alias_method :_orig_normalize_lang, :normalize_lang
-         def normalize_lang(lang)
-           case lang
-           when 'conf'
-             'ruby'
-           else
+         <span style="color: #7FBFFF;">alias_method</span> <span style="color: #FFBF7F;">:_orig_normalize_lang</span>, <span style="color: #FFBF7F;">:normalize_lang</span>
+         <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">normalize_lang</span>(lang)
+           <span style="color: #FF7F7F;">case</span> lang
+           <span style="color: #FF7F7F;">when</span> <span style="color: #7FFF7F;">'conf'</span>
+             <span style="color: #7FFF7F;">'ruby'</span>
+           <span style="color: #FF7F7F;">else</span>
              _orig_normalize_lang(lang)
-           end
-         end
-       end
-     end
+           <span style="color: #FF7F7F;">end</span>
+         <span style="color: #FF7F7F;">end</span>
+       <span style="color: #FF7F7F;">end</span>
+     <span style="color: #FF7F7F;">end</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org6a4c908" class="outline-3">
-<h3 id="org6a4c908">任意の org ファイルを Jekyll で扱うために</h3>
-<div class="outline-text-3" id="text-org6a4c908">
+<div id="outline-container-org0d110dc" class="outline-3">
+<h3 id="org0d110dc">任意の org ファイルを Jekyll で扱うために</h3>
+<div class="outline-text-3" id="text-org0d110dc">
 <p>
 Jekyll の原稿として org ファイルを使用する際の不満は、
 </p>
@@ -278,38 +278,38 @@ Jekyll の blog 記事の範疇に無いページ( いわゆる <code>Page</code
 そんな訳で、結局自分でプラグインを書きました。
 </p>
 </div>
-<div id="outline-container-orgec12c06" class="outline-4">
-<h4 id="orgec12c06"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
-<div class="outline-text-4" id="text-orgec12c06">
+<div id="outline-container-org8244732" class="outline-4">
+<h4 id="org8244732"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
+<div class="outline-text-4" id="text-org8244732">
 <p>
 org ファイルに Front Matter 相当の情報が存在することを前提として処理、
 すなわち、拡張子が <code>.org</code> の場合は常に <code>true</code> を返すようにします。
 </p>
 <div class="org-src-container">
-<pre class="src src-ruby">     #!/usr/bin/env ruby
-     # -*- mode: ruby; coding: utf-8 -*-
-     # file: org_utils.rb
-     module Jekyll
-       # Judge the file is Org mode?
-       module Utils
-         alias_method :_orig_has_yaml_header?, :has_yaml_header?
+<pre class="src src-ruby">     <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/usr/bin/env ruby</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: ruby; coding: utf-8 -*-</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">file: org_utils.rb</span>
+     <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Jekyll</span>
+       <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Judge the file is Org mode?</span>
+       <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Utils</span>
+         <span style="color: #7FBFFF;">alias_method</span> <span style="color: #FFBF7F;">:_orig_has_yaml_header?</span>, <span style="color: #FFBF7F;">:has_yaml_header?</span>
 
-         def has_yaml_header?(file)
-           if File.extname(file) =~ /org/
-             true
-           else
+         <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">has_yaml_header?</span>(file)
+           <span style="color: #FF7F7F;">if</span> <span style="color: #FFFF7F;">File</span>.extname(file) =~ <span style="color: #7FFF7F;">/org/</span>
+             <span style="color: #FFBF7F;">true</span>
+           <span style="color: #FF7F7F;">else</span>
              _orig_has_yaml_header?(file)
-           end
-         end
-       end
-     end
+           <span style="color: #FF7F7F;">end</span>
+         <span style="color: #FF7F7F;">end</span>
+       <span style="color: #FF7F7F;">end</span>
+     <span style="color: #FF7F7F;">end</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbda45a0" class="outline-4">
-<h4 id="orgbda45a0"><code>Jekyll::Convertible</code> の上書き</h4>
-<div class="outline-text-4" id="text-orgbda45a0">
+<div id="outline-container-org7040beb" class="outline-4">
+<h4 id="org7040beb"><code>Jekyll::Convertible</code> の上書き</h4>
+<div class="outline-text-4" id="text-org7040beb">
 <p>
 <code>org</code> ファイルの <code>#+TITLE</code> 等を FRONT<sub>MATTER</sub> として扱った上で、
 html に出力します。
@@ -317,100 +317,100 @@ html に出力します。
 org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 </p>
 <div class="org-src-container">
-<pre class="src src-ruby">     #! /usr/bin/env ruby
-     # -*- mode: ruby; coding: utf-8 -*-
-     require 'org-ruby'
+<pre class="src src-ruby">     <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">! /usr/bin/env ruby</span>
+     <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: ruby; coding: utf-8 -*-</span>
+     <span style="color: #7FBFFF;">require</span> <span style="color: #7FFF7F;">'org-ruby'</span>
 
-     module Jekyll
-       # Handling Org options as YAML front matter, escape liquid tag
-       module Convertible
-         alias_method :_orig_read_yaml, :read_yaml
+     <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Jekyll</span>
+       <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Handling Org options as YAML front matter, escape liquid tag</span>
+       <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Convertible</span>
+         <span style="color: #7FBFFF;">alias_method</span> <span style="color: #FFBF7F;">:_orig_read_yaml</span>, <span style="color: #FFBF7F;">:read_yaml</span>
 
-         def read_yaml(base, name, opts = {})
-           if name =~ /org$/
-             content = File.read(site.in_source_dir(base, name),
+         <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">read_yaml</span>(base, name, opts = {})
+           <span style="color: #FF7F7F;">if</span> name =~ <span style="color: #7FFF7F;">/org$/</span>
+             content = <span style="color: #FFFF7F;">File</span>.read(site.in_source_dir(base, name),
                                  merged_file_read_opts(opts))
-             if File.exist?('_html_tags.yml')
-               org = Orgmode::Parser.new(content,
-                                                 markup_file: '_html_tags.yml')
-             else
-               org = Orgmode::Parser.new(content)
-             end
+             <span style="color: #FF7F7F;">if</span> <span style="color: #FFFF7F;">File</span>.exist?(<span style="color: #7FFF7F;">'_html_tags.yml'</span>)
+               org = <span style="color: #FFFF7F;">Orgmode</span>::<span style="color: #FFFF7F;">Parser</span>.new(content,
+                                                 <span style="color: #FFBF7F;">markup_file:</span> <span style="color: #7FFF7F;">'_html_tags.yml'</span>)
+             <span style="color: #FF7F7F;">else</span>
+               org = <span style="color: #FFFF7F;">Orgmode</span>::<span style="color: #FFFF7F;">Parser</span>.new(content)
+             <span style="color: #FF7F7F;">end</span>
              yaml_front_matter = {}
-             org.in_buffer_settings.each_pair do |k, v|
+             org.in_buffer_settings.each_pair <span style="color: #FF7F7F;">do</span> |k, v|
                yaml_front_matter.merge!(k.downcase =&gt; v)
-             end
-             # remove '#+HTML'
-             yaml_front_matter = yaml_front_matter.delete_if { |k, v| k == 'html' }
-             # remove '#+LATEX'
-             yaml_front_matter = yaml_front_matter.delete_if { |k, v| k == 'latex' }
-             self.data = SafeYAML.load(yaml_front_matter.to_yaml + "---\n")
-             # remove '#+TITLE' avoid double exporting
-             org.in_buffer_settings.delete_if {|k, v| k == 'TITLE' }
-             if yaml_front_matter.key?('liquid')
-               self.content = org.to_html
-               self.content = self.content.gsub('&amp;#8216;', "'")
-               self.content = self.content.gsub('&amp;#8217;', "'")
-             else
-               self.content = &lt;&lt;ORG
-     #{org.to_html.gsub('{','&amp;#123;').gsub('{','&amp;#125;')}
-     ORG
-             end
-           else
-             _orig_read_yaml(base, name, opts)
-           end
-         end
-       end
-     end
+             <span style="color: #FF7F7F;">end</span>
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remove '#+HTML'</span>
+             yaml_front_matter = yaml_front_matter.delete_if { |k, v| k == <span style="color: #7FFF7F;">'html'</span> }
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remove '#+LATEX'</span>
+             yaml_front_matter = yaml_front_matter.delete_if { |k, v| k == <span style="color: #7FFF7F;">'latex'</span> }
+             <span style="color: #FF7F7F;">self</span>.data = <span style="color: #FFFF7F;">SafeYAML</span>.load(yaml_front_matter.to_yaml + <span style="color: #7FFF7F;">"---\n"</span>)
+             <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">remove '#+TITLE' avoid double exporting</span>
+             org.in_buffer_settings.delete_if {|k, v| k == <span style="color: #7FFF7F;">'TITLE'</span> }
+             <span style="color: #FF7F7F;">if</span> yaml_front_matter.key?(<span style="color: #7FFF7F;">'liquid'</span>)
+               <span style="color: #FF7F7F;">self</span>.content = org.to_html
+               <span style="color: #FF7F7F;">self</span>.content = <span style="color: #FF7F7F;">self</span>.content.gsub(<span style="color: #7FFF7F;">'&amp;#8216;'</span>, <span style="color: #7FFF7F;">"'"</span>)
+               <span style="color: #FF7F7F;">self</span>.content = <span style="color: #FF7F7F;">self</span>.content.gsub(<span style="color: #7FFF7F;">'&amp;#8217;'</span>, <span style="color: #7FFF7F;">"'"</span>)
+             <span style="color: #FF7F7F;">else</span>
+               <span style="color: #FF7F7F;">self</span>.content = <span style="color: #7FFF7F;">&lt;&lt;ORG</span>
+<span style="color: #7FFF7F;">     </span><span style="color: #7F7FFF;">#{org.to_html.gsub('{','&amp;#123;').gsub('{','&amp;#125;')}</span>
+<span style="color: #7FFF7F;">     ORG</span>
+<span style="color: #7FFF7F;">             end</span>
+<span style="color: #7FFF7F;">           else</span>
+<span style="color: #7FFF7F;">             _orig_read_yaml(base, name, opts)</span>
+<span style="color: #7FFF7F;">           end</span>
+<span style="color: #7FFF7F;">         end</span>
+<span style="color: #7FFF7F;">       end</span>
+<span style="color: #7FFF7F;">     end</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org111075f" class="outline-4">
-<h4 id="org111075f"><code>Jekyll::OrgConverter</code> の追加</h4>
-<div class="outline-text-4" id="text-org111075f">
+<div id="outline-container-org05865fe" class="outline-4">
+<h4 id="org05865fe"><code>Jekyll::OrgConverter</code> の追加</h4>
+<div class="outline-text-4" id="text-org05865fe">
 <p>
 Converter の追加は Jekyll 本家のドキュメントにもあるので、
 割と簡単です。実際の処理は上書きした <code>Jekyll::Convertible</code> で行なわれています。
 ただ、search link を処理するために、最後にリンクを置換しています。
 </p>
 <div class="org-src-container">
-<pre class="src src-ruby">      #!/usr/bin/env ruby
-      # -*- mode: ruby; coding: utf-8 -*-
-      # file: org.rb
-      require 'org-ruby'
+<pre class="src src-ruby">      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/usr/bin/env ruby</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: ruby; coding: utf-8 -*-</span>
+      <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">file: org.rb</span>
+      <span style="color: #7FBFFF;">require</span> <span style="color: #7FFF7F;">'org-ruby'</span>
 
-      module Jekyll
-        # Add New Converter handling org-mode
-        # main logic -&gt; @see org_convertible.rb
-        class OrgConverter &lt; Converter
-          safe true
-          priority :low
+      <span style="color: #FF7F7F;">module</span> <span style="color: #FFFF7F;">Jekyll</span>
+        <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Add New Converter handling org-mode</span>
+        <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">main logic -&gt; @see org_convertible.rb</span>
+        <span style="color: #FF7F7F;">class</span> <span style="color: #FFFF7F;">OrgConverter</span> &lt; <span style="color: #FFFF7F;">Converter</span>
+          safe <span style="color: #FFBF7F;">true</span>
+          priority <span style="color: #FFBF7F;">:low</span>
 
-          def matches(ext)
-            ext =~ /^\.org$/i
-          end
+          <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">matches</span>(ext)
+            ext =~ <span style="color: #7FFF7F;">/^\.org$/</span><span style="color: #FF4C4C;">i</span>
+          <span style="color: #FF7F7F;">end</span>
 
-          def output_ext(ext)
-            '.html'
-          end
+          <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">output_ext</span>(ext)
+            <span style="color: #7FFF7F;">'.html'</span>
+          <span style="color: #FF7F7F;">end</span>
 
-          def convert(content)
-            # ad hoc file link conversion
-            content.gsub(/&lt;a href="([^(http:\/\/|https:\/\/|mailto:)]\S+)\.org/,
-                         "&lt;a href=\"\\1.html")
-          end
-        end
-      end
+          <span style="color: #FF7F7F;">def</span> <span style="color: #BF7FFF;">convert</span>(content)
+            <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">ad hoc file link conversion</span>
+            content.gsub(<span style="color: #7FFF7F;">/&lt;a href="([^(http:\/\/|https:\/\/|mailto:)]\S+)\.org/</span>,
+                         <span style="color: #7FFF7F;">"&lt;a href=\"\\1.html"</span>)
+          <span style="color: #FF7F7F;">end</span>
+        <span style="color: #FF7F7F;">end</span>
+      <span style="color: #FF7F7F;">end</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org4864e44" class="outline-2">
-<h2 id="org4864e44">まとめ…?</h2>
-<div class="outline-text-2" id="text-org4864e44">
+<div id="outline-container-org544be73" class="outline-2">
+<h2 id="org544be73">まとめ…?</h2>
+<div class="outline-text-2" id="text-org544be73">
 <p>
 まあ、ちゃんと動いているみたいですし、これで良いのかなぁ。
 </p>

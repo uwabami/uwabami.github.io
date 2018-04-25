@@ -11,12 +11,12 @@ permalink: /cc-env/DebianApt.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga70ec26">始めに</a></li>
-<li><a href="#org73119f3">apt の pin 止め</a></li>
-<li><a href="#org08617b6">apt-key への鍵の追加</a></li>
-<li><a href="#orge967916">現在の sources.list</a></li>
-<li><a href="#org3f9b5fb">apt の便利ツール</a></li>
-<li><a href="#org2b39ad4">参考文献</a></li>
+<li><a href="#orgfdd504b">始めに</a></li>
+<li><a href="#orgcdd3fad">apt の pin 止め</a></li>
+<li><a href="#orge29f3ba">apt-key への鍵の追加</a></li>
+<li><a href="#org451b1a2">現在の sources.list</a></li>
+<li><a href="#org87bba48">apt の便利ツール</a></li>
+<li><a href="#org9caca9a">参考文献</a></li>
 </ul>
 </div>
 </nav>
@@ -25,9 +25,9 @@ permalink: /cc-env/DebianApt.html
 <p>
 Related <a href='index.html'>Index</a>
 </p>
-<div id="outline-container-orga70ec26" class="outline-2">
-<h2 id="orga70ec26">始めに</h2>
-<div class="outline-text-2" id="text-orga70ec26">
+<div id="outline-container-orgfdd504b" class="outline-2">
+<h2 id="orgfdd504b">始めに</h2>
+<div class="outline-text-2" id="text-orgfdd504b">
 <p>
 apt は非常に便利です. etch 以降から
 </p>
@@ -40,9 +40,9 @@ apt は非常に便利です. etch 以降から
 </ul>
 </div>
 </div>
-<div id="outline-container-org73119f3" class="outline-2">
-<h2 id="org73119f3">apt の pin 止め</h2>
-<div class="outline-text-2" id="text-org73119f3">
+<div id="outline-container-orgcdd3fad" class="outline-2">
+<h2 id="orgcdd3fad">apt の pin 止め</h2>
+<div class="outline-text-2" id="text-orgcdd3fad">
 <p>
 特定のパッケージを {testing|unstable|experimental} から借りたい,
 とかいう場合には <code>/etc/apt/preferences</code> にその設定を書いておく.
@@ -117,9 +117,9 @@ Pin-Priority については以下を参照
 </p>
 </div>
 </div>
-<div id="outline-container-org08617b6" class="outline-2">
-<h2 id="org08617b6">apt-key への鍵の追加</h2>
-<div class="outline-text-2" id="text-org08617b6">
+<div id="outline-container-orge29f3ba" class="outline-2">
+<h2 id="orge29f3ba">apt-key への鍵の追加</h2>
+<div class="outline-text-2" id="text-orge29f3ba">
 <p>
 鍵は /etc/apt/trustdb.gpg に登録されている.
 </p>
@@ -153,9 +153,9 @@ GPG 鍵の取得, export, import はそれぞれ
 </p>
 </div>
 </div>
-<div id="outline-container-orge967916" class="outline-2">
-<h2 id="orge967916">現在の sources.list</h2>
-<div class="outline-text-2" id="text-orge967916">
+<div id="outline-container-org451b1a2" class="outline-2">
+<h2 id="org451b1a2">現在の sources.list</h2>
+<div class="outline-text-2" id="text-org451b1a2">
 <div class="org-src-container">
 <pre class="src src-conf"><span style="color: #a5a5a6;">#</span>
 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Official</span>
@@ -179,9 +179,9 @@ deb http://dennou-k.gfd-dennou.org/arch/cc-env/debian-dennou sid main
 </div>
 </div>
 </div>
-<div id="outline-container-org3f9b5fb" class="outline-2">
-<h2 id="org3f9b5fb">apt の便利ツール</h2>
-<div class="outline-text-2" id="text-org3f9b5fb">
+<div id="outline-container-org87bba48" class="outline-2">
+<h2 id="org87bba48">apt の便利ツール</h2>
+<div class="outline-text-2" id="text-org87bba48">
 <ul class="org-ul">
 <li>apt-cache</li>
 <li>apt-show-versions</li>
@@ -193,9 +193,9 @@ deb http://dennou-k.gfd-dennou.org/arch/cc-env/debian-dennou sid main
 </p>
 </div>
 </div>
-<div id="outline-container-org2b39ad4" class="outline-2">
-<h2 id="org2b39ad4">参考文献</h2>
-<div class="outline-text-2" id="text-org2b39ad4">
+<div id="outline-container-org9caca9a" class="outline-2">
+<h2 id="org9caca9a">参考文献</h2>
+<div class="outline-text-2" id="text-org9caca9a">
 <ul class="org-ul">
 <li><a href="http://kmuto.jp/d/index.cgi/debian/apt-secure.htm">KeN's GNU/Linux Diary|secure apt</a></li>
 <li><a href="http://jaqque.sbih.org/kplug/apt-pinning.html">Apt-Pinning for Beginners</a></li>

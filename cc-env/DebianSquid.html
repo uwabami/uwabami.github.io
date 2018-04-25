@@ -11,13 +11,13 @@ permalink: /cc-env/DebianSquid.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4211607">はじめに</a></li>
-<li><a href="#org88dcbf9">導入と設定</a>
+<li><a href="#org0b70e67">はじめに</a></li>
+<li><a href="#orga256098">導入と設定</a>
 <ul>
-<li><a href="#orgdbbb6c1">広告避けの host ファイル</a></li>
-<li><a href="#org5417c13"><code>/etc/squid/common.conf</code></a></li>
-<li><a href="#org8ba06ca"><code>/etc/squid/squid.conf</code></a></li>
-<li><a href="#orga869cf5">systemd と仲良く: <code>/etc/systemd/system/squid.service</code></a></li>
+<li><a href="#orge00677b">広告避けの host ファイル</a></li>
+<li><a href="#orgf3ef478"><code>/etc/squid/common.conf</code></a></li>
+<li><a href="#org687be25"><code>/etc/squid/squid.conf</code></a></li>
+<li><a href="#org536fb50">systemd と仲良く: <code>/etc/systemd/system/squid.service</code></a></li>
 </ul>
 </li>
 </ul>
@@ -29,9 +29,9 @@ permalink: /cc-env/DebianSquid.html
 Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
 </p>
 
-<div id="outline-container-org4211607" class="outline-2">
-<h2 id="org4211607">はじめに</h2>
-<div class="outline-text-2" id="text-org4211607">
+<div id="outline-container-org0b70e67" class="outline-2">
+<h2 id="org0b70e67">はじめに</h2>
+<div class="outline-text-2" id="text-org0b70e67">
 <p>
 手元で squid を上げています.
 </p>
@@ -73,9 +73,9 @@ Web 広告については, まあ, いろんな意見があって良いと思い
 </p>
 </div>
 </div>
-<div id="outline-container-org88dcbf9" class="outline-2">
-<h2 id="org88dcbf9">導入と設定</h2>
-<div class="outline-text-2" id="text-org88dcbf9">
+<div id="outline-container-orga256098" class="outline-2">
+<h2 id="orga256098">導入と設定</h2>
+<div class="outline-text-2" id="text-orga256098">
 <p>
 導入
 </p>
@@ -90,9 +90,9 @@ apt 万歳
 現状の設定は以下の通り:
 </p>
 </div>
-<div id="outline-container-orgdbbb6c1" class="outline-3">
-<h3 id="orgdbbb6c1">広告避けの host ファイル</h3>
-<div class="outline-text-3" id="text-orgdbbb6c1">
+<div id="outline-container-orge00677b" class="outline-3">
+<h3 id="orge00677b">広告避けの host ファイル</h3>
+<div class="outline-text-3" id="text-orge00677b">
 <p>
 以下のスクリプトで適当に生成
 </p>
@@ -159,9 +159,9 @@ rm -f tmp-white.txt
 </p>
 </div>
 </div>
-<div id="outline-container-org5417c13" class="outline-3">
-<h3 id="org5417c13"><code>/etc/squid/common.conf</code></h3>
-<div class="outline-text-3" id="text-org5417c13">
+<div id="outline-container-orgf3ef478" class="outline-3">
+<h3 id="orgf3ef478"><code>/etc/squid/common.conf</code></h3>
+<div class="outline-text-3" id="text-orgf3ef478">
 <p>
 昔プロキシを切り替えていた頃の名残で,
 上流を問わず全て同じ設定とする部分は <code>common.conf</code> に書いている.
@@ -307,9 +307,9 @@ shutdown_lifetime 0.01 seconds
 </div>
 </div>
 </div>
-<div id="outline-container-org8ba06ca" class="outline-3">
-<h3 id="org8ba06ca"><code>/etc/squid/squid.conf</code></h3>
-<div class="outline-text-3" id="text-org8ba06ca">
+<div id="outline-container-org687be25" class="outline-3">
+<h3 id="org687be25"><code>/etc/squid/squid.conf</code></h3>
+<div class="outline-text-3" id="text-org687be25">
 <p>
 中身は現状これだけ
 </p>
@@ -327,9 +327,9 @@ always_direct allow local
 </p>
 </div>
 </div>
-<div id="outline-container-orga869cf5" class="outline-3">
-<h3 id="orga869cf5">systemd と仲良く: <code>/etc/systemd/system/squid.service</code></h3>
-<div class="outline-text-3" id="text-orga869cf5">
+<div id="outline-container-org536fb50" class="outline-3">
+<h3 id="org536fb50">systemd と仲良く: <code>/etc/systemd/system/squid.service</code></h3>
+<div class="outline-text-3" id="text-org536fb50">
 <p>
 キャッシュを動かす気も無いので子プロセスは生成されない.
 ということで, systemd 用の service ファイルを以下の様にでっち上げた.

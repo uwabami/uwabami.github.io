@@ -11,18 +11,18 @@ permalink: /cc-env/Debiani3.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga29ec40">始めに</a></li>
-<li><a href="#orgd1b8979">i3 と一緒に使っているもの</a></li>
-<li><a href="#orgebcade6">i3 の設定</a>
+<li><a href="#org1766f5b">始めに</a></li>
+<li><a href="#orgcb932e6">i3 と一緒に使っているもの</a></li>
+<li><a href="#org4de553e">i3 の設定</a>
 <ul>
-<li><a href="#orgc1e6c05">xdg-open と run-mailcap</a></li>
-<li><a href="#orged0ba87">Alt+Tab でのフォーカスの切り替え</a></li>
-<li><a href="#orge6159c8">Rofi: ランチャ</a></li>
-<li><a href="#orgdfc4692">i3bar</a></li>
-<li><a href="#org27e10cf">screen lock: i3lock の設定</a></li>
+<li><a href="#org5183060">xdg-open と run-mailcap</a></li>
+<li><a href="#org61a36db">Alt+Tab でのフォーカスの切り替え</a></li>
+<li><a href="#org1d9c49e">Rofi: ランチャ</a></li>
+<li><a href="#org2807c33">i3bar</a></li>
+<li><a href="#orgfb5370d">screen lock: i3lock の設定</a></li>
 </ul>
 </li>
-<li><a href="#org87068c3">i3 の設定ファイル</a></li>
+<li><a href="#org74f6ca1">i3 の設定ファイル</a></li>
 </ul>
 </div>
 </nav>
@@ -31,9 +31,9 @@ permalink: /cc-env/Debiani3.html
 <p>
 Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
 </p>
-<div id="outline-container-orga29ec40" class="outline-2">
-<h2 id="orga29ec40">始めに</h2>
-<div class="outline-text-2" id="text-orga29ec40">
+<div id="outline-container-org1766f5b" class="outline-2">
+<h2 id="org1766f5b">始めに</h2>
+<div class="outline-text-2" id="text-org1766f5b">
 <p>
 スペックがあまり潤沢ではない機材を使うため,
 軽量な wm として <a href="https://i3wm.org/">i3 - improved tiling wm</a> を使い始めた.
@@ -47,9 +47,9 @@ Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb
 </div>
 </div>
 
-<div id="outline-container-orgd1b8979" class="outline-2">
-<h2 id="orgd1b8979">i3 と一緒に使っているもの</h2>
-<div class="outline-text-2" id="text-orgd1b8979">
+<div id="outline-container-orgcb932e6" class="outline-2">
+<h2 id="orgcb932e6">i3 と一緒に使っているもの</h2>
+<div class="outline-text-2" id="text-orgcb932e6">
 <p>
 とりあえず現状では以下:
 </p>
@@ -84,16 +84,16 @@ Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb
 </div>
 </div>
 
-<div id="outline-container-orgebcade6" class="outline-2">
-<h2 id="orgebcade6">i3 の設定</h2>
-<div class="outline-text-2" id="text-orgebcade6">
+<div id="outline-container-org4de553e" class="outline-2">
+<h2 id="org4de553e">i3 の設定</h2>
+<div class="outline-text-2" id="text-org4de553e">
 <p>
 設定ファイルは末尾に掲載している.
 </p>
 </div>
-<div id="outline-container-orgc1e6c05" class="outline-3">
-<h3 id="orgc1e6c05">xdg-open と run-mailcap</h3>
-<div class="outline-text-3" id="text-orgc1e6c05">
+<div id="outline-container-org5183060" class="outline-3">
+<h3 id="org5183060">xdg-open と run-mailcap</h3>
+<div class="outline-text-3" id="text-org5183060">
 <p>
 いわゆる GNOME や KDE といった Desktop 環境ではないので,
 たとえば <code>xdg-open</code> の挙動が変わります.
@@ -142,9 +142,9 @@ symbolic link を作成しておきます.
 </p>
 </div>
 </div>
-<div id="outline-container-orged0ba87" class="outline-3">
-<h3 id="orged0ba87">Alt+Tab でのフォーカスの切り替え</h3>
-<div class="outline-text-3" id="text-orged0ba87">
+<div id="outline-container-org61a36db" class="outline-3">
+<h3 id="org61a36db">Alt+Tab でのフォーカスの切り替え</h3>
+<div class="outline-text-3" id="text-org61a36db">
 <p>
 <code>i3-msg -t get_tree</code> で状態が json で出力されるので,
 これを parse して良きに図らえば良い.
@@ -168,9 +168,9 @@ symbolic link を作成しておきます.
 </p>
 </div>
 </div>
-<div id="outline-container-orge6159c8" class="outline-3">
-<h3 id="orge6159c8">Rofi: ランチャ</h3>
-<div class="outline-text-3" id="text-orge6159c8">
+<div id="outline-container-org1d9c49e" class="outline-3">
+<h3 id="org1d9c49e">Rofi: ランチャ</h3>
+<div class="outline-text-3" id="text-org1d9c49e">
 <p>
 <a href="https://davedavenport.github.io/rofi/">Rofi</a> は良い感じのランチャ.
 公式 Web の <code>This site is currently looking for a maintainer.</code> が怖いけれど.
@@ -217,9 +217,9 @@ i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdfc4692" class="outline-3">
-<h3 id="orgdfc4692">i3bar</h3>
-<div class="outline-text-3" id="text-orgdfc4692">
+<div id="outline-container-org2807c33" class="outline-3">
+<h3 id="org2807c33">i3bar</h3>
+<div class="outline-text-3" id="text-org2807c33">
 <p>
 conky で情報を更新/整形して出力している.
 conky の設定は以下: <code>~/.config/i3/i3bar-conkyrc</code>
@@ -319,9 +319,9 @@ status ラインは以下の通り
 </div>
 </div>
 </div>
-<div id="outline-container-org27e10cf" class="outline-3">
-<h3 id="org27e10cf">screen lock: i3lock の設定</h3>
-<div class="outline-text-3" id="text-org27e10cf">
+<div id="outline-container-orgfb5370d" class="outline-3">
+<h3 id="orgfb5370d">screen lock: i3lock の設定</h3>
+<div class="outline-text-3" id="text-orgfb5370d">
 <p>
 suspend → resume した時に i3lock を走らせたいので
 <code>/etc/systemd/system/i3lock.service</code>:
@@ -351,9 +351,9 @@ suspend → resume した時に i3lock を走らせたいので
 </div>
 </div>
 </div>
-<div id="outline-container-org87068c3" class="outline-2">
-<h2 id="org87068c3">i3 の設定ファイル</h2>
-<div class="outline-text-2" id="text-org87068c3">
+<div id="outline-container-org74f6ca1" class="outline-2">
+<h2 id="org74f6ca1">i3 の設定ファイル</h2>
+<div class="outline-text-2" id="text-org74f6ca1">
 <p>
 設定ファイル全体は以下の通り
 </p>

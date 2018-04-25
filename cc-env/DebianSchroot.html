@@ -11,13 +11,13 @@ permalink: /cc-env/DebianSchroot.html
 <h2>&#30446;&#27425;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9b1a594">始めに.</a></li>
-<li><a href="#orge153234">パッケージの導入</a></li>
-<li><a href="#orgb5e4d60">chroot 環境作成</a></li>
-<li><a href="#orge7fb5ae">schroot の設定</a></li>
-<li><a href="#org6ca6f9b">chroot 環境の log 管理</a></li>
-<li><a href="#org6f8ebd1">chroot 環境のデーモンの起動</a></li>
-<li><a href="#orgf2a093e">参考文献</a></li>
+<li><a href="#org3881d60">始めに.</a></li>
+<li><a href="#org8c95507">パッケージの導入</a></li>
+<li><a href="#org55d4711">chroot 環境作成</a></li>
+<li><a href="#orge99c8b9">schroot の設定</a></li>
+<li><a href="#org453d282">chroot 環境の log 管理</a></li>
+<li><a href="#org7ec9bc6">chroot 環境のデーモンの起動</a></li>
+<li><a href="#orgce57679">参考文献</a></li>
 </ul>
 </div>
 </nav>
@@ -27,9 +27,9 @@ permalink: /cc-env/DebianSchroot.html
 Related <a href='index.html'>Index</a>
 </p>
 
-<div id="outline-container-org9b1a594" class="outline-2">
-<h2 id="org9b1a594">始めに.</h2>
-<div class="outline-text-2" id="text-org9b1a594">
+<div id="outline-container-org3881d60" class="outline-2">
+<h2 id="org3881d60">始めに.</h2>
+<div class="outline-text-2" id="text-org3881d60">
 <p>
 前は 「sid の中で lenny を飼う」でしたけど.
 まあ, やっている事は同じです.
@@ -55,9 +55,9 @@ chroot の中で stable 環境を作成します.
 </p>
 </div>
 </div>
-<div id="outline-container-orge153234" class="outline-2">
-<h2 id="orge153234">パッケージの導入</h2>
-<div class="outline-text-2" id="text-orge153234">
+<div id="outline-container-org8c95507" class="outline-2">
+<h2 id="org8c95507">パッケージの導入</h2>
+<div class="outline-text-2" id="text-org8c95507">
 <p>
 <code>debootstrap</code> と <code>schroot</code> を導入しておきます.
 </p>
@@ -66,9 +66,9 @@ chroot の中で stable 環境を作成します.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb5e4d60" class="outline-2">
-<h2 id="orgb5e4d60">chroot 環境作成</h2>
-<div class="outline-text-2" id="text-orgb5e4d60">
+<div id="outline-container-org55d4711" class="outline-2">
+<h2 id="org55d4711">chroot 環境作成</h2>
+<div class="outline-text-2" id="text-org55d4711">
 <p>
 以下は stable-amd64 を作成する場合のお話.
 </p>
@@ -96,9 +96,9 @@ schroot でログイン後に適宜設定すると良いだろう.
 </div>
 </div>
 
-<div id="outline-container-orge7fb5ae" class="outline-2">
-<h2 id="orge7fb5ae">schroot の設定</h2>
-<div class="outline-text-2" id="text-orge7fb5ae">
+<div id="outline-container-orge99c8b9" class="outline-2">
+<h2 id="orge99c8b9">schroot の設定</h2>
+<div class="outline-text-2" id="text-orge99c8b9">
 <p>
 schroot では, 個々の環境毎に「profile」を指定することで, 柔軟な環境設定が可能となっている.
 例えば, 何も指定しない場合には <code>/etc/schroot/default</code> 以下のファイルが設定に使用され,
@@ -159,9 +159,9 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 </p>
 </div>
 </div>
-<div id="outline-container-org6ca6f9b" class="outline-2">
-<h2 id="org6ca6f9b">chroot 環境の log 管理</h2>
-<div class="outline-text-2" id="text-org6ca6f9b">
+<div id="outline-container-org453d282" class="outline-2">
+<h2 id="org453d282">chroot 環境の log 管理</h2>
+<div class="outline-text-2" id="text-org453d282">
 <p>
 親環境が rsyslogd ならば, <i>etc/rsyslog.d</i> あたりに
 </p>
@@ -174,9 +174,9 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 </p>
 </div>
 </div>
-<div id="outline-container-org6f8ebd1" class="outline-2">
-<h2 id="org6f8ebd1">chroot 環境のデーモンの起動</h2>
-<div class="outline-text-2" id="text-org6f8ebd1">
+<div id="outline-container-org7ec9bc6" class="outline-2">
+<h2 id="org7ec9bc6">chroot 環境のデーモンの起動</h2>
+<div class="outline-text-2" id="text-org7ec9bc6">
 <p>
 以前のメモ.
 </p>
@@ -212,9 +212,9 @@ systemd 環境下だと systemctl で起動するのが良いのかなぁ.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf2a093e" class="outline-2">
-<h2 id="orgf2a093e">参考文献</h2>
-<div class="outline-text-2" id="text-orgf2a093e">
+<div id="outline-container-orgce57679" class="outline-2">
+<h2 id="orgce57679">参考文献</h2>
+<div class="outline-text-2" id="text-orgce57679">
 <ul class="org-ul">
 <li><a href="http://kmuto.jp/d/index.cgi/debian/debootstrap.htm">Etch/Sidの上にSarge環境を作る方法</a></li>
 <li><a href="https://wiki.debian.org/Schroot">Schroot - Debian Wiki</a></li>
