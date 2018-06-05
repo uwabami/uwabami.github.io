@@ -1,5 +1,5 @@
 #+TITLE: Youhei SASAKI's Official site
-#+DATE: 2017-01-26 19:57:25
+#+DATE: 2018-06-05 13:11:43
 #+LANGUAGE: en
 #+REF: index
 #+LAYOUT: default
@@ -58,6 +58,6 @@ sub   rsa4096/0xBC8C7730B7DB0213 2016-12-12 [A]
        - http://dennou-h.gfd-dennou.org/debian (at Hokkaido University)
        - http://dennou-k.gfd-dennou.org/debian (at Kyoto University)
        - http://dennou-q.gfd-dennou.org/debian (at Kyushu University)
-   - 2011/04-2013/03: Project sub leader
-   - 2014/04- : Project sub leader
+   - 2011/04-2013/03, 2014/04-2017/03: Project sub leader
+   - 2018/04- : Project leader
 #+HTML: </div><!-- /.col-sm-12 -->
