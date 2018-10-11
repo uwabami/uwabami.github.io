@@ -1,5 +1,5 @@
 #+TITLE: Youhei SASAKI's Official site
-#+DATE: 2018-06-05 13:11:22
+#+DATE: 2018-10-11 22:39:39
 #+LANGUAGE: ja
 #+REF: index
 #+LAYOUT: top
@@ -14,7 +14,7 @@
   - 所属   :: [[http://www.kyoto-u.ac.jp/ja/][京都大学]] [[http://www.sci.kyoto-u.ac.jp/][大学院理学研究科]] [[http://www.math.kyoto-u.ac.jp/ja/front][数学教室]]
   - 連絡先 ::
            {{{envelope(uwabami@gfd-dennou.org)}}} {{{br}}}
-           {{{nobr}}} {{{keybase(uwabami)}}} [[https://keybase.io/uwabami/pgp_keys.asc][0x9394F354891D7E07]] {{{twitter(uwabami)}}} {{{fb(sasakyh)}}}  {{{github(uwabami)}}} {{{end_nobr}}}
+           {{{nobr}}} {{{keybase(uwabami)}}} [[https://keybase.io/uwabami/pgp_keys.asc][0x9394F354891D7E07]] {{{mstdn(@uwabami)}}} {{{twitter(uwabami)}}} {{{fb(sasakyh)}}}  {{{github(uwabami)}}} {{{end_nobr}}}
 #+BEGIN_EXPORT html
 <div class="gpgkey"><pre id="gpgkey">pub   rsa4096/0x9394F354891D7E07 2009-09-03 [SC]
       Key fingerprint = 66A4 EA70 4FE2 4055 8D6A  C2E6 9394 F354 891D 7E07
@@ -43,7 +43,6 @@ sub   rsa4096/0xBC8C7730B7DB0213 2016-12-12 [A]
      - 多次元格子点データの自己記述的表現方法の策定, それを実装した種々のライブラリ・ツールの開発を行なっています.
    - [[http://www.gfd-dennou.org/library/ruby/index-j.htm][電脳 Ruby Project]]
      - オブジェクト指向スクリプト言語 Ruby を用いた地球物理学におけるデータ解析, 可視化, 数値シミュレーションのためのソフトウェアを, 開発・整備しています.
-
 * 個人的活動
 ** [[http://www.debian.org][Debian Project]]
    - [[http://bit.ly/1luxhNI][Debian Wiki: Youhei SASAKI]] をご覧下さい.
