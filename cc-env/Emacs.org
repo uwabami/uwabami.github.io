@@ -1,2 +1,0 @@
-Related: [[wiki:index][Index]]
-#+INCLUDE: /home/uwabami/.emacs.d/README.org

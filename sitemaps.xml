@@ -1,19 +1,398 @@
----
-layout: null
-permalink: /sitemaps.xml
----
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  {% for page in site.pages %}
-    {% if page.id contains "404" %}{% else %}
+  
+    
       <url>
-        <loc>{{ site.url}}{{site.baseurl}}{{ page.url }}</loc>
-        {% assign versions=site.pages | where:"ref", page.ref %}
-        {% for version in versions %}
-        <xhtml:link rel="alternate" hreflang="{{ version.lang }}" href="{{site.url}}{{site.baseurl}}{{ version.url }}" />
-        {% endfor %}
+        <loc>/404.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/404.html" />
+        
         <changefreq>monthly</changefreq>
       </url>
-    {% endif %}
-  {% endfor %}
+    
+  
+    
+      <url>
+        <loc>/cc-env/DebianApt.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianApt.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/DebianConfigure.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianConfigure.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/DebianInstall.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianInstall.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/DebianMail.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianMail.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/DebianPackaging.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianPackaging.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/DebianSchroot.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSchroot.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/DebianSquid.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSquid.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/DebianTeX.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianTeX.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/Debiani3.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Debiani3.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/Emacs.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Emacs.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/JekyllandOrg.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/JekyllandOrg.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/OrgtoJekyll.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/OrgtoJekyll.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/Terminal.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/css/cc-env.css</loc>
+        
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/research/index.en.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/rdtool/index.en.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/tdiary-style-org/index.en.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/rail/index.en.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rail/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/jekyll-org-converter/index.en.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/index.en.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/index.en.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/research/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/rdtool/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/tdiary-style-org/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/rail/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rail/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/jekyll-org-converter/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/software/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/css/main.css</loc>
+        
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/sitemaps.xml</loc>
+        
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/weechat.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/weechat.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/assets/css/style.css</loc>
+        
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
   </urlset>
