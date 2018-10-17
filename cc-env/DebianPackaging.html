@@ -4,10 +4,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>パッケージ作成環境&#58; sbuild, lintian, piuparts, autopkgtest</title>
-<meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+<title>パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest</title>
+<meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
 <link rel="stylesheet" href="/css/main.css" >
-<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" >
 <link rel="canonical" href="/cc-env/DebianPackaging.html">
 
 <link rel="alternate" hreflang="ja" href="/cc-env/DebianPackaging.html" />
@@ -63,7 +62,7 @@
         <div class="row">
           <div class="page-header col-xs-12">
             
-            <h1>パッケージ作成環境&amp;#58; sbuild, lintian, piuparts, autopkgtest</h1>
+            <h1>パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest</h1>
             
             <ul class="breadcrumb">
   
@@ -84,440 +83,162 @@
 
           </div>
           <div class="col-xs-12">
-            <div id="toc-wrapper">
-<nav id="table-of-contents">
-<h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+            <p>Related <a href="wiki:index">Index</a> <a href="id:591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a></p>
+<h2><a id="はじめに"><span class='anchor'>_</span></a>はじめに</h2>
+<p>Debian パッケージを作成するため</p>
 <ul>
-<li><a href="#org4d40b64">はじめに</a></li>
-<li><a href="#org8aa32d5"><span class="todo TODO">TODO</span> <code>sbuild</code>: clean room build 環境</a>
+  <li><a href="id:74d27536-cf49-4780-8b6d-2e7b22027785">=sbuild=: clean room build 環境</a> :ビルド時の依存環境をテストしつつビルドする</li>
+  <li><a href="id:0b5136f9-4bea-4417-849a-96f5f95b6504">=lintian=: パッケージの品質のチェック</a></li>
+  <li><a href="id:bcb9e308-7a2d-4bab-8876-30b8eedaf43c">=piuparts=: パッケージとしてのテスト</a></li>
+  <li><a href="id:d2393bd8-c286-44ad-a23a-b50893ee82f3">=autopkgtest=: ビルドしたバイナリの実行テスト</a></li>
+</ul>
+<p>ができるようにしておきます.</p>
+<h2><a id="=sbuild=: clean room build 環境"><span class='anchor'>_</span></a><code>sbuild</code>: clean room build 環境</h2>clean room build 環境としては
 <ul>
-<li><a href="#orgfb81f87">インストールと設定</a></li>
+  <li>pbuilder/cowbuilder/qemubuilder</li>
+  <li>sbuild</li>
 </ul>
-</li>
-<li><a href="#org84e0b97"><code>lintian</code>: パッケージの品質のチェック</a></li>
-<li><a href="#org2a70239"><code>piuparts</code>: パッケージとしてのテスト</a></li>
-<li><a href="#orge944eab"><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</a>
+<p>の二通りがあります. どちらが良いのか, は完全に好みの問題だと思いますが
+  Debian 公式のビルドインフラが sbuild なので, 私は sbuild を使っています.
+  sbuild に関しては <a href="https://wiki.debian.org/sbuild">sbuild - Debian Wiki</a> を参照下さい.</p>
 <ul>
-<li><a href="#org306264f">初期設定</a></li>
-<li><a href="#orge0b4b3a">sbuild からの呼び出し</a></li>
+  <li>[ ] sbuild の build 環境に lxc って使えたりしないかな&#8230;?</li>
 </ul>
-</li>
-<li><a href="#org2b64db1"><code>~/.sbuildrc</code></a></li>
-<li><a href="#org038cc56"><code>~/.sbuild.d/sbuild-debci-rdepends</code></a></li>
-</ul>
-</div>
-</nav>
-</div>
-<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<p>
-Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
-</p>
-<div id="outline-container-org4d40b64" class="outline-2">
-<h2 id="org4d40b64">はじめに</h2>
-<div class="outline-text-2" id="text-org4d40b64">
-<p>
-Debian パッケージを作成するため
-</p>
-<ul class="org-ul">
-<li><a href="#org8aa32d5"><code>sbuild</code>: clean room build 環境</a> :ビルド時の依存環境をテストしつつビルドする</li>
-<li><a href="#org84e0b97"><code>lintian</code>: パッケージの品質のチェック</a></li>
-<li><a href="#org2a70239"><code>piuparts</code>: パッケージとしてのテスト</a></li>
-<li><a href="#orge944eab"><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</a></li>
-</ul>
-<p>
-ができるようにしておきます.
-</p>
-</div>
-</div>
-<div id="outline-container-org8aa32d5" class="outline-2">
-<h2 id="org8aa32d5"><a id="ID-74d27536-cf49-4780-8b6d-2e7b22027785"></a><span class="todo TODO">TODO</span> <code>sbuild</code>: clean room build 環境</h2>
-<div class="outline-text-2" id="text-org8aa32d5">
-<p>
-clean room build 環境としては
-</p>
-<ul class="org-ul">
-<li>pbuilder/cowbuilder/qemubuilder</li>
-<li>sbuild</li>
-</ul>
-<p>
-の二通りがあります. どちらが良いのか, は完全に好みの問題だと思いますが
-Debian 公式のビルドインフラが sbuild なので, 私は sbuild を使っています.
-sbuild に関しては <a href="https://wiki.debian.org/sbuild">sbuild - Debian Wiki</a> を参照下さい.
-</p>
-
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> sbuild の build 環境に lxc って使えたりしないかな&#x2026;?</li>
-</ul>
-</div>
-<div id="outline-container-orgfb81f87" class="outline-3">
-<h3 id="orgfb81f87">インストールと設定</h3>
-<div class="outline-text-3" id="text-orgfb81f87">
-<p>
-ほぼ, 上述の wiki の通り:
-</p>
+<h3><a id="インストールと設定"><span class='anchor'>_</span></a>インストールと設定</h3>
+<p>ほぼ, 上述の wiki の通り:</p>
 <pre class="example">
 sudo apt-get install sbuild
 sudo sbuild-adduser $LOGNAME
 newgrp sbuild
 </pre>
-<p>
-chroot の作成は以下
-</p>
-<div class="org-src-container">
-<pre class="src src-sh"><span style="color: #FF7F7F;">for</span> a<span style="color: #FF7F7F;"> in</span> amd64 i386; <span style="color: #FF7F7F;">do</span>
-  <span style="color: #FF7F7F;">for</span> d<span style="color: #FF7F7F;"> in</span> stable testing unstable ; <span style="color: #FF7F7F;">do</span>
-    sudo <span style="color: #7F7FFF;">LANG</span>=C sbuild-createchroot --arch=$<span style="color: #7F7FFF;">a</span> --include=eatmydata,gnupg $<span style="color: #7F7FFF;">d</span> <span style="color: #7FFF7F;">\</span>
-        /srv/chroot/$<span style="color: #7F7FFF;">d</span>-$<span style="color: #7F7FFF;">a</span>-sbuild http://dennou-k.gfd-dennou.org/debian
-  <span style="color: #FF7F7F;">done</span>
-<span style="color: #FF7F7F;">done</span>
-</pre>
-</div>
-<p>
-これで, <code>/srv/chroot/</code> 以下に sbuild 用の chroot 環境ができる.
-ついでに <code>/etc/schroot/chroot.d/</code> 以下に sbuild 用の設定ファイルができるので,
-</p>
-<div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">union-type</span>=overlay
-<span style="color: #7F7FFF;">union-overlay-directory</span>=/dev/shm
-</pre>
-</div>
-<p>
-を設定しておくと良い(overlayfs で動作します)
-</p>
-<div class="org-src-container">
-<pre class="src src-sh"><span style="color: #FF7F7F;">for</span> conf<span style="color: #FF7F7F;"> in</span> $(grep -l &#8217;^union-type=&#8217; /etc/schroot/chroot.d/*-sbuild*); <span style="color: #FF7F7F;">do</span>
-    <span style="color: #FF7F7F;">if</span> <span style="color: #7FFFFF; font-weight: bold;">!</span> grep -q <span style="color: #7FFF7F;">"^union-type="</span> <span style="color: #7FFF7F;">"$conf"</span> ; <span style="color: #FF7F7F;">then</span>
-        <span style="color: #7FBFFF;">echo</span>  <span style="color: #7FFF7F;">'union-type=overlay'</span> | sudo tee  --append <span style="color: #7FFF7F;">"$conf"</span>
-        <span style="color: #7FBFFF;">echo</span> &#8217;union-overlay-directory=/dev/shm&#8217; | sudo tee --append <span style="color: #7FFF7F;">"$conf"</span>
-    <span style="color: #FF7F7F;">fi</span>
-<span style="color: #FF7F7F;">done</span>
-</pre>
-</div>
-<p>
-sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
-末尾にあるのでそちらを参照のこと．
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org84e0b97" class="outline-2">
-<h2 id="org84e0b97"><a id="ID-0b5136f9-4bea-4417-849a-96f5f95b6504"></a><code>lintian</code>: パッケージの品質のチェック</h2>
-<div class="outline-text-2" id="text-org84e0b97">
-<p>
-作成したパッケージが Debian Policy に準拠しているかを
-チェックするパッケージである lintian を導入.
-</p>
+<p>chroot の作成は以下</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> a in amd64 i386<span class="p">;</span> <span class="k">do</span>
+  <span class="k">for</span> d in stable testing unstable <span class="p">;</span> <span class="k">do</span>
+    sudo <span class="nv">LANG</span><span class="o">=</span>C sbuild-createchroot --arch<span class="o">=</span><span class="nv">$a</span> --include<span class="o">=</span>eatmydata,gnupg <span class="nv">$d</span> <span class="se">\</span>
+        /srv/chroot/<span class="nv">$d</span>-<span class="nv">$a</span>-sbuild http://dennou-k.gfd-dennou.org/debian
+  <span class="k">done</span>
+<span class="k">done</span>
+</pre></div>
+<p>これで, <code>/srv/chroot/</code> 以下に sbuild 用の chroot 環境ができる.
+  ついでに <code>/etc/schroot/chroot.d/</code> 以下に sbuild 用の設定ファイルができるので,</p>
+<div class="highlight"><pre><span></span><span class="n">union</span><span class="o">-</span><span class="n">type</span><span class="o">=</span><span class="n">overlay</span>
+<span class="n">union</span><span class="o">-</span><span class="n">overlay</span><span class="o">-</span><span class="n">directory</span><span class="o">=</span><span class="sr">/dev/s</span><span class="n">hm</span>
+</pre></div>
+<p>を設定しておくと良い(overlayfs で動作します)</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> conf in <span class="k">$(</span>grep -l ’^union-type<span class="o">=</span>’ /etc/schroot/chroot.d/*-sbuild*<span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+    <span class="k">if</span> ! grep -q <span class="s2">&quot;^union-type=&quot;</span> <span class="s2">&quot;</span><span class="nv">$conf</span><span class="s2">&quot;</span> <span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span>  <span class="s1">&#39;union-type=overlay&#39;</span> <span class="p">|</span> sudo tee  --append <span class="s2">&quot;</span><span class="nv">$conf</span><span class="s2">&quot;</span>
+        <span class="nb">echo</span> ’union-overlay-directory<span class="o">=</span>/dev/shm’ <span class="p">|</span> sudo tee --append <span class="s2">&quot;</span><span class="nv">$conf</span><span class="s2">&quot;</span>
+    <span class="k">fi</span>
+<span class="k">done</span>
+</pre></div>
+<p>sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
+  末尾にあるのでそちらを参照のこと．</p>
+<h2><a id="=lintian=: パッケージの品質のチェック"><span class='anchor'>_</span></a><code>lintian</code>: パッケージの品質のチェック</h2>作成したパッケージが Debian Policy に準拠しているかを
+  チェックするパッケージである lintian を導入.
 <pre class="example">
 % sudo apt-get install lintian
 </pre>
-<p>
-設定は以下の通り. <code>pedantic</code> と <code>info</code> は, まあ趣味でしょうか.
-</p>
-<div class="org-src-container">
-<pre class="src src-conf"><span style="color: #7F7FFF;">display-info</span> = yes
-<span style="color: #7F7FFF;">pedantic</span> = yes
-<span style="color: #7F7FFF;">color</span> = auto
-<span style="color: #7F7FFF;">show-overrides</span> = yes
-</pre>
-</div>
-
-<p>
-sbuild からの呼び出しは <code>~/.sbuildrc</code> において
-</p>
-<div class="org-src-container">
-<pre class="src src-perl"><span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">lintinan</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; lintian &#12434;&#36208;&#12425;&#12379;&#12427;</span>
-$<span style="color: #7F7FFF;">run_lintian</span> = 1;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">lintian &#12398; option. &#12362;&#22909;&#12415;&#12391;&#12290;</span>
-$<span style="color: #7F7FFF;">lintian_opts</span> = [<span style="color: #7FFF7F;">'-i'</span>, <span style="color: #7FFF7F;">'-I'</span>];
-</pre>
-</div>
-<p>
-とでもしておくと良いだろう.
-</p>
-</div>
-</div>
-<div id="outline-container-org2a70239" class="outline-2">
-<h2 id="org2a70239"><a id="ID-bcb9e308-7a2d-4bab-8876-30b8eedaf43c"></a><code>piuparts</code>: パッケージとしてのテスト</h2>
-<div class="outline-text-2" id="text-org2a70239">
-<p>
-ビルドしたパッケージについて
-インストール, アップグレード, リムーブ, パージのテストを行なえる
-piuparts を導入しておく.
-</p>
+<p>設定は以下の通り. <code>pedantic</code> と <code>info</code> は, まあ趣味でしょうか.</p>
+<p>sbuild からの呼び出しは <code>~/.sbuildrc</code> において</p>
+<div class="highlight"><pre><span></span><span class="c1">## lintinan</span>
+<span class="c1"># build 後に lintian を走らせる</span>
+<span class="nv">$run_lintian</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1"># lintian の option. お好みで。</span>
+<span class="nv">$lintian_opts</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;-i&#39;</span><span class="p">,</span> <span class="s">&#39;-I&#39;</span><span class="p">];</span>
+</pre></div>
+<p>とでもしておくと良いだろう.</p>
+<h2><a id="=piuparts=: パッケージとしてのテスト"><span class='anchor'>_</span></a><code>piuparts</code>: パッケージとしてのテスト</h2>ビルドしたパッケージについて
+  インストール, アップグレード, リムーブ, パージのテストを行なえる
+  piuparts を導入しておく.
 <pre class="example">
 % sudo apt-get install piuparts
 </pre>
-<p>
-実際の呼び出しは sbuild から行なう.
-</p>
-<div class="org-src-container">
-<pre class="src src-perl"><span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">piuparts</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; piuparts &#12434;&#36208;&#12425;&#12379;&#12427;</span>
-$<span style="color: #7F7FFF;">run_piuparts</span> = 1;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">piuparts &#12398; option&#12290;&#12371;&#12371;&#12391;&#12399; sbuild &#29992;&#12395;&#20316;&#25104;&#12375;&#12383; schroot &#12391;&#36208;&#12425;&#12379;&#12427;</span>
-$<span style="color: #7F7FFF;">piuparts_opts</span> = [<span style="color: #7FFF7F;">'-N'</span>, <span style="color: #7FFF7F;">'-d'</span>, <span style="color: #7FFF7F;">'%r'</span>, <span style="color: #7FFF7F;">'--keep-sources-list'</span>, <span style="color: #7FFF7F;">'--schroot'</span>, <span style="color: #7FFF7F;">'%r-%a-sbuild'</span>];
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">root_args</span>
-$<span style="color: #7F7FFF;">piuparts_root_args</span> = [<span style="color: #7FFF7F;">'sudo'</span>, <span style="color: #7FFF7F;">'--'</span>];
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orge944eab" class="outline-2">
-<h2 id="orge944eab"><a id="ID-d2393bd8-c286-44ad-a23a-b50893ee82f3"></a><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</h2>
-<div class="outline-text-2" id="text-orge944eab">
-<p>
-autopkgtest パッケージを導入しておく.
-</p>
-</div>
-<div id="outline-container-org306264f" class="outline-3">
-<h3 id="org306264f">初期設定</h3>
-<div class="outline-text-3" id="text-org306264f">
-<p>
-autopkgtest 環境として, schroot を使うか lxc を使うか, がある.
-当然ながら schroot の方が overhead が少ないのだが,
-<a href="https://ci.debian.net/">Debian Continuous Integration</a> での動作テストもあるので,
-debci に揃えることに.
-</p>
-
-<p>
-LXC の基本設定や dnsmasq での DHCP 取得ができるようになっていると,
-あとは debci setup で良い&#x2026;のだと思う. <strong>本来は</strong>
-</p>
+<p>実際の呼び出しは sbuild から行なう.</p>
+<div class="highlight"><pre><span></span><span class="c1">## piuparts</span>
+<span class="c1"># build 後に piuparts を走らせる</span>
+<span class="nv">$run_piuparts</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1"># piuparts の option。ここでは sbuild 用に作成した schroot で走らせる</span>
+<span class="nv">$piuparts_opts</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;-N&#39;</span><span class="p">,</span> <span class="s">&#39;-d&#39;</span><span class="p">,</span> <span class="s">&#39;%r&#39;</span><span class="p">,</span> <span class="s">&#39;--keep-sources-list&#39;</span><span class="p">,</span> <span class="s">&#39;--schroot&#39;</span><span class="p">,</span> <span class="s">&#39;%r-%a-sbuild&#39;</span><span class="p">];</span>
+<span class="c1"># root_args</span>
+<span class="nv">$piuparts_root_args</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;sudo&#39;</span><span class="p">,</span> <span class="s">&#39;--&#39;</span><span class="p">];</span>
+</pre></div>
+<h2><a id="=autopkgtest=: ビルドしたバイナリの実行テスト"><span class='anchor'>_</span></a><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</h2>autopkgtest パッケージを導入しておく.
+<h3><a id="初期設定"><span class='anchor'>_</span></a>初期設定</h3>
+<p>autopkgtest 環境として, schroot を使うか lxc を使うか, がある.
+  当然ながら schroot の方が overhead が少ないのだが,
+  <a href="https://ci.debian.net/">Debian Continuous Integration</a> での動作テストもあるので,
+  debci に揃えることに.</p>
+<p>LXC の基本設定や dnsmasq での DHCP 取得ができるようになっていると,
+  あとは debci setup で良い&#8230;のだと思う. <strong>本来は</strong></p>
 <pre class="example">
 % sudo apt install debci
-% sudo MIRROR="http://dennou-k.gfd-dennou.org/debian" \
+% sudo MIRROR=&quot;http://dennou-k.gfd-dennou.org/debian&quot; \
    debci setup -s unstable --backend lxc -a amd64
 </pre>
-<p>
-ここではまった.
-</p>
-<ul class="org-ul">
-<li>今使っている環境が btrfs</li>
-<li>debci setup → autopkgtest-build-lxc が呼ばれる</li>
-<li>autopkgtest-build-lxc では lxc-create で "-B best" が呼ばれている</li>
-<li>btrfs と lxc-destroy に関するバグ? なのか, コンテナの差分更新後 lxc-destroy ができずに失敗する</li>
+<p>ここではまった.</p>
+<ul>
+  <li>今使っている環境が btrfs</li>
+  <li>debci setup → autopkgtest-build-lxc が呼ばれる</li>
+  <li>autopkgtest-build-lxc では lxc-create で &#8220;-B best&#8221; が呼ばれている</li>
+  <li>btrfs と lxc-destroy に関するバグ? なのか, コンテナの差分更新後 lxc-destroy ができずに失敗する</li>
 </ul>
-<p>
-というオチに.
-</p>
+<p>というオチに.</p>
+<p>結局</p>
+<div class="highlight"><pre><span></span><span class="gd">--- /usr/bin/autopkgtest-build-lxc.orig	2017-09-07 20:15:12.615081394 +0900</span>
+<span class="gi">+++ /usr/bin/autopkgtest-build-lxc	2017-09-07 20:16:31.584016755 +0900</span>
+<span class="gu">@@ -150,14 +150,14 @@</span>
 
-<p>
-結局
-</p>
-<div class="org-src-container">
-<pre class="src src-diff"><span style="background-color: #767676;">--- </span><span style="background-color: #949494; font-weight: bold;">/usr/bin/autopkgtest-build-lxc.orig</span><span style="background-color: #767676;"> 2017-09-07 20:15:12.615081394 +0900</span>
-<span style="background-color: #767676;">+++ </span><span style="background-color: #949494; font-weight: bold;">/usr/bin/autopkgtest-build-lxc</span><span style="background-color: #767676;">  2017-09-07 20:16:31.584016755 +0900</span>
-<span style="background-color: #767676;">@@ -150,14 +150,14 @@</span>
-
-<span style="color: #dddddd;"> if [ ! -e $LXCDIR/$NAME ]; then</span>
-<span style="color: #dddddd;">     # first-time run: just create the container</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">    $LXC_CREATE_PREFIX lxc-create -B best --name=$NAME $LXC_ARGS</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    $LXC_CREATE_PREFIX lxc-create --name=$NAME $LXC_ARGS</span>
-<span style="color: #dddddd;">     setup $NAME</span>
-<span style="color: #dddddd;"> else</span>
-<span style="color: #dddddd;">     # remove LXC rootfs caches; on btrfs this might be a subvolume, otherwise</span>
-<span style="color: #dddddd;">     # rm it</span>
-<span style="color: #dddddd;">     btrfs subvolume delete /var/cache/lxc/$RELEASE/rootfs-* 2&gt;/dev/null || rm -rf /var/cache/lxc/$RELEASE/rootfs-*</span>
-<span style="color: #dddddd;">     # create a new rootfs in a temp container</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">    $LXC_CREATE_PREFIX lxc-create -B best --name=${NAME}.new $LXC_ARGS</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">    $LXC_CREATE_PREFIX lxc-create --name=${NAME}.new $LXC_ARGS</span>
-<span style="color: #dddddd;">     setup ${NAME}.new</span>
-<span style="color: #dddddd;">     sed -i "s/${NAME}.new/${NAME}/" $LXCDIR/${NAME}.new/rootfs/etc/hostname $LXCDIR/${NAME}.new/rootfs/etc/hosts</span>
-     # replace the original rootfs; can't make this more atomic unfortunately
-</pre>
-</div>
-<p>
-なんて事をして,
-</p>
+ if [ ! -e $LXCDIR/$NAME ]; then
+     # first-time run: just create the container
+<span class="gd">-    $LXC_CREATE_PREFIX lxc-create -B best --name=$NAME $LXC_ARGS</span>
+<span class="gi">+    $LXC_CREATE_PREFIX lxc-create --name=$NAME $LXC_ARGS</span>
+     setup $NAME
+ else
+     # remove LXC rootfs caches; on btrfs this might be a subvolume, otherwise
+     # rm it
+     btrfs subvolume delete /var/cache/lxc/$RELEASE/rootfs-* 2&gt;/dev/null || rm -rf /var/cache/lxc/$RELEASE/rootfs-*
+     # create a new rootfs in a temp container
+<span class="gd">-    $LXC_CREATE_PREFIX lxc-create -B best --name=$&#123;NAME}.new $LXC_ARGS</span>
+<span class="gi">+    $LXC_CREATE_PREFIX lxc-create --name=$&#123;NAME}.new $LXC_ARGS</span>
+     setup $&#123;NAME}.new
+     sed -i &quot;s/$&#123;NAME}.new/$&#123;NAME}/&quot; $LXCDIR/$&#123;NAME}.new/rootfs/etc/hostname $LXCDIR/$&#123;NAME}.new/rootfs/etc/hosts
+     # replace the original rootfs; can&#39;t make this more atomic unfortunately
+</pre></div>
+<p>なんて事をして,</p>
 <pre class="example">
 % sudo dpkg-divert \
   --divert /usr/bin/autopkgtest-build-lxc.orig
   --rename /usr/bin/autopkgtest-build-lxc
 </pre>
-<p>
-としてお茶を濁す.
-</p>
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 設定ファイルがあったらそっちを優先して欲しいのだが.</li>
+<p>としてお茶を濁す.</p>
+<ul>
+  <li>[ ] 設定ファイルがあったらそっちを優先して欲しいのだが.</li>
 </ul>
-</div>
-</div>
-<div id="outline-container-orge0b4b3a" class="outline-3">
-<h3 id="orge0b4b3a">sbuild からの呼び出し</h3>
-<div class="outline-text-3" id="text-orge0b4b3a">
-<p>
-面倒なのは lxc を使う場合には <code>stretch</code>, <code>buster</code>, <code>sid</code> とコードネームなのに対して,
-sbuild/schroot の release は <code>unstable</code> だったりするところ.
-</p>
+<h3><a id="sbuild からの呼び出し"><span class='anchor'>_</span></a>sbuild からの呼び出し</h3>
+<p>面倒なのは lxc を使う場合には <code>stretch</code>, <code>buster</code>, <code>sid</code> とコードネームなのに対して,
+  sbuild/schroot の release は <code>unstable</code> だったりするところ.</p>
+<p>sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>external_commands</code> で
+  呼び出すことにする.</p>
+<div class="highlight"><pre><span></span><span class="c1">## autopkgtest</span>
+<span class="c1"># build 後に autopkgtest の実行 ⇒ 実行しない. post-build-commands で実行</span>
+<span class="nv">$run_autopkgtest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1"># sbuild 用に作成した schroot で走らせる場合は以下を有効に</span>
+<span class="c1"># $autopkgtest_opts = [&#39;-U&#39;, &#39;--&#39;, &#39;schroot&#39;, &#39;%r-%a-sbuild&#39;];</span>
+<span class="c1"># $autopkgtest_root_args = [&#39;sudo&#39;, &#39;--&#39;];</span>
+</pre></div>
+<p>外部コマンドの呼び出しは以下</p>
+<div class="highlight"><pre><span></span><span class="c1"># 外部スクリプトで autopkgtest, rdepends の autopkgstest</span>
+<span class="nv">$external_commands</span> <span class="o">=</span> <span class="p">&#123;</span>
+                      <span class="s">&#39;post-build-commands&#39;</span> <span class="o">=&gt;</span>
+                      <span class="p">[</span><span class="s">&#39;/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e&#39;</span><span class="p">],</span>
+                     <span class="p">};</span>
+</pre></div>
+<h2><a id="=~/.sbuildrc="><span class='anchor'>_</span></a><code>~/.sbuildrc</code></h2>
+<p>現在の <code>~/.sbuildrc</code> は以下の通り</p>
+<h2><a id="=~/.sbuild.d/sbuild-debci-rdepends="><span class='anchor'>_</span></a><code>~/.sbuild.d/sbuild-debci-rdepends</code></h2>
+<p>post-build-commands で呼び出す autopkgtest の呼び出しは以下</p>
 
-<p>
-sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>external_commands</code> で
-呼び出すことにする.
-</p>
-<div class="org-src-container">
-<pre class="src src-perl"><span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">autopkgtest</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; autopkgtest &#12398;&#23455;&#34892; &#8658; &#23455;&#34892;&#12375;&#12394;&#12356;. post-build-commands &#12391;&#23455;&#34892;</span>
-$<span style="color: #7F7FFF;">run_autopkgtest</span> = 0;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sbuild &#29992;&#12395;&#20316;&#25104;&#12375;&#12383; schroot &#12391;&#36208;&#12425;&#12379;&#12427;&#22580;&#21512;&#12399;&#20197;&#19979;&#12434;&#26377;&#21177;&#12395;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$autopkgtest_opts = ['-U', '--', 'schroot', '%r-%a-sbuild'];</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$autopkgtest_root_args = ['sudo', '--'];</span>
-</pre>
-</div>
-<p>
-外部コマンドの呼び出しは以下
-</p>
-<div class="org-src-container">
-<pre class="src src-perl"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#22806;&#37096;&#12473;&#12463;&#12522;&#12503;&#12488;&#12391; autopkgtest, rdepends &#12398; autopkgstest</span>
-$<span style="color: #7F7FFF;">external_commands</span> = {
-                      <span style="color: #7FFF7F;">'post-build-commands'</span> =&gt;
-                      [<span style="color: #7FFF7F;">'/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e'</span>],
-                     };
-</pre>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-org2b64db1" class="outline-2">
-<h2 id="org2b64db1"><code>~/.sbuildrc</code></h2>
-<div class="outline-text-2" id="text-org2b64db1">
-<p>
-現在の <code>~/.sbuildrc</code> は以下の通り
-</p>
-<div class="org-src-container">
-<pre class="src src-perl"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: cperl -*-</span>
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">basic</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">architecture: all &#12418; build &#12377;&#12427;</span>
-$<span style="color: #7F7FFF;">build_arch_all</span> = 1;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12487;&#12501;&#12457;&#12523;&#12488;&#12391; source packag &#12418; build &#12377;&#12427;</span>
-$<span style="color: #7F7FFF;">build_source</span> = 1;
-
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">debsign</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">GPG key id</span>
-$<span style="color: #7F7FFF;">key_id</span> = <span style="color: #7FFF7F;">'66A4EA704FE240558D6AC2E69394F354891D7E07'</span>;
-
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">lintinan</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; lintian &#12434;&#36208;&#12425;&#12379;&#12427;</span>
-$<span style="color: #7F7FFF;">run_lintian</span> = 1;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">lintian &#12398; option.</span>
-$<span style="color: #7F7FFF;">lintian_opts</span> = [<span style="color: #7FFF7F;">'-i'</span>, <span style="color: #7FFF7F;">'-I'</span>];
-
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">piuparts</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; piuparts &#12434;&#36208;&#12425;&#12379;&#12427;</span>
-$<span style="color: #7F7FFF;">run_piuparts</span> = 0;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">piuparts &#12398; option. &#12371;&#12371;&#12391;&#12399; sbuild &#29992;&#12395;&#20316;&#25104;&#12375;&#12383; schroot &#12391;&#36208;&#12425;&#12379;&#12427;</span>
-$<span style="color: #7F7FFF;">piuparts_opts</span> = [<span style="color: #7FFF7F;">'-N'</span>, <span style="color: #7FFF7F;">'--warn-on-leftovers-after-purge'</span>, <span style="color: #7FFF7F;">'-d'</span>, <span style="color: #7FFF7F;">'%r'</span>, <span style="color: #7FFF7F;">'--keep-sources-list'</span>, <span style="color: #7FFF7F;">'--log-level=info'</span>, <span style="color: #7FFF7F;">'--schroot'</span>, <span style="color: #7FFF7F;">'%r-%a-sbuild'</span>];
-$<span style="color: #7F7FFF;">piuparts_root_args</span> = [<span style="color: #7FFF7F;">'sudo'</span>, <span style="color: #7FFF7F;">'--'</span>];
-
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">autopkgtest</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">build &#24460;&#12395; autopkgtest &#12398;&#23455;&#34892; &#8658; &#23455;&#34892;&#12375;&#12394;&#12356;. post-build-commands &#12391;&#23455;&#34892;</span>
-$<span style="color: #7F7FFF;">run_autopkgtest</span> = 1;
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">sbuild &#29992;&#12395;&#20316;&#25104;&#12375;&#12383; schroot &#12391;&#36208;&#12425;&#12379;&#12427;&#22580;&#21512;&#12399;&#20197;&#19979;&#12434;&#26377;&#21177;&#12395;</span>
-$<span style="color: #7F7FFF;">autopkgtest_opts</span> = [<span style="color: #7FFF7F;">'-U'</span>, <span style="color: #7FFF7F;">'--'</span>, <span style="color: #7FFF7F;">'schroot'</span>, <span style="color: #7FFF7F;">'%r-%a-sbuild'</span>];
-$<span style="color: #7F7FFF;">autopkgtest_root_args</span> = [<span style="color: #7FFF7F;">'sudo'</span>, <span style="color: #7FFF7F;">'--'</span>];
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#22806;&#37096;&#12473;&#12463;&#12522;&#12503;&#12488;&#12391; autopkgtest, rdepends &#12398; autopkgstest</span>
-$<span style="color: #7F7FFF;">external_commands</span> = {
-                      <span style="color: #7FFF7F;">'post-build-commands'</span> =&gt;
-                      [<span style="color: #7FFF7F;">'/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e'</span>],
-                     };
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org038cc56" class="outline-2">
-<h2 id="org038cc56"><code>~/.sbuild.d/sbuild-debci-rdepends</code></h2>
-<div class="outline-text-2" id="text-org038cc56">
-<p>
-post-build-commands で呼び出す autopkgtest の呼び出しは以下
-</p>
-<div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
-
-<span style="color: #BF7FFF;">highlight</span>() {
-    <span style="color: #7F7FFF;">msg</span>=<span style="color: #7FFF7F;">"$@"</span>
-    printf <span style="color: #7FFF7F;">"\033[01;33m${msg}\033[m\n"</span>
-}
-
-<span style="color: #BF7FFF;">banner</span>() {
-    highlight <span style="color: #7FFF7F;">"================================================="</span>
-    highlight <span style="color: #7FFF7F;">"= %s"</span> <span style="color: #7FFF7F;">"$@"</span>
-    highlight <span style="color: #7FFF7F;">"================================================="</span>
-    <span style="color: #7FBFFF;">echo</span> <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">blank line</span>
-}
-<span style="color: #BF7FFF;">warning</span>() {
-    <span style="color: #7F7FFF;">msg</span>=<span style="color: #7FFF7F;">"$@"</span>
-    printf <span style="color: #7FFF7F;">"\n"</span>
-    printf <span style="color: #7FFF7F;">"\033[0;37;41mWARNING: ${msg}\033[m\n"</span>
-    printf <span style="color: #7FFF7F;">"\n"</span>
-    <span style="color: #FF7F7F;">exit</span> 1
-}
-
-<span style="color: #7F7FFF;">debs</span>=<span style="color: #7FFF7F;">"$(dcmd --deb $1)"</span>
-<span style="color: #7F7FFF;">binaries</span>=<span style="color: #7FFF7F;">"$(for p in `dcmd --package $1 | sort -u ` ; do basename $p ; done)"</span>
-<span style="color: #7F7FFF;">rdeps</span>=<span style="color: #7FFF7F;">"$(chdist apt-cache unstable rdepends $binaries | sed -e '/^\s/!d; s/|//' | sort -u | xargs chdist apt-cache unstable show | grep-dctrl -s Package,Source '' | awk '{ if ($1=="Package:") { pkg = $2 }; if ($1=="Source:") { pkg = $2 }; if ($1=="") { print(pkg) } } END { print(pkg) }' | sort -u | grep -v "^${source}\$")"</span>
-<span style="color: #7F7FFF;">arch_dist</span>=$( <span style="color: #7FBFFF;">echo</span> $<span style="color: #7F7FFF;">6</span> | sed -e <span style="color: #7FFF7F;">'s/-sbuild-.*//g'</span>)
-
-<span style="color: #FF7F7F;">case</span> $<span style="color: #7F7FFF;">arch_dist</span><span style="color: #FF7F7F;"> in</span>
-    unstable-amd64*)
-        <span style="color: #7F7FFF;">ad</span>=unstable-amd64
-        ;;
-    testing-amd64*)
-        <span style="color: #7F7FFF;">ad</span>=buster-amd64
-        ;;
-    stable-amd64*)
-        <span style="color: #7F7FFF;">ad</span>=stretch-amd64
-        ;;
-    unstable-i386*)
-        <span style="color: #7F7FFF;">ad</span>=unstable-386
-        ;;
-    testing-i3864*)
-        <span style="color: #7F7FFF;">ad</span>=buster-i386
-        ;;
-    stable-i3864*)
-        <span style="color: #7F7FFF;">ad</span>=stretch-i386
-        ;;
-    *)
-        warning <span style="color: #7FFF7F;">"Unknown test suite "</span>
-        <span style="color: #FF7F7F;">exit</span> 1
-        ;;
-<span style="color: #FF7F7F;">esac</span>
-
-<span style="color: #7F7FFF;">rc</span>=0
-autopkgtest --user debci $<span style="color: #7F7FFF;">1</span> -- lxc --sudo autopkgtest-$<span style="color: #7F7FFF;">ad</span> || <span style="color: #7F7FFF;">rc</span>=$<span style="color: #7F7FFF;">?</span>
-<span style="color: #FF7F7F;">if</span> [ $<span style="color: #7F7FFF;">rc</span> -ne 0 -a $<span style="color: #7F7FFF;">rc</span> -ne 2 -a $<span style="color: #7F7FFF;">rc</span> -ne 8 ]; <span style="color: #FF7F7F;">then</span>
-    warning <span style="color: #7FFF7F;">"Tests for $1 failed! Please verify before uploading"</span>
-    <span style="color: #FF7F7F;">exit</span> 1
-<span style="color: #FF7F7F;">fi</span>
-
-<span style="color: #FF7F7F;">if</span> [ -n <span style="color: #7FFF7F;">"$rdeps"</span> ]; <span style="color: #FF7F7F;">then</span>
-    banner <span style="color: #7FFF7F;">"Found reverse dependencies!"</span>
-    printf <span style="color: #7FFF7F;">"Reverse dependencies: "</span>
-    <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"$rdeps"</span> | xargs echo
-    <span style="color: #7FBFFF;">echo</span>
-    <span style="color: #FF7F7F;">for</span> pkg<span style="color: #FF7F7F;"> in</span> $<span style="color: #7F7FFF;">rdeps</span>; <span style="color: #FF7F7F;">do</span>
-        <span style="color: #FF7F7F;">if</span> chdist apt-cache unstable showsrc <span style="color: #7FFF7F;">"$pkg"</span> | grep -q ^Testsuite:; <span style="color: #FF7F7F;">then</span>
-            <span style="color: #7F7FFF;">rc</span>=0
-            autopkgtest --user debci $<span style="color: #7F7FFF;">debs</span> <span style="color: #7FFF7F;">"$pkg"</span> -- lxc --sudo autopkgtest-$<span style="color: #7F7FFF;">ad</span> || <span style="color: #7F7FFF;">rc</span>=$<span style="color: #7F7FFF;">?</span>
-            <span style="color: #FF7F7F;">if</span> [ $<span style="color: #7F7FFF;">rc</span> -ne 0 -a $<span style="color: #7F7FFF;">rc</span> -ne 2 -a $<span style="color: #7F7FFF;">rc</span> -ne 8 ]; <span style="color: #FF7F7F;">then</span>
-                <span style="color: #7F7FFF;">failed_rdeps</span>=<span style="color: #7FFF7F;">"$failed_rdeps $pkg"</span>
-            <span style="color: #FF7F7F;">fi</span>
-        <span style="color: #FF7F7F;">else</span>
-            <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"I: ${pkg} does not declare a DEP-8 test suite. Maybe try a manual test"</span>
-        <span style="color: #FF7F7F;">fi</span>
-    <span style="color: #FF7F7F;">done</span>
-    <span style="color: #FF7F7F;">for</span> pkg<span style="color: #FF7F7F;"> in</span> $<span style="color: #7F7FFF;">failed_rdeps</span>; <span style="color: #FF7F7F;">do</span>
-        warning <span style="color: #7FFF7F;">"Tests for $pkg failed! Please verify before uploading"</span>
-        <span style="color: #FF7F7F;">exit</span> 1
-    <span style="color: #FF7F7F;">done</span>
-<span style="color: #FF7F7F;">else</span>
-    <span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">"I: no reverse dependencies found"</span>
-<span style="color: #FF7F7F;">fi</span>
-</pre>
-</div>
-</div>
-</div>
 
           </div>
           <a href="#page-top" class="pagetop btn top-btn">Top</a>
@@ -530,9 +251,9 @@ autopkgtest --user debci $<span style="color: #7F7FFF;">1</span> -- lxc --sudo a
       <div class="col-sm-12 col-xs-12">
         <p>
           
-          &copy; 2006 - 2017
+          &copy; 2006 - 2018
           <a href="mailto:uwabami@gfd-dennou.org"></a>,
-          Lastupdate: 2017-11-25 17:40:05 +0000
+          Lastupdate: 2018-10-16 19:46:16
           <br />
           <span class="generator"> Powered by
             <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>

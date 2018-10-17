@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>i3 の設定</title>
-<meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+<meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
 <link rel="stylesheet" href="/css/main.css" >
-<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" >
 <link rel="canonical" href="/cc-env/Debiani3.html">
 
 <link rel="alternate" hreflang="ja" href="/cc-env/Debiani3.html" />
@@ -84,519 +83,128 @@
 
           </div>
           <div class="col-xs-12">
-            <div id="toc-wrapper">
-<nav id="table-of-contents">
-<h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+            <p>Related <a href="wiki:index">Index</a> <a href="id:591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a></p>
+<h2><a id="始めに"><span class='anchor'>_</span></a>始めに</h2>
+<p>スペックがあまり潤沢ではない機材を使うため,
+  軽量な wm として <a href="https://i3wm.org/">i3 - improved tiling wm</a> を使い始めた.</p>
+<p>元々常に tmux を全画面にして作業しているわけで
+  タイル型である恩恵を受けられるのか, という疑問はあったのだが,
+  使ってみたら「綺麗」かつ「驚きの軽さ」ということで, すっかり気にいってしまった.</p>
+<h2><a id="i3 と一緒に使っているもの"><span class='anchor'>_</span></a>i3 と一緒に使っているもの</h2>
+<p>とりあえず現状では以下:</p>
 <ul>
-<li><a href="#org1766f5b">始めに</a></li>
-<li><a href="#orgcb932e6">i3 と一緒に使っているもの</a></li>
-<li><a href="#org4de553e">i3 の設定</a>
+  <li>ターミナル関連: urxvt と tmux → <a href="wiki:Terminal.html">Terminal生活</a></li>
+  <li>ファイルマネージャ: ranger</li>
+  <li>ブラウザ: firefox + vimfx</li>
+  <li>外付けドライブの管理: udiskie</li>
+  <li>ランチャ: rofi</li>
+</ul>
+<p>他にも</p>
 <ul>
-<li><a href="#org5183060">xdg-open と run-mailcap</a></li>
-<li><a href="#org61a36db">Alt+Tab でのフォーカスの切り替え</a></li>
-<li><a href="#org1d9c49e">Rofi: ランチャ</a></li>
-<li><a href="#org2807c33">i3bar</a></li>
-<li><a href="#orgfb5370d">screen lock: i3lock の設定</a></li>
+  <li>Compositor: compton</li>
+  <li>ネットワーク: Network Manager</li>
+  <li>Bluetooth: blueman</li>
+  <li>音: pulseaudio</li>
 </ul>
-</li>
-<li><a href="#org74f6ca1">i3 の設定ファイル</a></li>
+<p>といった所はそのまま, かな?</p>
+<ul>
+  <li>これから試す/探しているモノ [0/2]
+    <ul>
+      <li>[ ] <a href="https://01.org/connman">ConnMan | 01.org</a> も試してみたいが, どうだろう.</li>
+      <li>[ ] pulseaudio の CUI なミキサーって良い奴無いかなぁ&#8230;</li>
+    </ul>
+  </li>
 </ul>
-</div>
-</nav>
-</div>
-<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<p>
-Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
-</p>
-<div id="outline-container-org1766f5b" class="outline-2">
-<h2 id="org1766f5b">始めに</h2>
-<div class="outline-text-2" id="text-org1766f5b">
-<p>
-スペックがあまり潤沢ではない機材を使うため,
-軽量な wm として <a href="https://i3wm.org/">i3 - improved tiling wm</a> を使い始めた.
-</p>
+<h2><a id="i3 の設定"><span class='anchor'>_</span></a>i3 の設定</h2>
+<p>設定ファイルは末尾に掲載している.</p>
+<h3><a id="xdg-open と run-mailcap"><span class='anchor'>_</span></a>xdg-open と run-mailcap</h3>
+<p>いわゆる GNOME や KDE といった Desktop 環境ではないので,
+  たとえば <code>xdg-open</code> の挙動が変わります.
+  それ自体は問題無いのですが, <code>~/.mailcap</code> の設定次第では
+  <code>run-mailcap</code> が <code>xdg-open</code> を呼び, <code>xdg-open</code> が <code>run-mailcap</code> を呼び, といった
+  無限ループが発生します.
+  <del>run-mailcapを抜けば良い, という話もありますが, これ=mime-support=パッケージで提供されているので, 抜くとpython が抜けて大変な目に会います</del></p>
+<p>というわけで, 安直には <code>xdg-open</code> を修正すれば良いですね:</p>
+<div class="highlight"><pre><span></span><span class="gd">--- /usr/bin/xdg-open.orig	2015-10-06 04:19:48.000000000 +0900</span>
+<span class="gi">+++ /usr/bin/xdg-open	2017-07-24 21:18:32.191564009 +0900</span>
+<span class="gu">@@ -787,20 +787,9 @@</span>
+         if [ -n &quot;$DISPLAY&quot; ]; then
+             filetype=`xdg-mime query filetype &quot;$file&quot; | sed &quot;s/;.*//&quot;`
+             open_generic_xdg_mime &quot;$file&quot; &quot;$filetype&quot;
+<span class="gd">-        fi</span>
+<span class="gd">-</span>
+<span class="gd">-        if which run-mailcap 2&gt;/dev/null 1&gt;&amp;2; then</span>
+<span class="gd">-            run-mailcap --action=view &quot;$file&quot;</span>
+<span class="gd">-            if [ $? -eq 0 ]; then</span>
+<span class="gd">-                exit_success</span>
+<span class="gd">-            fi</span>
+<span class="gd">-        fi</span>
+<span class="gd">-</span>
+<span class="gd">-        if [ -n &quot;$DISPLAY&quot; ] &amp;&amp; mimeopen -v 2&gt;/dev/null 1&gt;&amp;2; then</span>
+<span class="gd">-            mimeopen -L -n &quot;$file&quot;</span>
+<span class="gd">-            if [ $? -eq 0 ]; then</span>
+<span class="gd">-                exit_success</span>
+<span class="gd">-            fi</span>
+<span class="gi">+        else</span>
+<span class="gi">+            echo &quot;can&#39;t handle: please set mime type via xdg-mime&quot;</span>
+<span class="gi">+            exit_failure_operation_failed</span>
+         fi
+     fi
+</pre></div>
+<p>あと, <code>~/.local/share/applications/mimeapps.list</code> から <code>~/.config/mimeapps.list</code> へ
+  symbolic link を作成しておきます.</p>
+<h3><a id="Alt+Tab でのフォーカスの切り替え"><span class='anchor'>_</span></a>Alt+Tab でのフォーカスの切り替え</h3>
+<p><code>i3-msg -t get_tree</code> で状態が json で出力されるので,
+  これを parse して良きに図らえば良い.</p>
+<p>幾つか候補はあるけれど, 依存が少なくシンプルだったので
+  <a href="https://github.com/westurner/i3t">westurner/i3t: i3t</a> をありがたく使わせて頂くことに.</p>
+<p>設定は</p>
+<div class="highlight"><pre><span></span>set $i3t_alt_tab ~/.config/i3/i3t.py n
+bindsym $Alt+Tab exec $i3t_alt_tab
+</pre></div>
+<p>みたいな感じで良い.</p>
+<h3><a id="Rofi: ランチャ"><span class='anchor'>_</span></a>Rofi: ランチャ</h3>
+<p><a href="https://davedavenport.github.io/rofi/">Rofi</a> は良い感じのランチャ.
+  公式 Web の <code>This site is currently looking for a maintainer.</code> が怖いけれど.</p>
+<p>設定ファイルは <code>~/.config/rofi/config</code> か <code>~/.Xresources</code> で行なう.
+  今はこんな塩梅:</p>
+<p>i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:</p>
+<div class="highlight"><pre><span></span>bindsym $Alt+F2 $execi sh -c &quot;rofi -show combi&quot;
+bindsym $Alt+Shift+Tab $execi sh -c &quot;rofi -show window&quot;
+</pre></div>
+<h3><a id="i3bar"><span class='anchor'>_</span></a>i3bar</h3>
+<p>conky で情報を更新/整形して出力している.
+  conky の設定は以下: <code>~/.config/i3/i3bar-conkyrc</code></p>
+<p>呼び出しは <code>run-conky.sh</code> で:</p>
+<p>status ラインは以下の通り</p>
+<div class="highlight"><pre><span></span># status bar
+bar &#123;
+    position    top
+    tray_output primary
+    tray_padding -2
+    font xft:FontAwesome,RictyDiminished 11.5
+    status_command $HOME/.config/i3/i3bar-conky.sh
+    colors &#123;
+      background #111822
+      statusline #F6F3E8
+      separator  #111822
+      focused_workspace  #111822 #222244 #F6F3E8
+      active_workspace   #555555 #555555 #F6F3E8
+      inactive_workspace #020202 #242424 #888888
+      urgent_workspace   #A00000 #900000 #F6F3E8
+      binding_mode       #A00000 #900000 #f6f3e8
+    }
+}
+</pre></div>
+<h3><a id="screen lock: i3lock の設定"><span class='anchor'>_</span></a>screen lock: i3lock の設定</h3>
+<p>suspend → resume した時に i3lock を走らせたいので
+  <code>/etc/systemd/system/i3lock.service</code>:</p>
+<p>を作成して有効にしておく.
+  本当は <code>~/.config/systemd/user</code> で設定したいのだけれど,
+  権限が無いのか上手くいかない. polkit を適宜設定すれば良いのかもしれないけれど.</p>
+<h2><a id="i3 の設定ファイル"><span class='anchor'>_</span></a>i3 の設定ファイル</h2>
+<p>設定ファイル全体は以下の通り</p>
 
-<p>
-元々常に tmux を全画面にして作業しているわけで
-タイル型である恩恵を受けられるのか, という疑問はあったのだが,
-使ってみたら「綺麗」かつ「驚きの軽さ」ということで, すっかり気にいってしまった.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgcb932e6" class="outline-2">
-<h2 id="orgcb932e6">i3 と一緒に使っているもの</h2>
-<div class="outline-text-2" id="text-orgcb932e6">
-<p>
-とりあえず現状では以下:
-</p>
-<ul class="org-ul">
-<li>ターミナル関連: urxvt と tmux → <a href='Terminal.org.html'>Terminal生活</a></li>
-<li>ファイルマネージャ: ranger</li>
-<li>ブラウザ: firefox + vimfx</li>
-<li>外付けドライブの管理: udiskie</li>
-<li>ランチャ: rofi</li>
-</ul>
-
-<p>
-他にも
-</p>
-<ul class="org-ul">
-<li>Compositor: compton</li>
-<li>ネットワーク: Network Manager</li>
-<li>Bluetooth: blueman</li>
-<li>音: pulseaudio</li>
-</ul>
-<p>
-といった所はそのまま, かな?
-</p>
-
-<ul class="org-ul">
-<li>これから試す/探しているモノ <code>[0/2]</code>
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> <a href="https://01.org/connman">ConnMan | 01.org</a> も試してみたいが, どうだろう.</li>
-<li class="off"><code>[&#xa0;]</code> pulseaudio の CUI なミキサーって良い奴無いかなぁ&#x2026;</li>
-</ul></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org4de553e" class="outline-2">
-<h2 id="org4de553e">i3 の設定</h2>
-<div class="outline-text-2" id="text-org4de553e">
-<p>
-設定ファイルは末尾に掲載している.
-</p>
-</div>
-<div id="outline-container-org5183060" class="outline-3">
-<h3 id="org5183060">xdg-open と run-mailcap</h3>
-<div class="outline-text-3" id="text-org5183060">
-<p>
-いわゆる GNOME や KDE といった Desktop 環境ではないので,
-たとえば <code>xdg-open</code> の挙動が変わります.
-それ自体は問題無いのですが, <code>~/.mailcap</code> の設定次第では
-<code>run-mailcap</code> が <code>xdg-open</code> を呼び, <code>xdg-open</code> が <code>run-mailcap</code> を呼び, といった
-無限ループが発生します.
-<del>run-mailcapを抜けば良い, という話もありますが, これ=mime-support=パッケージで提供されているので, 抜くとpython が抜けて大変な目に会います</del>
-</p>
-
-<p>
-というわけで, 安直には <code>xdg-open</code> を修正すれば良いですね:
-</p>
-<div class="org-src-container">
-<pre class="src src-diff"><span style="background-color: #767676;">--- </span><span style="background-color: #949494; font-weight: bold;">/usr/bin/xdg-open.orig</span><span style="background-color: #767676;">  2015-10-06 04:19:48.000000000 +0900</span>
-<span style="background-color: #767676;">+++ </span><span style="background-color: #949494; font-weight: bold;">/usr/bin/xdg-open</span><span style="background-color: #767676;">   2017-07-24 21:18:32.191564009 +0900</span>
-<span style="background-color: #767676;">@@ -787,20 +787,9 @@</span>
-<span style="color: #dddddd;">         if [ -n "$DISPLAY" ]; then</span>
-<span style="color: #dddddd;">             filetype=`xdg-mime query filetype "$file" | sed "s/;.*//"`</span>
-<span style="color: #dddddd;">             open_generic_xdg_mime "$file" "$filetype"</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">        fi</span>
-<span style="background-color: #553333;">-</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">        if which run-mailcap 2&gt;/dev/null 1&gt;&amp;2; then</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            run-mailcap --action=view "$file"</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            if [ $? -eq 0 ]; then</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">                exit_success</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            fi</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">        fi</span>
-<span style="background-color: #553333;">-</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">        if [ -n "$DISPLAY" ] &amp;&amp; mimeopen -v 2&gt;/dev/null 1&gt;&amp;2; then</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            mimeopen -L -n "$file"</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            if [ $? -eq 0 ]; then</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">                exit_success</span>
-<span style="background-color: #553333;">-</span><span style="background-color: #553333;">            fi</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">        else</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">            echo "can't handle: please set mime type via xdg-mime"</span>
-<span style="background-color: #335533;">+</span><span style="background-color: #335533;">            exit_failure_operation_failed</span>
-<span style="color: #dddddd;">         fi</span>
-<span style="color: #dddddd;">     fi</span>
-
-</pre>
-</div>
-
-<p>
-あと, <code>~/.local/share/applications/mimeapps.list</code> から <code>~/.config/mimeapps.list</code> へ
-symbolic link を作成しておきます.
-</p>
-</div>
-</div>
-<div id="outline-container-org61a36db" class="outline-3">
-<h3 id="org61a36db">Alt+Tab でのフォーカスの切り替え</h3>
-<div class="outline-text-3" id="text-org61a36db">
-<p>
-<code>i3-msg -t get_tree</code> で状態が json で出力されるので,
-これを parse して良きに図らえば良い.
-</p>
-
-<p>
-幾つか候補はあるけれど, 依存が少なくシンプルだったので
-<a href="https://github.com/westurner/i3t">westurner/i3t: i3t</a> をありがたく使わせて頂くことに.
-</p>
-
-<p>
-設定は
-</p>
-<div class="org-src-container">
-<pre class="src src-conf-space"><span style="color: #7F7FFF;">set</span> $i3t_alt_tab ~/.config/i3/i3t.py n
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Tab exec $i3t_alt_tab
-</pre>
-</div>
-<p>
-みたいな感じで良い.
-</p>
-</div>
-</div>
-<div id="outline-container-org1d9c49e" class="outline-3">
-<h3 id="org1d9c49e">Rofi: ランチャ</h3>
-<div class="outline-text-3" id="text-org1d9c49e">
-<p>
-<a href="https://davedavenport.github.io/rofi/">Rofi</a> は良い感じのランチャ.
-公式 Web の <code>This site is currently looking for a maintainer.</code> が怖いけれど.
-</p>
-
-<p>
-設定ファイルは <code>~/.config/rofi/config</code> か <code>~/.Xresources</code> で行なう.
-今はこんな塩梅:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-conf-xdefaults"><span style="color: #a5a5a6;">! </span><span style="color: #a5a5a6;">-*- mode:conf-xdefaults; coding: utf-8 -*-</span>
-<span style="color: #a5a5a6;">!! </span><span style="color: #a5a5a6;">Rofi</span>
-<span style="color: #7F7FFF;">rofi.modi</span>: run,window,drun,ssh
-<span style="color: #7F7FFF;">rofi.combi-modi</span>: window,drun
-<span style="color: #7F7FFF;">rofi.lines</span>: 6
-<span style="color: #7F7FFF;">rofi.font</span>: Inconsolata For Poweline 16
-<span style="color: #7F7FFF;">rofi.bw</span>: 2
-<span style="color: #7F7FFF;">rofi.location</span>: 0
-<span style="color: #7F7FFF;">rofi.padding</span>: 5
-<span style="color: #7F7FFF;">rofi.sidebar-mode</span>: true
-<span style="color: #7F7FFF;">rofi.hide-scrollbar</span>: true
-<span style="color: #7F7FFF;">rofi.fixed-num-lines</span>: true
-<span style="color: #7F7FFF;">rofi.kb-row-up</span>: Up,Control+p,Shift+Tab
-<span style="color: #7F7FFF;">rofi.kb-row-down</span>: Down,Control+n
-<span style="color: #7F7FFF;">rofi.kb-cancel</span>: Escape,Control+g,Control+bracketleft,Control+c
-<span style="color: #7F7FFF;">rofi.kb-mode-next</span>: Shift+Right,Control+i,Control+Tab
-<span style="color: #7F7FFF;">rofi.kb-mode-previous</span>: Shift+Left,Control+Shift+i
-<span style="color: #7F7FFF;">rofi.color-enabled</span>: true
-<span style="color: #7F7FFF;">rofi.color-window</span>: #3a4c54, #2a373e, #c3c6c8
-<span style="color: #7F7FFF;">rofi.color-normal</span>: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
-<span style="color: #7F7FFF;">rofi.color-active</span>: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
-<span style="color: #7F7FFF;">rofi.color-urgent</span>: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3
-</pre>
-</div>
-
-<p>
-i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
-</p>
-<div class="org-src-container">
-<pre class="src src-conf-space"><span style="color: #7F7FFF;">bindsym</span> $Alt+F2 $execi sh -c <span style="color: #7FFF7F;">"rofi -show combi"</span>
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+Tab $execi sh -c <span style="color: #7FFF7F;">"rofi -show window"</span>
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org2807c33" class="outline-3">
-<h3 id="org2807c33">i3bar</h3>
-<div class="outline-text-3" id="text-org2807c33">
-<p>
-conky で情報を更新/整形して出力している.
-conky の設定は以下: <code>~/.config/i3/i3bar-conkyrc</code>
-</p>
-
-<div class="org-src-container">
-<pre class="src src-lua"><span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">-*- mode: lua; coding: utf-8 -*-</span>
-conky.config ={
-   out_to_x = <span style="color: #FFBF7F;">false</span>,
-   own_window = <span style="color: #FFBF7F;">false</span>,
-   background = <span style="color: #FFBF7F;">false</span>,
-   out_to_console = <span style="color: #FFBF7F;">true</span>,
-   max_text_width = 0,
-   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">Update interval in seconds</span>
-   update_interval = 1.0,
-   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">This is the number of times Conky will update before quitting.</span>
-   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">Set to zero to run forever.</span>
-   total_run_times = 0,
-   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">format</span>
-   use_spacer = left,
-   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">Force UTF8? note that UTF8 support required XFT</span>
-   override_utf8_locale = <span style="color: #FFBF7F;">false</span>,
-   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">number of net samples to average (1: disable averaging)</span>
-   net_avg_samples = 1,
-   <span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">number of cpu samples to average (1: disable averaging)</span>
-   cpu_avg_samples = 1,
-};
-
-<span style="color: #a5a5a6;">-- </span><span style="color: #a5a5a6;">output</span>
-conky.text = <span style="color: #7FFF7F;">[[</span>
-<span style="color: #7FFF7F;"># JSON for i3bar</span>
-<span style="color: #7FFF7F;">[</span>
-<span style="color: #7FFF7F;">  { "full_text" : " &#61568; ${cpu cpu0}%", "color" : "\#ff4c4c", "min_width" : 58, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  { "full_text" : " &#61568; ${cpu cpu1}%", "color" : "\#ff4c4c", "min_width" : 58, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  { "full_text" : " &#61568; ${cpu cpu2}%", "color" : "\#ff4c4c", "min_width" : 58, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  { "full_text" : " &#61568; ${cpu cpu3}%", "color" : "\#ff4c4c", "min_width" : 58, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  { "full_text" : " &#61494;  ${memperc}%", "color" : "\#4c4cff", "min_width" : 58, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  ${if_existing /proc/net/route bnep0}</span>
-<span style="color: #7FFF7F;">  { "full_text": " &#62100; ${addr bnep0}", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  ${else}${if_existing /proc/net/route ppp0}</span>
-<span style="color: #7FFF7F;">  { "full_text": " &#61746;  ${addr ppp0}", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  ${else}${if_existing /proc/net/route wlp2s0}</span>
-<span style="color: #7FFF7F;">  { "full_text": " &#61931; ${addr wlp2s0}", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  ${else}${if_existing /proc/net/route enp0s31f6}</span>
-<span style="color: #7FFF7F;">  { "full_text": " &#61705; ${addr enp0s31f6}", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  ${else}</span>
-<span style="color: #7FFF7F;">  { "full_text": " &#61611; down", "color": "\#f6f3e8", "min_width" : 155, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  ${endif}${endif}${endif}${endif}</span>
-<span style="color: #7FFF7F;">  { "full_text": " &#61555; ${time %Y/%m/%d}", "min_width" : 95, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  { "full_text": " &#61463; ${time %H:%M:%S}", "min_width" : 90, "align": "left", "separator": false  },</span>
-<span style="color: #7FFF7F;">  ${if_match "${acpiacadapter}" == "on-line" }</span>
-<span style="color: #7FFF7F;">  { "full_text": " &#61926;  ${battery_percent BAT1}%", "min_width" : 60, "align": "left", "separator": false }</span>
-<span style="color: #7FFF7F;">  ${else}</span>
-<span style="color: #7FFF7F;">  { "full_text": " &#62017; ${battery_percent BAT1}%", "min_width" : 60, "align": "left", "separator": false  }</span>
-<span style="color: #7FFF7F;">  ${endif}</span>
-<span style="color: #7FFF7F;">],</span>
-<span style="color: #7FFF7F;">]]</span>
-</pre>
-</div>
-
-<p>
-呼び出しは <code>run-conky.sh</code> で:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">! /bin/</span><span style="color: #FF7F7F;">sh</span>
-
-<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'{"version":1}'</span>
-<span style="color: #7FBFFF;">echo</span> <span style="color: #7FFF7F;">'[[],'</span>
-<span style="color: #FF7F7F;">exec</span> conky -c $<span style="color: #7F7FFF;">HOME</span>/.config/i3/i3bar-conkyrc
-</pre>
-</div>
-
-<p>
-status ラインは以下の通り
-</p>
-<div class="org-src-container">
-<pre class="src src-conf-space"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">status bar</span>
-<span style="color: #FFFF7F;">bar</span> {
-    <span style="color: #7F7FFF;">position</span>    top
-    <span style="color: #7F7FFF;">tray_output</span> primary
-    <span style="color: #7F7FFF;">tray_padding</span> -2
-    <span style="color: #7F7FFF;">font</span> xft:FontAwesome,RictyDiminished 11.5
-    <span style="color: #7F7FFF;">status_command</span> $HOME/.config/i3/i3bar-conky.sh
-    <span style="color: #FFFF7F;">colors</span> {
-      <span style="color: #7F7FFF;">background</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
-      <span style="color: #7F7FFF;">statusline</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">F6F3E8</span>
-      <span style="color: #7F7FFF;">separator</span>  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
-      <span style="color: #7F7FFF;">focused_workspace</span>  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822 #222244 #F6F3E8</span>
-      <span style="color: #7F7FFF;">active_workspace</span>   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">555555 #555555 #F6F3E8</span>
-      <span style="color: #7F7FFF;">inactive_workspace</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #888888</span>
-      <span style="color: #7F7FFF;">urgent_workspace</span>   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #F6F3E8</span>
-      <span style="color: #7F7FFF;">binding_mode</span>       <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #f6f3e8</span>
-    <span style="color: #7F7FFF;">}</span>
-<span style="color: #7F7FFF;">}</span>
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgfb5370d" class="outline-3">
-<h3 id="orgfb5370d">screen lock: i3lock の設定</h3>
-<div class="outline-text-3" id="text-orgfb5370d">
-<p>
-suspend → resume した時に i3lock を走らせたいので
-<code>/etc/systemd/system/i3lock.service</code>:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-systemd"><span style="color: #FFFF7F;">[Unit]</span>
-<span style="color: #FF7F7F;">Description</span>=Starts i3lock at suspend time
-<span style="color: #FF7F7F;">After</span>=sleep.target
-
-<span style="color: #FFFF7F;">[Service]</span>
-<span style="color: #FF7F7F;">User</span>=uwabami
-<span style="color: #FF7F7F;">Type</span>=<span style="color: #7FBFFF;">forking</span>
-<span style="color: #FF7F7F;">Environment</span>=DISPLAY=:0
-<span style="color: #FF7F7F;">ExecStart</span>=/usr/bin/i3lock -p win -c 444444
-
-<span style="color: #FFFF7F;">[Install]</span>
-<span style="color: #FF7F7F;">WantedBy</span>=sleep.target
-</pre>
-</div>
-
-<p>
-を作成して有効にしておく.
-本当は <code>~/.config/systemd/user</code> で設定したいのだけれど,
-権限が無いのか上手くいかない. polkit を適宜設定すれば良いのかもしれないけれど.
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org74f6ca1" class="outline-2">
-<h2 id="org74f6ca1">i3 の設定ファイル</h2>
-<div class="outline-text-2" id="text-org74f6ca1">
-<p>
-設定ファイル全体は以下の通り
-</p>
-
-<div class="org-src-container">
-<pre class="src src-conf-space"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">-*- mode:conf-space ; coding: utf-8 -*-</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">macro</span>
-<span style="color: #7F7FFF;">set</span> $mod Mod4
-<span style="color: #7F7FFF;">set</span> $Alt Mod1
-<span style="color: #7F7FFF;">set</span> $execi exec --no-startup-id
-<span style="color: #7F7FFF;">set</span> $execa exec_always
-<span style="color: #7F7FFF;">set</span> $execai exec_always --no-startup-id
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">font</span>
-<span style="color: #7F7FFF;">font</span> xft:Inconsolata for Powerline,SeptemberMMono,FontAwesome 12
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">startup</span>
-<span style="color: #7F7FFF;">$execi</span> /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &amp;
-<span style="color: #7F7FFF;">$execi</span> gnome-keyring-daemon --start --components=pkcs11,secrets,gpg &amp;
-<span style="color: #7F7FFF;">$execi</span> xrandr --output eDP-1 --primary --mode 1440x900
-<span style="color: #7F7FFF;">$execi</span> $(sleep 5 &amp;  feh --bg-scale $HOME/Pictures/desktop.png --no-fehbg )
-<span style="color: #7F7FFF;">$execi</span> xrdb -merge $HOME/.Xresources
-<span style="color: #7F7FFF;">$execi</span> xmodmap $HOME/.Xmodmap
-<span style="color: #7F7FFF;">$execi</span> autocutsel -f
-<span style="color: #7F7FFF;">$execi</span> compton -cb
-<span style="color: #7F7FFF;">$execi</span> pulseaudio --start --log-target=journal
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">systemtray</span>
-<span style="color: #7F7FFF;">$execi</span> nm-applet
-<span style="color: #7F7FFF;">$execi</span> blueman-applet
-<span style="color: #7F7FFF;">$execi</span> DESKTOP_SESSION=gnome owncloud
-<span style="color: #7F7FFF;">$execi</span> udiskie
-<span style="color: #7F7FFF;">$execi</span> dropbox start -i
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">screensaver and power management</span>
-<span style="color: #7F7FFF;">$execi</span> xset -dpms   <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable DPMS</span>
-<span style="color: #7F7FFF;">$execi</span> xset s off   <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable auto screensaver</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+l $execi sh -c <span style="color: #7FFF7F;">"i3lock -n -c 242424"</span>
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">start a terminal: rxvt-unicide daemon mode</span>
-<span style="color: #7F7FFF;">bindsym</span> Control+Shift+n exec urxvtcd
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">start launcher: rofi @see ~/.Xresources</span>
-<span style="color: #7F7FFF;">bindsym</span> $Alt+F2 $execi sh -c <span style="color: #7FFF7F;">"rofi -show run"</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">bindsym $Alt+F2 $execi gmrun</span>
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">change focus</span>
-<span style="color: #7F7FFF;">set</span> $i3t_alt_tab ~/.config/i3/i3t.py n
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Tab exec $i3t_alt_tab
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+Control+Right focus right
-<span style="color: #7F7FFF;">bindsym</span> $mod+Control+Left focus left
-<span style="color: #7F7FFF;">bindsym</span> $mod+Control+Up focus Up
-<span style="color: #7F7FFF;">bindsym</span> $mod+Control+Down focus down
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">kill focused window</span>
-<span style="color: #7F7FFF;">bindsym</span> $Alt+F4 kill
-<span style="color: #7F7FFF;">bindsym</span> $mod+Shift+q kill
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">toggle tiling / floating</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+space floating toggle
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">move focused window</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+Left move left
-<span style="color: #7F7FFF;">bindsym</span> $mod+Down move down
-<span style="color: #7F7FFF;">bindsym</span> $mod+Up move up
-<span style="color: #7F7FFF;">bindsym</span> $mod+Right move right
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">enter fullscreen mode for the focused container</span>
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Return fullscreen toggle
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">change container layout (stacked, tabbed, toggle split)</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+s layout stacking
-<span style="color: #7F7FFF;">bindsym</span> $mod+w layout tabbed
-<span style="color: #7F7FFF;">bindsym</span> $mod+t layout toggle split
-<span style="color: #7F7FFF;">workspace_layout</span> tabbed
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">focus the parent container</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+a focus parent
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">focus the child container</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+d focus child
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">resize window (you can also use the mouse for that)</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+r mode <span style="color: #7FFF7F;">"resize"</span>
-<span style="color: #7F7FFF;">mode</span> <span style="color: #7FFF7F;">"resize"</span> {
-        <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">These bindings trigger as soon as you enter the resize mode</span>
-        <span style="color: #7F7FFF;">bindsym</span> Left resize shrink width 10 px or 10 ppt
-        <span style="color: #7F7FFF;">bindsym</span> Down resize grow height 10 px or 10 ppt
-        <span style="color: #7F7FFF;">bindsym</span> Up resize shrink height 10 px or 10 ppt
-        <span style="color: #7F7FFF;">bindsym</span> Right resize grow width 10 px or 10 ppt
-        <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">back to normal: Enter or Escape</span>
-        <span style="color: #7F7FFF;">bindsym</span> Return mode <span style="color: #7FFF7F;">"default"</span>
-        <span style="color: #7F7FFF;">bindsym</span> Escape mode <span style="color: #7FFF7F;">"default"</span>
-<span style="color: #7F7FFF;">}</span>
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">switch to workspace</span>
-<span style="color: #7F7FFF;">bindsym</span> $Alt+1 workspace 1
-<span style="color: #7F7FFF;">bindsym</span> $Alt+2 workspace 2
-<span style="color: #7F7FFF;">bindsym</span> $Alt+3 workspace 3
-<span style="color: #7F7FFF;">bindsym</span> $Alt+4 workspace 4
-<span style="color: #7F7FFF;">bindsym</span> $Alt+5 workspace 5
-<span style="color: #7F7FFF;">bindsym</span> $Alt+6 workspace 6
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">move focused container to workspace</span>
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+1 move container to workspace 1
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+2 move container to workspace 2
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+3 move container to workspace 3
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+4 move container to workspace 4
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+5 move container to workspace 5
-<span style="color: #7F7FFF;">bindsym</span> $Alt+Shift+6 move container to workspace 6
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">reload the configuration file</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+Shift+c reload
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">restart i3 inplace</span>
-<span style="color: #7F7FFF;">bindsym</span> $mod+Shift+r restart
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">exit</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">bindsym $mod+Shift+e exec i3-msg exit</span>
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">media key</span>
-<span style="color: #7F7FFF;">bindsym</span> XF86AudioRaiseVolume $execi pactl set-sink-volume 0 +5%
-<span style="color: #7F7FFF;">bindsym</span> XF86AudioLowerVolume $execi pactl set-sink-volume 0 -5%
-<span style="color: #7F7FFF;">bindsym</span> XF86AudioMute $execi pactl set-sink-mute 0 toggle
-<span style="color: #7F7FFF;">bindsym</span> XF86MonBrightnessUp $execi /usr/local/sbin/xbacklight -inc
-<span style="color: #7F7FFF;">bindsym</span> XF86MonBrightnessDown $execi /usr/local/sbin/xbacklight -dec
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">status bar</span>
-<span style="color: #FFFF7F;">bar</span> {
-    <span style="color: #7F7FFF;">position</span>    top
-<span style="color: #a5a5a6;">#    </span><span style="color: #a5a5a6;">tray_output primary</span>
-    <span style="color: #7F7FFF;">tray_padding</span> -2
-    <span style="color: #7F7FFF;">font</span> xft:FontAwesome,RictyDiminished 11.5
-    <span style="color: #7F7FFF;">status_command</span> $HOME/.config/i3/run-conky.sh
-    <span style="color: #FFFF7F;">colors</span> {
-      <span style="color: #7F7FFF;">background</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202</span>
-      <span style="color: #7F7FFF;">statusline</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">F6F3E8</span>
-      <span style="color: #7F7FFF;">separator</span>  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822</span>
-      <span style="color: #7F7FFF;">focused_workspace</span>  <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822 #222244 #F6F3E8</span>
-      <span style="color: #7F7FFF;">active_workspace</span>   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">555555 #555555 #F6F3E8</span>
-      <span style="color: #7F7FFF;">inactive_workspace</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #888888</span>
-      <span style="color: #7F7FFF;">urgent_workspace</span>   <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #F6F3E8</span>
-      <span style="color: #7F7FFF;">binding_mode</span>       <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #f6f3e8</span>
-    <span style="color: #7F7FFF;">}</span>
-<span style="color: #7F7FFF;">}</span>
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">class                 border  bground text    indicator child_border</span>
-<span style="color: #7F7FFF;">client.focused</span>          <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">111822 #22224A #F6F3E8 #2B2B2B   #2B2B2B</span>
-<span style="color: #7F7FFF;">client.focused_inactive</span> <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B</span>
-<span style="color: #7F7FFF;">client.unfocused</span>        <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B</span>
-<span style="color: #7F7FFF;">client.urgent</span>           <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B</span>
-<span style="color: #7F7FFF;">client.placeholder</span>      <span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">000000 #0C0C0C #FFFFFF #000000   #0C0C0C</span>
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">specific window settings</span>
-<span style="color: #7F7FFF;">for_window</span> [window_role=<span style="color: #7FFF7F;">"pop-up"</span>] floating enable
-<span style="color: #7F7FFF;">for_window</span> [window_role=<span style="color: #7FFF7F;">"task_dialog"</span>] floating enable
-<span style="color: #7F7FFF;">for_window</span> [class=<span style="color: #7FFF7F;">"(?i)ekiga"</span>] floating enable
-<span style="color: #7F7FFF;">for_window</span> [class=<span style="color: #7FFF7F;">"(?i)feh"</span>] floating enable
-
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">startup</span>
-<span style="color: #7F7FFF;">assign</span> [class=<span style="color: #7FFF7F;">"(?i)Zathura"</span> ] 2
-<span style="color: #7F7FFF;">assign</span> [class=<span style="color: #7FFF7F;">"(?i)rabbit"</span> ] 3
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">assign [class="(?i)Zotero"] 3</span>
-<span style="color: #7F7FFF;">assign</span> [class=<span style="color: #7FFF7F;">"(?i)Firefox"</span>] 4
-</pre>
-</div>
-</div>
-</div>
 
           </div>
           <a href="#page-top" class="pagetop btn top-btn">Top</a>
@@ -609,9 +217,9 @@ suspend → resume した時に i3lock を走らせたいので
       <div class="col-sm-12 col-xs-12">
         <p>
           
-          &copy; 2006 - 2017
+          &copy; 2006 - 2018
           <a href="mailto:uwabami@gfd-dennou.org"></a>,
-          Lastupdate: 2017-09-29 16:16:04 +0000
+          Lastupdate: 2018-10-16 19:46:45
           <br />
           <span class="generator"> Powered by
             <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>

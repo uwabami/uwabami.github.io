@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terminal 生活</title>
-<meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+<meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
 <link rel="stylesheet" href="/css/main.css" >
-<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" >
 <link rel="canonical" href="/cc-env/Terminal.html">
 
 <link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
@@ -84,280 +83,53 @@
 
           </div>
           <div class="col-xs-12">
-            <div id="toc-wrapper">
-<nav id="table-of-contents">
-<h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+            <p>Related <a href="wiki:index">Index</a> <a href="id:591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a></p>
+<h2><a id="始めに"><span class='anchor'>_</span></a>始めに</h2>
+<p>普段の生活環境(?)であるターミナルの設定アレコレ.</p>
+<p>現状は rxvt-unicode-256color をメインで利用中.
+  驚きの軽さが理由の全てかな.</p>
+<h2><a id="EAW 対応: ロケールの入れ替え"><span class='anchor'>_</span></a>EAW 対応: ロケールの入れ替え</h2>
+<p>EAW については</p>
 <ul>
-<li><a href="#org50f6264">始めに</a></li>
-<li><a href="#org990e464">EAW 対応: ロケールの入れ替え</a></li>
-<li><a href="#org447df85">rxvt-unicode-256color</a></li>
-<li><a href="#orgf44b97f">tmux</a></li>
+  <li><a href="https://ja.wikipedia.org/wiki/%E6%9D%B1%E3%82%A2%E3%82%B8%E3%82%A2%E3%81%AE%E6%96%87%E5%AD%97%E5%B9%85">東アジアの文字幅 - Wikipedia</a></li>
+  <li><a href="http://unicode.org/reports/tr11/">UAX #11: East Asian Width</a></li>
 </ul>
-</div>
-</nav>
-</div>
-<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<p>
-Related <a href='index.html'>Index</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
-</p>
-
-<div id="outline-container-org50f6264" class="outline-2">
-<h2 id="org50f6264">始めに</h2>
-<div class="outline-text-2" id="text-org50f6264">
-<p>
-普段の生活環境(?)であるターミナルの設定アレコレ.
-</p>
-
-<p>
-現状は rxvt-unicode-256color をメインで利用中.
-驚きの軽さが理由の全てかな.
-</p>
-</div>
-</div>
-<div id="outline-container-org990e464" class="outline-2">
-<h2 id="org990e464">EAW 対応: ロケールの入れ替え</h2>
-<div class="outline-text-2" id="text-org990e464">
-<p>
-EAW については
-</p>
-<ul class="org-ul">
-<li><a href="https://ja.wikipedia.org/wiki/%E6%9D%B1%E3%82%A2%E3%82%B8%E3%82%A2%E3%81%AE%E6%96%87%E5%AD%97%E5%B9%85">東アジアの文字幅 - Wikipedia</a></li>
-<li><a href="http://unicode.org/reports/tr11/">UAX #11: East Asian Width</a></li>
+<p>などを参照.</p>
+<p>手元の環境では
+  East Asian Ambiguous Char と絵文字の文字幅を強制的に &#8220;2&#8221; とする
+  修正ロケールを使っている.</p>
+<ul>
+  <li><a href="https://github.com/uwabami/locale-eaw-emoji">uwabami/locale-eaw-emoji: UAX#11 Ambiguous と UTR #51 Emoiji を全角とする修正 locale</a></li>
 </ul>
-<p>
-などを参照.
-</p>
-
-<p>
-手元の環境では
-East Asian Ambiguous Char と絵文字の文字幅を強制的に "2" とする
-修正ロケールを使っている.
-</p>
-<ul class="org-ul">
-<li><a href="https://github.com/uwabami/locale-eaw-emoji">uwabami/locale-eaw-emoji: UAX#11 Ambiguous と UTR #51 Emoiji を全角とする修正 locale</a></li>
-</ul>
-<p>
-微妙に間違っている気もしないではないが, まあ良いか, 的な.
-</p>
-</div>
-</div>
-<div id="outline-container-org447df85" class="outline-2">
-<h2 id="org447df85"><a id="ID-34961588-3e87-495a-a22e-8a0188439254"></a>rxvt-unicode-256color</h2>
-<div class="outline-text-2" id="text-org447df85">
-<p>
-Debian では configure オプションの変えた urxvt のパッケージが提供されている
-</p>
+<p>微妙に間違っている気もしないではないが, まあ良いか, 的な.</p>
+<h2><a id="rxvt-unicode-256color"><span class='anchor'>_</span></a>rxvt-unicode-256color</h2>Debian では configure オプションの変えた urxvt のパッケージが提供されている
 <pre class="example">
 % apt-cache search rxvt-unicode
 rxvt-unicode - Unicode をフルサポートした RXVT ライクな端末エミュレータ
 rxvt-unicode-lite - 基本的な Unicode をサポートした RXVT ライクな端末エミュレータ
 rxvt-unicode-256color - multi-lingual terminal emulator with Unicode support for X11
 </pre>
-<p>
-256色が使いたいので <code>rxvt-unicode-256color</code> を使っている.
-</p>
+<p>256色が使いたいので <code>rxvt-unicode-256color</code> を使っている.</p>
+<p>ただ, フォント表示に関して幾つか気になるところがある.
+  詳細は<a href="http://emonkak.hatenablog.com/entry/2016/12/09/185009">rxvt-unicodeのフォントレンダリングを改善する - emonkak&#8217;s Blog</a></p>
+<p>パッチは</p>
+  <script src="https://gist.github.com/uwabami/5e219e1ba87c26447a3635c0e7b53456.js"></script>
+<p>Debian パッケージをこのパッチを当てて rebuild して使っている.</p>
+<h2><a id="tmux"><span class='anchor'>_</span></a>tmux</h2>以前は GNU screen を使っていたのだけれども,
+  接続先の環境の多くが UTF-8 をサポートしてくれたので,
+  tmux に移行した.
+<p>ただ, tmux 2.3 の EAW 文字幅問題の扱いに多少(?)不満があるので,
+  以下二つのパッチを当てて rebuild して使っている.</p>
+<p>一つ目は pane-border 等、全て ASCII で描くパッチ.</p>
+  <script src="https://gist.github.com/uwabami/0847823ce058304a50c05276edcc854d.js"></script>
+<p>二つ目は <code>en_US.UTF-8</code> 決め打ちを止めるパッチ.</p>
+  <script src="https://gist.github.com/uwabami/04d661a4ffe3d0aa5198d19a8f488620.js"></script>
+<p>これらのパッチを当てた Debian パッケージを作成し,
+  tmux.conf にて <code>set-option -g pane-border-ascii 0</code> を指定している.</p>
+<p>tmux の設定は以下の通り.</p>
+<p>weechat を常に下に表示させておきたいので <code>C-t -</code> でトグルできるように
+  以下の <code>weechat-toggle.sh</code> を割り当てている.</p>
 
-<p>
-ただ, フォント表示に関して幾つか気になるところがある.
-詳細は<a href="http://emonkak.hatenablog.com/entry/2016/12/09/185009">rxvt-unicodeのフォントレンダリングを改善する - emonkak's Blog</a>
-</p>
-
-<p>
-パッチは
-</p>
-
-<script src="https://gist.github.com/uwabami/5e219e1ba87c26447a3635c0e7b53456.js"></script>
-
-<p>
-Debian パッケージをこのパッチを当てて rebuild して使っている.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgf44b97f" class="outline-2">
-<h2 id="orgf44b97f"><a id="ID-9d77e24a-42bc-46c4-999f-aabb0b079120"></a>tmux</h2>
-<div class="outline-text-2" id="text-orgf44b97f">
-<p>
-以前は GNU screen を使っていたのだけれども,
-接続先の環境の多くが UTF-8 をサポートしてくれたので,
-tmux に移行した.
-</p>
-
-<p>
-ただ, tmux 2.3 の EAW 文字幅問題の扱いに多少(?)不満があるので,
-以下二つのパッチを当てて rebuild して使っている.
-</p>
-
-<p>
-一つ目は pane-border 等、全て ASCII で描くパッチ.
-</p>
-
-<script src="https://gist.github.com/uwabami/0847823ce058304a50c05276edcc854d.js"></script>
-
-<p>
-二つ目は <code>en_US.UTF-8</code> 決め打ちを止めるパッチ.
-</p>
-
-<script src="https://gist.github.com/uwabami/04d661a4ffe3d0aa5198d19a8f488620.js"></script>
-
-<p>
-これらのパッチを当てた Debian パッケージを作成し,
-tmux.conf にて <code>set-option -g pane-border-ascii 0</code> を指定している.
-</p>
-
-<p>
-tmux の設定は以下の通り.
-</p>
-<div class="org-src-container">
-<pre class="src src-conf"><span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">-*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
-<span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Author: Youhei SASAKI &lt;<a href="mailto:uwabami&#64;gfd-dennou.org">uwabami&#64;gfd-dennou.org</a>&gt;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">$Lastupdate: 2018-04-23 01:32:35$</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">License: Public domain.</span>
-
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">general</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">ESC &#12391;&#12398;&#36933;&#24310;&#35299;&#28040;: don't wait</span>
-set -sg escape-time 0
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Window &#12434; 0,  Pane &#12434; 1 &#22987;&#12414;&#12426;&#12395;</span>
-set -g base-index 0
-set -g pane-base-index 0
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">mouse &#25805;&#20316;&#12434;&#28961;&#21177;&#21270;</span>
-setw -g mouse off
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">disable bell action</span>
-set -g bell-action none
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Window renmae enabled</span>
-setw -g automatic-rename off
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">default &#12391;&#36215;&#21205;&#12377;&#12427;&#12467;&#12510;&#12531;&#12489;: zsh</span>
-set -g default-command zsh
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">prefix &#12398;&#26377;&#21177;&#26178;&#38291;: no wait</span>
-set-option -g repeat-time 0
-
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">display</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">TERM&#31561;&#12398;&#35373;&#23450;</span>
-set -g default-terminal screen-256color
-set-environment -g NCURSES_NO_UTF8_ACS 0
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#32619;&#32218;&#32032;&#29255;&#12398;&#25201;&#12356;: rxvt &#12394;&#12425;&#12467;&#12524;&#12391;&#33391;&#12356;&#12398;&#12384;&#12364;...</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">set -ag terminal-overrides ',*:U8=0'</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#32619;&#32218;&#32032;&#29255;&#12398;&#25201;&#12356;: VTE &#31995;&#12399;&#12431;&#12374;&#12431;&#12374; Unicode &#12395;&#32622;&#12365;&#25563;&#12360;&#12427;, &#12398;&#12391; ASCII &#12391;&#25551;&#30011;&#12377;&#12427;</span>
-set-option -g pane-border-ascii 0
-set-environment -g VTE_CJK_WIDTH 1 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#8592;&#26368;&#36817;&#12385;&#12419;&#12435;&#12392;&#21177;&#12356;&#12390;&#12394;&#12356;&#27671;&#12364;&#12377;&#12427;.</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12513;&#12483;&#12475;&#12540;&#12472;&#34920;&#31034;&#26178;&#38291;(&#26082;&#23450;&#20516;&#12399;1000?)</span>
-set -g display-time 4000
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#24460;&#26041;&#12473;&#12463;&#12525;&#12540;&#12523;&#34892;&#25968;(&#26082;&#23450;&#20516;&#12399;2000)</span>
-set -g history-limit 8192
-setw -g pane-active-border-fg <span style="color: #7FFF7F;">"#ff4c4c"</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">setw -g pane-active-border-bg "#020202"</span>
-setw -g pane-active-border-bg default
-setw -g pane-border-fg <span style="color: #7FFF7F;">"#4cffff"</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">setw -g pane-border-bg "#020202"</span>
-setw -g pane-border-bg default
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">don't show other activity</span>
-set -g monitor-activity off
-set -g visual-activity off
-set -g allow-rename on
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">pane number display</span>
-set -g display-panes-time 4000
-
-set -g status-bg <span style="color: #7FFF7F;">"#020202"</span>
-set -g status-fg <span style="color: #7FFF7F;">"#888888"</span>
-set -g status-attr default
-setw -g window-status-current-fg <span style="color: #7FFF7F;">"#ff4c4c"</span>
-setw -g window-status-current-bg default
-setw -g window-status-current-attr default
-setw -g message-fg <span style="color: #7FFF7F;">"#242424"</span>
-setw -g message-bg <span style="color: #7FFF7F;">"#4cff4c"</span>
-setw -g message-attr bright
-setw -g status-left-length 25
-setw -g status-right-length 15
-setw -g status-left <span style="color: #7FFF7F;">"#[fg=#4c4cff][#[fg=#f6f3e8]#h#[fg=#4c4cff]]#[default] "</span>
-setw -g status-right <span style="color: #7FFF7F;">"#[fg=#4c4cff]|#[fg=#f6f3e8]#(date +%y/%m/%d)#[fg=#4c4cff]|#[default]"</span>
-
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">keybind</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">prefix:</span>
-unbind C-b                 <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#26082;&#23450;&#12398;Prefix&#12461;&#12540;(Ctrl+b)&#12398;&#21106;&#12426;&#24403;&#12390;&#12434;&#35299;&#38500;</span>
-set -g prefix C-t          <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Ctrl+t&#12434;Prefix&#12461;&#12540;&#12395;&#12377;&#12427;</span>
-bind C-t send-prefix       <span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">prefix-key &#12398;&#20837;&#21147;&#12434;&#28193;&#12377;</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">reload</span>
-bind r source-file ~/.tmux/tmux.conf \; display <span style="color: #7FFF7F;">"Reload config file"</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">&#12467;&#12500;&#12540;&#12514;&#12540;&#12489;&#12391; vi + emacs &#39080;</span>
-setw -g mode-keys vi
-bind -T copy-mode-vi C-a send-keys -X start-of-line
-bind -T copy-mode-vi C-e send-keys -X end-of-line
-bind -T copy-mode-vi v send-keys -X begin-selection
-bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel <span style="color: #7FFF7F;">'xclip -in -selection clipboard &gt;/dev/null'</span>
-bind -T copy-mode-vi NPage send-keys -X page-down
-bind -T copy-mode-vi PPage send-keys -X page-up
-unbind ]
-bind ] run-shell <span style="color: #7FFF7F;">"xclip -o -selection clipboard | tmux load-buffer - &amp;&amp; tmux paste-buffer"</span>
-unbind %
-unbind <span style="color: #7FFF7F;">'"'</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">bind-key          z resize-pane -Z</span>
-unbind z
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">bind-key        C-z suspend-client</span>
-unbind C-z
-unbind Z
-unbind s
-bind s split-window -v
-unbind |
-bind | split-window -h
-unbind o
-bind o display-pane
-
-unbind C-c
-bind C-c new-window
-unbind C-p
-bind C-p previous-window
-unbind C-n
-bind C-n next-window
-
-<span style="color: #a5a5a6;">## </span><span style="color: #a5a5a6;">Custom command</span>
-unbind-key -
-bind - run-shell ~/.tmux/weechat-toggle.sh
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">unbind-key b</span>
-bind-key b split-window <span style="color: #7FFF7F;">'tmux lsw | peco | cut -d":" -f 1 | xargs tmux select-window -t'</span>
-
-unbind C-Up
-unbind C-Down
-unbind C-Left
-unbind C-Right
-unbind M-Up
-unbind M-Down
-unbind M-Left
-unbind M-Right
-</pre>
-</div>
-<p>
-weechat を常に下に表示させておきたいので <code>C-t -</code> でトグルできるように
-以下の <code>weechat-toggle.sh</code> を割り当てている.
-</p>
-<div class="org-src-container">
-<pre class="src src-sh"><span style="color: #a5a5a6;">#</span><span style="color: #a5a5a6;">!/bin/</span><span style="color: #FF7F7F;">sh</span>
-<span style="color: #7F7FFF;">tmp</span>=$<span style="color: #7F7FFF;">HOME</span>/.tmux/weechat.tmp
-<span style="color: #7F7FFF;">current_weechat_window</span>=<span style="color: #ff875f;">`tmux lsp -a -F "#I: #T" | grep WeeChat | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_weechat_pane</span>=<span style="color: #ff875f;">`tmux lsp -a -F "#P: #T" | grep WeeChat | cut -d":" -f 1`</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">current_weechat_window=`tmux lsp -a -F "#I: #T" | grep screen | cut -d":" -f 1`</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">current_weechat_pane=`tmux lsp -a -F "#P: #T" | grep screen | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_active_window</span>=<span style="color: #ff875f;">`tmux lsw | grep active | cut -d":" -f 1`</span>
-<span style="color: #7F7FFF;">current_active_pane</span>=<span style="color: #ff875f;">`tmux lsp | grep active | cut -d":" -f 1`</span>
-
-<span style="color: #FF7F7F;">if</span> [ ${<span style="color: #7F7FFF;">current_weechat_window</span>} -ne ${<span style="color: #7F7FFF;">current_active_window</span>} ] ; <span style="color: #FF7F7F;">then</span>
-    tmux join-pane -l 10 -s :${<span style="color: #7F7FFF;">current_weechat_window</span>}.${<span style="color: #7F7FFF;">current_weechat_pane</span>} -t :${<span style="color: #7F7FFF;">current_active_window</span>}
-    tmux select-pane -t 0
-<span style="color: #FF7F7F;">else</span>
-    <span style="color: #FF7F7F;">if</span> [ -e $<span style="color: #7F7FFF;">tmp</span> ] ; <span style="color: #FF7F7F;">then</span>
-        tmux resize-pane -t ${<span style="color: #7F7FFF;">current_weechat_pane</span>} -Z
-        rm -f $<span style="color: #7F7FFF;">tmp</span>
-    <span style="color: #FF7F7F;">else</span>
-        tmux resize-pane -t ${<span style="color: #7F7FFF;">current_weechat_pane</span>} -Z
-        tmux select-pane -t 0
-        touch $<span style="color: #7F7FFF;">tmp</span>
-    <span style="color: #FF7F7F;">fi</span>
-<span style="color: #FF7F7F;">fi</span>
-</pre>
-</div>
-</div>
-</div>
 
           </div>
           <a href="#page-top" class="pagetop btn top-btn">Top</a>
@@ -370,9 +142,9 @@ weechat を常に下に表示させておきたいので <code>C-t -</code> で�
       <div class="col-sm-12 col-xs-12">
         <p>
           
-          &copy; 2006 - 2017
+          &copy; 2006 - 2018
           <a href="mailto:uwabami@gfd-dennou.org"></a>,
-          Lastupdate: 2017-05-05 19:05:33 +0000
+          Lastupdate: 2018-10-16 19:45:48
           <br />
           <span class="generator"> Powered by
             <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>

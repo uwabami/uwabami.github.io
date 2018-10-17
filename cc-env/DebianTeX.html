@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TeX 環境の構築</title>
-<meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+<meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
 <link rel="stylesheet" href="/css/main.css" >
-<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" >
 <link rel="canonical" href="/cc-env/DebianTeX.html">
 
 <link rel="alternate" hreflang="ja" href="/cc-env/DebianTeX.html" />
@@ -84,260 +83,139 @@
 
           </div>
           <div class="col-xs-12">
-            <div id="toc-wrapper">
-<nav id="table-of-contents">
-<h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+            <p>Related <a href="wiki:index">Index</a> <a href="wiki:Emacs">Emacs</a> <a href="id:591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a></p>
+<h2><a id="Debian でのTeX 環境の構築"><span class='anchor'>_</span></a>Debian でのTeX 環境の構築</h2>
+<p>個人的には，</p>
 <ul>
-<li><a href="#orgc4dd30c">Debian でのTeX 環境の構築</a></li>
-<li><a href="#org2956203">インストール</a>
-<ul>
-<li><a href="#orgac2315e">とりあえず <code>pTeX,upTeX</code> を使えるようにする:</a></li>
-<li><a href="#org7e1a15b"><code>XeTeX, LuaTeX</code> も使えるようにする:</a></li>
-<li><a href="#org6821295">DVI と PDF の Viewer</a></li>
+  <li>pLaTeX: (計算機にそれほど詳しくない)他人とデータのやりとりをする時(共著なんか)</li>
+  <li>XeLaTeX or LuaTeX: 個人で作業する時，もしくは複数人でも説明が楽な相手の場合</li>
 </ul>
-</li>
-<li><a href="#orgf5a75e4">フォントの埋め込みと表示設定</a></li>
-<li><a href="#org4358383">XeLaTeX, pdfLaTeX, LuaLaTeX での日本語処理.</a>
-<ul>
-<li><a href="#orgb533b82">XeTeX</a></li>
-<li><a href="#orga96c329">LuaTeX</a></li>
-<li><a href="#orgfdb4344">pdfLaTeX で日本語組版</a></li>
-</ul>
-</li>
-<li><a href="#org44a896f">足りないスタイルとかあれこれ</a></li>
-<li><a href="#org26e16e7">参考文献</a></li>
-</ul>
-</div>
-</nav>
-</div>
-<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<p>
-Related <a href='index.html'>Index</a> <a href='Emacs.html'>Emacs</a> <a href="index.html#ID-591f6b0d-55ff-48eb-b095-401cdfa0d536">Debian</a>
-</p>
-
-<div id="outline-container-orgc4dd30c" class="outline-2">
-<h2 id="orgc4dd30c">Debian でのTeX 環境の構築</h2>
-<div class="outline-text-2" id="text-orgc4dd30c">
-<p>
-個人的には，
-</p>
-<ul class="org-ul">
-<li>pLaTeX: (計算機にそれほど詳しくない)他人とデータのやりとりをする時(共著なんか)</li>
-<li>XeLaTeX or LuaTeX: 個人で作業する時，もしくは複数人でも説明が楽な相手の場合</li>
-</ul>
-<p>
-と使い分けています．
-多分，多くの人々が現状では p(La)TeX をお使いかと思います．
-共著作業の際に(年上の方々に)説明するのが楽ですし，
-学会のTeXフォーマットが p(La)TeX 前提だったりするので，
-わりと離れられませんよね.
-</p>
-
-<p>
-Jessie の頃のお話ですが，
-TeXLive リリースマネージャであり，
-Debian の TeXLive のパッケージメンテナでもある Norbert Perining さんによる
-<a href="http://www.preining.info/blog/2014/12/writing-japanese-in-latex-part-1-introduction/">Writing Japanese in LaTeX : Part 1 – Introduction | There and back again"</a>
-もご覧下さい.
-英語の記事ですが，
-現在使える TeX Engine での日本語組版についてのサマリがあります.
-</p>
-</div>
-</div>
-<div id="outline-container-org2956203" class="outline-2">
-<h2 id="org2956203">インストール</h2>
-<div class="outline-text-2" id="text-org2956203">
-<p>
-何も考えずに
-</p>
+<p>と使い分けています．
+  多分，多くの人々が現状では p(La)TeX をお使いかと思います．
+  共著作業の際に(年上の方々に)説明するのが楽ですし，
+  学会のTeXフォーマットが p(La)TeX 前提だったりするので，
+  わりと離れられませんよね.</p>
+<p>Jessie の頃のお話ですが，
+  TeXLive リリースマネージャであり，
+  Debian の TeXLive のパッケージメンテナでもある Norbert Perining さんによる
+  <a href="http://www.preining.info/blog/2014/12/writing-japanese-in-latex-part-1-introduction/">Writing Japanese in LaTeX : Part 1 – Introduction | There and back again&#8221;</a>
+  もご覧下さい.
+  英語の記事ですが，
+  現在使える TeX Engine での日本語組版についてのサマリがあります.</p>
+<h2><a id="インストール"><span class='anchor'>_</span></a>インストール</h2>
+<p>何も考えずに</p>
 <pre class="example">
 % sudo apt-get install texlive-full
 </pre>
-<p>
-でも良いですが，結構なサイズになります
-(とはいえ，今時数GB程度だと気にならないかと思いますけれど)．
-</p>
-
-<p>
-個別にインストールする場合は以下の通り．
-</p>
-</div>
-<div id="outline-container-orgac2315e" class="outline-3">
-<h3 id="orgac2315e">とりあえず <code>pTeX,upTeX</code> を使えるようにする:</h3>
-<div class="outline-text-3" id="text-orgac2315e">
-<p>
-多分, 以下で OK
-</p>
+<p>でも良いですが，結構なサイズになります
+  (とはいえ，今時数GB程度だと気にならないかと思いますけれど)．</p>
+<p>個別にインストールする場合は以下の通り．</p>
+<h3><a id="とりあえず =pTeX,upTeX= を使えるようにする:"><span class='anchor'>_</span></a>とりあえず <code>pTeX,upTeX</code> を使えるようにする:</h3>
+<p>多分, 以下で OK</p>
 <pre class="example">
 % sudo apt-get install texlive-lang-japanese
 </pre>
-<p>
-上記パッケージを install することで <code>ptex2pdf</code> も使えるようになります．
-</p>
-</div>
-</div>
-<div id="outline-container-org7e1a15b" class="outline-3">
-<h3 id="org7e1a15b"><code>XeTeX, LuaTeX</code> も使えるようにする:</h3>
-<div class="outline-text-3" id="text-org7e1a15b">
-<p>
-多分, 以下で OK
-</p>
+<p>上記パッケージを install することで <code>ptex2pdf</code> も使えるようになります．</p>
+<h3><a id="=XeTeX, LuaTeX= も使えるようにする:"><span class='anchor'>_</span></a><code>XeTeX, LuaTeX</code> も使えるようにする:</h3>
+<p>多分, 以下で OK</p>
 <pre class="example">
 % sudo apt-get install texlive-xetex
 % sudo apt-get install texlive-luatex
 </pre>
-</div>
-</div>
-<div id="outline-container-org6821295" class="outline-3">
-<h3 id="org6821295">DVI と PDF の Viewer</h3>
-<div class="outline-text-3" id="text-org6821295">
+<h3><a id="DVI と PDF の Viewer"><span class='anchor'>_</span></a>DVI と PDF の Viewer</h3>
 <pre class="example">
 % sudo apt-get install evince xdvik-ja
 </pre>
-<p>
-Debian のデフォルトデスクトップ環境はGNOMEなので，
-PDF の閲覧には Evince を使うのかな?
-日本語の表示が可能な xdvi, いわゆる pxdvi は
-<a href="https://packages.qa.debian.org/x/xdvik-ja.html">xdvik-ja</a> としてパッケージを提供しています
-(とはいえ，今なら直接 PDF を閲覧するのが良いと思いますが&#x2026;)．
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-orgf5a75e4" class="outline-2">
-<h2 id="orgf5a75e4">フォントの埋め込みと表示設定</h2>
-<div class="outline-text-2" id="text-orgf5a75e4">
-<p>
-まず, <code>cjk-gs-integrate</code> を使って,
-Ghostscript に現在システムに導入されているフォントを教えてあげましょう.
-</p>
+<p>Debian のデフォルトデスクトップ環境はGNOMEなので，
+  PDF の閲覧には Evince を使うのかな?
+  日本語の表示が可能な xdvi, いわゆる pxdvi は
+  <a href="https://packages.qa.debian.org/x/xdvik-ja.html">xdvik-ja</a> としてパッケージを提供しています
+  (とはいえ，今なら直接 PDF を閲覧するのが良いと思いますが&#8230;)．</p>
+<h2><a id="フォントの埋め込みと表示設定"><span class='anchor'>_</span></a>フォントの埋め込みと表示設定</h2>
+<p>まず, <code>cjk-gs-integrate</code> を使って,
+  Ghostscript に現在システムに導入されているフォントを教えてあげましょう.</p>
 <pre class="example">
 % sudo cjk-gs-integrate --link-texmf --force
 </pre>
-<p>
-この後, 実際に埋め込むフォントを設定しておきます.
-</p>
+<p>この後, 実際に埋め込むフォントを設定しておきます.</p>
 <pre class="example">
 % sudo apt-get install fonts-ipaexfonts     # &lt;-- install されていなかったら.
 % sudo kanji-config-updmap-sys ipaex
 </pre>
-</div>
-</div>
-<div id="outline-container-org4358383" class="outline-2">
-<h2 id="org4358383">XeLaTeX, pdfLaTeX, LuaLaTeX での日本語処理.</h2>
-<div class="outline-text-2" id="text-org4358383">
-</div>
-<div id="outline-container-orgb533b82" class="outline-3">
-<h3 id="orgb533b82">XeTeX</h3>
-<div class="outline-text-3" id="text-orgb533b82">
-<p>
-とりあえず日本語での組版に困る事はないでしょう.
-例えば以下のソースを <code>xelatex</code> で typeset することで，
-IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
-</p>
-<div class="org-src-container">
-<pre class="src src-japanese-latex"><span style="color: #FF7F7F;">\documentclass</span>[<span style="color: #7F7FFF;">a4paper</span>]{<span style="color: #BF7FFF;">bxjsarticle</span>}
-<span style="color: #FF7F7F;">\usepackage</span>{<span style="color: #BF7FFF;">zxjatype</span>}
-<span style="color: #FF7F7F;">\usepackage</span>[<span style="color: #7F7FFF;">ipa</span>]{<span style="color: #BF7FFF;">zxjafont</span>}
-<span style="color: #FF7F7F;">\usepackage</span>{<span style="color: #BF7FFF;">xltxtra</span>}
+<h2><a id="XeLaTeX, pdfLaTeX, LuaLaTeX での日本語処理."><span class='anchor'>_</span></a>XeLaTeX, pdfLaTeX, LuaLaTeX での日本語処理.</h2>
+<h3><a id="XeTeX"><span class='anchor'>_</span></a>XeTeX</h3>
+<p>とりあえず日本語での組版に困る事はないでしょう.
+  例えば以下のソースを <code>xelatex</code> で typeset することで，
+  IPA&#123;明朝,ゴシック}が埋め込まれた PDF が生成されます．</p>
+<div class="highlight"><pre><span></span>\documentclass[a4paper]&#123;bxjsarticle}
+\usepackage&#123;zxjatype}
+\usepackage[ipa]&#123;zxjafont}
+\usepackage&#123;xltxtra}
 
-<span style="color: #FF7F7F;">\begin</span>{<span style="color: #BF7FFF;">document</span>}
+\begin&#123;document}
 
-<span style="color: #FF7F7F;">\section</span>{<span style="color: #FFFF7F; font-weight: bold;">&#24184;&#30000;&#38706;&#20276;&#12300;&#38642;&#12398;&#12356;&#12429;&#12339;&#12341;&#8213;&#8213;&#21375;&#38642;&#12301;</span>}
-&#26223;&#38642;&#12392;&#12356;&#12402;&#12289;&#21375;&#38642;&#12392;&#12356;&#12402;&#12289;&#24950;&#38642;&#12392;&#12356;&#12408;&#12427;&#12289;&#12375;&#12363;&#12392;&#25351;&#12375;&#23450;&#12417;&#12425;&#12428;&#12383;&#12427;&#38642;&#12395;&#12399;&#12354;&#12425;&#12374;&#12427;&#12409;&#12375;&#12290;
-&#21375;&#38642;&#29211;&#12383;&#12426;&#31994;&#32309;&#12347;&#12383;&#12426;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;&#29017;&#12395;&#12354;&#12425;&#12378;&#38642;&#12395;&#12354;&#12425;&#12378;&#32043;&#12434;&#26355;&#12365;&#20809;&#12434;&#27969;&#12377;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;
-&#22823;&#20154;&#20316;&#30691;&#12289;&#20116;&#33394;&#27684;&#27699;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;&#37329;&#26607;&#21021;&#12417;&#12390;&#32350;&#32346;&#12289;&#29577;&#33865;&#28472;&#12367;&#27684;&#27699;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;
-&#36996;&#12388;&#12390;&#20061;&#38660;&#12395;&#20837;&#12426;&#12390;&#27782;&#28707;&#12434;&#25104;&#12375;&#12289;&#22805;&#23888;&#29983;&#12378;&#12427;&#34389;&#40372;&#26494;&#12395;&#27512;&#12427;&#12289;
-&#12392;&#12356;&#12408;&#12427;&#35433;&#12398;&#21477;&#12394;&#12393;&#12395;&#12424;&#12426;&#12390;&#35211;&#12428;&#12400;&#12289;&#27512;&#12377;&#12427;&#12392;&#12371;&#12429;&#12399;&#32654;&#12375;&#12365;&#38642;&#12392;&#12356;&#12405;&#12414;&#12391;&#12394;&#12426;&#12290;
-<span style="color: #FF7F7F;">\end</span>{<span style="color: #BF7FFF;">document</span>}
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orga96c329" class="outline-3">
-<h3 id="orga96c329">LuaTeX</h3>
-<div class="outline-text-3" id="text-orga96c329">
-<p>
-例えば以下のソースを <code>lualatex</code>
-で typeset することで，IPAex{明朝,ゴシック}が埋め込まれた PDF が生成されます．
-</p>
-<div class="org-src-container">
-<pre class="src src-japanese-latex"><span style="color: #FF7F7F;">\documentclass</span>{<span style="color: #BF7FFF;">ltjsarticle</span>}
-<span style="color: #FF7F7F;">\usepackage</span>[<span style="color: #7F7FFF;">ipaex</span>]{<span style="color: #BF7FFF;">luatexja-preset</span>}
-<span style="color: #FF7F7F;">\begin</span>{<span style="color: #BF7FFF;">document</span>}
+\section&#123;幸田露伴「雲のいろ〳〵――卿雲」}
+景雲といひ、卿雲といひ、慶雲といへる、しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、歸するところは美しき雲といふまでなり。
+\end&#123;document}
+</pre></div>
+<h3><a id="LuaTeX"><span class='anchor'>_</span></a>LuaTeX</h3>
+<p>例えば以下のソースを <code>lualatex</code>
+  で typeset することで，IPAex&#123;明朝,ゴシック}が埋め込まれた PDF が生成されます．</p>
+<div class="highlight"><pre><span></span>\documentclass&#123;ltjsarticle}
+\usepackage[ipaex]&#123;luatexja-preset}
+\begin&#123;document}
 
-<span style="color: #FF7F7F;">\section</span>{<span style="color: #FFFF7F; font-weight: bold;">&#24184;&#30000;&#38706;&#20276;&#12300;&#38642;&#12398;&#12356;&#12429;&#12339;&#12341;&#8213;&#8213;&#21375;&#38642;&#12301;</span>}
-&#26223;&#38642;&#12392;&#12356;&#12402;&#12289;&#21375;&#38642;&#12392;&#12356;&#12402;&#12289;&#24950;&#38642;&#12392;&#12356;&#12408;&#12427;&#12289;&#12375;&#12363;&#12392;&#25351;&#12375;&#23450;&#12417;&#12425;&#12428;&#12383;&#12427;&#38642;&#12395;&#12399;&#12354;&#12425;&#12374;&#12427;&#12409;&#12375;&#12290;
-&#21375;&#38642;&#29211;&#12383;&#12426;&#31994;&#32309;&#12347;&#12383;&#12426;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;&#29017;&#12395;&#12354;&#12425;&#12378;&#38642;&#12395;&#12354;&#12425;&#12378;&#32043;&#12434;&#26355;&#12365;&#20809;&#12434;&#27969;&#12377;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;
-&#22823;&#20154;&#20316;&#30691;&#12289;&#20116;&#33394;&#27684;&#27699;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;&#37329;&#26607;&#21021;&#12417;&#12390;&#32350;&#32346;&#12289;&#29577;&#33865;&#28472;&#12367;&#27684;&#27699;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;
-&#36996;&#12388;&#12390;&#20061;&#38660;&#12395;&#20837;&#12426;&#12390;&#27782;&#28707;&#12434;&#25104;&#12375;&#12289;&#22805;&#23888;&#29983;&#12378;&#12427;&#34389;&#40372;&#26494;&#12395;&#27512;&#12427;&#12289;
-&#12392;&#12356;&#12408;&#12427;&#35433;&#12398;&#21477;&#12394;&#12393;&#12395;&#12424;&#12426;&#12390;&#35211;&#12428;&#12400;&#12289;&#27512;&#12377;&#12427;&#12392;&#12371;&#12429;&#12399;&#32654;&#12375;&#12365;&#38642;&#12392;&#12356;&#12405;&#12414;&#12391;&#12394;&#12426;&#12290;
+\section&#123;幸田露伴「雲のいろ〳〵――卿雲」}
+景雲といひ、卿雲といひ、慶雲といへる、しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、歸するところは美しき雲といふまでなり。
 
-<span style="color: #FF7F7F;">\end</span>{<span style="color: #BF7FFF;">document</span>}
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgfdb4344" class="outline-3">
-<h3 id="orgfdb4344">pdfLaTeX で日本語組版</h3>
-<div class="outline-text-3" id="text-orgfdb4344">
-<p>
-例えば以下を <code>pdflatex</code> で typeset することで，PDF が生成されます．
-</p>
-<div class="org-src-container">
-<pre class="src src-japanese-latex"><span style="color: #FF7F7F;">\documentclass</span>[<span style="color: #7F7FFF;">pdflatex,jadriver=standard</span>]{<span style="color: #BF7FFF;">bxjsarticle</span>}
-<span style="color: #FF7F7F;">\begin</span>{<span style="color: #BF7FFF;">document</span>}
+\end&#123;document}
+</pre></div>
+<h3><a id="pdfLaTeX で日本語組版"><span class='anchor'>_</span></a>pdfLaTeX で日本語組版</h3>
+<p>例えば以下を <code>pdflatex</code> で typeset することで，PDF が生成されます．</p>
+<div class="highlight"><pre><span></span>\documentclass[pdflatex,jadriver=standard]&#123;bxjsarticle}
+\begin&#123;document}
 
-<span style="color: #FF7F7F;">\section</span>{<span style="color: #FFFF7F; font-weight: bold;">&#24184;&#30000;&#38706;&#20276;&#12300;&#38642;&#12398;&#12356;&#12429;&#12339;&#12341;&#8213;&#8213;&#21375;&#38642;&#12301;</span>}
-&#26223;&#38642;&#12392;&#12356;&#12402;&#12289;&#21375;&#38642;&#12392;&#12356;&#12402;&#12289;&#24950;&#38642;&#12392;&#12356;&#12408;&#12427;&#12289;&#12375;&#12363;&#12392;&#25351;&#12375;&#23450;&#12417;&#12425;&#12428;&#12383;&#12427;&#38642;&#12395;&#12399;&#12354;&#12425;&#12374;&#12427;&#12409;&#12375;&#12290;
-&#21375;&#38642;&#29211;&#12383;&#12426;&#31994;&#32309;&#12347;&#12383;&#12426;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;&#29017;&#12395;&#12354;&#12425;&#12378;&#38642;&#12395;&#12354;&#12425;&#12378;&#32043;&#12434;&#26355;&#12365;&#20809;&#12434;&#27969;&#12377;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;
-&#22823;&#20154;&#20316;&#30691;&#12289;&#20116;&#33394;&#27684;&#27699;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;&#37329;&#26607;&#21021;&#12417;&#12390;&#32350;&#32346;&#12289;&#29577;&#33865;&#28472;&#12367;&#27684;&#27699;&#12289;&#12392;&#12356;&#12408;&#12427;&#12289;
-&#36996;&#12388;&#12390;&#20061;&#38660;&#12395;&#20837;&#12426;&#12390;&#27782;&#28707;&#12434;&#25104;&#12375;&#12289;&#22805;&#23888;&#29983;&#12378;&#12427;&#34389;&#40372;&#26494;&#12395;&#27512;&#12427;&#12289;
-&#12392;&#12356;&#12408;&#12427;&#35433;&#12398;&#21477;&#12394;&#12393;&#12395;&#12424;&#12426;&#12390;&#35211;&#12428;&#12400;&#12289;&#27512;&#12377;&#12427;&#12392;&#12371;&#12429;&#12399;&#32654;&#12375;&#12365;&#38642;&#12392;&#12356;&#12405;&#12414;&#12391;&#12394;&#12426;&#12290;
+\section&#123;幸田露伴「雲のいろ〳〵――卿雲」}
+景雲といひ、卿雲といひ、慶雲といへる、しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、歸するところは美しき雲といふまでなり。
 
-<span style="color: #FF7F7F;">\end</span>{<span style="color: #BF7FFF;">document</span>}
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org44a896f" class="outline-2">
-<h2 id="org44a896f">足りないスタイルとかあれこれ</h2>
-<div class="outline-text-2" id="text-org44a896f">
-<p>
-<code>texlive-full</code> を入れておくと全部使えるようになる, で良いんだっけ?
-最近は割と何も考えずに全部入れていたりする.
-</p>
-
-<p>
-Emacs で上手く処理したい場合には, <code>auctex</code> とか入れておくと良いかと.
-(最近 <code>YaTeX</code> 使ってないんだけれど, これ, LuaTeX なんかに対応してるんだっけ?)
-</p>
-</div>
-</div>
-<div id="outline-container-org26e16e7" class="outline-2">
-<h2 id="org26e16e7">参考文献</h2>
-<div class="outline-text-2" id="text-org26e16e7">
-<ul class="org-ul">
-<li><a href="http://uwabami.junkhub.org/log/20121202.html#p01">次期安定版 Debian 7.0 'Wheezy' での TeX 環境(特に pTeX 環境)について</a></li>
-<li><a href="http://uwabami.junkhub.org/log/20121208.html#p01">Ubuntu 12.04/Debian Squeeze での TeXLive (&gt;=2012) 環境</a></li>
-<li><a href="http://www.preining.info/blog/2014/12/writing-japanese-in-latex-part-1-introduction/">Writing Japanese in LaTeX : Part 1 – Introduction | There and back again</a></li>
-<li><a href="https://packages.debian.org/jessie/texlive-full">Debian &#x2013; Details of package texlive-full in jessie</a></li>
-<li><a href="http://qiita.com/_yyu_/items/6404656f822ce14db935">LaTeX - TeX処理系御伽話</a></li>
-<li><a href="http://www.tug.org/texlive/debian.html">Debian support - TeX Live - TeX Users Group</a></li>
-<li>TeX Wiki
-<ul class="org-ul">
-<li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?upTeX%2CupLaTeX">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?upTeX%2CupLaTeX</a></li>
-<li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Ghostscript">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Ghostscript</a></li>
-<li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?XeTeX">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?XeTeX</a></li>
-<li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?BXjscls">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?BXjscls</a></li>
-<li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?LuaTeX-ja">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?LuaTeX-ja</a></li>
-</ul></li>
+\end&#123;document}
+</pre></div>
+<h2><a id="足りないスタイルとかあれこれ"><span class='anchor'>_</span></a>足りないスタイルとかあれこれ</h2>
+<p><code>texlive-full</code> を入れておくと全部使えるようになる, で良いんだっけ?
+  最近は割と何も考えずに全部入れていたりする.</p>
+<p>Emacs で上手く処理したい場合には, <code>auctex</code> とか入れておくと良いかと.
+  (最近 <code>YaTeX</code> 使ってないんだけれど, これ, LuaTeX なんかに対応してるんだっけ?)</p>
+<h2><a id="参考文献"><span class='anchor'>_</span></a>参考文献</h2>
+<ul>
+  <li><a href="http://uwabami.junkhub.org/log/20121202.html#p01">次期安定版 Debian 7.0 &#8216;Wheezy&#8217; での TeX 環境(特に pTeX 環境)について</a></li>
+  <li><a href="http://uwabami.junkhub.org/log/20121208.html#p01">Ubuntu 12.04/Debian Squeeze での TeXLive (&gt;=2012) 環境</a></li>
+  <li><a href="http://www.preining.info/blog/2014/12/writing-japanese-in-latex-part-1-introduction/">Writing Japanese in LaTeX : Part 1 – Introduction | There and back again</a></li>
+  <li><a href="https://packages.debian.org/jessie/texlive-full">Debian &#8211; Details of package texlive-full in jessie</a></li>
+  <li><a href="http://qiita.com/_yyu_/items/6404656f822ce14db935">LaTeX - TeX処理系御伽話</a></li>
+  <li><a href="http://www.tug.org/texlive/debian.html">Debian support - TeX Live - TeX Users Group</a></li>
+  <li>TeX Wiki
+    <ul>
+      <li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?upTeX%252CupLaTeX">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?upTeX%2CupLaTeX</a></li>
+      <li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Ghostscript">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?Ghostscript</a></li>
+      <li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?XeTeX">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?XeTeX</a></li>
+      <li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?BXjscls">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?BXjscls</a></li>
+      <li><a href="http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?LuaTeX-ja">http://oku.edu.mie-u.ac.jp/~okumura/texwiki/?LuaTeX-ja</a></li>
+    </ul>
+  </li>
 </ul>
-</div>
-</div>
+
 
           </div>
           <a href="#page-top" class="pagetop btn top-btn">Top</a>
@@ -350,9 +228,9 @@ Emacs で上手く処理したい場合には, <code>auctex</code> とか入れ�
       <div class="col-sm-12 col-xs-12">
         <p>
           
-          &copy; 2006 - 2017
+          &copy; 2006 - 2018
           <a href="mailto:uwabami@gfd-dennou.org"></a>,
-          Lastupdate: 2017-03-28 13:40:13 +0000
+          Lastupdate: 2018-10-16 19:46:58
           <br />
           <span class="generator"> Powered by
             <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>

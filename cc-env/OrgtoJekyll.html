@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>org ファイルを jekyll で処理する</title>
-<meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+<meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
 <link rel="stylesheet" href="/css/main.css" >
-<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" >
 <link rel="canonical" href="/cc-env/OrgtoJekyll.html">
 
 <link rel="alternate" hreflang="ja" href="/cc-env/OrgtoJekyll.html" />
@@ -84,51 +83,24 @@
 
           </div>
           <div class="col-xs-12">
-            <div id="toc-wrapper">
-<nav id="table-of-contents">
-<h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+            <p>Related:
+  <a href="wiki:index">Index</a> <a href="wiki:Emacs">Emacs</a></p>
+<h2><a id="はじめに"><span class='anchor'>_</span></a>はじめに</h2>
+<p>以前は <a href="https://github.com/wallyqs/org-ruby">org-ruby</a> を使って, org ファイルをそのまま Jekyll で処理していました．</p>
 <ul>
-<li><a href="#org55dd347">はじめに</a></li>
+  <li><a href="~/Public/software/tdiary-style-org/index.html">org-jekyll-converter</a></li>
+  <li><a href="wiki:JekyllandOrg">このサイトができるまで</a></li>
 </ul>
-</div>
-</nav>
-</div>
-<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<p>
-Related:
-<a href='index.html'>Index</a> <a href='Emacs.html'>Emacs</a>
-</p>
-
-<div id="outline-container-org55dd347" class="outline-2">
-<h2 id="org55dd347">はじめに</h2>
-<div class="outline-text-2" id="text-org55dd347">
-<p>
-以前は <a href="https://github.com/wallyqs/org-ruby">org-ruby</a> を使って, org ファイルをそのまま Jekyll で処理していました．
-</p>
-<ul class="org-ul">
-<li><a href="file:///home/uwabami/Public/software/tdiary-style-org/index.html">org-jekyll-converter</a></li>
-<li><a href='JekyllandOrg.html'>このサイトができるまで</a></li>
+<p>しかしながら，</p>
+<ul>
+  <li>github pages へ Web サイトを移動した = jekyll の plugin が使えなくなった</li>
+  <li>Org-mode が ver. 9 系列に上がって，export 時の文法が(多少)変わった</li>
 </ul>
+<p>こともあって，
+  結局「 Org-mode で html を出力→ jekyll で処理」という，
+  よくあるやり方に落ち着いてしまいました．</p>
+<p>&#8230; to be written&#8230;</p>
 
-<p>
-しかしながら，
-</p>
-<ul class="org-ul">
-<li>github pages へ Web サイトを移動した = jekyll の plugin が使えなくなった</li>
-<li>Org-mode が ver. 9 系列に上がって，export 時の文法が(多少)変わった</li>
-</ul>
-<p>
-こともあって，
-結局「 Org-mode で html を出力→ jekyll で処理」という，
-よくあるやり方に落ち着いてしまいました．
-</p>
-
-<p>
-&#x2026; to be written&#x2026;
-</p>
-</div>
-</div>
 
           </div>
           <a href="#page-top" class="pagetop btn top-btn">Top</a>
@@ -141,9 +113,9 @@ Related:
       <div class="col-sm-12 col-xs-12">
         <p>
           
-          &copy; 2006 - 2017
+          &copy; 2006 - 2018
           <a href="mailto:uwabami@gfd-dennou.org"></a>,
-          Lastupdate: 2017-01-16 23:59:19 +0000
+          Lastupdate: 2018-10-16 19:46:10
           <br />
           <span class="generator"> Powered by
             <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>

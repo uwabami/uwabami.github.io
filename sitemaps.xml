@@ -160,6 +160,72 @@
         <loc>/css/cc-env.css</loc>
         
         
+        <xhtml:link rel="alternate" hreflang="ja" href="/404.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianApt.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianConfigure.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianInstall.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianMail.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianPackaging.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSchroot.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSquid.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianTeX.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Debiani3.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Emacs.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/JekyllandOrg.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/OrgtoJekyll.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="/css/cc-env.css" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rail/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="/css/main.css" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="/sitemaps.xml" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/weechat.html" />
+        
         <changefreq>monthly</changefreq>
       </url>
     
@@ -362,6 +428,72 @@
         <loc>/css/main.css</loc>
         
         
+        <xhtml:link rel="alternate" hreflang="ja" href="/404.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianApt.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianConfigure.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianInstall.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianMail.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianPackaging.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSchroot.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSquid.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianTeX.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Debiani3.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Emacs.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/JekyllandOrg.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/OrgtoJekyll.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="/css/cc-env.css" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rail/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="/css/main.css" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="/sitemaps.xml" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/weechat.html" />
+        
         <changefreq>monthly</changefreq>
       </url>
     
@@ -370,6 +502,72 @@
       <url>
         <loc>/sitemaps.xml</loc>
         
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/404.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianApt.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianConfigure.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianInstall.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianMail.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianPackaging.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSchroot.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSquid.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianTeX.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Debiani3.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Emacs.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/JekyllandOrg.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/OrgtoJekyll.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="/css/cc-env.css" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rail/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="/css/main.css" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="/sitemaps.xml" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/weechat.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -381,15 +579,6 @@
         
         
         <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/weechat.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/assets/css/style.css</loc>
-        
         
         <changefreq>monthly</changefreq>
       </url>

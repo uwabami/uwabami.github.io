@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aptの設定</title>
-<meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+<meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
 <link rel="stylesheet" href="/css/main.css" >
-<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" >
 <link rel="canonical" href="/cc-env/DebianApt.html">
 
 <link rel="alternate" hreflang="ja" href="/cc-env/DebianApt.html" />
@@ -84,202 +83,92 @@
 
           </div>
           <div class="col-xs-12">
-            <div id="toc-wrapper">
-<nav id="table-of-contents">
-<h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+            <p>Related <a href="wiki:index">Index</a></p>
+<h2><a id="始めに"><span class='anchor'>_</span></a>始めに</h2>
+<p>apt は非常に便利です. etch 以降から</p>
 <ul>
-<li><a href="#orgfdd504b">始めに</a></li>
-<li><a href="#orgcdd3fad">apt の pin 止め</a></li>
-<li><a href="#orge29f3ba">apt-key への鍵の追加</a></li>
-<li><a href="#org451b1a2">現在の sources.list</a></li>
-<li><a href="#org87bba48">apt の便利ツール</a></li>
-<li><a href="#org9caca9a">参考文献</a></li>
+  <li>パッケージのリストの差分だけをダウンロードする様になった.</li>
+  <li>secure-apt という機能が追加: <a href="http://kmuto.jp/d/index.cgi/debian/apt-secure.htm">KeN&#8217;s GNU/Linux Diary|secure apt</a> などを参考に.
+    <ul>
+      <li>要するに「Release ファイルの GPG 署名を検証するよ」という話.</li>
+    </ul>
+  </li>
 </ul>
-</div>
-</nav>
-</div>
-<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<p>
-Related <a href='index.html'>Index</a>
-</p>
-<div id="outline-container-orgfdd504b" class="outline-2">
-<h2 id="orgfdd504b">始めに</h2>
-<div class="outline-text-2" id="text-orgfdd504b">
-<p>
-apt は非常に便利です. etch 以降から
-</p>
-<ul class="org-ul">
-<li>パッケージのリストの差分だけをダウンロードする様になった.</li>
-<li>secure-apt という機能が追加: <a href="http://kmuto.jp/d/index.cgi/debian/apt-secure.htm">KeN's GNU/Linux Diary|secure apt</a> などを参考に.
-<ul class="org-ul">
-<li>要するに「Release ファイルの GPG 署名を検証するよ」という話.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgcdd3fad" class="outline-2">
-<h2 id="orgcdd3fad">apt の pin 止め</h2>
-<div class="outline-text-2" id="text-orgcdd3fad">
-<p>
-特定のパッケージを {testing|unstable|experimental} から借りたい,
-とかいう場合には <code>/etc/apt/preferences</code> にその設定を書いておく.
-例えば以下の通り.
-</p>
+<h2><a id="apt の pin 止め"><span class='anchor'>_</span></a>apt の pin 止め</h2>
+<p>特定のパッケージを &#123;testing|unstable|experimental} から借りたい,
+  とかいう場合には <code>/etc/apt/preferences</code> にその設定を書いておく.
+  例えば以下の通り.</p>
 <pre class="example">
-    Package: *
-    Pin: release a=experimental
-    Pin-Priority: 90
+Package: *
+Pin: release a=experimental
+Pin-Priority: 90
 </pre>
-
-<p>
-Pin-Priority については以下を参照
-</p>
-
-<table>
-
-
-<colgroup>
-<col  class="org-right">
-
-<col  class="org-left">
-</colgroup>
-<tbody>
-<tr>
-<td class="org-right">Pin-Priority</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-right">0</td>
-<td class="org-left">install しない</td>
-</tr>
-
-<tr>
-<td class="org-right">1-99</td>
-<td class="org-left">指定すれば install できるが update の対象にならない</td>
-</tr>
-
-<tr>
-<td class="org-right">100</td>
-<td class="org-left">現在 install されているパッケージの Priority</td>
-</tr>
-
-<tr>
-<td class="org-right">(500)</td>
-<td class="org-left">現在 install されていないパッケージの Priority</td>
-</tr>
-
-<tr>
-<td class="org-right">(989)</td>
-<td class="org-left">apt-pin の default</td>
-</tr>
-
-<tr>
-<td class="org-right">990</td>
-<td class="org-left">apt-get の target-release が指定されている場合の Priority</td>
-</tr>
-
-<tr>
-<td class="org-right">1000 以上</td>
-<td class="org-left">ダウングレードしても, そのパッケージを install する.</td>
-</tr>
-</tbody>
+<p>Pin-Priority については以下を参照</p>
+<table class="table table-striped">
+  <tr><td>Pin-Priority</td><td></td></tr>
+  <tr><td>0</td><td>install しない</td></tr>
+  <tr><td>1-99</td><td>指定すれば install できるが update の対象にならない</td></tr>
+  <tr><td>100</td><td>現在 install されているパッケージの Priority</td></tr>
+  <tr><td>(500)</td><td>現在 install されていないパッケージの Priority</td></tr>
+  <tr><td>(989)</td><td>apt-pin の default</td></tr>
+  <tr><td>990</td><td>apt-get の target-release が指定されている場合の Priority</td></tr>
+  <tr><td>1000 以上</td><td>ダウングレードしても, そのパッケージを install する.</td></tr>
 </table>
-
-
-<p>
-上の例では 90 なので,
-「指定すれば install できるが update の対象にはならない」状態.
-もちろん依存関係は満たされていなければ, install はできない.
-</p>
-</div>
-</div>
-<div id="outline-container-orge29f3ba" class="outline-2">
-<h2 id="orge29f3ba">apt-key への鍵の追加</h2>
-<div class="outline-text-2" id="text-orge29f3ba">
-<p>
-鍵は /etc/apt/trustdb.gpg に登録されている.
-</p>
+<p>上の例では 90 なので,
+  「指定すれば install できるが update の対象にはならない」状態.
+  もちろん依存関係は満たされていなければ, install はできない.</p>
+<h2><a id="apt-key への鍵の追加"><span class='anchor'>_</span></a>apt-key への鍵の追加</h2>
+<p>鍵は /etc/apt/trustdb.gpg に登録されている.</p>
 <pre class="example">
-    % sudo  apt-key list
+% sudo  apt-key list
 </pre>
-<p>
-で登録済みの鍵を確認できる.
-</p>
-
-<p>
-GPG 鍵の取得, export, import はそれぞれ
-</p>
+<p>で登録済みの鍵を確認できる.</p>
+<p>GPG 鍵の取得, export, import はそれぞれ</p>
 <pre class="example">
-    % gpg --keyserver [鍵サーバ] --recv-keys [鍵のID]
-    % gpg --export  -a [鍵ID] &gt; key_file
-    % sudo apt-key add key_file
+% gpg --keyserver [鍵サーバ] --recv-keys [鍵のID]
+% gpg --export  -a [鍵ID] &gt; key_file
+% sudo apt-key add key_file
 </pre>
-<p>
-みたいに.
-</p>
-
-<p>
-鍵の登録は
-</p>
+<p>みたいに.</p>
+<p>鍵の登録は</p>
 <pre class="example">
-    % gpg --armor --export [鍵ID] | sudo apt-key add -
+% gpg --armor --export [鍵ID] | sudo apt-key add -
 </pre>
-<p>
-みたいしても良いかと.
-</p>
-</div>
-</div>
-<div id="outline-container-org451b1a2" class="outline-2">
-<h2 id="org451b1a2">現在の sources.list</h2>
-<div class="outline-text-2" id="text-org451b1a2">
-<div class="org-src-container">
-<pre class="src src-conf"><span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Official</span>
-<span style="color: #a5a5a6;">#</span>
-deb http://ftp.jp.debian.org/debian/ sid main non-free contrib
-deb-src http://ftp.jp.debian.org/debian/ sid main non-free contrib
-deb http://ftp.jp.debian.org/debian/ experimental main
-deb-src http://ftp.jp.debian.org/debian/ experimental main
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">UnOfficial</span>
-<span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Multimedia</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">GPG: deb-multimedia-keyring</span>
-<span style="color: #a5a5a6;">#</span>
-deb http://www.deb-multimedia.org sid main non-free
-deb-src http://www.deb-multimedia.org sid main non-free
-<span style="color: #a5a5a6;">#</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">Dennou</span>
-<span style="color: #a5a5a6;"># </span><span style="color: #a5a5a6;">GPG: 891D7E07</span>
-deb http://dennou-k.gfd-dennou.org/arch/cc-env/debian-dennou sid main
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org87bba48" class="outline-2">
-<h2 id="org87bba48">apt の便利ツール</h2>
-<div class="outline-text-2" id="text-org87bba48">
-<ul class="org-ul">
-<li>apt-cache</li>
-<li>apt-show-versions</li>
-<li>apt-listchanges</li>
-<li>apt-listbugs</li>
+<p>みたいしても良いかと.</p>
+<h2><a id="現在の sources.list"><span class='anchor'>_</span></a>現在の sources.list</h2>
+<div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Official</span>
+<span class="c1">#</span>
+<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span> <span class="n">contrib</span>
+<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span> <span class="n">contrib</span>
+<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">experimental</span> <span class="n">main</span>
+<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">experimental</span> <span class="n">main</span>
+<span class="c1"># UnOfficial</span>
+<span class="c1">#</span>
+<span class="c1"># Multimedia</span>
+<span class="c1"># GPG: deb-multimedia-keyring</span>
+<span class="c1">#</span>
+<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">www</span><span class="o">.</span><span class="n">deb</span><span class="o">-</span><span class="n">multimedia</span><span class="o">.</span><span class="n">org</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span>
+<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">www</span><span class="o">.</span><span class="n">deb</span><span class="o">-</span><span class="n">multimedia</span><span class="o">.</span><span class="n">org</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span>
+<span class="c1">#</span>
+<span class="c1"># Dennou</span>
+<span class="c1"># GPG: 891D7E07</span>
+<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">dennou</span><span class="o">-</span><span class="n">k</span><span class="o">.</span><span class="n">gfd</span><span class="o">-</span><span class="n">dennou</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">cc</span><span class="o">-</span><span class="n">env</span><span class="o">/</span><span class="n">debian</span><span class="o">-</span><span class="n">dennou</span> <span class="n">sid</span> <span class="n">main</span>
+</pre></div>
+<h2><a id="apt の便利ツール"><span class='anchor'>_</span></a>apt の便利ツール</h2>
+<ul>
+  <li>apt-cache</li>
+  <li>apt-show-versions</li>
+  <li>apt-listchanges</li>
+  <li>apt-listbugs</li>
 </ul>
-<p>
-そのうち書く, かも.
-</p>
-</div>
-</div>
-<div id="outline-container-org9caca9a" class="outline-2">
-<h2 id="org9caca9a">参考文献</h2>
-<div class="outline-text-2" id="text-org9caca9a">
-<ul class="org-ul">
-<li><a href="http://kmuto.jp/d/index.cgi/debian/apt-secure.htm">KeN's GNU/Linux Diary|secure apt</a></li>
-<li><a href="http://jaqque.sbih.org/kplug/apt-pinning.html">Apt-Pinning for Beginners</a></li>
+<p>そのうち書く, かも.</p>
+<h2><a id="参考文献"><span class='anchor'>_</span></a>参考文献</h2>
+<ul>
+  <li><a href="http://kmuto.jp/d/index.cgi/debian/apt-secure.htm">KeN&#8217;s GNU/Linux Diary|secure apt</a></li>
+  <li><a href="http://jaqque.sbih.org/kplug/apt-pinning.html">Apt-Pinning for Beginners</a></li>
 </ul>
-</div>
-</div>
+
 
           </div>
           <a href="#page-top" class="pagetop btn top-btn">Top</a>
@@ -292,9 +181,9 @@ deb http://dennou-k.gfd-dennou.org/arch/cc-env/debian-dennou sid main
       <div class="col-sm-12 col-xs-12">
         <p>
           
-          &copy; 2006 - 2017
+          &copy; 2006 - 2018
           <a href="mailto:uwabami@gfd-dennou.org"></a>,
-          Lastupdate: 2017-01-22 18:54:15 +0000
+          Lastupdate: 2018-10-16 19:47:04
           <br />
           <span class="generator"> Powered by
             <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>

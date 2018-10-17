@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>weechat の設定</title>
-<meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+<meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
 <link rel="stylesheet" href="/css/main.css" >
-<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" >
 <link rel="canonical" href="/cc-env/weechat.html">
 
 <link rel="alternate" hreflang="ja" href="/cc-env/weechat.html" />
@@ -84,374 +83,203 @@
 
           </div>
           <div class="col-xs-12">
-            <div id="toc-wrapper">
-<nav id="table-of-contents">
-<h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+            <p>Related <a href="wiki:index">Index</a></p>
+<h2><a id="はじめに"><span class='anchor'>_</span></a>はじめに</h2>
+<p>IRC クライアントとして <a href="https://weechat.org/">weechat</a> を使っています.
+  高機能ですが、なかなかにカスタマイズのしがいのあるクライアント.
+  自分で何をしたのか忘れがちなので、やった事は都度メモしておくことに.</p>
+<p>以下, v1.9.1 について書いてます.</p>
+<h2><a id="初回起動: サーバの追加等"><span class='anchor'>_</span></a>初回起動: サーバの追加等</h2>
+<p>特に何も設定せずに起動すると、以下の様な塩梅.</p>
+<p><img src="weechat/Weechat0.png" alt="weechat/Weechat0.png" /></p>
+<h3><a id="proxy の設定"><span class='anchor'>_</span></a>proxy の設定</h3>
+<p>今の所</p>
 <ul>
-<li><a href="#org2adfd99">はじめに</a></li>
-<li><a href="#orgbbe32a5">初回起動: サーバの追加等</a>
+  <li>VPS に znc を入れて IRC バウンサとして動作</li>
+  <li>VPS 自体には autossh で dynamic port forwad で接続</li>
+</ul>
+<p>という状況なので, 先ずは socks5 proxy の設定から</p>
+<pre class="example">
+/proxy add &lt;name&gt; &lt;type&gt; &lt;address&gt; &lt;port&gt; [&lt;username&gt; &lt;password&gt;]
+</pre>
+<h3><a id="サーバの追加"><span class='anchor'>_</span></a>サーバの追加</h3>
+<p>上記で proxy が定義されているので,
+  通常通りサーバを追加した後で proxy を設定しておく.</p>
+<pre class="example">
+/server add &lt;name&gt; &lt;server&gt;/&lt;port&gt;
+/set irc.server.&lt;name&gt;.proxy &lt;proxy_name&gt;
+/set irc.server.&lt;name&gt;.password &lt;znc channel password&gt;
+</pre>
 <ul>
-<li><a href="#orgf343338">proxy の設定</a></li>
-<li><a href="#orgb1def3a">サーバの追加</a></li>
+  <li>&lt;proxy_name&gt; は<a href="id:5959520f-3f33-4cbd-a705-65884f604adb">proxy の設定</a>で追加した proxy の名前</li>
+  <li>&lt;znc channel password&gt; は znc のチャンネル区別に使うパスワード</li>
 </ul>
-</li>
-<li><a href="#orgf3282f2">カスタマイズ: 見た目編</a></li>
-<li><a href="#org4a93c3a">カスタマイズ: plugin</a>
+<p>といった感じ.</p>
+<p>他に設定しておくことがあれば</p>
+<pre class="example">
+/server listfull
+</pre>
+<p>の結果を眺めてアレコレしておく.</p>
+<h2><a id="カスタマイズ: 見た目編"><span class='anchor'>_</span></a>カスタマイズ: 見た目編</h2>
+<p>サーバ毎に別 buffer</p>
+<pre class="example">
+/set irc.look.server_buffer independent
+</pre>
+<p>サーバ毎のチャンネルをインデント</p>
+<pre class="example">
+/set buffers.look.indenting on
+</pre>
+<p>新しいチャンネルはサーバ buffer の一番最後に追加</p>
+<pre class="example">
+/set irc.look.new_channel_position near_server
+</pre>
+<p>バッファリストは右側に</p>
+<pre class="example">
+/set weechat.bar.buflist.position = right
+</pre>
+<p>新しい private message もサーバ buffer の一番最後に追加</p>
+<pre class="example">
+/set irc.look.new_pv_position near_server
+</pre>
+<p>Windowを分割すると入力も散らばる→一つにまとめて最下部に。</p>
+<pre class="example">
+/bar add rootinput root bottom 1 0 [buffer_name]+[input_prompt]+(away),[input_search],[input_paste],input_text
+/bar del input
+</pre>
+<p>時刻表示のフォーマット</p>
+<pre class="example">
+/set weechat.look.buffer_time_format &quot;$&#123;15}%H$&#123;6}:$&#123;15}%M$&#123;6}:$&#123;15}%S&quot;
+</pre>
+<p>prefix は左よせ</p>
+<pre class="example">
+/set weechat.look.prefix_align left
+</pre>
+<p>prefix の最大値を 10 に制限&#8230;もう少し増やした方が良いかな&#8230;</p>
+<pre class="example">
+/set weechat.look.prefix_align_max 10
+</pre>
+<p>nicklist を 15 に固定</p>
+<pre class="example">
+/set weechat.bar.nicklist.size_max 15
+/set weechat.bar.nicklist.size 15
+</pre>
+<p>buflist を 15 に固定</p>
+<pre class="example">
+/set weechat.bar.buflist.size 15
+/set weechat.bar.buflist.size_max 15
+</pre>
+<p>prompt</p>
+<pre class="example">
+/set weechat.bar.rootinput.items &quot;[input_prompt]+(away),[input_search],[input_paste],input_text&quot;
+</pre>
+<p>status line</p>
+<pre class="example">
+/set weechat.bar.status.items &quot;[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes)+&#123;buffer_nicklist_count}+buffer_zoom+buffer_filter,[lag],[hotlist],completion,scroll&quot;
+</pre>
+<p>レイアウトを自動的に保存</p>
+<pre class="example">
+/set weechat.look.save_layout_on_exit all
+</pre>
+<p>マウスは使わない</p>
+<pre class="example">
+/mouse disable
+</pre>
+<p>ハイライトするキーワードの追加</p>
+<pre class="example">
+/set weechat.look.highlight &quot;$nick,uwabami,ささき,佐々木&quot;
+</pre>
+<h2><a id="カスタマイズ: plugin"><span class='anchor'>_</span></a>カスタマイズ: plugin</h2>
+<h3><a id="log の無効化"><span class='anchor'>_</span></a>log の無効化</h3>
+<p>log 取りは znc に任せているので、weechat でログを取る必要はない。
+  というわけで、log plugin を無効化しておく(他にも色々切ってるけれど).
+  読み込んでいるのは以下.</p>
+<pre class="example">
+/set weechat.plugin.autoload &quot;lua,ruby,python,perl,irc,script,alias,charset,buflist&quot;
+</pre>
+<h3><a id="script でインストールしたアレコレ"><span class='anchor'>_</span></a>script でインストールしたアレコレ</h3>
+<p>以前は weeget を使っていたが、/script でイロイロ拡張がインストールできる.
+  今使っているのは以下</p>
+<pre class="example">
+/script install go.py
+/script install colorize_nicks.py
+/script install colorize_line.pl
+/script install buffer_autoset.py
+/script install emoji_aliases.py
+</pre>
+<p>あとは https://github.com/tkengo/weechat-url-hinter の <code>open</code> を
+  <code>xdg-open</code> に書き換えた版を <code>~/.weechat/ruby/</code> 以下に置いて使っている.</p>
+<h2><a id="カスタマイズ: 色"><span class='anchor'>_</span></a>カスタマイズ: 色</h2>
+<p>これが地味に凝りだすと大変だったりする。
+  使える色は <code>weechat --colors</code> で確認できる。</p>
+<p><img src="weechat/Weechat-colors.png" alt="weechat/Weechat-colors.png" /></p>
+<p>ハイライトの色: 黒背景に黄色の文字</p>
+<pre class="example">
+/set weechat.color.chat_highlight 11
+/set weechat.color.chat_highlight_bg 8
+</pre>
+<p>nick colors: 黒背景で、256色使う際に視認性が良さげな色を並べただけ。</p>
+<pre class="example">
+/set weechat.color_chat_nicks &quot;32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,110,111,112,113,114,115,116,117,118,119,120,121,122,123,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229&quot;
+</pre>
+<p>title bar: 黒背景に黄色文字</p>
+<pre class="example">
+/set weechat.bar.title.color_fg 11
+/set weechat.bar.title.color_fg 8
+</pre>
+<p>status color: 黒背景に黄色文字</p>
+<pre class="example">
+/set weechat.bar.status_color_bg 8
+</pre>
+<p><code>go</code> plugin の色:</p>
+<pre class="example">
+/set var.python.go.auto_jump = &quot;off&quot;
+/set var.python.go.buffer_number = &quot;on&quot;
+/set var.python.go.color_name = &quot;white,default&quot;
+/set var.python.go.color_name_highlight = &quot;lightred,default&quot;
+/set var.python.go.color_name_highlight_selected = &quot;lightred,default&quot;
+/set var.python.go.color_name_selected = &quot;white,default&quot;
+/set var.python.go.color_number = &quot;lightgreen,default&quot;
+/set var.python.go.color_number_selected = &quot;yellow,default&quot;
+/set var.python.go.fuzzy_search = &quot;off&quot;
+/set var.python.go.message = &quot;Go: &quot;
+/set var.python.go.short_name = &quot;off&quot;
+/set var.python.go.sort = &quot;number,beginning&quot;
+/set var.python.go.use_core_instead_weechat = &quot;off&quot;
+</pre>
+<p>buflist: 現在行の色</p>
+<pre class="example">
+/set buflist.format.buffer_current &quot;$&#123;color:,8}$&#123;format_buffer}&quot;
+</pre>
+<h2><a id="カスタマイズ: キーバインド"><span class='anchor'>_</span></a>カスタマイズ: キーバインド</h2>
+<p><code>Ctrl-S</code>: nicklist の toggle</p>
+<pre class="example">
+/key bind ctrl-S /bar toggle nicklist
+</pre>
+<p><code>Ctrl-B</code>: buflist の toggle</p>
+<pre class="example">
+/key bind ctrl-B /bar toggle buflist
+</pre>
+<p><code>Ctrl-G</code>: /go</p>
+<pre class="example">
+/key bind ctrl-G /go
+</pre>
+<p>alias: <code>/b</code></p>
+<pre class="example">
+/set alias.cmd.b = &quot;/buffer&quot;
+</pre>
+<p>alias: <code>/bl</code></p>
+<pre class="example">
+/set alias.cmd.bl = &quot;msg *backlog $channel $1&quot;
+</pre>
+<p>alias: <code>/znc</code></p>
+<pre class="example">
+/set alias.cmd.znc = &quot;/quote znc&quot;
+</pre>
+<h2><a id="参考文献"><span class='anchor'>_</span></a>参考文献</h2>
 <ul>
-<li><a href="#org2a0c7d2">log の無効化</a></li>
-<li><a href="#org2e5448d">script でインストールしたアレコレ</a></li>
+  <li>WeeChat ユーザーズガイド: https://weechat.org/files/doc/devel/weechat_user.ja.html</li>
 </ul>
-</li>
-<li><a href="#org02b7f05">カスタマイズ: 色</a></li>
-<li><a href="#orgdc94fda">カスタマイズ: キーバインド</a></li>
-<li><a href="#orgf600f6f">参考文献</a></li>
-</ul>
-</div>
-</nav>
-</div>
-<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<p>
-Related <a href='index.html'>Index</a>
-</p>
-<div id="outline-container-org2adfd99" class="outline-2">
-<h2 id="org2adfd99">はじめに</h2>
-<div class="outline-text-2" id="text-org2adfd99">
-<p>
-IRC クライアントとして <a href="https://weechat.org/">weechat</a> を使っています.
-高機能ですが、なかなかにカスタマイズのしがいのあるクライアント.
-自分で何をしたのか忘れがちなので、やった事は都度メモしておくことに.
-</p>
 
-<p>
-以下, v1.9.1 について書いてます.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgbbe32a5" class="outline-2">
-<h2 id="orgbbe32a5">初回起動: サーバの追加等</h2>
-<div class="outline-text-2" id="text-orgbbe32a5">
-<p>
-特に何も設定せずに起動すると、以下の様な塩梅.
-</p>
-
-
-<figure>
-<img src="weechat/Weechat0.png" alt="Weechat0.png" class="img-responsive">
-
-</figure>
-</div>
-
-<div id="outline-container-orgf343338" class="outline-3">
-<h3 id="orgf343338"><a id="ID-5959520f-3f33-4cbd-a705-65884f604adb"></a>proxy の設定</h3>
-<div class="outline-text-3" id="text-orgf343338">
-<p>
-今の所
-</p>
-<ul class="org-ul">
-<li>VPS に znc を入れて IRC バウンサとして動作</li>
-<li>VPS 自体には autossh で dynamic port forwad で接続</li>
-</ul>
-<p>
-という状況なので, 先ずは socks5 proxy の設定から
-</p>
-<pre class="example">
-  /proxy add &lt;name&gt; &lt;type&gt; &lt;address&gt; &lt;port&gt; [&lt;username&gt; &lt;password&gt;]
-</pre>
-</div>
-</div>
-
-<div id="outline-container-orgb1def3a" class="outline-3">
-<h3 id="orgb1def3a">サーバの追加</h3>
-<div class="outline-text-3" id="text-orgb1def3a">
-<p>
-上記で proxy が定義されているので,
-通常通りサーバを追加した後で proxy を設定しておく.
-</p>
-<pre class="example">
-   /server add &lt;name&gt; &lt;server&gt;/&lt;port&gt;
-   /set irc.server.&lt;name&gt;.proxy &lt;proxy_name&gt;
-   /set irc.server.&lt;name&gt;.password &lt;znc channel password&gt;
-</pre>
-<ul class="org-ul">
-<li>&lt;proxy<sub>name</sub>&gt; は<a href="#orgf343338">proxy の設定</a>で追加した proxy の名前</li>
-<li>&lt;znc channel password&gt; は znc のチャンネル区別に使うパスワード</li>
-</ul>
-<p>
-といった感じ.
-</p>
-
-<p>
-他に設定しておくことがあれば
-</p>
-<pre class="example">
-   /server listfull
-</pre>
-<p>
-の結果を眺めてアレコレしておく.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgf3282f2" class="outline-2">
-<h2 id="orgf3282f2">カスタマイズ: 見た目編</h2>
-<div class="outline-text-2" id="text-orgf3282f2">
-<p>
-サーバ毎に別 buffer
-</p>
-<pre class="example">
-  /set irc.look.server_buffer independent
-</pre>
-<p>
-サーバ毎のチャンネルをインデント
-</p>
-<pre class="example">
-  /set buffers.look.indenting on
-</pre>
-<p>
-新しいチャンネルはサーバ buffer の一番最後に追加
-</p>
-<pre class="example">
-  /set irc.look.new_channel_position near_server
-</pre>
-<p>
-バッファリストは右側に
-</p>
-<pre class="example">
-  /set weechat.bar.buflist.position = right
-</pre>
-<p>
-新しい private message もサーバ buffer の一番最後に追加
-</p>
-<pre class="example">
-  /set irc.look.new_pv_position near_server
-</pre>
-<p>
-Windowを分割すると入力も散らばる→一つにまとめて最下部に。
-</p>
-<pre class="example">
-  /bar add rootinput root bottom 1 0 [buffer_name]+[input_prompt]+(away),[input_search],[input_paste],input_text
-  /bar del input
-</pre>
-<p>
-時刻表示のフォーマット
-</p>
-<pre class="example">
-  /set weechat.look.buffer_time_format "${15}%H${6}:${15}%M${6}:${15}%S"
-</pre>
-<p>
-prefix は左よせ
-</p>
-<pre class="example">
-  /set weechat.look.prefix_align left
-</pre>
-<p>
-prefix の最大値を 10 に制限&#x2026;もう少し増やした方が良いかな&#x2026;
-</p>
-<pre class="example">
-  /set weechat.look.prefix_align_max 10
-</pre>
-<p>
-nicklist を 15 に固定
-</p>
-<pre class="example">
-  /set weechat.bar.nicklist.size_max 15
-  /set weechat.bar.nicklist.size 15
-</pre>
-<p>
-buflist を 15 に固定
-</p>
-<pre class="example">
-  /set weechat.bar.buflist.size 15
-  /set weechat.bar.buflist.size_max 15
-</pre>
-<p>
-prompt
-</p>
-<pre class="example">
-  /set weechat.bar.rootinput.items "[input_prompt]+(away),[input_search],[input_paste],input_text"
-</pre>
-<p>
-status line
-</p>
-<pre class="example">
-  /set weechat.bar.status.items "[buffer_last_number],[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,[lag],[hotlist],completion,scroll"
-</pre>
-<p>
-レイアウトを自動的に保存
-</p>
-<pre class="example">
-  /set weechat.look.save_layout_on_exit all
-</pre>
-<p>
-マウスは使わない
-</p>
-<pre class="example">
-  /mouse disable
-</pre>
-<p>
-ハイライトするキーワードの追加
-</p>
-<pre class="example">
-  /set weechat.look.highlight "$nick,uwabami,ささき,佐々木"
-</pre>
-</div>
-</div>
-<div id="outline-container-org4a93c3a" class="outline-2">
-<h2 id="org4a93c3a">カスタマイズ: plugin</h2>
-<div class="outline-text-2" id="text-org4a93c3a">
-</div>
-<div id="outline-container-org2a0c7d2" class="outline-3">
-<h3 id="org2a0c7d2">log の無効化</h3>
-<div class="outline-text-3" id="text-org2a0c7d2">
-<p>
-log 取りは znc に任せているので、weechat でログを取る必要はない。
-というわけで、log plugin を無効化しておく(他にも色々切ってるけれど).
-読み込んでいるのは以下.
-</p>
-<pre class="example">
-   /set weechat.plugin.autoload "lua,ruby,python,perl,irc,script,alias,charset,buflist"
-</pre>
-</div>
-</div>
-<div id="outline-container-org2e5448d" class="outline-3">
-<h3 id="org2e5448d">script でインストールしたアレコレ</h3>
-<div class="outline-text-3" id="text-org2e5448d">
-<p>
-以前は weeget を使っていたが、/script でイロイロ拡張がインストールできる.
-今使っているのは以下
-</p>
-<pre class="example">
-   /script install go.py
-   /script install colorize_nicks.py
-   /script install colorize_line.pl
-   /script install buffer_autoset.py
-   /script install emoji_aliases.py
-</pre>
-<p>
-あとは <a href="https://github.com/tkengo/weechat-url-hinter">https://github.com/tkengo/weechat-url-hinter</a> の <code>open</code> を
-<code>xdg-open</code> に書き換えた版を <code>~/.weechat/ruby/</code> 以下に置いて使っている.
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org02b7f05" class="outline-2">
-<h2 id="org02b7f05">カスタマイズ: 色</h2>
-<div class="outline-text-2" id="text-org02b7f05">
-<p>
-これが地味に凝りだすと大変だったりする。
-使える色は <code>weechat --colors</code> で確認できる。
-</p>
-
-
-<figure>
-<img src="weechat/Weechat-colors.png" alt="Weechat-colors.png" class="img-responsive">
-
-</figure>
-
-<p>
-ハイライトの色: 黒背景に黄色の文字
-</p>
-<pre class="example">
-   /set weechat.color.chat_highlight 11
-   /set weechat.color.chat_highlight_bg 8
-</pre>
-<p>
-nick colors: 黒背景で、256色使う際に視認性が良さげな色を並べただけ。
-</p>
-<pre class="example">
-   /set weechat.color_chat_nicks "32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,110,111,112,113,114,115,116,117,118,119,120,121,122,123,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229"
-</pre>
-<p>
-title bar: 黒背景に黄色文字
-</p>
-<pre class="example">
-   /set weechat.bar.title.color_fg 11
-   /set weechat.bar.title.color_fg 8
-</pre>
-<p>
-status color: 黒背景に黄色文字
-</p>
-<pre class="example">
-  /set weechat.bar.status_color_bg 8
-</pre>
-<p>
-<code>go</code> plugin の色:
-</p>
-<pre class="example">
-  /set var.python.go.auto_jump = "off"
-  /set var.python.go.buffer_number = "on"
-  /set var.python.go.color_name = "white,default"
-  /set var.python.go.color_name_highlight = "lightred,default"
-  /set var.python.go.color_name_highlight_selected = "lightred,default"
-  /set var.python.go.color_name_selected = "white,default"
-  /set var.python.go.color_number = "lightgreen,default"
-  /set var.python.go.color_number_selected = "yellow,default"
-  /set var.python.go.fuzzy_search = "off"
-  /set var.python.go.message = "Go: "
-  /set var.python.go.short_name = "off"
-  /set var.python.go.sort = "number,beginning"
-  /set var.python.go.use_core_instead_weechat = "off"
-</pre>
-<p>
-buflist: 現在行の色
-</p>
-<pre class="example">
-  /set buflist.format.buffer_current "${color:,8}${format_buffer}"
-</pre>
-</div>
-</div>
-<div id="outline-container-orgdc94fda" class="outline-2">
-<h2 id="orgdc94fda">カスタマイズ: キーバインド</h2>
-<div class="outline-text-2" id="text-orgdc94fda">
-<p>
-<code>Ctrl-S</code>: nicklist の toggle
-</p>
-<pre class="example">
-  /key bind ctrl-S /bar toggle nicklist
-</pre>
-<p>
-<code>Ctrl-B</code>: buflist の toggle
-</p>
-<pre class="example">
-  /key bind ctrl-B /bar toggle buflist
-</pre>
-<p>
-<code>Ctrl-G</code>: /go
-</p>
-<pre class="example">
-  /key bind ctrl-G /go
-</pre>
-<p>
-alias: <code>/b</code>
-</p>
-<pre class="example">
-  /set alias.cmd.b = "/buffer"
-</pre>
-<p>
-alias: <code>/bl</code>
-</p>
-<pre class="example">
-  /set alias.cmd.bl = "msg *backlog $channel $1"
-</pre>
-<p>
-alias: <code>/znc</code>
-</p>
-<pre class="example">
-  /set alias.cmd.znc = "/quote znc"
-</pre>
-</div>
-</div>
-<div id="outline-container-orgf600f6f" class="outline-2">
-<h2 id="orgf600f6f">参考文献</h2>
-<div class="outline-text-2" id="text-orgf600f6f">
-<ul class="org-ul">
-<li>WeeChat ユーザーズガイド: <a href="https://weechat.org/files/doc/devel/weechat_user.ja.html">https://weechat.org/files/doc/devel/weechat_user.ja.html</a></li>
-</ul>
-</div>
-</div>
 
           </div>
           <a href="#page-top" class="pagetop btn top-btn">Top</a>
@@ -466,7 +294,7 @@ alias: <code>/znc</code>
           
           &copy; 2006 - 2018
           <a href="mailto:uwabami@gfd-dennou.org"></a>,
-          Lastupdate: 2018-02-17 18:21:23 +0000
+          Lastupdate: 2018-10-16 19:46:51
           <br />
           <span class="generator"> Powered by
             <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>

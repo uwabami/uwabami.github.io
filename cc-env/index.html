@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Computer Memorandum</title>
-<meta name="description" content="Youhei SASAKI's official site. My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+<meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
 <link rel="stylesheet" href="/css/main.css" >
-<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" >
 <link rel="canonical" href="/cc-env/">
 
 <link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
@@ -84,97 +83,51 @@
 
           </div>
           <div class="col-xs-12">
-            <div id="toc-wrapper">
-<nav id="table-of-contents">
-<h2>&#30446;&#27425;</h2>
-<div id="text-table-of-contents">
+            <p>Related <a href="wiki:index">Index</a> <a href="wiki:Emacs">Emacs</a> <a href="wiki:Debian">Debian</a></p>
+<h2><a id="計算機関連のメモ書き"><span class='anchor'>_</span></a>計算機関連のメモ書き</h2>
+<p>自分の計算機環境を整えた時の log を気が向いた時に書いています.
+  自分が分かれば良いと思っているので, あまりまとまってないし整ってもいません.
+  さらに, 思いついた時に適当に書き散らしていますんで,
+  文書の形式(というか文体?)は全く揃っていません. 書きかけの文書もあります.
+  ですから, 無責任, 無保証ですので, この文書によって生じたいかなる
+  不利益, 損害についての責任も取れません, 取りません. 御容赦下さい.</p>
+  <div class="alert alert-danger">
+<p><strong>現在再構築中です</strong></p>
+  </div>
+<h2><a id="Debian 関連"><span class='anchor'>_</span></a>Debian 関連</h2>
+<p>Debian 一般に関する話は</p>
 <ul>
-<li><a href="#org102467e">計算機関連のメモ書き</a></li>
-<li><a href="#orge64ab87">Debian 関連</a></li>
-<li><a href="#org5164211">Emacs 関連</a></li>
-<li><a href="#org3141d96">このサイトができるまで。</a></li>
+  <li>本家: 『<a href="http://www.debian.org/index.ja.html">Debian &#8211; ユニバーサルオペレーティングシステム</a>』</li>
+  <li>Debian JP Project: 『<a href="http://www.debian.or.jp/">Debian JP Project</a>』</li>
+  <li>Debian 勉強会: 『<a href="http://tokyodebian.alioth.debian.org/">東京エリアDebian勉強会</a>』</li>
 </ul>
-</div>
-</nav>
-</div>
-<a href="#toc-toggle" class="btn toc-btn" id="toc-toggle">&#30446;&#27425;</a>
-<p>
-Related <a href='index.html'>Index</a> <a href='Emacs.html'>Emacs</a> <a href="#orge64ab87">Debian</a>
-</p>
+<p>にある文書を参考に. 特に勉強会の文書は宝の山です.</p>
+<ul>
+  <li><a href="wiki:DebianInstall">Debian の Install</a></li>
+  <li><a href="wiki:DebianConfigure">Debian: Install 直後の雑多な設定</a>: 細かい事柄はココに.中身が増えたら分ける予定</li>
+  <li><a href="wiki:DebianMail">Mail 環境の設定</a></li>
+  <li><a href="wiki:Terminal">Terminal生活</a></li>
+  <li>Desktop環境: <a href="wiki:Debiani3">i3の設定</a></li>
+  <li><a href="wiki:weechat">weechatの設定</a></li>
+  <li><a href="wiki:DebianSquid">Squidで広告避け</a></li>
+  <li><a href="wiki:DebianPackaging">パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest</a></li>
+  <li><a href="wiki:DebianTeX">TeX環境</a></li>
+</ul>
+<h2><a id="Emacs 関連"><span class='anchor'>_</span></a>Emacs 関連</h2>
+<p>以前は使っているパッケージ毎に設定を分けていましたが
+  最近は Org で書かれた単一ファイルに設定を集約しています．</p>
+<ul>
+  <li><a href="wiki:Emacs">Emacs</a>: 全体の設定等</li>
+  <li><a href="id:1621568c-82d3-455a-8a12-5b356ba79e89">主にEmacs本体に同梱されている拡張に関する設定</a></li>
+  <li><a href="id:544e8091-614a-4784-a889-78651a923d6c">MUA の設定: =wanderlust=</a></li>
+</ul>
+<h2><a id="このサイトができるまで。"><span class='anchor'>_</span></a>このサイトができるまで。</h2>
+<p>このサイトは、記事を Emacs の <a href="http://orgmode.org/">Org-mode</a> で書いて、
+  <a href="http://jekyllrb.com/">Jekyll</a> で HTML に変換しています。</p>
+<ul>
+  <li><a href="wiki:OrgtoJekyll">org ファイルを jekyll で処理する</a></li>
+</ul>
 
-<div id="outline-container-org102467e" class="outline-2">
-<h2 id="org102467e">計算機関連のメモ書き</h2>
-<div class="outline-text-2" id="text-org102467e">
-<p>
-自分の計算機環境を整えた時の log を気が向いた時に書いています.
-自分が分かれば良いと思っているので, あまりまとまってないし整ってもいません.
-さらに, 思いついた時に適当に書き散らしていますんで,
-文書の形式(というか文体?)は全く揃っていません. 書きかけの文書もあります.
-ですから, 無責任, 無保証ですので, この文書によって生じたいかなる
-不利益, 損害についての責任も取れません, 取りません. 御容赦下さい.
-</p>
-
-<div class="alert alert-danger">
-<p>
-<strong>現在再構築中です</strong>
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orge64ab87" class="outline-2">
-<h2 id="orge64ab87"><a id="ID-591f6b0d-55ff-48eb-b095-401cdfa0d536"></a>Debian 関連</h2>
-<div class="outline-text-2" id="text-orge64ab87">
-<p>
-Debian 一般に関する話は
-</p>
-<ul class="org-ul">
-<li>本家: 『<a href="http://www.debian.org/index.ja.html">Debian &#x2013; ユニバーサルオペレーティングシステム</a>』</li>
-<li>Debian JP Project: 『<a href="http://www.debian.or.jp/">Debian JP Project</a>』</li>
-<li>Debian 勉強会: 『<a href="http://tokyodebian.alioth.debian.org/">東京エリアDebian勉強会</a>』</li>
-</ul>
-<p>
-にある文書を参考に. 特に勉強会の文書は宝の山です.
-</p>
-<ul class="org-ul">
-<li><a href='DebianInstall.html'>Debian の Install</a></li>
-<li><a href='DebianConfigure.html'>Debian: Install 直後の雑多な設定</a>: 細かい事柄はココに.中身が増えたら分ける予定</li>
-<li><a href='DebianMail.html'>Mail 環境の設定</a></li>
-<li><a href='Terminal.html'>Terminal生活</a></li>
-<li>Desktop環境: <a href='Debiani3.html'>i3の設定</a></li>
-<li><a href='weechat.html'>weechatの設定</a></li>
-<li><a href='DebianSquid.html'>Squidで広告避け</a></li>
-<li><a href='DebianPackaging.html'>パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest</a></li>
-<li><a href='DebianTeX.html'>TeX環境</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org5164211" class="outline-2">
-<h2 id="org5164211">Emacs 関連</h2>
-<div class="outline-text-2" id="text-org5164211">
-<p>
-以前は使っているパッケージ毎に設定を分けていましたが
-最近は Org で書かれた単一ファイルに設定を集約しています．
-</p>
-<ul class="org-ul">
-<li><a href='Emacs.html'>Emacs</a>: 全体の設定等</li>
-<li><a href="Emacs.html#ID-1621568c-82d3-455a-8a12-5b356ba79e89">主にEmacs本体に同梱されている拡張に関する設定</a></li>
-<li><a href="Emacs.html#ID-544e8091-614a-4784-a889-78651a923d6c">MUA の設定: <code>wanderlust</code></a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org3141d96" class="outline-2">
-<h2 id="org3141d96">このサイトができるまで。</h2>
-<div class="outline-text-2" id="text-org3141d96">
-<p>
-このサイトは、記事を Emacs の <a href="http://orgmode.org/">Org-mode</a> で書いて、
-<a href="http://jekyllrb.com/">Jekyll</a> で HTML に変換しています。
-</p>
-<ul class="org-ul">
-<li><a href='OrgtoJekyll.html'>org ファイルを jekyll で処理する</a></li>
-</ul>
-</div>
-</div>
 
           </div>
           <a href="#page-top" class="pagetop btn top-btn">Top</a>
@@ -189,7 +142,7 @@ Debian 一般に関する話は
           
           &copy; 2006 - 2018
           <a href="mailto:uwabami@gfd-dennou.org"></a>,
-          Lastupdate: 2018-03-28 20:14:38 +0000
+          Lastupdate: 2018-10-16 19:57:30
           <br />
           <span class="generator"> Powered by
             <a href="http://orgmode.org/" target="_blank" title="Org-mode">Org-mode</a>
