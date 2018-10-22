@@ -157,32 +157,6 @@
   
     
       <url>
-        <loc>/research/index.en.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/software/rdtool/index.en.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
         <loc>/software/tdiary-style-org/index.en.html</loc>
         
         
@@ -222,6 +196,19 @@
   
     
       <url>
+        <loc>/software/rdtool/index.en.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
         <loc>/software/index.en.html</loc>
         
         
@@ -235,31 +222,7 @@
   
     
       <url>
-        <loc>/index.en.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/cc-env/index.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/research/index.html</loc>
+        <loc>/research/index.en.html</loc>
         
         
         <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
@@ -272,12 +235,12 @@
   
     
       <url>
-        <loc>/software/rdtool/index.html</loc>
+        <loc>/index.en.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="/" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -324,12 +287,49 @@
   
     
       <url>
+        <loc>/software/rdtool/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
         <loc>/software/index.html</loc>
         
         
         <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
         
         <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/cc-env/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>/research/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -381,25 +381,19 @@
         
         <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
         
-        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
-        
         <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
         
         <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
         
         <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
         
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        
         <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
         
+        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
+        
         <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
         
         <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
         
@@ -407,7 +401,13 @@
         
         <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
         
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        
         <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
         
         <xhtml:link rel="alternate" hreflang="ja" href="/" />
         
@@ -454,25 +454,19 @@
         
         <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
         
-        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
-        
         <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
         
         <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
         
         <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
         
+        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        
         <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
         
+        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
+        
         <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
         
         <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
         
@@ -480,7 +474,13 @@
         
         <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
         
+        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        
         <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
         
         <xhtml:link rel="alternate" hreflang="ja" href="/" />
         
