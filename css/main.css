@@ -1179,7 +1179,7 @@
       color: #ffffff;
       border-style: none; }
     .navbar amp-accordion ul.dropdown-items li {
-      color: #000000;
+      color: #ffffff;
       width: 13rem;
       margin: .5rem; }
 
@@ -1224,7 +1224,8 @@ strong {
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1); }
 
 h1 {
-  font-weight: normal; }
+  font-weight: normal;
+  padding-right: 0.5rem; }
 
 h2 {
   border-bottom: 1px solid #5af;
