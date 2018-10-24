@@ -1198,13 +1198,11 @@ footer {
       color: #ccc; }
 
 body {
+  font-family: sans-serif;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAFXRFWHRDcmVhdGlvbiBUaW1lAAfbBhwTDDqAejMsAAAAB3RJTUUH2wYeEi8EgXgYKgAAAAlwSFlzAAAOdAAADnQBaySz1gAAABxJREFUeNpj/PLxFwNuwALEbJw4pZkY8IJhKw0AlAcDBIeyUC8AAAAASUVORK5CYII=); }
 
 span.anchor {
   display: none; }
-
-main {
-  line-height: 1.5; }
 
 dd {
   margin-left: .5rem; }
@@ -1216,7 +1214,10 @@ strong {
 
 #gpgkey {
   font-size: 85%;
-  background: white; }
+  font-family: monospace;
+  border: 1px solid #b4bcc2;
+  border-radius: 5px;
+  padding: 0.5rem; }
 
 .helo-unit {
   background-color: #f2f2f2;
@@ -1225,7 +1226,7 @@ strong {
 
 h1 {
   font-weight: normal;
-  padding-right: 0.5rem; }
+  padding-left: 0.5rem; }
 
 h2 {
   border-bottom: 1px solid #5af;
@@ -1244,7 +1245,7 @@ h3 {
 
   h1 {
     padding-top: 2rem;
-    font-size: 1.5rem; }
+    font-size: 1.25rem; }
 
   header {
     padding-left: 1rem;
@@ -1258,7 +1259,7 @@ h3 {
 
   h1 {
     padding-top: 2rem;
-    font-size: 1.5rem; }
+    font-size: 1.25rem; }
 
   header {
     padding-left: 1rem;
@@ -1291,7 +1292,7 @@ h3 {
     padding-left: 4rem;
     padding-right: 4rem; } }
 .bg-white {
-  background-color: #fff; }
+  background-color: #ffffff; }
 
 a, a:active, a:visited, a:hover {
   color: #18bc9c;
@@ -1320,3 +1321,13 @@ a:hover {
 
 .icon-mastodon {
   color: #3B5998; }
+
+amp-gist {
+  margin: 1rem; }
+
+*[id]:before {
+  display: block;
+  content: " ";
+  margin-top: -100px;
+  height: 100px;
+  visibility: hidden; }

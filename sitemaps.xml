@@ -135,17 +135,6 @@
   
     
       <url>
-        <loc>/cc-env/OrgtoJekyll.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/OrgtoJekyll.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
         <loc>/cc-env/Terminal.html</loc>
         
         
@@ -377,8 +366,6 @@
         
         <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/JekyllandOrg.html" />
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/OrgtoJekyll.html" />
-        
         <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
         
         <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
@@ -449,8 +436,6 @@
         <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Emacs.html" />
         
         <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/JekyllandOrg.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/OrgtoJekyll.html" />
         
         <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
         
