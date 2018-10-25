@@ -14,8 +14,8 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": "/cc-env/Debiani3.html",
       "headline": "i3 の設定",
-      "datePublished": "2018-10-24T21:00:33+09:00",
-      "dateModified": "2018-10-24T21:00:33+09:00",
+      "datePublished": "2018-10-25T13:42:33+09:00",
+      "dateModified": "2018-10-25T13:42:33+09:00",
       "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
       "author": {
         "@type": "Person",
@@ -300,6 +300,29 @@ bindsym $Alt+Tab exec $i3t_alt_tab
   公式 Web の <code>This site is currently looking for a maintainer.</code> が怖いけれど.</p>
 <p>設定ファイルは <code>~/.config/rofi/config</code> か <code>~/.Xresources</code> で行なう.
   今はこんな塩梅:</p>
+<div class="highlight"><pre><span></span>! -*- mode:conf-xdefaults; coding: utf-8 -*-
+!! Rofi
+rofi.modi: run,window,,windowcd,drun,ssh
+rofi.combi-modi: windowcd,drun
+rofi.lines: 6
+rofi.font: Cica 24
+rofi.bw: 2
+rofi.location: 0
+rofi.padding: 5
+rofi.sidebar-mode: true
+rofi.hide-scrollbar: true
+rofi.fixed-num-lines: true
+rofi.kb-row-up: Up,Control+p,Shift+Tab,Alt+Tab
+rofi.kb-row-down: Down,Control+n
+rofi.kb-cancel: Escape,Control+g,Control+bracketleft,Control+c
+rofi.kb-mode-next: Shift+Right,Control+i,Control+Tab
+rofi.kb-mode-previous: Shift+Left,Control+Shift+i
+rofi.color-enabled: true
+rofi.color-window: #3a4c54, #2a373e, #c3c6c8
+rofi.color-normal: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
+rofi.color-active: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
+rofi.color-urgent: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3
+</pre></div>
 <p>i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:</p>
 <div class="highlight"><pre><span></span>bindsym $Alt+F2 $execi sh -c &quot;rofi -show combi&quot;
 bindsym $Alt+Shift+Tab $execi sh -c &quot;rofi -show window&quot;
@@ -307,7 +330,55 @@ bindsym $Alt+Shift+Tab $execi sh -c &quot;rofi -show window&quot;
 <h3><a id="i3bar"><span class='anchor'>_</span></a>i3bar</h3>
 <p>conky で情報を更新/整形して出力している.
   conky の設定は以下: <code>~/.config/i3/i3bar-conkyrc</code></p>
+<div class="highlight"><pre><span></span><span class="c1">-- -*- mode: lua; coding: utf-8 -*-</span>
+<span class="n">conky</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span><span class="p">&#123;</span>
+   <span class="n">background</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+   <span class="n">out_to_console</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+   <span class="n">max_text_width</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="n">update_interval</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+   <span class="n">total_run_times</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="n">use_spacer</span> <span class="o">=</span> <span class="n">left</span><span class="p">,</span>
+   <span class="n">net_avg_samples</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="n">cpu_avg_samples</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="c1">-- output</span>
+<span class="n">conky</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">[[</span>
+<span class="s"># JSON for i3bar</span>
+<span class="s">[</span>
+<span class="s">  &#123; &quot;full_text&quot; : &quot; $&#123;cpu cpu0}%&quot;, &quot;color&quot; : &quot;\#ff4c4c&quot;, &quot;min_width&quot; : 90, &quot;max_width&quot; : 90 , &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  &#123; &quot;full_text&quot; : &quot; $&#123;cpu cpu1}%&quot;, &quot;color&quot; : &quot;\#ff4c4c&quot;, &quot;min_width&quot; : 90, &quot;max_width&quot; : 90 , &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  &#123; &quot;full_text&quot; : &quot; $&#123;cpu cpu2}%&quot;, &quot;color&quot; : &quot;\#ff4c4c&quot;, &quot;min_width&quot; : 90, &quot;max_width&quot; : 90 , &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  &#123; &quot;full_text&quot; : &quot; $&#123;cpu cpu3}%&quot;, &quot;color&quot; : &quot;\#ff4c4c&quot;, &quot;min_width&quot; : 90, &quot;max_width&quot; : 90 , &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  &#123; &quot;full_text&quot; : &quot; $&#123;memperc}%&quot;,  &quot;color&quot; : &quot;\#4c4cff&quot;, &quot;min_width&quot; : 90, &quot;max_width&quot; : 90 , &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  $&#123;if_existing /proc/net/route bnep0}</span>
+<span class="s">  &#123; &quot;full_text&quot;: &quot; $&#123;addr bnep0}&quot;, &quot;color&quot;: &quot;\#f6f3e8&quot;, &quot;min_width&quot; : 220, &quot;max_width&quot; : 220, &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  $&#123;else}$&#123;if_existing /proc/net/route ppp0}</span>
+<span class="s">  &#123; &quot;full_text&quot;: &quot;  $&#123;addr ppp0}&quot;, &quot;color&quot;: &quot;\#f6f3e8&quot;, &quot;min_width&quot; : 220, &quot;max_width&quot; : 220, &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  $&#123;else}$&#123;if_existing /proc/net/route wlp2s0}</span>
+<span class="s">  &#123; &quot;full_text&quot;: &quot; $&#123;addr wlp2s0}&quot;, &quot;color&quot;: &quot;\#f6f3e8&quot;, &quot;min_width&quot; : 220, &quot;max_width&quot; : 220, &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  $&#123;else}$&#123;if_existing /proc/net/route enp0s31f6}</span>
+<span class="s">  &#123; &quot;full_text&quot;: &quot; $&#123;addr enp0s31f6}&quot;, &quot;color&quot;: &quot;\#f6f3e8&quot;, &quot;min_width&quot; : 220, &quot;max_width&quot; : 220, &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  $&#123;else}</span>
+<span class="s">  &#123; &quot;full_text&quot;: &quot; down&quot;, &quot;color&quot;: &quot;\#f6f3e8&quot;, &quot;min_width&quot; : 220, &quot;max_width&quot; : 220, &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  $&#123;endif}$&#123;endif}$&#123;endif}$&#123;endif}</span>
+<span class="s">  &#123; &quot;full_text&quot;: &quot; $&#123;time %Y/%m/%d(%a)}&quot;, &quot;min_width&quot; : 150, &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  &#123; &quot;full_text&quot;: &quot; $&#123;time %H:%M:%S}&quot;, &quot;min_width&quot; : 130, &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  },</span>
+<span class="s">  $&#123;if_match &quot;$&#123;acpiacadapter}&quot; == &quot;on-line&quot; }</span>
+<span class="s">  &#123; &quot;full_text&quot;: &quot; $&#123;battery_percent BAT1}%&quot;, &quot;color&quot;: &quot;\#FFBF7F&quot;, &quot;min_width&quot; : 90, &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false }</span>
+<span class="s">  $&#123;else}</span>
+<span class="s">  &#123; &quot;full_text&quot;: &quot; $&#123;battery_percent BAT1}%&quot;, &quot;color&quot;: &quot;\#ffff4c&quot;, &quot;min_width&quot; : 90, &quot;align&quot;: &quot;left&quot;, &quot;separator&quot;: false  }</span>
+<span class="s">  $&#123;endif}</span>
+<span class="s">],</span>
+<span class="s">]]</span>
+</pre></div>
 <p>呼び出しは <code>run-conky.sh</code> で:</p>
+<div class="highlight"><pre><span></span><span class="ch">#! /bin/sh</span>
+
+<span class="nb">echo</span> <span class="s1">&#39;&#123;&quot;version&quot;:1}&#39;</span>
+<span class="nb">echo</span> <span class="s1">&#39;[[],&#39;</span>
+<span class="nb">exec</span> conky -c <span class="nv">$HOME</span>/.config/i3/i3bar-conkyrc
+</pre></div>
 <p>status ラインは以下の通り</p>
 <div class="highlight"><pre><span></span># status bar
 bar &#123;
@@ -331,11 +402,190 @@ bar &#123;
 <h3><a id="screen lock: i3lock の設定"><span class='anchor'>_</span></a>screen lock: i3lock の設定</h3>
 <p>suspend → resume した時に i3lock を走らせたいので
   <code>/etc/systemd/system/i3lock.service</code>:</p>
+<div class="highlight"><pre><span></span>[Unit]
+Description=Starts i3lock at suspend time
+After=sleep.target
+
+[Service]
+User=uwabami
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3lock -p win -c 444444
+
+[Install]
+WantedBy=sleep.target
+</pre></div>
 <p>を作成して有効にしておく.
   本当は <code>~/.config/systemd/user</code> で設定したいのだけれど,
   権限が無いのか上手くいかない. polkit を適宜設定すれば良いのかもしれないけれど.</p>
 <h2><a id="i3 の設定ファイル"><span class='anchor'>_</span></a>i3 の設定ファイル</h2>
 <p>設定ファイル全体は以下の通り</p>
+<div class="highlight"><pre><span></span>#-*- mode:conf-space ; coding: utf-8 -*-
+# macro
+set $mod Mod4
+set $Alt Mod1
+set $execi exec --no-startup-id
+# set $execa exec_always
+# set $execai exec_always --no-startup-id
+
+# font
+font xft:Cica 16.5
+
+# startup
+# $execi /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &amp;
+# $execi gnome-keyring-daemon --start --components=pkcs11,secrets,gpg &amp;
+$execi /usr/lib/gnome-settings-daemon/gsd-xsettings --gtk-no-debug=all --gdk-no-debug=all &amp;
+$execi $(sleep 5 &amp;  feh --bg-scale $HOME/Pictures/desktop.png --no-fehbg )
+$execi xrdb -merge $HOME/.Xresources
+$execi compton
+$execi nm-applet
+$execi blueman-applet
+# $execi udiskie
+# $execi uim-toolbar-gtk-systray
+$execi QT_SCALE_FACTOR=1.5 owncloud
+$execi dropbox start -i
+$execi /usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon
+
+
+# screensaver and power management
+$execi xset -dpms   # disable DPMS
+$execi xset s off   # disable auto screensaver
+# bindsym $mod+Shift+l $execi sh -c &quot;i3lock -n -c 242424&quot;
+
+# start a terminal: rxvt-unicide daemon mode
+bindsym Control+Shift+n exec urxvtcd
+# start launcher: rofi @see ~/.Xresources
+bindsym $Alt+F2 $execi sh -c &quot;rofi -show run&quot;
+
+# change focus
+bindsym $Alt+Tab $execi sh -c &quot;rofi -show windowcd&quot;
+
+# change focus
+
+bindsym $mod+j focus left
+bindsym $mod+Control+Left focus left
+bindsym $mod+k focus right
+bindsym $mod+Control+Down focus down
+bindsym $mod+l focus down
+bindsym $mod+Control+Right focus right
+bindsym $mod+Control+Up focus Up
+
+# set $i3t_alt_tab ~/.config/i3/i3t.py n
+# bindsym $Alt+Tab exec $i3t_alt_tab 2&gt;&amp;1 1&gt;/dev/null
+
+# kill focused window
+bindsym $Alt+F4 kill
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# move focused window
+bindsym $mod+Left move left
+bindsym $mod+Down move down
+bindsym $mod+Up move up
+bindsym $mod+Right move right
+
+# enter fullscreen mode for the focused container
+bindsym $Alt+Return fullscreen toggle
+
+# change container layout (tabbed, stacked, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+t layout toggle split
+workspace_layout tabbed
+
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+bindsym $mod+d focus child
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode &quot;resize&quot;
+mode &quot;resize&quot; &#123;
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        # back to normal: Enter or Escape
+        bindsym Return mode &quot;default&quot;
+        bindsym Escape mode &quot;default&quot;
+}
+
+# switch to workspace
+bindsym $Alt+1 workspace 1
+bindsym $Alt+2 workspace 2
+bindsym $Alt+3 workspace 3
+bindsym $Alt+4 workspace 4
+bindsym $Alt+5 workspace 5
+bindsym $Alt+6 workspace 6
+
+# move focused container to workspace
+bindsym $Alt+Shift+1 move container to workspace 1
+bindsym $Alt+Shift+2 move container to workspace 2
+bindsym $Alt+Shift+3 move container to workspace 3
+bindsym $Alt+Shift+4 move container to workspace 4
+bindsym $Alt+Shift+5 move container to workspace 5
+bindsym $Alt+Shift+6 move container to workspace 6
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+# exit
+# bindsym $mod+Shift+e exec i3-msg exit
+
+# media key
+bindsym XF86AudioRaiseVolume $execi pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume $execi pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute $execi pactl set-sink-mute 0 toggle
+bindsym XF86MonBrightnessUp $execi /usr/local/sbin/xbacklight -inc
+bindsym XF86MonBrightnessDown $execi /usr/local/sbin/xbacklight -dec
+
+# status bar
+bar &#123;
+    position    top
+    tray_output eDP-1
+    tray_padding 2
+    font xft:Cica 16.5
+    status_command $HOME/.config/i3/run-conky.sh
+    colors &#123;
+      background #242424
+      statusline #F6F3E8
+      separator  #111822
+      focused_workspace  #111822 #222244 #F6F3E8
+      active_workspace   #555555 #555555 #F6F3E8
+      inactive_workspace #020202 #242424 #888888
+      urgent_workspace   #A00000 #900000 #F6F3E8
+      binding_mode       #A00000 #900000 #f6f3e8
+    }
+}
+
+# class                 border  bground text    indicator child_border
+client.focused          #111822 #22224A #F6F3E8 #2B2B2B   #2B2B2B
+client.focused_inactive #020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
+client.unfocused        #020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
+client.urgent           #A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+# specific window settings
+for_window [window_role=&quot;pop-up&quot;] floating enable
+for_window [window_role=&quot;task_dialog&quot;] floating enable
+for_window [class=&quot;(?i)ekiga&quot;] floating enable
+for_window [class=&quot;(?i)feh&quot;] floating enable
+for_window [class=&quot;(?i)vlc&quot;] floating enable
+for_window [class=&quot;(?i)firefox&quot;] floating enable
+
+# startup
+assign [class=&quot;(?i)zathura&quot; ] 2
+assign [class=&quot;(?i)evince&quot; ] 2
+assign [class=&quot;(?i)eclipse&quot; ] 3
+assign [class=&quot;(?i)Apache Directory Studio&quot; ] 3
+# assign [class=&quot;(?i)rabbit&quot; ] 3
+# assign [class=&quot;(?i)Zotero&quot;] 3
+assign [class=&quot;(?i)firefox&quot;] 4
+assign [class=&quot;(?i)chromium&quot;] 4
+</pre></div>
 
 
       </div>
@@ -345,7 +595,7 @@ bar &#123;
     
     &copy; 2006 - 2018
     <a href="mailto:uwabami@gfd-dennou.org"></a>,
-    Lastupdate: 2018-10-24 21:00:33
+    Lastupdate: 2018-10-25 13:42:33
     <br/>
     Powered by
     <a href="http://orgmode.org/" target="_blank" title="Org mode">

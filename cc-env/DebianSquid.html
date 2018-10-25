@@ -14,8 +14,8 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": "/cc-env/DebianSquid.html",
       "headline": "Squid で広告避け",
-      "datePublished": "2018-10-24T21:03:07+09:00",
-      "dateModified": "2018-10-24T21:03:07+09:00",
+      "datePublished": "2018-10-25T13:25:13+09:00",
+      "dateModified": "2018-10-25T13:25:13+09:00",
       "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
       "author": {
         "@type": "Person",
@@ -229,11 +229,11 @@
 <p>それに加えて</p>
 <ul>
   <li>そういえば squid って hosts ファイル読めたよね</li>
-  <li>職場のプロキシが透過プロキシになってる</li>
 </ul>
 <p>ということで, これは広告避けにつかえるな, ということに.</p>
 <p>Web 広告については, まあ, いろんな意見があって良いと思います.
-  邪魔にならない広告ならまあ良いんですけれど，</p>
+  サービスの収益化は必要でしょうし,
+  邪魔にならない広告ならまあ良いんですけれど&#8230;</p>
 <ul>
   <li>Flash とか mp4 で動画バリバリ</li>
   <li>閲覧中にポップアップ</li>
@@ -391,13 +391,19 @@ rm -f tmp-white.txt
 <span class="c1"># reply_header_access CONNECTION deny all</span>
 <span class="n">reply_header_access</span> <span class="no">UPGRADE</span><span class="o">-</span><span class="no">INSECURE</span><span class="o">-</span><span class="no">REQUESTS</span> <span class="n">deny</span> <span class="n">all</span>
 <span class="n">reply_header_access</span> <span class="no">DNT</span> <span class="n">deny</span> <span class="n">all</span>
+
+
 <span class="c1">## fast</span>
 <span class="n">pipeline_prefetch</span> <span class="mi">0</span>
 <span class="n">shutdown_lifetime</span> <span class="mi">0</span><span class="o">.</span><span class="mo">01</span> <span class="n">seconds</span>
 </pre></div>
 <h3><a id="=/etc/squid/squid.conf="><span class='anchor'>_</span></a><code>/etc/squid/squid.conf</code></h3>
 <p>中身は現状これだけ</p>
-<div class="highlight"><pre><span></span><span class="kp">include</span> <span class="sr">/etc/s</span><span class="n">quid</span><span class="o">/</span><span class="n">common</span><span class="o">.</span><span class="n">conf</span>
+<div class="highlight"><pre><span></span><span class="c1">## include common rules</span>
+<span class="c1">#</span>
+<span class="c1"># common rules</span>
+<span class="c1">#</span>
+<span class="kp">include</span> <span class="sr">/etc/s</span><span class="n">quid</span><span class="o">/</span><span class="n">common</span><span class="o">.</span><span class="n">conf</span>
 <span class="n">always_direct</span> <span class="n">allow</span> <span class="n">local</span>
 </pre></div>
 <p>もはや分割する意味が無い, とも言える.</p>
@@ -411,8 +417,6 @@ rm -f tmp-white.txt
 
 <span class="o">[</span><span class="no">Service</span><span class="o">]</span>
 <span class="no">LimitNOFILE</span><span class="o">=</span><span class="mi">4096</span>
-<span class="c1"># Type=forking</span>
-<span class="c1"># PIDFile=/var/run/squid.pid</span>
 <span class="no">ExecStartPre</span><span class="o">=</span><span class="sr">/usr/s</span><span class="n">bin</span><span class="o">/</span><span class="n">squid</span> <span class="o">-</span><span class="n">z</span> <span class="o">-</span><span class="n">f</span> <span class="sr">/etc/s</span><span class="n">quid</span><span class="o">/</span><span class="n">squid</span><span class="o">.</span><span class="n">conf</span>
 <span class="no">ExecStart</span><span class="o">=</span><span class="sr">/usr/s</span><span class="n">bin</span><span class="o">/</span><span class="n">squid</span> <span class="o">-</span><span class="n">Y</span> <span class="o">-</span><span class="n">C</span> <span class="o">-</span><span class="n">N</span> <span class="o">-</span><span class="n">f</span> <span class="sr">/etc/s</span><span class="n">quid</span><span class="o">/</span><span class="n">squid</span><span class="o">.</span><span class="n">conf</span>
 <span class="no">ExecReload</span><span class="o">=</span><span class="sr">/usr/s</span><span class="n">bin</span><span class="o">/</span><span class="n">squid</span> <span class="o">-</span><span class="n">Y</span> <span class="o">-</span><span class="n">C</span> <span class="o">-</span><span class="n">N</span> <span class="o">-</span><span class="n">f</span> <span class="sr">/etc/s</span><span class="n">quid</span><span class="o">/</span><span class="n">squid</span><span class="o">.</span><span class="n">conf</span> <span class="o">-</span><span class="n">k</span> <span class="n">reconfigure</span>
@@ -428,7 +432,7 @@ rm -f tmp-white.txt
 % sudo systemctl enable squid
 % sudo systemctl start squid
 </pre>
-<p>で快適. 適宜 <code>HTTP_PROXY</code> 等を設定しておくと良いだろう.</p>
+<p>で快適. 適宜 <code>HTTP_PROXY</code> 等を設定しておく.</p>
 
 
       </div>
@@ -438,7 +442,7 @@ rm -f tmp-white.txt
     
     &copy; 2006 - 2018
     <a href="mailto:uwabami@gfd-dennou.org"></a>,
-    Lastupdate: 2018-10-24 21:03:07
+    Lastupdate: 2018-10-25 13:25:13
     <br/>
     Powered by
     <a href="http://orgmode.org/" target="_blank" title="Org mode">

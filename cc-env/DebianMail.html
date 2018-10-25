@@ -275,6 +275,14 @@ $ sudo -s
   Gmail のメールサーバは <code>Reply-To</code> を上書きしたりして行儀が良くない.</p>
 <p>msmtp 自体の設定はいたって普通だが, queue が面倒?
   結局 Emacs からは <code>sendmail</code> として</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$*</span><span class="s2">&quot;</span>
+msmtp-enqueue.sh <span class="nv">$ARGS</span> <span class="m">1</span>&gt;/dev/null
+<span class="k">if</span> <span class="o">[</span> x<span class="s2">&quot;</span><span class="k">$(</span><span class="nv">LANG</span><span class="o">=</span>C nmcli n connectivity<span class="k">)</span><span class="s2">&quot;</span> <span class="o">=</span> x<span class="s2">&quot;full&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    msmtp-runqueue.sh <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="m">1</span>&gt;/dev/null
+<span class="k">fi</span>
+<span class="nb">exit</span> <span class="m">0</span>
+</pre></div>
 <p>を叩くことで, ネットワーク接続がある場合には即座に送信,
   無い場合には queuing, という風に動作を切り替えている.</p>
 <p>あとは NetworkManager の dispatcher として msmtp-runqueue を走らせれば良い.</p>

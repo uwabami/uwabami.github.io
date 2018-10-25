@@ -14,8 +14,8 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": "/cc-env/Emacs.html",
       "headline": "Emacs の設定",
-      "datePublished": "2018-10-23T21:44:00+09:00",
-      "dateModified": "2018-10-23T21:44:00+09:00",
+      "datePublished": "2018-10-25T13:52:07+09:00",
+      "dateModified": "2018-10-25T13:52:07+09:00",
       "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
       "author": {
         "@type": "Person",
@@ -300,8 +300,7 @@
 <span class="p">(</span><span class="nf">package-install</span> <span class="nv">pkg-install</span><span class="p">)</span>
 </pre></div>
 <p>batch でのインストールは例えば</p>
-<div class="highlight"><pre><span></span><span class="nf">batch</span><span class="o">:</span> <span class="n">init</span>.<span class="n">el</span>
-	<span class="k">$(</span>EMACS<span class="k">)</span> -q --batch --eval <span class="se">\</span>
+<div class="highlight"><pre><span></span>	<span class="k">$(</span>EMACS<span class="k">)</span> -q --batch --eval <span class="se">\</span>
 	  <span class="s2">&quot;(deconst pkg-install &#39;org-plus-contrib)&quot;</span> -l emacs-batch-install.el
 </pre></div>
 <p>とすれば良いかと.</p>
@@ -541,8 +540,7 @@
   <span class="p">(</span><span class="nf">global-set-key</span> <span class="p">[</span><span class="nv">ns-drag-file</span><span class="p">]</span> <span class="ss">&#39;ns-find-file</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="主にEmacs本体に同梱されている拡張に関する設定"><span class='anchor'>_</span></a>主にEmacs本体に同梱されている拡張に関する設定</h2>
-<p>最近ぼちぼち他の拡張も入れる様になってきた.</p>
+<h2><a id="主にEmacs本体に同梱されている拡張に関する設定"><span class='anchor'>_</span></a>主にEmacs本体に同梱されている拡張に関する設定</h2>最近ぼちぼち他の拡張も入れる様になってきた.
 <h3><a id="標準機能の設定"><span class='anchor'>_</span></a>標準機能の設定</h3>
 <h4><a id="表示関連"><span class='anchor'>_</span></a>表示関連</h4>
 <p>起動時のスプラッシュ画面を表示しない</p>
@@ -1417,8 +1415,7 @@
         <span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="MUA の設定: =wanderlust="><span class='anchor'>_</span></a>MUA の設定: <code>wanderlust</code></h2>
-<p>MUA として Wanderlust を使っている</p>
+<h2><a id="MUA の設定: =wanderlust="><span class='anchor'>_</span></a>MUA の設定: <code>wanderlust</code></h2>MUA として Wanderlust を使っている
 <h3><a id="Emacs 本体側の設定"><span class='anchor'>_</span></a>Emacs 本体側の設定</h3>
 <p>Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
   ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．</p>
@@ -1456,7 +1453,9 @@
 <h5><a id="rail"><span class='anchor'>_</span></a>rail</h5>
 <p>SEMI や FLIM などの UA の表示に <a href="http://uwabami.github.com/rail/">rail</a> を使っている.
   ちなみに rail を有効にすると, 以下の様に User-Agent が表示される</p>
-<p><img src="https://uwabami.github.io/software/rail/images/wanderlust_with_or_without_rail.png" alt="https://uwabami.github.io/software/rail/images/wanderlust_with_or_without_rail.png" /></p>
+     <div class="col-7 px2 mx-auto">
+     <amp-img layout="responsive" width=640 height=400 src="https://uwabami.github.io/software/rail/images/wanderlust_with_or_without_rail.png" alt="rail preview"></amp-img>
+     </div>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">eval-when-compile</span> <span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;mime-def</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">use-package</span> <span class="nv">rail</span>
   <span class="nv">:config</span>
@@ -3728,7 +3727,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
     
     &copy; 2006 - 2018
     <a href="mailto:uwabami@gfd-dennou.org"></a>,
-    Lastupdate: 2018-10-23 21:44:00
+    Lastupdate: 2018-10-25 13:52:07
     <br/>
     Powered by
     <a href="http://orgmode.org/" target="_blank" title="Org mode">
