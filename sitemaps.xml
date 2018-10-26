@@ -3,21 +3,10 @@
   
     
       <url>
-        <loc>/404.html</loc>
+        <loc>https://uwabami.github.io//404.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/404.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/cc-env/DebianApt.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianApt.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//404.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -25,21 +14,10 @@
   
     
       <url>
-        <loc>/cc-env/DebianConfigure.html</loc>
+        <loc>https://uwabami.github.io//cc-env/DebianApt.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianConfigure.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/cc-env/DebianInstall.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianInstall.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianApt.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -47,21 +25,10 @@
   
     
       <url>
-        <loc>/cc-env/DebianMail.html</loc>
+        <loc>https://uwabami.github.io//cc-env/DebianConfigure.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianMail.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/cc-env/DebianPackaging.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianPackaging.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianConfigure.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -69,21 +36,10 @@
   
     
       <url>
-        <loc>/cc-env/DebianSchroot.html</loc>
+        <loc>https://uwabami.github.io//cc-env/DebianInstall.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSchroot.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/cc-env/DebianSquid.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSquid.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianInstall.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -91,21 +47,10 @@
   
     
       <url>
-        <loc>/cc-env/DebianTeX.html</loc>
+        <loc>https://uwabami.github.io//cc-env/DebianMail.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianTeX.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/cc-env/Debiani3.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Debiani3.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianMail.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -113,21 +58,10 @@
   
     
       <url>
-        <loc>/cc-env/Emacs.html</loc>
+        <loc>https://uwabami.github.io//cc-env/DebianPackaging.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Emacs.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/cc-env/JekyllandOrg.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/JekyllandOrg.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianPackaging.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -135,23 +69,10 @@
   
     
       <url>
-        <loc>/cc-env/Terminal.html</loc>
+        <loc>https://uwabami.github.io//cc-env/DebianSchroot.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/research/index.en.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianSchroot.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -159,12 +80,10 @@
   
     
       <url>
-        <loc>/software/rdtool/index.en.html</loc>
+        <loc>https://uwabami.github.io//cc-env/DebianSquid.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianSquid.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -172,12 +91,10 @@
   
     
       <url>
-        <loc>/software/tdiary-style-org/index.en.html</loc>
+        <loc>https://uwabami.github.io//cc-env/DebianTeX.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianTeX.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -185,12 +102,10 @@
   
     
       <url>
-        <loc>/software/rail/index.en.html</loc>
+        <loc>https://uwabami.github.io//cc-env/Debiani3.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rail/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/Debiani3.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -198,12 +113,10 @@
   
     
       <url>
-        <loc>/software/jekyll-org-converter/index.en.html</loc>
+        <loc>https://uwabami.github.io//cc-env/Emacs.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/Emacs.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -211,12 +124,10 @@
   
     
       <url>
-        <loc>/software/index.en.html</loc>
+        <loc>https://uwabami.github.io//cc-env/JekyllandOrg.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/JekyllandOrg.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -224,12 +135,10 @@
   
     
       <url>
-        <loc>/index.en.html</loc>
+        <loc>https://uwabami.github.io//cc-env/Terminal.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/Terminal.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -237,23 +146,12 @@
   
     
       <url>
-        <loc>/cc-env/index.html</loc>
+        <loc>https://uwabami.github.io//research/index.en.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//research/index.en.html" />
         
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/research/index.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//research/index.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -261,25 +159,12 @@
   
     
       <url>
-        <loc>/software/rdtool/index.html</loc>
+        <loc>https://uwabami.github.io//software/rdtool/index.en.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/rdtool/index.en.html" />
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/software/tdiary-style-org/index.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/rdtool/index.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -287,25 +172,12 @@
   
     
       <url>
-        <loc>/software/rail/index.html</loc>
+        <loc>https://uwabami.github.io//software/tdiary-style-org/index.en.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/tdiary-style-org/index.en.html" />
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rail/index.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/software/jekyll-org-converter/index.html</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/tdiary-style-org/index.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -313,25 +185,12 @@
   
     
       <url>
-        <loc>/software/index.html</loc>
+        <loc>https://uwabami.github.io//software/rail/index.en.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/rail/index.en.html" />
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
-        
-        <changefreq>monthly</changefreq>
-      </url>
-    
-  
-    
-      <url>
-        <loc>/</loc>
-        
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/rail/index.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -339,70 +198,12 @@
   
     
       <url>
-        <loc>/css/main.css</loc>
+        <loc>https://uwabami.github.io//software/jekyll-org-converter/index.en.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/404.html" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/jekyll-org-converter/index.en.html" />
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianApt.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianConfigure.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianInstall.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianMail.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianPackaging.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSchroot.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSquid.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianTeX.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Debiani3.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Emacs.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/JekyllandOrg.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rail/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/" />
-        
-        <xhtml:link rel="alternate" hreflang="" href="/css/main.css" />
-        
-        <xhtml:link rel="alternate" hreflang="" href="/sitemaps.xml" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/weechat.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/jekyll-org-converter/index.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -410,70 +211,12 @@
   
     
       <url>
-        <loc>/sitemaps.xml</loc>
+        <loc>https://uwabami.github.io//software/index.en.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/404.html" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/index.en.html" />
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianApt.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianConfigure.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianInstall.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianMail.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianPackaging.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSchroot.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianSquid.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/DebianTeX.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Debiani3.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Emacs.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/JekyllandOrg.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/Terminal.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/research/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rdtool/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/tdiary-style-org/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/rail/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/jekyll-org-converter/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/software/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="en" href="/index.en.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/research/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rdtool/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/tdiary-style-org/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/rail/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/jekyll-org-converter/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/software/index.html" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/" />
-        
-        <xhtml:link rel="alternate" hreflang="" href="/css/main.css" />
-        
-        <xhtml:link rel="alternate" hreflang="" href="/sitemaps.xml" />
-        
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/weechat.html" />
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/index.html" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -481,10 +224,267 @@
   
     
       <url>
-        <loc>/cc-env/weechat.html</loc>
+        <loc>https://uwabami.github.io//index.en.html</loc>
         
         
-        <xhtml:link rel="alternate" hreflang="ja" href="/cc-env/weechat.html" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//cc-env/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//research/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//research/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//research/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//software/rdtool/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/rdtool/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//software/tdiary-style-org/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/tdiary-style-org/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/tdiary-style-org/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//software/rail/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/rail/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/rail/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//software/jekyll-org-converter/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/jekyll-org-converter/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/jekyll-org-converter/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//software/index.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/index.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//css/main.css</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//404.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianApt.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianConfigure.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianInstall.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianMail.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianPackaging.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianSchroot.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianSquid.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianTeX.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/Debiani3.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/Emacs.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/JekyllandOrg.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/Terminal.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//research/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/tdiary-style-org/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/rail/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/jekyll-org-converter/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//research/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/rdtool/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/tdiary-style-org/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/rail/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/jekyll-org-converter/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io//css/main.css" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io//sitemaps.xml" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/weechat.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//sitemaps.xml</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//404.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianApt.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianConfigure.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianInstall.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianMail.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianPackaging.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianSchroot.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianSquid.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/DebianTeX.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/Debiani3.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/Emacs.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/JekyllandOrg.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/Terminal.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//research/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/rdtool/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/tdiary-style-org/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/rail/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/jekyll-org-converter/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//software/index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io//index.en.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//research/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/rdtool/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/tdiary-style-org/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/rail/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/jekyll-org-converter/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//software/index.html" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io//css/main.css" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io//sitemaps.xml" />
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/weechat.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io//cc-env/weechat.html</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io//cc-env/weechat.html" />
         
         <changefreq>monthly</changefreq>
       </url>
