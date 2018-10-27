@@ -15,8 +15,8 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": "https://uwabami.github.io//cc-env/DebianApt.html",
       "headline": "Aptの設定",
-      "datePublished": "2018-10-24T21:13:14+09:00",
-      "dateModified": "2018-10-24T21:13:14+09:00",
+      "datePublished": "2018-10-27T13:54:32+09:00",
+      "dateModified": "2018-10-27T13:54:32+09:00",
       "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
       "author": {
         "@type": "Person",
@@ -145,7 +145,7 @@
     <amp-sidebar id="sidebar"
                  layout="nodisplay"
                  side="right"
-                 class="md-hide lg-hide p2 navbar">
+                 class="md-hide lg-hide py2 pl2 pr1 navbar">
       <nav>
         <div role="button"
              on="tap:sidebar.toggle"
@@ -154,35 +154,35 @@
         <ul class="list-reset">
           
           
-          <li>
+          <li class="py2">
             <a href="https://uwabami.github.io//index.html">Top</a>
           </li>
-          <li>
+          <li class="py2">
             <a href="https://uwabami.github.io//research/index.html">Research</a>
           </li>
-          <li>
+          <li class="py2">
             Software &#9662;
             <ul class="list-reset pl2">
-              <li>
+              <li class="py1">
                 <a  href="https://uwabami.github.io//software/index.html">
                   Repository
                 </a>
               </li>
-              <li class="nowrap">
+              <li class="nowrap py1">
                 <a  href="https://uwabami.github.io//cc-env/index.html">
                   Computer Memo
                 </a>
               </li>
             </ul>
           </li>
-          <li>
+          <li class="pb2">
             <a href="https://uwabami.junkhub.org/log">Blog</a>
           </li>
           
         </ul>
         <hr />
         <ul class="list-reset">
-          <li>
+          <li class="py2">
             
             
             
@@ -269,26 +269,6 @@ Pin-Priority: 90
 % gpg --armor --export [鍵ID] | sudo apt-key add -
 </pre>
 <p>みたいしても良いかと.</p>
-<h2><a id="現在の sources.list"><span class='anchor'>_</span></a>現在の sources.list</h2>
-<div class="highlight"><pre><span></span><span class="c1">#</span>
-<span class="c1"># Official</span>
-<span class="c1">#</span>
-<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span> <span class="n">contrib</span>
-<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span> <span class="n">contrib</span>
-<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">experimental</span> <span class="n">main</span>
-<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">jp</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">/</span> <span class="n">experimental</span> <span class="n">main</span>
-<span class="c1"># UnOfficial</span>
-<span class="c1">#</span>
-<span class="c1"># Multimedia</span>
-<span class="c1"># GPG: deb-multimedia-keyring</span>
-<span class="c1">#</span>
-<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">www</span><span class="o">.</span><span class="n">deb</span><span class="o">-</span><span class="n">multimedia</span><span class="o">.</span><span class="n">org</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span>
-<span class="n">deb</span><span class="o">-</span><span class="n">src</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">www</span><span class="o">.</span><span class="n">deb</span><span class="o">-</span><span class="n">multimedia</span><span class="o">.</span><span class="n">org</span> <span class="n">sid</span> <span class="n">main</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span>
-<span class="c1">#</span>
-<span class="c1"># Dennou</span>
-<span class="c1"># GPG: 891D7E07</span>
-<span class="n">deb</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">dennou</span><span class="o">-</span><span class="n">k</span><span class="o">.</span><span class="n">gfd</span><span class="o">-</span><span class="n">dennou</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">cc</span><span class="o">-</span><span class="n">env</span><span class="o">/</span><span class="n">debian</span><span class="o">-</span><span class="n">dennou</span> <span class="n">sid</span> <span class="n">main</span>
-</pre></div>
 <h2><a id="apt の便利ツール"><span class='anchor'>_</span></a>apt の便利ツール</h2>
 <ul>
   <li>apt-cache</li>
@@ -312,7 +292,7 @@ Pin-Priority: 90
       
       &copy; 2006 - 2018
       <a href="mailto:uwabami@gfd-dennou.org"></a>,
-      Lastupdate: 2018-10-24 21:13:14
+      Lastupdate: 2018-10-27 13:54:32
     </span>
     <br/>
     <span class="nowrap">
