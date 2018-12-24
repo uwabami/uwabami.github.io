@@ -15,8 +15,8 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": "https://uwabami.github.io//cc-env/Emacs.html",
       "headline": "Emacs の設定",
-      "datePublished": "2018-10-31T11:16:50+09:00",
-      "dateModified": "2018-10-31T11:16:50+09:00",
+      "datePublished": "2018-12-24T17:17:45+09:00",
+      "dateModified": "2018-12-24T17:17:45+09:00",
       "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
       "author": {
         "@type": "Person",
@@ -240,7 +240,7 @@
 	$(EMACS) -q --batch --eval \
 		 &quot;(progn \
 		    (require &#39;ob-tangle) \
-		    (org-babel-tangle-file \&quot;$&lt;\&quot; \&quot;$@\&quot; \&quot;emacs-lisp\&quot;)))&quot;
+		    (org-babel-tangle-file \&quot;$&lt;\&quot; \&quot;$@\&quot; \&quot;emacs-lisp\&quot;))&quot;
 %.elc: %.el
 	$(EMACS) -l $&lt; -batch -f batch-byte-compile $&lt;
 </pre></div>
@@ -283,34 +283,20 @@
 <span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;package</span> <span class="nv">nil</span> <span class="ss">&#39;noerror</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">setq</span> <span class="nv">package-enable-at-startup</span> <span class="nv">t</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;package-archives</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;melpa&quot;</span> <span class="o">.</span> <span class="s">&quot;https://melpa.org/packages/&quot;</span><span class="p">)</span> <span class="nv">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;package-archives</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;org&quot;</span>   <span class="o">.</span> <span class="s">&quot;http://orgmode.org/elpa/&quot;</span><span class="p">)</span> <span class="nv">t</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;package-archives</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;org&quot;</span>   <span class="o">.</span> <span class="s">&quot;https://orgmode.org/elpa/&quot;</span><span class="p">)</span> <span class="nv">t</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">eval-when-compile</span>
   <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">file-exists-p</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">user-emacs-directory</span> <span class="s">&quot;tmp/bootstrap-stamp&quot;</span><span class="p">))</span>
     <span class="p">(</span><span class="nf">package-refresh-contents</span><span class="p">)))</span>
 <span class="p">(</span><span class="nf">package-initialize</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">package-installed-p</span> <span class="ss">&#39;package-utils</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">package-install</span> <span class="ss">&#39;package-utils</span><span class="p">))</span>
 </pre></div>
-<p>また，初回起動時に <code>make</code> で org の最新版等を導入するために
-  batch でインストールできる様に，以下を <code>emacs-batch-install.el</code> として出力します．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">url-http-attempt-keepalives</span> <span class="nv">nil</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;package</span> <span class="nv">nil</span> <span class="ss">&#39;noerror</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;package-archives</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;melpa&quot;</span> <span class="o">.</span> <span class="s">&quot;https://melpa.org/packages/&quot;</span><span class="p">)</span> <span class="nv">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;package-archives</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;org&quot;</span>   <span class="o">.</span> <span class="s">&quot;http://orgmode.org/elpa/&quot;</span><span class="p">)</span> <span class="nv">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">package-refresh-contents</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">package-initialize</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">package-install</span> <span class="nv">pkg-install</span><span class="p">)</span>
-</pre></div>
-<p>batch でのインストールは例えば</p>
-<div class="highlight"><pre><span></span>	<span class="k">$(</span>EMACS<span class="k">)</span> -q --batch --eval <span class="se">\</span>
-	  <span class="s2">&quot;(deconst pkg-install &#39;org-plus-contrib)&quot;</span> -l emacs-batch-install.el
-</pre></div>
-<p>とすれば良いかと.</p>
 <h3><a id="[[https://github.com/jwiegley/use-package][use-package]]"><span class='anchor'>_</span></a><a href="https://github.com/jwiegley/use-package">use-package</a></h3>
 <p>個々のパッケージの設定には <a href="https://github.com/jwiegley/use-package">use-package</a> を利用します．</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;use-package</span> <span class="nv">nil</span> <span class="nv">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">package-install</span> <span class="ss">&#39;use-package</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">package-utils</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span><span class="p">)</span>
 </pre></div>
+<p>ついでに <code>package-utils</code> も更新しておいたり.</p>
 <h3><a id="[[https://github.com/quelpa/quelpa][quelpa]]"><span class='anchor'>_</span></a><a href="https://github.com/quelpa/quelpa">quelpa</a></h3>
 <p>melpa に登録されていないパッケージや自作の elisp 等をインストールできる様に
   <a href="https://github.com/quelpa/quelpa">quelpa</a> を入れておきます．とはいえ、これでパッケージを入れる訳ではないので、
@@ -935,11 +921,7 @@
   <li>[ ] Debian パッケージ版は古い．更新すべき</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">elscreen</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">use-package</span> <span class="nv">elscreen-multi-term</span>
-    <span class="nv">:ensure</span> <span class="nv">t</span>
-    <span class="p">)</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">elscreen-tab-display-control</span> <span class="nv">nil</span>
         <span class="nv">elscreen-prefix-key</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-o&quot;</span><span class="p">)</span>
         <span class="nv">elscreen-display-tab</span> <span class="mi">8</span>
@@ -1243,7 +1225,7 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
          <span class="p">)</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">ido-mode</span> <span class="nv">t</span><span class="p">)</span>
-  <span class="c1">;; (ido-everywhere t)  &lt;- Wanderlust みたいに，過去の選択を覚えている奴と相性悪い.</span>
+  <span class="c1">;; (ido-everywhere t)  ; &lt;- Wanderlust みたいに, 過去の選択を覚えている奴と相性悪い.</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-enable-prefix</span> <span class="nv">nil</span>             <span class="c1">; prefix match 入力を先頭一致可能</span>
         <span class="nv">ido-confirm-unique-completion</span> <span class="nv">t</span>   <span class="c1">; TAB で名前の一致まで. その後 RET で実行</span>
         <span class="nv">ido-enable-flex-matching</span> <span class="nv">t</span>        <span class="c1">; flx matching を試す際には prefix を無効化すること</span>
@@ -1306,12 +1288,13 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
         <span class="nv">ido-grid-indent</span> <span class="mi">1</span>
         <span class="nv">ido-grid-column-padding</span> <span class="mi">3</span>
         <span class="nv">ido-grid-bind-keys</span> <span class="nv">t</span>
+        <span class="nv">ido-max-directory-size</span> <span class="mi">100000</span>  <span class="c1">;; avoid [Too Big]</span>
         <span class="p">)</span>
   <span class="p">(</span><span class="nf">ido-grid-enable</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:ido-grid-force-one-columns</span> <span class="p">(</span><span class="nf">o</span> <span class="nv">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">ido-grid-max-columns</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">;; single vertical col</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">ido-grid-max-columns</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1">;; single vertical col</span>
           <span class="p">(</span><span class="nf">ido-grid-start-small</span> <span class="nv">nil</span><span class="p">)</span> <span class="c1">;; popup immediately</span>
-          <span class="p">(</span><span class="nf">ido-grid-rows</span> <span class="mf">0.15</span><span class="p">))</span> <span class="c1">;; 15% of frame height</span>
+          <span class="p">(</span><span class="nf">ido-grid-rows</span> <span class="mf">0.15</span><span class="p">))</span>      <span class="c1">;; 15% of frame height</span>
       <span class="p">(</span><span class="nb">apply </span><span class="nv">o</span> <span class="nv">args</span><span class="p">)</span>
       <span class="p">))</span>
   <span class="p">)</span>
@@ -1339,17 +1322,6 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
         <span class="nv">smex-prompt-string</span> <span class="s">&quot;smex: &quot;</span>
         <span class="nv">smex-flex-matching</span> <span class="nv">nil</span>
         <span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="[[http://syohex.hatenablog.com/entry/20130914/1379166283][zoom-window]]"><span class='anchor'>_</span></a><a href="http://syohex.hatenablog.com/entry/20130914/1379166283">zoom-window</a></h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">zoom-window</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:bind</span> <span class="p">(</span><span class="s">&quot;C-x C-z&quot;</span> <span class="o">.</span> <span class="nv">zoom-window-zoom</span><span class="p">)</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">zoom-window-use-elscreen</span> <span class="nv">t</span><span class="p">)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">zoom-window-setup</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">zoom-window-mode-line-color</span> <span class="s">&quot;#7fff7f&quot;</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
 <h2><a id="認証関連: =id-manager=, =plstore=, =oauth2=, =password-store="><span class='anchor'>_</span></a>認証関連: <code>id-manager</code>, <code>plstore</code>, <code>oauth2</code>, <code>password-store</code></h2>
@@ -1471,7 +1443,7 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
 </pre></div>
 <h5><a id="elscreen-wl"><span class='anchor'>_</span></a>elscreen-wl</h5>
 <p>メール作成時に <code>elscreen</code> と連携してくれる．便利</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">elscreen-wl</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="c1">;; (use-package elscreen-wl)</span>
 </pre></div>
 <h5><a id="SEMI の追加設定"><span class='anchor'>_</span></a>SEMI の追加設定</h5>
 <p>HTML メールを表示するために eww を使う.
@@ -2177,10 +2149,38 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 <h3><a id="メールからの予定の取り込み: =mhc="><span class='anchor'>_</span></a>メールからの予定の取り込み: <code>mhc</code></h3>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">mhc</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">getenv</span> <span class="s">&quot;HOME&quot;</span><span class="p">)</span> <span class="s">&quot;/.config/mhc&quot;</span><span class="p">))</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">mhc-calendar-day-strings</span> <span class="p">[</span><span class="s">&quot;日&quot;</span> <span class="s">&quot;月&quot;</span> <span class="s">&quot;火&quot;</span> <span class="s">&quot;水&quot;</span> <span class="s">&quot;木&quot;</span> <span class="s">&quot;金&quot;</span> <span class="s">&quot;土&quot;</span><span class="p">]</span>
         <span class="nv">mhc-calendar-header-function</span> <span class="ss">&#39;mhc-calendar-make-header-ja</span>
         <span class="nv">mhc-calendar-language</span> <span class="ss">&#39;japanese</span><span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
+<h2><a id="カレンダー: =japanese-holidays="><span class='anchor'>_</span></a>カレンダー: <code>japanese-holidays</code></h2>
+<p>日本の祝日を表示するために <code>japanese-holidays</code> をインストール</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">japanese-holidays</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:init</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;calendar-today-visible-hook</span>   <span class="ss">&#39;japanese-holiday-mark-weekend</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;calendar-today-invisible-hook</span> <span class="ss">&#39;japanese-holiday-mark-weekend</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;calendar-today-visible-hook</span>   <span class="ss">&#39;calendar-mark-today</span><span class="p">)</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">calendar-holidays</span>               <span class="c1">; とりあえず日本のみを表示</span>
+        <span class="p">(</span><span class="nb">append </span><span class="nv">japanese-holidays</span> <span class="nv">holiday-local-holidays</span><span class="p">)</span>
+        <span class="nv">mark-holidays-in-calendar</span> <span class="nv">t</span>     <span class="c1">; 祝日をカレンダーに表示</span>
+        <span class="nv">calendar-month-name-array</span>       <span class="c1">; 月と曜日の表示調整</span>
+        <span class="p">[</span><span class="s">&quot;01&quot;</span> <span class="s">&quot;02&quot;</span> <span class="s">&quot;03&quot;</span> <span class="s">&quot;04&quot;</span> <span class="s">&quot;05&quot;</span> <span class="s">&quot;06&quot;</span> <span class="s">&quot;07&quot;</span> <span class="s">&quot;08&quot;</span> <span class="s">&quot;09&quot;</span> <span class="s">&quot;10&quot;</span> <span class="s">&quot;11&quot;</span> <span class="s">&quot;12&quot;</span> <span class="p">]</span>
+        <span class="nv">calendar-day-name-array</span>
+        <span class="p">[</span><span class="s">&quot;日&quot;</span> <span class="s">&quot;月&quot;</span> <span class="s">&quot;火&quot;</span> <span class="s">&quot;水&quot;</span> <span class="s">&quot;木&quot;</span> <span class="s">&quot;金&quot;</span> <span class="s">&quot;土&quot;</span><span class="p">]</span>
+        <span class="nv">calendar-day-header-array</span>
+        <span class="p">[</span><span class="s">&quot;日&quot;</span> <span class="s">&quot;月&quot;</span> <span class="s">&quot;火&quot;</span> <span class="s">&quot;水&quot;</span> <span class="s">&quot;木&quot;</span> <span class="s">&quot;金&quot;</span> <span class="s">&quot;土&quot;</span><span class="p">]</span>
+        <span class="nv">calendar-date-style</span> <span class="ss">&#39;iso</span>         <span class="c1">; ISO format (YYYY/MM/DD) に変更</span>
+        <span class="nv">japanese-holiday-weekend</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1">; 土曜日・日曜日を祝日として表示</span>
+        <span class="nv">japanese-holiday-weekend-marker</span>
+        <span class="o">&#39;</span><span class="p">(</span><span class="nv">holiday</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">japanese-holiday-saturday</span><span class="p">)</span>
+        <span class="c1">;; 日曜開始</span>
+        <span class="nv">calendar-week-start-day</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">calendar-set-date-style</span> <span class="ss">&#39;iso</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
 <h2><a id="校正，辞書等"><span class='anchor'>_</span></a>校正，辞書等</h2>
@@ -2222,31 +2222,17 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
           <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/colloc&quot;</span>    <span class="nv">:alias</span> <span class="s">&quot;研究社 英和活用大辞典 &quot;</span><span class="p">)</span>
           <span class="p">)))</span>
 </pre></div>
-<h2><a id="カレンダー: =japanese-holidays="><span class='anchor'>_</span></a>カレンダー: <code>japanese-holidays</code></h2>
-<p>日本の祝日を表示するために <code>japanese-holidays</code> をインストール</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">japanese-holidays</span>
+<h3><a id="flycheck"><span class='anchor'>_</span></a>flycheck</h3>
+<p>プログラムのlint集</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">flycheck</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;calendar-today-visible-hook</span>   <span class="ss">&#39;japanese-holiday-mark-weekend</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;calendar-today-invisible-hook</span> <span class="ss">&#39;japanese-holiday-mark-weekend</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;calendar-today-visible-hook</span>   <span class="ss">&#39;calendar-mark-today</span><span class="p">)</span>
+  <span class="nv">:diminish</span> <span class="nv">flycheck-mode</span>
+  <span class="c1">;;  :init (use-package flycheck-pos-tip :ensure t)</span>
   <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">calendar-holidays</span>               <span class="c1">; とりあえず日本のみを表示</span>
-        <span class="p">(</span><span class="nb">append </span><span class="nv">japanese-holidays</span> <span class="nv">holiday-local-holidays</span><span class="p">)</span>
-        <span class="nv">mark-holidays-in-calendar</span> <span class="nv">t</span>     <span class="c1">; 祝日をカレンダーに表示</span>
-        <span class="nv">calendar-month-name-array</span>       <span class="c1">; 月と曜日の表示調整</span>
-        <span class="p">[</span><span class="s">&quot;01&quot;</span> <span class="s">&quot;02&quot;</span> <span class="s">&quot;03&quot;</span> <span class="s">&quot;04&quot;</span> <span class="s">&quot;05&quot;</span> <span class="s">&quot;06&quot;</span> <span class="s">&quot;07&quot;</span> <span class="s">&quot;08&quot;</span> <span class="s">&quot;09&quot;</span> <span class="s">&quot;10&quot;</span> <span class="s">&quot;11&quot;</span> <span class="s">&quot;12&quot;</span> <span class="p">]</span>
-        <span class="nv">calendar-day-name-array</span>
-        <span class="p">[</span><span class="s">&quot;日&quot;</span> <span class="s">&quot;月&quot;</span> <span class="s">&quot;火&quot;</span> <span class="s">&quot;水&quot;</span> <span class="s">&quot;木&quot;</span> <span class="s">&quot;金&quot;</span> <span class="s">&quot;土&quot;</span><span class="p">]</span>
-        <span class="nv">calendar-day-header-array</span>
-        <span class="p">[</span><span class="s">&quot;日&quot;</span> <span class="s">&quot;月&quot;</span> <span class="s">&quot;火&quot;</span> <span class="s">&quot;水&quot;</span> <span class="s">&quot;木&quot;</span> <span class="s">&quot;金&quot;</span> <span class="s">&quot;土&quot;</span><span class="p">]</span>
-        <span class="nv">calendar-date-style</span> <span class="ss">&#39;iso</span>         <span class="c1">; ISO format (YYYY/MM/DD) に変更</span>
-        <span class="nv">japanese-holiday-weekend</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">0</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1">; 土曜日・日曜日を祝日として表示</span>
-        <span class="nv">japanese-holiday-weekend-marker</span>
-        <span class="o">&#39;</span><span class="p">(</span><span class="nv">holiday</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">japanese-holiday-saturday</span><span class="p">)</span>
-        <span class="c1">;; 日曜開始</span>
-        <span class="nv">calendar-week-start-day</span> <span class="mi">0</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">calendar-set-date-style</span> <span class="ss">&#39;iso</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-init-hook</span> <span class="o">#</span><span class="ss">&#39;global-flycheck-mode</span><span class="p">)</span>
+  <span class="c1">;; chktex</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">flycheck-tex-chktex-executable</span> <span class="s">&quot;~/bin/flycheck_chktex.sh&quot;</span><span class="p">)</span>
+  <span class="c1">;;</span>
   <span class="p">)</span>
 </pre></div>
 <h2><a id="Org"><span class='anchor'>_</span></a>Org</h2>
@@ -2601,6 +2587,10 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="nv">org-edit-src-content-indentation</span> <span class="mi">0</span>
         <span class="nv">org-src-preserve-indentation</span> <span class="nv">t</span>
         <span class="p">)</span>
+  <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">featurep</span> <span class="ss">&#39;flycheck</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:disable-fylcheck-in-org-src-block</span> <span class="p">()</span>
+      <span class="p">(</span><span class="nf">setq-local</span> <span class="nv">flycheck-disabled-checkers</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">emacs-lisp-checkdoc</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-src-mode-hook</span> <span class="ss">&#39;my:disable-fylcheck-in-org-src-block</span><span class="p">))</span>
   <span class="p">)</span>
 </pre></div>
 <h4><a id="org-ditaa"><span class='anchor'>_</span></a>org-ditaa</h4>
@@ -2958,7 +2948,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="c1">;; title header は &quot;*&quot;</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">howm-view-title-header</span> <span class="s">&quot;*&quot;</span><span class="p">)</span>
   <span class="c1">;; :config</span>
-  <span class="p">(</span><span class="nf">use-package</span> <span class="s">&quot;elscreen-howm&quot;</span><span class="p">)</span>
+  <span class="c1">;; (use-package &quot;elscreen-howm&quot;)</span>
   <span class="c1">;; 色付けは org-mode 任せ: howm の font-lock を無効化</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">howm-use-color</span> <span class="nv">nil</span><span class="p">)</span>
   <span class="c1">;;; 以下，決まり文句</span>
@@ -3034,75 +3024,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="nv">howm-reminder-today-format</span> <span class="p">(</span><span class="nf">format</span> <span class="nv">howm-insert-date-format</span> <span class="nv">howm-date-format</span><span class="p">))</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="日記: =tDiary="><span class='anchor'>_</span></a>日記: <code>tDiary</code></h2>
-<p>tdiary-mode をちまちまと弄っている所</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">locate-library</span> <span class="s">&quot;tdiary-mode&quot;</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">quelpa</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">tdiary-mode</span>
-            <span class="nv">:fetcher</span> <span class="nv">github</span>
-            <span class="nv">:repo</span> <span class="s">&quot;uwabami/tdiary-mode&quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">use-package</span> <span class="nv">tdiary-mode</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="s">&quot;~/Nextcloud/tdiary&quot;</span><span class="p">)</span>
-  <span class="nv">:commands</span> <span class="p">(</span><span class="nf">tdiary-mode</span> <span class="nv">tdiary-new</span> <span class="nv">tdiary-new-directory</span> <span class="nv">tdiary-replace</span><span class="p">)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/tdiary-mode.gpg&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">tdiary-browser-function</span> <span class="ss">&#39;browser-url</span>
-        <span class="nv">tdiary-coding-system</span> <span class="ss">&#39;utf-8-dos</span>
-        <span class="nv">tdiary-style-mode</span> <span class="ss">&#39;rd-mode</span>
-        <span class="nv">tdiary-hour-offset</span> <span class="mi">2</span>
-        <span class="nv">tdiary-text-save-p</span> <span class="nv">t</span>
-        <span class="nv">tdiary-text-suffix</span> <span class="s">&quot;.rd&quot;</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="MoinMoin: =moinmoin-mode=, =moomin.el="><span class='anchor'>_</span></a>MoinMoin: <code>moinmoin-mode</code>, <code>moomin.el</code></h2>
-<p>Debian Wiki や職場の Wiki を編集するための
-  MoinMoin の設定.</p>
-<h3><a id="=moinmoin-mode="><span class='anchor'>_</span></a><code>moinmoin-mode</code></h3>
-<p>MoinMoin 本体の moinmoin-mode 自体は古くて
-  screen-lines に依存していたりするので folk して更新中.
-  <a href="https://github.com/uwabami/moinmoin-mode">uwabami/moinmoin-mode: Fork from EmacsForMoinMoin, for Emacs &gt;= 25</a></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">locate-library</span> <span class="s">&quot;moinmoin-mode&quot;</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">quelpa</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">moinmoin-mode</span>
-            <span class="nv">:fetcher</span> <span class="nv">github</span>
-            <span class="nv">:repo</span> <span class="s">&quot;uwabami/moinmoin-mode&quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">use-package</span> <span class="nv">moinmoin-mode</span><span class="p">)</span>
-</pre></div>
-<p>そのうち気になる所を弄る，ということで．</p>
-<h3><a id="=moomin="><span class='anchor'>_</span></a><code>moomin</code></h3>
-<p>元々は <code>moomin = emacs-request + helm + moinmoin-mode</code>
-  という奴. folk して ido-vertical-mode を support する様に
-  多少弄った版を使う。
-  <a href="https://github.com/uwabami/moomin-el">uwabami/moomin-el: Edit MoinMoin with Emacs</a></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">locate-library</span> <span class="s">&quot;moomin&quot;</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">quelpa</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">moomin</span>
-            <span class="nv">:fetcher</span> <span class="nv">github</span>
-            <span class="nv">:repo</span> <span class="s">&quot;uwabami/moomin-el&quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">use-package</span> <span class="nv">moomin</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:password-store</span><span class="p">)</span>
-  <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x w&quot;</span> <span class="o">.</span> <span class="nv">ido-moomin</span><span class="p">)</span>
-         <span class="nv">:map</span> <span class="nv">moinmoin-mode-map</span>
-         <span class="p">(</span><span class="s">&quot;C-c C-c&quot;</span> <span class="o">.</span> <span class="nv">moomin-save-current-buffer</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;C-c C-s&quot;</span> <span class="o">.</span> <span class="nv">moomin-save-current-buffer</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;C-c C-o&quot;</span> <span class="o">.</span> <span class="nv">moomin-browse-current-page</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;C-c C-r&quot;</span> <span class="o">.</span> <span class="nv">moomin-reload-current-page</span><span class="p">))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">moomin-history-file</span>
-        <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;.moomin_history&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/moomin.gpg&quot;</span><span class="p">))</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="プログラム環境"><span class='anchor'>_</span></a>プログラム環境</h2>
-<h3><a id="文法チェック: =flycheck="><span class='anchor'>_</span></a>文法チェック: <code>flycheck</code></h3>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">flycheck</span>
-  <span class="nv">:disabled</span> <span class="nv">t</span>
-  <span class="nv">:defer</span> <span class="nv">t</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-init-hook</span> <span class="o">#</span><span class="ss">&#39;global-flycheck-mode</span><span class="p">)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">flycheck-disabled-checkers</span>
-        <span class="o">&#39;</span><span class="p">(</span><span class="nv">emacs-lisp-checkdoc</span><span class="p">))</span>
-  <span class="p">)</span>
-</pre></div>
-<h3><a id="VCS: =magit="><span class='anchor'>_</span></a>VCS: <code>magit</code></h3>
+<h2><a id="VCS: =magit="><span class='anchor'>_</span></a>VCS: <code>magit</code></h2>
 <p>magit は Emacs の Git Frontend.
   結局の所 CUI でコマンド叩く事も多いけれど，これはこれで重宝している．</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">magit</span>
@@ -3111,7 +3033,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="c1">;; (setq magit-completing-read-function &#39;magit-ido-completing-read)</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="VCS: =ido-ghq="><span class='anchor'>_</span></a>VCS: <code>ido-ghq</code></h3>
+<h2><a id="VCS: =ido-ghq="><span class='anchor'>_</span></a>VCS: <code>ido-ghq</code></h2>
 <p>ghq list を ido で選んで dired で開く</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">locate-library</span> <span class="s">&quot;ido-ghq&quot;</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">quelpa</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">ido-ghq</span>
@@ -3123,24 +3045,23 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-ghq-short-list</span> <span class="nv">t</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="対応する括弧を見易く: =rainbow-delimiters="><span class='anchor'>_</span></a>対応する括弧を見易く: <code>rainbow-delimiters</code></h3>
+<h2><a id="対応する括弧を見易く: =rainbow-delimiters="><span class='anchor'>_</span></a>対応する括弧を見易く: <code>rainbow-delimiters</code></h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rainbow-delimiters</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;emacs-lisp-mode-hook</span> <span class="o">#</span><span class="ss">&#39;rainbow-delimiters-mode</span><span class="p">))</span>
 </pre></div>
-<h3><a id="設定ファイル: =generic-x="><span class='anchor'>_</span></a>設定ファイル: <code>generic-x</code></h3>
+<h2><a id="設定ファイル: =generic-x="><span class='anchor'>_</span></a>設定ファイル: <code>generic-x</code></h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">generic-x</span><span class="p">)</span>
 </pre></div>
-<h3><a id="Textile"><span class='anchor'>_</span></a>Textile</h3>
+<h2><a id="Textile"><span class='anchor'>_</span></a>Textile</h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">textile-mode</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
-<span class="c1">;  :diminish textile-mode</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="Markdown"><span class='anchor'>_</span></a>Markdown</h3>
+<h2><a id="Markdown"><span class='anchor'>_</span></a>Markdown</h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">markdown-mode</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;pandoc&quot;</span><span class="p">)</span>
-  <span class="nv">:mode</span> <span class="p">(</span><span class="s">&quot;\\.\\(md\\|markdown\\)\\&#39;&quot;</span> <span class="o">.</span> <span class="nv">gfm-mode</span><span class="p">)</span>
+  <span class="nv">:mode</span> <span class="p">(</span><span class="s">&quot;\\.\\(md\\|markdown\\|mkd\\)\\&#39;&quot;</span> <span class="o">.</span> <span class="nv">gfm-mode</span><span class="p">)</span>
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;markdown-mode-hook</span>
             <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
@@ -3157,34 +3078,36 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="s">&quot;pandoc --from markdown_github -t html5 --mathjax --highlight-style pygments&quot;</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="SCSS"><span class='anchor'>_</span></a>SCSS</h3>
+<h2><a id="SCSS"><span class='anchor'>_</span></a>SCSS</h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">scss-mode</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;sass&quot;</span><span class="p">)</span>
   <span class="nv">:mode</span> <span class="s">&quot;\\.scss\\&#39;&quot;</span>
   <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">scss-sass-command</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;sass&quot;</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">scss-sass-command</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;sass&quot;</span><span class="p">))</span>
+  <span class="p">)</span>
 </pre></div>
-<h3><a id="rainbow-mode"><span class='anchor'>_</span></a>rainbow-mode</h3>
+<h2><a id="rainbow-mode"><span class='anchor'>_</span></a>rainbow-mode</h2>
 <p><code>#RRGGBB</code> のカラーコードに勝手に色が付く．CSS の編集中なんかで地味に便利．</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rainbow-mode</span>
   <span class="nv">:diminish</span> <span class="nv">rainbow-mode</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="YAML"><span class='anchor'>_</span></a>YAML</h3>
+<h2><a id="YAML"><span class='anchor'>_</span></a>YAML</h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">yaml-mode</span>
   <span class="nv">:mode</span> <span class="s">&quot;\\(\.yml\\|\.yaml\\)&quot;</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="Ruby"><span class='anchor'>_</span></a>Ruby</h3>
-<p>素の <code>ruby-mode</code>. <code>Gemfile</code> も ruby-mode で扱う</p>
+<h2><a id="Ruby"><span class='anchor'>_</span></a>Ruby</h2>
+<p>素の <code>ruby-mode</code>. <code>Gemfile</code> なんかも ruby-mode で</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ruby-mode</span>
-  <span class="nv">:mode</span> <span class="s">&quot;\\.rb\\&#39;&quot;</span>
+  <span class="nv">:mode</span> <span class="p">(</span><span class="s">&quot;\\.rb$&quot;</span>  <span class="s">&quot;Capfile&quot;</span> <span class="s">&quot;Gemfile&quot;</span><span class="p">)</span>
   <span class="nv">:interpreter</span> <span class="s">&quot;ruby&quot;</span>
-  <span class="nv">:init</span>
+  <span class="nv">:config</span>
   <span class="c1">;; マジックコメントは自分で入れる</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">ruby-insert-encoding-magic-comment</span> <span class="nv">nil</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;auto-mode-alist</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;Gemfile$&quot;</span> <span class="o">.</span> <span class="nv">ruby-mode</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">ruby-insert-encoding-magic-comment</span> <span class="nv">nil</span>
+        <span class="nv">flycheck-cheker</span> <span class="ss">&#39;ruby-rubocop</span><span class="p">)</span>
+  <span class="p">)</span>
 </pre></div>
 <p><code>ruby-electric</code>: 括弧や <code>do ... end</code> の補完</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ruby-electric</span>
@@ -3251,7 +3174,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;rd-mode-hook</span>
             <span class="ss">&#39;rd-show-other-block-all</span><span class="p">))</span>
 </pre></div>
-<h3><a id="C"><span class='anchor'>_</span></a>C</h3>
+<h2><a id="C"><span class='anchor'>_</span></a>C</h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">cc-mode</span>
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">c-add-style</span> <span class="s">&quot;my:bsd-like&quot;</span>
@@ -3273,7 +3196,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
               <span class="p">))</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="AUCTeX"><span class='anchor'>_</span></a>AUCTeX</h3>
+<h2><a id="AUCTeX"><span class='anchor'>_</span></a>AUCTeX</h2>
 <p>Debian パッケージ版を使う．やっている事は</p>
 <ul>
   <li><code>japanese-latex-mode</code> において, 幾つかのコマンドが追加/上書きされているが，
@@ -3286,7 +3209,6 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
           <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;LaTeX-mode-hook</span> <span class="o">#</span><span class="ss">&#39;TeX-source-correlate-mode</span><span class="p">)</span>
           <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;LaTeX-mode-hook</span> <span class="o">#</span><span class="ss">&#39;TeX-PDF-mode</span><span class="p">)</span>
           <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;LaTeX-mode-hook</span> <span class="o">#</span><span class="ss">&#39;turn-on-reftex</span><span class="p">))</span>
-
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;LaTeX-mode-hook</span>
             <span class="p">(</span><span class="nf">function</span>
@@ -3342,7 +3264,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 <span class="nv">$pdf_update_method</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nv">$clean_ext</span> <span class="o">=</span> <span class="s">&quot;snm nav vrb synctex.gz&quot;</span><span class="p">;</span>
 </pre></div>
-<h3><a id="Fortran"><span class='anchor'>_</span></a>Fortran</h3>
+<h2><a id="Fortran"><span class='anchor'>_</span></a>Fortran</h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">f90</span>
   <span class="nv">:mode</span> <span class="p">(</span><span class="s">&quot;\\.\\(f|F\\)\\(90|95|03|08\\)$&quot;</span> <span class="o">.</span> <span class="nv">f90-mode</span><span class="p">)</span>
   <span class="nv">:config</span>
@@ -3368,7 +3290,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
               <span class="p">(</span><span class="nf">ggtags-mode</span> <span class="mi">1</span><span class="p">)))</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="補完: =auto-complete="><span class='anchor'>_</span></a>補完: <code>auto-complete</code></h3>
+<h2><a id="補完: =auto-complete="><span class='anchor'>_</span></a>補完: <code>auto-complete</code></h2>
 <p>ちょいちょい上手く動かなかったりするんだけれど、どうしたモンかな.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">auto-complete-config</span>
   <span class="nv">:config</span>
@@ -3387,6 +3309,59 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="c1">;;          &#39;(</span>
   <span class="c1">;;            ))</span>
   <span class="c1">;;  (add-to-list &#39;ac-modes mode))</span>
+  <span class="p">)</span>
+</pre></div>
+<h2><a id="日記: =tDiary="><span class='anchor'>_</span></a>日記: <code>tDiary</code></h2>
+<p>tdiary-mode をちまちまと弄っている所</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">tdiary-mode</span>
+  <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">file-directory-p</span> <span class="s">&quot;~/Nextcloud/tdiary&quot;</span><span class="p">)</span>
+           <span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;tdiary-mode&quot;</span><span class="p">))</span>
+  <span class="nv">:commands</span> <span class="p">(</span><span class="nf">tdiary-mode</span> <span class="nv">tdiary-new</span> <span class="nv">tdiary-new-directory</span> <span class="nv">tdiary-replace</span><span class="p">)</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/tdiary-mode.gpg&quot;</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">tdiary-browser-function</span> <span class="ss">&#39;browser-url</span>
+        <span class="nv">tdiary-coding-system</span> <span class="ss">&#39;utf-8-dos</span>
+        <span class="nv">tdiary-style-mode</span> <span class="ss">&#39;org-mode</span>
+        <span class="nv">tdiary-hour-offset</span> <span class="mi">2</span>
+        <span class="nv">tdiary-text-save-p</span> <span class="nv">t</span>
+        <span class="nv">tdiary-text-suffix</span> <span class="s">&quot;.org&quot;</span><span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
+<h2><a id="MoinMoin: =moinmoin-mode=, =moomin.el="><span class='anchor'>_</span></a>MoinMoin: <code>moinmoin-mode</code>, <code>moomin.el</code></h2>
+<p>Debian Wiki や職場の Wiki を編集するための
+  MoinMoin の設定.</p>
+<h3><a id="=moinmoin-mode="><span class='anchor'>_</span></a><code>moinmoin-mode</code></h3>
+<p>MoinMoin 本体の moinmoin-mode 自体は古くて
+  screen-lines に依存していたりするので folk して更新中.
+  <a href="https://github.com/uwabami/moinmoin-mode">uwabami/moinmoin-mode: Fork from EmacsForMoinMoin, for Emacs &gt;= 25</a></p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">locate-library</span> <span class="s">&quot;moinmoin-mode&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">quelpa</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">moinmoin-mode</span>
+            <span class="nv">:fetcher</span> <span class="nv">github</span>
+            <span class="nv">:repo</span> <span class="s">&quot;uwabami/moinmoin-mode&quot;</span><span class="p">)))</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">moinmoin-mode</span><span class="p">)</span>
+</pre></div>
+<p>そのうち気になる所を弄る，ということで．</p>
+<h3><a id="=moomin="><span class='anchor'>_</span></a><code>moomin</code></h3>
+<p>元々は <code>moomin = emacs-request + helm + moinmoin-mode</code>
+  という奴. folk して ido-vertical-mode を support する様に
+  多少弄った版を使う。
+  <a href="https://github.com/uwabami/moomin-el">uwabami/moomin-el: Edit MoinMoin with Emacs</a></p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">locate-library</span> <span class="s">&quot;moomin&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">quelpa</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">moomin</span>
+            <span class="nv">:fetcher</span> <span class="nv">github</span>
+            <span class="nv">:repo</span> <span class="s">&quot;uwabami/moomin-el&quot;</span><span class="p">)))</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">moomin</span>
+  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:password-store</span><span class="p">)</span>
+  <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x w&quot;</span> <span class="o">.</span> <span class="nv">ido-moomin</span><span class="p">)</span>
+         <span class="nv">:map</span> <span class="nv">moinmoin-mode-map</span>
+         <span class="p">(</span><span class="s">&quot;C-c C-c&quot;</span> <span class="o">.</span> <span class="nv">moomin-save-current-buffer</span><span class="p">)</span>
+         <span class="p">(</span><span class="s">&quot;C-c C-s&quot;</span> <span class="o">.</span> <span class="nv">moomin-save-current-buffer</span><span class="p">)</span>
+         <span class="p">(</span><span class="s">&quot;C-c C-o&quot;</span> <span class="o">.</span> <span class="nv">moomin-browse-current-page</span><span class="p">)</span>
+         <span class="p">(</span><span class="s">&quot;C-c C-r&quot;</span> <span class="o">.</span> <span class="nv">moomin-reload-current-page</span><span class="p">))</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">moomin-history-file</span>
+        <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;.moomin_history&quot;</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/moomin.gpg&quot;</span><span class="p">))</span>
   <span class="p">)</span>
 </pre></div>
 <h2><a id="基本的なキーバインドの設定"><span class='anchor'>_</span></a>基本的なキーバインドの設定</h2>
@@ -3419,12 +3394,18 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 <span class="p">(</span><span class="nf">setq</span> <span class="nv">auto-revert-mode-text</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 <p>メジャーモードは <code>hook</code> で設定.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;emacs-lisp-mode-hook</span> <span class="o">&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">setq</span> <span class="nv">mode-name</span> <span class="s">&quot;&quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;lisp-interaction-mode-hook</span> <span class="o">&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">setq</span> <span class="nv">mode-name</span> <span class="s">&quot;&quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;wl-folder-mode-hook</span>  <span class="o">&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">setq</span> <span class="nv">mode-name</span> <span class="s">&quot;&quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;wl-summary-mode-hook</span> <span class="o">&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">setq</span> <span class="nv">mode-name</span> <span class="s">&quot;&quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;wl-draft-mode-hook</span>   <span class="o">&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">setq</span> <span class="nv">mode-name</span> <span class="s">&quot;&quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;mime-view-mode-hook</span>  <span class="o">&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">setq</span> <span class="nv">mode-name</span> <span class="s">&quot;&quot;</span><span class="p">)))</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">dolist</span> <span class="p">(</span><span class="nf">hook</span>
+         <span class="o">&#39;</span><span class="p">(</span>
+           <span class="nv">textlie-mode-hook</span>
+           <span class="nv">scss-mode-hook</span>
+           <span class="nv">emacs-lisp-mode-hook</span>
+           <span class="nv">lisp-interaction-mode-hook</span>
+           <span class="nv">wl-folder-mode-hook</span>
+           <span class="nv">wl-summary-mode-hook</span>
+           <span class="nv">wl-draft-mode-hook</span>
+           <span class="nv">mime-view-mode-hook</span>
+           <span class="p">))</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="nv">hook</span> <span class="o">&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">setq</span> <span class="nv">mode-name</span> <span class="s">&quot;&quot;</span><span class="p">))))</span>
 </pre></div>
 <h2><a id="フォントと色"><span class='anchor'>_</span></a>フォントと色</h2>
 <p>そろそろテーマにした方が良い，とは思ってはいる．</p>
@@ -3730,7 +3711,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
       
       &copy; 2006 - 2018
       <a href="mailto:uwabami@gfd-dennou.org"></a>,
-      Lastupdate: 2018-10-31 11:16:50
+      Lastupdate: 2018-12-24 17:17:45
     </span>
     <br/>
     <span class="nowrap">
