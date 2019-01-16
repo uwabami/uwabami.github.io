@@ -227,7 +227,7 @@
   <li>autopkgtest: ビルドしたバイナリの実行テスト</li>
 </ul>
 <p>ができるようにしておきます.</p>
-<h2><a id="sbuild=: clean room build 環境"><span class='anchor'>_</span></a>sbuild=: clean room build 環境</h2>
+<h2><a id="sbuild: clean room build 環境"><span class='anchor'>_</span></a>sbuild: clean room build 環境</h2>
 <p>clean room build 環境としては</p>
 <ul>
   <li>pbuilder/cowbuilder/qemubuilder</li>
@@ -266,7 +266,7 @@ union-overlay-directory=/dev/shm<span class="w"></span>
 </pre></div>
 <p>sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
   末尾にあるのでそちらを参照のこと．</p>
-<h2><a id="=lintian=: パッケージの品質のチェック"><span class='anchor'>_</span></a><code>lintian</code>: パッケージの品質のチェック</h2>
+<h2><a id="lintian: パッケージの品質のチェック"><span class='anchor'>_</span></a>lintian: パッケージの品質のチェック</h2>
 <p>作成したパッケージが Debian Policy に準拠しているかを
   チェックするパッケージである lintian を導入.</p>
 <pre class="example">
@@ -286,7 +286,7 @@ show-overrides<span class="w"> </span>=<span class="w"> </span>yes<span class="w
 <span class="nv">$lintian_opts</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;-i&#39;</span><span class="p">,</span> <span class="s">&#39;-I&#39;</span><span class="p">];</span>
 </pre></div>
 <p>とでもしておくと良いだろう.</p>
-<h2><a id="=piuparts=: パッケージとしてのテスト"><span class='anchor'>_</span></a><code>piuparts</code>: パッケージとしてのテスト</h2>
+<h2><a id="piuparts: パッケージとしてのテスト"><span class='anchor'>_</span></a>piuparts: パッケージとしてのテスト</h2>
 <p>ビルドしたパッケージについて
   インストール, アップグレード, リムーブ, パージのテストを行なえる
   piuparts を導入しておく.</p>
@@ -302,7 +302,7 @@ show-overrides<span class="w"> </span>=<span class="w"> </span>yes<span class="w
 <span class="c1"># root_args</span>
 <span class="nv">$piuparts_root_args</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;sudo&#39;</span><span class="p">,</span> <span class="s">&#39;--&#39;</span><span class="p">];</span>
 </pre></div>
-<h2><a id="=autopkgtest=: ビルドしたバイナリの実行テスト"><span class='anchor'>_</span></a><code>autopkgtest</code>: ビルドしたバイナリの実行テスト</h2>
+<h2><a id="autopkgtest: ビルドしたバイナリの実行テスト"><span class='anchor'>_</span></a>autopkgtest: ビルドしたバイナリの実行テスト</h2>
 <p>autopkgtest パッケージを導入しておく.</p>
 <h3><a id="初期設定"><span class='anchor'>_</span></a>初期設定</h3>
 <p>autopkgtest 環境として, schroot を使うか lxc を使うか, がある.
@@ -374,7 +374,7 @@ show-overrides<span class="w"> </span>=<span class="w"> </span>yes<span class="w
                       <span class="p">[</span><span class="s">&#39;/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e&#39;</span><span class="p">],</span>
                      <span class="p">};</span>
 </pre></div>
-<h2><a id="=~/.sbuildrc="><span class='anchor'>_</span></a><code>~/.sbuildrc</code></h2>
+<h2><a id="~/.sbuildrc"><span class='anchor'>_</span></a>~/.sbuildrc</h2>
 <p>現在の <code>~/.sbuildrc</code> は以下の通り</p>
 <div class="highlight"><pre><span></span><span class="c1"># -*- mode: cperl -*-</span>
 <span class="c1">## basic</span>
