@@ -15,8 +15,8 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": "https://uwabami.github.io/cc-env/Emacs.html",
       "headline": "Emacs の設定",
-      "datePublished": "2019-01-11T18:04:23+09:00",
-      "dateModified": "2019-01-11T18:04:23+09:00",
+      "datePublished": "2019-01-16T16:50:18+09:00",
+      "dateModified": "2019-01-16T16:50:18+09:00",
       "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
       "author": {
         "@type": "Person",
@@ -265,6 +265,8 @@
   <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&quot;share/&quot;</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">defconst</span> <span class="nv">my:d:tmp</span>
   <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&quot;tmp/&quot;</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:tmp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">make-directory</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
 </pre></div>
 <p>ついでに，
   <code>custom-set-variables</code> は別ファイルに出力，終了時に削除するようにしています．</p>
@@ -288,7 +290,9 @@
 <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;package-archives</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;melpa&quot;</span> <span class="o">.</span> <span class="s">&quot;https://melpa.org/packages/&quot;</span><span class="p">)</span> <span class="nv">t</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">eval-when-compile</span>
   <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">file-exists-p</span> <span class="p">(</span><span class="nf">locate-user-emacs-file</span> <span class="s">&quot;tmp/bootstrap-stamp&quot;</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">package-refresh-contents</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">package-refresh-contents</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">with-temp-buffer</span> <span class="p">(</span><span class="nf">write-file</span> <span class="p">(</span><span class="nf">locate-user-emacs-file</span> <span class="s">&quot;tmp/bootstrap-stamp&quot;</span><span class="p">)))</span>
+    <span class="p">))</span>
 <span class="p">(</span><span class="nf">package-initialize</span><span class="p">)</span>
 </pre></div>
 <h3><a id="[[https://github.com/jwiegley/use-package][use-package]]"><span class='anchor'>_</span></a><a href="https://github.com/jwiegley/use-package">use-package</a></h3>
@@ -401,7 +405,7 @@
   <span class="s">&quot;Show up to `max-length&#39; characters of a directory name `fpath&#39; like zsh&quot;</span>
   <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">path</span> <span class="p">(</span><span class="nb">reverse </span><span class="p">(</span><span class="nf">split-string</span> <span class="p">(</span><span class="nf">abbreviate-file-name</span> <span class="nv">fpath</span><span class="p">)</span> <span class="s">&quot;/&quot;</span><span class="p">)))</span>
          <span class="p">(</span><span class="nf">output</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-         <span class="p">(</span><span class="nf">top</span> <span class="p">(</span><span class="nf">string-join</span> <span class="p">(</span><span class="nb">reverse </span><span class="p">(</span><span class="nf">last</span> <span class="nv">path</span> <span class="mi">3</span><span class="p">))</span> <span class="s">&quot;/&quot;</span><span class="p">))</span>
+         <span class="p">(</span><span class="nf">top</span> <span class="p">(</span><span class="nf">mapconcat</span> <span class="ss">&#39;identity</span> <span class="p">(</span><span class="nb">reverse </span><span class="p">(</span><span class="nf">last</span> <span class="nv">path</span> <span class="mi">3</span><span class="p">))</span> <span class="s">&quot;/&quot;</span><span class="p">))</span>
          <span class="p">(</span><span class="nf">vmax</span> <span class="p">(</span><span class="nb">- </span><span class="nv">max-length</span> <span class="mi">4</span> <span class="p">(</span><span class="nb">length </span><span class="nv">top</span><span class="p">)))</span>
          <span class="p">(</span><span class="nf">path</span> <span class="p">(</span><span class="nf">butlast</span> <span class="nv">path</span> <span class="mi">3</span><span class="p">))</span>
          <span class="p">)</span>
@@ -415,20 +419,6 @@
       <span class="p">(</span><span class="nf">setq</span> <span class="nv">output</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;/...&quot;</span> <span class="nv">output</span><span class="p">)))</span>
     <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;%s%s&quot;</span> <span class="nv">top</span> <span class="nv">output</span><span class="p">)</span>
     <span class="p">))</span>
-</pre></div>
-<h2><a id="常に =cl-lib= を読み込む"><span class='anchor'>_</span></a>常に <code>cl-lib</code> を読み込む</h2>
-<p>以前は(今も?)「 <code>cl.el</code> は名前衝突があるので byte compile 時以外は読み込まない様にしよう」
-  というお話でした．つまり，</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">eval-when-compile</span> <span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;cl</span><span class="p">))</span>
-</pre></div>
-<p>としておくこと，という．</p>
-<p>今は「 <code>cl.el</code> は deprecated なので <code>cl-lib</code> を使いましょう」ということみたいです．
-  名前衝突の回避のために，関数の接頭詞として <code>cl-</code> が付くようになったのは御愛嬌．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">eval-and-compile</span> <span class="p">(</span><span class="nf">use-package</span> <span class="nv">cl-lib</span><span class="p">))</span>
-</pre></div>
-<h2><a id="後方互換性: =el-x="><span class='anchor'>_</span></a>後方互換性: <code>el-x</code></h2>
-<p>古い <code>flet</code> と同じ挙動をする <code>dflet</code> を使うために <code>el-x</code> を導入しておく</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">el-x</span> <span class="nv">:ensure</span> <span class="nv">t</span><span class="p">)</span>
 </pre></div>
 <h2><a id="環境変数の読み込み: =exec-path-from-shell="><span class='anchor'>_</span></a>環境変数の読み込み: <code>exec-path-from-shell</code></h2>
 <p>zsh で設定した <code>PATH</code> などの環境変数を Emacs に引き継ぐために
@@ -657,15 +647,12 @@
 <p>ファイルを開く際には <code>ido-recentf-open</code> を使うので,
   結局履歴を貯める設定をしている事になっている.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">recentf</span>
+  <span class="nv">:diminish</span> <span class="nv">recentf-mode</span>
   <span class="nv">:defer</span> <span class="nv">t</span>
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-init-hook</span> <span class="ss">&#39;recentf-mode</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">use-package</span> <span class="nv">recentf-ext</span> <span class="nv">:ensure</span> <span class="nv">t</span> <span class="nv">:defer</span> <span class="nv">t</span><span class="p">)</span>
   <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">defmacro</span> <span class="nv">my:suppressed-message</span> <span class="p">(</span><span class="nf">&amp;rest</span> <span class="nv">body</span><span class="p">)</span>
-    <span class="s">&quot;Suppress new messages temporarily in the echo area and the `*Messages*&#39; buffer while BODY is evaluated.&quot;</span>
-    <span class="p">(</span><span class="nf">declare</span> <span class="p">(</span><span class="nf">indent</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">message-log-max</span> <span class="nv">nil</span><span class="p">))</span>
-      <span class="o">`</span><span class="p">(</span><span class="nf">with-temp-message</span> <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nf">current-message</span><span class="p">)</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="o">,@</span><span class="nv">body</span><span class="p">)))</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">recentf-max-saved-items</span> <span class="mi">256</span>
         <span class="nv">recentf-save-file</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;recentf&quot;</span><span class="p">))</span>
         <span class="nv">recentf-auto-cleanup</span> <span class="ss">&#39;never</span>
@@ -677,16 +664,9 @@
                           <span class="s">&quot;^/home/uwabami/.mozilla/\\.*&quot;</span>
                           <span class="s">&quot;\\.*草稿\\.*&quot;</span>
                           <span class="p">))</span>
-  <span class="p">(</span><span class="nf">run-with-idle-timer</span> <span class="mi">30</span> <span class="nv">t</span> <span class="o">&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
-                               <span class="p">(</span><span class="nf">my:suppressed-message</span> <span class="p">(</span><span class="nf">recentf-save-list</span><span class="p">))))</span>
   <span class="p">)</span>
 </pre></div>
 <p>ディレクトリの履歴も取れるので recentf-ext を入れておく</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">recentf-ext</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:defer</span> <span class="nv">t</span>
-  <span class="p">)</span>
-</pre></div>
 <h3><a id="=.elc= と =.el= の timestamp を比較し，新しい方を読み込む"><span class='anchor'>_</span></a><code>.elc</code> と <code>.el</code> の timestamp を比較し，新しい方を読み込む</h3>
 <p><code>load-prefer-newer</code> は Emacs &gt;= 24.4 から．</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">boundp</span> <span class="ss">&#39;load-prefer-newer</span><span class="p">)</span>
@@ -784,28 +764,28 @@
 <p>幅と背景色の指定がメインだが、
   上手くうごいてくれていない、ような。</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">eww</span>
-  <span class="nv">:config</span>
   <span class="c1">;; vi like &lt;- vimperator, vimium に慣れてしまったので</span>
-  <span class="p">(</span><span class="nf">bind-keys</span> <span class="nv">:map</span> <span class="nv">eww-mode-map</span>
-             <span class="p">(</span><span class="s">&quot;r&quot;</span>  <span class="o">.</span> <span class="nv">eww-reload</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;o&quot;</span>  <span class="o">.</span> <span class="nv">eww</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;&amp;&quot;</span>  <span class="o">.</span> <span class="nv">eww-browse-with-external-browser</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;b&quot;</span>  <span class="o">.</span> <span class="nv">eww-back-url</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;]&quot;</span>  <span class="o">.</span> <span class="nv">eww-next-url</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;[&quot;</span>  <span class="o">.</span> <span class="nv">eww-previous-url</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;g&quot;</span>  <span class="o">.</span> <span class="nv">eww-top-url</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;+&quot;</span>  <span class="o">.</span> <span class="nv">my:eww-increase-width</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;-&quot;</span>  <span class="o">.</span> <span class="nv">my:eww-decrease-width</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;h&quot;</span>  <span class="o">.</span> <span class="nv">backward-char</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;j&quot;</span>  <span class="o">.</span> <span class="nv">next-line</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;k&quot;</span>  <span class="o">.</span> <span class="nv">previous-line</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;l&quot;</span>  <span class="o">.</span> <span class="nv">forward-char</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;/&quot;</span>  <span class="o">.</span> <span class="nv">isearch-forward</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;?&quot;</span>  <span class="o">.</span> <span class="nv">isearch-backward</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;n&quot;</span>  <span class="o">.</span> <span class="nv">isearch-next</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;N&quot;</span>  <span class="o">.</span> <span class="nv">isearch-previous</span><span class="p">)</span>
-             <span class="p">(</span><span class="s">&quot;f&quot;</span>  <span class="o">.</span> <span class="nv">ace-link-eww</span><span class="p">)</span>
-             <span class="p">)</span>
+  <span class="nv">:bind</span> <span class="p">(</span><span class="nf">:map</span> <span class="nv">eww-mode-map</span>
+              <span class="p">(</span><span class="s">&quot;r&quot;</span>  <span class="o">.</span> <span class="nv">eww-reload</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;o&quot;</span>  <span class="o">.</span> <span class="nv">eww</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;&amp;&quot;</span>  <span class="o">.</span> <span class="nv">eww-browse-with-external-browser</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;b&quot;</span>  <span class="o">.</span> <span class="nv">eww-back-url</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;]&quot;</span>  <span class="o">.</span> <span class="nv">eww-next-url</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;[&quot;</span>  <span class="o">.</span> <span class="nv">eww-previous-url</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;g&quot;</span>  <span class="o">.</span> <span class="nv">eww-top-url</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;+&quot;</span>  <span class="o">.</span> <span class="nv">my:eww-increase-width</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;-&quot;</span>  <span class="o">.</span> <span class="nv">my:eww-decrease-width</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;h&quot;</span>  <span class="o">.</span> <span class="nv">backward-char</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;j&quot;</span>  <span class="o">.</span> <span class="nv">next-line</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;k&quot;</span>  <span class="o">.</span> <span class="nv">previous-line</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;l&quot;</span>  <span class="o">.</span> <span class="nv">forward-char</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;/&quot;</span>  <span class="o">.</span> <span class="nv">isearch-forward</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;?&quot;</span>  <span class="o">.</span> <span class="nv">isearch-backward</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;n&quot;</span>  <span class="o">.</span> <span class="nv">isearch-next</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;N&quot;</span>  <span class="o">.</span> <span class="nv">isearch-previous</span><span class="p">)</span>
+              <span class="p">(</span><span class="s">&quot;f&quot;</span>  <span class="o">.</span> <span class="nv">ace-link-eww</span><span class="p">)</span>
+              <span class="p">)</span>
+  <span class="nv">:init</span>
   <span class="c1">;; eww</span>
   <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&quot;eww&quot;</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nf">make-directory</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&quot;eww&quot;</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
@@ -910,15 +890,25 @@
   <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">server-running-p</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">server-start</span><span class="p">)))</span>
 </pre></div>
-<h2><a id="=ace-link=: ace によるリンク選択"><span class='anchor'>_</span></a><code>ace-link</code>: ace によるリンク選択</h2>
-<p>eww では手放せないくらい便利</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ace-link</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
+<h2><a id="基本的なキーバインドの設定"><span class='anchor'>_</span></a>基本的なキーバインドの設定</h2>
+<p>既に手癖になってしまっているアレコレ．
+  特に <code>[home]</code> と <code>[end]</code> は無いと途方に暮れます．</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">bind-key</span>
   <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="ss">&#39;eww</span>
-    <span class="o">&#39;</span><span class="p">(</span><span class="nv">define-key</span> <span class="nv">eww-mode-map</span> <span class="s">&quot;f&quot;</span> <span class="ss">&#39;ace-link-eww</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">ace-link-setup-default</span><span class="p">)</span>
-  <span class="p">)</span>
+  <span class="p">(</span><span class="nf">bind-keys*</span>
+   <span class="p">(</span><span class="s">&quot;&lt;f2&gt;&quot;</span>    <span class="o">.</span> <span class="nv">eww</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;C-h&quot;</span>     <span class="o">.</span> <span class="nv">backward-delete-char</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;C-c M-a&quot;</span> <span class="o">.</span> <span class="nv">align-regexp</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;C-c ;&quot;</span>   <span class="o">.</span> <span class="nv">comment-region</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;C-c M-;&quot;</span> <span class="o">.</span> <span class="nv">uncomment-region</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;C-/&quot;</span>     <span class="o">.</span> <span class="nv">undo</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;C-x M-b&quot;</span> <span class="o">.</span> <span class="nv">ibuffer-other-window</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;C-c M-r&quot;</span> <span class="o">.</span> <span class="nv">replace-regexp</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;C-c r&quot;</span>   <span class="o">.</span> <span class="nv">replace-string</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;&lt;home&gt;&quot;</span>  <span class="o">.</span> <span class="nv">beginning-of-buffer</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;&lt;end&gt;&quot;</span>   <span class="o">.</span> <span class="nv">end-of-buffer</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">&quot;C-c C-j&quot;</span> <span class="o">.</span> <span class="nv">browse-url-at-point</span><span class="p">)</span>
+   <span class="p">))</span>
 </pre></div>
 <h2><a id="Elscreen"><span class='anchor'>_</span></a>Elscreen</h2>
 <h3><a id="導入 [0/1]"><span class='anchor'>_</span></a>導入 [0/1]</h3>
@@ -973,7 +963,9 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
 <h3><a id="Emacs 本体側の設定"><span class='anchor'>_</span></a>Emacs 本体側の設定</h3>
 <p>実際の設定は別ファイルで行なわれるため
   ここでは設定ファイルの位置変更を変更している．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">skk</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">locate-library</span> <span class="s">&quot;skk&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">package-install</span> <span class="ss">&#39;ddskk</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">skk</span>
   <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x j&quot;</span>   <span class="o">.</span> <span class="nv">skk-mode</span><span class="p">)</span>
          <span class="p">(</span><span class="s">&quot;C-x C-j&quot;</span> <span class="o">.</span> <span class="nv">skk-mode</span><span class="p">)</span>
          <span class="p">(</span><span class="s">&quot;C-\\&quot;</span>    <span class="o">.</span> <span class="nv">skk-mode</span><span class="p">))</span>
@@ -1177,15 +1169,32 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
              <span class="o">&#39;</span><span class="p">(</span><span class="nv">skk-tankan-search</span> <span class="ss">&#39;skk-search-jisyo-file</span>
                                  <span class="nv">skk-large-jisyo</span> <span class="mi">10000</span><span class="p">))</span>
 </pre></div>
-<h2><a id="Copy & Paste: =xclip="><span class='anchor'>_</span></a>Copy &amp; Paste: <code>xclip</code></h2>
+<h2><a id="Copy & Paste:"><span class='anchor'>_</span></a>Copy &amp; Paste:</h2>
+<h3><a id="Linux: =xclip="><span class='anchor'>_</span></a>Linux: <code>xclip</code></h3>
 <p><code>xclip</code> で clipboard とデータをやりとり．</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">xclip</span>
+  <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;xclip&quot;</span><span class="p">)</span>
+           <span class="p">(</span><span class="nf">eq</span> <span class="nv">system-type</span> <span class="ss">&#39;gnu/linux</span><span class="p">))</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;xclip&quot;</span><span class="p">)</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">xclip-mode</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
 <p>clipboard と PRIMARY の同期には <code>gpaste</code> を使っている．</p>
+<h3><a id="macOS"><span class='anchor'>_</span></a>macOS</h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defun</span> <span class="nv">my:copy-from-osx</span> <span class="p">()</span>
+  <span class="s">&quot;Get string via pbpaste&quot;</span>
+  <span class="p">(</span><span class="nf">shell-command-to-string</span> <span class="s">&quot;pbpaste&quot;</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">defun</span> <span class="nv">my:paste-to-osx</span> <span class="p">(</span><span class="nf">text</span> <span class="nv">&amp;optional</span> <span class="nv">push</span><span class="p">)</span>
+  <span class="s">&quot;put `TEXT&#39; via pbcopy with `PUSH&#39; mode&quot;</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">process-connection-type</span> <span class="nv">nil</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">proc</span> <span class="p">(</span><span class="nf">start-process</span> <span class="s">&quot;pbcopy&quot;</span> <span class="s">&quot;*Messages*&quot;</span> <span class="s">&quot;pbcopy&quot;</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">process-send-string</span> <span class="nv">proc</span> <span class="nv">text</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">process-send-eof</span> <span class="nv">proc</span><span class="p">))))</span>
+<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">eq</span> <span class="nv">system-type</span> <span class="ss">&#39;darwin</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">progn</span>
+      <span class="p">(</span><span class="nf">setq</span> <span class="nv">interprogram-cut-function</span> <span class="ss">&#39;my:paste-to-osx</span>
+            <span class="nv">interprogram-paste-function</span> <span class="ss">&#39;my:copy-from-osx</span><span class="p">)))</span>
+</pre></div>
 <h2><a id="インクリメンタル検索: =migemo="><span class='anchor'>_</span></a>インクリメンタル検索: <code>migemo</code></h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">migemo</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;cmigemo&quot;</span><span class="p">)</span>
@@ -1193,13 +1202,41 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
            <span class="nv">:fetcher</span> <span class="nv">github</span>
            <span class="nv">:repo</span> <span class="s">&quot;uwabami/migemo&quot;</span><span class="p">)</span>
   <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">cond</span>
+   <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">eq</span> <span class="nv">system-type</span> <span class="ss">&#39;darwin</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">file-directory-p</span> <span class="s">&quot;/usr/local/share/migemo/utf-8/&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">setq</span> <span class="nv">migemo-dictionary</span> <span class="s">&quot;/usr/local/share/migemo/utf-8/migemo-dict&quot;</span><span class="p">))</span>
+   <span class="p">(</span><span class="nf">t</span>
+    <span class="p">(</span><span class="nf">setq</span> <span class="nv">migemo-dictionary</span> <span class="s">&quot;/usr/share/cmigemo/utf-8/migemo-dict&quot;</span><span class="p">)))</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">migemo-command</span> <span class="s">&quot;cmigemo&quot;</span>
         <span class="nv">migemo-options</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;-q&quot;</span> <span class="s">&quot;--emacs&quot;</span><span class="p">)</span>
-        <span class="nv">migemo-dictionary</span> <span class="s">&quot;/usr/share/cmigemo/utf-8/migemo-dict&quot;</span>
         <span class="nv">migemo-user-dictionary</span> <span class="nv">nil</span>
         <span class="nv">migemo-regex-dictionary</span> <span class="nv">nil</span>
         <span class="nv">migemo-coding-system</span> <span class="ss">&#39;utf-8-unix</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">migemo-init</span><span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
+<h2><a id="補完: =auto-complete="><span class='anchor'>_</span></a>補完: <code>auto-complete</code></h2>
+<p>ちょいちょい上手く動かなかったりするんだけれど、どうしたモンかな.</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">auto-complete-config</span>
+  <span class="nv">:ensure</span> <span class="nv">auto-complete</span>
+  <span class="nv">:diminish</span> <span class="nv">auto-complete-mode</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">ac-flyspell-workaround</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">ac-set-trigger-key</span> <span class="s">&quot;M-TAB&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">ac-config-default</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;ac-dictionary-directories</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:share</span> <span class="s">&quot;ac-dict&quot;</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">ac-comphist-file</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;ac-comphist.dat&quot;</span><span class="p">)</span>
+        <span class="nv">ac-auto-start</span> <span class="mi">4</span>                          <span class="c1">; 4 文字以上で起動</span>
+        <span class="nv">ac-use-menu-map</span> <span class="nv">t</span>                        <span class="c1">; キーバインド</span>
+        <span class="nv">ac-auto-show-menu</span> <span class="mi">1</span>                      <span class="c1">; 1秒でメニュー表示</span>
+        <span class="nv">ac-use-comphist</span> <span class="nv">t</span>                        <span class="c1">; 補完候補をソート</span>
+        <span class="nv">ac-candidate-limit</span> <span class="nv">nil</span>                   <span class="c1">; 補完候補表示を無制限に</span>
+        <span class="nv">ac-use-quick-help</span> <span class="nv">nil</span><span class="p">)</span>                   <span class="c1">; tool tip 無し</span>
+  <span class="c1">;; (dolist (mode</span>
+  <span class="c1">;;          &#39;(</span>
+  <span class="c1">;;            ))</span>
+  <span class="c1">;;  (add-to-list &#39;ac-modes mode))</span>
   <span class="p">)</span>
 </pre></div>
 <h2><a id="補完: =ido="><span class='anchor'>_</span></a>補完: <code>ido</code></h2>
@@ -1207,8 +1244,7 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
   見た目がちょっと簡素すぎる気もするので、なんとか弄りたい所ではある。</p>
 <h3><a id="=ido= の設定"><span class='anchor'>_</span></a><code>ido</code> の設定</h3>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ido</span>
-  <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x C-f&quot;</span> <span class="o">.</span> <span class="nv">ido-find-file</span><span class="p">)</span>
-         <span class="p">)</span>
+  <span class="nv">:bind</span> <span class="p">(</span><span class="s">&quot;C-x C-f&quot;</span> <span class="o">.</span> <span class="nv">ido-find-file</span><span class="p">)</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">ido-mode</span> <span class="nv">t</span><span class="p">)</span>
   <span class="c1">;; (ido-everywhere t)  ; &lt;- Wanderlust みたいに, 過去の選択を覚えている奴と相性悪い.</span>
@@ -1308,72 +1344,82 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
         <span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="認証関連: =id-manager=, =plstore=, =oauth2=, =password-store="><span class='anchor'>_</span></a>認証関連: <code>id-manager</code>, <code>plstore</code>, <code>oauth2</code>, <code>password-store</code></h2>
-<h3><a id="id-manager の設定"><span class='anchor'>_</span></a>id-manager の設定</h3>
-<p>ID と Password の簡単な組の管理をするのに非常に重宝していました.
-  最近は <code>password-store</code> を使う様になったので, そのうち移行します.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">id-manager</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-exists-p</span> <span class="s">&quot;~/.gnupg/idm-db.gpg&quot;</span><span class="p">)</span>
-  <span class="nv">:bind</span> <span class="p">(</span><span class="s">&quot;M-7&quot;</span> <span class="o">.</span> <span class="nv">idm-open-list-command</span><span class="p">)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">idm-database-file</span>
-        <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&quot;~/.gnupg/idm-db.gpg&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">idm-clipboard-expire-time-sec</span> <span class="mi">30</span><span class="p">))</span>
-</pre></div>
-<h3><a id="plstore"><span class='anchor'>_</span></a>plstore</h3>
-<p>デフォルトは対称鍵暗号化なので， <code>GPG_KEY_ID</code> を設定しておく</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">plstore</span>
+<h2><a id="校正，辞書等"><span class='anchor'>_</span></a>校正，辞書等</h2>
+<h3><a id="spell checker"><span class='anchor'>_</span></a>spell checker</h3>
+<p>ispell はコマンドとして <code>aspell</code> を利用する．</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ispell</span>
+  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-executable-p</span> <span class="s">&quot;aspell&quot;</span><span class="p">)</span>
   <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">plstore-secret-keys</span> <span class="ss">&#39;silent</span>
-        <span class="nv">plstore-encrypt-to</span> <span class="p">(</span><span class="nf">getenv</span> <span class="s">&quot;GPG_KEY_ID&quot;</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">setq-default</span> <span class="nv">ispell-program-name</span> <span class="s">&quot;aspell&quot;</span><span class="p">)</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;ispell-skip-region-alist</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;[^\000-\377]+&quot;</span><span class="p">)))</span>
 </pre></div>
-<h3><a id="oauth2"><span class='anchor'>_</span></a>oauth2</h3>
+<p>flyspell-mode は別途有効化しておいた方が良いのかもしれない</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">flyspell</span>
+  <span class="nv">:diminish</span> <span class="nv">flyspell-mode</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:flyspell-popup-choose</span> <span class="p">(</span><span class="nf">orig</span> <span class="nv">event</span> <span class="nv">poss</span> <span class="nv">word</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">window-system</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">funcall</span> <span class="nv">orig</span> <span class="nv">event</span> <span class="nv">poss</span> <span class="nv">word</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">flyspell-emacs-popup-textual</span> <span class="nv">event</span> <span class="nv">poss</span> <span class="nv">word</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">advice-add</span> <span class="ss">&#39;flyspell-emacs-popup</span> <span class="nv">:around</span> <span class="o">#</span><span class="ss">&#39;my:flyspell-popup-choose</span><span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
+<h3><a id="辞書"><span class='anchor'>_</span></a>辞書</h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">lookup</span>
+  <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;lookup-el&quot;</span><span class="p">)</span>
+           <span class="p">(</span><span class="nf">file-exists-p</span> <span class="s">&quot;/usr/local/share/dict/lookup-enabled&quot;</span><span class="p">))</span>
+  <span class="nv">:commands</span> <span class="p">(</span><span class="nf">lookup</span> <span class="nv">lookup-region</span> <span class="nv">lookup-pattern</span><span class="p">)</span>
+  <span class="nv">:no-require</span> <span class="nv">t</span>
+  <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-c w&quot;</span> <span class="o">.</span> <span class="nv">lookup-pattern</span><span class="p">)</span>
+         <span class="p">(</span><span class="s">&quot;C-c W&quot;</span> <span class="o">.</span> <span class="nv">lookup-word</span><span class="p">))</span>
+  <span class="nv">:init</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">lookup-search-agents</span>
+        <span class="o">&#39;</span><span class="p">(</span>
+          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/eijiro&quot;</span>    <span class="nv">:alias</span> <span class="s">&quot;英辞郎&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/waeijiro&quot;</span>  <span class="nv">:alias</span> <span class="s">&quot;和英辞郎&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/rikagaku5&quot;</span> <span class="nv">:alias</span> <span class="s">&quot;理化学辞典 第5版&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/koujien4&quot;</span>  <span class="nv">:alias</span> <span class="s">&quot;広辞苑 第4版&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/wadai5&quot;</span>    <span class="nv">:alias</span> <span class="s">&quot;研究社 和英大辞典 第5版&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/eidai6&quot;</span>    <span class="nv">:alias</span> <span class="s">&quot;研究社 英和大辞典 第6版&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/colloc&quot;</span>    <span class="nv">:alias</span> <span class="s">&quot;研究社 英和活用大辞典 &quot;</span><span class="p">)</span>
+          <span class="p">)))</span>
+</pre></div>
+<h2><a id="認証関連: =plstore=, =oauth2=, =password-store="><span class='anchor'>_</span></a>認証関連: <code>plstore</code>, <code>oauth2</code>, <code>password-store</code></h2>
+<h3><a id="oauth2, plstore"><span class='anchor'>_</span></a>oauth2, plstore</h3>
 <p>oauth2 の認証情報は <code>plstore</code> で保存される．
-  ファイルの置き場所と暗号鍵の設定をしておく</p>
+  ファイルの置き場所と暗号鍵の設定をしておく.
+  また, plstore のデフォルトは対称鍵暗号化なので，
+  <code>GPG_KEY_ID</code> を設定しておく.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">oauth2</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">oauth2-token-file</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;oauth2.plstore&quot;</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">use-package</span> <span class="nv">plstore</span>
+    <span class="nv">:if</span> <span class="p">(</span><span class="nf">getenv</span> <span class="s">&quot;GPG_KEY_ID&quot;</span><span class="p">)</span>
+    <span class="nv">:init</span>
+    <span class="p">(</span><span class="nf">setq</span> <span class="nv">plstore-secret-keys</span> <span class="ss">&#39;silent</span>
+          <span class="nv">plstore-encrypt-to</span> <span class="p">(</span><span class="nf">getenv</span> <span class="s">&quot;GPG_KEY_ID&quot;</span><span class="p">))</span>
+    <span class="p">)</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">oauth2-token-file</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;oauth2.plstore&quot;</span><span class="p">))</span>
+  <span class="p">)</span>
 </pre></div>
 <h3><a id="password-store"><span class='anchor'>_</span></a>password-store</h3>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">password-store</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="nv">my:d:password-store</span>
            <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;pass&quot;</span><span class="p">))</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="p">)</span>
 </pre></div>
 <h3><a id="auth-password-store"><span class='anchor'>_</span></a>auth-password-store</h3>
 <p>auth-source として <code>password-store</code> を使う拡張</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">auth-source-pass</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="nv">my:d:password-store</span>
            <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;pass&quot;</span><span class="p">))</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="Emacs-w3m"><span class='anchor'>_</span></a>Emacs-w3m</h2>
-<p>あまり使わないけれど, 一応設定しておく.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">w3m</span>
-  <span class="nv">:defer</span> <span class="nv">t</span>
-  <span class="nv">:disabled</span> <span class="nv">t</span>
-  <span class="nv">:bind</span> <span class="p">(</span><span class="nf">:w3m-mode-map</span>
-         <span class="p">(</span><span class="s">&quot;&lt;left&gt;&quot;</span>  <span class="o">.</span> <span class="nv">backward-char</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;&lt;right&gt;&quot;</span> <span class="o">.</span> <span class="nv">forward-char</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;&lt;up&gt;&quot;</span>    <span class="o">.</span> <span class="nv">previous-line</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;&lt;down&gt;&quot;</span>  <span class="o">.</span> <span class="nv">next-line</span><span class="p">)</span>
-         <span class="nv">:w3m-minor-mode-map</span>
-         <span class="p">(</span><span class="s">&quot;&lt;left&gt;&quot;</span>  <span class="o">.</span> <span class="nv">backward-char</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;&lt;right&gt;&quot;</span> <span class="o">.</span> <span class="nv">forward-char</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;&lt;up&gt;&quot;</span>    <span class="o">.</span> <span class="nv">previous-line</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;&lt;down&gt;&quot;</span>  <span class="o">.</span> <span class="nv">next-line</span><span class="p">))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">w3m-search-default-engine</span> <span class="s">&quot;google&quot;</span>
-        <span class="nv">w3m-use-cookies</span> <span class="nv">t</span>
-        <span class="c1">;; w3m-fill-column -4</span>
-        <span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="MUA の設定: =wanderlust="><span class='anchor'>_</span></a>MUA の設定: <code>wanderlust</code></h2>MUA として Wanderlust を使っている
+<h2><a id="MUA の設定: =wanderlust="><span class='anchor'>_</span></a>MUA の設定: <code>wanderlust</code></h2>
+<p>MUA として Wanderlust を使っている</p>
 <h3><a id="Emacs 本体側の設定"><span class='anchor'>_</span></a>Emacs 本体側の設定</h3>
 <p>Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別ファイルで行なわれる．
   ここでは <code>wl-init-file</code> を指定することで，設定ファイルを明示している．</p>
@@ -1381,6 +1427,7 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
   <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;wl&quot;</span><span class="p">)</span>
                <span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;wl-beta&quot;</span><span class="p">))</span>
            <span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;rail&quot;</span><span class="p">))</span>
+  <span class="nv">:no-require</span> <span class="nv">t</span>
   <span class="nv">:commands</span> <span class="p">(</span><span class="nf">wl</span> <span class="nv">wl-other-frame</span> <span class="nv">wl-draft</span> <span class="nv">wl-user-agent</span> <span class="nv">wl-user-agent-compose</span> <span class="nv">wl-draft-send</span> <span class="nv">wl-draft-kill</span><span class="p">)</span>
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">define-mail-user-agent</span>
@@ -1647,7 +1694,7 @@ video/*;<span class="w"> </span>xdg-open<span class="w"> </span>%s;<span class="
 <p>終了時に確認しない</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">wl-interactive-exit</span> <span class="nv">nil</span><span class="p">)</span>
 </pre></div>
-<p>送信時は確認する   :tangle init-wl.el</p>
+<p>送信時は確認する</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">wl-interactive-send</span> <span class="nv">t</span><span class="p">)</span>
 </pre></div>
 <h5><a id="misc."><span class='anchor'>_</span></a>misc.</h5>
@@ -1813,7 +1860,8 @@ video/*;<span class="w"> </span>xdg-open<span class="w"> </span>%s;<span class="
 </pre></div>
 <h5><a id="sort 順: 返信が来た順"><span class='anchor'>_</span></a>sort 順: 返信が来た順</h5>
 <p><code>flet</code> を書き換えるのが面倒で <code>el-x</code> にある <code>dflet</code> を使うように変更</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defun</span> <span class="nv">wl-summary-overview-entity-compare-by-reply-date</span> <span class="p">(</span><span class="nf">a</span> <span class="nv">b</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">el-x</span> <span class="nv">:ensure</span> <span class="nv">t</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">defun</span> <span class="nv">wl-summary-overview-entity-compare-by-reply-date</span> <span class="p">(</span><span class="nf">a</span> <span class="nv">b</span><span class="p">)</span>
   <span class="s">&quot;Compare message A and B by latest date of replies including thread.&quot;</span>
   <span class="p">(</span><span class="nf">dflet</span> <span class="p">((</span><span class="nf">string-max2</span> <span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">)</span>
                        <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">string&lt;</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="nv">y</span><span class="p">)</span>
@@ -2167,59 +2215,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="p">(</span><span class="nf">calendar-set-date-style</span> <span class="ss">&#39;iso</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="校正，辞書等"><span class='anchor'>_</span></a>校正，辞書等</h2>
-<h3><a id="spell checker"><span class='anchor'>_</span></a>spell checker</h3>
-<p>ispell はコマンドとして <code>aspell</code> を利用する．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ispell</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">setq-default</span> <span class="nv">ispell-program-name</span> <span class="s">&quot;aspell&quot;</span><span class="p">)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;ispell-skip-region-alist</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;[^\000-\377]+&quot;</span><span class="p">)))</span>
-</pre></div>
-<p>flyspell-mode は別途有効化しておいた方が良いのかもしれない</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">flyspell</span>
-  <span class="nv">:diminish</span> <span class="nv">flyspell-mode</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:flyspell-popup-choose</span> <span class="p">(</span><span class="nf">orig</span> <span class="nv">event</span> <span class="nv">poss</span> <span class="nv">word</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">window-system</span><span class="p">)</span>
-        <span class="p">(</span><span class="nf">funcall</span> <span class="nv">orig</span> <span class="nv">event</span> <span class="nv">poss</span> <span class="nv">word</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">flyspell-emacs-popup-textual</span> <span class="nv">event</span> <span class="nv">poss</span> <span class="nv">word</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nf">advice-add</span> <span class="ss">&#39;flyspell-emacs-popup</span> <span class="nv">:around</span> <span class="o">#</span><span class="ss">&#39;my:flyspell-popup-choose</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<h3><a id="辞書"><span class='anchor'>_</span></a>辞書</h3>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">lookup</span>
-  <span class="nv">:commands</span> <span class="p">(</span><span class="nf">lookup</span> <span class="nv">lookup-region</span> <span class="nv">lookup-pattern</span><span class="p">)</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;lookup-el&quot;</span><span class="p">)</span>
-           <span class="p">(</span><span class="nf">file-exists-p</span> <span class="s">&quot;/usr/local/share/dict/lookup-enabled&quot;</span><span class="p">))</span>
-  <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-c w&quot;</span> <span class="o">.</span> <span class="nv">lookup-pattern</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;C-c W&quot;</span> <span class="o">.</span> <span class="nv">lookup-word</span><span class="p">))</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">lookup-search-agents</span>
-        <span class="o">&#39;</span><span class="p">(</span>
-          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/eijiro&quot;</span>    <span class="nv">:alias</span> <span class="s">&quot;英辞郎&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/waeijiro&quot;</span>  <span class="nv">:alias</span> <span class="s">&quot;和英辞郎&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/rikagaku5&quot;</span> <span class="nv">:alias</span> <span class="s">&quot;理化学辞典 第5版&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/koujien4&quot;</span>  <span class="nv">:alias</span> <span class="s">&quot;広辞苑 第4版&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/wadai5&quot;</span>    <span class="nv">:alias</span> <span class="s">&quot;研究社 和英大辞典 第5版&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/eidai6&quot;</span>    <span class="nv">:alias</span> <span class="s">&quot;研究社 英和大辞典 第6版&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">ndeb</span>   <span class="s">&quot;/usr/local/share/dict/colloc&quot;</span>    <span class="nv">:alias</span> <span class="s">&quot;研究社 英和活用大辞典 &quot;</span><span class="p">)</span>
-          <span class="p">)))</span>
-</pre></div>
-<h3><a id="flycheck"><span class='anchor'>_</span></a>flycheck</h3>
-<p>プログラムのlint集</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">flycheck</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:diminish</span> <span class="nv">flycheck-mode</span>
-  <span class="c1">;;  :init (use-package flycheck-pos-tip :ensure t)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-init-hook</span> <span class="o">#</span><span class="ss">&#39;global-flycheck-mode</span><span class="p">)</span>
-  <span class="c1">;; chktex</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">flycheck-tex-chktex-executable</span> <span class="s">&quot;~/bin/flycheck_chktex.sh&quot;</span><span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="Org"><span class='anchor'>_</span></a>Org</h2>
+<h2><a id="Org-mode"><span class='anchor'>_</span></a>Org-mode</h2>
 <p><code>org-mode</code> が無いと生きていけない体になりました</p>
 <h3><a id="基本設定: =org="><span class='anchor'>_</span></a>基本設定: <code>org</code></h3>
 <p>目新しい設定はしていない，と思う．強いて言えば
@@ -2227,14 +2223,8 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   howm も有効にしている，ぐらい．</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defvar</span> <span class="nv">my:d:org</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">getenv</span> <span class="s">&quot;HOME&quot;</span><span class="p">)</span> <span class="s">&quot;/Nextcloud/org/&quot;</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">use-package</span> <span class="nv">org</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
-  <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">org</span>
-           <span class="nv">:fetcher</span> <span class="nv">file</span>
-           <span class="nv">:path</span> <span class="s">&quot;~/.emacs.d/modules/org-mode/lisp&quot;</span><span class="p">)</span>
-  <span class="nv">:defer</span> <span class="nv">t</span>
   <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x n s&quot;</span> <span class="o">.</span> <span class="nv">org-narrow-to-subtree</span><span class="p">)</span>
          <span class="p">(</span><span class="s">&quot;C-x n w&quot;</span> <span class="o">.</span> <span class="nv">widen</span><span class="p">))</span>
-  <span class="c1">;:ensure org-plus-contrib</span>
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="s">&quot;org&quot;</span>
     <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-file-apps-defaults</span> <span class="o">&#39;</span><span class="p">((</span><span class="nf">remote</span> <span class="o">.</span> <span class="nv">emacs</span><span class="p">)</span>  <span class="c1">;; xdg-open 任せ</span>
@@ -2275,9 +2265,6 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="c1">;; GTD: TODO→...→DONE としたエントリを =Arhive.org= に移動</span>
   <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:org-archive-done-tasks</span> <span class="p">()</span>
     <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
-    <span class="c1">;; ARCHIVE タグを付けるだけなら以下</span>
-    <span class="c1">;;   (org-map-entries &#39;org-archive-set-tag &quot;/DONE&quot; &#39;file))</span>
-    <span class="c1">;; org-archive-location に refile したいなら以下</span>
     <span class="p">(</span><span class="nf">org-map-entries</span> <span class="ss">&#39;org-archive-subtree</span> <span class="s">&quot;/DONE&quot;</span> <span class="ss">&#39;file</span><span class="p">))</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-archive-location</span> <span class="s">&quot;Archive.org::&quot;</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-todo-statistics-hook</span> <span class="ss">&#39;my:org-archive-done-tasks</span><span class="p">)</span>
@@ -2291,124 +2278,32 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="c1">;;  org-mode では ＃+DATE: をひっかける用に(＃は小文字)．</span>
   <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:org-timestamp-hook</span> <span class="p">()</span>
     <span class="s">&quot;Change `time-stamp-start&#39; in org-mode&quot;</span>
-    <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;time-stamp-start</span><span class="p">)</span> <span class="s">&quot;#\\+DATE: 2&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;time-stamp-start</span><span class="p">)</span> <span class="s">&quot;#\\+date: 2&quot;</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;time-stamp-end</span><span class="p">)</span>   <span class="s">&quot;\$&quot;</span><span class="p">)</span>
     <span class="p">)</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-mode-hook</span> <span class="ss">&#39;my:org-timestamp-hook</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="Org-journal: 日記"><span class='anchor'>_</span></a>Org-journal: 日記</h3>
-<p>単一ファイルに記述すること, および
-  エントリ作成時に日付を入れるために <code>org-jounnal-new-entry</code> を <code>advice</code> している</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-journal</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
-           <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">))</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-journal-mode-hook</span>
-            <span class="p">(</span><span class="nf">setq</span> <span class="nv">truncate-lines</span> <span class="nv">t</span><span class="p">))</span>
+<h3><a id="Org-id"><span class='anchor'>_</span></a>Org-id</h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-id</span>
   <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">unbind-key</span> <span class="s">&quot;C-c C-j&quot;</span> <span class="nv">org-journal-mode-map</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">bind-key</span>   <span class="s">&quot;C-c C-j&quot;</span> <span class="ss">&#39;browse-url-at-point</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-journal-dir</span> <span class="nv">my:d:org</span>
-        <span class="nv">org-journal-file-format</span> <span class="s">&quot;journal.org&quot;</span>
-        <span class="nv">org-journal-date-format</span> <span class="s">&quot;%x (%a)&quot;</span>
-        <span class="nv">org-journal-date-prefix</span> <span class="s">&quot;* &quot;</span>
-        <span class="nv">org-journal-time-format</span> <span class="s">&quot;&lt;%Y-%m-%d %R&gt; &quot;</span>
-        <span class="nv">org-journal-time-prefix</span> <span class="s">&quot;** MEMO &quot;</span>
-        <span class="nv">org-journal-find-file</span> <span class="ss">&#39;find-file</span>
-        <span class="p">)</span>
-  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:org-journal-add-date-entry</span> <span class="p">(</span><span class="nf">prefix</span> <span class="nv">&amp;optional</span> <span class="nv">time</span><span class="p">)</span>
-    <span class="s">&quot;Insert date entry to `org-journal-file&#39;&quot;</span>
-    <span class="p">(</span><span class="nf">find-file</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="nv">org-journal-file-format</span> <span class="nv">org-journal-dir</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">org-journal-decrypt</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">unless</span>
-        <span class="p">(</span><span class="nf">string-match</span> <span class="p">(</span><span class="nf">format-time-string</span> <span class="nv">org-journal-date-format</span><span class="p">)</span>
-                      <span class="p">(</span><span class="nf">buffer-substring-no-properties</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nf">progn</span>
-        <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
-        <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\n&quot;</span> <span class="nv">org-journal-date-prefix</span>
-                        <span class="p">(</span><span class="nf">format-time-string</span> <span class="nv">org-journal-date-format</span><span class="p">)))</span>
-        <span class="p">))</span>
-    <span class="p">)</span>
-  <span class="p">(</span><span class="nf">advice-add</span> <span class="ss">&#39;org-journal-new-entry</span> <span class="nv">:before</span> <span class="ss">&#39;my:org-journal-add-date-entry</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-id-locations-file</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:share</span> <span class="s">&quot;org-id-locations&quot;</span><span class="p">))</span>
   <span class="p">)</span>
-<span class="c1">;; Key bindings -- 使えてない...</span>
-<span class="c1">;; (define-key org-journal-mode-map (kbd &quot;C-c C-f&quot;) &#39;org-journal-open-next-entry)</span>
-<span class="c1">;; (define-key org-journal-mode-map (kbd &quot;C-c C-b&quot;) &#39;org-journal-open-previous-entry)</span>
-<span class="c1">;; (define-key org-journal-mode-map (kbd &quot;C-c C-j&quot;) &#39;org-journal-new-entry)</span>
-<span class="c1">;; (define-key calendar-mode-map &quot;j&quot; &#39;org-journal-read-entry)</span>
-<span class="c1">;; (define-key calendar-mode-map (kbd &quot;C-j&quot;) &#39;org-journal-display-entry)</span>
-<span class="c1">;; (define-key calendar-mode-map &quot;]&quot; &#39;org-journal-next-entry)</span>
-<span class="c1">;; (define-key calendar-mode-map &quot;[&quot; &#39;org-journal-previous-entry)</span>
-<span class="c1">;; (define-key calendar-mode-map (kbd &quot;i j&quot;) &#39;org-journal-new-date-entry)</span>
-<span class="c1">;; (define-key calendar-mode-map (kbd &quot;f f&quot;) &#39;org-journal-search-forever)</span>
-<span class="c1">;; (define-key calendar-mode-map (kbd &quot;f w&quot;) &#39;org-journal-search-calendar-week)</span>
-<span class="c1">;; (define-key calendar-mode-map (kbd &quot;f m&quot;) &#39;org-journal-search-calendar-month)</span>
-<span class="c1">;; (define-key calendar-mode-map (kbd &quot;f y&quot;) &#39;org-journal-search-calendar-year)))</span>
 </pre></div>
-<h3><a id="Capture: メモ取り"><span class='anchor'>_</span></a>Capture: メモ取り</h3>
-<p>キーバインドは以前 changelog memo をやっていた時の癖で <code>C-x m</code> をメモにしている.
-  他には wanderlust のメールを扱えるように <code>org-wl</code> を読み込んで template を追加したぐらい.
-  notmuch のインデックスの方が良いかもしれない, と最近思っている.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-wl</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;wl-beta&quot;</span><span class="p">)</span>
-           <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">))</span>
-  <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">org-wl</span>
-           <span class="nv">:fetcher</span> <span class="nv">file</span>
-           <span class="nv">:path</span> <span class="s">&quot;~/.emacs.d/modules/org-mode/contrib/lisp/org-wl.el&quot;</span><span class="p">)</span>
-  <span class="p">)</span>
-<span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-capture</span>
-  <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x m&quot;</span> <span class="o">.</span> <span class="nv">org-capture</span><span class="p">))</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
+<h3><a id="Babel"><span class='anchor'>_</span></a>Babel</h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-src</span>
+  <span class="nv">:diminish</span> <span class="nv">org-src-mode</span>
   <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:org-journal-add-date-entry-capture</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nf">my:org-journal-add-date-entry</span> <span class="nv">nil</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
-    <span class="p">)</span>
-  <span class="c1">;; @see https://github.com/sprig/org-capture-extension/issues/37</span>
-  <span class="c1">;; Brackets &#39;&#123;&#39; &#39;}&#39; in link description cause broken org-mode link #37]]</span>
-<span class="p">(</span><span class="nf">defun</span> <span class="nv">my:transform-square-brackets-to-round-ones</span> <span class="p">(</span><span class="nf">string-to-transform</span><span class="p">)</span>
-  <span class="s">&quot;Transforms [ into ( and ] into ), other chars left unchanged.&quot;</span>
-  <span class="p">(</span><span class="nf">concat</span>
-   <span class="p">(</span><span class="nf">mapcar</span> <span class="o">#&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">c</span><span class="p">)</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">equal</span> <span class="nv">c</span> <span class="nv">?</span><span class="err">\</span><span class="p">[)</span> <span class="nv">?</span><span class="err">\</span><span class="p">(</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">equal</span> <span class="nv">c</span> <span class="nv">?</span><span class="err">\</span><span class="p">])</span> <span class="nv">?</span><span class="err">\</span><span class="p">)</span> <span class="nv">c</span><span class="p">)))</span>
-           <span class="nv">string-to-transform</span><span class="p">))</span>
-  <span class="p">)</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-default-notes-file</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:org</span> <span class="s">&quot;journal.org&quot;</span><span class="p">)</span>
-        <span class="nv">org-capture-templates</span>
-        <span class="o">`</span><span class="p">(</span>
-          <span class="p">(</span><span class="s">&quot;t&quot;</span> <span class="s">&quot;TODO&quot;</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="nf">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">&quot;** TODO %^&#123;title} %^g\n  %?\n  %a&quot;</span>
-           <span class="nv">:prepend</span> <span class="nv">nil</span>
-           <span class="nv">:unnarrowed</span> <span class="nv">nil</span>
-           <span class="nv">:kill-buffer</span> <span class="nv">t</span>
-           <span class="p">)</span>
-          <span class="c1">;; &quot;* TODO &lt;%&lt;%Y-%m-%d&gt;&gt; %:subject %^g\n  %?\n  %a\n  #+BEGIN_QUOTE\n%i\n  #+END_QUOTE&quot;</span>
-          <span class="p">(</span><span class="s">&quot;e&quot;</span> <span class="s">&quot;Email TODO&quot;</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="nf">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">&quot;** TODO [[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(my:transform-square-brackets-to-round-ones \&quot;%:subject\&quot;)]]\n  :PROPERTIES:\n  :CREATED: %u\n  :END:%?\n&quot;</span>
-           <span class="nv">:prepend</span> <span class="nv">nil</span>
-           <span class="nv">:unnarrowed</span> <span class="nv">nil</span>
-           <span class="nv">:kill-buffer</span> <span class="nv">t</span>
-           <span class="p">)</span>
-          <span class="p">(</span><span class="s">&quot;m&quot;</span> <span class="s">&quot;Memo/Journal Entry&quot;</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="nf">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">&quot;** MEMO %T %?&quot;</span>
-           <span class="nv">:prepend</span> <span class="nv">nil</span>
-           <span class="nv">:unnarrowed</span> <span class="nv">nil</span>
-           <span class="nv">:kill-buffer</span> <span class="nv">t</span>
-           <span class="p">)</span>
-          <span class="p">(</span><span class="s">&quot;a&quot;</span> <span class="s">&quot;Aritcle Entry&quot;</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="nf">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">&quot;** ARTICLE %T %? &quot;</span>
-           <span class="nv">:prepend</span> <span class="nv">nil</span>
-           <span class="nv">:unnarrowed</span> <span class="nv">nil</span>
-           <span class="nv">:kill-buffer</span> <span class="nv">t</span>
-           <span class="p">)</span>
-          <span class="p">)</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-src-fontify-natively</span> <span class="nv">t</span>       <span class="c1">;; font-lock</span>
+        <span class="nv">org-src-tab-acts-natively</span> <span class="nv">t</span>      <span class="c1">;; indent</span>
+        <span class="nv">org-edit-src-content-indentation</span> <span class="mi">0</span>
+        <span class="nv">org-src-preserve-indentation</span> <span class="nv">t</span>
         <span class="p">)</span>
-<span class="p">)</span>
+  <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">featurep</span> <span class="ss">&#39;flycheck</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:disable-fylcheck-in-org-src-block</span> <span class="p">()</span>
+      <span class="p">(</span><span class="nf">setq-local</span> <span class="nv">flycheck-disabled-checkers</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">emacs-lisp-checkdoc</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-src-mode-hook</span> <span class="ss">&#39;my:disable-fylcheck-in-org-src-block</span><span class="p">))</span>
+  <span class="p">)</span>
 </pre></div>
 <h3><a id="Agenda: スケジュール，TODO 表示"><span class='anchor'>_</span></a>Agenda: スケジュール，TODO 表示</h3>
 <p>GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で取得したデータも表示している．
@@ -2419,7 +2314,6 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 </ul>
 <p>なんて事もやっている．元ネタは <a href="https://julien.danjou.info/blog/2010/org-mode-and-holidays">Org-mode and holidays</a></p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-agenda</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
   <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-c a&quot;</span> <span class="o">.</span> <span class="nv">org-agenda</span><span class="p">))</span>
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">defface</span> <span class="nv">my:org-agenda-date-saturday</span>
@@ -2494,7 +2388,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
              <span class="s">&quot;redmine_KUSM.org&quot;</span>
              <span class="p">))</span>
     <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-agenda-files</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:org</span> <span class="nv">file</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-agenda-files</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&quot;README.org&quot;</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-agenda-files</span> <span class="p">(</span><span class="nf">locate-user-emacs-file</span> <span class="s">&quot;README.org&quot;</span><span class="p">))</span>
   <span class="c1">;; 表示のカスタマイズ</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-agenda-span</span> <span class="ss">&#39;day</span>                   <span class="c1">;; day or week</span>
         <span class="nv">org-agenda-format-date</span> <span class="s">&quot;%Y/%m/%d (%a)&quot;</span> <span class="c1">;; YY/MM/DD (曜)</span>
@@ -2570,30 +2464,56 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
                 <span class="p">)))</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="Babel"><span class='anchor'>_</span></a>Babel</h3>
-<h4><a id="org-src"><span class='anchor'>_</span></a>org-src</h4>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-src</span>
-  <span class="nv">:diminish</span> <span class="nv">org-src-mode</span>
+<h3><a id="Org-journal: 日記"><span class='anchor'>_</span></a>Org-journal: 日記</h3>
+<p>単一ファイルに記述すること, および
+  エントリ作成時に日付を入れるために <code>org-jounnal-new-entry</code> を <code>advice</code> している</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-journal</span>
+  <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
+           <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">))</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:after</span> <span class="p">(</span><span class="nf">org</span><span class="p">)</span>
+  <span class="nv">:init</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-journal-mode-hook</span>
+            <span class="p">(</span><span class="nf">setq</span> <span class="nv">truncate-lines</span> <span class="nv">t</span><span class="p">))</span>
   <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-src-fontify-natively</span> <span class="nv">t</span>       <span class="c1">;; font-lock</span>
-        <span class="nv">org-src-tab-acts-natively</span> <span class="nv">t</span>      <span class="c1">;; indent</span>
-        <span class="nv">org-edit-src-content-indentation</span> <span class="mi">0</span>
-        <span class="nv">org-src-preserve-indentation</span> <span class="nv">t</span>
+  <span class="p">(</span><span class="nf">unbind-key</span> <span class="s">&quot;C-c C-j&quot;</span> <span class="nv">org-journal-mode-map</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">bind-key</span>   <span class="s">&quot;C-c C-j&quot;</span> <span class="ss">&#39;browse-url-at-point</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-journal-dir</span> <span class="nv">my:d:org</span>
+        <span class="nv">org-journal-file-format</span> <span class="s">&quot;journal.org&quot;</span>
+        <span class="nv">org-journal-date-format</span> <span class="s">&quot;%x (%a)&quot;</span>
+        <span class="nv">org-journal-date-prefix</span> <span class="s">&quot;* &quot;</span>
+        <span class="nv">org-journal-time-format</span> <span class="s">&quot;&lt;%Y-%m-%d %R&gt; &quot;</span>
+        <span class="nv">org-journal-time-prefix</span> <span class="s">&quot;** MEMO &quot;</span>
+        <span class="nv">org-journal-find-file</span> <span class="ss">&#39;find-file</span>
         <span class="p">)</span>
-  <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">featurep</span> <span class="ss">&#39;flycheck</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:disable-fylcheck-in-org-src-block</span> <span class="p">()</span>
-      <span class="p">(</span><span class="nf">setq-local</span> <span class="nv">flycheck-disabled-checkers</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">emacs-lisp-checkdoc</span><span class="p">)))</span>
-    <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-src-mode-hook</span> <span class="ss">&#39;my:disable-fylcheck-in-org-src-block</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:org-journal-add-date-entry</span> <span class="p">(</span><span class="nf">prefix</span> <span class="nv">&amp;optional</span> <span class="nv">time</span><span class="p">)</span>
+    <span class="s">&quot;Insert date entry to `org-journal-file&#39;&quot;</span>
+    <span class="p">(</span><span class="nf">find-file</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="nv">org-journal-file-format</span> <span class="nv">org-journal-dir</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">org-journal-decrypt</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">unless</span>
+        <span class="p">(</span><span class="nf">string-match</span> <span class="p">(</span><span class="nf">format-time-string</span> <span class="nv">org-journal-date-format</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nf">buffer-substring-no-properties</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">progn</span>
+        <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\n&quot;</span> <span class="nv">org-journal-date-prefix</span>
+                        <span class="p">(</span><span class="nf">format-time-string</span> <span class="nv">org-journal-date-format</span><span class="p">)))</span>
+        <span class="p">))</span>
+    <span class="p">)</span>
+  <span class="p">(</span><span class="nf">advice-add</span> <span class="ss">&#39;org-journal-new-entry</span> <span class="nv">:before</span> <span class="ss">&#39;my:org-journal-add-date-entry</span><span class="p">)</span>
   <span class="p">)</span>
-</pre></div>
-<h4><a id="org-ditaa"><span class='anchor'>_</span></a>org-ditaa</h4>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ob-ditaa</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-exists-p</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">getenv</span> <span class="s">&quot;HOME&quot;</span><span class="p">)</span> <span class="s">&quot;/bin/jditaa.jar&quot;</span><span class="p">))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-ditaa-jar-path</span> <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">getenv</span> <span class="s">&quot;HOME&quot;</span><span class="p">)</span> <span class="s">&quot;/bin/jditaa.jar&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">org-babel-do-load-languages</span> <span class="ss">&#39;org-babel-load-languages</span>
-                               <span class="o">&#39;</span><span class="p">((</span><span class="nf">ditaa</span> <span class="o">.</span> <span class="nv">t</span><span class="p">)))</span>
-  <span class="p">)</span>
+<span class="c1">;; Key bindings -- 使えてない...</span>
+<span class="c1">;; (define-key org-journal-mode-map (kbd &quot;C-c C-f&quot;) &#39;org-journal-open-next-entry)</span>
+<span class="c1">;; (define-key org-journal-mode-map (kbd &quot;C-c C-b&quot;) &#39;org-journal-open-previous-entry)</span>
+<span class="c1">;; (define-key org-journal-mode-map (kbd &quot;C-c C-j&quot;) &#39;org-journal-new-entry)</span>
+<span class="c1">;; (define-key calendar-mode-map &quot;j&quot; &#39;org-journal-read-entry)</span>
+<span class="c1">;; (define-key calendar-mode-map (kbd &quot;C-j&quot;) &#39;org-journal-display-entry)</span>
+<span class="c1">;; (define-key calendar-mode-map &quot;]&quot; &#39;org-journal-next-entry)</span>
+<span class="c1">;; (define-key calendar-mode-map &quot;[&quot; &#39;org-journal-previous-entry)</span>
+<span class="c1">;; (define-key calendar-mode-map (kbd &quot;i j&quot;) &#39;org-journal-new-date-entry)</span>
+<span class="c1">;; (define-key calendar-mode-map (kbd &quot;f f&quot;) &#39;org-journal-search-forever)</span>
+<span class="c1">;; (define-key calendar-mode-map (kbd &quot;f w&quot;) &#39;org-journal-search-calendar-week)</span>
+<span class="c1">;; (define-key calendar-mode-map (kbd &quot;f m&quot;) &#39;org-journal-search-calendar-month)</span>
+<span class="c1">;; (define-key calendar-mode-map (kbd &quot;f y&quot;) &#39;org-journal-search-calendar-year)))</span>
 </pre></div>
 <h3><a id="OrgとGoogle カレンダーの連携: =org-gcal="><span class='anchor'>_</span></a>OrgとGoogle カレンダーの連携: <code>org-gcal</code></h3>
 <h4><a id="token 等の置き場所の変更"><span class='anchor'>_</span></a>token 等の置き場所の変更</h4>
@@ -2610,7 +2530,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-gcal</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="nv">my:d:password-store</span>
            <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">))</span>
-  <span class="nv">:defer</span> <span class="nv">t</span>
+  <span class="nv">:no-require</span> <span class="nv">t</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-gcal-dir</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;org-gcal&quot;</span><span class="p">))</span>
@@ -2621,9 +2541,9 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="nv">org-gcal-down-days</span>   <span class="mi">90</span>  <span class="c1">;; 過去 3 month</span>
         <span class="nv">org-gcal-up-days</span>    <span class="mi">180</span>  <span class="c1">;; 未来 6 month</span>
         <span class="nv">org-gcal-auto-archive</span> <span class="nv">nil</span><span class="p">)</span>
-  <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="s">&quot;org-gcal&quot;</span>
-    <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/org-gcal.gpg&quot;</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:password-store</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/org-gcal.gpg&quot;</span><span class="p">))))</span>
   <span class="p">)</span>
 </pre></div>
 <p>password-store には multiline で設定を書く．例えば以下:</p>
@@ -2639,6 +2559,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">orgmine</span>
   <span class="nv">:if</span>  <span class="p">(</span><span class="k">and </span><span class="nv">my:d:password-store</span>
             <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">))</span>
+  <span class="nv">:no-require</span> <span class="nv">t</span>
   <span class="nv">:diminish</span> <span class="p">(</span><span class="nf">orgmine-mode</span><span class="p">)</span>
   <span class="nv">:commands</span> <span class="p">(</span><span class="nf">orgmine-mode</span><span class="p">)</span>
   <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">orgmine</span>
@@ -2647,246 +2568,19 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">use-package</span> <span class="nv">elmine</span> <span class="nv">:ensure</span> <span class="nv">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;safe-local-variable-values</span>
-               <span class="o">&#39;</span><span class="p">(</span><span class="nv">orgmine-note-block-begin</span> <span class="o">.</span> <span class="s">&quot;#+BEGIN_SRC textile&quot;</span><span class="p">))</span>
+               <span class="o">&#39;</span><span class="p">(</span><span class="nv">orgmine-note-block-begin</span> <span class="o">.</span> <span class="s">&quot;#+begin_src textile&quot;</span><span class="p">))</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-mode-hook</span>
             <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
               <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">assoc </span><span class="s">&quot;om_server&quot;</span> <span class="nv">org-file-properties</span><span class="p">)</span> <span class="p">(</span><span class="nf">orgmine-mode</span><span class="p">))))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">orgmine-note-block-begin</span> <span class="s">&quot;#+BEGIN_SRC gfm&quot;</span>   <span class="c1">;; 要調整</span>
-        <span class="nv">orgmine-note-block-end</span>   <span class="s">&quot;#+END_SRC\n&quot;</span>
-        <span class="nv">orgmine-default-todo-keyword</span> <span class="s">&quot;新規&quot;</span><span class="p">)</span>
   <span class="c1">;; サーバ設定</span>
   <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="s">&quot;orgmine&quot;</span>
-    <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/orgmine.gpg&quot;</span><span class="p">)))</span>
-  <span class="p">)</span>
-</pre></div>
-<h3><a id="Org-Export"><span class='anchor'>_</span></a>Org-Export</h3>
-<h4><a id="一般設定"><span class='anchor'>_</span></a>一般設定</h4>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ox</span>
-  <span class="nv">:init</span>
-  <span class="c1">;; 空行の削除</span>
-  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:remove-org-newlines-at-cjk-text</span> <span class="p">(</span><span class="nf">&amp;optional</span> <span class="nv">_mode</span><span class="p">)</span>
-    <span class="s">&quot;先頭が &#39;*&#39;, &#39;#&#39;, &#39;|&#39; でなく、改行の前後が日本の文字の場合はその改行を除去&quot;</span>
-    <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">while</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&quot;^\\([^|#*\n].+\\)\\(.\\)\n *\\(.\\)&quot;</span> <span class="nv">nil</span> <span class="nv">t</span><span class="p">)</span>
-      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">string-to-char</span> <span class="p">(</span><span class="nf">match-string</span> <span class="mi">2</span><span class="p">))</span> <span class="o">#</span><span class="nv">x2000</span><span class="p">)</span>
-               <span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">string-to-char</span> <span class="p">(</span><span class="nf">match-string</span> <span class="mi">3</span><span class="p">))</span> <span class="o">#</span><span class="nv">x2000</span><span class="p">))</span>
-          <span class="p">(</span><span class="nf">replace-match</span> <span class="s">&quot;\\1\\2\\3&quot;</span><span class="p">))</span>
-      <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-at-bol</span><span class="p">))))</span>
-  <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="s">&quot;ox&quot;</span>
-    <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-export-before-processing-hook</span>
-              <span class="ss">&#39;my:remove-org-newlines-at-cjk-text</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:password-store</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/orgmine.gpg&quot;</span><span class="p">))))</span>
   <span class="nv">:config</span>
-    <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-export-with-toc</span> <span class="nv">nil</span>
-          <span class="nv">org-export-with-section-numbers</span> <span class="nv">nil</span>
-          <span class="nv">org-latex-hyperref-template</span> <span class="nv">nil</span><span class="p">)</span>
-    <span class="c1">;; for Beamer</span>
-    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
-                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:shortdate</span>    <span class="s">&quot;SHORTDATE&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
-                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:shorttitle</span>   <span class="s">&quot;SHORTTITLE&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
-    <span class="c1">;; for Jekyll</span>
-    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
-                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:layout</span>    <span class="s">&quot;LAYOUT&quot;</span> <span class="nv">nil</span> <span class="s">&quot;default&quot;</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
-                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:ref</span>       <span class="s">&quot;REF&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
-                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:permalink</span> <span class="s">&quot;PERMALINK&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
-                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:redirect_from</span> <span class="s">&quot;redirect_from&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
-                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:redirect_to</span> <span class="s">&quot;redirect_to&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
-    <span class="p">)</span>
-</pre></div>
-<h4><a id="LaTeX export"><span class='anchor'>_</span></a>LaTeX export</h4>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ox-latex</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-latex-pdf-process</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;latexmk %f&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
-               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:platex&quot;</span>
-                 <span class="s">&quot;\\documentclass[a4j]&#123;jsarticle}</span>
-<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
-                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
-               <span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
-               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:bxjsartible&quot;</span>
-                 <span class="s">&quot;\\documentclass[a4j,ja=standard]&#123;bxjsarticle}</span>
-<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
-                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
-               <span class="p">)</span>
-  <span class="c1">;; &quot;verbatim&quot; → &quot;Verbatim&quot; 置換</span>
-  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:org-latex-filter-fancyvrb</span> <span class="p">(</span><span class="nf">text</span> <span class="nv">backend</span> <span class="nv">_info</span><span class="p">)</span>
-    <span class="s">&quot;Convert begin/end&#123;verbatim} to begin/end&#123;Verbatim}.</span>
-<span class="s">  Allows use of the fancyvrb latex package.&quot;</span>
-    <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nf">org-export-derived-backend-p</span> <span class="nv">backend</span> <span class="ss">&#39;beamer</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">org-export-derived-backend-p</span> <span class="nv">backend</span> <span class="ss">&#39;latex</span><span class="p">))</span>
-      <span class="p">(</span><span class="nf">replace-regexp-in-string</span>
-       <span class="s">&quot;\\\\\\(begin\\|end\\)&#123;verbatim}&quot;</span>
-       <span class="s">&quot;\\\\\\1&#123;Verbatim}&quot;</span> <span class="nv">text</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-filter-final-output-functions</span>
-               <span class="ss">&#39;my:org-latex-filter-fancyvrb</span><span class="p">)</span>
-  <span class="c1">;; &quot;tabular&quot; →  &quot;Tabular&quot;  置換</span>
-  <span class="c1">;; (defun my:org-latex-filter-bigtabular (text backend _info)</span>
-  <span class="c1">;;   &quot;Convert begin/end&#123;tabular} to begin/end&#123;Tabular}.&quot;</span>
-  <span class="c1">;;   (when (or (org-export-derived-backend-p backend &#39;beamer)</span>
-  <span class="c1">;;             (org-export-derived-backend-p backend &#39;latex))</span>
-  <span class="c1">;;     (replace-regexp-in-string</span>
-  <span class="c1">;;      &quot;\\\\\\(begin\\|end\\)&#123;tabular}&quot;</span>
-  <span class="c1">;;      &quot;\\\\\\1&#123;Tabular}&quot; text)))</span>
-  <span class="c1">;; (add-to-list &#39;org-export-filter-final-output-functions</span>
-  <span class="c1">;;              &#39;my:org-latex-filter-bigtabular)</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">orgmine-note-block-begin</span> <span class="s">&quot;#+begin_src gfm&quot;</span>   <span class="c1">;; 要調整</span>
+        <span class="nv">orgmine-note-block-end</span>   <span class="s">&quot;#+end_src\n&quot;</span>
+        <span class="nv">orgmine-default-todo-keyword</span> <span class="s">&quot;新規&quot;</span><span class="p">)</span>
   <span class="p">)</span>
-</pre></div>
-<h4><a id="Beamer export"><span class='anchor'>_</span></a>Beamer export</h4>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ox-beamer</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
-               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:beamer&quot;</span>
-                 <span class="s">&quot;\\documentclass[dvipdfmx,presentation]&#123;beamer}</span>
-<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
-                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
-               <span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
-               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:beamer-uplatex&quot;</span>
-                 <span class="s">&quot;\\documentclass[dvipdfmx,presentation]&#123;beamer}</span>
-<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
-                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
-               <span class="p">)</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
-               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:beamer-pdflatex&quot;</span>
-                 <span class="s">&quot;\\documentclass[unicode,presentation]&#123;beamer}</span>
-<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
-                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
-                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
-               <span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<p>LATEX_CLASS に <code>my:beamer</code> を指定すると，上記設定で export される．</p>
-<h4><a id="HTML export"><span class='anchor'>_</span></a>HTML export</h4>
-<p>後述の Jekyll 用の設定も参照のこと．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ox-html</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-html-use-infojs</span> <span class="nv">nil</span>
-        <span class="nv">org-html-html5-fancy</span> <span class="nv">t</span>
-        <span class="nv">org-export-htmlize-output-type</span> <span class="ss">&#39;inline-css</span>
-        <span class="nv">org-html-doctype</span> <span class="s">&quot;html5&quot;</span>
-        <span class="nv">org-html-text-markup-alist</span>
-        <span class="o">&#39;</span><span class="p">((</span><span class="nf">bold</span>           <span class="o">.</span> <span class="s">&quot;&lt;strong&gt;%s&lt;/strong&gt;&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">code</span>           <span class="o">.</span> <span class="s">&quot;&lt;code&gt;%s&lt;/code&gt;&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">italic</span>         <span class="o">.</span> <span class="s">&quot;&lt;i&gt;%s&lt;/i&gt;&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">strike-through</span> <span class="o">.</span> <span class="s">&quot;&lt;del&gt;%s&lt;/del&gt;&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">underline</span>      <span class="o">.</span> <span class="s">&quot;&lt;span class=\&quot;underline\&quot;&gt;%s&lt;/span&gt;&quot;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">verbatim</span>       <span class="o">.</span> <span class="s">&quot;&lt;code&gt;%s&lt;/code&gt;&quot;</span><span class="p">)))</span>
-  <span class="p">)</span>
-</pre></div>
-<h4><a id="Jekyll 用の Backend の定義"><span class='anchor'>_</span></a>Jekyll 用の Backend の定義</h4>
-<p>Web サイトは Jekyll で作成しています．
-  <a href="https://github.com/yoshinari-nomura/org-octopress">yoshinari-nomura/org-octopress: org-mode in octopress</a> の
-  <code>ox-jekyll</code> を参考に <del>改造して</del> ，
-  html export の際に必要な yaml front matter を出力できるようにしてます．
-  あと，src-block が liquid に解釈されない様に escape してます．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">org-export-define-derived-backend</span> <span class="ss">&#39;jekyll</span> <span class="ss">&#39;html</span>
-  <span class="nv">:menu-entry</span>
-  <span class="o">&#39;</span><span class="p">(</span><span class="nv">?j</span> <span class="s">&quot;Jekyl: export to html with YAML front matter.&quot;</span>
-       <span class="p">((</span><span class="nf">?H</span> <span class="s">&quot;To temporary buffer&quot;</span>
-            <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">s</span> <span class="nv">v</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nf">org-jekyll-export-as-html</span> <span class="nv">a</span> <span class="nv">s</span> <span class="nv">v</span><span class="p">)))</span>
-        <span class="p">(</span><span class="nf">?h</span> <span class="s">&quot;To file&quot;</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">s</span> <span class="nv">v</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nf">org-jekyll-export-to-html</span> <span class="nv">a</span> <span class="nv">s</span> <span class="nv">v</span><span class="p">)))))</span>
-  <span class="nv">:translate-alist</span>
-  <span class="o">&#39;</span><span class="p">((</span><span class="nf">template</span>  <span class="o">.</span> <span class="nv">org-jekyll-template</span><span class="p">)</span>
-    <span class="p">)</span>
-  <span class="nv">:filters-alist</span>
-  <span class="o">&#39;</span><span class="p">((</span><span class="nf">:filter-final-output</span> <span class="o">.</span> <span class="nv">org-jekyll-finalized</span><span class="p">))</span>
-  <span class="p">)</span>
-<span class="c1">;; template</span>
-<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll-template</span> <span class="p">(</span><span class="nf">contents</span> <span class="nv">info</span><span class="p">)</span>
-  <span class="s">&quot;Return complete document string after HTML conversion.&quot;</span>
-  <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">org-jekyll--yaml-front-matter</span> <span class="nv">info</span><span class="p">)</span> <span class="nv">contents</span><span class="p">))</span>
-<span class="c1">;;; 幾つかの文字列を置換する</span>
-<span class="c1">;;  - liquid templateに誤認される `&#123;%&#39;, `%}&#39;</span>
-<span class="c1">;;  - `:&#39; の escape</span>
-<span class="c1">;;  - table-of-contents の処理</span>
-<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll-finalized</span> <span class="p">(</span><span class="nf">contents</span> <span class="nv">_backend</span> <span class="nv">info</span><span class="p">)</span>
-  <span class="s">&quot;Publish src-block to html, Escape liquid tags, e.g. &#123;%, %}&quot;</span>
-  <span class="p">(</span><span class="nf">with-temp-buffer</span>
-    <span class="p">(</span><span class="nf">insert</span> <span class="nv">contents</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;&amp;$58;&quot;</span> <span class="s">&quot;&amp;#58;&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;&#123;%&quot;</span> <span class="s">&quot;&amp;#123;%&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;%}&quot;</span> <span class="s">&quot;%&amp;#125;&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;&lt;nav id=\&quot;table-of-contents&quot;</span> <span class="s">&quot;&lt;div id=\&quot;toc-wrapper\&quot;&gt;</span>
-<span class="s">&lt;nav id=\&quot;table-of-contents&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;&lt;/nav&gt;&quot;</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;&lt;/nav&gt;</span>
-<span class="s">&lt;/div&gt;</span>
-<span class="s">&lt;a href=\&quot;#toc-toggle\&quot; class=\&quot;btn toc-btn\&quot; id=\&quot;toc-toggle\&quot;&gt;%s&lt;/a&gt;&quot;</span>
-                                      <span class="p">(</span><span class="nf">org-html--translate</span> <span class="s">&quot;Table of Contents&quot;</span> <span class="nv">info</span><span class="p">))</span>
-                     <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
-    <span class="p">(</span><span class="nf">set-auto-mode</span> <span class="nv">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">buffer-substring-no-properties</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))))</span>
-<span class="c1">;;</span>
-<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll--get-option</span> <span class="p">(</span><span class="nf">info</span> <span class="nv">property-name</span> <span class="nv">&amp;optional</span> <span class="nv">default</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">property</span> <span class="p">(</span><span class="nf">org-export-data</span> <span class="p">(</span><span class="nf">plist-get</span> <span class="nv">info</span> <span class="nv">property-name</span><span class="p">)</span> <span class="nv">info</span><span class="p">)))</span>
-    <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;%s&quot;</span> <span class="p">(</span><span class="k">or </span><span class="nv">property</span> <span class="nv">default</span> <span class="s">&quot;&quot;</span><span class="p">))))</span>
-<span class="c1">;;</span>
-<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll--yaml-front-matter</span> <span class="p">(</span><span class="nf">info</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">title</span>
-         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:title</span><span class="p">))</span>
-        <span class="p">(</span><span class="nf">date</span>
-         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:date</span><span class="p">))</span>
-        <span class="p">(</span><span class="nf">language</span>
-         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:language</span><span class="p">))</span>
-        <span class="p">(</span><span class="nf">layout</span>
-         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:layout</span><span class="p">))</span>
-        <span class="p">(</span><span class="nf">jekyll-ref</span>
-         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:ref</span> <span class="p">))</span>
-        <span class="p">(</span><span class="nf">jekyll-permalink</span>
-         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:permalink</span> <span class="p">))</span>
-        <span class="p">(</span><span class="nf">jekyll-redirect-from</span>
-         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:redirect_from</span> <span class="p">))</span>
-        <span class="p">(</span><span class="nf">jekyll-redirect-to</span>
-         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:redirect_to</span> <span class="p">))</span>
-        <span class="p">(</span><span class="nf">convert-to-yaml-list</span>
-         <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">arg</span><span class="p">)</span>
-           <span class="p">(</span><span class="nf">mapconcat</span> <span class="o">#&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">text</span><span class="p">)(</span><span class="nf">concat</span> <span class="s">&quot;\n- &quot;</span> <span class="nv">text</span><span class="p">))</span> <span class="p">(</span><span class="nf">split-string</span> <span class="nv">arg</span><span class="p">)</span> <span class="s">&quot; &quot;</span><span class="p">))))</span>
-    <span class="p">(</span><span class="nf">concat</span>
-     <span class="s">&quot;---&quot;</span>
-     <span class="s">&quot;\ntitle: &quot;</span>      <span class="p">(</span><span class="nf">s-replace</span> <span class="s">&quot;:&quot;</span> <span class="s">&quot;&amp;$58;&quot;</span> <span class="nv">title</span><span class="p">)</span>
-     <span class="s">&quot;\ndate: &quot;</span>       <span class="nv">date</span>
-     <span class="s">&quot;\nlayout: &quot;</span>     <span class="nv">layout</span>
-     <span class="s">&quot;\nlang: &quot;</span>       <span class="nv">language</span>
-     <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">jekyll-ref</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\nref: &quot;</span> <span class="nv">jekyll-ref</span><span class="p">))</span>
-     <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">jekyll-permalink</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\npermalink: &quot;</span> <span class="nv">jekyll-permalink</span><span class="p">))</span>
-     <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">jekyll-redirect-from</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\nredirect_from: &quot;</span> <span class="nv">jekyll-redirect-from</span><span class="p">))</span>
-     <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">jekyll-redirect-to</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\nredirect_to: &quot;</span> <span class="nv">jekyll-redirect-to</span><span class="p">))</span>
-     <span class="s">&quot;\n---\n&quot;</span><span class="p">)))</span>
-
-<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll-export-as-html</span>
-    <span class="p">(</span><span class="nf">&amp;optional</span> <span class="nv">async</span> <span class="nv">subtreep</span> <span class="nv">visible-only</span> <span class="nv">body-only</span> <span class="nv">ext-plist</span><span class="p">)</span>
-  <span class="s">&quot;Export current buffer to a HTML buffer adding some YAML front matter.&quot;</span>
-  <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">org-export-to-buffer</span> <span class="ss">&#39;jekyll</span> <span class="s">&quot;*Org Jekyll HTML Export*&quot;</span>
-    <span class="nv">async</span> <span class="nv">subtreep</span> <span class="nv">visible-only</span> <span class="nv">body-only</span> <span class="nv">ext-plist</span> <span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">html-mode</span><span class="p">))))</span>
-
-<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll-export-to-html</span>
-    <span class="p">(</span><span class="nf">&amp;optional</span> <span class="nv">async</span> <span class="nv">subtreep</span> <span class="nv">visible-only</span> <span class="nv">body-only</span> <span class="nv">ext-plist</span><span class="p">)</span>
-  <span class="s">&quot;Export current buffer to a HTML file adding some YAML front matter.&quot;</span>
-  <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">outfile</span> <span class="p">(</span><span class="nf">org-export-output-file-name</span> <span class="s">&quot;.html&quot;</span> <span class="nv">subtreep</span><span class="p">)))</span>
-    <span class="p">(</span><span class="nf">org-export-to-file</span> <span class="ss">&#39;jekyll</span> <span class="nv">outfile</span> <span class="nv">async</span> <span class="nv">subtreep</span> <span class="nv">visible-only</span> <span class="nv">body-only</span> <span class="nv">ext-plist</span><span class="p">)))</span>
 </pre></div>
 <h3><a id="Org-Wiki"><span class='anchor'>_</span></a>Org-Wiki</h3>
 <p>計算機関連のメモは <a href="https://github.com/uwabami/org-wiki">uwabami/org-wiki</a> で書いています．元々は
@@ -2894,6 +2588,8 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   えてます.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-wiki</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="s">&quot;~/Public/cc-env&quot;</span><span class="p">)</span>
+  <span class="nv">:no-require</span> <span class="nv">t</span>
+  <span class="nv">:commands</span> <span class="p">(</span><span class="nf">org-wiki</span><span class="p">)</span>
   <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">org-wiki</span>
           <span class="nv">:fetcher</span> <span class="nv">github</span>
           <span class="nv">:repo</span> <span class="s">&quot;uwabami/org-wiki&quot;</span><span class="p">)</span>
@@ -2915,6 +2611,8 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">howm</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;howm&quot;</span><span class="p">)</span>
            <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;ag&quot;</span><span class="p">))</span>
+  <span class="nv">:no-require</span> <span class="nv">t</span>
+  <span class="nv">:after</span> <span class="p">(</span><span class="nf">org</span><span class="p">)</span>
   <span class="nv">:diminish</span> <span class="nv">howm-mode</span>
   <span class="nv">:bind</span> <span class="p">(</span><span class="nf">:map</span> <span class="nv">howm-mode-map</span>
               <span class="p">(</span><span class="s">&quot;C-c , ,&quot;</span>     <span class="o">.</span> <span class="nv">howm-menu</span><span class="p">)</span>
@@ -3018,16 +2716,18 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="nv">howm-reminder-today-format</span> <span class="p">(</span><span class="nf">format</span> <span class="nv">howm-insert-date-format</span> <span class="nv">howm-date-format</span><span class="p">))</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="VCS: =magit="><span class='anchor'>_</span></a>VCS: <code>magit</code></h2>
+<h2><a id="VCS"><span class='anchor'>_</span></a>VCS</h2>
+<h3><a id="magit:"><span class='anchor'>_</span></a>magit:</h3>
 <p>magit は Emacs の Git Frontend.
   結局の所 CUI でコマンド叩く事も多いけれど，これはこれで重宝している．</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">magit</span>
   <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x g&quot;</span> <span class="o">.</span> <span class="nv">magit-status</span><span class="p">))</span>
-  <span class="nv">:config</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="c1">;; :config</span>
   <span class="c1">;; (setq magit-completing-read-function &#39;magit-ido-completing-read)</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="VCS: =ido-ghq="><span class='anchor'>_</span></a>VCS: <code>ido-ghq</code></h2>
+<h3><a id="VCS: =ido-ghq="><span class='anchor'>_</span></a>VCS: <code>ido-ghq</code></h3>
 <p>ghq list を ido で選んで dired で開く</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ido-ghq</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;ghq&quot;</span><span class="p">)</span>
@@ -3039,168 +2739,26 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-ghq-short-list</span> <span class="nv">t</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="対応する括弧を見易く: =rainbow-delimiters="><span class='anchor'>_</span></a>対応する括弧を見易く: <code>rainbow-delimiters</code></h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rainbow-delimiters</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;elpa-rainbow-delimiters&quot;</span><span class="p">)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;emacs-lisp-mode-hook</span> <span class="o">#</span><span class="ss">&#39;rainbow-delimiters-mode</span><span class="p">))</span>
-</pre></div>
-<h2><a id="設定ファイル: =generic-x="><span class='anchor'>_</span></a>設定ファイル: <code>generic-x</code></h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">generic-x</span><span class="p">)</span>
-</pre></div>
-<h2><a id="Textile"><span class='anchor'>_</span></a>Textile</h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">textile-mode</span>
+<h2><a id="LSP: =Emacs client/library for the Language Server Protocol="><span class='anchor'>_</span></a>LSP: <code>Emacs client/library for the Language Server Protocol</code></h2>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">lsp-mode</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:commands</span> <span class="nv">lsp</span>
   <span class="p">)</span>
-</pre></div>
-<h2><a id="Markdown"><span class='anchor'>_</span></a>Markdown</h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">markdown-mode</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;pandoc&quot;</span><span class="p">)</span>
-  <span class="nv">:mode</span> <span class="p">(</span><span class="s">&quot;\\.\\(md\\|markdown\\|mkd\\)\\&#39;&quot;</span> <span class="o">.</span> <span class="nv">gfm-mode</span><span class="p">)</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;markdown-mode-hook</span>
-            <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
-              <span class="p">(</span><span class="nf">electric-indent-local-mode</span> <span class="mi">-1</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">orgtbl-mode</span><span class="p">)</span>
-              <span class="p">))</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;gfm-mode-hook</span>
-            <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
-              <span class="p">(</span><span class="nf">electric-indent-local-mode</span> <span class="mi">-1</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">orgtbl-mode</span><span class="p">)</span>
-              <span class="p">))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">markdown-command</span>
-        <span class="s">&quot;pandoc --from markdown_github -t html5 --mathjax --highlight-style pygments&quot;</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="SCSS"><span class='anchor'>_</span></a>SCSS</h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">scss-mode</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">lsp-ui</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;sass&quot;</span><span class="p">)</span>
-  <span class="nv">:mode</span> <span class="s">&quot;\\.scss\\&#39;&quot;</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">scss-sass-command</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;sass&quot;</span><span class="p">))</span>
+  <span class="nv">:commands</span> <span class="nv">lsp-ui-mode</span>
+  <span class="nv">:after</span> <span class="nv">lsp-mode</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="rainbow-mode"><span class='anchor'>_</span></a>rainbow-mode</h2>
-<p><code>#RRGGBB</code> のカラーコードに勝手に色が付く．CSS の編集中なんかで地味に便利．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rainbow-mode</span>
-  <span class="nv">:diminish</span> <span class="nv">rainbow-mode</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;elpa-rainbow-mode&quot;</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="YAML"><span class='anchor'>_</span></a>YAML</h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">yaml-mode</span>
-  <span class="nv">:mode</span> <span class="s">&quot;\\(\.yml\\|\.yaml\\)&quot;</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="Ruby"><span class='anchor'>_</span></a>Ruby</h2>
-<p>素の <code>ruby-mode</code>. <code>Gemfile</code> なんかも ruby-mode で</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ruby-mode</span>
-  <span class="nv">:mode</span> <span class="p">(</span><span class="s">&quot;\\.rb&quot;</span>  <span class="s">&quot;Capfile&quot;</span> <span class="s">&quot;Gemfile&quot;</span><span class="p">)</span>
-  <span class="nv">:interpreter</span> <span class="s">&quot;ruby&quot;</span>
-  <span class="nv">:config</span>
-  <span class="c1">;; マジックコメントは自分で入れる</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">ruby-insert-encoding-magic-comment</span> <span class="nv">nil</span>
-        <span class="nv">flycheck-cheker</span> <span class="ss">&#39;ruby-rubocop</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<p><code>ruby-electric</code>: 括弧や <code>do ... end</code> の補完</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ruby-electric</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;ruby-mode-hook</span> <span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">ruby-electric-mode</span> <span class="nv">t</span><span class="p">)))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">ruby-electric-expand-delimiters-list</span> <span class="nv">nil</span><span class="p">))</span>
-</pre></div>
-<p><code>ruby-block</code>: <code>do...end</code> の対応をハイライト</p>
-<div class="highlight"><pre><span></span><span class="c1">;; (use-package ruby-block</span>
-<span class="c1">;;  :diminish ruby-block-mode</span>
-<span class="c1">;;  :config</span>
-<span class="c1">;;  (ruby-block-mode t)</span>
-<span class="c1">;;  (setq ruby-block-highlight-toggle &#39;overlay)</span>
-<span class="c1">;;  )</span>
-</pre></div>
-<p><code>rspec-mode</code>:</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rspec-mode</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">rspec-use-rake-flag</span> <span class="nv">nil</span><span class="p">))</span>
-</pre></div>
-<p><code>rabbit-mode</code>: <a href="http://rabbit-shocker.org/ja/">Rabbit</a> 編集用</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rabbit-mode</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;rabbit&quot;</span><span class="p">)</span>
-  <span class="nv">:defer</span> <span class="nv">t</span>
-  <span class="p">)</span>
-</pre></div>
-<p><code>rdoc-mode</code>: 本体の方はどうも動かないなぁ&#8230;</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defface</span> <span class="nv">rdoc-header-1</span>
-  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">outline-1</span><span class="p">)))</span>
-  <span class="s">&quot;rdoc mode header level 1&quot;</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nf">defface</span> <span class="nv">rdoc-header-2</span>
-  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">outline-2</span><span class="p">)))</span>
-  <span class="s">&quot;rdoc mode header level 2&quot;</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nf">defface</span> <span class="nv">rdoc-header-3</span>
-  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">outline-3</span><span class="p">)))</span>
-  <span class="s">&quot;rdoc mode header level 3&quot;</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nf">defface</span> <span class="nv">rdoc-header-4</span>
-  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">outline-4</span><span class="p">)))</span>
-  <span class="s">&quot;rdoc mode header level 4&quot;</span><span class="p">)</span>
-
-<span class="p">(</span><span class="nf">define-generic-mode</span> <span class="ss">&#39;rdoc-mode</span>
-  <span class="p">()</span>					<span class="c1">;comment-list</span>
-  <span class="o">&#39;</span><span class="p">()</span>					<span class="c1">;keyword-list</span>
-  <span class="o">&#39;</span><span class="p">(</span>					<span class="c1">;font-lock-list</span>
-    <span class="p">(</span><span class="s">&quot;^=[^=].*&quot;</span>                                             <span class="o">.</span> <span class="ss">&#39;rdoc-header-1</span><span class="p">)</span>
-    <span class="p">(</span><span class="s">&quot;^==[^=].*&quot;</span>                                            <span class="o">.</span> <span class="ss">&#39;rdoc-header-2</span><span class="p">)</span>
-    <span class="p">(</span><span class="s">&quot;^===[^=].*&quot;</span>                                           <span class="o">.</span> <span class="ss">&#39;rdoc-header-3</span><span class="p">)</span>
-    <span class="p">(</span><span class="s">&quot;^====[^=].*&quot;</span>                                          <span class="o">.</span> <span class="ss">&#39;rdoc-header-4</span><span class="p">)</span>
-    <span class="p">(</span><span class="s">&quot;^[\\*#]\\&#123;1,9\\} &quot;</span>                                    <span class="o">.</span> <span class="ss">&#39;bold</span><span class="p">)</span>
-    <span class="p">(</span><span class="s">&quot;\\(?:[^a-zA-Z0-9]\\)?\\*[^*]+\\*\\(?:[^a-zA-Z0-9]\\)&quot;</span> <span class="o">.</span> <span class="ss">&#39;bold</span><span class="p">)</span>
-    <span class="p">(</span><span class="s">&quot;\\(?:[^a-zA-Z0-9]\\)?\\_[^_]+\\_\\(?:[^a-zA-Z0-9]\\)&quot;</span> <span class="o">.</span> <span class="ss">&#39;italic</span><span class="p">)</span>
-    <span class="p">)</span>
-  <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;README_FOR_APP&quot;</span> <span class="s">&quot;\\.rdoc$&quot;</span><span class="p">)</span>	<span class="c1">;auto-mode-list</span>
-  <span class="o">&#39;</span><span class="p">((</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">auto-fill-mode</span> <span class="nv">t</span><span class="p">)))</span>	<span class="c1">;function-list</span>
-  <span class="s">&quot;Major mode for editing RDOC files.&quot;</span><span class="p">)</span>
-</pre></div>
-<p><code>rd-mode</code></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rd-mode</span>
-  <span class="nv">:mode</span> <span class="s">&quot;\\.rd$&quot;</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;rd-mode-hook</span>
-            <span class="ss">&#39;rd-show-other-block-all</span><span class="p">))</span>
-</pre></div>
-<h2><a id="C"><span class='anchor'>_</span></a>C</h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">cc-mode</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">c-add-style</span> <span class="s">&quot;my:bsd-like&quot;</span>
-               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;bsd&quot;</span>
-                 <span class="p">(</span><span class="nf">c-basic-offset</span> <span class="o">.</span> <span class="mi">2</span><span class="p">)</span>
-                 <span class="p">(</span><span class="nf">c-hanging-braces-alist</span> <span class="o">.</span> <span class="p">((</span><span class="nf">inline-open</span>       <span class="nv">before</span> <span class="nv">after</span><span class="p">)</span>
-                                            <span class="p">(</span><span class="nf">block-open</span>        <span class="nv">before</span> <span class="nv">after</span><span class="p">)</span>
-                                            <span class="p">(</span><span class="nf">substatement-open</span> <span class="nv">before</span> <span class="nv">after</span><span class="p">)))</span>
-                 <span class="p">(</span><span class="nf">c-offsets-alist</span> <span class="o">.</span> <span class="p">((</span><span class="nf">brace-list-entry</span> <span class="o">.</span> <span class="nv">+</span><span class="p">)))</span>
-                 <span class="p">))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq-default</span> <span class="nv">c-default-style</span> <span class="s">&quot;my:bsd-like&quot;</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;c-mode-hook</span>
-            <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
-              <span class="p">(</span><span class="nf">c-set-style</span> <span class="s">&quot;my:bsd-like&quot;</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">electric-indent-local-mode</span> <span class="mi">-1</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;eldoc-idle-delay</span><span class="p">)</span> <span class="mf">0.20</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">c-turn-on-eldoc-mode</span><span class="p">)</span>
-              <span class="p">))</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="AUCTeX"><span class='anchor'>_</span></a>AUCTeX</h2>
-<p>Debian パッケージ版を使う．やっている事は</p>
+<h2><a id="TeX"><span class='anchor'>_</span></a>TeX</h2>
+<h3><a id="AUCTeX"><span class='anchor'>_</span></a>AUCTeX</h3>
+<p>Debian パッケージ版を使う．
+  やっている事は</p>
 <ul>
-  <li><code>japanese-latex-mode</code> において, 幾つかのコマンドが追加/上書きされているが，
-    あまり使うことの無いコマンドが表示されるのが嫌なのでそれらを削除．</li>
-  <li>コンパイルには <code>latexmk</code> を使う，です．
+  <li>japanese-latex-mode において, 幾つかのコマンドが追加/上書きされているが， あまり使うことの無いコマンドが表示されるのが嫌なのでそれらを削除．</li>
+  <li>コンパイルには latexmk を使う</li>
+</ul>
+<p>と言った所.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">tex-jp</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;uplatex&quot;</span><span class="p">)</span>
            <span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;auctex&quot;</span><span class="p">))</span>
@@ -3212,7 +2770,13 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;LaTeX-mode-hook</span>
             <span class="p">(</span><span class="nf">function</span>
              <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
-               <span class="p">(</span><span class="nf">dolist</span> <span class="p">(</span><span class="nf">command</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;pTeX&quot;</span> <span class="s">&quot;LaTeX&quot;</span> <span class="s">&quot;pLaTeX&quot;</span> <span class="s">&quot;pBibTeX&quot;</span> <span class="s">&quot;jTeX&quot;</span> <span class="s">&quot;jLaTeX&quot;</span> <span class="s">&quot;jBibTeX&quot;</span><span class="p">))</span>
+               <span class="p">(</span><span class="nf">dolist</span> <span class="p">(</span><span class="nf">command</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;pTeX&quot;</span>
+                                  <span class="s">&quot;LaTeX&quot;</span>
+                                  <span class="s">&quot;pLaTeX&quot;</span>
+                                  <span class="s">&quot;pBibTeX&quot;</span>
+                                  <span class="s">&quot;jTeX&quot;</span>
+                                  <span class="s">&quot;jLaTeX&quot;</span>
+                                  <span class="s">&quot;jBibTeX&quot;</span><span class="p">))</span>
                  <span class="p">(</span><span class="nf">delq</span> <span class="p">(</span><span class="nb">assoc </span><span class="nv">command</span> <span class="nv">TeX-command-list</span><span class="p">)</span> <span class="nv">TeX-command-list</span><span class="p">))</span>
                <span class="p">(</span><span class="nf">setq</span> <span class="nv">TeX-command-default</span> <span class="s">&quot;LaTeX&quot;</span>
                      <span class="nv">japanese-LaTeX-command-default</span> <span class="s">&quot;LaTeX&quot;</span>
@@ -3246,9 +2810,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-  </li>
-</ul>
-<p><code>~/.latexmkrc</code> の設定は以下の通り．</p>
+<p><code>~/.latexmkrc</code> は以下の通り</p>
 <div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env perl</span>
 <span class="nv">$kanji</span>  <span class="o">=</span> <span class="nb">defined</span> <span class="nv">$ENV</span><span class="p">&#123;</span><span class="s">&quot;LATEXENC&quot;</span><span class="p">}</span> <span class="p">?</span> <span class="s">&quot;-kanji=$ENV&#123;\&quot;LATEXENC\&quot;}&quot;</span> <span class="p">:</span> <span class="s">&quot;-kanjii=utf8&quot;</span> <span class="p">;</span>
 <span class="nv">$latex</span>  <span class="o">=</span> <span class="s">&quot;platex -interaction=nonstopmode -src-specials -shell-escape --synctex=1 $kanji&quot;</span><span class="p">;</span>
@@ -3263,8 +2825,8 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 <span class="nv">$pdf_update_method</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nv">$clean_ext</span> <span class="o">=</span> <span class="s">&quot;snm nav vrb synctex.gz&quot;</span><span class="p">;</span>
 </pre></div>
-<h3><a id="zotero との連携"><span class='anchor'>_</span></a>zotero との連携</h3>
-<p>以前みたいに楽にはいかない&#8230;</p>
+<h3><a id="Zotero との連携"><span class='anchor'>_</span></a>Zotero との連携</h3>
+<p>ver.5 以降, 迷走中. 以前ほど楽じゃない気が.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">emacs-zotero-bib-fetch</span>
   <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">emacs-zotero-bib-fetch</span>
            <span class="nv">:fetcher</span> <span class="nv">url</span>
@@ -3272,150 +2834,6 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;TeX-mode-hook</span> <span class="ss">&#39;ezbf-minor-mode</span><span class="p">)</span>
   <span class="p">)</span>
-</pre></div>
-<h2><a id="Fortran"><span class='anchor'>_</span></a>Fortran</h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">f90</span>
-  <span class="nv">:mode</span> <span class="p">(</span><span class="s">&quot;\\.\\(f|F\\)\\(90|95|03|08\\)$&quot;</span> <span class="o">.</span> <span class="nv">f90-mode</span><span class="p">)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;f90-mode-hook</span>
-            <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
-              <span class="p">(</span><span class="nf">setq</span> <span class="nv">f90-do-indent</span> <span class="mi">2</span>
-                    <span class="nv">f90-if-indent</span> <span class="mi">2</span>
-                    <span class="nv">f90-type-indent</span> <span class="mi">2</span>
-                    <span class="nv">f90-program-indent</span> <span class="mi">2</span>
-                    <span class="nv">f90-continuation-indent</span> <span class="mi">2</span>
-                    <span class="nv">f90-directive-comment-re</span> <span class="s">&quot;!omp\\$&quot;</span>
-                    <span class="nv">f90-indented-comment-re</span> <span class="s">&quot;!&quot;</span>
-                    <span class="nv">f90-break-delimiters</span> <span class="s">&quot;[-+\\*/&gt;&lt;=,% \t]&quot;</span>
-                    <span class="nv">f90-break-before-delimiters</span> <span class="nv">t</span>
-                    <span class="nv">f90-beginning-ampersand</span> <span class="nv">nil</span>
-                    <span class="nv">f90-smart-end</span> <span class="ss">&#39;blink</span>
-                    <span class="nv">f90-auto-keyword-case</span> <span class="nv">nil</span>
-                    <span class="nv">f90-leave-line-no</span> <span class="nv">nil</span>
-                    <span class="nv">f90-comment-region</span> <span class="s">&quot;!! &quot;</span>
-                    <span class="nv">f90-indent-comment</span> <span class="s">&quot;! &quot;</span>
-                    <span class="nv">indent-tabs-mode</span> <span class="nv">nil</span>
-                    <span class="nv">f90-font-lock-keywords</span> <span class="nv">f90-font-lock-keywords-2</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">ggtags-mode</span> <span class="mi">1</span><span class="p">)))</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="補完: =auto-complete="><span class='anchor'>_</span></a>補完: <code>auto-complete</code></h2>
-<p>ちょいちょい上手く動かなかったりするんだけれど、どうしたモンかな.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">auto-complete-config</span>
-  <span class="nv">:ensure</span> <span class="nv">auto-complete</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">ac-flyspell-workaround</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">ac-set-trigger-key</span> <span class="s">&quot;M-TAB&quot;</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">ac-config-default</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;ac-dictionary-directories</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:share</span> <span class="s">&quot;ac-dict&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">ac-comphist-file</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;ac-comphist.dat&quot;</span><span class="p">)</span>
-        <span class="nv">ac-auto-start</span> <span class="mi">4</span>                          <span class="c1">; 4 文字以上で起動</span>
-        <span class="nv">ac-use-menu-map</span> <span class="nv">t</span>                        <span class="c1">; キーバインド</span>
-        <span class="nv">ac-auto-show-menu</span> <span class="mi">1</span>                      <span class="c1">; 1秒でメニュー表示</span>
-        <span class="nv">ac-use-comphist</span> <span class="nv">t</span>                        <span class="c1">; 補完候補をソート</span>
-        <span class="nv">ac-candidate-limit</span> <span class="nv">nil</span>                   <span class="c1">; 補完候補表示を無制限に</span>
-        <span class="nv">ac-use-quick-help</span> <span class="nv">nil</span><span class="p">)</span>                   <span class="c1">; tool tip 無し</span>
-  <span class="c1">;; (dolist (mode</span>
-  <span class="c1">;;          &#39;(</span>
-  <span class="c1">;;            ))</span>
-  <span class="c1">;;  (add-to-list &#39;ac-modes mode))</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="日記: =tDiary="><span class='anchor'>_</span></a>日記: <code>tDiary</code></h2>
-<p>tdiary-mode をちまちまと弄っている所</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">tdiary-mode</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">file-directory-p</span> <span class="s">&quot;~/Nextcloud/tdiary&quot;</span><span class="p">)</span>
-           <span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;tdiary-mode&quot;</span><span class="p">))</span>
-  <span class="nv">:commands</span> <span class="p">(</span><span class="nf">tdiary-mode</span> <span class="nv">tdiary-new</span> <span class="nv">tdiary-new-directory</span> <span class="nv">tdiary-replace</span><span class="p">)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/tdiary-mode.gpg&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">tdiary-browser-function</span> <span class="ss">&#39;browser-url</span>
-        <span class="nv">tdiary-coding-system</span> <span class="ss">&#39;utf-8-dos</span>
-        <span class="nv">tdiary-style-mode</span> <span class="ss">&#39;org-mode</span>
-        <span class="nv">tdiary-hour-offset</span> <span class="mi">2</span>
-        <span class="nv">tdiary-text-save-p</span> <span class="nv">t</span>
-        <span class="nv">tdiary-text-suffix</span> <span class="s">&quot;.org&quot;</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="MoinMoin: =moinmoin-mode=, =moomin.el="><span class='anchor'>_</span></a>MoinMoin: <code>moinmoin-mode</code>, <code>moomin.el</code></h2>
-<p>Debian Wiki や職場の Wiki を編集するための
-  MoinMoin の設定.</p>
-<h3><a id="=moinmoin-mode="><span class='anchor'>_</span></a><code>moinmoin-mode</code></h3>
-<p>MoinMoin 本体の moinmoin-mode 自体は古くて
-  screen-lines に依存していたりするので folk して更新中.
-  <a href="https://github.com/uwabami/moinmoin-mode">uwabami/moinmoin-mode: Fork from EmacsForMoinMoin, for Emacs &gt;= 25</a></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">moinmoin-mode</span>
-  <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">moinmoin-mode</span>
-           <span class="nv">:fetcher</span> <span class="nv">github</span>
-           <span class="nv">:repo</span> <span class="s">&quot;uwabami/moinmoin-mode&quot;</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<p>そのうち気になる所を弄る，ということで．</p>
-<h3><a id="=moomin="><span class='anchor'>_</span></a><code>moomin</code></h3>
-<p>元々は <code>moomin = emacs-request + helm + moinmoin-mode</code>
-  という奴. folk して ido-vertical-mode を support する様に
-  多少弄った版を使う。
-  <a href="https://github.com/uwabami/moomin-el">uwabami/moomin-el: Edit MoinMoin with Emacs</a></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">moomin</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:password-store</span><span class="p">)</span>
-  <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">moomin</span>
-           <span class="nv">:fetcher</span> <span class="nv">github</span>
-           <span class="nv">:repo</span> <span class="s">&quot;uwabami/moomin-el&quot;</span><span class="p">)</span>
-  <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x w&quot;</span> <span class="o">.</span> <span class="nv">ido-moomin</span><span class="p">)</span>
-         <span class="nv">:map</span> <span class="nv">moinmoin-mode-map</span>
-         <span class="p">(</span><span class="s">&quot;C-c C-c&quot;</span> <span class="o">.</span> <span class="nv">moomin-save-current-buffer</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;C-c C-s&quot;</span> <span class="o">.</span> <span class="nv">moomin-save-current-buffer</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;C-c C-o&quot;</span> <span class="o">.</span> <span class="nv">moomin-browse-current-page</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">&quot;C-c C-r&quot;</span> <span class="o">.</span> <span class="nv">moomin-reload-current-page</span><span class="p">))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">moomin-history-file</span>
-        <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;.moomin_history&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="s">&quot;moomin&quot;</span>
-    <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:password-store</span> <span class="s">&quot;/moomin.gpg&quot;</span><span class="p">)))</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="基本的なキーバインドの設定"><span class='anchor'>_</span></a>基本的なキーバインドの設定</h2>
-<p>既に手癖になってしまっているアレコレ．
-  特に <code>[home]</code> と <code>[end]</code> は無いと途方に暮れます．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">bind-keys*</span>
- <span class="p">(</span><span class="s">&quot;&lt;f2&gt;&quot;</span>    <span class="o">.</span> <span class="nv">eww</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;C-h&quot;</span>     <span class="o">.</span> <span class="nv">backward-delete-char</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;C-c M-a&quot;</span> <span class="o">.</span> <span class="nv">align-regexp</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;C-c ;&quot;</span>   <span class="o">.</span> <span class="nv">comment-region</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;C-c M-;&quot;</span> <span class="o">.</span> <span class="nv">uncomment-region</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;C-/&quot;</span>     <span class="o">.</span> <span class="nv">undo</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;C-x M-b&quot;</span> <span class="o">.</span> <span class="nv">ibuffer-other-window</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;C-c M-r&quot;</span> <span class="o">.</span> <span class="nv">replace-regexp</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;C-c r&quot;</span>   <span class="o">.</span> <span class="nv">replace-string</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;&lt;home&gt;&quot;</span>  <span class="o">.</span> <span class="nv">beginning-of-buffer</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;&lt;end&gt;&quot;</span>   <span class="o">.</span> <span class="nv">end-of-buffer</span><span class="p">)</span>
- <span class="p">(</span><span class="s">&quot;C-c C-j&quot;</span> <span class="o">.</span> <span class="nv">browse-url-at-point</span><span class="p">)</span>
- <span class="p">)</span>
-</pre></div>
-<h2><a id="=diminish=: モードラインの短縮表示"><span class='anchor'>_</span></a><code>diminish</code>: モードラインの短縮表示</h2>
-<p><code>use-package</code> で読み込まれているので，可能な限りそちらで指定するように変更．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">diminish</span> <span class="nv">:ensure</span> <span class="nv">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">defmacro</span> <span class="nv">my:diminish</span> <span class="p">(</span><span class="nf">file</span> <span class="nv">mode</span> <span class="nv">&amp;optional</span> <span class="nv">new-name</span><span class="p">)</span>
-  <span class="s">&quot;original: https://github.com/larstvei/dot-emacs/blob/master/init.org&quot;</span>
-  <span class="o">`</span><span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="o">,</span><span class="nv">file</span>
-     <span class="p">(</span><span class="nf">diminish</span> <span class="o">,</span><span class="nv">mode</span> <span class="o">,</span><span class="nv">new-name</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">my:diminish</span> <span class="s">&quot;isearch&quot;</span> <span class="ss">&#39;isearch-mode</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">my:diminish</span> <span class="s">&quot;&quot;</span>        <span class="ss">&#39;develock-mode</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">setq</span> <span class="nv">auto-revert-mode-text</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-<p>メジャーモードは <code>hook</code> で設定.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">dolist</span> <span class="p">(</span><span class="nf">hook</span>
-         <span class="o">&#39;</span><span class="p">(</span>
-           <span class="nv">textlie-mode-hook</span>
-           <span class="nv">scss-mode-hook</span>
-           <span class="nv">emacs-lisp-mode-hook</span>
-           <span class="nv">lisp-interaction-mode-hook</span>
-           <span class="nv">wl-folder-mode-hook</span>
-           <span class="nv">wl-summary-mode-hook</span>
-           <span class="nv">wl-draft-mode-hook</span>
-           <span class="nv">mime-view-mode-hook</span>
-           <span class="p">))</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="nv">hook</span> <span class="o">&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">setq</span> <span class="nv">mode-name</span> <span class="s">&quot;&quot;</span><span class="p">))))</span>
 </pre></div>
 <h2><a id="フォントと色"><span class='anchor'>_</span></a>フォントと色</h2>
 <p>そろそろテーマにした方が良い，とは思ってはいる．</p>
@@ -3440,6 +2858,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
                           <span class="nv">:height</span> <span class="mi">180</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">set-background-color</span> <span class="s">&quot;#242424&quot;</span><span class="p">)</span>
       <span class="p">)))</span>
+<span class="p">(</span><span class="nf">my:load-window-config</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">setq</span> <span class="nv">frame-background-mode</span> <span class="p">(</span><span class="nf">frame-parameter</span> <span class="nv">nil</span> <span class="ss">&#39;background-mode</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">setq</span> <span class="nv">default-frame-alist</span>
       <span class="o">&#39;</span><span class="p">(</span>
@@ -3447,8 +2866,6 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="p">(</span><span class="nf">scroll-bar-foreground-color</span> <span class="o">.</span> <span class="s">&quot;red&quot;</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">vertical-scroll-bars</span> <span class="o">.</span> <span class="nv">right</span><span class="p">)</span>
         <span class="p">))</span>
-<span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">window-system</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">my:load-window-config</span><span class="p">))</span>
 </pre></div>
 <p>現在修正中．</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">custom-set-faces</span>
@@ -3476,7 +2893,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">mode-line-inactive</span>                  <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#666666&quot;</span> <span class="nv">:background</span> <span class="s">&quot;#999999&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">fringe</span>                              <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#666666&quot;</span> <span class="nv">:background</span> <span class="s">&quot;#282828&quot;</span> <span class="p">))))</span>
 <span class="c1">;; &#39;(hl-line                           ((t (:inherit highlight :underline t ))))</span>
-<span class="c1">;; &#39;(highlight                         ((t (:background &quot;#333333&quot; ))))</span>
+ <span class="o">&#39;</span><span class="p">(</span><span class="nv">highlight</span>                           <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#556b2f&quot;</span> <span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">term-color-black</span>                    <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#242424&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#242424&quot;</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">term-color-blue</span>                     <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#4c4cff&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#4c4cff&quot;</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">term-color-cyan</span>                     <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#4cffff&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#4cffff&quot;</span><span class="p">))))</span>
@@ -3574,6 +2991,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-agenda-date-weekend</span>             <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FF7F7F&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-agenda-calendar-event</span>           <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span> <span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-hide</span>                            <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4C4C4C&quot;</span> <span class="p">))))</span>
+ <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-block</span>                           <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">font-lock-comment-face</span><span class="p">))))</span>
  <span class="c1">;;</span>
  <span class="c1">;; moinmoin</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">moinmoin-h1</span>                         <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">outline-1</span><span class="p">))))</span>
@@ -3596,6 +3014,19 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 <span class="c1">;; &#39;(review-mode-header3-face  ((t (:inherit outline-3))))</span>
 <span class="c1">;; &#39;(review-mode-header4-face  ((t (:inherit outline-4))))</span>
 <span class="c1">;; &#39;(review-mode-header5-face  ((t (:inherit outline-5))))</span>
+</pre></div>
+<h3><a id="対応する括弧を見易く: =rainbow-delimiters="><span class='anchor'>_</span></a>対応する括弧を見易く: <code>rainbow-delimiters</code></h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rainbow-delimiters</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;emacs-lisp-mode-hook</span> <span class="o">#</span><span class="ss">&#39;rainbow-delimiters-mode</span><span class="p">))</span>
+</pre></div>
+<h3><a id="rainbow-mode"><span class='anchor'>_</span></a>rainbow-mode</h3>
+<p><code>#RRGGBB</code> のカラーコードに勝手に色が付く．CSS の編集中なんかで地味に便利．</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rainbow-mode</span>
+  <span class="nv">:diminish</span> <span class="nv">rainbow-mode</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="p">)</span>
 </pre></div>
 <h2><a id="=diminish=: モードラインの短縮表示"><span class='anchor'>_</span></a><code>diminish</code>: モードラインの短縮表示</h2>
 <p><code>use-package</code> で読み込まれているので，可能な限りそちらで指定するように変更．</p>
@@ -3647,21 +3078,8 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 </ul>
 <p>といった事をしている. East Asian ambiguous Width char の扱いは面倒ですね</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">powerline</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">powerline-default-separator</span> <span class="ss">&#39;utf-8</span>
-        <span class="c1">;; 半角スペース</span>
-        <span class="nv">powerline-utf-8-separator-left</span>  <span class="o">#</span><span class="nv">x20</span>
-        <span class="nv">powerline-utf-8-separator-right</span>  <span class="o">#</span><span class="nv">x20</span>
-        <span class="c1">;; デフォルトの⇔</span>
-        <span class="c1">;; powerline-utf-8-separator-left  #xe0b0</span>
-        <span class="c1">;; powerline-utf-8-separator-right #xe0b2</span>
-        <span class="c1">;; 上三角, 下三角</span>
-        <span class="c1">;; powerline-utf-8-separator-left  #xe0bc</span>
-        <span class="c1">;; powerline-utf-8-separator-right #xe0be</span>
-        <span class="c1">;; 壊れ枠</span>
-        <span class="c1">;; powerline-utf-8-separator-left  #xe0d2</span>
-        <span class="c1">;; powerline-utf-8-separator-right #xe0d4</span>
-        <span class="p">)</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">defpowerline</span> <span class="nv">my:powerline-vc</span>
     <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">buffer-file-name</span> <span class="p">(</span><span class="nf">current-buffer</span><span class="p">))</span> <span class="nv">vc-mode</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;%s%s&quot;</span>
@@ -3712,6 +3130,21 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
           <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">powerline-render</span> <span class="nv">lhs</span><span class="p">)</span>
                   <span class="p">(</span><span class="nf">powerline-fill</span> <span class="nv">face2</span> <span class="p">(</span><span class="nf">powerline-width</span> <span class="nv">rhs</span><span class="p">))</span>
                   <span class="p">(</span><span class="nf">powerline-render</span> <span class="nv">rhs</span><span class="p">)))))))</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">powerline-default-separator</span> <span class="ss">&#39;utf-8</span>
+        <span class="c1">;; 半角スペース</span>
+        <span class="nv">powerline-utf-8-separator-left</span>  <span class="o">#</span><span class="nv">x20</span>
+        <span class="nv">powerline-utf-8-separator-right</span>  <span class="o">#</span><span class="nv">x20</span>
+        <span class="c1">;; デフォルトの⇔</span>
+        <span class="c1">;; powerline-utf-8-separator-left  #xe0b0</span>
+        <span class="c1">;; powerline-utf-8-separator-right #xe0b2</span>
+        <span class="c1">;; 上三角, 下三角</span>
+        <span class="c1">;; powerline-utf-8-separator-left  #xe0bc</span>
+        <span class="c1">;; powerline-utf-8-separator-right #xe0be</span>
+        <span class="c1">;; 壊れ枠</span>
+        <span class="c1">;; powerline-utf-8-separator-left  #xe0d2</span>
+        <span class="c1">;; powerline-utf-8-separator-right #xe0d4</span>
+        <span class="p">)</span>
   <span class="p">(</span><span class="nf">my:powerline-theme</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
@@ -3750,7 +3183,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
       
       &copy; 2006 - 2019
       <a href="mailto:uwabami@gfd-dennou.org"></a>,
-      Lastupdate: 2019-01-11 18:04:23
+      Lastupdate: 2019-01-16 16:50:18
     </span>
     <br/>
     <span class="nowrap">
