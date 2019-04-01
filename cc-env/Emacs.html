@@ -15,8 +15,8 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": "https://uwabami.github.io/cc-env/Emacs.html",
       "headline": "Emacs の設定",
-      "datePublished": "2019-01-24T17:10:54+09:00",
-      "dateModified": "2019-01-24T17:10:54+09:00",
+      "datePublished": "2019-03-29T10:57:11+09:00",
+      "dateModified": "2019-03-29T10:57:11+09:00",
       "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
       "author": {
         "@type": "Person",
@@ -237,12 +237,12 @@
   本ファイル(<code>README.org</code>) から，
   Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し，byte-compile します．</p>
 <div class="highlight"><pre><span></span>init.el: README.org
-	$(EMACS) -q --batch --eval \
-		 &quot;(progn \
-		    (require &#39;ob-tangle) \
-		    (org-babel-tangle-file \&quot;$&lt;\&quot; \&quot;$@\&quot; \&quot;emacs-lisp\&quot;))&quot;
+$(EMACS) -q --batch --eval \
+&quot;(progn \
+(require &#39;ob-tangle) \
+(org-babel-tangle-file \&quot;$&lt;\&quot; \&quot;$@\&quot; \&quot;emacs-lisp\&quot;))&quot;
 %.elc: %.el
-	$(EMACS) -l $&lt; -batch -f batch-byte-compile $&lt;
+$(EMACS) -l $&lt; -batch -f batch-byte-compile $&lt;
 </pre></div>
 <h2><a id="ディレクトリ構成"><span class='anchor'>_</span></a>ディレクトリ構成</h2>
 <p>分割した設定ファイル群やパッケージで install したパッケージ
@@ -302,7 +302,14 @@
 </pre></div>
 <p>モードラインの設定用に delight, diminish も入れておく</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">delight</span> <span class="nv">:ensure</span> <span class="nv">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nf">use-package</span> <span class="nv">delight</span> <span class="nv">:diminish</span> <span class="nv">t</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">diminish</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">defmacro</span> <span class="nv">my:diminish</span> <span class="p">(</span><span class="nf">file</span> <span class="nv">mode</span> <span class="nv">&amp;optional</span> <span class="nv">new-name</span><span class="p">)</span>
+    <span class="s">&quot;指定された minor mode の表示を変える&quot;</span>
+    <span class="o">`</span><span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="o">,</span><span class="nv">file</span>
+       <span class="p">(</span><span class="nf">diminish</span> <span class="o">,</span><span class="nv">mode</span> <span class="o">,</span><span class="nv">new-name</span><span class="p">)))</span>
+  <span class="p">)</span>
 </pre></div>
 <h3><a id="[[https://framagit.org/steckerhalter/quelpa-use-package][quelpa-use-package]]"><span class='anchor'>_</span></a><a href="https://framagit.org/steckerhalter/quelpa-use-package">quelpa-use-package</a></h3>
 <p>melpa に登録されていないパッケージや自作の elisp 等をインストールできる様に
@@ -491,13 +498,46 @@
 </pre></div>
 <h3><a id="East Asian Ambiguos 対応"><span class='anchor'>_</span></a>East Asian Ambiguos 対応</h3>
 <p>CJK 以外の East Asian Ambiguos，絵文字も2文字幅にするようにしています．
-  拙作の修正ロケールはこちら: <a href="https://github.com/uwabami/locale-eaw-emoji">https://github.com/uwabami/locale-eaw-emoji</a></p>
+  拙作の修正ロケールはこちら: <a href="https://github.com/uwabami/locale-eaw-emoji">https://github.com/uwabami/locale-eaw-emoji</a>
+  アイコンフォントとして  <a href="https://github.com/sebastiencs/icons-in-terminal">icons in terminal</a> にも対応しています.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">locale-eaw-emoji</span>
   <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">locale-eaw-emoji</span>
            <span class="nv">:fetcher</span> <span class="nv">github</span>
            <span class="nv">:repo</span> <span class="s">&quot;uwabami/locale-eaw-emoji&quot;</span><span class="p">)</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">eaw-and-emoji-fullwidth</span><span class="p">))</span>
+</pre></div>
+<p>本当は all the icons に対応した方が良いのかもしれないけれど,
+  Surrogate, Variation Selector と Private Use Area の区別がついてない
+  アイコンフォントが多すぎて, 割とシンドイなぁ, とか思ったり.</p>
+<h3><a id="icon font"><span class='anchor'>_</span></a>icon font</h3>
+<p>all-the-icons のデータを修正して,
+  icons in terminal のデータを読みに行くようにしてみたり.</p>
+<ul>
+  <li>フォントは <a href="https://github.com/uwabami/icons-in-terminal">github.com/uwabami/icons-in-terminal</a></li>
+  <li>修正版は <a href="https://github.com/uwabami/all-the-icons-in-terminal">all-the-icons-in-terminal</a></li>
+</ul>
+<p>元ファイルと変えていないので, 実際はデータのみ提供するようにした方が無難, かも.</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">all-the-icons</span> <span class="nv">:ensure</span> <span class="nv">t</span> <span class="p">)</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">all-the-icons-in-terminal</span>
+  <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">all-the-icons-in-terminal</span>
+           <span class="nv">:fetcher</span> <span class="nv">github</span>
+           <span class="nv">:repo</span> <span class="s">&quot;uwabami/all-the-icons-in-terminal&quot;</span>
+           <span class="nv">:files</span> <span class="p">(</span><span class="nf">:defaults</span> <span class="s">&quot;data&quot;</span><span class="p">))</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="ss">&#39;all-the-icons-in-terminal</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;all-the-icons-mode-icon-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">f90-mode</span> <span class="nv">all-the-icons-faicon</span> <span class="s">&quot;facebook&quot;</span> <span class="nv">:height</span> <span class="mf">1.0</span><span class="p">))</span> <span class="c1">; facebook!</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;all-the-icons-mode-icon-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">wl-folder-mode</span> <span class="nv">all-the-icons-faicon</span> <span class="s">&quot;folder-o&quot;</span> <span class="nv">:height</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;all-the-icons-mode-icon-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">wl-summary-mode</span> <span class="nv">all-the-icons-faicon</span> <span class="s">&quot;folder-open-o&quot;</span> <span class="nv">:height</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;all-the-icons-mode-icon-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">wl-draft-mode</span> <span class="nv">all-the-icons-material</span> <span class="s">&quot;drafts&quot;</span> <span class="nv">:height</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;all-the-icons-mode-icon-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">mime-view-mode</span> <span class="nv">all-the-icons-faicon</span> <span class="s">&quot;envelope-o&quot;</span> <span class="nv">:height</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="p">)</span>
+  <span class="p">)</span>
 </pre></div>
 <h3><a id="OSの違いに起因する条件分岐"><span class='anchor'>_</span></a>OSの違いに起因する条件分岐</h3>
 <p>Mac と Linux では同じ Unicode でも正規化が異なります
@@ -576,7 +616,7 @@
         <span class="nv">unresolved</span>
         <span class="nv">callargs</span>
         <span class="nv">redefine</span>
-<span class="c1">;;        obsolete</span>
+        <span class="c1">;;        obsolete</span>
         <span class="nv">noruntime</span>
         <span class="nv">cl-functions</span>
         <span class="nv">interactive-only</span>
@@ -608,9 +648,6 @@
 <p>バッファ終端で newline を入れない</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">next-line-add-newlines</span> <span class="nv">nil</span><span class="p">)</span>
 </pre></div>
-<p>symlink は常においかける</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">vc-follow-symlinks</span> <span class="nv">t</span><span class="p">)</span>
-</pre></div>
 <p>変更のあったファイルの自動再読み込み</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">global-auto-revert-mode</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -631,8 +668,7 @@
       <span class="p">)</span>
 </pre></div>
 <p>Undo/Redo:
-  そのうち undohist と undo-tree を試そうと思っているのですが，
-  今のところ特に弄ってません． <code>undo-limit</code> は無限大にしたいのですが，どうするのかな&#8230;?</p>
+  <code>undo-limit</code> は無限大にしたいのですが，どうするのかな&#8230;?</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">undo-limit</span> <span class="mi">200000</span>
       <span class="nv">undo-strong-limit</span> <span class="mi">260000</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">savehist-mode</span> <span class="mi">1</span><span class="p">)</span>
@@ -645,16 +681,24 @@
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">url-configuration-directory</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;url&quot;</span><span class="p">)))</span>
 <span class="p">(</span><span class="nf">use-package</span> <span class="nv">nsm</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">featurep</span> <span class="ss">&#39;nsm</span><span class="p">)</span>
-  <span class="nv">:init</span>
+  <span class="nv">:if</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">)</span>
+  <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">nsm-settings-file</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;network-settings.data&quot;</span><span class="p">)))</span>
 </pre></div>
 <p>他にもイロイロありそう．</p>
+<h3><a id="version管理: =vc="><span class='anchor'>_</span></a>version管理: <code>vc</code></h3>
+<p>組み込みの vc-mode は mode-line の整形にしか利用しない.</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">vc</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">vc-handled-backends</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">Git</span><span class="p">)</span>
+        <span class="c1">;; symlink は常においかける</span>
+        <span class="nv">vc-follow-symlinks</span> <span class="nv">t</span><span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
 <h3><a id="=recentf=: 最近使ったファイル履歴の保管"><span class='anchor'>_</span></a><code>recentf</code>: 最近使ったファイル履歴の保管</h3>
 <p>ファイルを開く際には <code>ido-recentf-open</code> を使うので,
   結局履歴を貯める設定をしている事になっている.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">recentf</span>
-  <span class="nv">:delight</span>
   <span class="nv">:defer</span> <span class="nv">t</span>
   <span class="nv">:init</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-init-hook</span> <span class="ss">&#39;recentf-mode</span><span class="p">)</span>
@@ -670,6 +714,7 @@
                           <span class="s">&quot;/TAGS$&quot;</span>
                           <span class="s">&quot;^/home/uwabami/.mozilla/\\.*&quot;</span>
                           <span class="s">&quot;\\.*草稿\\.*&quot;</span>
+                          <span class="s">&quot;^/[^/:]+:&quot;</span>  <span class="c1">; exclude tramp</span>
                           <span class="p">))</span>
   <span class="p">)</span>
 </pre></div>
@@ -689,7 +734,6 @@
   「gc が走る→大きな領域を掃除するのでその間 emacs が止まる」という事を頻繁に経験することになるだろう.</p>
 <h3><a id="=abbrev=: 略語展開"><span class='anchor'>_</span></a><code>abbrev</code>: 略語展開</h3>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">abbrev</span>
-  <span class="nv">:delight</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">abbrev-file-name</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:share</span> <span class="s">&quot;abbrev_defs&quot;</span><span class="p">)</span>
         <span class="nv">save-abbrevs</span> <span class="nv">t</span><span class="p">)</span>
@@ -698,7 +742,6 @@
 </pre></div>
 <h3><a id="=eldoc=: emacs-lisp document"><span class='anchor'>_</span></a><code>eldoc</code>: emacs-lisp document</h3>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">eldoc</span>
-  <span class="nv">:delight</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;emacs-lisp-mode-hook</span> <span class="ss">&#39;turn-on-eldoc-mode</span><span class="p">)</span>
   <span class="p">)</span>
@@ -712,11 +755,12 @@
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">uniquify</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">uniquify-buffer-name-style</span> <span class="ss">&#39;post-forward-angle-brackets</span>
-        <span class="nv">uniquify-min-dir-content</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="nv">uniquify-min-dir-content</span> <span class="mi">1</span>
+        <span class="p">)</span>
+  <span class="p">)</span>
 </pre></div>
 <h3><a id="=whitespace=: 空白の強調表示"><span class='anchor'>_</span></a><code>whitespace</code>: 空白の強調表示</h3>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">whitespace</span>
-  <span class="nv">:delight</span> <span class="nv">global-whitespace-mode</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">whitespace-line-column</span> <span class="mi">72</span>
         <span class="nv">whitespace-style</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">face</span>              <span class="c1">; faceを使って視覚化する．</span>
@@ -762,6 +806,10 @@
   <span class="nv">:no-require</span> <span class="nv">t</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">tramp-persistency-file-name</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span> <span class="s">&quot;tramp&quot;</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;kill-emacs-hook</span>
+            <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
+              <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">file-exists-p</span> <span class="nv">custom-file</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nf">delete-file</span> <span class="nv">tramp-persistency-file-name</span><span class="p">))))</span>
   <span class="p">)</span>
 </pre></div>
 <h3><a id="=bookmark=: bookmark ファイル"><span class='anchor'>_</span></a><code>bookmark</code>: bookmark ファイル</h3>
@@ -1225,7 +1273,7 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
   <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;cmigemo&quot;</span><span class="p">)</span>
   <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">migemo</span>
            <span class="nv">:fetcher</span> <span class="nv">github</span>
-           <span class="nv">:repo</span> <span class="s">&quot;uwabami/migemo&quot;</span><span class="p">)</span>
+           <span class="nv">:repo</span> <span class="s">&quot;emacs-jp/migemo&quot;</span><span class="p">)</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">cond</span>
    <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nf">eq</span> <span class="nv">system-type</span> <span class="ss">&#39;darwin</span><span class="p">)</span>
@@ -1239,6 +1287,45 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
         <span class="nv">migemo-regex-dictionary</span> <span class="nv">nil</span>
         <span class="nv">migemo-coding-system</span> <span class="ss">&#39;utf-8-unix</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">migemo-init</span><span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
+<h2><a id="Undo/Redo: =undo-tree="><span class='anchor'>_</span></a>Undo/Redo: <code>undo-tree</code></h2>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">undo-tree</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:init</span>
+  <span class="c1">;; @see https://github.com/raxod502/radian/commit/0544196c50ddc305f90873ca280bf0c5e3db685b</span>
+  <span class="c1">;; Suppress the message saying that the undo history file was</span>
+  <span class="c1">;; saved (because this happens every single time you save a file).</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:undo-tree-suppress-undo-history-saved-message</span>
+      <span class="p">(</span><span class="nf">undo-tree-save-history</span> <span class="nv">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">inhibit-message</span> <span class="nv">t</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">apply </span><span class="nv">undo-tree-save-history</span> <span class="nv">args</span><span class="p">)))</span>
+  <span class="c1">;; Suppress the message saying that the undo history could not be</span>
+  <span class="c1">;; loaded because the file changed outside of Emacs.</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:undo-tree-suppress-buffer-modified-message</span>
+      <span class="p">(</span><span class="nf">undo-tree-load-history</span> <span class="nv">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">inhibit-message</span> <span class="nv">t</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">apply </span><span class="nv">undo-tree-load-history</span> <span class="nv">args</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">advice-add</span> <span class="o">#</span><span class="ss">&#39;undo-tree-load-history</span> <span class="nv">:around</span>
+              <span class="o">#</span><span class="ss">&#39;my:undo-tree-suppress-buffer-modified-message</span><span class="p">)</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">undo-tree-auto-save-history</span> <span class="nv">t</span>
+        <span class="nv">my:undo-tree-history-dir</span> <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">dir</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span>
+                                                    <span class="s">&quot;undo-tree-history/&quot;</span><span class="p">)))</span>
+                                   <span class="p">(</span><span class="nf">make-directory</span> <span class="nv">dir</span> <span class="nv">:parents</span><span class="p">)</span> <span class="nv">dir</span><span class="p">)</span>
+        <span class="nv">undo-tree-history-directory-alist</span> <span class="o">`</span><span class="p">((</span><span class="s">&quot;.&quot;</span> <span class="o">.</span> <span class="o">,</span><span class="nv">my:undo-tree-history-dir</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">global-undo-tree-mode</span> <span class="nv">+1</span><span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
+<h2><a id="チラ見: =quick-preview.el="><span class='anchor'>_</span></a>チラ見: <code>quick-preview.el</code></h2>
+<p>ターミナルの場合に上手く動かないので folk 版を作っている</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">quick-preview</span>
+  <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">quick-preview</span>
+           <span class="nv">:fetcher</span> <span class="nv">github</span>
+           <span class="nv">:repo</span> <span class="s">&quot;uwabami/quick-preview.el&quot;</span><span class="p">)</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">global-set-key</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-c q&quot;</span><span class="p">)</span> <span class="ss">&#39;quick-preview-at-point</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">dired-mode-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;Q&quot;</span><span class="p">)</span> <span class="ss">&#39;quick-preview-at-point</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
 <h2><a id="補完: =ido="><span class='anchor'>_</span></a>補完: <code>ido</code></h2>
@@ -1284,6 +1371,18 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
   <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:ido-disable-line-trucation</span> <span class="p">()</span>
     <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;truncate-lines</span><span class="p">)</span> <span class="nv">nil</span><span class="p">))</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;ido-minibuffer-setup-hook</span> <span class="ss">&#39;my:ido-disable-line-trucation</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:ido-remove-tramp-from-cache</span> <span class="nv">nil</span>
+    <span class="s">&quot;Remove any TRAMP entries from `ido-dir-file-cache&#39;.</span>
+<span class="s">    This stops tramp from trying to connect to remote hosts on emacs startup,</span>
+<span class="s">    which can be very annoying.&quot;</span>
+    <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-dir-file-cache</span>
+          <span class="p">(</span><span class="nf">cl-remove-if</span>
+           <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nf">string-match</span> <span class="s">&quot;/\\(rsh\\|ssh\\|telnet\\|su\\|sudo\\|sshx\\|krlogin\\|ksu\\|rcp\\|scp\\|rsync\\|scpx\\|fcp\\|nc\\|ftp\\|smb\\|adb\\):&quot;</span> <span class="p">(</span><span class="nb">car </span><span class="nv">x</span><span class="p">)))</span>
+           <span class="nv">ido-dir-file-cache</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;kill-emacs-hook</span>
+            <span class="o">#</span><span class="ss">&#39;my:ido-remove-tramp-from-cache</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
 <h3><a id="=flx-ido=: flex match の強化"><span class='anchor'>_</span></a><code>flx-ido</code>: flex match の強化</h3>
@@ -1346,8 +1445,11 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
       <span class="p">(</span><span class="nf">find-file</span> <span class="p">(</span><span class="nf">assoc-default</span> <span class="nv">selected</span> <span class="nv">files</span><span class="p">)))))</span>
 <span class="p">(</span><span class="nf">bind-key</span> <span class="s">&quot;C-x C-r&quot;</span> <span class="ss">&#39;ido-recentf-open</span><span class="p">)</span>
 </pre></div>
+<h3><a id="=ido-ido-completing-read="><span class='anchor'>_</span></a><code>ido-ido-completing-read</code></h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ido-completing-read+</span> <span class="nv">:ensure</span> <span class="nv">t</span><span class="p">)</span>
+</pre></div>
 <h3><a id="=smex="><span class='anchor'>_</span></a><code>smex</code></h3>
-<p>M-x を ido で。</p>
+<p>M-x を ido で. <del>amx の方が良い?</del></p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">smex</span>
   <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;M-x&quot;</span> <span class="o">.</span> <span class="nv">smex</span><span class="p">))</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
@@ -1363,14 +1465,17 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
 <p>以前は auto-complete を使っていたが, 最近こちらに乗り換えた.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">company</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-M-i&quot;</span> <span class="o">.</span> <span class="nv">company-complete</span><span class="p">))</span>
-  <span class="nv">:delight</span>
+  <span class="nv">:diminish</span> <span class="s">&quot;&quot;</span>
   <span class="nv">:config</span>
+  <span class="c1">;; TAB で補完 or インデント</span>
+  <span class="p">(</span><span class="nf">global-set-key</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;&lt;tab&gt;&quot;</span><span class="p">)</span> <span class="ss">&#39;company-indent-or-complete-common</span><span class="p">)</span>
   <span class="c1">;; C-n, C-pで補完候補を次/前の候補を選択</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-active-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-n&quot;</span><span class="p">)</span> <span class="ss">&#39;company-select-next</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-active-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-p&quot;</span><span class="p">)</span> <span class="ss">&#39;company-select-previous</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-search-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-n&quot;</span><span class="p">)</span> <span class="ss">&#39;company-select-next</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-search-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-p&quot;</span><span class="p">)</span> <span class="ss">&#39;company-select-previous</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-active-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;&lt;backtab&gt;&quot;</span><span class="p">)</span> <span class="ss">&#39;company-select-previous</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-active-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;&lt;tab&gt;&quot;</span><span class="p">)</span> <span class="ss">&#39;company-complete-common-or-cycle</span><span class="p">)</span>
   <span class="c1">;; C-sで絞り込む</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-active-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-s&quot;</span><span class="p">)</span> <span class="ss">&#39;company-filter-candidates</span><span class="p">)</span>
   <span class="c1">;; TABで候補を設定</span>
@@ -1380,54 +1485,31 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">company-auto-expand</span> <span class="nv">t</span>                 <span class="c1">; 1個目を自動的に補完</span>
         <span class="nv">company-transformers</span>
         <span class="o">&#39;</span><span class="p">(</span><span class="nv">company-sort-by-backend-importance</span><span class="p">)</span> <span class="c1">; ソート順</span>
-        <span class="nv">company-idle-delay</span> <span class="mf">0.5</span>                <span class="c1">; 遅延なしにすぐ表示</span>
-        <span class="nv">company-minimum-prefix-length</span> <span class="mi">4</span>       <span class="c1">; デフォルトは4</span>
+        <span class="nv">company-idle-delay</span> <span class="mi">0</span>                  <span class="c1">; 遅延なしにすぐ表示</span>
+        <span class="nv">company-minimum-prefix-length</span> <span class="mi">3</span>       <span class="c1">; デフォルトは4</span>
         <span class="nv">company-selection-wrap-around</span> <span class="nv">t</span>       <span class="c1">; 候補の最後の次は先頭に戻る</span>
         <span class="nv">completion-ignore-case</span> <span class="nv">t</span>
         <span class="nv">company-dabbrev-downcase</span> <span class="nv">nil</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">global-company-mode</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">global-company-mode</span> <span class="nv">+1</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="補完: =yasnippet="><span class='anchor'>_</span></a>補完: <code>yasnippet</code></h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">yasnippet</span>
+<h2><a id="補完: =Emacs client/library for the Language Server Protocol="><span class='anchor'>_</span></a>補完: <code>Emacs client/library for the Language Server Protocol</code></h2>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">lsp-mode</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:delight</span> <span class="nv">yas-minor-mode</span>
-  <span class="nv">:bind</span> <span class="p">(</span><span class="nf">:map</span> <span class="nv">yas-minor-mode-map</span>
-              <span class="p">(</span><span class="s">&quot;&lt;C-tab&gt;&quot;</span> <span class="o">.</span> <span class="nv">my:yas-ido-expand</span><span class="p">))</span>
-  <span class="nv">:init</span>
-  <span class="p">(</span><span class="nf">defvar</span> <span class="nv">my:snippet-dirs</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:share</span> <span class="s">&quot;snippets&quot;</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:snippet-dirs</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">make-directory</span> <span class="nv">my:snippet-dirs</span><span class="p">))</span>
-  <span class="c1">;; @see https://www.emacswiki.org/emacs/Yasnippet</span>
-  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:yas-ido-expand</span> <span class="p">()</span>
-    <span class="s">&quot;Lets you select (and expand) a yasnippet key&quot;</span>
-    <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">original-point</span> <span class="p">(</span><span class="nf">point</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nf">while</span> <span class="p">(</span><span class="nf">and</span>
-              <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">))</span>
-              <span class="p">(</span><span class="nf">not</span>
-               <span class="p">(</span><span class="nf">string-match</span> <span class="s">&quot;[[:space:]\n]&quot;</span> <span class="p">(</span><span class="nf">char-to-string</span> <span class="p">(</span><span class="nf">char-before</span><span class="p">)))))</span>
-        <span class="p">(</span><span class="nf">backward-word</span> <span class="mi">1</span><span class="p">))</span>
-      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">init-word</span> <span class="p">(</span><span class="nf">point</span><span class="p">))</span>
-             <span class="p">(</span><span class="nf">word</span> <span class="p">(</span><span class="nf">buffer-substring</span> <span class="nv">init-word</span> <span class="nv">original-point</span><span class="p">))</span>
-             <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nf">yas-active-keys</span><span class="p">)))</span>
-        <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">original-point</span><span class="p">)</span>
-        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">key</span> <span class="p">(</span><span class="nf">remove-if-not</span>
-                    <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">s</span><span class="p">)</span> <span class="p">(</span><span class="nf">string-match</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;^&quot;</span> <span class="nv">word</span><span class="p">)</span> <span class="nv">s</span><span class="p">))</span> <span class="nv">list</span><span class="p">)))</span>
-          <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">length </span><span class="nv">key</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">setq</span> <span class="nv">key</span> <span class="p">(</span><span class="nf">pop</span> <span class="nv">key</span><span class="p">))</span>
-            <span class="p">(</span><span class="nf">setq</span> <span class="nv">key</span> <span class="p">(</span><span class="nf">ido-completing-read</span> <span class="s">&quot;key: &quot;</span> <span class="nv">list</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">word</span><span class="p">)))</span>
-          <span class="p">(</span><span class="nf">delete-char</span> <span class="p">(</span><span class="nb">- </span><span class="nv">init-word</span> <span class="nv">original-point</span><span class="p">))</span>
-          <span class="p">(</span><span class="nf">insert</span> <span class="nv">key</span><span class="p">)</span>
-          <span class="p">(</span><span class="nf">yas-expand</span><span class="p">)))))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">yas-snippet-dirs</span>
-        <span class="o">&#39;</span><span class="p">(</span><span class="nv">my:snippet-dirs</span>
-         <span class="nv">yasnippet-snippets-dir</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">yas-prompt-function</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">yas-ido-prompt</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-init-hook</span>
-            <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
-              <span class="p">(</span><span class="nf">yas-global-mode</span> <span class="mi">1</span><span class="p">)))</span>
+  <span class="nv">:commands</span> <span class="nv">lsp</span>
+  <span class="p">)</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">lsp-ui</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:commands</span> <span class="nv">lsp-ui-mode</span>
+  <span class="nv">:after</span> <span class="nv">lsp-mode</span>
+  <span class="nv">:hook</span> <span class="p">(</span><span class="nf">lsp-mode</span> <span class="o">.</span> <span class="nv">lsp-ui-mode</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">company-lsp</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:after</span> <span class="p">(</span><span class="nf">lsp-mode</span> <span class="nv">company</span><span class="p">)</span>
+  <span class="nv">:defines</span> <span class="nv">company-backends</span>
+  <span class="c1">;; :functions company-backend-with-yas</span>
+  <span class="c1">;; :init (cl-pushnew (company-backend-with-yas &#39;company-lsp) company-backends)</span>
   <span class="p">)</span>
 </pre></div>
 <h2><a id="校正，辞書等"><span class='anchor'>_</span></a>校正，辞書等</h2>
@@ -1442,7 +1524,6 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
 </pre></div>
 <p>flyspell-mode は別途有効化しておいた方が良いのかもしれない</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">flyspell</span>
-  <span class="nv">:diminish</span> <span class="s">&quot;&quot;</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:flyspell-popup-choose</span> <span class="p">(</span><span class="nf">orig</span> <span class="nv">event</span> <span class="nv">poss</span> <span class="nv">word</span><span class="p">)</span>
     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">window-system</span><span class="p">)</span>
@@ -1535,6 +1616,12 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
     <span class="p">(</span><span class="nf">make-directory</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">elmo-msgdb-directory</span> <span class="s">&quot;/local&quot;</span><span class="p">)))</span>
   <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">elmo-msgdb-directory</span> <span class="s">&quot;/local/Trash&quot;</span><span class="p">))</span>
     <span class="p">(</span><span class="nf">make-directory</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">elmo-msgdb-directory</span> <span class="s">&quot;/local/Trash&quot;</span><span class="p">)))</span>
+  <span class="c1">;; mode-line 弄り</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:wl-mode-line-buffer-identification</span> <span class="p">(</span><span class="nf">&amp;optional</span> <span class="nv">id</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">force-mode-line-update</span> <span class="nv">t</span><span class="p">))</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="ss">&#39;wl</span>
+    <span class="p">(</span><span class="nf">advice-add</span> <span class="ss">&#39;wl-mode-line-buffer-identification</span> <span class="nv">:override</span> <span class="ss">&#39;my:wl-mode-line-buffer-identification</span><span class="p">))</span>
   <span class="p">)</span>
 </pre></div>
 <p>割と <code>/etc/emacs/site-start.d/65wl-beta.el</code> と重複している気がするが&#8230;</p>
@@ -1751,7 +1838,7 @@ video/*;<span class="w"> </span>xdg-open<span class="w"> </span>%s;<span class="
 </pre></div>
 <h5><a id="FCC, BCC の設定"><span class='anchor'>_</span></a>FCC, BCC の設定</h5>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">wl-fcc</span> <span class="nv">nil</span><span class="p">)</span>
-     <span class="c1">;; (setq wl-fcc &quot;%Sent&quot;)</span>
+<span class="c1">;; (setq wl-fcc &quot;%Sent&quot;)</span>
 </pre></div>
 <p>fcc を既読にする場合は以下．=wl-fcc= が nil の場合には意味は無い</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">wl-fcc-force-as-read</span> <span class="nv">t</span><span class="p">)</span>
@@ -1966,9 +2053,9 @@ video/*;<span class="w"> </span>xdg-open<span class="w"> </span>%s;<span class="
                                 <span class="p">(</span><span class="ss">&#39;t</span>
                                  <span class="p">(</span><span class="nf">string-max2</span> <span class="p">(</span><span class="nf">thread-number-get-date</span> <span class="p">(</span><span class="nb">car </span><span class="nv">x</span><span class="p">))</span>
                                               <span class="p">(</span><span class="nf">max-reply-date</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">x</span><span class="p">)))))))</span>
-    <span class="p">(</span><span class="nf">string&lt;</span>
-     <span class="p">(</span><span class="nf">max-reply-date</span> <span class="p">(</span><span class="nf">thread-get-family</span> <span class="p">(</span><span class="nf">elmo-message-entity-number</span> <span class="nv">a</span><span class="p">)))</span>
-     <span class="p">(</span><span class="nf">max-reply-date</span> <span class="p">(</span><span class="nf">thread-get-family</span> <span class="p">(</span><span class="nf">elmo-message-entity-number</span> <span class="nv">b</span><span class="p">))))))</span>
+         <span class="p">(</span><span class="nf">string&lt;</span>
+          <span class="p">(</span><span class="nf">max-reply-date</span> <span class="p">(</span><span class="nf">thread-get-family</span> <span class="p">(</span><span class="nf">elmo-message-entity-number</span> <span class="nv">a</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nf">max-reply-date</span> <span class="p">(</span><span class="nf">thread-get-family</span> <span class="p">(</span><span class="nf">elmo-message-entity-number</span> <span class="nv">b</span><span class="p">))))))</span>
 <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;wl-summary-sort-specs</span> <span class="ss">&#39;reply-date</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">setq</span> <span class="nv">wl-summary-default-sort-spec</span> <span class="ss">&#39;reply-date</span><span class="p">)</span>
 </pre></div>
@@ -2030,6 +2117,142 @@ video/*;<span class="w"> </span>xdg-open<span class="w"> </span>%s;<span class="
 <p>To や From にアドレスが沢山指定されていると省略されるので，これを無効化</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">wl-message-use-header-narrowing</span> <span class="nv">nil</span><span class="p">)</span>
 </pre></div>
+<h4><a id="Wanderlust: Face の設定"><span class='anchor'>_</span></a>Wanderlust: Face の設定</h4>
+<p>デフォルトより細かく指定するために幾つかの face 定義を追加.</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">wl-highlight-message-header-alist</span>
+      <span class="o">&#39;</span><span class="p">((</span><span class="s">&quot;Subject[ \t]*:&quot;</span>
+         <span class="o">.</span> <span class="nv">wl-highlight-message-subject-header-contents</span><span class="p">)</span>
+        <span class="p">(</span><span class="s">&quot;From[ \t]*:&quot;</span>
+         <span class="o">.</span> <span class="nv">wl-highlight-message-from-header-contents</span><span class="p">)</span>
+        <span class="p">(</span><span class="s">&quot;Date[ \t]*:&quot;</span>
+         <span class="o">.</span> <span class="nv">wl-highlight-message-date-header-contents</span><span class="p">)</span>
+        <span class="p">(</span><span class="s">&quot;\\(.*To\\|Cc\\|Newsgroups\\)[ \t]*:&quot;</span>
+         <span class="o">.</span> <span class="nv">wl-highlight-message-important-header-contents</span><span class="p">)</span>
+        <span class="p">(</span><span class="s">&quot;\\(User-Agent\\|X-Mailer\\|X-Newsreader\\)[ \t]*:&quot;</span>
+         <span class="o">.</span> <span class="nv">wl-highlight-message-unimportant-header-contents</span><span class="p">)</span>
+        <span class="p">))</span>
+</pre></div>
+<p>face の色付け</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defun</span> <span class="nv">my:wl-set-face</span> <span class="p">(</span><span class="nf">face</span> <span class="nv">spec</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">make-face</span> <span class="nv">face</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">fboundp</span> <span class="ss">&#39;face-spec-set</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">face-spec-set</span> <span class="nv">face</span> <span class="nv">spec</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">t</span>
+         <span class="p">(</span><span class="nf">wl-declare-face</span> <span class="nv">face</span> <span class="nv">spec</span><span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-closed-face</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4cff4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-few-face</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FF4C4C&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">bold</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-zero-face</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#f6f3e8&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-1</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7fff7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-2</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ffff7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-3</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7f7fff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-4</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7fffff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-5</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff7fff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-6</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff7f7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-7</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4cff4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-8</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ffff4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-9</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4c4cff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-10</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4cffff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-11</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff4cff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-12</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff4c4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-date-header-contents</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFF4C&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">bold</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-header-contents</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#aaaaaa&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-headers</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFFFF&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">bold</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-important-header-contents2</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFF4C&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-signature</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#aaaaaa&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-important-header-contents</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FF4CFF&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">bold</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-subject-header-contents</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FF4C4C&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">bold</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-from-header-contents</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FFFF4C&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">bold</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-unimportant-header-contents</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#aaaaaa&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-answered-face</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFF4C&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-refiled-face</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7F7FFF&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-thread-top-face</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-important-flag-face</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ffff4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
+<span class="c1">;;</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-folder-killed-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:black :5Dbold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-folder-many-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:magenta :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-folder-opened-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#4cffff&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-folder-path-face</span>
+<span class="c1">;;                 &#39;((t (:underline t :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-folder-unknown-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#4cffff&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-folder-unread-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:n:blue :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-header-separator-face</span>
+<span class="c1">;;                 &#39;((t (:inherit highlight :bold t ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-message-citation-header</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:green :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-copied-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#4CFFFF&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-deleted-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:black :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-displaying-face</span>
+<span class="c1">;;                 &#39;((t (:underline t :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-disposed-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#aaaaaa&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-flagged-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:yellow :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-forwarded-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:blue :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-high-read-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:green :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-high-unread-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:orange :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-important-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#ffff4c&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-killed-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:black :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-l:read-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#4CFF4C&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-l:unread-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:lightb :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-new-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#ff4c4c&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-normal-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#f6f3e8&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-prefetch-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:n:blue :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-resend-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:h:orange :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-target-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#4CFFFF&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-temp-face</span>
+<span class="c1">;;                 &#39;((t (:foreground ,my:n:violet :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-summary-unread-face</span>
+<span class="c1">;;                 &#39;((t (:foreground &quot;#ff4c4c&quot; :bold nil :italic nil ))))</span>
+<span class="c1">;; (my:wl-set-face &#39;wl-highlight-thread-indent-face</span>
+<span class="c1">;;                 &#39;((t (:underline t :bold nil :italic nil ))))</span>
+</pre></div>
 <h4><a id="作成/返信設定"><span class='anchor'>_</span></a>作成/返信設定</h4>
 <p>自分宛のメールに返信する場合は <code>To:</code>, <code>Cc:</code> から自分のアドレスを削除</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">wl-draft-always-delete-myself</span> <span class="nv">t</span><span class="p">)</span>
@@ -2083,83 +2306,6 @@ video/*;<span class="w"> </span>xdg-open<span class="w"> </span>%s;<span class="
                  <span class="ss">&#39;insert-signature-eref</span><span class="p">)))</span>
   <span class="p">)</span>
 </pre></div>
-<h4><a id="Face の設定"><span class='anchor'>_</span></a>Face の設定</h4>
-<p>デフォルトより細かく指定するために幾つかの face 定義を追加.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">wl-highlight-message-header-alist</span>
-      <span class="o">&#39;</span><span class="p">((</span><span class="s">&quot;Subject[ \t]*:&quot;</span>
-         <span class="o">.</span> <span class="nv">wl-highlight-message-subject-header-contents</span><span class="p">)</span>
-        <span class="p">(</span><span class="s">&quot;From[ \t]*:&quot;</span>
-         <span class="o">.</span> <span class="nv">wl-highlight-message-from-header-contents</span><span class="p">)</span>
-        <span class="p">(</span><span class="s">&quot;Date[ \t]*:&quot;</span>
-         <span class="o">.</span> <span class="nv">wl-highlight-message-date-header-contents</span><span class="p">)</span>
-        <span class="p">(</span><span class="s">&quot;\\(.*To\\|Cc\\|Newsgroups\\)[ \t]*:&quot;</span>
-         <span class="o">.</span> <span class="nv">wl-highlight-message-important-header-contents</span><span class="p">)</span>
-        <span class="p">(</span><span class="s">&quot;\\(User-Agent\\|X-Mailer\\|X-Newsreader\\)[ \t]*:&quot;</span> <span class="o">.</span>
-         <span class="nv">wl-highlight-message-unimportant-header-contents</span><span class="p">)</span>
-        <span class="p">))</span>
-<span class="p">(</span><span class="nf">defun</span> <span class="nv">my:wl-set-face</span> <span class="p">(</span><span class="nf">face</span> <span class="nv">spec</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">make-face</span> <span class="nv">face</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">fboundp</span> <span class="ss">&#39;face-spec-set</span><span class="p">)</span>
-         <span class="p">(</span><span class="nf">face-spec-set</span> <span class="nv">face</span> <span class="nv">spec</span><span class="p">))</span>
-        <span class="p">(</span><span class="nf">t</span>
-         <span class="p">(</span><span class="nf">wl-declare-face</span> <span class="nv">face</span> <span class="nv">spec</span><span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-closed-face</span>                  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4cff4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-few-face</span>                     <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FF4C4C&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-killed-face</span>                  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4c4c4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-many-face</span>                    <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff7f7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-opened-face</span>                  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4cffff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-path-face</span>                    <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:underline</span> <span class="nv">t</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-unknown-face</span>                 <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4cffff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-unread-face</span>                  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4c4cff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-folder-zero-face</span>                    <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-header-separator-face</span>               <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">highlight</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-citation-header</span>             <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7fff7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-1</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7fff7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-2</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ffff7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-3</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7f7fff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-4</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7fffff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-5</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff7fff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-6</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff7f7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-7</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4cff4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-8</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ffff4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-9</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4c4cff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-10</span>               <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4cffff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-11</span>               <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff4cff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-cited-text-12</span>               <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff4c4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-date-header-contents</span>        <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFF4C&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-header-contents</span>             <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#aaaaaa&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-headers</span>                     <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFFFF&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-important-header-contents2</span>  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFF4C&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-signature</span>                   <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#aaaaaa&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-important-header-contents</span>   <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FF4CFF&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-subject-header-contents</span>     <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FF4C4C&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-from-header-contents</span>        <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FFFF4C&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-message-unimportant-header-contents</span> <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#aaaaaa&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-answered-face</span>               <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFF4C&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-copied-face</span>                 <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFFFF&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-deleted-face</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4c4c4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-displaying-face</span>             <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:underline</span> <span class="nv">t</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-disposed-face</span>               <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#aaaaaa&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-flagged-face</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ffff7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-forwarded-face</span>              <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7f7fff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-high-read-face</span>              <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7fff7f&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-high-unread-face</span>            <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FFBF7F&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-important-face</span>              <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ffff4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-important-flag-face</span>         <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ffff4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-killed-face</span>                 <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4c4c4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-l:read-face</span>                 <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFF4C&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-l:unread-face</span>               <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#666666&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-new-face</span>                    <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff4c4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-normal-face</span>                 <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#f6f3e8&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-prefetch-face</span>               <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4c4cff&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-refiled-face</span>                <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7F7FFF&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-resend-face</span>                 <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#FFBF7F&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-target-face</span>                 <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFFFF&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-temp-face</span>                   <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#BF7FFF&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-thread-top-face</span>             <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span> <span class="nv">:bold</span> <span class="nv">t</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-summary-unread-face</span>                 <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#ff4c4c&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-<span class="p">(</span><span class="nf">my:wl-set-face</span> <span class="ss">&#39;wl-highlight-thread-indent-face</span>                  <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:underline</span> <span class="nv">t</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="nv">:italic</span> <span class="nv">nil</span> <span class="nv">:weight</span> <span class="nv">normal</span> <span class="p">))))</span>
-</pre></div>
 <h4><a id="GPG 署名"><span class='anchor'>_</span></a>GPG 署名</h4>
 <p>以前は mailcrypt を使っていたけれど,
   epa があるので主にキーバインドの設定のみ.
@@ -2193,13 +2339,13 @@ video/*;<span class="w"> </span>xdg-open<span class="w"> </span>%s;<span class="
               <span class="nv">:map</span> <span class="nv">wl-folder-mode-map</span>
               <span class="p">(</span><span class="s">&quot;v&quot;</span> <span class="o">.</span> <span class="nv">wl-quicksearch-goto-search-folder-wrapper</span><span class="p">))</span>
   <span class="nv">:config</span>
-   <span class="c1">;; (elmo-search-register-engine</span>
-   <span class="c1">;;  &#39;mu-custom &#39;local-file</span>
-   <span class="c1">;;  :prog &quot;mu&quot;</span>
-   <span class="c1">;;  :args &#39;(&quot;find&quot; &quot;-u&quot; elmo-search-split-pattern-list</span>
-   <span class="c1">;;          &quot;--fields&quot; &quot;l&quot; &quot;--sortfield&quot; &quot;date&quot; &quot;-r&quot;)</span>
-   <span class="c1">;;  :charset &#39;utf-8</span>
-   <span class="c1">;;  )</span>
+  <span class="c1">;; (elmo-search-register-engine</span>
+  <span class="c1">;;  &#39;mu-custom &#39;local-file</span>
+  <span class="c1">;;  :prog &quot;mu&quot;</span>
+  <span class="c1">;;  :args &#39;(&quot;find&quot; &quot;-u&quot; elmo-search-split-pattern-list</span>
+  <span class="c1">;;          &quot;--fields&quot; &quot;l&quot; &quot;--sortfield&quot; &quot;date&quot; &quot;-r&quot;)</span>
+  <span class="c1">;;  :charset &#39;utf-8</span>
+  <span class="c1">;;  )</span>
   <span class="p">(</span><span class="nf">elmo-search-register-engine</span>
    <span class="ss">&#39;notmuch-custom</span> <span class="ss">&#39;local-file</span>
    <span class="nv">:prog</span> <span class="s">&quot;notmuch-query-custom&quot;</span>
@@ -2245,7 +2391,7 @@ video/*;<span class="w"> </span>xdg-open<span class="w"> </span>%s;<span class="
 <span class="nv">elisp_expr</span><span class="o">=</span><span class="s2">&quot;(my:mailto-compose-mail \&quot;</span><span class="nv">$mailto</span><span class="s2">\&quot;)&quot;</span>
 
 emacsclient -a <span class="s2">&quot;&quot;</span> -n --eval <span class="s2">&quot;</span><span class="nv">$elisp_expr</span><span class="s2">&quot;</span> <span class="se">\</span>
-	<span class="s1">&#39;(set-window-dedicated-p (selected-window) t)&#39;</span>
+	        <span class="s1">&#39;(set-window-dedicated-p (selected-window) t)&#39;</span>
 </pre></div>
 <p>をメーラとして指定すれば良い．
   GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登録ができないので
@@ -2378,17 +2524,12 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 </pre></div>
 <h3><a id="Babel"><span class='anchor'>_</span></a>Babel</h3>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-src</span>
-  <span class="nv">:diminish</span> <span class="s">&quot;&quot;</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-src-fontify-natively</span> <span class="nv">t</span>       <span class="c1">;; font-lock</span>
         <span class="nv">org-src-tab-acts-natively</span> <span class="nv">t</span>      <span class="c1">;; indent</span>
         <span class="nv">org-edit-src-content-indentation</span> <span class="mi">0</span>
         <span class="nv">org-src-preserve-indentation</span> <span class="nv">t</span>
         <span class="p">)</span>
-  <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">featurep</span> <span class="ss">&#39;flycheck</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:disable-fylcheck-in-org-src-block</span> <span class="p">()</span>
-      <span class="p">(</span><span class="nf">setq-local</span> <span class="nv">flycheck-disabled-checkers</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">emacs-lisp-checkdoc</span><span class="p">)))</span>
-    <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-src-mode-hook</span> <span class="ss">&#39;my:disable-fylcheck-in-org-src-block</span><span class="p">))</span>
   <span class="p">)</span>
 </pre></div>
 <h3><a id="Agenda: スケジュール，TODO 表示"><span class='anchor'>_</span></a>Agenda: スケジュール，TODO 表示</h3>
@@ -2506,7 +2647,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
            <span class="p">(</span><span class="c1">;;</span>
             <span class="p">(</span><span class="nf">todo</span> <span class="s">&quot;MEMO&quot;</span><span class="p">)</span>
             <span class="p">))</span>
-           <span class="p">)</span>
+          <span class="p">)</span>
         <span class="p">)</span>
   <span class="c1">;; 色付け</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-agenda-finalize-hook</span>
@@ -2515,7 +2656,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
                 <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
                 <span class="p">(</span><span class="nf">while</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&quot;KUSM:&quot;</span> <span class="nv">nil</span> <span class="nv">t</span><span class="p">)</span>
                   <span class="p">(</span><span class="nf">add-text-properties</span> <span class="p">(</span><span class="nf">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-at-eol</span><span class="p">)</span>
-                                     <span class="o">&#39;</span><span class="p">(</span><span class="nv">face</span> <span class="nv">my:org-agenda-calendar-KUSM</span><span class="p">)))</span>
+                                       <span class="o">&#39;</span><span class="p">(</span><span class="nv">face</span> <span class="nv">my:org-agenda-calendar-KUSM</span><span class="p">)))</span>
                 <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
                 <span class="p">(</span><span class="nf">while</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&quot;Schedule:&quot;</span> <span class="nv">nil</span> <span class="nv">t</span><span class="p">)</span>
                   <span class="p">(</span><span class="nf">add-text-properties</span> <span class="p">(</span><span class="nf">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-at-eol</span><span class="p">)</span>
@@ -2627,8 +2768,8 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:transform-square-brackets-to-round-ones</span> <span class="p">(</span><span class="nf">string-to-transform</span><span class="p">)</span>
     <span class="s">&quot;Transforms [ into ( and ] into ), other chars left unchanged.&quot;</span>
     <span class="p">(</span><span class="nf">concat</span>
-   <span class="p">(</span><span class="nf">mapcar</span> <span class="o">#&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">c</span><span class="p">)</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">equal</span> <span class="nv">c</span> <span class="nv">?</span><span class="err">\</span><span class="p">[)</span> <span class="nv">?</span><span class="err">\</span><span class="p">(</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">equal</span> <span class="nv">c</span> <span class="nv">?</span><span class="err">\</span><span class="p">])</span> <span class="nv">?</span><span class="err">\</span><span class="p">)</span> <span class="nv">c</span><span class="p">)))</span>
-           <span class="nv">string-to-transform</span><span class="p">))</span>
+     <span class="p">(</span><span class="nf">mapcar</span> <span class="o">#&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">c</span><span class="p">)</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">equal</span> <span class="nv">c</span> <span class="nv">?</span><span class="err">\</span><span class="p">[)</span> <span class="nv">?</span><span class="err">\</span><span class="p">(</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">equal</span> <span class="nv">c</span> <span class="nv">?</span><span class="err">\</span><span class="p">])</span> <span class="nv">?</span><span class="err">\</span><span class="p">)</span> <span class="nv">c</span><span class="p">)))</span>
+             <span class="nv">string-to-transform</span><span class="p">))</span>
     <span class="p">)</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-default-notes-file</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:org</span> <span class="s">&quot;journal.org&quot;</span><span class="p">)</span>
         <span class="nv">org-capture-templates</span>
@@ -2711,7 +2852,6 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="nv">:if</span>  <span class="p">(</span><span class="k">and </span><span class="nv">my:d:password-store</span>
             <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">))</span>
   <span class="nv">:no-require</span> <span class="nv">t</span>
-  <span class="nv">:diminish</span> <span class="s">&quot;&quot;</span>
   <span class="nv">:commands</span> <span class="p">(</span><span class="nf">orgmine-mode</span><span class="p">)</span>
   <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">orgmine</span>
            <span class="nv">:fetcher</span> <span class="nv">github</span>
@@ -2737,29 +2877,6 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="nv">orgmine-default-todo-keyword</span> <span class="s">&quot;新規&quot;</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="Org-Wiki"><span class='anchor'>_</span></a>Org-Wiki</h3>
-<p>計算機関連のメモは <a href="https://github.com/uwabami/org-wiki">uwabami/org-wiki</a> で書いています．元々は
-  <a href="https://github.com/caiorss/org-wiki">caiorss/org-wiki</a> を使っていたのですが helm 依存の部分を ido に書き換
-  えてます.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-wiki</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="s">&quot;~/Public/cc-env&quot;</span><span class="p">)</span>
-  <span class="nv">:no-require</span> <span class="nv">t</span>
-  <span class="nv">:commands</span> <span class="p">(</span><span class="nf">org-wiki</span><span class="p">)</span>
-  <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">org-wiki</span>
-           <span class="nv">:fetcher</span> <span class="nv">github</span>
-           <span class="nv">:repo</span> <span class="s">&quot;uwabami/org-wiki&quot;</span><span class="p">)</span>
-  <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x M&quot;</span> <span class="o">.</span> <span class="nv">org-wiki</span> <span class="p">))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-wiki-location</span> <span class="s">&quot;~/Public/cc-env&quot;</span>
-        <span class="nv">org-wikitemplate</span> <span class="s">&quot;#+TITLE:</span>
-<span class="s">#+DATE: 20</span>
-<span class="s">#+LANGUAGE: ja</span>
-<span class="s">#+REF: cc-env/%n</span>
-<span class="s">#+LAYOUT: default</span>
-<span class="s">#+PERMALINK: /cc-env/%n.html</span>
-<span class="s">Related [[wiki:index][Index]]</span>
-<span class="s">&quot;</span><span class="p">))</span>
-</pre></div>
 <h2><a id="Howm"><span class='anchor'>_</span></a>Howm</h2>
 <p>Org を使う前は Howm を使っていました.
   過去のメモを検索するためだけに未だに Howm を使っています.</p>
@@ -2769,7 +2886,6 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="nv">:no-require</span> <span class="nv">t</span>
   <span class="nv">:after</span> <span class="p">(</span><span class="nf">org</span><span class="p">)</span>
   <span class="nv">:commands</span> <span class="p">(</span><span class="nf">howm-menu</span><span class="p">)</span>
-  <span class="nv">:diminish</span> <span class="s">&quot;&quot;</span>
   <span class="nv">:bind</span> <span class="p">(</span><span class="nf">:map</span> <span class="nv">howm-mode-map</span>
               <span class="p">(</span><span class="s">&quot;C-c , ,&quot;</span>     <span class="o">.</span> <span class="nv">howm-menu</span><span class="p">)</span>
               <span class="p">(</span><span class="s">&quot;C-c C-c&quot;</span>     <span class="o">.</span> <span class="nv">nil</span><span class="p">)</span>
@@ -2897,7 +3013,16 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h3><a id="VCS: =ido-ghq="><span class='anchor'>_</span></a>VCS: <code>ido-ghq</code></h3>
+<h3><a id="Git Gutter+"><span class='anchor'>_</span></a>Git Gutter+</h3>
+<p>飽きたら止めるかもしれないけれど.</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">git-gutter+</span>
+  <span class="nv">:if</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">)</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:bind</span> <span class="p">(</span><span class="s">&quot;C-x G&quot;</span> <span class="o">.</span> <span class="nv">global-git-gutter+-mode</span><span class="p">)</span>
+  <span class="nv">:config</span>
+  <span class="p">)</span>
+</pre></div>
+<h2><a id="リポジトリの移動: =ido-ghq="><span class='anchor'>_</span></a>リポジトリの移動: <code>ido-ghq</code></h2>
 <p>ghq list を ido で選んで dired で開く</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ido-ghq</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="nf">executable-find</span> <span class="s">&quot;ghq&quot;</span><span class="p">)</span>
@@ -2909,29 +3034,9 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-ghq-short-list</span> <span class="nv">t</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="Project管理: =projectile="><span class='anchor'>_</span></a>Project管理: <code>projectile</code></h2>
-<p>沢山 project がある環境だとツライ気がする&#8230;</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">projectile</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:diminish</span> <span class="s">&quot;&quot;</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">projectile-mode-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;s-p&quot;</span><span class="p">)</span> <span class="ss">&#39;projectile-command-map</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">projectile-mode-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-c p&quot;</span><span class="p">)</span> <span class="ss">&#39;projectile-command-map</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">projectile-project-search-path</span> <span class="nv">nil</span>
-        <span class="nv">projectile-cache-file</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&quot;projectile.cache&quot;</span> <span class="nv">my:d:tmp</span><span class="p">)</span>
-        <span class="nv">projectile-known-projects-file</span>
-        <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&quot;projectile-bookmarks.eld&quot;</span> <span class="nv">my:d:share</span><span class="p">)</span>
-        <span class="nv">projectile-enable-caching</span> <span class="nv">t</span>
-        <span class="nv">projectile-find-dir-innclude-top-level</span> <span class="nv">t</span>
-        <span class="p">)</span>
-  <span class="p">(</span><span class="nf">advice-add</span> <span class="ss">&#39;projectile-switch-project</span> <span class="nv">:around</span> <span class="o">#</span><span class="ss">&#39;my:ido-grid-force-one-columns</span><span class="p">)</span>
-  <span class="p">(</span><span class="nf">projectile-mode</span> <span class="nv">+1</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
 <h2><a id="プロジェクト毎の coding rule の適用: =editorconfig="><span class='anchor'>_</span></a>プロジェクト毎の coding rule の適用: <code>editorconfig</code></h2>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">editorconfig</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:delight</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">editorconfig-mode</span> <span class="mi">1</span><span class="p">)</span>
   <span class="p">)</span>
@@ -3036,14 +3141,15 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="nv">tdiary-diary-list</span> <span class="o">&#39;</span><span class="p">((</span><span class="s">&quot;log&quot;</span> <span class="s">&quot;https://uwabami.junkhub.org/log/&quot;</span><span class="p">))</span>
         <span class="nv">tdiary-style-mode</span> <span class="ss">&#39;org-mode</span>
         <span class="nv">tdiary-text-suffix</span> <span class="s">&quot;.org&quot;</span>
+        <span class="c1">;; tdiary-text-save-p t</span>
         <span class="p">)</span>
   <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="s">&quot;tdiary-mode&quot;</span>
     <span class="p">(</span><span class="nb">load </span><span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&quot;tdiary-mode.gpg&quot;</span> <span class="nv">my:d:password-store</span><span class="p">))</span>
     <span class="p">(</span><span class="nf">tdiary-passwd-file-load</span><span class="p">))</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="フォントと色"><span class='anchor'>_</span></a>フォントと色</h2>
-<p>そろそろテーマにした方が良い，とは思ってはいる．</p>
+<h2><a id="テーマ, フォント, モードライン, などなど"><span class='anchor'>_</span></a>テーマ, フォント, モードライン, などなど</h2>
+<h3><a id="ansi color"><span class='anchor'>_</span></a>ansi color</h3>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ansi-color</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">ansi-color-names-vector</span>
@@ -3053,24 +3159,30 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
          <span class="p">])</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;shell-mode-hook</span> <span class="ss">&#39;ansi-color-for-comint-mode-on</span><span class="p">)</span>
   <span class="p">)</span>
-<span class="p">(</span><span class="nf">defun</span> <span class="nv">my:load-window-config</span> <span class="p">()</span>
+</pre></div>
+<h3><a id="フォント"><span class='anchor'>_</span></a>フォント</h3>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defun</span> <span class="nv">my:load-window-config</span> <span class="p">()</span>
   <span class="s">&quot;load window-system specific settings&quot;</span>
   <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">when</span> <span class="nv">window-system</span>
     <span class="p">(</span><span class="nf">progn</span>
-      <span class="p">(</span><span class="nf">set-frame-parameter</span> <span class="nv">nil</span> <span class="ss">&#39;alpha</span> <span class="mi">90</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">set-frame-parameter</span> <span class="nv">nil</span> <span class="ss">&#39;alpha</span> <span class="mi">95</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">set-face-attribute</span> <span class="ss">&#39;default</span> <span class="nv">nil</span>
-                          <span class="nv">:family</span> <span class="s">&quot;RictyDiscord Nerd Font&quot;</span>
-                          <span class="nv">:height</span> <span class="mi">180</span><span class="p">)</span>
+                          <span class="nv">:family</span> <span class="s">&quot;Ricty Discord&quot;</span>
+                          <span class="nv">:height</span> <span class="mi">200</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">set-face-attribute</span> <span class="ss">&#39;fixed-pitch</span> <span class="nv">nil</span>
-                          <span class="nv">:family</span> <span class="s">&quot;RictyDiscord Nerd Font&quot;</span>
-                          <span class="nv">:height</span> <span class="mi">180</span><span class="p">)</span>
+                          <span class="nv">:family</span> <span class="s">&quot;Ricty Discord&quot;</span>
+                          <span class="nv">:height</span> <span class="mi">200</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">set-face-attribute</span> <span class="ss">&#39;variable-pitch</span> <span class="nv">nil</span>
-                          <span class="nv">:family</span> <span class="s">&quot;RictyDiscord Nerd Font&quot;</span>
-                          <span class="nv">:height</span> <span class="mi">180</span><span class="p">)</span>
+                          <span class="nv">:family</span> <span class="s">&quot;Ricty Discord&quot;</span>
+                          <span class="nv">:height</span> <span class="mi">200</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">set-fontset-font</span> <span class="nv">nil</span>
+                        <span class="o">&#39;</span><span class="p">(</span><span class="o">#</span><span class="nv">xE0A0</span> <span class="o">.</span> <span class="o">#</span><span class="nv">xEEE0</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nf">font-spec</span> <span class="nv">:family</span> <span class="s">&quot;icons\-in\-terminal&quot;</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">setq</span> <span class="nv">use-default-font-for-symbols</span> <span class="nv">nil</span><span class="p">)</span>
+      <span class="c1">;;</span>
       <span class="p">(</span><span class="nf">set-background-color</span> <span class="s">&quot;#242424&quot;</span><span class="p">)</span>
       <span class="p">)))</span>
-<span class="p">(</span><span class="nf">my:load-window-config</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">setq</span> <span class="nv">frame-background-mode</span> <span class="p">(</span><span class="nf">frame-parameter</span> <span class="nv">nil</span> <span class="ss">&#39;background-mode</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">setq</span> <span class="nv">default-frame-alist</span>
       <span class="o">&#39;</span><span class="p">(</span>
@@ -3078,9 +3190,13 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="p">(</span><span class="nf">scroll-bar-foreground-color</span> <span class="o">.</span> <span class="s">&quot;red&quot;</span><span class="p">)</span>
         <span class="p">(</span><span class="nf">vertical-scroll-bars</span> <span class="o">.</span> <span class="nv">right</span><span class="p">)</span>
         <span class="p">))</span>
+<span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">window-system</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">my:load-window-config</span><span class="p">))</span>
 </pre></div>
-<p>現在修正中．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">custom-set-faces</span>
+<h3><a id="font-locks"><span class='anchor'>_</span></a>font-locks</h3>
+<p>現在修正中, そろそろテーマにすべきかしら?</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">frame-background-mode</span> <span class="p">(</span><span class="nf">frame-parameter</span> <span class="nv">nil</span> <span class="ss">&#39;background-mode</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">custom-set-faces</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">default</span>                             <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span> <span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">cursor</span>                              <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFF4C&quot;</span> <span class="nv">:background</span> <span class="s">&quot;#4CFF4C&quot;</span> <span class="p">))))</span>
  <span class="c1">;; basic</span>
@@ -3104,7 +3220,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">mode-line</span>                           <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span> <span class="nv">:background</span> <span class="s">&quot;#222244&quot;</span> <span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">mode-line-inactive</span>                  <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#666666&quot;</span> <span class="nv">:background</span> <span class="s">&quot;#999999&quot;</span> <span class="nv">:bold</span> <span class="nv">nil</span> <span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">fringe</span>                              <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#666666&quot;</span> <span class="nv">:background</span> <span class="s">&quot;#282828&quot;</span> <span class="p">))))</span>
-<span class="c1">;; &#39;(hl-line                           ((t (:inherit highlight :underline t ))))</span>
+ <span class="c1">;; &#39;(hl-line                           ((t (:inherit highlight :underline t ))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">highlight</span>                           <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#556b2f&quot;</span> <span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">term-color-black</span>                    <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#242424&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#242424&quot;</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">term-color-blue</span>                     <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#4c4cff&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#4c4cff&quot;</span><span class="p">))))</span>
@@ -3114,7 +3230,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">term-color-red</span>                      <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#ff4c4c&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#ff4c4c&quot;</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">term-color-white</span>                    <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#f6f3e8&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#f6f3e8&quot;</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">term-color-yellow</span>                   <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#ffff4c&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#ffff4c&quot;</span><span class="p">))))</span>
-  <span class="c1">;;</span>
+ <span class="c1">;;</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">minibuffer-prompt</span>                   <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#BF7FFF&quot;</span> <span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">region</span>                              <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#222244&quot;</span> <span class="p">))))</span>
  <span class="c1">;; dired</span>
@@ -3155,8 +3271,8 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
  <span class="c1">;; powerline</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">powerline-active1</span>                   <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#000000&quot;</span><span class="nv">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">powerline-active2</span>                   <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#666666&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span><span class="p">))))</span>
- <span class="o">&#39;</span><span class="p">(</span><span class="nv">powerline-inactive1</span>                 <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">modeline-inactive</span><span class="p">))))</span>
- <span class="o">&#39;</span><span class="p">(</span><span class="nv">powerline-inactive2</span>                 <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">modeline-inactive</span><span class="p">))))</span>
+ <span class="o">&#39;</span><span class="p">(</span><span class="nv">powerline-inactive1</span>                 <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">mode-line-inactive</span><span class="p">))))</span>
+ <span class="o">&#39;</span><span class="p">(</span><span class="nv">powerline-inactive2</span>                 <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">mode-line-inactive</span><span class="p">))))</span>
  <span class="c1">;; preview-latex</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">font-latex-sectioning-0-face</span>        <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">font-latex-sectioning-1-face</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">font-latex-sectioning-1-face</span>        <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">font-latex-sectioning-2-face</span><span class="p">))))</span>
@@ -3228,12 +3344,161 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">company-scrollbar-fg</span>                <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#FFBF7F&quot;</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">company-scrollbar-bg</span>                <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#4c4c4c&quot;</span><span class="p">))))</span>
  <span class="p">)</span>
-<span class="c1">;; review</span>
-<span class="c1">;; &#39;(review-mode-header1-face  ((t (:inherit outline-1))))</span>
-<span class="c1">;; &#39;(review-mode-header2-face  ((t (:inherit outline-2))))</span>
-<span class="c1">;; &#39;(review-mode-header3-face  ((t (:inherit outline-3))))</span>
-<span class="c1">;; &#39;(review-mode-header4-face  ((t (:inherit outline-4))))</span>
-<span class="c1">;; &#39;(review-mode-header5-face  ((t (:inherit outline-5))))</span>
+</pre></div>
+<h3><a id="モードラインのカスタマイズ"><span class='anchor'>_</span></a>モードラインのカスタマイズ</h3>
+<h4><a id="SKK の調整"><span class='anchor'>_</span></a>SKK の調整</h4>
+<p>SKK の状態がヒョコヒョコ動くのが嫌なので，skk-modeline-input-mode= に
+  常に現在の状況を表示する様にしておく．</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defun</span> <span class="nv">my:skk-modeline-input-mode</span> <span class="p">()</span>
+  <span class="s">&quot;SKKが読み込まれていない場合でも skk-modeline-input-mode に文字を入れる.&quot;</span>
+  <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">boundp</span> <span class="ss">&#39;skk-modeline-inpt-mode</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">setq</span> <span class="nv">skk-modeline-input-mode</span> <span class="s">&quot;--[--]:&quot;</span><span class="p">)))</span>
+<span class="c1">;; 初回更新</span>
+<span class="p">(</span><span class="nf">my:skk-modeline-input-mode</span><span class="p">)</span>
+<span class="c1">;; hook</span>
+<span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">featurep</span> <span class="ss">&#39;powerline</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-change-major-mode-hook</span>
+            <span class="o">#&#39;</span><span class="p">(</span><span class="nv">lambda</span><span class="p">()</span> <span class="p">(</span><span class="nf">skk-mode</span><span class="p">)(</span><span class="nf">skk-mode</span><span class="p">))))</span>
+<span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">featurep</span> <span class="ss">&#39;doom-modeline</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-change-major-mode-hook</span>
+            <span class="o">#&#39;</span><span class="p">(</span><span class="nv">lambda</span><span class="p">()</span> <span class="p">(</span><span class="nf">skk-mode</span><span class="p">)(</span><span class="nf">skk-mode</span><span class="p">))))</span>
+</pre></div>
+<h4><a id="major/minor モードの表示設定"><span class='anchor'>_</span></a>major/minor モードの表示設定</h4>
+<p>diminish や delight があるわけですが,
+  微妙にこれで指定できない奴もあってアレですね.</p>
+<p><a href="https://github.com/sebastiencs/icons-in-terminal">icons in terminal</a> を使っているので, 対応するフォントが必要.</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defvar</span> <span class="nv">my:mode-line-cleaner-alist</span>
+  <span class="o">`</span><span class="p">(</span><span class="c1">;; For minor-mode, first char is &#39;space&#39;</span>
+    <span class="c1">;; (yas-minor-mode         . &quot; Ya&quot;)</span>
+    <span class="p">(</span><span class="nf">eldoc-mode</span>             <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">abbrev-mode</span>            <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">undo-tree-mode</span>         <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">flymake-mode</span>           <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">isearch-mode</span>           <span class="o">.</span> <span class="s">&quot; 🔎&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">global-whitespace-mode</span> <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">editorconfig-mode</span>      <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">company-mode</span>           <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">rainbow-mode</span>           <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">orgmine-mode</span>           <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">orgtbl-mode</span>            <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">org-src-mode</span>           <span class="o">.</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">git-gutter+-mode</span>       <span class="o">.</span> <span class="s">&quot; &quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">projectile-mode</span>        <span class="o">.</span> <span class="s">&quot; &quot;</span><span class="p">)</span>
+    <span class="p">))</span>
+<span class="p">(</span><span class="nf">defun</span> <span class="nv">my:clean-mode-line</span> <span class="p">()</span>
+  <span class="s">&quot;Cleanup major/minor mode.&quot;</span>
+  <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">cl-loop</span> <span class="nv">for</span> <span class="p">(</span><span class="nf">mode</span> <span class="o">.</span> <span class="nv">mode-str</span><span class="p">)</span> <span class="nv">in</span> <span class="nv">my:mode-line-cleaner-alist</span>
+           <span class="nv">do</span>
+           <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">old-mode-str</span> <span class="p">(</span><span class="nb">cdr </span><span class="p">(</span><span class="nb">assq </span><span class="nv">mode</span> <span class="nv">minor-mode-alist</span><span class="p">))))</span>
+             <span class="p">(</span><span class="nf">when</span> <span class="nv">old-mode-str</span>
+               <span class="p">(</span><span class="nf">setcar</span> <span class="nv">old-mode-str</span> <span class="nv">mode-str</span><span class="p">))</span>
+             <span class="c1">;; major mode</span>
+             <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">eq</span> <span class="nv">mode</span> <span class="nv">major-mode</span><span class="p">)</span>
+               <span class="p">(</span><span class="nf">setq</span> <span class="nv">mode-name</span> <span class="nv">mode-str</span><span class="p">)))))</span>
+<span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-change-major-mode-hook</span> <span class="ss">&#39;my:clean-mode-line</span><span class="p">)</span>
+</pre></div>
+<h4><a id="powerline 本体の設定．"><span class='anchor'>_</span></a>powerline 本体の設定．</h4>
+<p>default-theme をベースに見たい物だけ表示するようにしてみた．</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">powerline</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:init</span>
+  <span class="c1">;; ddskk そのものに modeline を更新する関数があるので無効化する</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:disable-skk-setup-modeline</span> <span class="p">()</span>
+    <span class="s">&quot;skk-setup-modeline による modeline の更新を無効化&quot;</span>
+    <span class="p">(</span><span class="nf">setq</span> <span class="nv">skk-indicator-alist</span> <span class="p">(</span><span class="nf">skk-make-indicator-alist</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">force-mode-line-update</span> <span class="nv">t</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">advice-add</span> <span class="ss">&#39;skk-setup-modeline</span> <span class="nv">:override</span> <span class="ss">&#39;my:disable-skk-setup-modeline</span><span class="p">)</span>
+  <span class="c1">;; Git の表示のカスタマイズ</span>
+  <span class="p">(</span><span class="nf">defpowerline</span> <span class="nv">my:powerline-vc</span>
+    <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">buffer-file-name</span> <span class="p">(</span><span class="nf">current-buffer</span><span class="p">))</span> <span class="nv">vc-mode</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;%s&quot;</span>
+              <span class="p">(</span><span class="nf">replace-regexp-in-string</span> <span class="s">&quot;Git\\(:\\|-\\)&quot;</span> <span class="s">&quot;&quot;</span>
+                                        <span class="p">(</span><span class="nf">format-mode-line</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">vc-mode</span> <span class="nv">vc-mode</span><span class="p">))))))</span>
+  <span class="p">(</span><span class="nf">defpowerline</span> <span class="nv">my:powerline-buffer-percentage</span>
+    <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;%.2s&quot;</span> <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">current</span> <span class="p">(</span><span class="nf">format-mode-line</span> <span class="s">&quot;%p&quot;</span><span class="p">)))</span>
+                     <span class="p">(</span><span class="nf">cond</span>
+                      <span class="p">((</span><span class="nf">string=</span> <span class="nv">current</span> <span class="s">&quot;All&quot;</span><span class="p">)</span> <span class="s">&quot;・&quot;</span><span class="p">)</span>
+                      <span class="p">((</span><span class="nf">string=</span> <span class="nv">current</span> <span class="s">&quot;Bottom&quot;</span><span class="p">)</span> <span class="s">&quot;↑&quot;</span><span class="p">)</span>
+                      <span class="p">((</span><span class="nf">string=</span> <span class="nv">current</span> <span class="s">&quot;Top&quot;</span><span class="p">)</span> <span class="s">&quot;↓&quot;</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nf">t</span> <span class="nv">current</span><span class="p">)</span>
+                      <span class="p">))))</span>
+  <span class="c1">;; major-mode のアイコン表示</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:modeline-icon-for-mode</span> <span class="p">(</span><span class="nf">&amp;rest</span> <span class="nv">mode</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">featurep</span> <span class="ss">&#39;all-the-icons</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">apply </span><span class="o">#</span><span class="ss">&#39;all-the-icons-icon-for-mode</span> <span class="nv">mode</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">defpowerline</span> <span class="nv">my:powerline-major-mode</span>
+    <span class="p">(</span><span class="nf">propertize</span> <span class="p">(</span><span class="nf">format-mode-line</span> <span class="p">(</span><span class="nf">my:modeline-icon-for-mode</span> <span class="nv">major-mode</span><span class="p">))</span>
+                <span class="ss">&#39;mouse-face</span> <span class="ss">&#39;mode-line-highlight</span>
+                <span class="ss">&#39;help-echo</span> <span class="s">&quot;Major mode\n\ mouse-1: Display major mode menu\n\ mouse-2: Show help for major mode\n\ mouse-3: Toggle minor modes&quot;</span>
+                <span class="ss">&#39;local-map</span> <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nb">map </span><span class="p">(</span><span class="nf">make-sparse-keymap</span><span class="p">)))</span>
+                             <span class="p">(</span><span class="nf">define-key</span> <span class="nv">map</span> <span class="p">[</span><span class="nv">mode-line</span> <span class="nv">down-mouse-1</span><span class="p">]</span>
+                               <span class="o">`</span><span class="p">(</span><span class="nf">menu-item</span> <span class="o">,</span><span class="p">(</span><span class="nf">purecopy</span> <span class="s">&quot;Menu Bar&quot;</span><span class="p">)</span> <span class="nv">ignore</span>
+                                           <span class="nv">:filter</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">_</span><span class="p">)</span> <span class="p">(</span><span class="nf">mouse-menu-major-mode-map</span><span class="p">))))</span>
+                             <span class="p">(</span><span class="nf">define-key</span> <span class="nv">map</span> <span class="p">[</span><span class="nv">mode-line</span> <span class="nv">mouse-2</span><span class="p">]</span> <span class="ss">&#39;describe-mode</span><span class="p">)</span>
+                             <span class="p">(</span><span class="nf">define-key</span> <span class="nv">map</span> <span class="p">[</span><span class="nv">mode-line</span> <span class="nv">down-mouse-3</span><span class="p">]</span> <span class="nv">mode-line-mode-menu</span><span class="p">)</span>
+                             <span class="nv">map</span><span class="p">)))</span>
+  <span class="c1">;; theme のカスタマイズ</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:powerline-theme</span> <span class="p">()</span>
+    <span class="s">&quot;Custom theme for personal use.&quot;</span>
+    <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">setq-default</span> <span class="nv">mode-line-format</span>
+                  <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;%e&quot;</span>
+                    <span class="p">(</span><span class="nf">:eval</span>
+                     <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">active</span> <span class="p">(</span><span class="nf">powerline-selected-window-active</span><span class="p">))</span>
+                            <span class="c1">;; (mode-line-buffer-id (if active &#39;mode-line-buffer-id &#39;mode-line-buffer-id-inactive))</span>
+                            <span class="p">(</span><span class="nf">mode-line</span> <span class="p">(</span><span class="k">if </span><span class="nv">active</span> <span class="ss">&#39;mode-line</span> <span class="ss">&#39;mode-line-inactive</span><span class="p">))</span>
+                            <span class="p">(</span><span class="nf">face1</span> <span class="p">(</span><span class="k">if </span><span class="nv">active</span> <span class="ss">&#39;powerline-active1</span> <span class="ss">&#39;powerline-inactive1</span><span class="p">))</span>
+                            <span class="p">(</span><span class="nf">face2</span> <span class="p">(</span><span class="k">if </span><span class="nv">active</span> <span class="ss">&#39;powerline-active2</span> <span class="ss">&#39;powerline-inactive2</span><span class="p">))</span>
+                            <span class="p">(</span><span class="nf">separator-left</span>
+                             <span class="p">(</span><span class="nf">intern</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;powerline-%s-%s&quot;</span>
+                                             <span class="p">(</span><span class="nf">powerline-current-separator</span><span class="p">)</span>
+                                             <span class="p">(</span><span class="nb">car </span><span class="nv">powerline-default-separator-dir</span><span class="p">))))</span>
+                            <span class="p">(</span><span class="nf">separator-right</span>
+                             <span class="p">(</span><span class="nf">intern</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;powerline-%s-%s&quot;</span>
+                                             <span class="p">(</span><span class="nf">powerline-current-separator</span><span class="p">)</span>
+                                             <span class="p">(</span><span class="nb">cdr </span><span class="nv">powerline-default-separator-dir</span><span class="p">))))</span>
+                            <span class="p">(</span><span class="nf">lhs</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nf">powerline-raw</span> <span class="p">(</span><span class="nb">substring </span><span class="nv">skk-modeline-input-mode</span> <span class="mi">2</span> <span class="mi">-1</span><span class="p">)</span> <span class="nv">mode-line</span> <span class="ss">&#39;l</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">powerline-raw</span> <span class="nv">mode-line-mule-info</span> <span class="nv">mode-line</span> <span class="ss">&#39;l</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot; &quot;</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">my:powerline-major-mode</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot;%*&quot;</span> <span class="nv">mode-line</span> <span class="ss">&#39;l</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot; &quot;</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">funcall</span> <span class="nv">separator-left</span> <span class="nv">mode-line</span> <span class="nv">face1</span><span class="p">)</span>
+                                       <span class="c1">;; (powerline-buffer-id mode-line-buffer-id &#39;l)</span>
+                                       <span class="p">(</span><span class="nf">powerline-buffer-id</span> <span class="nv">face1</span> <span class="ss">&#39;r</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot; &quot;</span> <span class="nv">face1</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">funcall</span> <span class="nv">separator-left</span> <span class="nv">face1</span> <span class="nv">face2</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">my:powerline-vc</span> <span class="nv">face2</span> <span class="ss">&#39;r</span><span class="p">)</span>
+                                       <span class="p">))</span>
+                            <span class="p">(</span><span class="nf">rhs</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nf">powerline-raw</span> <span class="nv">global-mode-string</span> <span class="nv">face2</span> <span class="ss">&#39;r</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">funcall</span> <span class="nv">separator-right</span> <span class="nv">face2</span> <span class="nv">face1</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">powerline-process</span> <span class="nv">face1</span> <span class="ss">&#39;l</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">powerline-minor-modes</span> <span class="nv">face1</span> <span class="ss">&#39;l</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">powerline-narrow</span> <span class="nv">face1</span> <span class="ss">&#39;l</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">funcall</span> <span class="nv">separator-right</span> <span class="nv">face1</span> <span class="nv">mode-line</span><span class="p">)</span>
+                                       <span class="c1">;; (powerline-raw &quot; &quot;)</span>
+                                       <span class="c1">;; (powerline-raw &quot;%4l&quot; mode-line &#39;l)</span>
+                                       <span class="c1">;; (powerline-raw &quot;:&quot; mode-line &#39;l)</span>
+                                       <span class="c1">;; (powerline-raw &quot;%3c&quot; mode-line &#39;r)</span>
+                                       <span class="c1">;; (powerline-raw &quot; &quot; mode-line)</span>
+                                       <span class="p">(</span><span class="nf">my:powerline-buffer-percentage</span> <span class="nv">mode-line</span> <span class="ss">&#39;l</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot; &quot;</span> <span class="nv">mode-line</span> <span class="ss">&#39;l</span><span class="p">)</span>
+                                       <span class="p">)))</span>
+                       <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">powerline-render</span> <span class="nv">lhs</span><span class="p">)</span>
+                               <span class="p">(</span><span class="nf">powerline-fill</span> <span class="nv">face2</span> <span class="p">(</span><span class="nf">powerline-width</span> <span class="nv">rhs</span><span class="p">))</span>
+                               <span class="p">(</span><span class="nf">powerline-render</span> <span class="nv">rhs</span><span class="p">)))))))</span>
+  <span class="nv">:config</span>
+  <span class="c1">;; 半角スペース</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">powerline-default-separator</span> <span class="ss">&#39;utf-8</span>     <span class="c1">; UTF-8</span>
+        <span class="nv">powerline-utf-8-separator-left</span> <span class="o">#</span><span class="nv">x20</span>    <span class="c1">; 半角スペース</span>
+        <span class="nv">powerline-utf-8-separator-right</span> <span class="o">#</span><span class="nv">x20</span>   <span class="c1">; 半角スペース</span>
+        <span class="nv">powerline-display-buffer-size</span> <span class="nv">nil</span>
+        <span class="nv">powerline-display-mule-info</span> <span class="nv">t</span>
+        <span class="nv">powerline-display-hud</span> <span class="nv">t</span>
+        <span class="p">)</span>
+  <span class="p">(</span><span class="nf">my:powerline-theme</span><span class="p">)</span>
+  <span class="p">)</span>
 </pre></div>
 <h3><a id="対応する括弧を見易く: =rainbow-delimiters="><span class='anchor'>_</span></a>対応する括弧を見易く: <code>rainbow-delimiters</code></h3>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rainbow-delimiters</span>
@@ -3241,101 +3506,10 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;emacs-lisp-mode-hook</span> <span class="o">#</span><span class="ss">&#39;rainbow-delimiters-mode</span><span class="p">))</span>
 </pre></div>
-<h3><a id="rainbow-mode"><span class='anchor'>_</span></a>rainbow-mode</h3>
+<h3><a id="カラーコードに色付け: =rainbow-mode="><span class='anchor'>_</span></a>カラーコードに色付け: <code>rainbow-mode</code></h3>
 <p><code>#RRGGBB</code> のカラーコードに勝手に色が付く．CSS の編集中なんかで地味に便利．</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">rainbow-mode</span>
-  <span class="nv">:delight</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="モードラインを綺麗に: =powerline="><span class='anchor'>_</span></a>モードラインを綺麗に: <code>powerline</code></h2>
-<p>テーマ同様に doom-modeline を使おうかと試したものの,
-  SKK の表示が上手くないので保留</p>
-<h3><a id="ddskk の表示のカスタマイズ"><span class='anchor'>_</span></a>ddskk の表示のカスタマイズ</h3>
-<p>SKK の状態がヒョコヒョコ動くのが嫌なので，
-  <code>skk-modeline-input-mode</code> に常に現在の状況を表示する様にしておく．</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defun</span> <span class="nv">my:skk-modeline-input-mode</span> <span class="p">()</span>
-  <span class="s">&quot;skk が読み込まれていない場合でも skk-modeline-input-mode に文字を入れて返す&quot;</span>
-  <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">boundp</span> <span class="ss">&#39;skk-modeline-inpt-mode</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">setq</span> <span class="nv">skk-modeline-input-mode</span> <span class="s">&quot;--[--]:&quot;</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">my:skk-modeline-input-mode</span><span class="p">)</span>
-</pre></div>
-<p>ddskk そのものに modeline を更新する関数があるので無効化する</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">defadvice</span> <span class="nv">skk-setup-modeline</span> <span class="p">(</span><span class="nf">around</span> <span class="nv">my:disable-skk-setup-modeline</span> <span class="nv">activate</span><span class="p">)</span>
-  <span class="s">&quot;skk-setup-modeline による modeline の更新を無効化&quot;</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">skk-indicator-alist</span> <span class="p">(</span><span class="nf">skk-make-indicator-alist</span><span class="p">))</span>
-  <span class="p">(</span><span class="nf">force-mode-line-update</span> <span class="nv">t</span><span class="p">))</span>
-</pre></div>
-<h3><a id="powerline 本体の設定．"><span class='anchor'>_</span></a>powerline 本体の設定．</h3>
-<p>default-theme をベースに見たい物だけ表示するようにしてみた．
-  変更点として,</p>
-<ul>
-  <li>separater は環境によってズレるので，半角スペースに変更</li>
-  <li>vc-mode でのアイコン表示に U+26A1⚡ High Voltage を使う</li>
-</ul>
-<p>といった事をしている. East Asian ambiguous Width char の扱いは面倒ですね</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">powerline</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:init</span>
-  <span class="c1">;; change vc-mode icon</span>
-  <span class="p">(</span><span class="nf">defpowerline</span> <span class="nv">my:powerline-vc</span>
-    <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nf">buffer-file-name</span> <span class="p">(</span><span class="nf">current-buffer</span><span class="p">))</span> <span class="nv">vc-mode</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;%s%s&quot;</span>
-              <span class="p">(</span><span class="nf">char-to-string</span> <span class="o">#</span><span class="nv">x26a1</span><span class="p">)</span>
-              <span class="p">(</span><span class="nf">format-mode-line</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">vc-mode</span> <span class="nv">vc-mode</span><span class="p">)))))</span>
-  <span class="c1">;; change theme</span>
-  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:powerline-theme</span> <span class="p">()</span>
-    <span class="s">&quot;Setup customize theme.&quot;</span>
-    <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nf">setq-default</span>
-     <span class="nv">mode-line-format</span>
-     <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;%e&quot;</span>
-       <span class="p">(</span><span class="nf">:eval</span>
-        <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">active</span> <span class="p">(</span><span class="nf">powerline-selected-window-active</span><span class="p">))</span>
-               <span class="p">(</span><span class="nf">mode-line-buffer-id</span> <span class="p">(</span><span class="k">if </span><span class="nv">active</span> <span class="ss">&#39;mode-line-buffer-id</span> <span class="ss">&#39;mode-line-buffer-id-inactive</span><span class="p">))</span>
-               <span class="p">(</span><span class="nf">mode-line</span> <span class="p">(</span><span class="k">if </span><span class="nv">active</span> <span class="ss">&#39;mode-line</span> <span class="ss">&#39;mode-line-inactive</span><span class="p">))</span>
-               <span class="p">(</span><span class="nf">face1</span> <span class="p">(</span><span class="k">if </span><span class="nv">active</span> <span class="ss">&#39;powerline-active1</span> <span class="ss">&#39;powerline-inactive1</span><span class="p">))</span>
-               <span class="p">(</span><span class="nf">face2</span> <span class="p">(</span><span class="k">if </span><span class="nv">active</span> <span class="ss">&#39;powerline-active2</span> <span class="ss">&#39;powerline-inactive2</span><span class="p">))</span>
-               <span class="p">(</span><span class="nf">separator-left</span> <span class="p">(</span><span class="nf">intern</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;powerline-%s-%s&quot;</span>
-                                               <span class="p">(</span><span class="nf">powerline-current-separator</span><span class="p">)</span>
-                                               <span class="p">(</span><span class="nb">car </span><span class="nv">powerline-default-separator-dir</span><span class="p">))))</span>
-               <span class="p">(</span><span class="nf">separator-right</span> <span class="p">(</span><span class="nf">intern</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;powerline-%s-%s&quot;</span>
-                                                <span class="p">(</span><span class="nf">powerline-current-separator</span><span class="p">)</span>
-                                                <span class="p">(</span><span class="nb">cdr </span><span class="nv">powerline-default-separator-dir</span><span class="p">))))</span>
-               <span class="p">(</span><span class="nf">lhs</span> <span class="p">(</span><span class="nf">list</span>
-                     <span class="p">(</span><span class="nf">powerline-raw</span> <span class="p">(</span><span class="nb">substring </span><span class="nv">skk-modeline-input-mode</span> <span class="mi">2</span> <span class="mi">-1</span><span class="p">)</span> <span class="nv">nil</span> <span class="ss">&#39;l</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-raw</span> <span class="nv">mode-line-mule-info</span> <span class="nv">mode-line</span> <span class="ss">&#39;l</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot;%*&quot;</span> <span class="nv">mode-line</span> <span class="ss">&#39;l</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-buffer-id</span> <span class="nv">mode-line-buffer-id</span> <span class="ss">&#39;l</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot; &quot;</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">funcall</span> <span class="nv">separator-left</span> <span class="nv">mode-line</span> <span class="nv">face1</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-major-mode</span> <span class="nv">face1</span> <span class="ss">&#39;l</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-process</span> <span class="nv">face1</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-narrow</span> <span class="nv">face1</span> <span class="ss">&#39;l</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot; &quot;</span> <span class="nv">face1</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">funcall</span> <span class="nv">separator-left</span> <span class="nv">face1</span> <span class="nv">face2</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">my:powerline-vc</span> <span class="nv">face2</span> <span class="ss">&#39;r</span><span class="p">)</span>
-                     <span class="p">))</span>
-               <span class="p">(</span><span class="nf">rhs</span> <span class="p">(</span><span class="nf">list</span>
-                     <span class="p">(</span><span class="nf">powerline-raw</span> <span class="nv">global-mode-string</span> <span class="nv">face2</span> <span class="ss">&#39;r</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">funcall</span> <span class="nv">separator-right</span> <span class="nv">face2</span> <span class="nv">face1</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot; &quot;</span> <span class="nv">face1</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-minor-modes</span> <span class="nv">face1</span> <span class="ss">&#39;r</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">funcall</span> <span class="nv">separator-right</span> <span class="nv">face1</span> <span class="nv">mode-line</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot;  &quot;</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nf">powerline-raw</span> <span class="s">&quot;%6p&quot;</span> <span class="nv">mode-line</span> <span class="ss">&#39;r</span><span class="p">)</span>
-                     <span class="p">))</span>
-               <span class="p">)</span>
-          <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">powerline-render</span> <span class="nv">lhs</span><span class="p">)</span>
-                  <span class="p">(</span><span class="nf">powerline-fill</span> <span class="nv">face2</span> <span class="p">(</span><span class="nf">powerline-width</span> <span class="nv">rhs</span><span class="p">))</span>
-                  <span class="p">(</span><span class="nf">powerline-render</span> <span class="nv">rhs</span><span class="p">)))))))</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">powerline-default-separator</span> <span class="ss">&#39;utf-8</span><span class="p">)</span>
-  <span class="c1">;; 半角スペース</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">powerline-utf-8-separator-left</span>  <span class="o">#</span><span class="nv">x20</span>
-        <span class="nv">powerline-utf-8-separator-right</span>  <span class="o">#</span><span class="nv">x20</span>
-        <span class="p">)</span>
-  <span class="p">(</span><span class="nf">my:powerline-theme</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
 <h2><a id="起動時間の出力"><span class='anchor'>_</span></a>起動時間の出力</h2>
@@ -3373,7 +3547,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
       
       &copy; 2006 - 2019
       <a href="mailto:uwabami@gfd-dennou.org"></a>,
-      Lastupdate: 2019-01-24 17:10:54
+      Lastupdate: 2019-03-29 10:57:11
     </span>
     <br/>
     <span class="nowrap">

@@ -304,7 +304,7 @@ cat adaway.txt <span class="p">|</span> <span class="k">while</span> <span class
     <span class="nb">echo</span> <span class="m">0</span>.0.0.0 <span class="nv">$line</span> &gt;&gt; adaway_hosts.txt
 <span class="k">done</span>
 <span class="c1"># nginx hosts</span>
-<span class="c1"># cat adaway.txt | sed -e &#39;s/127.0.0.1/server_name/g&#39; -e &#39;s/$/;/g&#39; &gt; adaway_hosts.txt</span>
+cat adaway_hosts.txt <span class="p">|</span> sed -e <span class="s1">&#39;s/^0\.0\.0\.0/server_name/g&#39;</span> -e <span class="s1">&#39;s/$/;/g&#39;</span> &gt; adaway_nginx_hosts.txt
 <span class="c1">## ipv6</span>
 <span class="c1"># cat adaway.txt | sed -e &#39;s/127.0.0.1/::1/g&#39; &gt; adaway_ipv6.txt</span>
 <span class="c1"># cat adaway.txt &gt;&gt; adaway_ipv6.txt</span>
@@ -324,17 +324,19 @@ rm -f tmp-white.txt
   <li>20080 番で動作</li>
 </ul>
 <p>といった所.</p>
+<h3><a id="=/etc/squid/squid.conf="><span class='anchor'>_</span></a><code>/etc/squid/squid.conf</code></h3>
+<p>中身は現状これだけ</p>
 <div class="highlight"><pre><span></span><span class="c">## Adblock</span><span class="w"></span>
 <span class="c">## DNS</span><span class="w"></span>
 <span class="c"># read hosts file -&gt; 0.0.0.0</span><span class="w"></span>
 <span class="k">hosts_file</span><span class="w"> </span>/etc/squid/adaway_hosts.txt<span class="w"></span>
-<span class="c"># query dns</span><span class="w"></span>
-dns_v4_first<span class="w"> </span><span class="no">on</span><span class="w"></span>
+<span class="k">acl</span><span class="w"> </span>ad_black<span class="w"> </span><span class="k">dstdomain</span><span class="w"> </span>&quot;/etc/squid/adaway.txt&quot;<span class="w"></span>
+<span class="k">http_access</span><span class="w"> </span><span class="no">deny</span><span class="w"> </span>ad_black<span class="w"></span>
+<span class="c"># Custom Error Page (force empty)</span><span class="w"></span>
+error_directory<span class="w"> </span>/etc/squid/error/<span class="w"></span>
+<span class="c"># dns_v4_first on</span><span class="w"></span>
 <span class="k">dns_nameservers</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="w"></span>
-<span class="c"># block domain</span><span class="w"></span>
-<span class="c"># acl ad_black dstdomain &quot;/etc/squid/adaway.txt&quot;</span><span class="w"></span>
-<span class="c"># http_access deny ad_black</span><span class="w"></span>
-<span class="c"># deny_info http://127.0.1.1/%u ad_black</span><span class="w"></span>
+
 <span class="c">## ACL</span><span class="w"></span>
 <span class="k">acl</span><span class="w"> </span>local<span class="w"> </span><span class="k">src</span><span class="w"> </span><span class="mf">192.168.122.0/24</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="w"> </span>::1<span class="w"> </span><span class="mf">fe80::/10</span><span class="w"></span>
 <span class="k">http_access</span><span class="w"> </span><span class="no">allow</span><span class="w"> </span>local<span class="w"></span>
@@ -343,7 +345,24 @@ dns_v4_first<span class="w"> </span><span class="no">on</span><span class="w"></
 <span class="c">#</span><span class="w"></span>
 <span class="c"># 20080 番で動作</span><span class="w"></span>
 <span class="c">#</span><span class="w"></span>
-<span class="k">http_port</span><span class="w"> </span><span class="m">20080</span><span class="w"></span>
+<span class="c"># http_port 20080</span><span class="w"></span>
+<span class="k">http_port</span><span class="w"> </span><span class="m">20080</span><span class="w"> </span>ssl-bump<span class="w"> </span>\<span class="w"></span>
+<span class="w"> </span>generate-host-certificates=on<span class="w"> </span>\<span class="w"></span>
+<span class="w"> </span>dynamic_cert_mem_cache_size=4MB<span class="w"> </span>\<span class="w"></span>
+<span class="w"> </span>cert=/usr/local/share/ca-certificates/junkhub.org/iris_cert.crt<span class="w"> </span>\<span class="w"></span>
+<span class="w"> </span>key=/usr/local/share/ca-certificates/junkhub.org/iris_key.pem<span class="w"> </span>\<span class="w"></span>
+<span class="w"> </span>tls-dh=prime256v1:/etc/squid/dhparam.pem<span class="w"></span>
+sslcrtd_program<span class="w"> </span>/usr/lib/squid/security_file_certgen<span class="w"> </span>\<span class="w"></span>
+<span class="w">  </span>-s<span class="w"> </span>/var/spool/squid/ssl_db<span class="w"> </span>\<span class="w"></span>
+<span class="w">  </span>-M<span class="w"> </span>4MB<span class="w"></span>
+tls_outgoing_options<span class="w"> </span>\<span class="w"></span>
+<span class="w">  </span>cafile=/etc/ssl/certs/ca-certificates.crt<span class="w"> </span>\<span class="w"></span>
+<span class="w">  </span>options=NO_SSLv3,ALL<span class="w"></span>
+<span class="k">acl</span><span class="w"> </span>step1<span class="w"> </span>at_step<span class="w"> </span>SslBump1<span class="w"></span>
+<span class="k">acl</span><span class="w"> </span>ssl_exclude_domains<span class="w"> </span><span class="k">dstdomain</span><span class="w"> </span>&quot;/etc/squid/ssl_white.txt&quot;<span class="w"></span>
+ssl_bump<span class="w"> </span>splice<span class="w"> </span>ssl_exclude_domains<span class="w"></span>
+ssl_bump<span class="w"> </span>peek<span class="w"> </span>step1<span class="w"></span>
+ssl_bump<span class="w"> </span>bump<span class="w"> </span><span class="no">all</span><span class="w"></span>
 
 <span class="c">## ICAP</span><span class="w"></span>
 icap_enable<span class="w"> </span><span class="no">off</span><span class="w"></span>
@@ -359,9 +378,14 @@ pinger_enable<span class="w"> </span><span class="no">off</span><span class="w">
 <span class="c">#</span><span class="w"></span>
 <span class="c"># Apache like</span><span class="w"></span>
 <span class="c">#</span><span class="w"></span>
-<span class="c"># access_log stdio:/var/log/squid/access.log common</span><span class="w"></span>
+<span class="k">access_log</span><span class="w"> </span>stdio:/var/log/squid/access.log<span class="w"> </span>common<span class="w"></span>
 <span class="c"># logformat common %&gt;a %ui %un [%tl] &quot;%rm %ru HTTP/%rv&quot; &gt;Hs %&lt;st %Ss:%Sh</span><span class="w"></span>
-<span class="k">access_log</span><span class="w"> </span>stdio:/dev/null<span class="w"></span>
+<span class="c"># access_log stdio:/dev/null common</span><span class="w"></span>
+
+<span class="c"># Logs are managed by logrotate on Debian</span><span class="w"></span>
+<span class="c"># @see include /etc/squid/conf.d/debian.conf</span><span class="w"></span>
+<span class="k">logfile_rotate</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
+
 
 <span class="c">## Cache</span><span class="w"></span>
 <span class="c">#</span><span class="w"></span>
@@ -390,40 +414,40 @@ reply_header_access<span class="w"> </span>X-FORWARDED-FOR<span class="w"> </spa
 reply_header_access<span class="w"> </span><span class="no">VIA</span><span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
 reply_header_access<span class="w"> </span>CACHE-CONTROL<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
 reply_header_access<span class="w"> </span>If-MODIFIED-SINCE<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-<span class="c"># reply_header_access CONNECTION deny all</span><span class="w"></span>
 reply_header_access<span class="w"> </span>UPGRADE-INSECURE-REQUESTS<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
 reply_header_access<span class="w"> </span>DNT<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
 
-
+<span class="k">pid_filename</span><span class="w"> </span>/run/squid.pid<span class="w"></span>
 <span class="c">## fast</span><span class="w"></span>
 pipeline_prefetch<span class="w"> </span><span class="m">0</span><span class="w"></span>
 <span class="k">shutdown_lifetime</span><span class="w"> </span><span class="m">0</span>.01<span class="w"> </span>seconds<span class="w"></span>
-</pre></div>
-<h3><a id="=/etc/squid/squid.conf="><span class='anchor'>_</span></a><code>/etc/squid/squid.conf</code></h3>
-<p>中身は現状これだけ</p>
-<div class="highlight"><pre><span></span><span class="c">## include common rules</span><span class="w"></span>
+
 <span class="c">#</span><span class="w"></span>
-<span class="c"># common rules</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-include<span class="w"> </span>/etc/squid/common.conf<span class="w"></span>
 <span class="k">always_direct</span><span class="w"> </span><span class="no">allow</span><span class="w"> </span>local<span class="w"></span>
 </pre></div>
 <p>もはや分割する意味が無い, とも言える.</p>
 <h3><a id="systemd と仲良く: =/etc/systemd/system/squid.service="><span class='anchor'>_</span></a>systemd と仲良く: <code>/etc/systemd/system/squid.service</code></h3>
 <p>キャッシュを動かす気も無いので子プロセスは生成されない.
   ということで, systemd 用の service ファイルを以下の様にでっち上げた.</p>
-<div class="highlight"><pre><span></span>[Unit]<span class="w"></span>
+<div class="highlight"><pre><span></span><span class="c">## Copyright (C) 1996-2018 The Squid Software Foundation and contributors</span><span class="w"></span>
+<span class="c">##</span><span class="w"></span>
+<span class="c">## Squid software is distributed under GPLv2+ license and includes</span><span class="w"></span>
+<span class="c">## contributions from numerous individuals and organizations.</span><span class="w"></span>
+<span class="c">## Please see the COPYING and CONTRIBUTORS files for details.</span><span class="w"></span>
+<span class="c">##</span><span class="w"></span>
+
+[Unit]<span class="w"></span>
 Description=Squid<span class="w"> </span>Web<span class="w"> </span>Proxy<span class="w"> </span>Server<span class="w"></span>
 Documentation=man:squid(8)<span class="w"></span>
-After=syslog.target<span class="w"> </span>network.target<span class="w"> </span>nss-lookup.target<span class="w"></span>
+After=network.target<span class="w"> </span>network-online.target<span class="w"> </span>nss-lookup.target<span class="w"></span>
 
 [Service]<span class="w"></span>
-LimitNOFILE=4096<span class="w"></span>
-ExecStartPre=/usr/sbin/squid<span class="w"> </span>-z<span class="w"> </span>-f<span class="w"> </span>/etc/squid/squid.conf<span class="w"></span>
-ExecStart=/usr/sbin/squid<span class="w"> </span>-Y<span class="w"> </span>-C<span class="w"> </span>-N<span class="w"> </span>-f<span class="w"> </span>/etc/squid/squid.conf<span class="w"></span>
-ExecReload=/usr/sbin/squid<span class="w"> </span>-Y<span class="w"> </span>-C<span class="w"> </span>-N<span class="w"> </span>-f<span class="w"> </span>/etc/squid/squid.conf<span class="w"> </span>-k<span class="w"> </span>reconfigure<span class="w"></span>
-ExecStop=/usr/sbin/squid<span class="w"> </span>-Y<span class="w"> </span>-C<span class="w"> </span>-N<span class="w"> </span>-f<span class="w"> </span>/etc/squid/squid.conf<span class="w"> </span>-k<span class="w"> </span><span class="s">shutdown</span><span class="w"></span>
-Restart=on-failure<span class="w"></span>
+Type=forking<span class="w"></span>
+PIDFile=/run/squid.pid<span class="w"></span>
+ExecStartPre=/usr/sbin/squid<span class="w"> </span>--foreground<span class="w"> </span>-z<span class="w"></span>
+ExecStart=/usr/sbin/squid<span class="w"> </span>-sYC<span class="w"></span>
+ExecReload=/bin/kill<span class="w"> </span>-HUP<span class="w"> </span>$MAINPID<span class="w"></span>
+KillMode=mixed<span class="w"></span>
 
 [Install]<span class="w"></span>
 WantedBy=multi-user.target<span class="w"></span>
