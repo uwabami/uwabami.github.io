@@ -15,8 +15,8 @@
       "@type": "NewsArticle",
       "mainEntityOfPage": "https://uwabami.github.io/cc-env/Emacs.html",
       "headline": "Emacs の設定",
-      "datePublished": "2019-03-29T10:57:11+09:00",
-      "dateModified": "2019-03-29T10:57:11+09:00",
+      "datePublished": "2019-04-10T17:58:26+09:00",
+      "dateModified": "2019-04-10T17:58:26+09:00",
       "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
       "author": {
         "@type": "Person",
@@ -519,6 +519,10 @@ $(EMACS) -l $&lt; -batch -f batch-byte-compile $&lt;
 </ul>
 <p>元ファイルと変えていないので, 実際はデータのみ提供するようにした方が無難, かも.</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">all-the-icons</span> <span class="nv">:ensure</span> <span class="nv">t</span> <span class="p">)</span>
+<span class="p">(</span><span class="nf">use-package</span> <span class="nv">all-the-icons-dired</span> <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:disabled</span> <span class="nv">t</span>
+  <span class="nv">:hook</span> <span class="p">(</span><span class="nf">dired-mode</span> <span class="o">.</span> <span class="nv">all-the-icons-dired-mode</span><span class="p">)</span>
+  <span class="p">)</span>
 <span class="p">(</span><span class="nf">use-package</span> <span class="nv">all-the-icons-in-terminal</span>
   <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">all-the-icons-in-terminal</span>
            <span class="nv">:fetcher</span> <span class="nv">github</span>
@@ -1289,34 +1293,6 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
   <span class="p">(</span><span class="nf">migemo-init</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
-<h2><a id="Undo/Redo: =undo-tree="><span class='anchor'>_</span></a>Undo/Redo: <code>undo-tree</code></h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">undo-tree</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:init</span>
-  <span class="c1">;; @see https://github.com/raxod502/radian/commit/0544196c50ddc305f90873ca280bf0c5e3db685b</span>
-  <span class="c1">;; Suppress the message saying that the undo history file was</span>
-  <span class="c1">;; saved (because this happens every single time you save a file).</span>
-  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:undo-tree-suppress-undo-history-saved-message</span>
-      <span class="p">(</span><span class="nf">undo-tree-save-history</span> <span class="nv">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">inhibit-message</span> <span class="nv">t</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">apply </span><span class="nv">undo-tree-save-history</span> <span class="nv">args</span><span class="p">)))</span>
-  <span class="c1">;; Suppress the message saying that the undo history could not be</span>
-  <span class="c1">;; loaded because the file changed outside of Emacs.</span>
-  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:undo-tree-suppress-buffer-modified-message</span>
-      <span class="p">(</span><span class="nf">undo-tree-load-history</span> <span class="nv">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">inhibit-message</span> <span class="nv">t</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">apply </span><span class="nv">undo-tree-load-history</span> <span class="nv">args</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nf">advice-add</span> <span class="o">#</span><span class="ss">&#39;undo-tree-load-history</span> <span class="nv">:around</span>
-              <span class="o">#</span><span class="ss">&#39;my:undo-tree-suppress-buffer-modified-message</span><span class="p">)</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">undo-tree-auto-save-history</span> <span class="nv">t</span>
-        <span class="nv">my:undo-tree-history-dir</span> <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">dir</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:tmp</span>
-                                                    <span class="s">&quot;undo-tree-history/&quot;</span><span class="p">)))</span>
-                                   <span class="p">(</span><span class="nf">make-directory</span> <span class="nv">dir</span> <span class="nv">:parents</span><span class="p">)</span> <span class="nv">dir</span><span class="p">)</span>
-        <span class="nv">undo-tree-history-directory-alist</span> <span class="o">`</span><span class="p">((</span><span class="s">&quot;.&quot;</span> <span class="o">.</span> <span class="o">,</span><span class="nv">my:undo-tree-history-dir</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nf">global-undo-tree-mode</span> <span class="nv">+1</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
 <h2><a id="チラ見: =quick-preview.el="><span class='anchor'>_</span></a>チラ見: <code>quick-preview.el</code></h2>
 <p>ターミナルの場合に上手く動かないので folk 版を作っている</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">quick-preview</span>
@@ -1449,7 +1425,7 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ido-completing-read+</span> <span class="nv">:ensure</span> <span class="nv">t</span><span class="p">)</span>
 </pre></div>
 <h3><a id="=smex="><span class='anchor'>_</span></a><code>smex</code></h3>
-<p>M-x を ido で. <del>amx の方が良い?</del></p>
+<p>M-x を ido で。</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">smex</span>
   <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;M-x&quot;</span> <span class="o">.</span> <span class="nv">smex</span><span class="p">))</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
@@ -1468,8 +1444,9 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
   <span class="nv">:diminish</span> <span class="s">&quot;&quot;</span>
   <span class="nv">:config</span>
   <span class="c1">;; TAB で補完 or インデント</span>
-  <span class="p">(</span><span class="nf">global-set-key</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;&lt;tab&gt;&quot;</span><span class="p">)</span> <span class="ss">&#39;company-indent-or-complete-common</span><span class="p">)</span>
+  <span class="c1">;; (global-set-key (kbd &quot;&lt;tab&gt;&quot;) &#39;company-indent-or-complete-common)</span>
   <span class="c1">;; C-n, C-pで補完候補を次/前の候補を選択</span>
+  <span class="c1">;; (define-key company-active-map (kbd &quot;&lt;tab&gt;&quot;) &#39;company-indent-or-complete-common)</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-active-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-n&quot;</span><span class="p">)</span> <span class="ss">&#39;company-select-next</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-active-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-p&quot;</span><span class="p">)</span> <span class="ss">&#39;company-select-previous</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">company-search-map</span> <span class="p">(</span><span class="nf">kbd</span> <span class="s">&quot;C-n&quot;</span><span class="p">)</span> <span class="ss">&#39;company-select-next</span><span class="p">)</span>
@@ -1486,7 +1463,7 @@ Emacs*useXIM:<span class="w"> </span>false<span class="w"></span>
         <span class="nv">company-transformers</span>
         <span class="o">&#39;</span><span class="p">(</span><span class="nv">company-sort-by-backend-importance</span><span class="p">)</span> <span class="c1">; ソート順</span>
         <span class="nv">company-idle-delay</span> <span class="mi">0</span>                  <span class="c1">; 遅延なしにすぐ表示</span>
-        <span class="nv">company-minimum-prefix-length</span> <span class="mi">3</span>       <span class="c1">; デフォルトは4</span>
+        <span class="nv">company-minimum-prefix-length</span> <span class="mi">4</span>       <span class="c1">; デフォルトは4</span>
         <span class="nv">company-selection-wrap-around</span> <span class="nv">t</span>       <span class="c1">; 候補の最後の次は先頭に戻る</span>
         <span class="nv">completion-ignore-case</span> <span class="nv">t</span>
         <span class="nv">company-dabbrev-downcase</span> <span class="nv">nil</span><span class="p">)</span>
@@ -2513,7 +2490,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
     <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;time-stamp-start</span><span class="p">)</span> <span class="s">&quot;#\\+date: 2&quot;</span><span class="p">)</span>
     <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;time-stamp-end</span><span class="p">)</span>   <span class="s">&quot;\$&quot;</span><span class="p">)</span>
     <span class="p">)</span>
-  <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-mode-hook</span> <span class="ss">&#39;my:org-timestamp-hook</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">add-hook</span> <span class="o">#</span><span class="ss">&#39;org-mode-hook</span> <span class="o">#</span><span class="ss">&#39;my:org-timestamp-hook</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
 <h3><a id="Org-Id"><span class='anchor'>_</span></a>Org-Id</h3>
@@ -2553,9 +2530,9 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
     <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">org-agenda-date-weekend</span> <span class="nv">:underline</span> <span class="nv">t</span><span class="p">)))</span>
     <span class="s">&quot;Agenda 表示中の今日かつ日・祝日用のface&quot;</span><span class="p">)</span>
   <span class="c1">;; こっからは org-gcal で同期したカレンダーの色</span>
-  <span class="p">(</span><span class="nf">defface</span> <span class="nv">my:org-agenda-calendar-KUSM</span>
+  <span class="p">(</span><span class="nf">defface</span> <span class="nv">my:org-agenda-calendar-Univ</span>
     <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7FFF7F&quot;</span><span class="p">)))</span>
-    <span class="s">&quot;Agenda 表示中, KUSM.org の表示 face&quot;</span>
+    <span class="s">&quot;Agenda 表示中, Univ.org の表示 face&quot;</span>
     <span class="nv">:group</span> <span class="ss">&#39;org-agenda</span> <span class="p">)</span>
   <span class="p">(</span><span class="nf">defface</span> <span class="nv">my:org-agenda-calendar-Schedule</span>
     <span class="o">&#39;</span><span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#7FFFFF&quot;</span><span class="p">)))</span>
@@ -2606,14 +2583,13 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
              <span class="s">&quot;Schedule.org&quot;</span>
              <span class="s">&quot;MHC.org&quot;</span>
              <span class="s">&quot;GFD.org&quot;</span>
-             <span class="s">&quot;KUSM.org&quot;</span>
+             <span class="s">&quot;Univ.org&quot;</span>
              <span class="s">&quot;DebianJP.org&quot;</span>
              <span class="s">&quot;twitter.org&quot;</span>
              <span class="s">&quot;journal.org&quot;</span>
              <span class="s">&quot;Wunderlist.org&quot;</span>
              <span class="s">&quot;redmine_GFD.org&quot;</span>
              <span class="s">&quot;redmine_FluidSoc.org&quot;</span>
-             <span class="s">&quot;redmine_KUSM.org&quot;</span>
              <span class="p">))</span>
     <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-agenda-files</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">my:d:org</span> <span class="nv">file</span><span class="p">)))</span>
   <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-agenda-files</span> <span class="p">(</span><span class="nf">locate-user-emacs-file</span> <span class="s">&quot;README.org&quot;</span><span class="p">))</span>
@@ -2654,9 +2630,9 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
             <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
               <span class="p">(</span><span class="nf">save-excursion</span>
                 <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
-                <span class="p">(</span><span class="nf">while</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&quot;KUSM:&quot;</span> <span class="nv">nil</span> <span class="nv">t</span><span class="p">)</span>
+                <span class="p">(</span><span class="nf">while</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&quot;Univ:&quot;</span> <span class="nv">nil</span> <span class="nv">t</span><span class="p">)</span>
                   <span class="p">(</span><span class="nf">add-text-properties</span> <span class="p">(</span><span class="nf">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-at-eol</span><span class="p">)</span>
-                                       <span class="o">&#39;</span><span class="p">(</span><span class="nv">face</span> <span class="nv">my:org-agenda-calendar-KUSM</span><span class="p">)))</span>
+                                       <span class="o">&#39;</span><span class="p">(</span><span class="nv">face</span> <span class="nv">my:org-agenda-calendar-Univ</span><span class="p">)))</span>
                 <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
                 <span class="p">(</span><span class="nf">while</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&quot;Schedule:&quot;</span> <span class="nv">nil</span> <span class="nv">t</span><span class="p">)</span>
                   <span class="p">(</span><span class="nf">add-text-properties</span> <span class="p">(</span><span class="nf">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-at-eol</span><span class="p">)</span>
@@ -2877,6 +2853,233 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
         <span class="nv">orgmine-default-todo-keyword</span> <span class="s">&quot;新規&quot;</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
+<h3><a id="Org-Export"><span class='anchor'>_</span></a>Org-Export</h3>
+<h4><a id="一般設定"><span class='anchor'>_</span></a>一般設定</h4>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ox</span>
+  <span class="nv">:init</span>
+  <span class="c1">;; 空行の削除</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:remove-org-newlines-at-cjk-text</span> <span class="p">(</span><span class="nf">&amp;optional</span> <span class="nv">_mode</span><span class="p">)</span>
+    <span class="s">&quot;先頭が &#39;*&#39;, &#39;#&#39;, &#39;|&#39; でなく、改行の前後が日本の文字の場合はその改行を除去&quot;</span>
+    <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">while</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="s">&quot;^\\([^|#*\n].+\\)\\(.\\)\n *\\(.\\)&quot;</span> <span class="nv">nil</span> <span class="nv">t</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">string-to-char</span> <span class="p">(</span><span class="nf">match-string</span> <span class="mi">2</span><span class="p">))</span> <span class="o">#</span><span class="nv">x2000</span><span class="p">)</span>
+               <span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nf">string-to-char</span> <span class="p">(</span><span class="nf">match-string</span> <span class="mi">3</span><span class="p">))</span> <span class="o">#</span><span class="nv">x2000</span><span class="p">))</span>
+          <span class="p">(</span><span class="nf">replace-match</span> <span class="s">&quot;\\1\\2\\3&quot;</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-at-bol</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nf">with-eval-after-load</span> <span class="s">&quot;ox&quot;</span>
+    <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;org-export-before-processing-hook</span>
+              <span class="ss">&#39;my:remove-org-newlines-at-cjk-text</span><span class="p">))</span>
+  <span class="nv">:config</span>
+    <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-export-with-toc</span> <span class="nv">nil</span>
+          <span class="nv">org-export-with-section-numbers</span> <span class="nv">nil</span><span class="p">)</span>
+    <span class="c1">;; for Beamer</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:shortdate</span>    <span class="s">&quot;SHORTDATE&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:shorttitle</span>   <span class="s">&quot;SHORTTITLE&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
+    <span class="c1">;; for Jekyll</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:layout</span>    <span class="s">&quot;LAYOUT&quot;</span> <span class="nv">nil</span> <span class="s">&quot;default&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:ref</span>       <span class="s">&quot;REF&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:permalink</span> <span class="s">&quot;PERMALINK&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:redirect_from</span> <span class="s">&quot;redirect_from&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-options-alist</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">:redirect_to</span> <span class="s">&quot;redirect_to&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span><span class="p">))</span>
+    <span class="p">)</span>
+</pre></div>
+<h4><a id="LaTeX export"><span class='anchor'>_</span></a>LaTeX export</h4>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ox-latex</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-latex-pdf-process</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;latexmk %f&quot;</span><span class="p">))</span>
+  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
+               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:platex&quot;</span>
+                 <span class="s">&quot;\\documentclass[a4j]&#123;jsarticle}</span>
+<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
+                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
+               <span class="p">)</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
+               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:bxjsartible&quot;</span>
+                 <span class="s">&quot;\\documentclass[a4j,ja=standard]&#123;bxjsarticle}</span>
+<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
+                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
+               <span class="p">)</span>
+  <span class="c1">;; &quot;verbatim&quot; → &quot;Verbatim&quot; 置換</span>
+  <span class="p">(</span><span class="nf">defun</span> <span class="nv">my:org-latex-filter-fancyvrb</span> <span class="p">(</span><span class="nf">text</span> <span class="nv">backend</span> <span class="nv">_info</span><span class="p">)</span>
+    <span class="s">&quot;Convert begin/end&#123;verbatim} to begin/end&#123;Verbatim}.</span>
+<span class="s">  Allows use of the fancyvrb latex package.&quot;</span>
+    <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nf">org-export-derived-backend-p</span> <span class="nv">backend</span> <span class="ss">&#39;beamer</span><span class="p">)</span>
+              <span class="p">(</span><span class="nf">org-export-derived-backend-p</span> <span class="nv">backend</span> <span class="ss">&#39;latex</span><span class="p">))</span>
+      <span class="p">(</span><span class="nf">replace-regexp-in-string</span>
+       <span class="s">&quot;\\\\\\(begin\\|end\\)&#123;verbatim}&quot;</span>
+       <span class="s">&quot;\\\\\\1&#123;Verbatim}&quot;</span> <span class="nv">text</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-export-filter-final-output-functions</span>
+               <span class="ss">&#39;my:org-latex-filter-fancyvrb</span><span class="p">)</span>
+  <span class="c1">;; &quot;tabular&quot; →  &quot;Tabular&quot;  置換</span>
+  <span class="c1">;; (defun my:org-latex-filter-bigtabular (text backend _info)</span>
+  <span class="c1">;;   &quot;Convert begin/end&#123;tabular} to begin/end&#123;Tabular}.&quot;</span>
+  <span class="c1">;;   (when (or (org-export-derived-backend-p backend &#39;beamer)</span>
+  <span class="c1">;;             (org-export-derived-backend-p backend &#39;latex))</span>
+  <span class="c1">;;     (replace-regexp-in-string</span>
+  <span class="c1">;;      &quot;\\\\\\(begin\\|end\\)&#123;tabular}&quot;</span>
+  <span class="c1">;;      &quot;\\\\\\1&#123;Tabular}&quot; text)))</span>
+  <span class="c1">;; (add-to-list &#39;org-export-filter-final-output-functions</span>
+  <span class="c1">;;              &#39;my:org-latex-filter-bigtabular)</span>
+  <span class="p">)</span>
+</pre></div>
+<h4><a id="Beamer export"><span class='anchor'>_</span></a>Beamer export</h4>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ox-beamer</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
+               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:beamer&quot;</span>
+                 <span class="s">&quot;\\documentclass[dvipdfmx,presentation]&#123;beamer}</span>
+<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
+                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
+               <span class="p">)</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
+               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:beamer-uplatex&quot;</span>
+                 <span class="s">&quot;\\documentclass[dvipdfmx,presentation]&#123;beamer}</span>
+<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
+                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
+               <span class="p">)</span>
+  <span class="p">(</span><span class="nf">add-to-list</span> <span class="ss">&#39;org-latex-classes</span>
+               <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;my:beamer-pdflatex&quot;</span>
+                 <span class="s">&quot;\\documentclass[unicode,presentation]&#123;beamer}</span>
+<span class="s">                     [NO-DEFAULT-PACKAGES] [NO-PACKAGES] [EXTRA]&quot;</span>
+                 <span class="p">(</span><span class="s">&quot;\\section\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\section*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsection*\&#123;%s\}&quot;</span><span class="p">)</span>
+                 <span class="p">(</span><span class="s">&quot;\\subsubsection\&#123;%s\}&quot;</span> <span class="o">.</span> <span class="s">&quot;\\subsubsection*\&#123;%s\}&quot;</span><span class="p">))</span>
+               <span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
+<p>LATEX_CLASS に <code>my:beamer</code> を指定すると，上記設定で export される．</p>
+<h4><a id="HTML export"><span class='anchor'>_</span></a>HTML export</h4>
+<p>後述の Jekyll 用の設定も参照のこと．</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ox-html</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="nv">org-html-use-infojs</span> <span class="nv">nil</span>
+        <span class="nv">org-html-html5-fancy</span> <span class="nv">t</span>
+        <span class="nv">org-export-htmlize-output-type</span> <span class="ss">&#39;inline-css</span>
+        <span class="nv">org-html-doctype</span> <span class="s">&quot;html5&quot;</span>
+        <span class="nv">org-html-text-markup-alist</span>
+        <span class="o">&#39;</span><span class="p">((</span><span class="nf">bold</span>           <span class="o">.</span> <span class="s">&quot;&lt;strong&gt;%s&lt;/strong&gt;&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">code</span>           <span class="o">.</span> <span class="s">&quot;&lt;code&gt;%s&lt;/code&gt;&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">italic</span>         <span class="o">.</span> <span class="s">&quot;&lt;i&gt;%s&lt;/i&gt;&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">strike-through</span> <span class="o">.</span> <span class="s">&quot;&lt;del&gt;%s&lt;/del&gt;&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">underline</span>      <span class="o">.</span> <span class="s">&quot;&lt;span class=\&quot;underline\&quot;&gt;%s&lt;/span&gt;&quot;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nf">verbatim</span>       <span class="o">.</span> <span class="s">&quot;&lt;code&gt;%s&lt;/code&gt;&quot;</span><span class="p">)))</span>
+  <span class="p">)</span>
+</pre></div>
+<h4><a id="Jekyll 用の Backend の定義"><span class='anchor'>_</span></a>Jekyll 用の Backend の定義</h4>
+<p>Web サイトは Jekyll で作成しています．
+  <a href="https://github.com/yoshinari-nomura/org-octopress">yoshinari-nomura/org-octopress: org-mode in octopress</a> の
+  <code>ox-jekyll</code> を参考に <del>改造して</del> ，
+  html export の際に必要な yaml front matter を出力できるようにしてます．
+  あと，src-block が liquid に解釈されない様に escape してます．</p>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">org-export-define-derived-backend</span> <span class="ss">&#39;jekyll</span> <span class="ss">&#39;html</span>
+  <span class="nv">:menu-entry</span>
+  <span class="o">&#39;</span><span class="p">(</span><span class="nv">?j</span> <span class="s">&quot;Jekyl: export to html with YAML front matter.&quot;</span>
+       <span class="p">((</span><span class="nf">?H</span> <span class="s">&quot;To temporary buffer&quot;</span>
+            <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">s</span> <span class="nv">v</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nf">org-jekyll-export-as-html</span> <span class="nv">a</span> <span class="nv">s</span> <span class="nv">v</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nf">?h</span> <span class="s">&quot;To file&quot;</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span> <span class="nv">s</span> <span class="nv">v</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nf">org-jekyll-export-to-html</span> <span class="nv">a</span> <span class="nv">s</span> <span class="nv">v</span><span class="p">)))))</span>
+  <span class="nv">:translate-alist</span>
+  <span class="o">&#39;</span><span class="p">((</span><span class="nf">template</span>  <span class="o">.</span> <span class="nv">org-jekyll-template</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="nv">:filters-alist</span>
+  <span class="o">&#39;</span><span class="p">((</span><span class="nf">:filter-final-output</span> <span class="o">.</span> <span class="nv">org-jekyll-finalized</span><span class="p">))</span>
+  <span class="p">)</span>
+<span class="c1">;; template</span>
+<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll-template</span> <span class="p">(</span><span class="nf">contents</span> <span class="nv">info</span><span class="p">)</span>
+  <span class="s">&quot;Return complete document string after HTML conversion.&quot;</span>
+  <span class="p">(</span><span class="nf">concat</span> <span class="p">(</span><span class="nf">org-jekyll--yaml-front-matter</span> <span class="nv">info</span><span class="p">)</span> <span class="nv">contents</span><span class="p">))</span>
+<span class="c1">;;; 幾つかの文字列を置換する</span>
+<span class="c1">;;  - liquid templateに誤認される `&#123;%&#39;, `%}&#39;</span>
+<span class="c1">;;  - `:&#39; の escape</span>
+<span class="c1">;;  - table-of-contents の処理</span>
+<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll-finalized</span> <span class="p">(</span><span class="nf">contents</span> <span class="nv">_backend</span> <span class="nv">info</span><span class="p">)</span>
+  <span class="s">&quot;Publish src-block to html, Escape liquid tags, e.g. &#123;%, %}&quot;</span>
+  <span class="p">(</span><span class="nf">with-temp-buffer</span>
+    <span class="p">(</span><span class="nf">insert</span> <span class="nv">contents</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;&amp;$58;&quot;</span> <span class="s">&quot;&amp;#58;&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;&#123;%&quot;</span> <span class="s">&quot;&amp;#123;%&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;%}&quot;</span> <span class="s">&quot;%&amp;#125;&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;&lt;nav id=\&quot;table-of-contents&quot;</span> <span class="s">&quot;&lt;div id=\&quot;toc-wrapper\&quot;&gt;</span>
+<span class="s">&lt;nav id=\&quot;table-of-contents&quot;</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">perform-replace</span> <span class="s">&quot;&lt;/nav&gt;&quot;</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;&lt;/nav&gt;</span>
+<span class="s">&lt;/div&gt;</span>
+<span class="s">&lt;a href=\&quot;#toc-toggle\&quot; class=\&quot;btn toc-btn\&quot; id=\&quot;toc-toggle\&quot;&gt;%s&lt;/a&gt;&quot;</span>
+                                      <span class="p">(</span><span class="nf">org-html--translate</span> <span class="s">&quot;Table of Contents&quot;</span> <span class="nv">info</span><span class="p">))</span>
+                     <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="nv">nil</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))</span>
+    <span class="p">(</span><span class="nf">set-auto-mode</span> <span class="nv">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">buffer-substring-no-properties</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nf">point-max</span><span class="p">))))</span>
+<span class="c1">;;</span>
+<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll--get-option</span> <span class="p">(</span><span class="nf">info</span> <span class="nv">property-name</span> <span class="nv">&amp;optional</span> <span class="nv">default</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">property</span> <span class="p">(</span><span class="nf">org-export-data</span> <span class="p">(</span><span class="nf">plist-get</span> <span class="nv">info</span> <span class="nv">property-name</span><span class="p">)</span> <span class="nv">info</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">format</span> <span class="s">&quot;%s&quot;</span> <span class="p">(</span><span class="k">or </span><span class="nv">property</span> <span class="nv">default</span> <span class="s">&quot;&quot;</span><span class="p">))))</span>
+<span class="c1">;;</span>
+<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll--yaml-front-matter</span> <span class="p">(</span><span class="nf">info</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">title</span>
+         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:title</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">date</span>
+         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:date</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">language</span>
+         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:language</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">layout</span>
+         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:layout</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">jekyll-ref</span>
+         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:ref</span> <span class="p">))</span>
+        <span class="p">(</span><span class="nf">jekyll-permalink</span>
+         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:permalink</span> <span class="p">))</span>
+        <span class="p">(</span><span class="nf">jekyll-redirect-from</span>
+         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:redirect_from</span> <span class="p">))</span>
+        <span class="p">(</span><span class="nf">jekyll-redirect-to</span>
+         <span class="p">(</span><span class="nf">org-jekyll--get-option</span> <span class="nv">info</span> <span class="nv">:redirect_to</span> <span class="p">))</span>
+        <span class="p">(</span><span class="nf">convert-to-yaml-list</span>
+         <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">arg</span><span class="p">)</span>
+           <span class="p">(</span><span class="nf">mapconcat</span> <span class="o">#&#39;</span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">text</span><span class="p">)(</span><span class="nf">concat</span> <span class="s">&quot;\n- &quot;</span> <span class="nv">text</span><span class="p">))</span> <span class="p">(</span><span class="nf">split-string</span> <span class="nv">arg</span><span class="p">)</span> <span class="s">&quot; &quot;</span><span class="p">))))</span>
+    <span class="p">(</span><span class="nf">concat</span>
+     <span class="s">&quot;---&quot;</span>
+     <span class="s">&quot;\ntitle: &quot;</span>      <span class="p">(</span><span class="nf">s-replace</span> <span class="s">&quot;:&quot;</span> <span class="s">&quot;&amp;$58;&quot;</span> <span class="nv">title</span><span class="p">)</span>
+     <span class="s">&quot;\ndate: &quot;</span>       <span class="nv">date</span>
+     <span class="s">&quot;\nlayout: &quot;</span>     <span class="nv">layout</span>
+     <span class="s">&quot;\nlang: &quot;</span>       <span class="nv">language</span>
+     <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">jekyll-ref</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\nref: &quot;</span> <span class="nv">jekyll-ref</span><span class="p">))</span>
+     <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">jekyll-permalink</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\npermalink: &quot;</span> <span class="nv">jekyll-permalink</span><span class="p">))</span>
+     <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">jekyll-redirect-from</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\nredirect_from: &quot;</span> <span class="nv">jekyll-redirect-from</span><span class="p">))</span>
+     <span class="p">(</span><span class="nf">unless</span> <span class="p">(</span><span class="nf">string-equal</span> <span class="nv">jekyll-redirect-to</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">concat</span> <span class="s">&quot;\nredirect_to: &quot;</span> <span class="nv">jekyll-redirect-to</span><span class="p">))</span>
+     <span class="s">&quot;\n---\n&quot;</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll-export-as-html</span>
+    <span class="p">(</span><span class="nf">&amp;optional</span> <span class="nv">async</span> <span class="nv">subtreep</span> <span class="nv">visible-only</span> <span class="nv">body-only</span> <span class="nv">ext-plist</span><span class="p">)</span>
+  <span class="s">&quot;Export current buffer to a HTML buffer adding some YAML front matter.&quot;</span>
+  <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">org-export-to-buffer</span> <span class="ss">&#39;jekyll</span> <span class="s">&quot;*Org Jekyll HTML Export*&quot;</span>
+    <span class="nv">async</span> <span class="nv">subtreep</span> <span class="nv">visible-only</span> <span class="nv">body-only</span> <span class="nv">ext-plist</span> <span class="p">(</span><span class="k">lambda </span><span class="p">()</span> <span class="p">(</span><span class="nf">html-mode</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nf">defun</span> <span class="nv">org-jekyll-export-to-html</span>
+    <span class="p">(</span><span class="nf">&amp;optional</span> <span class="nv">async</span> <span class="nv">subtreep</span> <span class="nv">visible-only</span> <span class="nv">body-only</span> <span class="nv">ext-plist</span><span class="p">)</span>
+  <span class="s">&quot;Export current buffer to a HTML file adding some YAML front matter.&quot;</span>
+  <span class="p">(</span><span class="nf">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">outfile</span> <span class="p">(</span><span class="nf">org-export-output-file-name</span> <span class="s">&quot;.html&quot;</span> <span class="nv">subtreep</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nf">org-export-to-file</span> <span class="ss">&#39;jekyll</span> <span class="nv">outfile</span> <span class="nv">async</span> <span class="nv">subtreep</span> <span class="nv">visible-only</span> <span class="nv">body-only</span> <span class="nv">ext-plist</span><span class="p">)))</span>
+</pre></div>
 <h2><a id="Howm"><span class='anchor'>_</span></a>Howm</h2>
 <p>Org を使う前は Howm を使っていました.
   過去のメモを検索するためだけに未だに Howm を使っています.</p>
@@ -3006,7 +3209,7 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x g&quot;</span> <span class="o">.</span> <span class="nv">magit-status</span><span class="p">))</span>
   <span class="nv">:ensure</span> <span class="nv">t</span>
   <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">setq</span> <span class="nv">magit-completing-read-function</span> <span class="ss">&#39;magit-ido-completing-read</span>
+  <span class="p">(</span><span class="nf">setq</span> <span class="c1">;; magit-completing-read-function &#39;magit-ido-completing-read</span>
         <span class="nv">magit-refs-show-commit-count</span> <span class="ss">&#39;all</span>
         <span class="nv">magit-log-buffer-file-locked</span> <span class="nv">t</span>
         <span class="nv">magit-revision-show-gravatars</span> <span class="nv">nil</span>
@@ -3022,6 +3225,13 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="nv">:config</span>
   <span class="p">)</span>
 </pre></div>
+<h2><a id="プロジェクト毎の coding rule の適用: =editorconfig="><span class='anchor'>_</span></a>プロジェクト毎の coding rule の適用: <code>editorconfig</code></h2>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">editorconfig</span>
+  <span class="nv">:ensure</span> <span class="nv">t</span>
+  <span class="nv">:config</span>
+  <span class="p">(</span><span class="nf">editorconfig-mode</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">)</span>
+</pre></div>
 <h2><a id="リポジトリの移動: =ido-ghq="><span class='anchor'>_</span></a>リポジトリの移動: <code>ido-ghq</code></h2>
 <p>ghq list を ido で選んで dired で開く</p>
 <div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ido-ghq</span>
@@ -3032,13 +3242,6 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
   <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x f&quot;</span> <span class="o">.</span> <span class="nv">ido-ghq-open</span><span class="p">))</span>
   <span class="nv">:config</span>
   <span class="p">(</span><span class="nf">setq</span> <span class="nv">ido-ghq-short-list</span> <span class="nv">t</span><span class="p">)</span>
-  <span class="p">)</span>
-</pre></div>
-<h2><a id="プロジェクト毎の coding rule の適用: =editorconfig="><span class='anchor'>_</span></a>プロジェクト毎の coding rule の適用: <code>editorconfig</code></h2>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">editorconfig</span>
-  <span class="nv">:ensure</span> <span class="nv">t</span>
-  <span class="nv">:config</span>
-  <span class="p">(</span><span class="nf">editorconfig-mode</span> <span class="mi">1</span><span class="p">)</span>
   <span class="p">)</span>
 </pre></div>
 <h2><a id="TeX"><span class='anchor'>_</span></a>TeX</h2>
@@ -3268,6 +3471,10 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">ido-vertical-first-match-face</span>       <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">ido-first-match</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">ido-vertical-match-face</span>             <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:foreground</span> <span class="s">&quot;#4CFF4C&quot;</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">ido-grid-mode-match</span>                 <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">ido-first-match</span> <span class="p">))))</span>
+ <span class="c1">;; ivy</span>
+ <span class="o">&#39;</span><span class="p">(</span><span class="nv">ivy-current-match</span>                   <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">highlight</span> <span class="p">))))</span>
+ <span class="o">&#39;</span><span class="p">(</span><span class="nv">ivy-confirm</span>                         <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">minibuffer-prompt</span> <span class="p">))))</span>
+ <span class="o">&#39;</span><span class="p">(</span><span class="nv">ivy-subdir</span>                          <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:inherit</span> <span class="nv">dired-directory</span><span class="p">))))</span>
  <span class="c1">;; powerline</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">powerline-active1</span>                   <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#000000&quot;</span><span class="nv">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span><span class="p">))))</span>
  <span class="o">&#39;</span><span class="p">(</span><span class="nv">powerline-active2</span>                   <span class="p">((</span><span class="nf">t</span> <span class="p">(</span><span class="nf">:background</span> <span class="s">&quot;#666666&quot;</span> <span class="nv">:foreground</span> <span class="s">&quot;#F6F3E8&quot;</span><span class="p">))))</span>
@@ -3547,7 +3754,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
       
       &copy; 2006 - 2019
       <a href="mailto:uwabami@gfd-dennou.org"></a>,
-      Lastupdate: 2019-03-29 10:57:11
+      Lastupdate: 2019-04-10 17:58:26
     </span>
     <br/>
     <span class="nowrap">
