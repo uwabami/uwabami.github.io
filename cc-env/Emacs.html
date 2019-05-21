@@ -2684,14 +2684,14 @@ MimeType=application/mbox;message/rfc822;x-scheme-handler/mailto;<span class="w"
 <p>キーバインドは以前 changelog memo をやっていた時の癖で <code>C-x m</code> をメモにしている.
   他には wanderlust のメールを扱えるように <code>org-wl</code> を読み込んで template を追加したぐらい.
   notmuch のインデックスの方が良いかもしれない, と最近思っている.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-wl</span>
-  <span class="nv">:if</span> <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;wl-beta&quot;</span><span class="p">)</span>
-               <span class="p">(</span><span class="nf">my:dpkg-status</span> <span class="s">&quot;wl&quot;</span><span class="p">))</span>
-           <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">))</span>
-  <span class="nv">:quelpa</span> <span class="p">(</span><span class="nf">org-wl</span>
-           <span class="nv">:fetcher</span> <span class="nv">url</span>
-           <span class="nv">:url</span> <span class="s">&quot;https://code.orgmode.org/bzg/org-mode/raw/master/contrib/lisp/org-wl.el&quot;</span><span class="p">)</span>
-  <span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="c1">;; (use-package org-wl</span>
+<span class="c1">;;  :if (and (or (my:dpkg-status &quot;wl-beta&quot;)</span>
+<span class="c1">;;               (my:dpkg-status &quot;wl&quot;))</span>
+<span class="c1">;;           (file-directory-p my:d:org))</span>
+<span class="c1">;;  :quelpa (org-wl</span>
+<span class="c1">;;           :fetcher url</span>
+<span class="c1">;;           :url &quot;https://code.orgmode.org/bzg/org-mode/raw/master/contrib/lisp/org-wl.el&quot;)</span>
+<span class="c1">;;  )</span>
 <span class="p">(</span><span class="nf">use-package</span> <span class="nv">org-capture</span>
   <span class="nv">:bind</span> <span class="p">((</span><span class="s">&quot;C-x m&quot;</span> <span class="o">.</span> <span class="nv">org-capture</span><span class="p">))</span>
   <span class="nv">:if</span> <span class="p">(</span><span class="nf">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
