@@ -69,10 +69,7 @@
     <script type="application/json">
       {
           "ISOCountryGroups": {
-              "eea": [ "at", "be", "bg", "cy", "cz", "de", "dk", "ee", "es", "fi",
-                       "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "li", "lt",
-                       "lu", "lv", "mt", "nl", "no", "pl", "pt", "ro", "se", "si",
-                       "sk"]
+              "eu": [ "preset-eea"]
           }
       }
     </script>
@@ -82,7 +79,7 @@
       {
           "consents": {
               "my_consent": {
-                  "promptIfUnknownForGeoGroup": "eea",
+                  "promptIfUnknownForGeoGroup": "eu",
                   "promptUI": "consent-ui"
               }
           }
@@ -315,7 +312,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </span>
       </p>
     </footer>
-    <amp-analytics type="gtag" data-credentials="include">
+    <amp-analytics data-block-on-consent
+                   type="gtag"
+                   data-credentials="include">
       <script type="application/json">
         {
             "vars" : {
