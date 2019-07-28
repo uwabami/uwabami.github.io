@@ -411,7 +411,8 @@ set $execi exec --no-startup-id
 # set $execai exec_always --no-startup-id
 
 # font
-font xft:Cica 16.5
+# font xft:Cica 16.5
+font xft:FSMRMP 16.5
 
 # startup
 # $execi /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &amp;
@@ -419,13 +420,13 @@ font xft:Cica 16.5
 $execi /usr/lib/gnome-settings-daemon/gsd-xsettings --gtk-no-debug=all --gdk-no-debug=all &amp;
 $execi $(sleep 5 &amp;  feh --bg-scale $HOME/Pictures/desktop.png --no-fehbg )
 $execi xrdb -merge $HOME/.Xresources
-$execi compton
+# $execi compton
 $execi nm-applet
 $execi blueman-applet
 # $execi udiskie
 # $execi uim-toolbar-gtk-systray
-$execi QT_SCALE_FACTOR=1.5 owncloud
-$execi dropbox start -i
+$execi QT_SCALE_FACTOR=1.5 nextcloud
+# $execi dropbox start -i
 $execi /usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon
 
 
@@ -529,8 +530,11 @@ bar &#123;
     position    top
     tray_output eDP-1
     tray_padding 2
-    font xft:Cica 16.5
-    status_command $HOME/.config/i3/run-conky.sh
+    font xft:FSMRMP 16.5
+    status_command i3blocks
+    mode dock
+    separator_symbol &quot; | &quot;
+    binding_mode_indicator yes
     colors &#123;
       background #242424
       statusline #F6F3E8
