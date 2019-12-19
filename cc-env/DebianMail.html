@@ -4,816 +4,954 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <title>Mail 環境の設定</title>
-    <meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+    <meta name="author" content="Youhei SASAKI">
     <!-- end: check google site verification -->
     <link rel="canonical" href="https://uwabami.github.io/cc-env/DebianMail.html">
-    <!-- alternate --><link rel="alternate" hreflang="ja" href="/cc-env/DebianMail.html" />
+    <!-- alternate -->
+    <link rel="alternate" hreflang="ja" href="https://uwabami.github.io/cc-env/DebianMail.html" />
     <!-- end: alternate -->
-    <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/favicon.ico">
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "NewsArticle",
-      "mainEntityOfPage": "https://uwabami.github.io/cc-env/DebianMail.html",
-      "headline": "Mail 環境の設定",
-      "datePublished": "2018-10-24T20:57:16+09:00",
-      "dateModified": "2018-10-24T20:57:16+09:00",
-      "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
-      "author": {
-        "@type": "Person",
-        "name": "Youhei SASAKI"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Youhei SASAKI's official site",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://uwabami.github.io/eyecatch_1600x900.png",
-          "width": "1600",
-          "height": "900"
-        }
-      },
-      "image": {
-        "@type": "ImageObject",
-          "url": "https://uwabami.github.io/eyecatch_1600x900.png",
-          "height": "900",
-          "width": "1600"
-      }
-    }
-    </script>
+    <!-- begin jekyll seo -->
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Mail 環境の設定 | Youhei SASAKI’s official site</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Mail 環境の設定" />
+<meta name="author" content="Youhei SASAKI" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
+<meta property="og:description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
+<link rel="canonical" href="https://uwabami.github.io/cc-env/DebianMail.html" />
+<meta property="og:url" content="https://uwabami.github.io/cc-env/DebianMail.html" />
+<meta property="og:site_name" content="Youhei SASAKI’s official site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-20T07:31:23+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Mail 環境の設定" />
+<meta name="twitter:site" content="@uwabami" />
+<meta name="twitter:creator" content="@Youhei SASAKI" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianMail.html","headline":"Mail 環境の設定","dateModified":"2019-12-20T07:31:23+09:00","datePublished":"2019-12-20T07:31:23+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+    <!-- end jekyll seo -->
+    <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
+    <!-- apple icons -->
+    <link rel="apple-touch-icon" size="256x256" href="https://uwabami.github.io/assets/img/favicon-256x256.png">
+    <link rel="apple-touch-icon" size="192x192" href="https://uwabami.github.io/assets/img/favicon-192x192.png">
+    <link rel="apple-touch-icon" size="128x128" href="https://uwabami.github.io/assets/img/favicon-128x128.png">
+    <link rel="apple-touch-icon" size="64x64" href="https://uwabami.github.io/assets/img/favicon-64x64.png">
+    <link rel="apple-touch-icon" size="48x48" href="https://uwabami.github.io/assets/img/favicon-48x48.png">
+    <link rel="apple-touch-icon" size="40x40" href="https://uwabami.github.io/assets/img/favicon-40x40.png">
+    <link rel="apple-touch-icon" size="32x32" href="https://uwabami.github.io/assets/img/favicon-32x32.png">
+    <link rel="apple-touch-icon" size="24x24" href="https://uwabami.github.io/assets/img/favicon-24x24.png">
+    <link rel="apple-touch-icon" size="16x16" href="https://uwabami.github.io/assets/img/favicon-16x16.png">
+    <!-- end: apple icons -->
+    <link rel="shortcut-icon" type="image/ico" href="/assets/img/favicon.ico">
+    <link rel="author" href="https://twitter.com/">
     <!-- include amp elements -->
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-geo-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-consent-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-analytics-0.1.js">
-    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js">
-    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-accordion-0.1.js">
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-font-0.1.js">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
     <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-    <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+    <script async custom-element="amp-font" src="https://cdn.ampproject.org/v0/amp-font-0.1.js"></script>
     <!-- Custom css based on following two framework -->
     <!-- - normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css -->
     <!-- - basscss v8.1.2 | MIT License | github.com/basscss/basscss -->
-    <style amp-custom>.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:bold}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:24rem}.max-width-2{max-width:32rem}.max-width-3{max-width:48rem}.max-width-4{max-width:64rem}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-0.5rem;margin-right:-0.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.ml-auto{margin-left:auto}.mr-auto{margin-right:auto}.mx-auto{margin-left:auto;margin-right:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}@media (min-width: 40.06em){.sm-p0{padding:0}.sm-pt0{padding-top:0}.sm-pr0{padding-right:0}.sm-pb0{padding-bottom:0}.sm-pl0{padding-left:0}.sm-px0{padding-left:0;padding-right:0}.sm-py0{padding-top:0;padding-bottom:0}.sm-p1{padding:.5rem}.sm-pt1{padding-top:.5rem}.sm-pr1{padding-right:.5rem}.sm-pb1{padding-bottom:.5rem}.sm-pl1{padding-left:.5rem}.sm-px1{padding-left:.5rem;padding-right:.5rem}.sm-py1{padding-top:.5rem;padding-bottom:.5rem}.sm-p2{padding:1rem}.sm-pt2{padding-top:1rem}.sm-pr2{padding-right:1rem}.sm-pb2{padding-bottom:1rem}.sm-pl2{padding-left:1rem}.sm-px2{padding-left:1rem;padding-right:1rem}.sm-py2{padding-top:1rem;padding-bottom:1rem}.sm-p3{padding:2rem}.sm-pt3{padding-top:2rem}.sm-pr3{padding-right:2rem}.sm-pb3{padding-bottom:2rem}.sm-pl3{padding-left:2rem}.sm-px3{padding-left:2rem;padding-right:2rem}.sm-py3{padding-top:2rem;padding-bottom:2rem}.sm-p4{padding:4rem}.sm-pt4{padding-top:4rem}.sm-pr4{padding-right:4rem}.sm-pb4{padding-bottom:4rem}.sm-pl4{padding-left:4rem}.sm-px4{padding-left:4rem;padding-right:4rem}.sm-py4{padding-top:4rem;padding-bottom:4rem}}@media (min-width: 52.06em){.md-p0{padding:0}.md-pt0{padding-top:0}.md-pr0{padding-right:0}.md-pb0{padding-bottom:0}.md-pl0{padding-left:0}.md-px0{padding-left:0;padding-right:0}.md-py0{padding-top:0;padding-bottom:0}.md-p1{padding:.5rem}.md-pt1{padding-top:.5rem}.md-pr1{padding-right:.5rem}.md-pb1{padding-bottom:.5rem}.md-pl1{padding-left:.5rem}.md-px1{padding-left:.5rem;padding-right:.5rem}.md-py1{padding-top:.5rem;padding-bottom:.5rem}.md-p2{padding:1rem}.md-pt2{padding-top:1rem}.md-pr2{padding-right:1rem}.md-pb2{padding-bottom:1rem}.md-pl2{padding-left:1rem}.md-px2{padding-left:1rem;padding-right:1rem}.md-py2{padding-top:1rem;padding-bottom:1rem}.md-p3{padding:2rem}.md-pt3{padding-top:2rem}.md-pr3{padding-right:2rem}.md-pb3{padding-bottom:2rem}.md-pl3{padding-left:2rem}.md-px3{padding-left:2rem;padding-right:2rem}.md-py3{padding-top:2rem;padding-bottom:2rem}.md-p4{padding:4rem}.md-pt4{padding-top:4rem}.md-pr4{padding-right:4rem}.md-pb4{padding-bottom:4rem}.md-pl4{padding-left:4rem}.md-px4{padding-left:4rem;padding-right:4rem}.md-py4{padding-top:4rem;padding-bottom:4rem}}@media (min-width: 64.06em){.lg-p0{padding:0}.lg-pt0{padding-top:0}.lg-pr0{padding-right:0}.lg-pb0{padding-bottom:0}.lg-pl0{padding-left:0}.lg-px0{padding-left:0;padding-right:0}.lg-py0{padding-top:0;padding-bottom:0}.lg-p1{padding:.5rem}.lg-pt1{padding-top:.5rem}.lg-pr1{padding-right:.5rem}.lg-pb1{padding-bottom:.5rem}.lg-pl1{padding-left:.5rem}.lg-px1{padding-left:.5rem;padding-right:.5rem}.lg-py1{padding-top:.5rem;padding-bottom:.5rem}.lg-p2{padding:1rem}.lg-pt2{padding-top:1rem}.lg-pr2{padding-right:1rem}.lg-pb2{padding-bottom:1rem}.lg-pl2{padding-left:1rem}.lg-px2{padding-left:1rem;padding-right:1rem}.lg-py2{padding-top:1rem;padding-bottom:1rem}.lg-p3{padding:2rem}.lg-pt3{padding-top:2rem}.lg-pr3{padding-right:2rem}.lg-pb3{padding-bottom:2rem}.lg-pl3{padding-left:2rem}.lg-px3{padding-left:2rem;padding-right:2rem}.lg-py3{padding-top:2rem;padding-bottom:2rem}.lg-p4{padding:4rem}.lg-pt4{padding-top:4rem}.lg-pr4{padding-right:4rem}.lg-pb4{padding-bottom:4rem}.lg-pl4{padding-left:4rem}.lg-px4{padding-left:4rem;padding-right:4rem}.lg-py4{padding-top:4rem;padding-bottom:4rem}}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}@media (min-width: 40.06em){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.3333333333%}.sm-col-2{width:16.6666666667%}.sm-col-3{width:25%}.sm-col-4{width:33.3333333333%}.sm-col-5{width:41.6666666667%}.sm-col-6{width:50%}.sm-col-7{width:58.3333333333%}.sm-col-8{width:66.6666666667%}.sm-col-9{width:75%}.sm-col-10{width:83.3333333333%}.sm-col-11{width:91.6666666667%}.sm-col-12{width:100%}}@media (min-width: 52.06em){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.3333333333%}.md-col-2{width:16.6666666667%}.md-col-3{width:25%}.md-col-4{width:33.3333333333%}.md-col-5{width:41.6666666667%}.md-col-6{width:50%}.md-col-7{width:58.3333333333%}.md-col-8{width:66.6666666667%}.md-col-9{width:75%}.md-col-10{width:83.3333333333%}.md-col-11{width:91.6666666667%}.md-col-12{width:100%}}@media (min-width: 64.06em){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.3333333333%}.lg-col-2{width:16.6666666667%}.lg-col-3{width:25%}.lg-col-4{width:33.3333333333%}.lg-col-5{width:41.6666666667%}.lg-col-6{width:50%}.lg-col-7{width:58.3333333333%}.lg-col-8{width:66.6666666667%}.lg-col-9{width:75%}.lg-col-10{width:83.3333333333%}.lg-col-11{width:91.6666666667%}.lg-col-12{width:100%}}.flex{display:flex}@media (min-width: 40.06em){.sm-flex{display:flex}}@media (min-width: 52.06em){.md-flex{display:flex}}@media (min-width: 64.06em){.lg-flex{display:flex}}.flex-column{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.items-stretch{align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{justify-content:flex-start}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.content-start{align-content:flex-start}.content-end{align-content:flex-end}.content-center{align-content:center}.content-between{align-content:space-between}.content-around{align-content:space-around}.content-stretch{align-content:stretch}.flex-auto{flex:1 1 auto;min-width:0;min-height:0}.flex-none{flex:none}.order-0{order:0}.order-1{order:1}.order-2{order:2}.order-3{order:3}.order-last{order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40em){.xs-hide{display:none}}@media (min-width: 40.06em) and (max-width: 52em){.sm-hide{display:none}}@media (min-width: 52.06em) and (max-width: 64em){.md-hide{display:none}}@media (min-width: 64.06em){.lg-hide{display:none}}.display-none{display:none}@media (max-width: 40em){.xs-col{float:left;box-sizing:border-box}.xs-col-right{float:right;box-sizing:border-box}.xs-col-1{width:8.3333333333%}.xs-col-2{width:16.6666666667%}.xs-col-3{width:25%}.xs-col-4{width:33.3333333333%}.xs-col-5{width:41.6666666667%}.xs-col-6{width:50%}.xs-col-7{width:58.3333333333%}.xs-col-8{width:66.6666666667%}.xs-col-9{width:75%}.xs-col-10{width:83.3333333333%}.xs-col-11{width:91.6666666667%}.xs-col-12{width:100%}}.navbar{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background-color:#082d74;color:#fff}.navbar .navbar-brand{font-size:1.25rem;font-family:-apple-system,"BlinkMacSystemFont","Helvetica Neue",Helvetica,"Arial","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";weight:bold}.navbar a{color:#fff;text-decoration:none}.navbar a:active,.navbar a:visited{color:inherit}.navbar a:hover{color:#18bc9c;text-decoration:underline}.navbar ul>li{width:100px;font-size:.875rem}.navbar amp-accordion header{background-color:#082d74;color:#fff;border-style:none;padding:0;width:100px;font-size:.875rem}.navbar amp-accordion section{background-color:#082d74;color:#fff;border-style:none}.navbar amp-accordion ul>li{color:#fff;width:120px;margin:.5rem;font-size:.875rem}.navbar .navbar-button{font-size:1.5rem}amp-sidebar{width:50vw}.navbar-sidebar{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background-color:#082d74;color:#fff}.navbar-sidebar a{color:#fff;text-decoration:none}.navbar-sidebar a:active,.navbar-sidebar a:visited{color:inherit}.navbar-sidebar a:hover{color:#18bc9c;text-decoration:underline}.navbar-sidebar ul>li{width:20rem}.navbar-sidebar ul ul>li{width:20rem}.navbar-sidebar .navbar-button{font-size:1.5rem}footer,.container-footer{line-height:1.5;background-color:#082d74;color:#fff;font-size:90%}.footer{text-align:right;padding-right:1rem;padding-left:1rem}.breadcrumb{list-style:none}.breadcrumb>li{display:inline-block}.breadcrumb>li+li:before{content:"/ ";padding:0 .5rem;color:#ccc}body{font-family:-apple-system,"BlinkMacSystemFont","Helvetica Neue",Helvetica,"Arial","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAFXRFWHRDcmVhdGlvbiBUaW1lAAfbBhwTDDqAejMsAAAAB3RJTUUH2wYeEi8EgXgYKgAAAAlwSFlzAAAOdAAADnQBaySz1gAAABxJREFUeNpj/PLxFwNuwALEbJw4pZkY8IJhKw0AlAcDBIeyUC8AAAAASUVORK5CYII=)}span.anchor{display:none}main{line-height:1.5;margin-bottom:1rem}.container-rounded{border-radius:5px;box-shadow:0 0 5px 2px rgba(0,0,0,0.1)}hr{display:block;width:100%;height:2px;background-color:#ecf0f1;border:0;clear:both}dd{margin-left:1rem}h1{font-weight:normal;padding-left:.5rem}h2{border-bottom:1px solid #5af;font-weight:normal}h3{border-bottom:1px dashed #4ae;font-weight:normal}h4{border-bottom:1px dotted #4ff;font-weight:normal}strong{font-size:1.5rem;line-height:30px;font-weight:normal}#portrait{border-radius:60%;margin:.5rem auto}#gpgkey{font-size:85%;font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;border:1px solid #b4bcc2;border-radius:5px;padding:.5rem;overflow:visible scroll}.helo-unit{background-color:#f2f2f2;border-bottom:3px solid #b4bcc2;box-shadow:0 0 5px 2px rgba(0,0,0,0.1)}.helo-unit h1{margin-top:.5rem}.helo-unit h1 a,.helo-unit h1 a:active,.helo-unit h1 a:visited,.helo-unit h1 a:hover{color:#000;text-decoration:none}.helo-unit h1 a:hover{text-decoration:underline}@media (max-width: 40em){main{padding:0 .5rem}main ul{padding-left:1rem}.helo-unit{margin-top:3.375rem}h1{padding-top:2rem;font-size:1.25rem}header{padding-left:1rem;padding-right:1rem}#portrait{float:right;position:relative;width:100px}}@media (min-width: 40.06em) and (max-width: 52em){main{padding:0 1rem}.helo-unit{margin-top:3.375rem}h1{padding-top:2rem;font-size:1.25rem}header{padding-left:1rem;padding-right:1rem}#portrait{width:120px}}@media (min-width: 52.06em){main{padding:0 2rem}.helo-unit{margin-top:5rem}h1{padding-top:1rem;padding-bottom:.5rem}header{padding-left:2rem;padding-right:2rem}#portrait{width:100%}}@media (min-width: 64.06em){main{padding:0 4rem}.helo-unit{margin-top:5rem}h1{padding-top:1rem}header{padding-left:4rem;padding-right:4rem}#portrait{width:100%}}.bg-white{background-color:#fff}a,a:active,a:visited,a:hover{color:#18bc9c;text-decoration:none}a:hover{text-decoration:underline}.icon-envelop{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}amp-gist{margin:1rem}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}.example{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background-color:#f8f8f8;border:1px solid #ccc;padding:6px 10px 2px 10px;border-radius:5px;overflow-x:auto;white-space:nowrap}.highlight pre code *{white-space:nowrap}.highlight pre{overflow-x:auto}.highlight pre code{white-space:pre}.highlight pre{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background-color:#f8f8f8;border:1px solid #ccc;padding:6px 10px 2px 10px;border-radius:5px}.highlight pre .hll{background-color:#f8f8f8;border:1px solid #ccc;padding:6px 10px;border-radius:5px}.highlight pre .c{color:#999988;font-style:italic}.highlight pre .err{color:#a61717;background-color:#e3d2d2}.highlight pre .k,.highlight pre .o{font-weight:bold}.highlight pre .cm{color:#999988;font-style:italic}.highlight pre .cp{color:#999999;font-weight:bold}.highlight pre .c1{color:#999988;font-style:italic}.highlight pre .cs{color:#999999;font-weight:bold;font-style:italic}.highlight pre .gd{color:#000000;background-color:#ffdddd}.highlight pre .gd .x{color:#000000;background-color:#ffaaaa}.highlight pre .ge{font-style:italic}.highlight pre .gr{color:#aa0000}.highlight pre .gh{color:#999999}.highlight pre .gi{color:#000000;background-color:#ddffdd}.highlight pre .gi .x{color:#000000;background-color:#aaffaa}.highlight pre .go{color:#888888}.highlight pre .gp{color:#555555}.highlight pre .gs{font-weight:bold}.highlight pre .gu{color:#800080;font-weight:bold}.highlight pre .gt{color:#aa0000}.highlight pre .kc,.highlight pre .kd,.highlight pre .kn,.highlight pre .kp,.highlight pre .kr{font-weight:bold}.highlight pre .kt{color:#445588;font-weight:bold}.highlight pre .m{color:#009999}.highlight pre .s{color:#dd1144}.highlight pre .n{color:#333333}.highlight pre .na{color:teal}.highlight pre .nb{color:#0086b3}.highlight pre .nc{color:#445588;font-weight:bold}.highlight pre .no{color:teal}.highlight pre .ni{color:purple}.highlight pre .ne,.highlight pre .nf{color:#990000;font-weight:bold}.highlight pre .nn{color:#555555}.highlight pre .nt{color:navy}.highlight pre .nv{color:teal}.highlight pre .ow{font-weight:bold}.highlight pre .w{color:#bbbbbb}.highlight pre .mf,.highlight pre .mh,.highlight pre .mi,.highlight pre .mo{color:#009999}.highlight pre .sb,.highlight pre .sc,.highlight pre .sd,.highlight pre .s2,.highlight pre .se,.highlight pre .sh,.highlight pre .si,.highlight pre .sx{color:#dd1144}.highlight pre .sr{color:#009926}.highlight pre .s1{color:#dd1144}.highlight pre .ss{color:#990073}.highlight pre .bp{color:#999999}.highlight pre .vc,.highlight pre .vg,.highlight pre .vi{color:teal}.highlight pre .il{color:#009999}.highlight pre .gc{color:#999;background-color:#EAF2F5}    </style>
+    <style amp-custom>html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}/*! Basscss | http://basscss.com | MIT License */.h00{font-size:4rem}.h0{font-size:3rem}.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:bold}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:320px}.max-width-2{max-width:480px}.max-width-3{max-width:600px}.max-width-4{max-width:800px}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-.5rem;margin-right:-.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.m-auto{margin:auto}.mt-auto{margin-top:auto}.mr-auto{margin-right:auto}.mb-auto{margin-bottom:auto}.ml-auto{margin-left:auto}.mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.33333%}.col-2{width:16.66667%}.col-3{width:25%}.col-4{width:33.33333%}.col-5{width:41.66667%}.col-6{width:50%}.col-7{width:58.33333%}.col-8{width:66.66667%}.col-9{width:75%}.col-10{width:83.33333%}.col-11{width:91.66667%}.col-12{width:100%}@media (min-width: 40.06rem){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.33333%}.sm-col-2{width:16.66667%}.sm-col-3{width:25%}.sm-col-4{width:33.33333%}.sm-col-5{width:41.66667%}.sm-col-6{width:50%}.sm-col-7{width:58.33333%}.sm-col-8{width:66.66667%}.sm-col-9{width:75%}.sm-col-10{width:83.33333%}.sm-col-11{width:91.66667%}.sm-col-12{width:100%}}@media (min-width: 52.06rem){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.33333%}.md-col-2{width:16.66667%}.md-col-3{width:25%}.md-col-4{width:33.33333%}.md-col-5{width:41.66667%}.md-col-6{width:50%}.md-col-7{width:58.33333%}.md-col-8{width:66.66667%}.md-col-9{width:75%}.md-col-10{width:83.33333%}.md-col-11{width:91.66667%}.md-col-12{width:100%}}@media (min-width: 64rem){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.33333%}.lg-col-2{width:16.66667%}.lg-col-3{width:25%}.lg-col-4{width:33.33333%}.lg-col-5{width:41.66667%}.lg-col-6{width:50%}.lg-col-7{width:58.33333%}.lg-col-8{width:66.66667%}.lg-col-9{width:75%}.lg-col-10{width:83.33333%}.lg-col-11{width:91.66667%}.lg-col-12{width:100%}}.flex{display:-webkit-box;display:flex}@media (min-width: 40.06rem){.sm-flex{display:-webkit-box;display:flex}}@media (min-width: 52.06rem){.lg-flex{display:-webkit-box;display:flex}}.flex-column{-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{-webkit-box-align:start;align-items:flex-start}.items-end{-webkit-box-align:end;align-items:flex-end}.items-center{-webkit-box-align:center;align-items:center}.items-baseline{-webkit-box-align:baseline;align-items:baseline}.items-stretch{-webkit-box-align:stretch;align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{-webkit-box-pack:start;justify-content:flex-start}.justify-end{-webkit-box-pack:end;justify-content:flex-end}.justify-center{-webkit-box-pack:center;justify-content:center}.justify-between{-webkit-box-pack:justify;justify-content:space-between}.justify-around{justify-content:space-around}.justify-evenly{-webkit-box-pack:space-evenly;justify-content:space-evenly}.content-start{align-content:flex-start}.content-end{align-content:flex-end}.content-center{align-content:center}.content-between{align-content:space-between}.content-around{align-content:space-around}.content-stretch{align-content:stretch}.flex-auto{-webkit-box-flex:1;flex:1 1 auto;min-width:0;min-height:0}.flex-none{-webkit-box-flex:0;flex:none}.order-0{-webkit-box-ordinal-group:1;order:0}.order-1{-webkit-box-ordinal-group:2;order:1}.order-2{-webkit-box-ordinal-group:3;order:2}.order-3{-webkit-box-ordinal-group:4;order:3}.order-last{-webkit-box-ordinal-group:100000;order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40rem){.xs-hide{display:none}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.sm-hide{display:none}}@media (min-width: 52.06rem) and (max-width: 64rem){.md-hide{display:none}}@media (min-width: 64rem){.lg-hide{display:none}}.display-none{display:none}@font-face{font-family:'Inconsolata';font-style:normal;font-weight:400;font-display:swap;src:local("Inconsolata Regular"),local("Inconsolata-Regular"),url(https://fonts.gstatic.com/s/inconsolata/v18/QldKNThLqRwH-OJ1UHjlKGlZ5q0.ttf) format("truetype")}@font-face{font-family:'M PLUS Rounded 1c';font-style:normal;font-weight:400;font-display:swap;src:local("M PLUS Rounded 1c"),local("MPLUSRounded1c-Regular"),url(https://fonts.gstatic.com/s/mplusrounded1c/v10/VdGEAYIAV6gnpUpoWwNkYvrugw9RuMWBxLs.ttf) format("truetype")}html{height:100%;-ms-text-size-adjust:100%;font-size:14pt}body{margin:0;line-height:1.25;font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;min-width:315px;height:100%;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased;padding-top:5rem}body.font-loaded{font-family:"Inconsolata","M PLUS Rounded 1c"}wrapper{min-height:100%}main{display:block;margin:0 auto;max-width:800px}header{display:block;margin:0 auto;max-width:800px;box-shadow:0 6px 10px -10px rgba(0,0,0,0.7)}.logo{border-radius:80%}hr{padding:0;margin:8px 0;border:0;height:0;border-top:1px solid rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.8)}footer{display:block;margin:0 auto}.icon-envelope{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}.icon-amp{color:#ff851b}.research li:nth-child(even){background-color:#f5f5f5}.small{font-size:80%}.doi{font-size:80%}#table-of-contents{margin:0;padding:0;display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;border-bottom:1px solid rgba(0,0,0,0.1)}#table-of-contents h2{margin:0;padding:0;font-size:1rem;border:none;margin-right:1rem}#table-of-contents h2:after{content:":";padding:0;margin:0}#table-of-contents #text-table-of-contents ul{margin:0;padding:0}#table-of-contents #text-table-of-contents ul li{list-style:none;padding:0;display:inline-block}#table-of-contents #text-table-of-contents ul li+li:before{content:"/ ";padding:0;margin:0;color:#ccc}a{text-decoration:none;color:#18bc9c}a:hover{text-decoration:underline}@media (max-width: 40rem){body{padding-top:4.8rem}.wrapper{padding:0 .5rem;background-color:#fff}header{padding:0 .5rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked ~ .navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked ~ .navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:center}header input.navigation-input:checked ~ .navcontents .dmenu input{display:none}header input.navigation-input:checked ~ .navcontents .dmenu label{display:none}header input.navigation-input:checked ~ .navcontents .dmenu .dcontents{height:auto;opacity:1;padding:0 10px}#table-of-contents{display:none}footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){body{padding-top:4.8rem}.wrapper{padding:0 1rem;background-color:#fff}header{padding:0 1rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked ~ .navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked ~ .navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:center}header input.navigation-input:checked ~ .navcontents .dmenu input{display:none}header input.navigation-input:checked ~ .navcontents .dmenu label{display:none}header input.navigation-input:checked ~ .navcontents .dmenu .dcontents{height:auto;opacity:1;padding:0 10px}page-title{font-size:1.5rem}footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 2rem;background-color:#fff}header{padding:0 2rem;background-color:#fff}header .navigation-input{display:none}header .dmenu input.dmenu-input{display:none;width:0}header .dmenu label{text-decoration:none;color:#18bc9c}header .dmenu input.dmenu-input:checked ~ label{margin-right:14pt}header .dmenu .dcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header .dmenu input.dmenu-input:checked ~ .dcontents{position:absolute;padding:0 10px;height:auto;opacity:1;background-color:#fff}header .gsearch{max-width:40vw}footer{padding:0 2rem}}@media (min-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 4rem;background-color:#fff}header{background-color:#fff}header .navigation-input{display:none}header .dmenu input.dmenu-input{display:none;width:0}header .dmenu label{text-decoration:none;color:#18bc9c}header .dmenu input.dmenu-input:checked ~ label{margin-right:14pt}header .dmenu .dcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header .dmenu input.dmenu-input:checked ~ .dcontents{position:absolute;padding:0 10px;height:auto;opacity:1;background-color:#fff}header .gsearch{max-width:40vw}.page-title{font-size:1.5rem}.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:-.8rem}footer{padding:0 4rem}}h1{font-weight:normal}.content em{font-weight:normal}.content strong{font-weight:normal;font-size:1.5rem}.content a:hover{text-decoration:underline}.content ol{counter-reset:list}.content ol>li{list-style-position:none;position:relative;list-style:none;margin-top:5px;margin-bottom:5px}.content dd{padding:0;margin-right:0;margin-left:14pt}.content ul>li{margin:5px 0 5px 0}.content ul{padding:0 20px 0 20px}.content ol{padding:0 30px 0 30px}.content ol>li:before{content:"[" counter(list, decimal) "] ";counter-increment:list;position:absolute;left:-30px}.content blockquote{border-left:5px solid #333333;margin:20px 0 20px 0;padding:2px 8px 2px 8px;font-style:italic}.content h2{border-bottom:1px solid #5af;font-weight:normal;margin:1rem 0 0 0;padding:0}.content h3{border-bottom:1px dashed #4ae;font-weight:normal;margin:1rem 0 0 0}.content h4{border-bottom:1px dotted #4ff;font-weight:normal;margin:1rem 0 0 0}.content h5{border-bottom:1px dashed #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content h6{border-bottom:1px dotted #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}table{margin:15px 0;border-collapse:collapse;width:100%;padding:0}table tr{border-top:1px solid #cccccc;background-color:white;margin:0;padding:0}table tr:nth-child(2n){background-color:#f8f8f8}table tr th{font-weight:bold;border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr td{border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr th :first-child,table tr td :first-child{margin:0}table tr th :last-child,table tr td :last-child{margin:0}pre{font-size:100%;padding:5px 10px;margin:0 auto;color:#020202;background-color:#eeeeff;overflow:auto;border:2px;border-radius:3px}figure.highlight{margin:0;padding:0;border:0}.highlight{padding:5px 10px;background-color:#020202;color:#f8f8f2}.highlight .hll{background-color:#eeeeff}.highlight .c{color:#008800}.highlight .err{border:1px solid #FF0000}.highlight .k{color:#AA22FF;font-weight:bold}.highlight .o{color:#666666}.highlight .cm{color:#008800}.highlight .cp{color:#008800}.highlight .c1{color:#008800}.highlight .cs{color:#008800;font-weight:bold}.highlight .gd{color:#A00000}.highlight .gr{color:#FF0000}.highlight .gh{color:#000080;font-weight:bold}.highlight .gi{color:#00A000}.highlight .go{color:#808080}.highlight .gp{color:#000080;font-weight:bold}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#0040D0}.highlight .kc{color:#AA22FF;font-weight:bold}.highlight .kd{color:#AA22FF;font-weight:bold}.highlight .kn{color:#AA22FF;font-weight:bold}.highlight .kp{color:#AA22FF}.highlight .kr{color:#AA22FF;font-weight:bold}.highlight .kt{color:#00BB00;font-weight:bold}.highlight .m{color:#666666}.highlight .s{color:#BB4444}.highlight .na{color:#BB4444}.highlight .nb{color:#AA22FF}.highlight .nc{color:#0000FF}.highlight .no{color:#880000}.highlight .nd{color:#AA22FF}.highlight .ni{color:#999999;font-weight:bold}.highlight .ne{color:#D2413A;font-weight:bold}.highlight .nf{color:#00A000}.highlight .nl{color:#A0A000}.highlight .nn{color:#0000FF;font-weight:bold}.highlight .nt{color:#008000;font-weight:bold}.highlight .nv{color:#B8860B}.highlight .ow{color:#AA22FF;font-weight:bold}.highlight .w{color:#bbbbbb}.highlight .mf{color:#666666}.highlight .mh{color:#666666}.highlight .mi{color:#666666}.highlight .mo{color:#666666}.highlight .sb{color:#BB4444}.highlight .sc{color:#BB4444}.highlight .sd{color:#BB4444}.highlight .s2{color:#BB4444}.highlight .se{color:#BB6622;font-weight:bold}.highlight .sh{color:#BB4444}.highlight .si{color:#BB6688;font-weight:bold}.highlight .sx{color:#008000}.highlight .sr{color:#BB6688}.highlight .s1{color:#BB4444}.highlight .ss{color:#B8860B}.highlight .bp{color:#AA22FF}.highlight .vc{color:#B8860B}.highlight .vg{color:#B8860B}.highlight .vi{color:#B8860B}.highlight .il{color:#666666}span.anchor{display:none}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}.day h2{font-size:1rem}.comment{display:none}.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:-.8rem}.tdiary-profile{width:70%}.tdiary-profile-picture{border-radius:50%}.footer{text-align:right;font-size:80%}.gsearch{max-width:40vw}@media (max-width: 40rem){.footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){.footer{padding:0 2rem}}@media (min-width: 64rem){.footer{padding:0 4rem}}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}    </style>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
     <!-- end: include amp_elements -->
   </head>
   <body>
-  <!-- include: gdpr -->
-  <amp-geo layout="nodisplay">
-    <script type="application/json">
-      {
-          "ISOCountryGroups": {
-              "eu": [ "preset-eea"]
-          }
-      }
-    </script>
-  </amp-geo>
-  <amp-consent layout="nodisplay" id="consent-element">
-    <script type="application/json">
-      {
-          "consents": {
-              "my_consent": {
-                  "promptIfUnknownForGeoGroup": "eu",
-                  "promptUI": "consent-ui"
-              }
-          }
-      }
-    </script>
-    <div id="consent-ui">
-      <button on="tap:consent-element.accept" role="button">Accept</button>
-      <button on="tap:consent-element.reject" role="button">Reject</button>
-      <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
-    </div>
-  </amp-consent>
-  <!-- end include: gdpr -->
-  <!-- include: navbar -->
-  <header class="navbar fixed flex justify-start items-center top-0 left-0 right-0 py2 z4">
-    <div class="pr2 nowrap flex-auto">
-      <a class="navbar-brand" href="https://uwabami.github.io/">
-        Youhei SASAKI's official site
-      </a>
-    </div>
-    <nav class="xs-hide sm-hide">
-      <ul class="list-reset flex"><!-- lang ja -->
-        <li>
-          <a href="https://uwabami.github.io/research/index.html">Research</a>
-        </li>
-        <!-- Start Dropdown -->
-        <li>
-          <amp-accordion layout="container"
-                         disable-session-states=""
-                         class="absolute">
-            <section>
-              <header>Software &#9662;</header>
-              <ul class="list-reset">
-                <li>
-                  <a href="https://uwabami.github.io/software/index.html">
-                    Repository
-                  </a>
-                </li>
-                <li class="nowrap">
-                  <a href="https://uwabami.github.io/cc-env/index.html">
-                    Computer Memo
-                  </a>
-                </li>
-              </ul>
-            </section>
-          </amp-accordion>
-        </li>
-        <!-- End Dropdown -->
-        <li>
-          <a href="https://uwabami.junkhub.org/log">Blog</a>
-        </li>
-        <!-- end lang ja|en -->
-        <li class="right-align mr1"><!-- end: lang selector -->
-        </li>
-      </ul>
-    </nav>
-    <div class="md-hide lg-hide ml-auto navbar-button nowrap"
-         role="button"
-         on="tap:sidebar.toggle"
-         tabindex="0">☰</div>
-  </header>
-  <!-- end include: navbar -->
-  <!-- include: sidebar -->
-  <amp-sidebar id="sidebar"
-               layout="nodisplay"
-               side="right"
-               class="md-hide lg-hide py2 pl2 pr1 navbar">
-    <nav>
-      <div role="button"
-           on="tap:sidebar.toggle"
-           tabindex="0"
-           class="right-align navbar-button pr2">✕</div>
-      <ul class="list-reset"><!-- lang selector -->
-        <li class="py2">
-          <a href="https://uwabami.github.io/index.html">Top</a>
-        </li>
-        <li class="py2">
-          <a href="https://uwabami.github.io/research/index.html">Research</a>
-        </li>
-        <li class="py2">
-          Software &#9662;
-          <ul class="list-reset pl2">
-            <li class="py1">
-              <a  href="https://uwabami.github.io/software/index.html">
-                Repository
-              </a>
-            </li>
-            <li class="nowrap py1">
-              <a  href="https://uwabami.github.io/cc-env/index.html">
-                Computer Memo
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="pb2">
-          <a href="https://uwabami.junkhub.org/log">Blog</a>
-        </li>
-        <!-- end: language selector -->
-      </ul>
-      <hr />
-      <ul class="list-reset"></ul>
-    </nav>
-  </amp-sidebar>
-  <!-- end include: sidebar -->
-    <main role="main">
-      <div class="helo-unit">
-        <!-- title check -->
-        <h1>Mail 環境の設定</h1>
-        <!-- end: title check -->
-        <!-- include breadcrumbs -->
-        <ul class="breadcrumb list-reset z1 px1">
-          <!-- create crumbs -->
-          <li><a href="https://uwabami.github.io/">Top</a></li>
-          <li><a href="https://uwabami.github.io/cc-env/index.html">Cc-env</a></li>
-        </ul>
-        <!-- end: include breadcrumbs -->
+    <!-- include: amp-font -->
+    <amp-font layout="nodisplay"
+              font-family="M PLUS Rounded 1c"
+              timeout="3000"
+              on-load-add-class="font-loaded">
+    </amp-font>
+    <amp-font layout="nodisplay"
+              font-family="Inconsolata"
+              timeout="3000"
+              on-load-add-class="font-loaded">
+    </amp-font>
+    <!-- end include: amp-font -->
+    <!-- include: gdpr -->
+    <amp-geo layout="nodisplay">
+      <script type="application/json">
+        {
+            "ISOCountryGroups": {
+                "eu": [ "preset-eea"]
+            }
+        }
+      </script>
+    </amp-geo>
+    <amp-consent layout="nodisplay" id="consent-element">
+      <script type="application/json">
+        {
+            "consents": {
+                "my_consent": {
+                    "promptIfUnknownForGeoGroup": "eu",
+                    "promptUI": "consent-ui"
+                }
+            }
+        }
+      </script>
+      <div id="consent-ui">
+        <button on="tap:consent-element.accept" role="button">Accept</button>
+        <button on="tap:consent-element.reject" role="button">Reject</button>
+        <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
       </div>
-      <div class="clearfix bg-white px2 container-rounded">
-<!-- %%%%%%% main content %%%%%%% -->
-<p>Related <a href="index.html">Index</a> <a href="#Debian">Debian</a></p>
-<h2><a id="始めに"><span class='anchor'>_</span></a>始めに</h2>
-<p>メールに関するアレコレ.
-  ネットワーク接続を意識したくないので,
-  送受信用のサーバを手元に置いて MUA はなるべくここを叩くようにしている.</p>
-<h2><a id="送信設定: Exim4"><span class='anchor'>_</span></a>送信設定: Exim4</h2>
-<p>smarthost での送信だけなら Exim4 が軽量で楽。
-  他にも幾つか選択肢はある。気になるなら <a href="https://wiki.debian.org/Debate/DefaultMTA">Debian Wiki: DefaultMTA</a> あたり参照のこと。
-  欲しい機能は</p>
-<ul>
-  <li>上流の MTA への smarthost 送信。</li>
-  <li>offline 時の queue</li>
-  <li>localhost:25 での待受</li>
+    </amp-consent>
+    <!-- end include: gdpr -->
+    <div class="wrapper">
+      <!-- include: navbar -->
+      <header class="container left-0 right-0 top-0 z4 fixed">
+        <!-- page loop -->
+        <nav class="navigation flex items-center justify-between">
+          <div class="pr1 py1 order-0">
+            <a href="/index.html">
+              <amp-img layout="fixed"
+                       width="1.2rem"
+                       height="1.2rem"
+                       src="/assets/img/top.png"
+                       alt="About"
+                       id="top"
+                       class="logo left">
+              </amp-img>
+            </a>
+          </div>
+          <input type="checkbox" id="tm" class="navigation-input">
+          <label for="tm" class="pl1 py1 order-3 md-hide lg-hide h2">☰</label>
+          <div class="navcontents items-center md-flex lg-flex order-1">
+          <!-- lang ja -->
+            <div class="px1 py0">
+              <a href="/research/index.html">
+                Research
+              </a>
+            </div>
+            <div class="dmenu px1 py0">
+              <input type="checkbox" id="dmenu" class="dmenu-input">
+              <label for="dmenu">Software &#9662;</label>
+              <div class="dcontents p0">
+                <ul class="list-reset p0 m0">
+                  <li class="px1 py0">
+                    <a href="/software/index.html">
+                      Repository
+                    </a>
+                  </li>
+                  <li class="px1 py0">
+                    <a href="/cc-env/index.html">
+                      Comp. Memo
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px1 py1">
+              <a href="https://uwabami.junkhub.org/log">blog</a>
+            </div>
+          </div>
+          <div class="flex-auto"></div>
+          <div class="px1 py0 order-2">
+            <form method="GET"
+                  class="p0 m0"
+                  action="https://www.google.com/cse"
+                  target="_top">
+              <div class="inline-block relative p0 m0 small">
+                <input name="cx" type="hidden"
+                       value="017455171263919107349:oumnpe4bynr" />
+                <input name="ie" type="hidden" value="UTF-8" />
+                <input class="gsearch" type="search" placeholder="検索" name="q" required>
+              </div>
+            </form>
+          </div>
+          
+        </nav>
+        <div class="breadcrumbs">
+          <div class="flex items-center">
+            <!-- create crumbs -->
+            <div class="pr1 py0">
+              <a href="/index.html">
+                Top
+              </a>
+            </div>
+            &gt;<div class="px1"><a href="/cc-env/index.html">Cc-env</a></div>      <!-- end page loop -->
+            <div class="flex-auto py0"></div>
+            <div class="pr0 py0"><!-- end: lang selector -->
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- end include: navbar -->
+      <main role="main">
+        <div class="container content">
+          <h1 class="page-title my2 py0 px0">Mail 環境の設定</h1>
+          <hr>
+<!-- %%%% start content %%%% -->
+<p>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+</p>
+
+<div id="outline-container-orgf286bf6" class="outline-2">
+<h2 id="orgf286bf6">始めに</h2>
+<div class="outline-text-2" id="text-orgf286bf6">
+<p>
+メールに関するアレコレ.
+ネットワーク接続を意識したくないので,
+送受信用のサーバを手元に置いて MUA はなるべくここを叩くようにしている.
+</p>
+</div>
+</div>
+<div id="outline-container-org00e6ed2" class="outline-2">
+<h2 id="org00e6ed2">送信設定: Exim4</h2>
+<div class="outline-text-2" id="text-org00e6ed2">
+<p>
+smarthost での送信だけなら Exim4 が軽量で楽。他にも幾つか選択肢はある。気になるなら <a href="https://wiki.debian.org/Debate/DefaultMTA">Debian Wiki: DefaultMTA</a> あたり参照のこと。欲しい機能は
+</p>
+<ul class="org-ul">
+<li>上流の MTA への smarthost 送信。</li>
+<li>offline 時の queue</li>
+<li>localhost:25 での待受なので、軽いしとりあえず Exim4 をそのまま使っている。</li>
 </ul>
-<p>なので、軽いしとりあえず Exim4 をそのまま使っている。</p>
 <pre class="example">
 $ sudo -s
 # dpkg-reconfigure -plow exim4-config
-  メール設定の一般的なタイプ: 2. スマートホストでメール送信; SMTP または fetchmail で受信する
-  システムメール名: localhost
+  メール設定の一般的なタイプ: 2. スマートホストでメール送信; SMTP または fetchmail で受信するシステムメール名: localhost
   入力側 SMTP 接続をリスンする IP アドレス: 127.0.0.1
   メールを受け取るその他の宛先: [空白]
   メールをリレーするマシン: [空白]
   送出スマートホストの IP アドレスまたはホスト名: スマートホスト用の送信サーバ::587
   送出するメールでローカルメール名を隠しますか? no
   DNS クエリの数を最小限に留めますか (ダイヤルオンデマンド)? no
-  ローカルメールの配送方式: 1. /var/mail/ 内の mbox 形式
-  設定を小さなファイルに分割しますか?: no
+  ローカルメールの配送方式: 1. /var/mail/ 内の mbox 形式設定を小さなファイルに分割しますか?: no
   root と postmaster のメール受信者: 適当に設定
 </pre>
-<p>そのあと, <code>/etc/exim4/passwd.client</code> 内で, スマートホストの設定</p>
-<div class="highlight"><pre><span></span>スマートホスト送信サーバ:[アカウント]:[パスワード]<span class="w"></span>
-</pre></div>
-<p>そして必要なら <code>/etc/exim4/email-addresses</code> に置換するリストを適当に記述.
-  最低限 root と ユーザ宛(uid=1000) のメール送信先は設定しておく.</p>
+<p>
+そのあと, <code>/etc/exim4/passwd.client</code> 内で, スマートホストの設定
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf">スマートホスト送信サーバ:[アカウント]:[パスワード]</code></pre></figure>
+<p>
+そして必要なら <code>/etc/exim4/email-addresses</code> に置換するリストを適当に記述.
+最低限 root と ユーザ宛(uid=1000) のメール送信先は設定しておく.
+</p>
 <pre class="example">
 $ sudo -s
 # upate-exim4.conf
 # sudo /etc/init.d/exim4 restart
 </pre>
-<p>あとは適当にテストとかしてみると良い.</p>
-<p>(2012/07/30) このままだと message-id が &#8220;乱数列@hostname&#8221; になるので
-  <code>/etc/exim4/exim4.conf.template</code> あたりに</p>
-<div class="highlight"><pre><span></span>message_id_header_domain<span class="w"> </span>=<span class="w"> </span>ドメイン名<span class="w"></span>
-message_id_header_text<span class="w">   </span>=<span class="w"> </span>ホスト名<span class="w"></span>
-</pre></div>
-<p>を追加して <code>update-exim4.conf</code> を走らせておくと良い。</p>
-<p>ローカル配送先を適宜設定したい場合には</p>
-<div class="highlight"><pre><span></span>MAILDIR_HOME_MAILDIR_LOCATION<span class="w"> </span>=<span class="w"> </span>$home/Maildir/INBOX<span class="w"></span>
-</pre></div>
-<h2><a id="送信設定: msmtp"><span class='anchor'>_</span></a>送信設定: msmtp</h2>
-<p><a href="Emacs.html#MUA%20%E3%81%AE%E8%A8%AD%E5%AE%9A:%20=wanderlust=">Wanderlust</a> からメールを送る時には,
-  <code>msmtp</code> を使っている.</p>
-<p>sendmail コマンド互換かつ enverope-from に応じて送信に利用する
-  SMTP サーバを切り替えられる, というのが良い.
-  本当は Gmail に SMTP サーバを登録しておいて, exim4 の smarthost で
-  Gmail に丸投げしたかったのだけれど,
-  Gmail のメールサーバは <code>Reply-To</code> を上書きしたりして行儀が良くない.</p>
-<p>msmtp 自体の設定はいたって普通だが, queue が面倒?
-  結局 Emacs からは <code>sendmail</code> として</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
-<span class="nv">ARGS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$*</span><span class="s2">&quot;</span>
-msmtp-enqueue.sh <span class="nv">$ARGS</span> <span class="m">1</span>&gt;/dev/null
-<span class="k">if</span> <span class="o">[</span> x<span class="s2">&quot;</span><span class="k">$(</span><span class="nv">LANG</span><span class="o">=</span>C nmcli n connectivity<span class="k">)</span><span class="s2">&quot;</span> <span class="o">=</span> x<span class="s2">&quot;full&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    msmtp-runqueue.sh <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="m">1</span>&gt;/dev/null
-<span class="k">fi</span>
-<span class="nb">exit</span> <span class="m">0</span>
-</pre></div>
-<p>を叩くことで, ネットワーク接続がある場合には即座に送信,
-  無い場合には queuing, という風に動作を切り替えている.</p>
-<p>あとは NetworkManager の dispatcher として msmtp-runqueue を走らせれば良い.</p>
-<h2><a id="受信"><span class='anchor'>_</span></a>受信</h2>
-<p>受信/閲覧は</p>
-<ul>
-  <li><a href="http://isync.sourceforge.net/">isync</a> で、リモートの IMAP サーバのメールをローカルに Maildir 形式で保存</li>
-  <li>ローカルで dovecot-imapd を起動してメールを閲覧</li>
+<p>
+あとは適当にテストとかしてみると良い.
+</p>
+
+<p>
+(2012/07/30) このままだと message-id が "乱数列@hostname" になるので
+<code>/etc/exim4/exim4.conf.template</code> あたりに
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">message_id_header_domain</span> = ドメイン名
+<span class="n">message_id_header_text</span>   = ホスト名</code></pre></figure>
+<p>
+を追加して <code>update-exim4.conf</code> を走らせておくと良い。
+</p>
+
+<p>
+ローカル配送先を適宜設定したい場合には
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">MAILDIR_HOME_MAILDIR_LOCATION</span> = $<span class="n">home</span>/<span class="n">Maildir</span>/<span class="n">INBOX</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-orgf6e590e" class="outline-2">
+<h2 id="orgf6e590e">送信設定: msmtp</h2>
+<div class="outline-text-2" id="text-orgf6e590e">
+<p>
+<a href="Emacs.html#MissingReference">Wanderlust</a> からメールを送る時には,
+<code>msmtp</code> を使っている.
+</p>
+
+<p>
+sendmail コマンド互換かつ enverope-from に応じて送信に利用する
+SMTP サーバを切り替えられる, というのが良い.
+本当は Gmail に SMTP サーバを登録しておいて, exim4 の smarthost で
+Gmail に丸投げしたかったのだけれど,
+Gmail のメールサーバは <code>Reply-To</code> を上書きしたりして行儀が良くない.
+</p>
+
+<p>
+msmtp 自体の設定はいたって普通だが, queue が面倒?
+結局 Emacs からは <code>sendmail</code> として
+</p>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/sh</span>
+<span class="nv">ARGS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$*</span><span class="s2">"</span>
+msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
+<span class="k">if</span> <span class="o">[</span> x<span class="s2">"</span><span class="si">$(</span><span class="nv">LANG</span><span class="o">=</span>C nmcli n connectivity<span class="si">)</span><span class="s2">"</span> <span class="o">=</span> x<span class="s2">"full"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>msmtp-runqueue.sh 2&gt;&amp;1 1&gt;/dev/null
+<span class="k">fi
+</span><span class="nb">exit </span>0</code></pre></figure>
+<p>
+を叩くことで, ネットワーク接続がある場合には即座に送信,
+無い場合には queuing, という風に動作を切り替えている.
+</p>
+
+<p>
+あとは NetworkManager の dispatcher として msmtp-runqueue を走らせれば良い.
+</p>
+</div>
+</div>
+<div id="outline-container-org5725800" class="outline-2">
+<h2 id="org5725800">受信</h2>
+<div class="outline-text-2" id="text-org5725800">
+<p>
+受信/閲覧は
+</p>
+<ul class="org-ul">
+<li><a href="http://isync.sourceforge.net/">isync</a> で、リモートの IMAP サーバのメールをローカルに Maildir 形式で保存</li>
+<li>ローカルで dovecot-imapd を起動してメールを閲覧としている.</li>
 </ul>
-<p>としている.</p>
-<p>最近の MUA は多かれ少なかれ IMAP 接続でも手元にメールを持ってくるので,
-  このメールの重複をなんとかしたいのだけれども,
-  例えば Wanderlust なんかで Maildir を直接見にいくと Emacs の反応があまり芳しくない.</p>
-<p>以前 <a href="http://gihyo.jp/admin/serial/01/ubuntu-recipe/0247">第247回 Offlineimap＋Dovecotによる快適メール環境：Ubuntu Weekly Recipe</a> なんて記事を書いた。
-  その時は offlineimap を使っていたのだけれども</p>
-<ul>
-  <li>遅い。特に 2014 年あたりから Gmail の同期が体感できるレベルで遅くなった</li>
-  <li>偶に block するし、imap の接続数が酷い事になる。</li>
+
+<p>
+最近の MUA は多かれ少なかれ IMAP 接続でも手元にメールを持ってくるので,
+このメールの重複をなんとかしたいのだけれども,
+例えば Wanderlust なんかで Maildir を直接見にいくと Emacs の反応があまり芳しくない.
+</p>
+
+<p>
+以前 <a href="http://gihyo.jp/admin/serial/01/ubuntu-recipe/0247">第247回 Offlineimap＋Dovecotによる快適メール環境：Ubuntu Weekly Recipe</a> なんて記事を書いた。その時は offlineimap を使っていたのだけれども
+</p>
+<ul class="org-ul">
+<li>遅い。特に 2014 年あたりから Gmail の同期が体感できるレベルで遅くなった</li>
+<li>偶に block するし、imap の接続数が酷い事になる。ということで、2015 年から <a href="http://isync.sourceforge.net/">isync: free IMAP and MailDir mailbox synchronizer</a> に移行した。</li>
 </ul>
-<p>ということで、2015 年から <a href="http://isync.sourceforge.net/">isync: free IMAP and MailDir mailbox synchronizer</a> に移行した。</p>
-<h3><a id="mbsync/isync"><span class='anchor'>_</span></a>mbsync/isync</h3>
-<p>isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。</p>
-<h4><a id="インストール"><span class='anchor'>_</span></a>インストール</h4>
-<p>実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。</p>
+</div>
+<div id="outline-container-org4f6a940" class="outline-3">
+<h3 id="org4f6a940">mbsync/isync</h3>
+<div class="outline-text-3" id="text-org4f6a940">
+<p>
+isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
+</p>
+</div>
+<div id="outline-container-orga578fe8" class="outline-4">
+<h4 id="orga578fe8">インストール</h4>
+<div class="outline-text-4" id="text-orga578fe8">
+<p>
+実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
+</p>
 <pre class="example">
 $ sudo apt-get install isync
 </pre>
-<p>apt 万歳</p>
-<h4><a id="設定"><span class='anchor'>_</span></a>設定</h4>
-<p>設定ファイルは <code>~/.mbsyncrc</code>.
-  設定例は以下:</p>
-<ul>
-  <li><code>~/Maildir/</code> 以下にサーバのメールを同期する</li>
-  <li><code>~/Maildir/INBOX.mobile.XXX</code> に imap.mobile.com のメールを同期.
-    <ul>
-      <li>明示的に <code>Pattern</code> を指定することで、指定ディレクトリ以外を同期しないことにする</li>
-    </ul>
-  </li>
-  <li><code>~/Maildir/INBOX.Gmail.XXX</code> に Gmail のメールを同期
-    <ul>
-      <li>明示的に <code>Pattern</code> を指定することで、指定ディレクトリ以外を同期しないことにする</li>
-      <li><code>[Gmail]/</code> というラベルを上手く扱えないので、同期チャンネルを複数設定することで対応
-        <ul>
-          <li>今のところ SPAM 堕ちしたメールの確認のためだけに <code>~/Maildir/INBOX.Gmail.Junk</code> のみ確認している</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><code>~/Maildir/INBOX</code> に <code>work.example.com</code> のメールを同期
-    <ul>
-      <li><code>work.example.com</code> メールサーバのディレクトリが <code>work/2014</code> 等と &#8220;/&#8221; 区切りになっているので <code>Flatten: .</code> で
-        <code>INBOX.work.2014</code> 等に変換する。そのために <code>MaildirStore</code> を複数設定している</li>
-      <li><code>Pattern: * !*mobile* !*Gmail*</code> で同期から除外する <code>Maildir</code> を指定する</li>
-    </ul>
-  </li>
-  <li>PassCmd で gpg 暗号化した netrc 形式のファイルからパスワードを取得している.
-    <ul>
-      <li>これ、User なんかにも使えないかなぁ、とか思ったり</li>
-    </ul>
-  </li>
+<p>
+apt 万歳
+</p>
+</div>
+</div>
+<div id="outline-container-org69346e8" class="outline-4">
+<h4 id="org69346e8">設定</h4>
+<div class="outline-text-4" id="text-org69346e8">
+<p>
+設定ファイルは <code>~/.mbsyncrc</code>.
+設定例は以下:
+</p>
+<ul class="org-ul">
+<li><code>~/Maildir/</code> 以下にサーバのメールを同期する</li>
+<li><code>~/Maildir/INBOX.mobile.XXX</code> に imap.mobile.com のメールを同期.
+<ul class="org-ul">
+<li>明示的に <code>Pattern</code> を指定することで、指定ディレクトリ以外を同期しないことにする</li>
+</ul></li>
+<li><code>~/Maildir/INBOX.Gmail.XXX</code> に Gmail のメールを同期
+<ul class="org-ul">
+<li>明示的に <code>Pattern</code> を指定することで、指定ディレクトリ以外を同期しないことにする</li>
+<li><code>[Gmail]/</code> というラベルを上手く扱えないので、同期チャンネルを複数設定することで対応
+<ul class="org-ul">
+<li>今のところ SPAM 堕ちしたメールの確認のためだけに <code>~/Maildir/INBOX.Gmail.Junk</code> のみ確認している</li>
+</ul></li>
+</ul></li>
+<li><code>~/Maildir/INBOX</code> に <code>work.example.com</code> のメールを同期
+<ul class="org-ul">
+<li><code>work.example.com</code> メールサーバのディレクトリが <code>work/2014</code> 等と "/" 区切りになっているので <code>Flatten: .</code> で
+<code>INBOX.work.2014</code> 等に変換する。そのために <code>MaildirStore</code> を複数設定している</li>
+<li><code>Pattern: * !*mobile* !*Gmail*</code> で同期から除外する <code>Maildir</code> を指定する</li>
+</ul></li>
+<li>PassCmd で gpg 暗号化した netrc 形式のファイルからパスワードを取得している.
+<ul class="org-ul">
+<li>これ、User なんかにも使えないかなぁ、とか思ったり今のところ特に使用に際して困った事はおきていない。</li>
+</ul></li>
 </ul>
-<p>今のところ特に使用に際して困った事はおきていない。</p>
-<div class="highlight"><pre><span></span>IMAPAccount<span class="w"> </span>mobile<span class="w"></span>
-Host<span class="w"> </span>mobile.example.com<span class="w"></span>
-<span class="k">User</span><span class="w"> </span>TheMobileUserAccount<span class="w"></span>
-PassCmd<span class="w"> </span>&quot;echo<span class="w"> </span>$&#123;PASSWORD:-$(gpg<span class="w"> </span>--no-tty<span class="w"> </span>-qd<span class="w"> </span>~/.authinfo.gpg<span class="w"> </span>|<span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span>&#39;s,^machine<span class="w"> </span>mobile.example.com<span class="w"> </span>.*password<span class="w"> </span>\\\([^<span class="w"> </span>]*\\)<span class="w"> </span><span class="k">port</span>.*,\\1,p&#39;)}&quot;<span class="w"></span>
-<span class="k">Port</span><span class="w"> </span><span class="m">993</span><span class="w"></span>
-UseIMAPS<span class="w"> </span>yes<span class="w"></span>
-RequireSSL<span class="w"> </span>yes<span class="w"></span>
-UseTLSv1.2<span class="w"> </span>yes<span class="w"></span>
-CertificateFile<span class="w"> </span>/etc/ssl/certs/ca-certificates.crt<span class="w"></span>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">IMAPAccount</span> <span class="n">mobile</span>
+<span class="n">Host</span> <span class="n">mobile</span>.<span class="n">example</span>.<span class="n">com</span>
+<span class="n">User</span> <span class="n">TheMobileUserAccount</span>
+<span class="n">PassCmd</span> <span class="s2">"echo $&amp;#123;PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine mobile.example.com .*password \\\([^ ]*\\) port.*,\\1,p')&amp;$125;"</span>
+<span class="n">Port</span> <span class="m">993</span>
+<span class="n">UseIMAPS</span> <span class="n">yes</span>
+<span class="n">RequireSSL</span> <span class="n">yes</span>
+<span class="n">UseTLSv1</span>.<span class="m">2</span> <span class="n">yes</span>
+<span class="n">CertificateFile</span> /<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span>
 
-IMAPAccount<span class="w"> </span>work<span class="w"></span>
-Host<span class="w"> </span>work.example.com<span class="w"></span>
-<span class="k">User</span><span class="w"> </span>TheWorkUserAccount<span class="w"></span>
-PassCmd<span class="w"> </span>&quot;echo<span class="w"> </span>$&#123;PASSWORD:-$(gpg<span class="w"> </span>--no-tty<span class="w"> </span>-qd<span class="w"> </span>~/.authinfo.gpg<span class="w"> </span>|<span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span>&#39;s,^machine<span class="w"> </span>work.example.com<span class="w"> </span>.*password<span class="w"> </span>\\\([^<span class="w"> </span>]*\\)<span class="w"> </span><span class="k">port</span>.*,\\1,p&#39;)}&quot;<span class="w"></span>
-<span class="k">Port</span><span class="w"> </span><span class="m">993</span><span class="w"></span>
-UseIMAPS<span class="w"> </span>yes<span class="w"></span>
-RequireSSL<span class="w"> </span>yes<span class="w"></span>
-UseTLSv1.2<span class="w"> </span>yes<span class="w"></span>
-CertificateFile<span class="w"> </span>/etc/ssl/certs/ca-certificates.crt<span class="w"></span>
+<span class="n">IMAPAccount</span> <span class="n">work</span>
+<span class="n">Host</span> <span class="n">work</span>.<span class="n">example</span>.<span class="n">com</span>
+<span class="n">User</span> <span class="n">TheWorkUserAccount</span>
+<span class="n">PassCmd</span> <span class="s2">"echo $&amp;#123;PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine work.example.com .*password \\\([^ ]*\\) port.*,\\1,p')&amp;$125;"</span>
+<span class="n">Port</span> <span class="m">993</span>
+<span class="n">UseIMAPS</span> <span class="n">yes</span>
+<span class="n">RequireSSL</span> <span class="n">yes</span>
+<span class="n">UseTLSv1</span>.<span class="m">2</span> <span class="n">yes</span>
+<span class="n">CertificateFile</span> /<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span>
 
-IMAPAccount<span class="w"> </span>gmail<span class="w"></span>
-Host<span class="w"> </span>imap.gmail.com<span class="w"></span>
-<span class="k">User</span><span class="w"> </span>GmailMailAddress<span class="w"></span>
-PassCmd<span class="w"> </span>&quot;echo<span class="w"> </span>$&#123;PASSWORD:-$(gpg<span class="w"> </span>--no-tty<span class="w"> </span>-qd<span class="w"> </span>~/.authinfo.gpg<span class="w"> </span>|<span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span>&#39;s,^machine<span class="w"> </span>imap.gmail.com<span class="w"> </span>.*password<span class="w"> </span>\\\([^<span class="w"> </span>]*\\)<span class="w"> </span><span class="k">port</span>.*,\\1,p&#39;)}&quot;<span class="w"></span>
-<span class="k">Port</span><span class="w"> </span><span class="m">993</span><span class="w"></span>
-UseIMAPS<span class="w"> </span>yes<span class="w"></span>
-RequireSSL<span class="w"> </span>yes<span class="w"></span>
-UseTLSv1.2<span class="w"> </span>yes<span class="w"></span>
-CertificateFile<span class="w"> </span>/etc/ssl/certs/ca-certificates.crt<span class="w"></span>
+<span class="n">IMAPAccount</span> <span class="n">gmail</span>
+<span class="n">Host</span> <span class="n">imap</span>.<span class="n">gmail</span>.<span class="n">com</span>
+<span class="n">User</span> <span class="n">GmailMailAddress</span>
+<span class="n">PassCmd</span> <span class="s2">"echo $&amp;#123;PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine imap.gmail.com .*password \\\([^ ]*\\) port.*,\\1,p')&amp;$125;"</span>
+<span class="n">Port</span> <span class="m">993</span>
+<span class="n">UseIMAPS</span> <span class="n">yes</span>
+<span class="n">RequireSSL</span> <span class="n">yes</span>
+<span class="n">UseTLSv1</span>.<span class="m">2</span> <span class="n">yes</span>
+<span class="n">CertificateFile</span> /<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span>
 
-IMAPStore<span class="w"> </span>work-remote<span class="w"></span>
-Account<span class="w"> </span>work<span class="w"></span>
-UseNamespace<span class="w"> </span>no<span class="w"></span>
+<span class="n">IMAPStore</span> <span class="n">work</span>-<span class="n">remote</span>
+<span class="n">Account</span> <span class="n">work</span>
+<span class="n">UseNamespace</span> <span class="n">no</span>
 
-IMAPStore<span class="w"> </span>work-remote<span class="w"></span>
-Account<span class="w"> </span>work<span class="w"></span>
+<span class="n">IMAPStore</span> <span class="n">work</span>-<span class="n">remote</span>
+<span class="n">Account</span> <span class="n">work</span>
 
-IMAPStore<span class="w"> </span>gmail-remote<span class="w"></span>
-Account<span class="w"> </span>gmail<span class="w"></span>
-UseNamespace<span class="w"> </span>yes<span class="w"></span>
+<span class="n">IMAPStore</span> <span class="n">gmail</span>-<span class="n">remote</span>
+<span class="n">Account</span> <span class="n">gmail</span>
+<span class="n">UseNamespace</span> <span class="n">yes</span>
 
-MaildirStore<span class="w"> </span>local<span class="w"></span>
-Path<span class="w"> </span>~/Maildir/<span class="w"></span>
-Inbox<span class="w"> </span>~/Maildir/INBOX<span class="w"></span>
+<span class="n">MaildirStore</span> <span class="n">local</span>
+<span class="n">Path</span> ~/<span class="n">Maildir</span>/
+<span class="n">Inbox</span> ~/<span class="n">Maildir</span>/<span class="n">INBOX</span>
 
-MaildirStore<span class="w"> </span>work-local<span class="w"></span>
-Path<span class="w"> </span>~/Maildir/<span class="w"></span>
-Inbox<span class="w"> </span>~/Maildir/INBOX<span class="w"></span>
-Flatten<span class="w"> </span>.<span class="w"></span>
+<span class="n">MaildirStore</span> <span class="n">work</span>-<span class="n">local</span>
+<span class="n">Path</span> ~/<span class="n">Maildir</span>/
+<span class="n">Inbox</span> ~/<span class="n">Maildir</span>/<span class="n">INBOX</span>
+<span class="n">Flatten</span> .
 
-Channel<span class="w"> </span>mobile<span class="w"></span>
-Master<span class="w"> </span>:mobile-remote:<span class="w"></span>
-Slave<span class="w"> </span>:local:INBOX.mobile.<span class="w"></span>
-Patterns<span class="w"> </span>INBOX<span class="w"> </span>Junk<span class="w"> </span>Archives<span class="w"> </span>Sent<span class="w"> </span>Drafts<span class="w"> </span>Trash<span class="w"></span>
-Create<span class="w"> </span>Both<span class="w"></span>
-Expunge<span class="w"> </span>Both<span class="w"></span>
-Sync<span class="w"> </span><span class="no">all</span><span class="w"></span>
-SyncState<span class="w"> </span>*<span class="w"></span>
+<span class="n">Channel</span> <span class="n">mobile</span>
+<span class="n">Master</span> :<span class="n">mobile</span>-<span class="n">remote</span>:
+<span class="n">Slave</span> :<span class="n">local</span>:<span class="n">INBOX</span>.<span class="n">mobile</span>.
+<span class="n">Patterns</span> <span class="n">INBOX</span> <span class="n">Junk</span> <span class="n">Archives</span> <span class="n">Sent</span> <span class="n">Drafts</span> <span class="n">Trash</span>
+<span class="n">Create</span> <span class="n">Both</span>
+<span class="n">Expunge</span> <span class="n">Both</span>
+<span class="n">Sync</span> <span class="n">all</span>
+<span class="n">SyncState</span> *
 
-Channel<span class="w"> </span>gmail<span class="w"></span>
-Master<span class="w"> </span>:gmail-remote:<span class="w"></span>
-Slave<span class="w"> </span>:local:INBOX.Gmail.<span class="w"></span>
-Patterns<span class="w"> </span>INBOX<span class="w"></span>
-Create<span class="w"> </span>Both<span class="w"></span>
-Expunge<span class="w"> </span>Both<span class="w"></span>
-Sync<span class="w"> </span><span class="no">all</span><span class="w"></span>
-SyncState<span class="w"> </span>*<span class="w"></span>
+<span class="n">Channel</span> <span class="n">gmail</span>
+<span class="n">Master</span> :<span class="n">gmail</span>-<span class="n">remote</span>:
+<span class="n">Slave</span> :<span class="n">local</span>:<span class="n">INBOX</span>.<span class="n">Gmail</span>.
+<span class="n">Patterns</span> <span class="n">INBOX</span>
+<span class="n">Create</span> <span class="n">Both</span>
+<span class="n">Expunge</span> <span class="n">Both</span>
+<span class="n">Sync</span> <span class="n">all</span>
+<span class="n">SyncState</span> *
 
-Channel<span class="w"> </span>gmail-junk<span class="w"></span>
-Master<span class="w"> </span>&quot;:gmail-remote:[Gmail]/&amp;j,dg0TDhMPww6w-&quot;<span class="w"></span>
-Slave<span class="w"> </span>:local:INBOX.Gmail.Junk<span class="w"></span>
-Patterns<span class="w"> </span>*<span class="w"></span>
-Create<span class="w"> </span>Both<span class="w"></span>
-Expunge<span class="w"> </span>Both<span class="w"></span>
-Sync<span class="w"> </span><span class="no">all</span><span class="w"></span>
-SyncState<span class="w"> </span>*<span class="w"></span>
+<span class="n">Channel</span> <span class="n">gmail</span>-<span class="n">junk</span>
+<span class="n">Master</span> <span class="s2">":gmail-remote:[Gmail]/&amp;j,dg0TDhMPww6w-"</span>
+<span class="n">Slave</span> :<span class="n">local</span>:<span class="n">INBOX</span>.<span class="n">Gmail</span>.<span class="n">Junk</span>
+<span class="n">Patterns</span> *
+<span class="n">Create</span> <span class="n">Both</span>
+<span class="n">Expunge</span> <span class="n">Both</span>
+<span class="n">Sync</span> <span class="n">all</span>
+<span class="n">SyncState</span> *
 
-Channel<span class="w"> </span>work<span class="w"></span>
-Master<span class="w"> </span>:work-remote:<span class="w"></span>
-Slave<span class="w"> </span>:work-local:<span class="w"></span>
-Patterns<span class="w"> </span>*<span class="w"> </span>!*mobile*<span class="w"> </span>!*Gmail*<span class="w"></span>
-Create<span class="w"> </span>Both<span class="w"></span>
-Expunge<span class="w"> </span>Both<span class="w"></span>
-Sync<span class="w"> </span><span class="no">all</span><span class="w"></span>
-SyncState<span class="w"> </span>*<span class="w"></span>
-</pre></div>
-<p>上手く設定できているなら</p>
+<span class="n">Channel</span> <span class="n">work</span>
+<span class="n">Master</span> :<span class="n">work</span>-<span class="n">remote</span>:
+<span class="n">Slave</span> :<span class="n">work</span>-<span class="n">local</span>:
+<span class="n">Patterns</span> * !*<span class="n">mobile</span>* !*<span class="n">Gmail</span>*
+<span class="n">Create</span> <span class="n">Both</span>
+<span class="n">Expunge</span> <span class="n">Both</span>
+<span class="n">Sync</span> <span class="n">all</span>
+<span class="n">SyncState</span> *</code></pre></figure>
+<p>
+上手く設定できているなら
+</p>
 <pre class="example">
 mbsync -l mobile
 </pre>
-<p>などとして、同期する <code>Maildir</code> を確認すると良い。
-  リモートとローカルでどういうマッピングがされているかわかるだろう。
-  25万通(6.5G)の同期にだいたい 3 時間ぐらい。
-  回線速度に依存するだろうけれど、offlineimap より目に見えて速い(気がする)。
-  また、IMAP Pipeline で処理されているので、サーバ上の IMAP connection の数は 1 つのみだった。</p>
-<h4><a id="cron での動作"><span class='anchor'>_</span></a>cron での動作</h4>
-<p>認証に GPG を使っており、認証に Gnome Keyring を用いているので
-  必要な環境変数を読み込んでから実行するようにする.
-  先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意:</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-sleep <span class="m">5</span>
-<span class="c1"># Export the dbus session address on startup so it can be used by cron</span>
-touch <span class="nv">$HOME</span>/.Xdbus
-chmod <span class="m">600</span> <span class="nv">$HOME</span>/.Xdbus
-env <span class="p">|</span> grep DBUS_SESSION_BUS_ADDRESS &gt; <span class="nv">$HOME</span>/.Xdbus
-env <span class="p">|</span> grep GPG_AGENT_INFO &gt;&gt; <span class="nv">$HOME</span>/.Xdbus
-<span class="nb">echo</span> <span class="s1">&#39;export DBUS_SESSION_BUS_ADDRESS&#39;</span> &gt;&gt; <span class="nv">$HOME</span>/.Xdbus
-<span class="nb">echo</span> <span class="s1">&#39;export GPG_AGENT_INFO&#39;</span> &gt;&gt; <span class="nv">$HOME</span>/.Xdbus
-</pre></div>
-<p><code>~/.config/autostart</code> 以下に適当な名前で</p>
-<div class="highlight"><pre><span></span>[Desktop<span class="w"> </span>Entry]<span class="w"></span>
-Type=Application<span class="w"></span>
-Exec=/home/uwabami/.mua/export_x_info.sh<span class="w"></span>
-Hidden=false<span class="w"></span>
-NoDisplay=false<span class="w"></span>
-X-GNOME-Autostart-enabled=true<span class="w"></span>
-Name=Xdbus<span class="w"> </span>infomation<span class="w"> </span>exporter<span class="w"></span>
-Comment=Xdbus<span class="w"> </span>infomation<span class="w"> </span>exporter<span class="w"></span>
-</pre></div>
-<p>を用意しておく.</p>
-<p>あとは cron 実行時に <code>~/.Xdbus</code> を include するようにしておけば,
-  必要に応じて GnomeKeyring による認証が行なわれる.
-  cron で実行されるスクリプトは, 例えば</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
-<span class="c1"># -*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
-<span class="c1">################################################################################</span>
-<span class="c1"># for personal settings</span>
+<p>
+などとして、同期する <code>Maildir</code> を確認すると良い。リモートとローカルでどういうマッピングがされているかわかるだろう。
+25万通(6.5G)の同期にだいたい 3 時間ぐらい。回線速度に依存するだろうけれど、offlineimap より目に見えて速い(気がする)。また、IMAP Pipeline で処理されているので、サーバ上の IMAP connection の数は 1 つのみだった。
+</p>
+</div>
+</div>
+<div id="outline-container-org0fca09b" class="outline-4">
+<h4 id="org0fca09b">cron での動作</h4>
+<div class="outline-text-4" id="text-org0fca09b">
+<p>
+認証に GPG を使っており、認証に Gnome Keyring を用いているので必要な環境変数を読み込んでから実行するようにする.
+先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意:
+</p>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/bash</span>
+<span class="nb">sleep </span>5
+<span class="c"># Export the dbus session address on startup so it can be used by cron</span>
+<span class="nb">touch</span> <span class="nv">$HOME</span>/.Xdbus
+<span class="nb">chmod </span>600 <span class="nv">$HOME</span>/.Xdbus
+<span class="nb">env</span> | <span class="nb">grep </span>DBUS_SESSION_BUS_ADDRESS <span class="o">&gt;</span> <span class="nv">$HOME</span>/.Xdbus
+<span class="nb">env</span> | <span class="nb">grep </span>GPG_AGENT_INFO <span class="o">&gt;&gt;</span> <span class="nv">$HOME</span>/.Xdbus
+<span class="nb">echo</span> <span class="s1">'export DBUS_SESSION_BUS_ADDRESS'</span> <span class="o">&gt;&gt;</span> <span class="nv">$HOME</span>/.Xdbus
+<span class="nb">echo</span> <span class="s1">'export GPG_AGENT_INFO'</span> <span class="o">&gt;&gt;</span> <span class="nv">$HOME</span>/.Xdbus</code></pre></figure>
+<p>
+<code>~/.config/autostart</code> 以下に適当な名前で
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf">[<span class="n">Desktop</span> <span class="n">Entry</span>]
+<span class="n">Type</span>=<span class="n">Application</span>
+<span class="n">Exec</span>=/<span class="n">home</span>/<span class="n">uwabami</span>/.<span class="n">mua</span>/<span class="n">export_x_info</span>.<span class="n">sh</span>
+<span class="n">Hidden</span>=<span class="n">false</span>
+<span class="n">NoDisplay</span>=<span class="n">false</span>
+<span class="n">X</span>-<span class="n">GNOME</span>-<span class="n">Autostart</span>-<span class="n">enabled</span>=<span class="n">true</span>
+<span class="n">Name</span>=<span class="n">Xdbus</span> <span class="n">infomation</span> <span class="n">exporter</span>
+<span class="n">Comment</span>=<span class="n">Xdbus</span> <span class="n">infomation</span> <span class="n">exporter</span></code></pre></figure>
+<p>
+を用意しておく.
+</p>
+
+<p>
+あとは cron 実行時に <code>~/.Xdbus</code> を include するようにしておけば,
+必要に応じて GnomeKeyring による認証が行なわれる.
+cron で実行されるスクリプトは, 例えば
+</p>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/sh</span>
+<span class="c"># -*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
+<span class="c">################################################################################</span>
+<span class="c"># for personal settings</span>
 <span class="nv">PID</span><span class="o">=</span>~/Maildir/mbsync.pid
 <span class="nv">CONF</span><span class="o">=</span>~/.mbsyncrc
-<span class="c1"># for gnome-keyring:</span>
-. <span class="si">$&#123;</span><span class="nv">HOME</span><span class="si">}</span>/.Xdbus
-<span class="c1"># check network is avaliable</span>
-nm-online -x  <span class="m">2</span>&gt;/dev/null <span class="o">||</span> <span class="nb">exit</span> <span class="m">0</span>
-<span class="c1"># check another offlineimap</span>
-timelimit -T <span class="m">300</span> -t <span class="m">300</span> mbsync -c <span class="nv">$CONF</span> -a <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="nb">exit</span> <span class="m">0</span>
-</pre></div>
-<p>とか。mbsync 自体の timeout や PID  管理ができないので、 <code>timelinit</code> コマンドで処理をするようにしている。
-  実際は、二回目以降の同期は(回線速度に依存するだろうけれど) 20 秒ぐらい。</p>
-<h3><a id="dovecot"><span class='anchor'>_</span></a>dovecot</h3>
-<h4><a id="インストール"><span class='anchor'>_</span></a>インストール</h4>
-<p>最低限 IMAP での接続ができれば良いので</p>
+<span class="c"># for gnome-keyring:</span>
+<span class="nb">.</span> <span class="nv">$&amp;</span><span class="c">#123;HOME&amp;$125;/.Xdbus</span>
+<span class="c"># check network is avaliable</span>
+nm-online <span class="nt">-x</span>  2&gt;/dev/null <span class="o">||</span> <span class="nb">exit </span>0
+<span class="c"># check another offlineimap</span>
+timelimit <span class="nt">-T</span> 300 <span class="nt">-t</span> 300 mbsync <span class="nt">-c</span> <span class="nv">$CONF</span> <span class="nt">-a</span> 2&gt;&amp;1 <span class="o">||</span> <span class="nb">exit </span>0</code></pre></figure>
+<p>
+とか。mbsync 自体の timeout や PID  管理ができないので、 <code>timelinit</code> コマンドで処理をするようにしている。実際は、二回目以降の同期は(回線速度に依存するだろうけれど) 20 秒ぐらい。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2d5857a" class="outline-3">
+<h3 id="org2d5857a">dovecot</h3>
+<div class="outline-text-3" id="text-org2d5857a">
+</div>
+<div id="outline-container-org222ca89" class="outline-4">
+<h4 id="org222ca89">インストール</h4>
+<div class="outline-text-4" id="text-org222ca89">
+<p>
+最低限 IMAP での接続ができれば良いので
+</p>
 <pre class="example">
 % sudo apt-get install dovecot-imapd
 </pre>
-<p>apt 万歳</p>
-<h4><a id="設定"><span class='anchor'>_</span></a>設定</h4>
-<p>最低限の設定として、</p>
-<ul>
-  <li>localhost で起動. 認証は PAM に任せる(login パスワードと同じ)</li>
-  <li>Maildir 形式で mbsync(もしくは offlineimap)で同期したMaildirを読む.</li>
-  <li>IMAP もしくは IMAP over SSL のみ</li>
+<p>
+apt 万歳
+</p>
+</div>
+</div>
+<div id="outline-container-org0e0c196" class="outline-4">
+<h4 id="org0e0c196">設定</h4>
+<div class="outline-text-4" id="text-org0e0c196">
+<p>
+最低限の設定として、
+</p>
+<ul class="org-ul">
+<li>localhost で起動. 認証は PAM に任せる(login パスワードと同じ)</li>
+<li>Maildir 形式で mbsync(もしくは offlineimap)で同期したMaildirを読む.</li>
+<li>IMAP もしくは IMAP over SSL のみための設定を行なう</li>
 </ul>
-<p>ための設定を行なう</p>
-<p>以下、設定ファイル中のコメント行を除いた部分だけを記載しているので注意
-  (コメント消すなんてとんでもない!)。</p>
-<p>先ず待受サーバ。
-  どの IP アドレスで待ち受けるかは <code>/etc/dovecot/dovecot.conf</code> にあるので</p>
-<div class="highlight"><pre><span></span>...<span class="w"></span>
-listen<span class="w"> </span>=<span class="w"> </span><span class="mf">127.0.0.1</span><span class="w"></span>
-...<span class="w"></span>
-</pre></div>
-<p>あたりを修正しておく。</p>
-<p>認証は
-  <code>/etc/dovecot/conf.d/10-auth.conf</code> 内で</p>
-<div class="highlight"><pre><span></span>disable_plain_text_auth<span class="w"> </span>=<span class="w"> </span>no<span class="w"></span>
-auth_mechanisms<span class="w"> </span>=<span class="w"> </span>plain<span class="w"></span>
-!include<span class="w"> </span>auth-system.conf.ext<span class="w"></span>
-</pre></div>
-<p>を有効に。include されている auth-system.conf.ext の中身は</p>
-<div class="highlight"><pre><span></span>passdb<span class="w"> </span>&#123;<span class="w"></span>
-<span class="w">  </span>driver<span class="w"> </span>=<span class="w"> </span>pam<span class="w"></span>
-}<span class="w"></span>
-userdb<span class="w"> </span>&#123;<span class="w"></span>
-<span class="w">  </span>driver<span class="w"> </span>=<span class="w"> </span>passwd<span class="w"></span>
-}<span class="w"></span>
-</pre></div>
-<p>だけが有効。これで pam 経由でパスワードログインするようになる.</p>
-<p>次に Maildir の設定。 <code>/etc/dovecot/conf.d/10-mail.conf</code> 内で</p>
-<div class="highlight"><pre><span></span>mail_location<span class="w"> </span>=<span class="w"> </span>maildir:%h/Maildir:INBOX=%h/Maildir/INBOX:LAYOUT=fs<span class="w"></span>
-namespace<span class="w"> </span>inbox<span class="w"> </span>&#123;<span class="w"></span>
-<span class="w">  </span>inbox<span class="w"> </span>=<span class="w"> </span>yes<span class="w"></span>
-}<span class="w"></span>
-</pre></div>
-<p>あたりを修正しておく。</p>
-<p>最後に IMAP over SSL の設定。 <code>/etc/dovecot/conf.d/10-ssl.conf</code> で証明書の設定をする:</p>
-<div class="highlight"><pre><span></span>ssl_cert<span class="w"> </span>=<span class="w"> </span>&lt;/etc/ssl/private/ssl-cert-dovecot.pem<span class="w"></span>
-ssl_key<span class="w"> </span>=<span class="w"> </span>&lt;/etc/ssl/private/ssl-cert-dovecot.key<span class="w"></span>
-ssl_protocols<span class="w"> </span>=<span class="w"> </span>!SSLv2<span class="w"> </span>!SSLv3<span class="w"></span>
-</pre></div>
-<p>その後に <code>/etc/dovecot/conf.d/10-master.conf</code> 内の <code>imap-login</code> 部分を修正</p>
-<div class="highlight"><pre><span></span>service<span class="w"> </span>imap-login<span class="w"> </span>&#123;<span class="w"></span>
-<span class="w">  </span>inet_listener<span class="w"> </span>imap<span class="w"> </span>&#123;<span class="w"></span>
-<span class="w">    </span><span class="k">port</span><span class="w"> </span>=<span class="w"> </span><span class="m">0</span><span class="w"></span>
-<span class="w">    </span>ssl<span class="w"> </span>=<span class="w"> </span>no<span class="w"></span>
-<span class="w">  </span>}<span class="w"></span>
-<span class="w">  </span>inet_listener<span class="w"> </span>imaps<span class="w"> </span>&#123;<span class="w"></span>
-<span class="w">    </span><span class="k">port</span><span class="w"> </span>=<span class="w"> </span><span class="m">993</span><span class="w"></span>
-<span class="w">    </span>ssl<span class="w"> </span>=<span class="w"> </span>yes<span class="w"></span>
-<span class="w">  </span>}<span class="w"></span>
-}<span class="w"></span>
-</pre></div>
-<p>これで再起動すると <code>/etc/ssl/private</code> に置いた SSL 証明書を使って <code>127.0.1.1:993</code> で IMAP サーバが起動する。Listen を 127.0.0.1 に絞るなら SSL でのアクセスは不要かもしれない。</p>
-<h3><a id="以下, obsolete"><span class='anchor'>_</span></a>以下, obsolete</h3>
-<p>検索は mu (maildir-utils) を使うようになったし,
-  メールの同期には mbsync を使うようになったので, 以下は昔のお話.</p>
-<h4><a id="検索: Solr"><span class='anchor'>_</span></a>検索: Solr</h4>
-<p>Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。
-  ここでは Solr を試してみる</p>
-<p>とりあえず jetty で solar を動かすことに:</p>
+
+<p>
+以下、設定ファイル中のコメント行を除いた部分だけを記載しているので注意
+(コメント消すなんてとんでもない!)。
+</p>
+
+<p>
+先ず待受サーバ。どの IP アドレスで待ち受けるかは <code>/etc/dovecot/dovecot.conf</code> にあるので
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf">...
+<span class="n">listen</span> = <span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span>
+...</code></pre></figure>
+<p>
+あたりを修正しておく。
+</p>
+
+<p>
+認証は
+<code>/etc/dovecot/conf.d/10-auth.conf</code> 内で
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">disable_plain_text_auth</span> = <span class="n">no</span>
+<span class="n">auth_mechanisms</span> = <span class="n">plain</span>
+!<span class="n">include</span> <span class="n">auth</span>-<span class="n">system</span>.<span class="n">conf</span>.<span class="n">ext</span></code></pre></figure>
+<p>
+を有効に。include されている auth-system.conf.ext の中身は
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">passdb</span> &amp;<span class="c">#123;
+</span>  <span class="n">driver</span> = <span class="n">pam</span>
+&amp;$<span class="m">125</span>;
+<span class="n">userdb</span> &amp;<span class="c">#123;
+</span>  <span class="n">driver</span> = <span class="n">passwd</span>
+&amp;$<span class="m">125</span>;</code></pre></figure>
+<p>
+だけが有効。これで pam 経由でパスワードログインするようになる.
+</p>
+
+<p>
+次に Maildir の設定。 <code>/etc/dovecot/conf.d/10-mail.conf</code> 内で
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">mail_location</span> = <span class="n">maildir</span>:%<span class="n">h</span>/<span class="n">Maildir</span>:<span class="n">INBOX</span>=%<span class="n">h</span>/<span class="n">Maildir</span>/<span class="n">INBOX</span>:<span class="n">LAYOUT</span>=<span class="n">fs</span>
+<span class="n">namespace</span> <span class="n">inbox</span> &amp;<span class="c">#123;
+</span>  <span class="n">inbox</span> = <span class="n">yes</span>
+&amp;$<span class="m">125</span>;</code></pre></figure>
+<p>
+あたりを修正しておく。
+</p>
+
+<p>
+最後に IMAP over SSL の設定。 <code>/etc/dovecot/conf.d/10-ssl.conf</code> で証明書の設定をする:
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">ssl_cert</span> = &lt;/<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">private</span>/<span class="n">ssl</span>-<span class="n">cert</span>-<span class="n">dovecot</span>.<span class="n">pem</span>
+<span class="n">ssl_key</span> = &lt;/<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">private</span>/<span class="n">ssl</span>-<span class="n">cert</span>-<span class="n">dovecot</span>.<span class="n">key</span>
+<span class="n">ssl_protocols</span> = !<span class="n">SSLv2</span> !<span class="n">SSLv3</span></code></pre></figure>
+<p>
+その後に <code>/etc/dovecot/conf.d/10-master.conf</code> 内の <code>imap-login</code> 部分を修正
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">service</span> <span class="n">imap</span>-<span class="n">login</span> &amp;<span class="c">#123;
+</span>  <span class="n">inet_listener</span> <span class="n">imap</span> &amp;<span class="c">#123;
+</span>    <span class="n">port</span> = <span class="m">0</span>
+    <span class="n">ssl</span> = <span class="n">no</span>
+  &amp;$<span class="m">125</span>;
+  <span class="n">inet_listener</span> <span class="n">imaps</span> &amp;<span class="c">#123;
+</span>    <span class="n">port</span> = <span class="m">993</span>
+    <span class="n">ssl</span> = <span class="n">yes</span>
+  &amp;$<span class="m">125</span>;
+&amp;$<span class="m">125</span>;</code></pre></figure>
+<p>
+これで再起動すると <code>/etc/ssl/private</code> に置いた SSL 証明書を使って <code>127.0.1.1:993</code> で IMAP サーバが起動する。Listen を 127.0.0.1 に絞るなら SSL でのアクセスは不要かもしれない。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org313a1e6" class="outline-3">
+<h3 id="org313a1e6">以下, obsolete</h3>
+<div class="outline-text-3" id="text-org313a1e6">
+<p>
+検索は mu (maildir-utils) を使うようになったし,
+メールの同期には mbsync を使うようになったので, 以下は昔のお話.
+</p>
+</div>
+<div id="outline-container-org02e9110" class="outline-4">
+<h4 id="org02e9110">検索: Solr</h4>
+<div class="outline-text-4" id="text-org02e9110">
+<p>
+Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。ここでは Solr を試してみる
+</p>
+
+<p>
+とりあえず jetty で solar を動かすことに:
+</p>
 <pre class="example">
 % sudo aptitude -R solr-jetty dovecot-solr
 </pre>
-<p>Jetty の起動設定は <code>/etc/default/jetty8</code> にあるので</p>
-<div class="highlight"><pre><span></span>NO_START=0<span class="w"></span>
-JETTY_HOST=localhost<span class="w"></span>
-JETTY_PORT=8089<span class="w"></span>
-</pre></div>
-<p>としておく。dovecot 用の scheme.xml は <code>dovecot-solr</code> をインストールすると <code>/usr/share/dovecot/solr-scheme.xml</code> にインストールされるので、これを <code>/etc/solr/conf/scheme.xml</code> にコピー</p>
+
+<p>
+Jetty の起動設定は <code>/etc/default/jetty8</code> にあるので
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">NO_START</span>=<span class="m">0</span>
+<span class="n">JETTY_HOST</span>=<span class="n">localhost</span>
+<span class="n">JETTY_PORT</span>=<span class="m">8089</span></code></pre></figure>
+<p>
+としておく。dovecot 用の scheme.xml は <code>dovecot-solr</code> をインストールすると <code>/usr/share/dovecot/solr-scheme.xml</code> にインストールされるので、これを <code>/etc/solr/conf/scheme.xml</code> にコピー
+</p>
 <pre class="example">
 % cd /etc/solr/conf
 % sudo cp scheme.xml scheme.xml.bak
 % sudo cp /usr/share/dovecot/solr-schemex.ml scheme.xml
 </pre>
-<p>その後で <code>/etc/dovecot/conf.d/10-imap.conf</code> 内の mail_plugins 行に</p>
-<div class="highlight"><pre><span></span>mail_plugins<span class="w"> </span>=<span class="w"> </span>fts<span class="w"> </span>fts_solr<span class="w"></span>
-</pre></div>
-<p>を追加しておく。
-  IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定すれば良いのだが、この場合は <code>doveadm fts rescan -u USERNAME</code> ができない。
-  最後に <code>/etc/dovecot/conf.d/90-plugin.conf</code> で</p>
-<div class="highlight"><pre><span></span>plugin<span class="w"> </span>&#123;<span class="w"></span>
-<span class="w">  </span>fts_autoindex<span class="w"> </span>=<span class="w"> </span>yes<span class="w"></span>
-<span class="w">  </span>fts<span class="w"> </span>=<span class="w"> </span>solr<span class="w"></span>
-<span class="w">  </span>fts_solr<span class="w"> </span>=<span class="w"> </span>break-imap-search<span class="w"> </span>url=http://localhost:8089/solr/<span class="w"></span>
-}<span class="w"></span>
-</pre></div>
-<p>としておく。これで jetty8 および dovecot を再起動すると、検索が効く様になる&#8230;?</p>
-<h4><a id="検索: Solr で日本語"><span class='anchor'>_</span></a>検索: Solr で日本語</h4>
-<p><code>scheme.xml</code> の修正が必要。
-  とりあえず</p>
-<ul>
-  <li><code>/etc/solr/conf/scheme.xml</code> より <code>text_cjk</code> および <code>text_ja</code> の部分を抜き出して, dovecot の提供していた <code>scheme.xml</code> に追加</li>
-  <li><code>hdr,body,subject</code> を <code>text_cjk</code> で解析するように</li>
+<p>
+その後で <code>/etc/dovecot/conf.d/10-imap.conf</code> 内の mail<sub>plugins</sub> 行に
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">mail_plugins</span> = <span class="n">fts</span> <span class="n">fts_solr</span></code></pre></figure>
+<p>
+を追加しておく。
+IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定すれば良いのだが、この場合は <code>doveadm fts rescan -u USERNAME</code> ができない。最後に <code>/etc/dovecot/conf.d/90-plugin.conf</code> で
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">plugin</span> &amp;<span class="c">#123;
+</span>  <span class="n">fts_autoindex</span> = <span class="n">yes</span>
+  <span class="n">fts</span> = <span class="n">solr</span>
+  <span class="n">fts_solr</span> = <span class="n">break</span>-<span class="n">imap</span>-<span class="n">search</span> <span class="n">url</span>=<span class="n">http</span>://<span class="n">localhost</span>:<span class="m">8089</span>/<span class="n">solr</span>/
+&amp;$<span class="m">125</span>;</code></pre></figure>
+<p>
+としておく。これで jetty8 および dovecot を再起動すると、検索が効く様になる&#x2026;?
+</p>
+</div>
+</div>
+<div id="outline-container-orgbc1c7f6" class="outline-4">
+<h4 id="orgbc1c7f6">検索: Solr で日本語</h4>
+<div class="outline-text-4" id="text-orgbc1c7f6">
+<p>
+<code>scheme.xml</code> の修正が必要。とりあえず
+</p>
+<ul class="org-ul">
+<li><code>/etc/solr/conf/scheme.xml</code> より <code>text_cjk</code> および <code>text_ja</code> の部分を抜き出して, dovecot の提供していた <code>scheme.xml</code> に追加</li>
+<li><code>hdr,body,subject</code> を <code>text_cjk</code> で解析するようにしてみた.</li>
 </ul>
-<p>してみた.</p>
-<p>diff は以下:</p>
-<div class="highlight"><pre><span></span><span class="gd">--- solr-schema.xml 2015-05-10 20:52:33.375358006 +0900</span>
-<span class="gi">+++ schema.xml  2015-05-10 20:37:37.358195292 +0900</span>
-<span class="gu">@@ -13,6 +13,62 @@</span>
-     &lt;fieldType name=&quot;long&quot; class=&quot;solr.TrieLongField&quot; /&gt;
-     &lt;fieldType name=&quot;boolean&quot; class=&quot;solr.BoolField&quot; /&gt;
 
-<span class="gi">+    &lt;!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) --&gt;</span>
-<span class="gi">+    &lt;fieldType name=&quot;text_cjk&quot; class=&quot;solr.TextField&quot; positionIncrementGap=&quot;100&quot;&gt;</span>
-<span class="gi">+      &lt;analyzer&gt;</span>
-<span class="gi">+        &lt;tokenizer class=&quot;solr.StandardTokenizerFactory&quot;/&gt;</span>
-<span class="gi">+        &lt;!-- normalize width before bigram, as e.g. half-width dakuten combine  --&gt;</span>
-<span class="gi">+        &lt;filter class=&quot;solr.CJKWidthFilterFactory&quot;/&gt;</span>
-<span class="gi">+        &lt;!-- for any non-CJK --&gt;</span>
-<span class="gi">+        &lt;filter class=&quot;solr.LowerCaseFilterFactory&quot;/&gt;</span>
-<span class="gi">+        &lt;filter class=&quot;solr.CJKBigramFilterFactory&quot;/&gt;</span>
-<span class="gi">+      &lt;/analyzer&gt;</span>
-<span class="gi">+    &lt;/fieldType&gt;</span>
-<span class="gi">+    &lt;fieldType name=&quot;text_ja&quot; class=&quot;solr.TextField&quot; positionIncrementGap=&quot;100&quot; autoGeneratePhraseQueries=&quot;false&quot;&gt;</span>
-<span class="gi">+      &lt;analyzer&gt;</span>
-<span class="gi">+      &lt;!-- Kuromoji Japanese morphological analyzer/tokenizer (JapaneseTokenizer)</span>
-<span class="gi">+</span>
-<span class="gi">+           Kuromoji has a search mode (default) that does segmentation useful for search.  A heuristic</span>
-<span class="gi">+           is used to segment compounds into its parts and the compound itself is kept as synonym.</span>
-<span class="gi">+</span>
-<span class="gi">+           Valid values for attribute mode are:</span>
-<span class="gi">+              normal: regular segmentation</span>
-<span class="gi">+              search: segmentation useful for search with synonyms compounds (default)</span>
-<span class="gi">+            extended: same as search mode, but unigrams unknown words (experimental)</span>
-<span class="gi">+</span>
-<span class="gi">+           For some applications it might be good to use search mode for indexing and normal mode for</span>
-<span class="gi">+           queries to reduce recall and prevent parts of compounds from being matched and highlighted.</span>
-<span class="gi">+           Use &lt;analyzer type=&quot;index&quot;&gt; and &lt;analyzer type=&quot;query&quot;&gt; for this and mode normal in query.</span>
-<span class="gi">+</span>
-<span class="gi">+           Kuromoji also has a convenient user dictionary feature that allows overriding the statistical</span>
-<span class="gi">+           model with your own entries for segmentation, part-of-speech tags and readings without a need</span>
-<span class="gi">+           to specify weights.  Notice that user dictionaries have not been subject to extensive testing.</span>
-<span class="gi">+</span>
-<span class="gi">+           User dictionary attributes are:</span>
-<span class="gi">+                     userDictionary: user dictionary filename</span>
-<span class="gi">+             userDictionaryEncoding: user dictionary encoding (default is UTF-8)</span>
-<span class="gi">+</span>
-<span class="gi">+           See lang/userdict_ja.txt for a sample user dictionary file.</span>
-<span class="gi">+</span>
-<span class="gi">+           See http://wiki.apache.org/solr/JapaneseLanguageSupport for more on Japanese language support.</span>
-<span class="gi">+        --&gt;</span>
-<span class="gi">+        &lt;tokenizer class=&quot;solr.JapaneseTokenizerFactory&quot; mode=&quot;search&quot;/&gt;</span>
-<span class="gi">+        &lt;!--&lt;tokenizer class=&quot;solr.JapaneseTokenizerFactory&quot; mode=&quot;search&quot; userDictionary=&quot;lang/userdict_ja.txt&quot;/&gt;--&gt;</span>
-<span class="gi">+        &lt;!-- Reduces inflected verbs and adjectives to their base/dictionary forms (辞書形) --&gt;</span>
-<span class="gi">+        &lt;filter class=&quot;solr.JapaneseBaseFormFilterFactory&quot;/&gt;</span>
-<span class="gi">+        &lt;!-- Removes tokens with certain part-of-speech tags --&gt;</span>
-<span class="gi">+        &lt;filter class=&quot;solr.JapanesePartOfSpeechStopFilterFactory&quot; tags=&quot;lang/stoptags_ja.txt&quot; enablePositionIncrements=&quot;true&quot;/&gt;</span>
-<span class="gi">+        &lt;!-- Normalizes full-width romaji to half-width and half-width kana to full-width (Unicode NFKC subset) --&gt;</span>
-<span class="gi">+        &lt;filter class=&quot;solr.CJKWidthFilterFactory&quot;/&gt;</span>
-<span class="gi">+        &lt;!-- Removes common tokens typically not useful for search, but have a negative effect on ranking --&gt;</span>
-<span class="gi">+        &lt;filter class=&quot;solr.StopFilterFactory&quot; ignoreCase=&quot;true&quot; words=&quot;lang/stopwords_ja.txt&quot; enablePositionIncrements=&quot;true&quot; /&gt;</span>
-<span class="gi">+        &lt;!-- Normalizes common katakana spelling variations by removing any last long sound character (U+30FC) --&gt;</span>
-<span class="gi">+        &lt;filter class=&quot;solr.JapaneseKatakanaStemFilterFactory&quot; minimumLength=&quot;4&quot;/&gt;</span>
-<span class="gi">+        &lt;!-- Lower-cases romaji characters --&gt;</span>
-<span class="gi">+        &lt;filter class=&quot;solr.LowerCaseFilterFactory&quot;/&gt;</span>
-<span class="gi">+      &lt;/analyzer&gt;</span>
-<span class="gi">+    &lt;/fieldType&gt;</span>
-<span class="gi">+</span>
-     &lt;fieldType name=&quot;text&quot; class=&quot;solr.TextField&quot; positionIncrementGap=&quot;100&quot;&gt;
-       &lt;analyzer type=&quot;index&quot;&gt;
-         &lt;tokenizer class=&quot;solr.StandardTokenizerFactory&quot;/&gt;
-<span class="gu">@@ -43,14 +99,14 @@</span>
-    &lt;field name=&quot;box&quot; type=&quot;string&quot; indexed=&quot;true&quot; stored=&quot;true&quot; required=&quot;true&quot; /&gt;
-    &lt;field name=&quot;user&quot; type=&quot;string&quot; indexed=&quot;true&quot; stored=&quot;true&quot; required=&quot;true&quot; /&gt;
+<p>
+diff は以下:
+</p>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">--- solr-schema.xml 2015-05-10 20:52:33.375358006 +0900
+</span><span class="gi">+++ schema.xml  2015-05-10 20:37:37.358195292 +0900
+</span><span class="p">@@ -13,6 +13,62 @@</span>
+     &lt;fieldType name="long" class="solr.TrieLongField" /&gt;
+     &lt;fieldType name="boolean" class="solr.BoolField" /&gt;
 
-<span class="gd">-   &lt;field name=&quot;hdr&quot; type=&quot;text&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;</span>
-<span class="gd">-   &lt;field name=&quot;body&quot; type=&quot;text&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;</span>
-<span class="gi">+   &lt;field name=&quot;hdr&quot; type=&quot;text_cjk&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;</span>
-<span class="gi">+   &lt;field name=&quot;body&quot; type=&quot;text_cjk&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;</span>
++    &lt;!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) --&gt;
+<span class="gi">+    &lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;
++      &lt;analyzer&gt;
++        &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
++        &lt;!-- normalize width before bigram, as e.g. half-width dakuten combine  --&gt;
++        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;
++        &lt;!-- for any non-CJK --&gt;
++        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;
++        &lt;filter class="solr.CJKBigramFilterFactory"/&gt;
++      &lt;/analyzer&gt;
++    &lt;/fieldType&gt;
++    &lt;fieldType name="text_ja" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="false"&gt;
++      &lt;analyzer&gt;
++      &lt;!-- Kuromoji Japanese morphological analyzer/tokenizer (JapaneseTokenizer)
++
++           Kuromoji has a search mode (default) that does segmentation useful for search.  A heuristic
++           is used to segment compounds into its parts and the compound itself is kept as synonym.
++
++           Valid values for attribute mode are:
++              normal: regular segmentation
++              search: segmentation useful for search with synonyms compounds (default)
++            extended: same as search mode, but unigrams unknown words (experimental)
++
++           For some applications it might be good to use search mode for indexing and normal mode for
++           queries to reduce recall and prevent parts of compounds from being matched and highlighted.
++           Use &lt;analyzer type="index"&gt; and &lt;analyzer type="query"&gt; for this and mode normal in query.
++
++           Kuromoji also has a convenient user dictionary feature that allows overriding the statistical
++           model with your own entries for segmentation, part-of-speech tags and readings without a need
++           to specify weights.  Notice that user dictionaries have not been subject to extensive testing.
++
++           User dictionary attributes are:
++                     userDictionary: user dictionary filename
++             userDictionaryEncoding: user dictionary encoding (default is UTF-8)
++
++           See lang/userdict_ja.txt for a sample user dictionary file.
++
++           See http://wiki.apache.org/solr/JapaneseLanguageSupport for more on Japanese language support.
++        --&gt;
++        &lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search"/&gt;
++        &lt;!--&lt;tokenizer class="solr.JapaneseTokenizerFactory" mode="search" userDictionary="lang/userdict_ja.txt"/&gt;--&gt;
++        &lt;!-- Reduces inflected verbs and adjectives to their base/dictionary forms (辞書形) --&gt;
++        &lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;
++        &lt;!-- Removes tokens with certain part-of-speech tags --&gt;
++        &lt;filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt" enablePositionIncrements="true"/&gt;
++        &lt;!-- Normalizes full-width romaji to half-width and half-width kana to full-width (Unicode NFKC subset) --&gt;
++        &lt;filter class="solr.CJKWidthFilterFactory"/&gt;
++        &lt;!-- Removes common tokens typically not useful for search, but have a negative effect on ranking --&gt;
++        &lt;filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ja.txt" enablePositionIncrements="true" /&gt;
++        &lt;!-- Normalizes common katakana spelling variations by removing any last long sound character (U+30FC) --&gt;
++        &lt;filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4"/&gt;
++        &lt;!-- Lower-cases romaji characters --&gt;
++        &lt;filter class="solr.LowerCaseFilterFactory"/&gt;
++      &lt;/analyzer&gt;
++    &lt;/fieldType&gt;
++
+</span>     &lt;fieldType name="text" class="solr.TextField" positionIncrementGap="100"&gt;
+       &lt;analyzer type="index"&gt;
+         &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
+<span class="p">@@ -43,14 +99,14 @@</span>
+    &lt;field name="box" type="string" indexed="true" stored="true" required="true" /&gt;
+    &lt;field name="user" type="string" indexed="true" stored="true" required="true" /&gt;
 
-    &lt;field name=&quot;from&quot; type=&quot;text&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;
-    &lt;field name=&quot;to&quot; type=&quot;text&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;
-    &lt;field name=&quot;cc&quot; type=&quot;text&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;
-    &lt;field name=&quot;bcc&quot; type=&quot;text&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;
-<span class="gd">-   &lt;field name=&quot;subject&quot; type=&quot;text&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;</span>
-<span class="gi">+   &lt;field name=&quot;subject&quot; type=&quot;text_cjk&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;</span>
-
+-   &lt;field name="hdr" type="text" indexed="true" stored="false" /&gt;
+<span class="gd">-   &lt;field name="body" type="text" indexed="true" stored="false" /&gt;
+</span><span class="gi">+   &lt;field name="hdr" type="text_cjk" indexed="true" stored="false" /&gt;
++   &lt;field name="body" type="text_cjk" indexed="true" stored="false" /&gt;
+</span>
+    &lt;field name="from" type="text" indexed="true" stored="false" /&gt;
+    &lt;field name="to" type="text" indexed="true" stored="false" /&gt;
+    &lt;field name="cc" type="text" indexed="true" stored="false" /&gt;
+    &lt;field name="bcc" type="text" indexed="true" stored="false" /&gt;
+<span class="gd">-   &lt;field name="subject" type="text" indexed="true" stored="false" /&gt;
+</span><span class="gi">+   &lt;field name="subject" type="text_cjk" indexed="true" stored="false" /&gt;
+</span>
     &lt;!-- Used by Solr internally: --&gt;
-    &lt;field name=&quot;_version_&quot; type=&quot;long&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;
-</pre></div>
-<h4><a id="offlineimap"><span class='anchor'>_</span></a>offlineimap</h4>
-<p>(2015/05/10) 以前使っていた時のメモ。もう使わないけれど、たまに検索でココを見に来ている人がいるみたいなので、残しておくことに。
-  <a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.</p>
-<h5><a id="インストール"><span class='anchor'>_</span></a>インストール</h5>
-<p>apt万歳, ってことで.</p>
+    &lt;field name="_version_" type="long" indexed="true" stored="true"/&gt;</code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org5ddb495" class="outline-4">
+<h4 id="org5ddb495">offlineimap</h4>
+<div class="outline-text-4" id="text-org5ddb495">
+<p>
+(2015/05/10) 以前使っていた時のメモ。もう使わないけれど、たまに検索でココを見に来ている人がいるみたいなので、残しておくことに。
+<a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.
+</p>
+</div>
+<ul class="org-ul">
+<li><a id="orgbaad28b"></a>インストール<br />
+<div class="outline-text-5" id="text-orgbaad28b">
+<p>
+apt万歳, ってことで.
+</p>
 <pre class="example">
 $ sudo apt-get install offlineimap
 </pre>
-<h5><a id="設定"><span class='anchor'>_</span></a>設定</h5>
-<p>現状, 以下の通り:</p>
-<ul>
-  <li><a href="http://offlineimap.org/">OfflineIMAP</a> のメタ情報は <code>~/Mail/offlineimap</code> 以下に格納</li>
-  <li>同期するサーバは二箇所:
-    <ul>
-      <li>Main サーバのメールは <code>~/Mail/imap</code> 以下に格納.
-        <ul>
-          <li>この際, IMAP Namespace である <code>INBOX.</code> を除外して <code>Maildir</code> を作成</li>
-          <li><code>~/Mail/imap/[Gmail]</code> は同期しない</li>
-        </ul>
-      </li>
-      <li>Gmail のメールは <code>~/Mail/imap/[Gmail]/</code> 以下に格納</li>
-    </ul>
-  </li>
+</div>
+</li>
+<li><a id="orgd02171e"></a>設定<br />
+<div class="outline-text-5" id="text-orgd02171e">
+<p>
+現状, 以下の通り:
+</p>
+<ul class="org-ul">
+<li><a href="http://offlineimap.org/">OfflineIMAP</a> のメタ情報は <code>~/Mail/offlineimap</code> 以下に格納</li>
+<li>同期するサーバは二箇所:
+<ul class="org-ul">
+<li>Main サーバのメールは <code>~/Mail/imap</code> 以下に格納.
+<ul class="org-ul">
+<li>この際, IMAP Namespace である <code>INBOX.</code> を除外して <code>Maildir</code> を作成</li>
+<li><code>~/Mail/imap/[Gmail]</code> は同期しない</li>
+</ul></li>
+<li>Gmail のメールは <code>~/Mail/imap/[Gmail]/</code> 以下に格納</li>
+</ul></li>
 </ul>
-<div class="highlight"><pre><span></span><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-</span><span class="w"></span>
-<span class="c"># offlineimaprc</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># Copyright(C) 2011 Youhei SASAKI All rights reserved.</span><span class="w"></span>
-<span class="c"># $Lastupdate: 2014-07-26 18:25:07$</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;</span><span class="w"></span>
-<span class="c"># License: WTFPL</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># Code:</span><span class="w"></span>
-[general]<span class="w"></span>
-<span class="c"># メタデータの格納先</span><span class="w"></span>
-metadata<span class="w"> </span>=<span class="w"> </span>~/Mail/offlineimap<span class="w"></span>
-<span class="c"># 補助関数が定義されたファイルの置き場所</span><span class="w"></span>
-pythonfile<span class="w"> </span>=<span class="w"> </span>~/.mua/offlineimap_utils.py<span class="w"></span>
-<span class="c"># 同期するサーバの設定</span><span class="w"></span>
-accounts<span class="w"> </span>=<span class="w"> </span>Main,<span class="w"> </span>Gmail<span class="w"></span>
-<span class="c"># 同期するアカウントの数</span><span class="w"></span>
-maxsyncaccounts<span class="w"> </span>=<span class="w"> </span><span class="m">2</span><span class="w"></span>
-<span class="c"># UI の設定. cron で同期する場合には quiet の方が良い</span><span class="w"></span>
-ui<span class="w"> </span>=<span class="w"> </span>basic<span class="w"></span>
-socktimeout<span class="w"> </span>=<span class="w"> </span><span class="m">600</span><span class="w"></span>
-<span class="c"># 高速化(?)</span><span class="w"></span>
-fsync<span class="w"> </span>=<span class="w"> </span>false<span class="w"></span>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
+# offlineimaprc
+#
+# Copyright(C) 2011 Youhei SASAKI All rights reserved.
+# $Lastupdate: 2014-07-26 18:25:07$
+#
+# Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+# License: WTFPL
+#
+# Code:
+</span>[<span class="n">general</span>]
+<span class="c"># メタデータの格納先
+</span><span class="n">metadata</span> = ~/<span class="n">Mail</span>/<span class="n">offlineimap</span>
+<span class="c"># 補助関数が定義されたファイルの置き場所
+</span><span class="n">pythonfile</span> = ~/.<span class="n">mua</span>/<span class="n">offlineimap_utils</span>.<span class="n">py</span>
+<span class="c"># 同期するサーバの設定
+</span><span class="n">accounts</span> = <span class="n">Main</span>, <span class="n">Gmail</span>
+<span class="c"># 同期するアカウントの数
+</span><span class="n">maxsyncaccounts</span> = <span class="m">2</span>
+<span class="c"># UI の設定. cron で同期する場合には quiet の方が良い
+</span><span class="n">ui</span> = <span class="n">basic</span>
+<span class="n">socktimeout</span> = <span class="m">600</span>
+<span class="c"># 高速化(?)
+</span><span class="n">fsync</span> = <span class="n">false</span>
 
-<span class="c"># Gmail 用の設定: ここで設定する名前は accounts に揃える</span><span class="w"></span>
-[Account<span class="w"> </span>Gmail]<span class="w"></span>
-localrepository<span class="w"> </span>=<span class="w"> </span>LocalGmail<span class="w"></span>
-remoterepository<span class="w"> </span>=<span class="w"> </span>RemoteGmail<span class="w"></span>
-maxsize<span class="w"> </span>=<span class="w"> </span><span class="m">2000000000</span><span class="w"></span>
-status_backend<span class="w"> </span>=<span class="w"> </span>sqlite<span class="w"></span>
-<span class="c"># quick = 1 だとフラグは同期されない</span><span class="w"></span>
-<span class="c"># &#39;[Gmail]/全てのメール&#39; を同期するなら quick = 1 の方が良い?</span><span class="w"></span>
-quick<span class="w"> </span>=<span class="w"> </span><span class="m">0</span><span class="w"></span>
+<span class="c"># Gmail 用の設定: ここで設定する名前は accounts に揃える
+</span>[<span class="n">Account</span> <span class="n">Gmail</span>]
+<span class="n">localrepository</span> = <span class="n">LocalGmail</span>
+<span class="n">remoterepository</span> = <span class="n">RemoteGmail</span>
+<span class="n">maxsize</span> = <span class="m">2000000000</span>
+<span class="n">status_backend</span> = <span class="n">sqlite</span>
+<span class="c"># quick = 1 だとフラグは同期されない
+# '[Gmail]/全てのメール' を同期するなら quick = 1 の方が良い?
+</span><span class="n">quick</span> = <span class="m">0</span>
 
-[Repository<span class="w"> </span>LocalGmail]<span class="w"></span>
-<span class="c"># Gmail の手元の設定</span><span class="w"></span>
-type<span class="w"> </span>=<span class="w"> </span>Maildir<span class="w"></span>
-<span class="c"># Maildir の格納場所</span><span class="w"></span>
-localfolders<span class="w"> </span>=<span class="w"> </span>~/Mail/imap/[Gmail]<span class="w"></span>
-restoreatime<span class="w"> </span>=<span class="w"> </span>no<span class="w"></span>
-<span class="c"># IMAP のセパレータの変換: Mailbox の &quot;.&quot; が &quot;/&quot; となり,</span><span class="w"></span>
-<span class="c"># ディレクトリが作成される</span><span class="w"></span>
-sep<span class="w"> </span>=<span class="w"> </span>/<span class="w"></span>
+[<span class="n">Repository</span> <span class="n">LocalGmail</span>]
+<span class="c"># Gmail の手元の設定
+</span><span class="n">type</span> = <span class="n">Maildir</span>
+<span class="c"># Maildir の格納場所
+</span><span class="n">localfolders</span> = ~/<span class="n">Mail</span>/<span class="n">imap</span>/[<span class="n">Gmail</span>]
+<span class="n">restoreatime</span> = <span class="n">no</span>
+<span class="c"># IMAP のセパレータの変換: Mailbox の "." が "/" となり,
+# ディレクトリが作成される
+</span><span class="n">sep</span> = /
 
-[Repository<span class="w"> </span>RemoteGmail]<span class="w"></span>
-<span class="c"># Gmail との接続設定: type = IMAP でも良い?</span><span class="w"></span>
-type<span class="w"> </span>=<span class="w"> </span>Gmail<span class="w"></span>
-<span class="c"># remote&#123;pass,user}eval は offlineimap_utils.py で定義した関数</span><span class="w"></span>
-remoteusereval<span class="w"> </span>=<span class="w"> </span>get_username(&quot;imap.gmail.com&quot;)<span class="w"></span>
-remotepasseval<span class="w"> </span>=<span class="w"> </span>get_password(&quot;imap.gmail.com&quot;)<span class="w"></span>
-maxsize<span class="w"> </span>=<span class="w"> </span><span class="m">2000000000</span><span class="w"></span>
-realdelete<span class="w"> </span>=<span class="w"> </span>no<span class="w"></span>
-<span class="c"># 同時接続数. 並列実行可能なので適宜</span><span class="w"></span>
-<span class="c"># サーバに怒られない程度に</span><span class="w"></span>
-maxconnections<span class="w"> </span>=<span class="w"> </span><span class="m">5</span><span class="w"></span>
-<span class="c"># remote -&gt; local 時のフォルダ名変換(正規表現)</span><span class="w"></span>
-nametrans<span class="w"> </span>=<span class="w"> </span>lambda<span class="w"> </span>foldername:<span class="w"> </span>re.sub(&#39;^INBOX&#39;,&#39;&#39;,<span class="w"> </span>(re.sub(&#39;^\[Gmail\]/&#39;,&#39;&#39;,<span class="w"> </span>foldername)))<span class="w"></span>
-<span class="c"># 同期するフォルダの設定: Gmail 側で IMAP で表示するラベル設定しておく, でも良いかも.</span><span class="w"></span>
-folderfilter<span class="w"> </span>=<span class="w"> </span>lambda<span class="w"> </span>foldername:<span class="w"> </span>foldername<span class="w"> </span>in<span class="w"> </span>[<span class="w"></span>
-<span class="w">             </span>&#39;INBOX&#39;,<span class="w">                   </span><span class="c"># -&gt; &#39;~/Mail/imap/[Gmail]&#39; になる</span><span class="w"></span>
-<span class="w">             </span>&#39;[Gmail]/&amp;j,dg0TDhMPww6w-&#39;<span class="w"> </span><span class="c"># -&gt; &#39;~/Mail/imap/[Gmail]/&amp;j,dg0TDhMPww6w-&#39; になる</span><span class="w"></span>
-<span class="w">             </span>]<span class="w"></span>
-sslcacertfile<span class="w"> </span>=<span class="w"> </span>/etc/ssl/certs/ca-certificates.crt<span class="w"></span>
+[<span class="n">Repository</span> <span class="n">RemoteGmail</span>]
+<span class="c"># Gmail との接続設定: type = IMAP でも良い?
+</span><span class="n">type</span> = <span class="n">Gmail</span>
+<span class="c"># remote&amp;#123;pass,user&amp;$125;eval は offlineimap_utils.py で定義した関数
+</span><span class="n">remoteusereval</span> = <span class="n">get_username</span>(<span class="s2">"imap.gmail.com"</span>)
+<span class="n">remotepasseval</span> = <span class="n">get_password</span>(<span class="s2">"imap.gmail.com"</span>)
+<span class="n">maxsize</span> = <span class="m">2000000000</span>
+<span class="n">realdelete</span> = <span class="n">no</span>
+<span class="c"># 同時接続数. 並列実行可能なので適宜
+# サーバに怒られない程度に
+</span><span class="n">maxconnections</span> = <span class="m">5</span>
+<span class="c"># remote -&gt; local 時のフォルダ名変換(正規表現)
+</span><span class="n">nametrans</span> = <span class="n">lambda</span> <span class="n">foldername</span>: <span class="n">re</span>.<span class="n">sub</span>(<span class="s1">'^INBOX'</span>,<span class="s1">''</span>, (<span class="n">re</span>.<span class="n">sub</span>(<span class="s1">'^\[Gmail\]/'</span>,<span class="s1">''</span>, <span class="n">foldername</span>)))
+<span class="c"># 同期するフォルダの設定: Gmail 側で IMAP で表示するラベル設定しておく, でも良いかも.
+</span><span class="n">folderfilter</span> = <span class="n">lambda</span> <span class="n">foldername</span>: <span class="n">foldername</span> <span class="n">in</span> [
+             <span class="s1">'INBOX'</span>,                   <span class="c"># -&gt; '~/Mail/imap/[Gmail]' になる
+</span>             <span class="s1">'[Gmail]/&amp;j,dg0TDhMPww6w-'</span> <span class="c"># -&gt; '~/Mail/imap/[Gmail]/&amp;j,dg0TDhMPww6w-' になる
+</span>             ]
+<span class="n">sslcacertfile</span> = /<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span>
 
-<span class="c"># Main サーバの設定: ここで設定する名前は [general] accounts に揃える</span><span class="w"></span>
-[Account<span class="w"> </span>Main]<span class="w"></span>
-localrepository<span class="w"> </span>=<span class="w"> </span>LocalMain<span class="w"></span>
-remoterepository<span class="w"> </span>=<span class="w"> </span>RemoteMain<span class="w"></span>
-status_backend<span class="w"> </span>=<span class="w"> </span>sqlite<span class="w"></span>
-maxsize<span class="w"> </span>=<span class="w"> </span><span class="m">2000000000</span><span class="w"></span>
-quick<span class="w"> </span>=<span class="w"> </span><span class="m">0</span><span class="w"></span>
+<span class="c"># Main サーバの設定: ここで設定する名前は [general] accounts に揃える
+</span>[<span class="n">Account</span> <span class="n">Main</span>]
+<span class="n">localrepository</span> = <span class="n">LocalMain</span>
+<span class="n">remoterepository</span> = <span class="n">RemoteMain</span>
+<span class="n">status_backend</span> = <span class="n">sqlite</span>
+<span class="n">maxsize</span> = <span class="m">2000000000</span>
+<span class="n">quick</span> = <span class="m">0</span>
 
-[Repository<span class="w"> </span>LocalMain]<span class="w"></span>
-<span class="c"># 手元の設定</span><span class="w"></span>
-type<span class="w"> </span>=<span class="w"> </span>Maildir<span class="w"></span>
-<span class="c"># Maildir の格納場所</span><span class="w"></span>
-localfolders<span class="w"> </span>=<span class="w"> </span>~/Mail/imap<span class="w"></span>
-restoreatime<span class="w"> </span>=<span class="w"> </span>no<span class="w"></span>
-<span class="c"># local -&gt; remote での名前変換</span><span class="w"></span>
-<span class="c"># LocaltoRemoteTransnameINBOX は offlineimap_utils.py で定義した関数</span><span class="w"></span>
-nametrans<span class="w"> </span>=<span class="w"> </span>LocalToRemoteTransnameINBOX<span class="w"></span>
-<span class="c"># &#39;Maildir/imap/[Gmail]&#39; は同期しない</span><span class="w"></span>
-folderfilter<span class="w"> </span>=<span class="w"> </span>lambda<span class="w"> </span>folder:<span class="w"> </span>not<span class="w"> </span>folder.startswith(&#39;[Gmail]&#39;)<span class="w"></span>
-sep<span class="w"> </span>=<span class="w"> </span>/<span class="w"></span>
+[<span class="n">Repository</span> <span class="n">LocalMain</span>]
+<span class="c"># 手元の設定
+</span><span class="n">type</span> = <span class="n">Maildir</span>
+<span class="c"># Maildir の格納場所
+</span><span class="n">localfolders</span> = ~/<span class="n">Mail</span>/<span class="n">imap</span>
+<span class="n">restoreatime</span> = <span class="n">no</span>
+<span class="c"># local -&gt; remote での名前変換
+# LocaltoRemoteTransnameINBOX は offlineimap_utils.py で定義した関数
+</span><span class="n">nametrans</span> = <span class="n">LocalToRemoteTransnameINBOX</span>
+<span class="c"># 'Maildir/imap/[Gmail]' は同期しない
+</span><span class="n">folderfilter</span> = <span class="n">lambda</span> <span class="n">folder</span>: <span class="n">not</span> <span class="n">folder</span>.<span class="n">startswith</span>(<span class="s1">'[Gmail]'</span>)
+<span class="n">sep</span> = /
 
-[Repository<span class="w"> </span>RemoteMain]<span class="w"></span>
-type<span class="w"> </span>=<span class="w"> </span>IMAP<span class="w"></span>
-ssl<span class="w"> </span>=<span class="w"> </span>yes<span class="w"></span>
-<span class="c"># certificates がデフォルトで探せない?</span><span class="w"></span>
-sslcacertfile<span class="w"> </span>=<span class="w"> </span>/etc/ssl/certs/ca-certificates.crt<span class="w"></span>
-remotehost<span class="w"> </span>=<span class="w"> </span>[main<span class="w"> </span>server]<span class="w"></span>
-<span class="c"># remote&#123;pass,user}eval は offlineimap_utils.py で定義した関数</span><span class="w"></span>
-remoteusereval<span class="w"> </span>=<span class="w"> </span>get_username(&quot;[main<span class="w"> </span>server]&quot;)<span class="w"></span>
-remotepasseval<span class="w"> </span>=<span class="w"> </span>get_password(&quot;[main<span class="w"> </span>server]&quot;)<span class="w"></span>
-maxsize<span class="w"> </span>=<span class="w"> </span><span class="m">2000000000</span><span class="w"></span>
-maxconnections<span class="w"> </span>=<span class="w"> </span><span class="m">5</span><span class="w"></span>
-<span class="c"># remote -&gt; local での名前の変換</span><span class="w"></span>
-<span class="c"># RemotetoLocalTransnameINBOX は offlineimap_utils.py で定義した関数</span><span class="w"></span>
-nametrans<span class="w"> </span>=<span class="w"> </span>RemoteToLocalTransnameINBOX<span class="w"></span>
-<span class="c"># 同期 *しない* フォルダの選択</span><span class="w"></span>
-folderfilter<span class="w"> </span>=<span class="w"> </span>lambda<span class="w"> </span>foldername:<span class="w"> </span>foldername<span class="w"> </span>not<span class="w"> </span>in<span class="w"> </span>[<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.Drafts&#39;,<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.Trash&#39;,<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.archive.zz2006&#39;,<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.archive.zz2007&#39;,<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.archive.zz2008&#39;,<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.archive.zz2009&#39;,<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.archive.zz2010&#39;,<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.archive.zz2011&#39;,<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.archive.zz2012&#39;,<span class="w"></span>
-<span class="w">            </span>&#39;INBOX.archive.zz2013&#39;<span class="w"></span>
-<span class="w">            </span>]<span class="w"></span>
-</pre></div>
-<p><code>offlineimap_utils.py</code> の中身は以下の通り:</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
-<span class="c1"># -*- coding: utf-8</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+[<span class="n">Repository</span> <span class="n">RemoteMain</span>]
+<span class="n">type</span> = <span class="n">IMAP</span>
+<span class="n">ssl</span> = <span class="n">yes</span>
+<span class="c"># certificates がデフォルトで探せない?
+</span><span class="n">sslcacertfile</span> = /<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span>
+<span class="n">remotehost</span> = [<span class="n">main</span> <span class="n">server</span>]
+<span class="c"># remote&amp;#123;pass,user&amp;$125;eval は offlineimap_utils.py で定義した関数
+</span><span class="n">remoteusereval</span> = <span class="n">get_username</span>(<span class="s2">"[main server]"</span>)
+<span class="n">remotepasseval</span> = <span class="n">get_password</span>(<span class="s2">"[main server]"</span>)
+<span class="n">maxsize</span> = <span class="m">2000000000</span>
+<span class="n">maxconnections</span> = <span class="m">5</span>
+<span class="c"># remote -&gt; local での名前の変換
+# RemotetoLocalTransnameINBOX は offlineimap_utils.py で定義した関数
+</span><span class="n">nametrans</span> = <span class="n">RemoteToLocalTransnameINBOX</span>
+<span class="c"># 同期 *しない* フォルダの選択
+</span><span class="n">folderfilter</span> = <span class="n">lambda</span> <span class="n">foldername</span>: <span class="n">foldername</span> <span class="n">not</span> <span class="n">in</span> [
+            <span class="s1">'INBOX.Drafts'</span>,
+            <span class="s1">'INBOX.Trash'</span>,
+            <span class="s1">'INBOX.archive.zz2006'</span>,
+            <span class="s1">'INBOX.archive.zz2007'</span>,
+            <span class="s1">'INBOX.archive.zz2008'</span>,
+            <span class="s1">'INBOX.archive.zz2009'</span>,
+            <span class="s1">'INBOX.archive.zz2010'</span>,
+            <span class="s1">'INBOX.archive.zz2011'</span>,
+            <span class="s1">'INBOX.archive.zz2012'</span>,
+            <span class="s1">'INBOX.archive.zz2013'</span>
+            ]</code></pre></figure>
+<p>
+<code>offlineimap_utils.py</code> の中身は以下の通り:
+</p>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#!/usr/bin/python
+# -*- coding: utf-8
+</span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="c1"># # Auth via GnomeKeyring</span>
-<span class="kn">import</span> <span class="nn">gtk</span>
+<span class="c1"># # Auth via GnomeKeyring
+</span><span class="kn">import</span> <span class="nn">gtk</span>
 <span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>
-<span class="kn">import</span> <span class="nn">gnomekeyring</span> <span class="kn">as</span> <span class="nn">gkey</span>
-<span class="c1"># Ad hoc fix for Striptime behavior</span>
-<span class="kn">import</span> <span class="nn">locale</span>
-<span class="n">locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">LC_TIME</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">gnomekeyring</span> <span class="k">as</span> <span class="n">gkey</span>
+<span class="c1"># Ad hoc fix for Striptime behavior
+</span><span class="kn">import</span> <span class="nn">locale</span>
+<span class="n">locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">LC_TIME</span><span class="p">,</span> <span class="s">'C'</span><span class="p">)</span>
 
-<span class="c1">##################</span>
-<span class="c1"># Gnome keyring  #</span>
-<span class="c1">##################</span>
-
+<span class="c1">##################
+# Gnome keyring  #
+##################
+</span>
 <span class="k">class</span> <span class="nc">Keyring</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">protocol</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">protocol</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="n">server</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span> <span class="o">=</span> <span class="n">protocol</span>
@@ -821,157 +959,175 @@ folderfilter<span class="w"> </span>=<span class="w"> </span>lambda<span class="
 
     <span class="k">def</span> <span class="nf">has_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">attrs</span> <span class="o">=</span> <span class="p">&#123;</span><span class="s2">&quot;server&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">}</span>
-            <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#123;"server": self._server, "protocol": self._protocol&amp;$125;
+</span>            <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
             <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="k">except</span> <span class="n">gkey</span><span class="o">.</span><span class="n">DeniedError</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
 
     <span class="k">def</span> <span class="nf">get_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">attrs</span> <span class="o">=</span> <span class="p">&#123;</span><span class="s2">&quot;server&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">}</span>
-        <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">],</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">secret</span><span class="p">)</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#123;"server": self._server, "protocol": self._protocol&amp;$125;
+</span>        <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">"user"</span><span class="p">],</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">secret</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">set_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">pw</span><span class="p">)):</span>
-        <span class="n">attrs</span> <span class="o">=</span> <span class="p">&#123;</span>
-                <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
-                <span class="s2">&quot;server&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span>
-                <span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">,</span>
-            <span class="p">}</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#123;
+</span>                <span class="s">"user"</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+                <span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span>
+                <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">,</span>
+            <span class="o">&amp;</span><span class="err">$</span><span class="mi">125</span><span class="p">;</span>
         <span class="n">gkey</span><span class="o">.</span><span class="n">item_create_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">get_default_keyring_sync</span><span class="p">(),</span>
                 <span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">pw</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_username</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
-    <span class="n">keyring</span> <span class="o">=</span> <span class="n">Keyring</span><span class="p">(</span><span class="s2">&quot;offlineimap&quot;</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s2">&quot;imap&quot;</span><span class="p">)</span>
+    <span class="n">keyring</span> <span class="o">=</span> <span class="n">Keyring</span><span class="p">(</span><span class="s">"offlineimap"</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s">"imap"</span><span class="p">)</span>
     <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_credentials</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">username</span>
 
 <span class="k">def</span> <span class="nf">get_password</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
-    <span class="n">keyring</span> <span class="o">=</span> <span class="n">Keyring</span><span class="p">(</span><span class="s2">&quot;offlineimap&quot;</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s2">&quot;imap&quot;</span><span class="p">)</span>
+    <span class="n">keyring</span> <span class="o">=</span> <span class="n">Keyring</span><span class="p">(</span><span class="s">"offlineimap"</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s">"imap"</span><span class="p">)</span>
     <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_credentials</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">password</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-        <span class="n">server</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;server: &quot;</span><span class="p">)</span>
-        <span class="n">user</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;username: &quot;</span><span class="p">)</span>
-        <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s2">&quot;password: &quot;</span><span class="p">)</span>
-        <span class="n">confirm</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s2">&quot;confirm password: &quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+        <span class="n">server</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"server: "</span><span class="p">)</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"username: "</span><span class="p">)</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s">"password: "</span><span class="p">)</span>
+        <span class="n">confirm</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s">"confirm password: "</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">password</span> <span class="o">!=</span> <span class="n">confirm</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s2">&quot;password doesn&#39;t match confirmation!&quot;</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">keyring</span> <span class="o">=</span> <span class="n">Keyring</span><span class="p">(</span><span class="s2">&quot;offlineimap&quot;</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s2">&quot;imap&quot;</span><span class="p">)</span>
+            <span class="k">print</span> <span class="s">"password doesn't match confirmation!"</span>
+            <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">keyring</span> <span class="o">=</span> <span class="n">Keyring</span><span class="p">(</span><span class="s">"offlineimap"</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s">"imap"</span><span class="p">)</span>
         <span class="n">keyring</span><span class="o">.</span><span class="n">set_credentials</span><span class="p">((</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span>
 
-<span class="c1">############################</span>
-<span class="c1"># NameTrans &#39;INBOX&#39; suffix #</span>
-<span class="c1">############################</span>
-<span class="c1"># add &#39;INBOX&#39; suffix</span>
-<span class="k">def</span> <span class="nf">LocalToRemoteTransnameINBOX</span><span class="p">(</span><span class="n">foldername</span><span class="p">):</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">foldername</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
-        <span class="n">retval</span> <span class="o">=</span> <span class="s2">&quot;INBOX&quot;</span>
+<span class="c1">############################
+# NameTrans 'INBOX' suffix #
+############################
+# add 'INBOX' suffix
+</span><span class="k">def</span> <span class="nf">LocalToRemoteTransnameINBOX</span><span class="p">(</span><span class="n">foldername</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">foldername</span> <span class="o">==</span> <span class="s">""</span><span class="p">):</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="s">"INBOX"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">retval</span> <span class="o">=</span> <span class="s2">&quot;INBOX.&quot;</span> <span class="o">+</span> <span class="n">foldername</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="s">"INBOX."</span> <span class="o">+</span> <span class="n">foldername</span>
     <span class="k">return</span> <span class="n">retval</span>
 
-<span class="c1"># remove &#39;INBOX&#39; suffix</span>
-<span class="k">def</span> <span class="nf">RemoteToLocalTransnameINBOX</span><span class="p">(</span><span class="n">foldername</span><span class="p">):</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">foldername</span> <span class="o">==</span> <span class="s2">&quot;INBOX&quot;</span><span class="p">):</span>
-        <span class="n">retval</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="c1"># remove 'INBOX' suffix
+</span><span class="k">def</span> <span class="nf">RemoteToLocalTransnameINBOX</span><span class="p">(</span><span class="n">foldername</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">foldername</span> <span class="o">==</span> <span class="s">"INBOX"</span><span class="p">):</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="s">""</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">retval</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;^INBOX\.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">foldername</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">retval</span>
-</pre></div>
-<p>IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加すると良い.</p>
-<h5><a id="cron での動作"><span class='anchor'>_</span></a>cron での動作</h5>
-<p>認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから
-  実行するようにする.
-  先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-sleep <span class="m">5</span>
-<span class="c1"># Export the dbus session address on startup so it can be used by cron</span>
-touch <span class="nv">$HOME</span>/.Xdbus
-chmod <span class="m">600</span> <span class="nv">$HOME</span>/.Xdbus
-env <span class="p">|</span> grep DBUS_SESSION_BUS_ADDRESS &gt; <span class="nv">$HOME</span>/.Xdbus
-<span class="nb">echo</span> <span class="s1">&#39;export DBUS_SESSION_BUS_ADDRESS&#39;</span> &gt;&gt; <span class="nv">$HOME</span>/.Xdbus
-</pre></div>
-<p><code>~/.config/autostart</code> 以下に適当な名前で</p>
-<div class="highlight"><pre><span></span>[Desktop<span class="w"> </span>Entry]<span class="w"></span>
-Type=Application<span class="w"></span>
-Exec=/home/uwabami/.mua/export_x_info.sh<span class="w"></span>
-Hidden=false<span class="w"></span>
-NoDisplay=false<span class="w"></span>
-X-GNOME-Autostart-enabled=true<span class="w"></span>
-Name=Xdbus<span class="w"> </span>infomation<span class="w"> </span>exporter<span class="w"></span>
-Comment=Xdbus<span class="w"> </span>infomation<span class="w"> </span>exporter<span class="w"></span>
-</pre></div>
-<p>を用意しておく.</p>
-<p>あとは cron 実行時に <code>~/.Xdbus</code> を include するようにしておけば,
-  必要に応じて GnomeKeyring による認証が行なわれる.
-  cron で実行されるスクリプトは, 例えば</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
-<span class="c1"># -*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
-<span class="c1"># $Lastupdate: 2014-07-15 11:52:22$</span>
-<span class="c1"># Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;</span>
-<span class="c1"># License: WTFPL</span>
-<span class="c1">################################################################################</span>
-<span class="c1"># for personal settings</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">"^INBOX</span><span class="err">\</span><span class="s">."</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="n">foldername</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">retval</span></code></pre></figure>
+<p>
+IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加すると良い.
+</p>
+</div>
+</li>
+<li><a id="org9b44443"></a>cron での動作<br />
+<div class="outline-text-5" id="text-org9b44443">
+<p>
+認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから実行するようにする.
+先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意
+</p>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/bash</span>
+<span class="nb">sleep </span>5
+<span class="c"># Export the dbus session address on startup so it can be used by cron</span>
+<span class="nb">touch</span> <span class="nv">$HOME</span>/.Xdbus
+<span class="nb">chmod </span>600 <span class="nv">$HOME</span>/.Xdbus
+<span class="nb">env</span> | <span class="nb">grep </span>DBUS_SESSION_BUS_ADDRESS <span class="o">&gt;</span> <span class="nv">$HOME</span>/.Xdbus
+<span class="nb">echo</span> <span class="s1">'export DBUS_SESSION_BUS_ADDRESS'</span> <span class="o">&gt;&gt;</span> <span class="nv">$HOME</span>/.Xdbus</code></pre></figure>
+<p>
+<code>~/.config/autostart</code> 以下に適当な名前で
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf">[<span class="n">Desktop</span> <span class="n">Entry</span>]
+<span class="n">Type</span>=<span class="n">Application</span>
+<span class="n">Exec</span>=/<span class="n">home</span>/<span class="n">uwabami</span>/.<span class="n">mua</span>/<span class="n">export_x_info</span>.<span class="n">sh</span>
+<span class="n">Hidden</span>=<span class="n">false</span>
+<span class="n">NoDisplay</span>=<span class="n">false</span>
+<span class="n">X</span>-<span class="n">GNOME</span>-<span class="n">Autostart</span>-<span class="n">enabled</span>=<span class="n">true</span>
+<span class="n">Name</span>=<span class="n">Xdbus</span> <span class="n">infomation</span> <span class="n">exporter</span>
+<span class="n">Comment</span>=<span class="n">Xdbus</span> <span class="n">infomation</span> <span class="n">exporter</span></code></pre></figure>
+<p>
+を用意しておく.
+</p>
+
+<p>
+あとは cron 実行時に <code>~/.Xdbus</code> を include するようにしておけば,
+必要に応じて GnomeKeyring による認証が行なわれる.
+cron で実行されるスクリプトは, 例えば
+</p>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/sh</span>
+<span class="c"># -*- mode:sh; coding: utf-8-unix; indent-tabs-mode: nil -*-</span>
+<span class="c"># $Lastupdate: 2014-07-15 11:52:22$</span>
+<span class="c"># Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;</span>
+<span class="c"># License: WTFPL</span>
+<span class="c">################################################################################</span>
+<span class="c"># for personal settings</span>
 <span class="nv">OFFLINEIMAP_PID</span><span class="o">=</span>~/Mail/offlineimap/pid
 <span class="nv">OFFLINEIMAP_CONF</span><span class="o">=</span>~/.offlineimaprc
 <span class="nv">UI</span><span class="o">=</span>quiet
-<span class="nb">echo</span> <span class="s2">&quot;******************************************************************&quot;</span>
-<span class="nb">echo</span> <span class="sb">`</span><span class="nv">LANG</span><span class="o">=</span>C date<span class="sb">`</span>
-<span class="nb">echo</span> <span class="s2">&quot;******************************************************************&quot;</span>
-<span class="c1"># for gnome-keyring:</span>
-. <span class="si">$&#123;</span><span class="nv">HOME</span><span class="si">}</span>/.Xdbus
-<span class="c1"># check network is avaliable</span>
-nm-online -x <span class="o">||</span> <span class="nb">exit</span> <span class="m">0</span>
-<span class="c1"># check another offlineimap</span>
-<span class="o">[</span> <span class="k">$(</span>ps -p <span class="sb">`</span>cat <span class="nv">$OFFLINEIMAP_PID</span><span class="sb">`</span> -o pid --no-heading<span class="k">)</span> <span class="o">]</span> <span class="se">\</span>
-  <span class="o">||</span> nice -n <span class="m">19</span> offlineimap -c <span class="nv">$OFFLINEIMAP_CONF</span> -u <span class="nv">$UI</span> -o  <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-</pre></div>
-<p>とか.</p>
-
-<!-- %%%%%%% end: main content %%%%%%% -->
-      </div>
-    </main>
-    <!-- include footer -->
-    <footer class="flex justify-end bottom-0 left-0 right-0 m0 py1 px2">
-      <p class="right-align">
-        <span class="nowrap">&copy; 2006 - 2018
+<span class="nb">echo</span> <span class="s2">"******************************************************************"</span>
+<span class="nb">echo</span> <span class="sb">`</span><span class="nv">LANG</span><span class="o">=</span>C <span class="nb">date</span><span class="sb">`</span>
+<span class="nb">echo</span> <span class="s2">"******************************************************************"</span>
+<span class="c"># for gnome-keyring:</span>
+<span class="nb">.</span> <span class="nv">$&amp;</span><span class="c">#123;HOME&amp;$125;/.Xdbus</span>
+<span class="c"># check network is avaliable</span>
+nm-online <span class="nt">-x</span> <span class="o">||</span> <span class="nb">exit </span>0
+<span class="c"># check another offlineimap</span>
+<span class="o">[</span> <span class="si">$(</span>ps <span class="nt">-p</span> <span class="sb">`</span><span class="nb">cat</span> <span class="nv">$OFFLINEIMAP_PID</span><span class="sb">`</span> <span class="nt">-o</span> pid <span class="nt">--no-heading</span><span class="si">)</span> <span class="o">]</span> <span class="se">\</span>
+  <span class="o">||</span> <span class="nb">nice</span> <span class="nt">-n</span> 19 offlineimap <span class="nt">-c</span> <span class="nv">$OFFLINEIMAP_CONF</span> <span class="nt">-u</span> <span class="nv">$UI</span> <span class="nt">-o</span>  2&gt;&amp;1</code></pre></figure>
+<p>
+とか.
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- %%%% end content %%%% -->
+        </div>
+      </main>
+      <!-- include footer -->
+      <footer class="container bottom-0 left-0 right-0 small">
+        <hr/>
+        <p class="p0 m0 right-align">&copy; 2006-2019
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2018-10-24 20:57:16
-        </span>
-        <br/>
-        <span class="nowrap">
+          Lastupdate: 2019-12-19 22:31:23 +0000
+          <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
             Org mode
           </a>
           +
-          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll" >
+          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll">
             Jekyll
           </a>
           +
-          <a href="http://basscss.com/" target="_blank" title="Basscss" >
+          <a href="http://basscss.com/" target="_blank" title="Basscss">
             Basscss
           </a>
-        </span>
-      </p>
-    </footer>
-    <amp-analytics data-block-on-consent
-                   type="gtag"
-                   data-credentials="include">
-      <script type="application/json">
-        {
-            "vars" : {
-                "gtag_id": "UA-90872419-1",
-                "config" : {
-                    "UA-90872419-1": { "groups": "default" }
-                }
-            }
-        }
+          &amp;
+          <a href="https://amp.dev/">
+            <span class="icon-amp">⚡</span>AMP
+          </a>
+        </p>
+      </footer>
+      <amp-analytics data-block-on-consent
+                     type="gtag"
+                     data-credentials="include">
+        <script type="application/json">
+          {
+              "vars" : {
+                  "gtag_id": "UA-90872419-1",
+                  "config" : {
+                      "UA-90872419-1": { "groups": "default" }
+                  }
+              }
+          }
         </script>
-    </amp-analytics>
-    <!-- end: include footer -->
+      </amp-analytics>
+      <!-- end: include footer -->
+    </div>
   </body>
 </html>

@@ -4,483 +4,522 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <title>Squid で広告避け</title>
-    <meta name="description" content="My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian">
+    <meta name="author" content="Youhei SASAKI">
     <!-- end: check google site verification -->
     <link rel="canonical" href="https://uwabami.github.io/cc-env/DebianSquid.html">
-    <!-- alternate --><link rel="alternate" hreflang="ja" href="/cc-env/DebianSquid.html" />
+    <!-- alternate -->
+    <link rel="alternate" hreflang="ja" href="https://uwabami.github.io/cc-env/DebianSquid.html" />
     <!-- end: alternate -->
-    <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/favicon.ico">
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "NewsArticle",
-      "mainEntityOfPage": "https://uwabami.github.io/cc-env/DebianSquid.html",
-      "headline": "Squid で広告避け",
-      "datePublished": "2018-10-25T13:25:13+09:00",
-      "dateModified": "2018-10-25T13:25:13+09:00",
-      "description": "My Interest: Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian",
-      "author": {
-        "@type": "Person",
-        "name": "Youhei SASAKI"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Youhei SASAKI's official site",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://uwabami.github.io/eyecatch_1600x900.png",
-          "width": "1600",
-          "height": "900"
-        }
-      },
-      "image": {
-        "@type": "ImageObject",
-          "url": "https://uwabami.github.io/eyecatch_1600x900.png",
-          "height": "900",
-          "width": "1600"
-      }
-    }
-    </script>
+    <!-- begin jekyll seo -->
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Squid で広告避け | Youhei SASAKI’s official site</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Squid で広告避け" />
+<meta name="author" content="Youhei SASAKI" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
+<meta property="og:description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
+<link rel="canonical" href="https://uwabami.github.io/cc-env/DebianSquid.html" />
+<meta property="og:url" content="https://uwabami.github.io/cc-env/DebianSquid.html" />
+<meta property="og:site_name" content="Youhei SASAKI’s official site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-20T07:42:59+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Squid で広告避け" />
+<meta name="twitter:site" content="@uwabami" />
+<meta name="twitter:creator" content="@Youhei SASAKI" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianSquid.html","headline":"Squid で広告避け","dateModified":"2019-12-20T07:42:59+09:00","datePublished":"2019-12-20T07:42:59+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSquid.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+    <!-- end jekyll seo -->
+    <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
+    <!-- apple icons -->
+    <link rel="apple-touch-icon" size="256x256" href="https://uwabami.github.io/assets/img/favicon-256x256.png">
+    <link rel="apple-touch-icon" size="192x192" href="https://uwabami.github.io/assets/img/favicon-192x192.png">
+    <link rel="apple-touch-icon" size="128x128" href="https://uwabami.github.io/assets/img/favicon-128x128.png">
+    <link rel="apple-touch-icon" size="64x64" href="https://uwabami.github.io/assets/img/favicon-64x64.png">
+    <link rel="apple-touch-icon" size="48x48" href="https://uwabami.github.io/assets/img/favicon-48x48.png">
+    <link rel="apple-touch-icon" size="40x40" href="https://uwabami.github.io/assets/img/favicon-40x40.png">
+    <link rel="apple-touch-icon" size="32x32" href="https://uwabami.github.io/assets/img/favicon-32x32.png">
+    <link rel="apple-touch-icon" size="24x24" href="https://uwabami.github.io/assets/img/favicon-24x24.png">
+    <link rel="apple-touch-icon" size="16x16" href="https://uwabami.github.io/assets/img/favicon-16x16.png">
+    <!-- end: apple icons -->
+    <link rel="shortcut-icon" type="image/ico" href="/assets/img/favicon.ico">
+    <link rel="author" href="https://twitter.com/">
     <!-- include amp elements -->
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-geo-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-consent-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-analytics-0.1.js">
-    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js">
-    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-accordion-0.1.js">
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-font-0.1.js">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
     <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-    <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+    <script async custom-element="amp-font" src="https://cdn.ampproject.org/v0/amp-font-0.1.js"></script>
     <!-- Custom css based on following two framework -->
     <!-- - normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css -->
     <!-- - basscss v8.1.2 | MIT License | github.com/basscss/basscss -->
-    <style amp-custom>.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:bold}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:24rem}.max-width-2{max-width:32rem}.max-width-3{max-width:48rem}.max-width-4{max-width:64rem}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-0.5rem;margin-right:-0.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.ml-auto{margin-left:auto}.mr-auto{margin-right:auto}.mx-auto{margin-left:auto;margin-right:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}@media (min-width: 40.06em){.sm-p0{padding:0}.sm-pt0{padding-top:0}.sm-pr0{padding-right:0}.sm-pb0{padding-bottom:0}.sm-pl0{padding-left:0}.sm-px0{padding-left:0;padding-right:0}.sm-py0{padding-top:0;padding-bottom:0}.sm-p1{padding:.5rem}.sm-pt1{padding-top:.5rem}.sm-pr1{padding-right:.5rem}.sm-pb1{padding-bottom:.5rem}.sm-pl1{padding-left:.5rem}.sm-px1{padding-left:.5rem;padding-right:.5rem}.sm-py1{padding-top:.5rem;padding-bottom:.5rem}.sm-p2{padding:1rem}.sm-pt2{padding-top:1rem}.sm-pr2{padding-right:1rem}.sm-pb2{padding-bottom:1rem}.sm-pl2{padding-left:1rem}.sm-px2{padding-left:1rem;padding-right:1rem}.sm-py2{padding-top:1rem;padding-bottom:1rem}.sm-p3{padding:2rem}.sm-pt3{padding-top:2rem}.sm-pr3{padding-right:2rem}.sm-pb3{padding-bottom:2rem}.sm-pl3{padding-left:2rem}.sm-px3{padding-left:2rem;padding-right:2rem}.sm-py3{padding-top:2rem;padding-bottom:2rem}.sm-p4{padding:4rem}.sm-pt4{padding-top:4rem}.sm-pr4{padding-right:4rem}.sm-pb4{padding-bottom:4rem}.sm-pl4{padding-left:4rem}.sm-px4{padding-left:4rem;padding-right:4rem}.sm-py4{padding-top:4rem;padding-bottom:4rem}}@media (min-width: 52.06em){.md-p0{padding:0}.md-pt0{padding-top:0}.md-pr0{padding-right:0}.md-pb0{padding-bottom:0}.md-pl0{padding-left:0}.md-px0{padding-left:0;padding-right:0}.md-py0{padding-top:0;padding-bottom:0}.md-p1{padding:.5rem}.md-pt1{padding-top:.5rem}.md-pr1{padding-right:.5rem}.md-pb1{padding-bottom:.5rem}.md-pl1{padding-left:.5rem}.md-px1{padding-left:.5rem;padding-right:.5rem}.md-py1{padding-top:.5rem;padding-bottom:.5rem}.md-p2{padding:1rem}.md-pt2{padding-top:1rem}.md-pr2{padding-right:1rem}.md-pb2{padding-bottom:1rem}.md-pl2{padding-left:1rem}.md-px2{padding-left:1rem;padding-right:1rem}.md-py2{padding-top:1rem;padding-bottom:1rem}.md-p3{padding:2rem}.md-pt3{padding-top:2rem}.md-pr3{padding-right:2rem}.md-pb3{padding-bottom:2rem}.md-pl3{padding-left:2rem}.md-px3{padding-left:2rem;padding-right:2rem}.md-py3{padding-top:2rem;padding-bottom:2rem}.md-p4{padding:4rem}.md-pt4{padding-top:4rem}.md-pr4{padding-right:4rem}.md-pb4{padding-bottom:4rem}.md-pl4{padding-left:4rem}.md-px4{padding-left:4rem;padding-right:4rem}.md-py4{padding-top:4rem;padding-bottom:4rem}}@media (min-width: 64.06em){.lg-p0{padding:0}.lg-pt0{padding-top:0}.lg-pr0{padding-right:0}.lg-pb0{padding-bottom:0}.lg-pl0{padding-left:0}.lg-px0{padding-left:0;padding-right:0}.lg-py0{padding-top:0;padding-bottom:0}.lg-p1{padding:.5rem}.lg-pt1{padding-top:.5rem}.lg-pr1{padding-right:.5rem}.lg-pb1{padding-bottom:.5rem}.lg-pl1{padding-left:.5rem}.lg-px1{padding-left:.5rem;padding-right:.5rem}.lg-py1{padding-top:.5rem;padding-bottom:.5rem}.lg-p2{padding:1rem}.lg-pt2{padding-top:1rem}.lg-pr2{padding-right:1rem}.lg-pb2{padding-bottom:1rem}.lg-pl2{padding-left:1rem}.lg-px2{padding-left:1rem;padding-right:1rem}.lg-py2{padding-top:1rem;padding-bottom:1rem}.lg-p3{padding:2rem}.lg-pt3{padding-top:2rem}.lg-pr3{padding-right:2rem}.lg-pb3{padding-bottom:2rem}.lg-pl3{padding-left:2rem}.lg-px3{padding-left:2rem;padding-right:2rem}.lg-py3{padding-top:2rem;padding-bottom:2rem}.lg-p4{padding:4rem}.lg-pt4{padding-top:4rem}.lg-pr4{padding-right:4rem}.lg-pb4{padding-bottom:4rem}.lg-pl4{padding-left:4rem}.lg-px4{padding-left:4rem;padding-right:4rem}.lg-py4{padding-top:4rem;padding-bottom:4rem}}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.3333333333%}.col-2{width:16.6666666667%}.col-3{width:25%}.col-4{width:33.3333333333%}.col-5{width:41.6666666667%}.col-6{width:50%}.col-7{width:58.3333333333%}.col-8{width:66.6666666667%}.col-9{width:75%}.col-10{width:83.3333333333%}.col-11{width:91.6666666667%}.col-12{width:100%}@media (min-width: 40.06em){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.3333333333%}.sm-col-2{width:16.6666666667%}.sm-col-3{width:25%}.sm-col-4{width:33.3333333333%}.sm-col-5{width:41.6666666667%}.sm-col-6{width:50%}.sm-col-7{width:58.3333333333%}.sm-col-8{width:66.6666666667%}.sm-col-9{width:75%}.sm-col-10{width:83.3333333333%}.sm-col-11{width:91.6666666667%}.sm-col-12{width:100%}}@media (min-width: 52.06em){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.3333333333%}.md-col-2{width:16.6666666667%}.md-col-3{width:25%}.md-col-4{width:33.3333333333%}.md-col-5{width:41.6666666667%}.md-col-6{width:50%}.md-col-7{width:58.3333333333%}.md-col-8{width:66.6666666667%}.md-col-9{width:75%}.md-col-10{width:83.3333333333%}.md-col-11{width:91.6666666667%}.md-col-12{width:100%}}@media (min-width: 64.06em){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.3333333333%}.lg-col-2{width:16.6666666667%}.lg-col-3{width:25%}.lg-col-4{width:33.3333333333%}.lg-col-5{width:41.6666666667%}.lg-col-6{width:50%}.lg-col-7{width:58.3333333333%}.lg-col-8{width:66.6666666667%}.lg-col-9{width:75%}.lg-col-10{width:83.3333333333%}.lg-col-11{width:91.6666666667%}.lg-col-12{width:100%}}.flex{display:flex}@media (min-width: 40.06em){.sm-flex{display:flex}}@media (min-width: 52.06em){.md-flex{display:flex}}@media (min-width: 64.06em){.lg-flex{display:flex}}.flex-column{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.items-stretch{align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{justify-content:flex-start}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.content-start{align-content:flex-start}.content-end{align-content:flex-end}.content-center{align-content:center}.content-between{align-content:space-between}.content-around{align-content:space-around}.content-stretch{align-content:stretch}.flex-auto{flex:1 1 auto;min-width:0;min-height:0}.flex-none{flex:none}.order-0{order:0}.order-1{order:1}.order-2{order:2}.order-3{order:3}.order-last{order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40em){.xs-hide{display:none}}@media (min-width: 40.06em) and (max-width: 52em){.sm-hide{display:none}}@media (min-width: 52.06em) and (max-width: 64em){.md-hide{display:none}}@media (min-width: 64.06em){.lg-hide{display:none}}.display-none{display:none}@media (max-width: 40em){.xs-col{float:left;box-sizing:border-box}.xs-col-right{float:right;box-sizing:border-box}.xs-col-1{width:8.3333333333%}.xs-col-2{width:16.6666666667%}.xs-col-3{width:25%}.xs-col-4{width:33.3333333333%}.xs-col-5{width:41.6666666667%}.xs-col-6{width:50%}.xs-col-7{width:58.3333333333%}.xs-col-8{width:66.6666666667%}.xs-col-9{width:75%}.xs-col-10{width:83.3333333333%}.xs-col-11{width:91.6666666667%}.xs-col-12{width:100%}}.navbar{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background-color:#082d74;color:#fff}.navbar .navbar-brand{font-size:1.25rem;font-family:-apple-system,"BlinkMacSystemFont","Helvetica Neue",Helvetica,"Arial","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";weight:bold}.navbar a{color:#fff;text-decoration:none}.navbar a:active,.navbar a:visited{color:inherit}.navbar a:hover{color:#18bc9c;text-decoration:underline}.navbar ul>li{width:100px;font-size:.875rem}.navbar amp-accordion header{background-color:#082d74;color:#fff;border-style:none;padding:0;width:100px;font-size:.875rem}.navbar amp-accordion section{background-color:#082d74;color:#fff;border-style:none}.navbar amp-accordion ul>li{color:#fff;width:120px;margin:.5rem;font-size:.875rem}.navbar .navbar-button{font-size:1.5rem}amp-sidebar{width:50vw}.navbar-sidebar{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background-color:#082d74;color:#fff}.navbar-sidebar a{color:#fff;text-decoration:none}.navbar-sidebar a:active,.navbar-sidebar a:visited{color:inherit}.navbar-sidebar a:hover{color:#18bc9c;text-decoration:underline}.navbar-sidebar ul>li{width:20rem}.navbar-sidebar ul ul>li{width:20rem}.navbar-sidebar .navbar-button{font-size:1.5rem}footer,.container-footer{line-height:1.5;background-color:#082d74;color:#fff;font-size:90%}.footer{text-align:right;padding-right:1rem;padding-left:1rem}.breadcrumb{list-style:none}.breadcrumb>li{display:inline-block}.breadcrumb>li+li:before{content:"/ ";padding:0 .5rem;color:#ccc}body{font-family:-apple-system,"BlinkMacSystemFont","Helvetica Neue",Helvetica,"Arial","ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAFXRFWHRDcmVhdGlvbiBUaW1lAAfbBhwTDDqAejMsAAAAB3RJTUUH2wYeEi8EgXgYKgAAAAlwSFlzAAAOdAAADnQBaySz1gAAABxJREFUeNpj/PLxFwNuwALEbJw4pZkY8IJhKw0AlAcDBIeyUC8AAAAASUVORK5CYII=)}span.anchor{display:none}main{line-height:1.5;margin-bottom:1rem}.container-rounded{border-radius:5px;box-shadow:0 0 5px 2px rgba(0,0,0,0.1)}hr{display:block;width:100%;height:2px;background-color:#ecf0f1;border:0;clear:both}dd{margin-left:1rem}h1{font-weight:normal;padding-left:.5rem}h2{border-bottom:1px solid #5af;font-weight:normal}h3{border-bottom:1px dashed #4ae;font-weight:normal}h4{border-bottom:1px dotted #4ff;font-weight:normal}strong{font-size:1.5rem;line-height:30px;font-weight:normal}#portrait{border-radius:60%;margin:.5rem auto}#gpgkey{font-size:85%;font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;border:1px solid #b4bcc2;border-radius:5px;padding:.5rem;overflow:visible scroll}.helo-unit{background-color:#f2f2f2;border-bottom:3px solid #b4bcc2;box-shadow:0 0 5px 2px rgba(0,0,0,0.1)}.helo-unit h1{margin-top:.5rem}.helo-unit h1 a,.helo-unit h1 a:active,.helo-unit h1 a:visited,.helo-unit h1 a:hover{color:#000;text-decoration:none}.helo-unit h1 a:hover{text-decoration:underline}@media (max-width: 40em){main{padding:0 .5rem}main ul{padding-left:1rem}.helo-unit{margin-top:3.375rem}h1{padding-top:2rem;font-size:1.25rem}header{padding-left:1rem;padding-right:1rem}#portrait{float:right;position:relative;width:100px}}@media (min-width: 40.06em) and (max-width: 52em){main{padding:0 1rem}.helo-unit{margin-top:3.375rem}h1{padding-top:2rem;font-size:1.25rem}header{padding-left:1rem;padding-right:1rem}#portrait{width:120px}}@media (min-width: 52.06em){main{padding:0 2rem}.helo-unit{margin-top:5rem}h1{padding-top:1rem;padding-bottom:.5rem}header{padding-left:2rem;padding-right:2rem}#portrait{width:100%}}@media (min-width: 64.06em){main{padding:0 4rem}.helo-unit{margin-top:5rem}h1{padding-top:1rem}header{padding-left:4rem;padding-right:4rem}#portrait{width:100%}}.bg-white{background-color:#fff}a,a:active,a:visited,a:hover{color:#18bc9c;text-decoration:none}a:hover{text-decoration:underline}.icon-envelop{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}amp-gist{margin:1rem}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}.example{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background-color:#f8f8f8;border:1px solid #ccc;padding:6px 10px 2px 10px;border-radius:5px;overflow-x:auto;white-space:nowrap}.highlight pre code *{white-space:nowrap}.highlight pre{overflow-x:auto}.highlight pre code{white-space:pre}.highlight pre{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;background-color:#f8f8f8;border:1px solid #ccc;padding:6px 10px 2px 10px;border-radius:5px}.highlight pre .hll{background-color:#f8f8f8;border:1px solid #ccc;padding:6px 10px;border-radius:5px}.highlight pre .c{color:#999988;font-style:italic}.highlight pre .err{color:#a61717;background-color:#e3d2d2}.highlight pre .k,.highlight pre .o{font-weight:bold}.highlight pre .cm{color:#999988;font-style:italic}.highlight pre .cp{color:#999999;font-weight:bold}.highlight pre .c1{color:#999988;font-style:italic}.highlight pre .cs{color:#999999;font-weight:bold;font-style:italic}.highlight pre .gd{color:#000000;background-color:#ffdddd}.highlight pre .gd .x{color:#000000;background-color:#ffaaaa}.highlight pre .ge{font-style:italic}.highlight pre .gr{color:#aa0000}.highlight pre .gh{color:#999999}.highlight pre .gi{color:#000000;background-color:#ddffdd}.highlight pre .gi .x{color:#000000;background-color:#aaffaa}.highlight pre .go{color:#888888}.highlight pre .gp{color:#555555}.highlight pre .gs{font-weight:bold}.highlight pre .gu{color:#800080;font-weight:bold}.highlight pre .gt{color:#aa0000}.highlight pre .kc,.highlight pre .kd,.highlight pre .kn,.highlight pre .kp,.highlight pre .kr{font-weight:bold}.highlight pre .kt{color:#445588;font-weight:bold}.highlight pre .m{color:#009999}.highlight pre .s{color:#dd1144}.highlight pre .n{color:#333333}.highlight pre .na{color:teal}.highlight pre .nb{color:#0086b3}.highlight pre .nc{color:#445588;font-weight:bold}.highlight pre .no{color:teal}.highlight pre .ni{color:purple}.highlight pre .ne,.highlight pre .nf{color:#990000;font-weight:bold}.highlight pre .nn{color:#555555}.highlight pre .nt{color:navy}.highlight pre .nv{color:teal}.highlight pre .ow{font-weight:bold}.highlight pre .w{color:#bbbbbb}.highlight pre .mf,.highlight pre .mh,.highlight pre .mi,.highlight pre .mo{color:#009999}.highlight pre .sb,.highlight pre .sc,.highlight pre .sd,.highlight pre .s2,.highlight pre .se,.highlight pre .sh,.highlight pre .si,.highlight pre .sx{color:#dd1144}.highlight pre .sr{color:#009926}.highlight pre .s1{color:#dd1144}.highlight pre .ss{color:#990073}.highlight pre .bp{color:#999999}.highlight pre .vc,.highlight pre .vg,.highlight pre .vi{color:teal}.highlight pre .il{color:#009999}.highlight pre .gc{color:#999;background-color:#EAF2F5}    </style>
+    <style amp-custom>html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}/*! Basscss | http://basscss.com | MIT License */.h00{font-size:4rem}.h0{font-size:3rem}.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:bold}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:320px}.max-width-2{max-width:480px}.max-width-3{max-width:600px}.max-width-4{max-width:800px}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-.5rem;margin-right:-.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.m-auto{margin:auto}.mt-auto{margin-top:auto}.mr-auto{margin-right:auto}.mb-auto{margin-bottom:auto}.ml-auto{margin-left:auto}.mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.33333%}.col-2{width:16.66667%}.col-3{width:25%}.col-4{width:33.33333%}.col-5{width:41.66667%}.col-6{width:50%}.col-7{width:58.33333%}.col-8{width:66.66667%}.col-9{width:75%}.col-10{width:83.33333%}.col-11{width:91.66667%}.col-12{width:100%}@media (min-width: 40.06rem){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.33333%}.sm-col-2{width:16.66667%}.sm-col-3{width:25%}.sm-col-4{width:33.33333%}.sm-col-5{width:41.66667%}.sm-col-6{width:50%}.sm-col-7{width:58.33333%}.sm-col-8{width:66.66667%}.sm-col-9{width:75%}.sm-col-10{width:83.33333%}.sm-col-11{width:91.66667%}.sm-col-12{width:100%}}@media (min-width: 52.06rem){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.33333%}.md-col-2{width:16.66667%}.md-col-3{width:25%}.md-col-4{width:33.33333%}.md-col-5{width:41.66667%}.md-col-6{width:50%}.md-col-7{width:58.33333%}.md-col-8{width:66.66667%}.md-col-9{width:75%}.md-col-10{width:83.33333%}.md-col-11{width:91.66667%}.md-col-12{width:100%}}@media (min-width: 64rem){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.33333%}.lg-col-2{width:16.66667%}.lg-col-3{width:25%}.lg-col-4{width:33.33333%}.lg-col-5{width:41.66667%}.lg-col-6{width:50%}.lg-col-7{width:58.33333%}.lg-col-8{width:66.66667%}.lg-col-9{width:75%}.lg-col-10{width:83.33333%}.lg-col-11{width:91.66667%}.lg-col-12{width:100%}}.flex{display:-webkit-box;display:flex}@media (min-width: 40.06rem){.sm-flex{display:-webkit-box;display:flex}}@media (min-width: 52.06rem){.lg-flex{display:-webkit-box;display:flex}}.flex-column{-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{-webkit-box-align:start;align-items:flex-start}.items-end{-webkit-box-align:end;align-items:flex-end}.items-center{-webkit-box-align:center;align-items:center}.items-baseline{-webkit-box-align:baseline;align-items:baseline}.items-stretch{-webkit-box-align:stretch;align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{-webkit-box-pack:start;justify-content:flex-start}.justify-end{-webkit-box-pack:end;justify-content:flex-end}.justify-center{-webkit-box-pack:center;justify-content:center}.justify-between{-webkit-box-pack:justify;justify-content:space-between}.justify-around{justify-content:space-around}.justify-evenly{-webkit-box-pack:space-evenly;justify-content:space-evenly}.content-start{align-content:flex-start}.content-end{align-content:flex-end}.content-center{align-content:center}.content-between{align-content:space-between}.content-around{align-content:space-around}.content-stretch{align-content:stretch}.flex-auto{-webkit-box-flex:1;flex:1 1 auto;min-width:0;min-height:0}.flex-none{-webkit-box-flex:0;flex:none}.order-0{-webkit-box-ordinal-group:1;order:0}.order-1{-webkit-box-ordinal-group:2;order:1}.order-2{-webkit-box-ordinal-group:3;order:2}.order-3{-webkit-box-ordinal-group:4;order:3}.order-last{-webkit-box-ordinal-group:100000;order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40rem){.xs-hide{display:none}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.sm-hide{display:none}}@media (min-width: 52.06rem) and (max-width: 64rem){.md-hide{display:none}}@media (min-width: 64rem){.lg-hide{display:none}}.display-none{display:none}@font-face{font-family:'Inconsolata';font-style:normal;font-weight:400;font-display:swap;src:local("Inconsolata Regular"),local("Inconsolata-Regular"),url(https://fonts.gstatic.com/s/inconsolata/v18/QldKNThLqRwH-OJ1UHjlKGlZ5q0.ttf) format("truetype")}@font-face{font-family:'M PLUS Rounded 1c';font-style:normal;font-weight:400;font-display:swap;src:local("M PLUS Rounded 1c"),local("MPLUSRounded1c-Regular"),url(https://fonts.gstatic.com/s/mplusrounded1c/v10/VdGEAYIAV6gnpUpoWwNkYvrugw9RuMWBxLs.ttf) format("truetype")}html{height:100%;-ms-text-size-adjust:100%;font-size:14pt}body{margin:0;line-height:1.25;font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;min-width:315px;height:100%;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased;padding-top:5rem}body.font-loaded{font-family:"Inconsolata","M PLUS Rounded 1c"}wrapper{min-height:100%}main{display:block;margin:0 auto;max-width:800px}header{display:block;margin:0 auto;max-width:800px;box-shadow:0 6px 10px -10px rgba(0,0,0,0.7)}.logo{border-radius:80%}hr{padding:0;margin:8px 0;border:0;height:0;border-top:1px solid rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.8)}footer{display:block;margin:0 auto}.icon-envelope{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}.icon-amp{color:#ff851b}.research li:nth-child(even){background-color:#f5f5f5}.small{font-size:80%}.doi{font-size:80%}#table-of-contents{margin:0;padding:0;display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;border-bottom:1px solid rgba(0,0,0,0.1)}#table-of-contents h2{margin:0;padding:0;font-size:1rem;border:none;margin-right:1rem}#table-of-contents h2:after{content:":";padding:0;margin:0}#table-of-contents #text-table-of-contents ul{margin:0;padding:0}#table-of-contents #text-table-of-contents ul li{list-style:none;padding:0;display:inline-block}#table-of-contents #text-table-of-contents ul li+li:before{content:"/ ";padding:0;margin:0;color:#ccc}a{text-decoration:none;color:#18bc9c}a:hover{text-decoration:underline}@media (max-width: 40rem){body{padding-top:4.8rem}.wrapper{padding:0 .5rem;background-color:#fff}header{padding:0 .5rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked ~ .navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked ~ .navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:center}header input.navigation-input:checked ~ .navcontents .dmenu input{display:none}header input.navigation-input:checked ~ .navcontents .dmenu label{display:none}header input.navigation-input:checked ~ .navcontents .dmenu .dcontents{height:auto;opacity:1;padding:0 10px}#table-of-contents{display:none}footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){body{padding-top:4.8rem}.wrapper{padding:0 1rem;background-color:#fff}header{padding:0 1rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked ~ .navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked ~ .navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:center}header input.navigation-input:checked ~ .navcontents .dmenu input{display:none}header input.navigation-input:checked ~ .navcontents .dmenu label{display:none}header input.navigation-input:checked ~ .navcontents .dmenu .dcontents{height:auto;opacity:1;padding:0 10px}page-title{font-size:1.5rem}footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 2rem;background-color:#fff}header{padding:0 2rem;background-color:#fff}header .navigation-input{display:none}header .dmenu input.dmenu-input{display:none;width:0}header .dmenu label{text-decoration:none;color:#18bc9c}header .dmenu input.dmenu-input:checked ~ label{margin-right:14pt}header .dmenu .dcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header .dmenu input.dmenu-input:checked ~ .dcontents{position:absolute;padding:0 10px;height:auto;opacity:1;background-color:#fff}header .gsearch{max-width:40vw}footer{padding:0 2rem}}@media (min-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 4rem;background-color:#fff}header{background-color:#fff}header .navigation-input{display:none}header .dmenu input.dmenu-input{display:none;width:0}header .dmenu label{text-decoration:none;color:#18bc9c}header .dmenu input.dmenu-input:checked ~ label{margin-right:14pt}header .dmenu .dcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header .dmenu input.dmenu-input:checked ~ .dcontents{position:absolute;padding:0 10px;height:auto;opacity:1;background-color:#fff}header .gsearch{max-width:40vw}.page-title{font-size:1.5rem}.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:-.8rem}footer{padding:0 4rem}}h1{font-weight:normal}.content em{font-weight:normal}.content strong{font-weight:normal;font-size:1.5rem}.content a:hover{text-decoration:underline}.content ol{counter-reset:list}.content ol>li{list-style-position:none;position:relative;list-style:none;margin-top:5px;margin-bottom:5px}.content dd{padding:0;margin-right:0;margin-left:14pt}.content ul>li{margin:5px 0 5px 0}.content ul{padding:0 20px 0 20px}.content ol{padding:0 30px 0 30px}.content ol>li:before{content:"[" counter(list, decimal) "] ";counter-increment:list;position:absolute;left:-30px}.content blockquote{border-left:5px solid #333333;margin:20px 0 20px 0;padding:2px 8px 2px 8px;font-style:italic}.content h2{border-bottom:1px solid #5af;font-weight:normal;margin:1rem 0 0 0;padding:0}.content h3{border-bottom:1px dashed #4ae;font-weight:normal;margin:1rem 0 0 0}.content h4{border-bottom:1px dotted #4ff;font-weight:normal;margin:1rem 0 0 0}.content h5{border-bottom:1px dashed #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content h6{border-bottom:1px dotted #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}table{margin:15px 0;border-collapse:collapse;width:100%;padding:0}table tr{border-top:1px solid #cccccc;background-color:white;margin:0;padding:0}table tr:nth-child(2n){background-color:#f8f8f8}table tr th{font-weight:bold;border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr td{border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr th :first-child,table tr td :first-child{margin:0}table tr th :last-child,table tr td :last-child{margin:0}pre{font-size:100%;padding:5px 10px;margin:0 auto;color:#020202;background-color:#eeeeff;overflow:auto;border:2px;border-radius:3px}figure.highlight{margin:0;padding:0;border:0}.highlight{padding:5px 10px;background-color:#020202;color:#f8f8f2}.highlight .hll{background-color:#eeeeff}.highlight .c{color:#008800}.highlight .err{border:1px solid #FF0000}.highlight .k{color:#AA22FF;font-weight:bold}.highlight .o{color:#666666}.highlight .cm{color:#008800}.highlight .cp{color:#008800}.highlight .c1{color:#008800}.highlight .cs{color:#008800;font-weight:bold}.highlight .gd{color:#A00000}.highlight .gr{color:#FF0000}.highlight .gh{color:#000080;font-weight:bold}.highlight .gi{color:#00A000}.highlight .go{color:#808080}.highlight .gp{color:#000080;font-weight:bold}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#0040D0}.highlight .kc{color:#AA22FF;font-weight:bold}.highlight .kd{color:#AA22FF;font-weight:bold}.highlight .kn{color:#AA22FF;font-weight:bold}.highlight .kp{color:#AA22FF}.highlight .kr{color:#AA22FF;font-weight:bold}.highlight .kt{color:#00BB00;font-weight:bold}.highlight .m{color:#666666}.highlight .s{color:#BB4444}.highlight .na{color:#BB4444}.highlight .nb{color:#AA22FF}.highlight .nc{color:#0000FF}.highlight .no{color:#880000}.highlight .nd{color:#AA22FF}.highlight .ni{color:#999999;font-weight:bold}.highlight .ne{color:#D2413A;font-weight:bold}.highlight .nf{color:#00A000}.highlight .nl{color:#A0A000}.highlight .nn{color:#0000FF;font-weight:bold}.highlight .nt{color:#008000;font-weight:bold}.highlight .nv{color:#B8860B}.highlight .ow{color:#AA22FF;font-weight:bold}.highlight .w{color:#bbbbbb}.highlight .mf{color:#666666}.highlight .mh{color:#666666}.highlight .mi{color:#666666}.highlight .mo{color:#666666}.highlight .sb{color:#BB4444}.highlight .sc{color:#BB4444}.highlight .sd{color:#BB4444}.highlight .s2{color:#BB4444}.highlight .se{color:#BB6622;font-weight:bold}.highlight .sh{color:#BB4444}.highlight .si{color:#BB6688;font-weight:bold}.highlight .sx{color:#008000}.highlight .sr{color:#BB6688}.highlight .s1{color:#BB4444}.highlight .ss{color:#B8860B}.highlight .bp{color:#AA22FF}.highlight .vc{color:#B8860B}.highlight .vg{color:#B8860B}.highlight .vi{color:#B8860B}.highlight .il{color:#666666}span.anchor{display:none}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}.day h2{font-size:1rem}.comment{display:none}.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:-.8rem}.tdiary-profile{width:70%}.tdiary-profile-picture{border-radius:50%}.footer{text-align:right;font-size:80%}.gsearch{max-width:40vw}@media (max-width: 40rem){.footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){.footer{padding:0 2rem}}@media (min-width: 64rem){.footer{padding:0 4rem}}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}    </style>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
     <!-- end: include amp_elements -->
   </head>
   <body>
-  <!-- include: gdpr -->
-  <amp-geo layout="nodisplay">
-    <script type="application/json">
-      {
-          "ISOCountryGroups": {
-              "eu": [ "preset-eea"]
-          }
-      }
-    </script>
-  </amp-geo>
-  <amp-consent layout="nodisplay" id="consent-element">
-    <script type="application/json">
-      {
-          "consents": {
-              "my_consent": {
-                  "promptIfUnknownForGeoGroup": "eu",
-                  "promptUI": "consent-ui"
-              }
-          }
-      }
-    </script>
-    <div id="consent-ui">
-      <button on="tap:consent-element.accept" role="button">Accept</button>
-      <button on="tap:consent-element.reject" role="button">Reject</button>
-      <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
-    </div>
-  </amp-consent>
-  <!-- end include: gdpr -->
-  <!-- include: navbar -->
-  <header class="navbar fixed flex justify-start items-center top-0 left-0 right-0 py2 z4">
-    <div class="pr2 nowrap flex-auto">
-      <a class="navbar-brand" href="https://uwabami.github.io/">
-        Youhei SASAKI's official site
-      </a>
-    </div>
-    <nav class="xs-hide sm-hide">
-      <ul class="list-reset flex"><!-- lang ja -->
-        <li>
-          <a href="https://uwabami.github.io/research/index.html">Research</a>
-        </li>
-        <!-- Start Dropdown -->
-        <li>
-          <amp-accordion layout="container"
-                         disable-session-states=""
-                         class="absolute">
-            <section>
-              <header>Software &#9662;</header>
-              <ul class="list-reset">
-                <li>
-                  <a href="https://uwabami.github.io/software/index.html">
-                    Repository
-                  </a>
-                </li>
-                <li class="nowrap">
-                  <a href="https://uwabami.github.io/cc-env/index.html">
-                    Computer Memo
-                  </a>
-                </li>
-              </ul>
-            </section>
-          </amp-accordion>
-        </li>
-        <!-- End Dropdown -->
-        <li>
-          <a href="https://uwabami.junkhub.org/log">Blog</a>
-        </li>
-        <!-- end lang ja|en -->
-        <li class="right-align mr1"><!-- end: lang selector -->
-        </li>
-      </ul>
-    </nav>
-    <div class="md-hide lg-hide ml-auto navbar-button nowrap"
-         role="button"
-         on="tap:sidebar.toggle"
-         tabindex="0">☰</div>
-  </header>
-  <!-- end include: navbar -->
-  <!-- include: sidebar -->
-  <amp-sidebar id="sidebar"
-               layout="nodisplay"
-               side="right"
-               class="md-hide lg-hide py2 pl2 pr1 navbar">
-    <nav>
-      <div role="button"
-           on="tap:sidebar.toggle"
-           tabindex="0"
-           class="right-align navbar-button pr2">✕</div>
-      <ul class="list-reset"><!-- lang selector -->
-        <li class="py2">
-          <a href="https://uwabami.github.io/index.html">Top</a>
-        </li>
-        <li class="py2">
-          <a href="https://uwabami.github.io/research/index.html">Research</a>
-        </li>
-        <li class="py2">
-          Software &#9662;
-          <ul class="list-reset pl2">
-            <li class="py1">
-              <a  href="https://uwabami.github.io/software/index.html">
-                Repository
-              </a>
-            </li>
-            <li class="nowrap py1">
-              <a  href="https://uwabami.github.io/cc-env/index.html">
-                Computer Memo
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="pb2">
-          <a href="https://uwabami.junkhub.org/log">Blog</a>
-        </li>
-        <!-- end: language selector -->
-      </ul>
-      <hr />
-      <ul class="list-reset"></ul>
-    </nav>
-  </amp-sidebar>
-  <!-- end include: sidebar -->
-    <main role="main">
-      <div class="helo-unit">
-        <!-- title check -->
-        <h1>Squid で広告避け</h1>
-        <!-- end: title check -->
-        <!-- include breadcrumbs -->
-        <ul class="breadcrumb list-reset z1 px1">
-          <!-- create crumbs -->
-          <li><a href="https://uwabami.github.io/">Top</a></li>
-          <li><a href="https://uwabami.github.io/cc-env/index.html">Cc-env</a></li>
-        </ul>
-        <!-- end: include breadcrumbs -->
+    <!-- include: amp-font -->
+    <amp-font layout="nodisplay"
+              font-family="M PLUS Rounded 1c"
+              timeout="3000"
+              on-load-add-class="font-loaded">
+    </amp-font>
+    <amp-font layout="nodisplay"
+              font-family="Inconsolata"
+              timeout="3000"
+              on-load-add-class="font-loaded">
+    </amp-font>
+    <!-- end include: amp-font -->
+    <!-- include: gdpr -->
+    <amp-geo layout="nodisplay">
+      <script type="application/json">
+        {
+            "ISOCountryGroups": {
+                "eu": [ "preset-eea"]
+            }
+        }
+      </script>
+    </amp-geo>
+    <amp-consent layout="nodisplay" id="consent-element">
+      <script type="application/json">
+        {
+            "consents": {
+                "my_consent": {
+                    "promptIfUnknownForGeoGroup": "eu",
+                    "promptUI": "consent-ui"
+                }
+            }
+        }
+      </script>
+      <div id="consent-ui">
+        <button on="tap:consent-element.accept" role="button">Accept</button>
+        <button on="tap:consent-element.reject" role="button">Reject</button>
+        <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
       </div>
-      <div class="clearfix bg-white px2 container-rounded">
-<!-- %%%%%%% main content %%%%%%% -->
-<p>Related <a href="index.html">Index</a> <a href="index.org::* Debian">Debian</a></p>
-<h2><a id="はじめに"><span class='anchor'>_</span></a>はじめに</h2>
-<p>手元で squid を上げています.</p>
-<p>最初は職場, 居室, モバイル等でネットワーク環境が変わる際に
-  いちいちプロキシの設定を変えるとかやってられん, ということで</p>
-<ul>
-  <li>手元で透過 proxy を立ち上げる</li>
-  <li>アプリケーションは常に proxy として localhost を見に行くようにする</li>
-  <li>ネットワーク接続の切り替え時に 上流の proxy を切り替える</li>
+    </amp-consent>
+    <!-- end include: gdpr -->
+    <div class="wrapper">
+      <!-- include: navbar -->
+      <header class="container left-0 right-0 top-0 z4 fixed">
+        <!-- page loop -->
+        <nav class="navigation flex items-center justify-between">
+          <div class="pr1 py1 order-0">
+            <a href="/index.html">
+              <amp-img layout="fixed"
+                       width="1.2rem"
+                       height="1.2rem"
+                       src="/assets/img/top.png"
+                       alt="About"
+                       id="top"
+                       class="logo left">
+              </amp-img>
+            </a>
+          </div>
+          <input type="checkbox" id="tm" class="navigation-input">
+          <label for="tm" class="pl1 py1 order-3 md-hide lg-hide h2">☰</label>
+          <div class="navcontents items-center md-flex lg-flex order-1">
+          <!-- lang ja -->
+            <div class="px1 py0">
+              <a href="/research/index.html">
+                Research
+              </a>
+            </div>
+            <div class="dmenu px1 py0">
+              <input type="checkbox" id="dmenu" class="dmenu-input">
+              <label for="dmenu">Software &#9662;</label>
+              <div class="dcontents p0">
+                <ul class="list-reset p0 m0">
+                  <li class="px1 py0">
+                    <a href="/software/index.html">
+                      Repository
+                    </a>
+                  </li>
+                  <li class="px1 py0">
+                    <a href="/cc-env/index.html">
+                      Comp. Memo
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px1 py1">
+              <a href="https://uwabami.junkhub.org/log">blog</a>
+            </div>
+          </div>
+          <div class="flex-auto"></div>
+          <div class="px1 py0 order-2">
+            <form method="GET"
+                  class="p0 m0"
+                  action="https://www.google.com/cse"
+                  target="_top">
+              <div class="inline-block relative p0 m0 small">
+                <input name="cx" type="hidden"
+                       value="017455171263919107349:oumnpe4bynr" />
+                <input name="ie" type="hidden" value="UTF-8" />
+                <input class="gsearch" type="search" placeholder="検索" name="q" required>
+              </div>
+            </form>
+          </div>
+          
+        </nav>
+        <div class="breadcrumbs">
+          <div class="flex items-center">
+            <!-- create crumbs -->
+            <div class="pr1 py0">
+              <a href="/index.html">
+                Top
+              </a>
+            </div>
+            &gt;<div class="px1"><a href="/cc-env/index.html">Cc-env</a></div>      <!-- end page loop -->
+            <div class="flex-auto py0"></div>
+            <div class="pr0 py0"><!-- end: lang selector -->
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- end include: navbar -->
+      <main role="main">
+        <div class="container content">
+          <h1 class="page-title my2 py0 px0">Squid で広告避け</h1>
+          <hr>
+<!-- %%%% start content %%%% -->
+<p>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+</p>
+<div id="outline-container-orgcc5e0c1" class="outline-2">
+<h2 id="orgda6fb6ff"><a id="orgcc5e0c1"></a>はじめに</h2>
+<div class="outline-text-2" id="text-orgda6fb6ff">
+<p>
+手元で squid を上げています.
+</p>
+
+<p>
+最初は職場, 居室, モバイル等でネットワーク環境が変わる際にいちいちプロキシの設定を変えるとかやってられん, ということで
+</p>
+<ul class="org-ul">
+<li>手元で透過 proxy を立ち上げる</li>
+<li>アプリケーションは常に proxy として localhost を見に行くようにする</li>
+<li>ネットワーク接続の切り替え時に 上流の proxy を切り替えるという目的で上げていました.</li>
 </ul>
-<p>という目的で上げていました.</p>
-<p>それに加えて</p>
-<ul>
-  <li>そういえば squid って hosts ファイル読めたよね</li>
+
+<p>
+それに加えて
+</p>
+<ul class="org-ul">
+<li>そういえば squid って hosts ファイル読めたよねということで, これは広告避けにつかえるな, ということに.</li>
 </ul>
-<p>ということで, これは広告避けにつかえるな, ということに.</p>
-<p>Web 広告については, まあ, いろんな意見があって良いと思います.
-  サービスの収益化は必要でしょうし,
-  邪魔にならない広告ならまあ良いんですけれど&#8230;</p>
-<ul>
-  <li>Flash とか mp4 で動画バリバリ</li>
-  <li>閲覧中にポップアップ</li>
+
+<p>
+Web 広告については, まあ, いろんな意見があって良いと思います.
+サービスの収益化は必要でしょうし,
+邪魔にならない広告ならまあ良いんですけれど&#x2026;
+</p>
+<ul class="org-ul">
+<li>Flash とか mp4 で動画バリバリ</li>
+<li>閲覧中にポップアップとか, そういう奴が多すぎます.</li>
 </ul>
-<p>とか, そういう奴が多すぎます.</p>
-<h2><a id="導入と設定"><span class='anchor'>_</span></a>導入と設定</h2>
-<p>導入</p>
+
+<p>
+最近は https で繋がってくる事も多いので,
+手元で rebuild して SSL-Bump するようにしました.
+</p>
+</div>
+</div>
+<div id="outline-container-org0d1e622" class="outline-2">
+<h2 id="org0d1e622">導入と設定</h2>
+<div class="outline-text-2" id="text-org0d1e622">
+<p>
+導入
+</p>
 <pre class="example">
 % sudo apt-get install squid
 </pre>
-<p>apt 万歳</p>
-<p>現状の設定は以下の通り:</p>
-<h3><a id="広告避けの host ファイル"><span class='anchor'>_</span></a>広告避けの host ファイル</h3>
-<p>以下のスクリプトで適当に生成</p>
-<div class="highlight"><pre><span></span><span class="ch">#! /bin/bash</span>
+<p>
+apt 万歳
+</p>
+
+<p>
+現状の設定は以下の通り:
+</p>
+</div>
+<div id="outline-container-org467cb62" class="outline-3">
+<h3 id="org467cb62">広告避けの host ファイル</h3>
+<div class="outline-text-3" id="text-org467cb62">
+<p>
+以下のスクリプトで適当に生成
+</p>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#! /bin/bash</span>
 <span class="nv">URL</span><span class="o">=()</span>
-<span class="c1"># adaway default</span>
-<span class="nv">URL</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;https://adaway.org/hosts.txt&quot;</span><span class="o">)</span>
-<span class="nv">URL</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;http://winhelp2002.mvps.org/hosts.txt&quot;</span><span class="o">)</span>
-<span class="nv">URL</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&amp;showintro=0&amp;mimetype=plaintext&quot;</span><span class="o">)</span>
-<span class="nv">URL</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;https://hosts-file.net/ad_servers.txt&quot;</span><span class="o">)</span>
-<span class="nv">URL</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;https://sites.google.com/site/hosts2ch/ja&quot;</span><span class="o">)</span>
-<span class="nv">URL</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;https://raw.githubusercontent.com/multiverse2011/adawaylist-jp/master/hosts&quot;</span><span class="o">)</span>
-<span class="nv">URL</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;https://warui.intaa.net/adhosts/hosts.txt&quot;</span><span class="o">)</span>
-<span class="nv">URL</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;https://280blocker.net/files/280blocker_domain.txt&quot;</span><span class="o">)</span>
-<span class="c1">#</span>
-<span class="nb">echo</span> <span class="s2">&quot;download hosts list&quot;</span>
-<span class="k">for</span> <span class="o">((</span> <span class="nv">i</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span> i &lt; <span class="si">$&#123;#</span><span class="nv">URL</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> ++i <span class="o">))</span><span class="p">;</span> <span class="k">do</span>
-    <span class="nb">echo</span> wget -q <span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> -O tmp-<span class="nv">$i</span>.txt
-    wget -q <span class="s2">&quot;</span><span class="si">$&#123;</span><span class="nv">URL</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> -O tmp-<span class="nv">$i</span>.txt
-    <span class="nb">echo</span> <span class="s2">&quot;create tmp-</span><span class="nv">$i</span><span class="s2">-list.txt&quot;</span>
-    cat tmp-<span class="nv">$i</span>.txt <span class="p">|</span> <span class="se">\</span>
-        grep -v localhost <span class="p">|</span> <span class="se">\</span>
-        grep -v <span class="m">255</span>.255.255.255 <span class="p">|</span> <span class="se">\</span>
-        grep -v ^# <span class="p">|</span> <span class="se">\</span>
-        grep -v ^white <span class="p">|</span> <span class="se">\</span>
-        sed <span class="s1">&#39;/^$/d&#39;</span> <span class="p">|</span> <span class="se">\</span>
-        sed -e <span class="s1">&#39;s/\t/ /g&#39;</span> <span class="p">|</span> <span class="se">\</span>
-        nkf -w -Lu -d &gt; tmp-<span class="nv">$i</span>-list.txt
-    rm -f tmp-<span class="nv">$i</span>.txt
+<span class="c"># adaway default</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[@]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="s2">"https://adaway.org/hosts.txt"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[@]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="s2">"http://winhelp2002.mvps.org/hosts.txt"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[@]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="s2">"https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&amp;showintro=0&amp;mimetype=plaintext"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[@]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="s2">"https://hosts-file.net/ad_servers.txt"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[@]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="s2">"https://sites.google.com/site/hosts2ch/ja"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[@]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="s2">"https://raw.githubusercontent.com/multiverse2011/adawaylist-jp/master/hosts"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[@]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="s2">"https://warui.intaa.net/adhosts/hosts.txt"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[@]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="s2">"https://280blocker.net/files/280blocker_domain.txt"</span><span class="o">)</span>
+<span class="c">#</span>
+<span class="nb">echo</span> <span class="s2">"download hosts list"</span>
+<span class="k">for</span> <span class="o">((</span> i <span class="o">=</span> 0<span class="p">;</span> i &lt; <span class="nv">$&amp;</span><span class="c">#123;#URL[@]&amp;$125;; ++i )); do</span>
+    <span class="nb">echo </span>wget <span class="nt">-q</span> <span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[</span><span class="nv">$i</span><span class="s2">]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="nt">-O</span> tmp-<span class="nv">$i</span>.txt
+    wget <span class="nt">-q</span> <span class="s2">"</span><span class="nv">$&amp;</span><span class="s2">#123;URL[</span><span class="nv">$i</span><span class="s2">]&amp;</span><span class="nv">$125</span><span class="s2">;"</span> <span class="nt">-O</span> tmp-<span class="nv">$i</span>.txt
+    <span class="nb">echo</span> <span class="s2">"create tmp-</span><span class="nv">$i</span><span class="s2">-list.txt"</span>
+    <span class="nb">cat </span>tmp-<span class="nv">$i</span>.txt | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-v</span> localhost | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-v</span> 255.255.255.255 | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-v</span> ^# | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-v</span> ^white | <span class="se">\</span>
+        <span class="nb">sed</span> <span class="s1">'/^$/d'</span> | <span class="se">\</span>
+        <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/\t/ /g'</span> | <span class="se">\</span>
+        nkf <span class="nt">-w</span> <span class="nt">-Lu</span> <span class="nt">-d</span> <span class="o">&gt;</span> tmp-<span class="nv">$i</span><span class="nt">-list</span>.txt
+    <span class="nb">rm</span> <span class="nt">-f</span> tmp-<span class="nv">$i</span>.txt
 <span class="k">done</span>
-<span class="c1">#</span>
-<span class="nb">echo</span> <span class="s2">&quot;merge tmp list&quot;</span>
-<span class="k">for</span> f in <span class="sb">`</span>/bin/ls -1 tmp-?-list.txt<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
-    cat <span class="nv">$f</span> <span class="p">|</span> grep -v ^# &gt;&gt; tmp-list.txt
-    rm -f <span class="nv">$f</span>
+<span class="c">#</span>
+<span class="nb">echo</span> <span class="s2">"merge tmp list"</span>
+<span class="k">for </span>f <span class="k">in</span> <span class="sb">`</span>/bin/ls <span class="nt">-1</span> tmp-?-list.txt<span class="sb">`</span><span class="p">;</span> <span class="k">do
+    </span><span class="nb">cat</span> <span class="nv">$f</span> | <span class="nb">grep</span> <span class="nt">-v</span> ^# <span class="o">&gt;&gt;</span> tmp-list.txt
+    <span class="nb">rm</span> <span class="nt">-f</span> <span class="nv">$f</span>
+<span class="k">done
+</span><span class="nb">cat </span>tmp-list.txt | <span class="se">\</span>
+    <span class="nb">sed</span> <span class="s1">'/^$/d'</span> | <span class="se">\</span>
+    <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/#.*$//g'</span> | <span class="se">\</span>
+    <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/^0\.0\.0\.0/127\.0\.0\.1/g'</span> | <span class="se">\</span>
+    <span class="nb">sort</span> <span class="nt">-u</span> <span class="o">&gt;</span> adaway.txt
+<span class="c"># wget -q https://warui.intaa.net/adhosts/whitelist.txt -O tmp-white.txt</span>
+<span class="c"># cat tmp-white.txt | while read line</span>
+<span class="c"># do</span>
+<span class="c">#     sed -i -e '/$line/d' adaway.txt</span>
+<span class="c"># done</span>
+<span class="c"># whitelist</span>
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="nt">-e</span> <span class="s1">'/apis.google.com/d'</span> adaway.txt
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="nt">-e</span> <span class="s1">'/google-analytics.l.google.com/d'</span> adaway.txt
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="nt">-e</span> <span class="s1">'/google-analytics.com/d'</span> adaway.txt
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="nt">-e</span> <span class="s1">'s/127.0.0.1 //g'</span> adaway.txt
+<span class="nb">echo</span> <span class="nt">-n</span> <span class="s1">''</span> <span class="o">&gt;</span> adaway_hosts.txt
+<span class="nb">cat </span>adaway.txt | <span class="k">while </span><span class="nb">read </span>line
+<span class="k">do
+    </span><span class="nb">echo </span>0.0.0.0 <span class="nv">$line</span> <span class="o">&gt;&gt;</span> adaway_hosts.txt
 <span class="k">done</span>
-cat tmp-list.txt <span class="p">|</span> <span class="se">\</span>
-    sed <span class="s1">&#39;/^$/d&#39;</span> <span class="p">|</span> <span class="se">\</span>
-    sed -e <span class="s1">&#39;s/#.*$//g&#39;</span> <span class="p">|</span> <span class="se">\</span>
-    sed -e <span class="s1">&#39;s/^0\.0\.0\.0/127\.0\.0\.1/g&#39;</span> <span class="p">|</span> <span class="se">\</span>
-    sort -u &gt; adaway.txt
-<span class="c1"># wget -q https://warui.intaa.net/adhosts/whitelist.txt -O tmp-white.txt</span>
-<span class="c1"># cat tmp-white.txt | while read line</span>
-<span class="c1"># do</span>
-<span class="c1">#     sed -i -e &#39;/$line/d&#39; adaway.txt</span>
-<span class="c1"># done</span>
-<span class="c1"># whitelist</span>
-sed -i -e <span class="s1">&#39;/apis.google.com/d&#39;</span> adaway.txt
-sed -i -e <span class="s1">&#39;/google-analytics.l.google.com/d&#39;</span> adaway.txt
-sed -i -e <span class="s1">&#39;/google-analytics.com/d&#39;</span> adaway.txt
-sed -i -e <span class="s1">&#39;s/127.0.0.1 //g&#39;</span> adaway.txt
-<span class="nb">echo</span> -n <span class="s1">&#39;&#39;</span> &gt; adaway_hosts.txt
-cat adaway.txt <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> line
-<span class="k">do</span>
-    <span class="nb">echo</span> <span class="m">0</span>.0.0.0 <span class="nv">$line</span> &gt;&gt; adaway_hosts.txt
-<span class="k">done</span>
-<span class="c1"># nginx hosts</span>
-cat adaway_hosts.txt <span class="p">|</span> sed -e <span class="s1">&#39;s/^0\.0\.0\.0/server_name/g&#39;</span> -e <span class="s1">&#39;s/$/;/g&#39;</span> &gt; adaway_nginx_hosts.txt
-<span class="c1">## ipv6</span>
-<span class="c1"># cat adaway.txt | sed -e &#39;s/127.0.0.1/::1/g&#39; &gt; adaway_ipv6.txt</span>
-<span class="c1"># cat adaway.txt &gt;&gt; adaway_ipv6.txt</span>
-<span class="c1"># mv adaway_ipv6.txt adaway.txt</span>
-<span class="nb">echo</span> <span class="s2">&quot;cleanup&quot;</span>
-rm -f tmp-list.txt
-rm -f tmp-white.txt
-</pre></div>
-<p>リストを保守して下さっている皆様に感謝.</p>
-<h3><a id="=/etc/squid/common.conf="><span class='anchor'>_</span></a><code>/etc/squid/common.conf</code></h3>
-<p>昔プロキシを切り替えていた頃の名残で,
-  上流を問わず全て同じ設定とする部分は <code>common.conf</code> に書いている.
-  現状は</p>
-<ul>
-  <li>キャッシュはしない(した方が良いのかな&#8230;?)</li>
-  <li>匿名化したいわけでも無いので, ヘッダは適当</li>
-  <li>20080 番で動作</li>
+<span class="c"># nginx hosts</span>
+<span class="nb">cat </span>adaway_hosts.txt | <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/^0\.0\.0\.0/server_name/g'</span> <span class="nt">-e</span> <span class="s1">'s/$/;/g'</span> <span class="o">&gt;</span> adaway_nginx_hosts.txt
+<span class="c">## ipv6</span>
+<span class="c"># cat adaway.txt | sed -e 's/127.0.0.1/::1/g' &gt; adaway_ipv6.txt</span>
+<span class="c"># cat adaway.txt &gt;&gt; adaway_ipv6.txt</span>
+<span class="c"># mv adaway_ipv6.txt adaway.txt</span>
+<span class="nb">echo</span> <span class="s2">"cleanup"</span>
+<span class="nb">rm</span> <span class="nt">-f</span> tmp-list.txt
+<span class="nb">rm</span> <span class="nt">-f</span> tmp-white.txt</code></pre></figure>
+
+<p>
+リストを保守して下さっている皆様に感謝.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd3e124a" class="outline-3">
+<h3 id="orgd3e124a"><code>/etc/squid/squid.conf</code></h3>
+<div class="outline-text-3" id="text-orgd3e124a">
+<p>
+現状は
+</p>
+<ul class="org-ul">
+<li>キャッシュはしない(した方が良いのかな&#x2026;?)</li>
+<li>匿名化したいわけでも無いので, ヘッダは適当</li>
+<li>20080 番で動作といった所.</li>
 </ul>
-<p>といった所.</p>
-<h3><a id="=/etc/squid/squid.conf="><span class='anchor'>_</span></a><code>/etc/squid/squid.conf</code></h3>
-<p>中身は現状これだけ</p>
-<div class="highlight"><pre><span></span><span class="c">## Adblock</span><span class="w"></span>
-<span class="c">## DNS</span><span class="w"></span>
-<span class="c"># read hosts file -&gt; 0.0.0.0</span><span class="w"></span>
-<span class="k">hosts_file</span><span class="w"> </span>/etc/squid/adaway_hosts.txt<span class="w"></span>
-<span class="k">acl</span><span class="w"> </span>ad_black<span class="w"> </span><span class="k">dstdomain</span><span class="w"> </span>&quot;/etc/squid/adaway.txt&quot;<span class="w"></span>
-<span class="k">http_access</span><span class="w"> </span><span class="no">deny</span><span class="w"> </span>ad_black<span class="w"></span>
-<span class="c"># Custom Error Page (force empty)</span><span class="w"></span>
-error_directory<span class="w"> </span>/etc/squid/error/<span class="w"></span>
-<span class="c"># dns_v4_first on</span><span class="w"></span>
-<span class="k">dns_nameservers</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="w"></span>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c">## Adblock
+## DNS
+# read hosts file -&gt; 0.0.0.0
+</span><span class="n">hosts_file</span> /<span class="n">etc</span>/<span class="n">squid</span>/<span class="n">adaway_hosts</span>.<span class="n">txt</span>
+<span class="n">acl</span> <span class="n">ad_black</span> <span class="n">dstdomain</span> <span class="s2">"/etc/squid/adaway.txt"</span>
+<span class="n">http_access</span> <span class="n">deny</span> <span class="n">ad_black</span>
+<span class="c"># Custom Error Page (force empty)
+</span><span class="n">error_directory</span> /<span class="n">etc</span>/<span class="n">squid</span>/<span class="n">error</span>/
+<span class="c"># dns_v4_first on
+</span><span class="n">dns_nameservers</span> <span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span>
 
-<span class="c">## ACL</span><span class="w"></span>
-<span class="k">acl</span><span class="w"> </span>local<span class="w"> </span><span class="k">src</span><span class="w"> </span><span class="mf">192.168.122.0/24</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="w"> </span>::1<span class="w"> </span><span class="mf">fe80::/10</span><span class="w"></span>
-<span class="k">http_access</span><span class="w"> </span><span class="no">allow</span><span class="w"> </span>local<span class="w"></span>
-<span class="k">http_access</span><span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-<span class="c">## access port</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># 20080 番で動作</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># http_port 20080</span><span class="w"></span>
-<span class="k">http_port</span><span class="w"> </span><span class="m">20080</span><span class="w"> </span>ssl-bump<span class="w"> </span>\<span class="w"></span>
-<span class="w"> </span>generate-host-certificates=on<span class="w"> </span>\<span class="w"></span>
-<span class="w"> </span>dynamic_cert_mem_cache_size=4MB<span class="w"> </span>\<span class="w"></span>
-<span class="w"> </span>cert=/usr/local/share/ca-certificates/junkhub.org/iris_cert.crt<span class="w"> </span>\<span class="w"></span>
-<span class="w"> </span>key=/usr/local/share/ca-certificates/junkhub.org/iris_key.pem<span class="w"> </span>\<span class="w"></span>
-<span class="w"> </span>tls-dh=prime256v1:/etc/squid/dhparam.pem<span class="w"></span>
-sslcrtd_program<span class="w"> </span>/usr/lib/squid/security_file_certgen<span class="w"> </span>\<span class="w"></span>
-<span class="w">  </span>-s<span class="w"> </span>/var/spool/squid/ssl_db<span class="w"> </span>\<span class="w"></span>
-<span class="w">  </span>-M<span class="w"> </span>4MB<span class="w"></span>
-tls_outgoing_options<span class="w"> </span>\<span class="w"></span>
-<span class="w">  </span>cafile=/etc/ssl/certs/ca-certificates.crt<span class="w"> </span>\<span class="w"></span>
-<span class="w">  </span>options=NO_SSLv3,ALL<span class="w"></span>
-<span class="k">acl</span><span class="w"> </span>step1<span class="w"> </span>at_step<span class="w"> </span>SslBump1<span class="w"></span>
-<span class="k">acl</span><span class="w"> </span>ssl_exclude_domains<span class="w"> </span><span class="k">dstdomain</span><span class="w"> </span>&quot;/etc/squid/ssl_white.txt&quot;<span class="w"></span>
-ssl_bump<span class="w"> </span>splice<span class="w"> </span>ssl_exclude_domains<span class="w"></span>
-ssl_bump<span class="w"> </span>peek<span class="w"> </span>step1<span class="w"></span>
-ssl_bump<span class="w"> </span>bump<span class="w"> </span><span class="no">all</span><span class="w"></span>
+<span class="c">## ACL
+</span><span class="n">acl</span> <span class="n">local</span> <span class="n">src</span> <span class="m">192</span>.<span class="m">168</span>.<span class="m">122</span>.<span class="m">0</span>/<span class="m">24</span> <span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span> ::<span class="m">1</span> <span class="n">fe80</span>::/<span class="m">10</span>
+<span class="n">http_access</span> <span class="n">allow</span> <span class="n">local</span>
+<span class="n">http_access</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="c">## access port
+#
+# 20080 番で動作
+#
+# http_port 20080
+</span><span class="n">http_port</span> <span class="m">20080</span> <span class="n">ssl</span>-<span class="n">bump</span> \
+ <span class="n">generate</span>-<span class="n">host</span>-<span class="n">certificates</span>=<span class="n">on</span> \
+ <span class="n">dynamic_cert_mem_cache_size</span>=<span class="m">4</span><span class="n">MB</span> \
+ <span class="n">cert</span>=/<span class="n">usr</span>/<span class="n">local</span>/<span class="n">share</span>/<span class="n">ca</span>-<span class="n">certificates</span>/<span class="n">junkhub</span>.<span class="n">org</span>/<span class="n">iris_cert</span>.<span class="n">crt</span> \
+ <span class="n">key</span>=/<span class="n">usr</span>/<span class="n">local</span>/<span class="n">share</span>/<span class="n">ca</span>-<span class="n">certificates</span>/<span class="n">junkhub</span>.<span class="n">org</span>/<span class="n">iris_key</span>.<span class="n">pem</span> \
+ <span class="n">tls</span>-<span class="n">dh</span>=<span class="n">prime256v1</span>:/<span class="n">etc</span>/<span class="n">squid</span>/<span class="n">dhparam</span>.<span class="n">pem</span>
+<span class="n">sslcrtd_program</span> /<span class="n">usr</span>/<span class="n">lib</span>/<span class="n">squid</span>/<span class="n">security_file_certgen</span> \
+  -<span class="n">s</span> /<span class="n">var</span>/<span class="n">spool</span>/<span class="n">squid</span>/<span class="n">ssl_db</span> \
+  -<span class="n">M</span> <span class="m">4</span><span class="n">MB</span>
+<span class="n">tls_outgoing_options</span> \
+  <span class="n">cafile</span>=/<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span> \
+  <span class="n">options</span>=<span class="n">NO_SSLv3</span>,<span class="n">ALL</span>
+<span class="n">acl</span> <span class="n">step1</span> <span class="n">at_step</span> <span class="n">SslBump1</span>
+<span class="n">acl</span> <span class="n">ssl_exclude_domains</span> <span class="n">dstdomain</span> <span class="s2">"/etc/squid/ssl_white.txt"</span>
+<span class="n">ssl_bump</span> <span class="n">splice</span> <span class="n">ssl_exclude_domains</span>
+<span class="n">ssl_bump</span> <span class="n">peek</span> <span class="n">step1</span>
+<span class="n">ssl_bump</span> <span class="n">bump</span> <span class="n">all</span>
 
-<span class="c">## ICAP</span><span class="w"></span>
-icap_enable<span class="w"> </span><span class="no">off</span><span class="w"></span>
+<span class="c">## ICAP
+</span><span class="n">icap_enable</span> <span class="n">off</span>
 
-<span class="c">## ICMP</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># disable all ICMP request</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-pinger_enable<span class="w"> </span><span class="no">off</span><span class="w"></span>
-<span class="k">query_icmp</span><span class="w"> </span><span class="no">off</span><span class="w"></span>
+<span class="c">## ICMP
+#
+# disable all ICMP request
+#
+</span><span class="n">pinger_enable</span> <span class="n">off</span>
+<span class="n">query_icmp</span> <span class="n">off</span>
 
-<span class="c">## Log Format</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># Apache like</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="k">access_log</span><span class="w"> </span>stdio:/var/log/squid/access.log<span class="w"> </span>common<span class="w"></span>
-<span class="c"># logformat common %&gt;a %ui %un [%tl] &quot;%rm %ru HTTP/%rv&quot; &gt;Hs %&lt;st %Ss:%Sh</span><span class="w"></span>
-<span class="c"># access_log stdio:/dev/null common</span><span class="w"></span>
+<span class="c">## Log Format
+#
+# Apache like
+#
+# access_log stdio:/var/log/squid/access.log common
+# logformat common %&gt;a %ui %un [%tl] "%rm %ru HTTP/%rv" &gt;Hs %&lt;st %Ss:%Sh
+</span><span class="n">access_log</span> <span class="n">stdio</span>:/<span class="n">dev</span>/<span class="n">null</span> <span class="n">common</span>
 
-<span class="c"># Logs are managed by logrotate on Debian</span><span class="w"></span>
-<span class="c"># @see include /etc/squid/conf.d/debian.conf</span><span class="w"></span>
-<span class="k">logfile_rotate</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
+<span class="c"># Logs are managed by logrotate on Debian
+# @see include /etc/squid/conf.d/debian.conf
+</span><span class="n">logfile_rotate</span> <span class="m">0</span>
 
 
-<span class="c">## Cache</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># don&#39;t use any cache</span><span class="w"></span>
-<span class="c">#</span><span class="w"></span>
-<span class="c"># no_cache deny all</span><span class="w"></span>
-<span class="k">cache_store_log</span><span class="w"> </span><span class="no">none</span><span class="w"></span>
-<span class="k">cache_access_log</span><span class="w"> </span><span class="no">none</span><span class="w"></span>
-<span class="k">cache_log</span><span class="w"> </span>/dev/null<span class="w"></span>
-<span class="k">logfile_rotate</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
-<span class="k">coredump_dir</span><span class="w"> </span>/var/spool/squid<span class="w"></span>
-<span class="k">ipcache_size</span><span class="w"> </span><span class="m">0</span><span class="w"></span>
+<span class="c">## Cache
+#
+# don't use any cache
+#
+# no_cache deny all
+</span><span class="n">cache_store_log</span> <span class="n">none</span>
+<span class="n">cache_access_log</span> <span class="n">none</span>
+<span class="n">cache_log</span> /<span class="n">dev</span>/<span class="n">null</span>
+<span class="n">logfile_rotate</span> <span class="m">0</span>
+<span class="n">coredump_dir</span> /<span class="n">var</span>/<span class="n">spool</span>/<span class="n">squid</span>
+<span class="n">ipcache_size</span> <span class="m">0</span>
 
-<span class="c">## Anonymous</span><span class="w"></span>
-<span class="c"># forwarded_for transparent</span><span class="w"></span>
-<span class="k">forwarded_for</span><span class="w"> </span><span class="no">off</span><span class="w"></span>
-<span class="k">visible_hostname</span><span class="w"> </span>unknown<span class="w"></span>
-request_header_access<span class="w"> </span>X-FORWARDED-FOR<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-request_header_access<span class="w"> </span><span class="no">VIA</span><span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-request_header_access<span class="w"> </span>CACHE-CONTROL<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-request_header_access<span class="w"> </span>If-MODIFIED-SINCE<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-<span class="c"># request_header_access CONNECTION deny all</span><span class="w"></span>
-request_header_access<span class="w"> </span>UPGRADE-INSECURE-REQUESTS<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-request_header_access<span class="w"> </span>DNT<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-reply_header_access<span class="w"> </span>X-FORWARDED-FOR<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-reply_header_access<span class="w"> </span><span class="no">VIA</span><span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-reply_header_access<span class="w"> </span>CACHE-CONTROL<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-reply_header_access<span class="w"> </span>If-MODIFIED-SINCE<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-reply_header_access<span class="w"> </span>UPGRADE-INSECURE-REQUESTS<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
-reply_header_access<span class="w"> </span>DNT<span class="w"> </span><span class="no">deny</span><span class="w"> </span><span class="no">all</span><span class="w"></span>
+<span class="c">## Anonymous
+# forwarded_for transparent
+</span><span class="n">forwarded_for</span> <span class="n">off</span>
+<span class="n">visible_hostname</span> <span class="n">unknown</span>
+<span class="n">request_header_access</span> <span class="n">X</span>-<span class="n">FORWARDED</span>-<span class="n">FOR</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">request_header_access</span> <span class="n">VIA</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">request_header_access</span> <span class="n">CACHE</span>-<span class="n">CONTROL</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">request_header_access</span> <span class="n">If</span>-<span class="n">MODIFIED</span>-<span class="n">SINCE</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="c"># request_header_access CONNECTION deny all
+</span><span class="n">request_header_access</span> <span class="n">UPGRADE</span>-<span class="n">INSECURE</span>-<span class="n">REQUESTS</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">request_header_access</span> <span class="n">DNT</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">X</span>-<span class="n">FORWARDED</span>-<span class="n">FOR</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">VIA</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">CACHE</span>-<span class="n">CONTROL</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">If</span>-<span class="n">MODIFIED</span>-<span class="n">SINCE</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">UPGRADE</span>-<span class="n">INSECURE</span>-<span class="n">REQUESTS</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">DNT</span> <span class="n">deny</span> <span class="n">all</span>
 
-<span class="k">pid_filename</span><span class="w"> </span>/run/squid.pid<span class="w"></span>
-<span class="c">## fast</span><span class="w"></span>
-pipeline_prefetch<span class="w"> </span><span class="m">0</span><span class="w"></span>
-<span class="k">shutdown_lifetime</span><span class="w"> </span><span class="m">0</span>.01<span class="w"> </span>seconds<span class="w"></span>
+<span class="n">pid_filename</span> /<span class="n">run</span>/<span class="n">squid</span>.<span class="n">pid</span>
+<span class="c">## fast
+</span><span class="n">pipeline_prefetch</span> <span class="m">0</span>
+<span class="n">shutdown_lifetime</span> <span class="m">0</span>.<span class="m">01</span> <span class="n">seconds</span>
 
-<span class="c">#</span><span class="w"></span>
-<span class="k">always_direct</span><span class="w"> </span><span class="no">allow</span><span class="w"> </span>local<span class="w"></span>
-</pre></div>
-<p>もはや分割する意味が無い, とも言える.</p>
-<h3><a id="systemd と仲良く: =/etc/systemd/system/squid.service="><span class='anchor'>_</span></a>systemd と仲良く: <code>/etc/systemd/system/squid.service</code></h3>
-<p>キャッシュを動かす気も無いので子プロセスは生成されない.
-  ということで, systemd 用の service ファイルを以下の様にでっち上げた.</p>
-<div class="highlight"><pre><span></span><span class="c">## Copyright (C) 1996-2018 The Squid Software Foundation and contributors</span><span class="w"></span>
-<span class="c">##</span><span class="w"></span>
-<span class="c">## Squid software is distributed under GPLv2+ license and includes</span><span class="w"></span>
-<span class="c">## contributions from numerous individuals and organizations.</span><span class="w"></span>
-<span class="c">## Please see the COPYING and CONTRIBUTORS files for details.</span><span class="w"></span>
-<span class="c">##</span><span class="w"></span>
+<span class="c">#
+</span><span class="n">always_direct</span> <span class="n">allow</span> <span class="n">local</span></code></pre></figure>
+</div>
+</div>
+<div id="outline-container-org71cab79" class="outline-3">
+<h3 id="org71cab79">systemd と仲良く: <code>/etc/systemd/system/squid.service</code></h3>
+<div class="outline-text-3" id="text-org71cab79">
+<p>
+キャッシュを動かす気も無いので子プロセスは生成されない.
+ということで, systemd 用の service ファイルを以下の様にでっち上げた.
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c">## Copyright (C) 1996-2018 The Squid Software Foundation and contributors
+##
+## Squid software is distributed under GPLv2+ license and includes
+## contributions from numerous individuals and organizations.
+## Please see the COPYING and CONTRIBUTORS files for details.
+##
+</span>
+[<span class="n">Unit</span>]
+<span class="n">Description</span>=<span class="n">Squid</span> <span class="n">Web</span> <span class="n">Proxy</span> <span class="n">Server</span>
+<span class="n">Documentation</span>=<span class="n">man</span>:<span class="n">squid</span>(<span class="m">8</span>)
+<span class="n">After</span>=<span class="n">network</span>.<span class="n">target</span> <span class="n">network</span>-<span class="n">online</span>.<span class="n">target</span> <span class="n">nss</span>-<span class="n">lookup</span>.<span class="n">target</span>
 
-[Unit]<span class="w"></span>
-Description=Squid<span class="w"> </span>Web<span class="w"> </span>Proxy<span class="w"> </span>Server<span class="w"></span>
-Documentation=man:squid(8)<span class="w"></span>
-After=network.target<span class="w"> </span>network-online.target<span class="w"> </span>nss-lookup.target<span class="w"></span>
+[<span class="n">Service</span>]
+<span class="n">Type</span>=<span class="n">forking</span>
+<span class="n">PIDFile</span>=/<span class="n">run</span>/<span class="n">squid</span>.<span class="n">pid</span>
+<span class="n">ExecStartPre</span>=/<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">squid</span> --<span class="n">foreground</span> -<span class="n">z</span>
+<span class="n">ExecStart</span>=/<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">squid</span> -<span class="n">sYC</span>
+<span class="n">ExecReload</span>=/<span class="n">bin</span>/<span class="n">kill</span> -<span class="n">HUP</span> $<span class="n">MAINPID</span>
+<span class="n">KillMode</span>=<span class="n">mixed</span>
 
-[Service]<span class="w"></span>
-Type=forking<span class="w"></span>
-PIDFile=/run/squid.pid<span class="w"></span>
-ExecStartPre=/usr/sbin/squid<span class="w"> </span>--foreground<span class="w"> </span>-z<span class="w"></span>
-ExecStart=/usr/sbin/squid<span class="w"> </span>-sYC<span class="w"></span>
-ExecReload=/bin/kill<span class="w"> </span>-HUP<span class="w"> </span>$MAINPID<span class="w"></span>
-KillMode=mixed<span class="w"></span>
-
-[Install]<span class="w"></span>
-WantedBy=multi-user.target<span class="w"></span>
-</pre></div>
-<p>あとは</p>
+[<span class="n">Install</span>]
+<span class="n">WantedBy</span>=<span class="n">multi</span>-<span class="n">user</span>.<span class="n">target</span></code></pre></figure>
+<p>
+あとは
+</p>
 <pre class="example">
 % sudo systemctl daemon-reload
 % sudo systemctl enable squid
 % sudo systemctl start squid
 </pre>
-<p>で快適. 適宜 <code>HTTP_PROXY</code> 等を設定しておく.</p>
-
-<!-- %%%%%%% end: main content %%%%%%% -->
-      </div>
-    </main>
-    <!-- include footer -->
-    <footer class="flex justify-end bottom-0 left-0 right-0 m0 py1 px2">
-      <p class="right-align">
-        <span class="nowrap">&copy; 2006 - 2018
+<p>
+で快適. 適宜 <code>HTTP_PROXY</code> 等を設定しておく.
+</p>
+</div>
+</div>
+</div>
+<!-- %%%% end content %%%% -->
+        </div>
+      </main>
+      <!-- include footer -->
+      <footer class="container bottom-0 left-0 right-0 small">
+        <hr/>
+        <p class="p0 m0 right-align">&copy; 2006-2019
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2018-10-25 13:25:13
-        </span>
-        <br/>
-        <span class="nowrap">
+          Lastupdate: 2019-12-19 22:42:59 +0000
+          <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
             Org mode
           </a>
           +
-          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll" >
+          <a href="http://jekyllrb.com/" target="_blank" title="Jekyll">
             Jekyll
           </a>
           +
-          <a href="http://basscss.com/" target="_blank" title="Basscss" >
+          <a href="http://basscss.com/" target="_blank" title="Basscss">
             Basscss
           </a>
-        </span>
-      </p>
-    </footer>
-    <amp-analytics data-block-on-consent
-                   type="gtag"
-                   data-credentials="include">
-      <script type="application/json">
-        {
-            "vars" : {
-                "gtag_id": "UA-90872419-1",
-                "config" : {
-                    "UA-90872419-1": { "groups": "default" }
-                }
-            }
-        }
+          &amp;
+          <a href="https://amp.dev/">
+            <span class="icon-amp">⚡</span>AMP
+          </a>
+        </p>
+      </footer>
+      <amp-analytics data-block-on-consent
+                     type="gtag"
+                     data-credentials="include">
+        <script type="application/json">
+          {
+              "vars" : {
+                  "gtag_id": "UA-90872419-1",
+                  "config" : {
+                      "UA-90872419-1": { "groups": "default" }
+                  }
+              }
+          }
         </script>
-    </amp-analytics>
-    <!-- end: include footer -->
+      </amp-analytics>
+      <!-- end: include footer -->
+    </div>
   </body>
 </html>
