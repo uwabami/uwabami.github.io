@@ -196,6 +196,21 @@
   
     
       <url>
+        <loc>https://uwabami.github.io/css/main.css</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/css/main.css" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/sitemaps.xml" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/css/main.css.map" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
         <loc>https://uwabami.github.io/software/rail/index.en.html</loc>
         
         
@@ -277,7 +292,11 @@
         <loc>https://uwabami.github.io/sitemaps.xml</loc>
         
         
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/css/main.css" />
+        
         <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/sitemaps.xml" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/css/main.css.map" />
         
         <changefreq>monthly</changefreq>
       </url>
@@ -315,6 +334,21 @@
         
         
         <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/cc-env/weechat.html" />
+        
+        <changefreq>monthly</changefreq>
+      </url>
+    
+  
+    
+      <url>
+        <loc>https://uwabami.github.io/css/main.css.map</loc>
+        
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/css/main.css" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/sitemaps.xml" />
+        
+        <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/css/main.css.map" />
         
         <changefreq>monthly</changefreq>
       </url>
