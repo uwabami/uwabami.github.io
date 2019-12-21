@@ -22,13 +22,13 @@
 <meta property="og:url" content="https://uwabami.github.io/cc-env/DebianMail.html" />
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-12-20T07:31:23+09:00" />
+<meta property="article:published_time" content="2019-12-22T00:27:31+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Mail 環境の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianMail.html","headline":"Mail 環境の設定","dateModified":"2019-12-20T07:31:23+09:00","datePublished":"2019-12-20T07:31:23+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianMail.html","headline":"Mail 環境の設定","dateModified":"2019-12-22T00:27:31+09:00","datePublished":"2019-12-22T00:27:31+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -185,12 +185,11 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-
-<div id="outline-container-orgf286bf6" class="outline-2">
-<h2 id="orgf286bf6">始めに</h2>
-<div class="outline-text-2" id="text-orgf286bf6">
+<div id="outline-container-org4098bdb" class="outline-2">
+<h2 id="org4098bdb">始めに</h2>
+<div class="outline-text-2" id="text-org4098bdb">
 <p>
 メールに関するアレコレ.
 ネットワーク接続を意識したくないので,
@@ -198,9 +197,9 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 </p>
 </div>
 </div>
-<div id="outline-container-org00e6ed2" class="outline-2">
-<h2 id="org00e6ed2">送信設定: Exim4</h2>
-<div class="outline-text-2" id="text-org00e6ed2">
+<div id="outline-container-org0b7043b" class="outline-2">
+<h2 id="org0b7043b">送信設定: Exim4</h2>
+<div class="outline-text-2" id="text-org0b7043b">
 <p>
 smarthost での送信だけなら Exim4 が軽量で楽。他にも幾つか選択肢はある。気になるなら <a href="https://wiki.debian.org/Debate/DefaultMTA">Debian Wiki: DefaultMTA</a> あたり参照のこと。欲しい機能は
 </p>
@@ -255,11 +254,11 @@ $ sudo -s
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">MAILDIR_HOME_MAILDIR_LOCATION</span> = $<span class="n">home</span>/<span class="n">Maildir</span>/<span class="n">INBOX</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-orgf6e590e" class="outline-2">
-<h2 id="orgf6e590e">送信設定: msmtp</h2>
-<div class="outline-text-2" id="text-orgf6e590e">
+<div id="outline-container-orgfb74857" class="outline-2">
+<h2 id="orgfb74857">送信設定: msmtp</h2>
+<div class="outline-text-2" id="text-orgfb74857">
 <p>
-<a href="Emacs.html#MissingReference">Wanderlust</a> からメールを送る時には,
+<a href="/cc-env/Emacs.html#org2c2abb9b">Wanderlust</a> からメールを送る時には,
 <code>msmtp</code> を使っている.
 </p>
 
@@ -292,9 +291,9 @@ msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
 </p>
 </div>
 </div>
-<div id="outline-container-org5725800" class="outline-2">
-<h2 id="org5725800">受信</h2>
-<div class="outline-text-2" id="text-org5725800">
+<div id="outline-container-orgab6f4a0" class="outline-2">
+<h2 id="orgab6f4a0">受信</h2>
+<div class="outline-text-2" id="text-orgab6f4a0">
 <p>
 受信/閲覧は
 </p>
@@ -317,16 +316,16 @@ msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
 <li>偶に block するし、imap の接続数が酷い事になる。ということで、2015 年から <a href="http://isync.sourceforge.net/">isync: free IMAP and MailDir mailbox synchronizer</a> に移行した。</li>
 </ul>
 </div>
-<div id="outline-container-org4f6a940" class="outline-3">
-<h3 id="org4f6a940">mbsync/isync</h3>
-<div class="outline-text-3" id="text-org4f6a940">
+<div id="outline-container-orgac172fe" class="outline-3">
+<h3 id="orgac172fe">mbsync/isync</h3>
+<div class="outline-text-3" id="text-orgac172fe">
 <p>
 isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
 </p>
 </div>
-<div id="outline-container-orga578fe8" class="outline-4">
-<h4 id="orga578fe8">インストール</h4>
-<div class="outline-text-4" id="text-orga578fe8">
+<div id="outline-container-org9a7a3b4" class="outline-4">
+<h4 id="org9a7a3b4">インストール</h4>
+<div class="outline-text-4" id="text-org9a7a3b4">
 <p>
 実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
 </p>
@@ -338,9 +337,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org69346e8" class="outline-4">
-<h4 id="org69346e8">設定</h4>
-<div class="outline-text-4" id="text-org69346e8">
+<div id="outline-container-org1c17c97" class="outline-4">
+<h4 id="org1c17c97">設定</h4>
+<div class="outline-text-4" id="text-org1c17c97">
 <p>
 設定ファイルは <code>~/.mbsyncrc</code>.
 設定例は以下:
@@ -373,7 +372,7 @@ apt 万歳
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">IMAPAccount</span> <span class="n">mobile</span>
 <span class="n">Host</span> <span class="n">mobile</span>.<span class="n">example</span>.<span class="n">com</span>
 <span class="n">User</span> <span class="n">TheMobileUserAccount</span>
-<span class="n">PassCmd</span> <span class="s2">"echo $&amp;#123;PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine mobile.example.com .*password \\\([^ ]*\\) port.*,\\1,p')&amp;$125;"</span>
+<span class="n">PassCmd</span> <span class="s2">"echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine mobile.example.com .*password \\\([^ ]*\\) port.*,\\1,p')}"</span>
 <span class="n">Port</span> <span class="m">993</span>
 <span class="n">UseIMAPS</span> <span class="n">yes</span>
 <span class="n">RequireSSL</span> <span class="n">yes</span>
@@ -383,7 +382,7 @@ apt 万歳
 <span class="n">IMAPAccount</span> <span class="n">work</span>
 <span class="n">Host</span> <span class="n">work</span>.<span class="n">example</span>.<span class="n">com</span>
 <span class="n">User</span> <span class="n">TheWorkUserAccount</span>
-<span class="n">PassCmd</span> <span class="s2">"echo $&amp;#123;PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine work.example.com .*password \\\([^ ]*\\) port.*,\\1,p')&amp;$125;"</span>
+<span class="n">PassCmd</span> <span class="s2">"echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine work.example.com .*password \\\([^ ]*\\) port.*,\\1,p')}"</span>
 <span class="n">Port</span> <span class="m">993</span>
 <span class="n">UseIMAPS</span> <span class="n">yes</span>
 <span class="n">RequireSSL</span> <span class="n">yes</span>
@@ -393,7 +392,7 @@ apt 万歳
 <span class="n">IMAPAccount</span> <span class="n">gmail</span>
 <span class="n">Host</span> <span class="n">imap</span>.<span class="n">gmail</span>.<span class="n">com</span>
 <span class="n">User</span> <span class="n">GmailMailAddress</span>
-<span class="n">PassCmd</span> <span class="s2">"echo $&amp;#123;PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine imap.gmail.com .*password \\\([^ ]*\\) port.*,\\1,p')&amp;$125;"</span>
+<span class="n">PassCmd</span> <span class="s2">"echo ${PASSWORD:-$(gpg --no-tty -qd ~/.authinfo.gpg | sed -n 's,^machine imap.gmail.com .*password \\\([^ ]*\\) port.*,\\1,p')}"</span>
 <span class="n">Port</span> <span class="m">993</span>
 <span class="n">UseIMAPS</span> <span class="n">yes</span>
 <span class="n">RequireSSL</span> <span class="n">yes</span>
@@ -467,9 +466,9 @@ mbsync -l mobile
 </p>
 </div>
 </div>
-<div id="outline-container-org0fca09b" class="outline-4">
-<h4 id="org0fca09b">cron での動作</h4>
-<div class="outline-text-4" id="text-org0fca09b">
+<div id="outline-container-org8337073" class="outline-4">
+<h4 id="org8337073">cron での動作</h4>
+<div class="outline-text-4" id="text-org8337073">
 <p>
 認証に GPG を使っており、認証に Gnome Keyring を用いているので必要な環境変数を読み込んでから実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意:
@@ -510,7 +509,7 @@ cron で実行されるスクリプトは, 例えば
 <span class="nv">PID</span><span class="o">=</span>~/Maildir/mbsync.pid
 <span class="nv">CONF</span><span class="o">=</span>~/.mbsyncrc
 <span class="c"># for gnome-keyring:</span>
-<span class="nb">.</span> <span class="nv">$&amp;</span><span class="c">#123;HOME&amp;$125;/.Xdbus</span>
+<span class="nb">.</span> <span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/.Xdbus
 <span class="c"># check network is avaliable</span>
 nm-online <span class="nt">-x</span>  2&gt;/dev/null <span class="o">||</span> <span class="nb">exit </span>0
 <span class="c"># check another offlineimap</span>
@@ -521,13 +520,13 @@ timelimit <span class="nt">-T</span> 300 <span class="nt">-t</span> 300 mbsync <
 </div>
 </div>
 </div>
-<div id="outline-container-org2d5857a" class="outline-3">
-<h3 id="org2d5857a">dovecot</h3>
-<div class="outline-text-3" id="text-org2d5857a">
+<div id="outline-container-org781fc0a" class="outline-3">
+<h3 id="org781fc0a">dovecot</h3>
+<div class="outline-text-3" id="text-org781fc0a">
 </div>
-<div id="outline-container-org222ca89" class="outline-4">
-<h4 id="org222ca89">インストール</h4>
-<div class="outline-text-4" id="text-org222ca89">
+<div id="outline-container-orgff3988c" class="outline-4">
+<h4 id="orgff3988c">インストール</h4>
+<div class="outline-text-4" id="text-orgff3988c">
 <p>
 最低限 IMAP での接続ができれば良いので
 </p>
@@ -539,9 +538,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org0e0c196" class="outline-4">
-<h4 id="org0e0c196">設定</h4>
-<div class="outline-text-4" id="text-org0e0c196">
+<div id="outline-container-org59dbcdd" class="outline-4">
+<h4 id="org59dbcdd">設定</h4>
+<div class="outline-text-4" id="text-org59dbcdd">
 <p>
 最低限の設定として、
 </p>
@@ -576,12 +575,12 @@ apt 万歳
 <p>
 を有効に。include されている auth-system.conf.ext の中身は
 </p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">passdb</span> &amp;<span class="c">#123;
-</span>  <span class="n">driver</span> = <span class="n">pam</span>
-&amp;$<span class="m">125</span>;
-<span class="n">userdb</span> &amp;<span class="c">#123;
-</span>  <span class="n">driver</span> = <span class="n">passwd</span>
-&amp;$<span class="m">125</span>;</code></pre></figure>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">passdb</span> {
+  <span class="n">driver</span> = <span class="n">pam</span>
+}
+<span class="n">userdb</span> {
+  <span class="n">driver</span> = <span class="n">passwd</span>
+}</code></pre></figure>
 <p>
 だけが有効。これで pam 経由でパスワードログインするようになる.
 </p>
@@ -590,9 +589,9 @@ apt 万歳
 次に Maildir の設定。 <code>/etc/dovecot/conf.d/10-mail.conf</code> 内で
 </p>
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">mail_location</span> = <span class="n">maildir</span>:%<span class="n">h</span>/<span class="n">Maildir</span>:<span class="n">INBOX</span>=%<span class="n">h</span>/<span class="n">Maildir</span>/<span class="n">INBOX</span>:<span class="n">LAYOUT</span>=<span class="n">fs</span>
-<span class="n">namespace</span> <span class="n">inbox</span> &amp;<span class="c">#123;
-</span>  <span class="n">inbox</span> = <span class="n">yes</span>
-&amp;$<span class="m">125</span>;</code></pre></figure>
+<span class="n">namespace</span> <span class="n">inbox</span> {
+  <span class="n">inbox</span> = <span class="n">yes</span>
+}</code></pre></figure>
 <p>
 あたりを修正しておく。
 </p>
@@ -606,33 +605,33 @@ apt 万歳
 <p>
 その後に <code>/etc/dovecot/conf.d/10-master.conf</code> 内の <code>imap-login</code> 部分を修正
 </p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">service</span> <span class="n">imap</span>-<span class="n">login</span> &amp;<span class="c">#123;
-</span>  <span class="n">inet_listener</span> <span class="n">imap</span> &amp;<span class="c">#123;
-</span>    <span class="n">port</span> = <span class="m">0</span>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">service</span> <span class="n">imap</span>-<span class="n">login</span> {
+  <span class="n">inet_listener</span> <span class="n">imap</span> {
+    <span class="n">port</span> = <span class="m">0</span>
     <span class="n">ssl</span> = <span class="n">no</span>
-  &amp;$<span class="m">125</span>;
-  <span class="n">inet_listener</span> <span class="n">imaps</span> &amp;<span class="c">#123;
-</span>    <span class="n">port</span> = <span class="m">993</span>
+  }
+  <span class="n">inet_listener</span> <span class="n">imaps</span> {
+    <span class="n">port</span> = <span class="m">993</span>
     <span class="n">ssl</span> = <span class="n">yes</span>
-  &amp;$<span class="m">125</span>;
-&amp;$<span class="m">125</span>;</code></pre></figure>
+  }
+}</code></pre></figure>
 <p>
 これで再起動すると <code>/etc/ssl/private</code> に置いた SSL 証明書を使って <code>127.0.1.1:993</code> で IMAP サーバが起動する。Listen を 127.0.0.1 に絞るなら SSL でのアクセスは不要かもしれない。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org313a1e6" class="outline-3">
-<h3 id="org313a1e6">以下, obsolete</h3>
-<div class="outline-text-3" id="text-org313a1e6">
+<div id="outline-container-org29bdf97" class="outline-3">
+<h3 id="org29bdf97">以下, obsolete</h3>
+<div class="outline-text-3" id="text-org29bdf97">
 <p>
 検索は mu (maildir-utils) を使うようになったし,
 メールの同期には mbsync を使うようになったので, 以下は昔のお話.
 </p>
 </div>
-<div id="outline-container-org02e9110" class="outline-4">
-<h4 id="org02e9110">検索: Solr</h4>
-<div class="outline-text-4" id="text-org02e9110">
+<div id="outline-container-orgddac45f" class="outline-4">
+<h4 id="orgddac45f">検索: Solr</h4>
+<div class="outline-text-4" id="text-orgddac45f">
 <p>
 Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。ここでは Solr を試してみる
 </p>
@@ -666,19 +665,19 @@ Jetty の起動設定は <code>/etc/default/jetty8</code> にあるので
 を追加しておく。
 IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定すれば良いのだが、この場合は <code>doveadm fts rescan -u USERNAME</code> ができない。最後に <code>/etc/dovecot/conf.d/90-plugin.conf</code> で
 </p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">plugin</span> &amp;<span class="c">#123;
-</span>  <span class="n">fts_autoindex</span> = <span class="n">yes</span>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">plugin</span> {
+  <span class="n">fts_autoindex</span> = <span class="n">yes</span>
   <span class="n">fts</span> = <span class="n">solr</span>
   <span class="n">fts_solr</span> = <span class="n">break</span>-<span class="n">imap</span>-<span class="n">search</span> <span class="n">url</span>=<span class="n">http</span>://<span class="n">localhost</span>:<span class="m">8089</span>/<span class="n">solr</span>/
-&amp;$<span class="m">125</span>;</code></pre></figure>
+}</code></pre></figure>
 <p>
 としておく。これで jetty8 および dovecot を再起動すると、検索が効く様になる&#x2026;?
 </p>
 </div>
 </div>
-<div id="outline-container-orgbc1c7f6" class="outline-4">
-<h4 id="orgbc1c7f6">検索: Solr で日本語</h4>
-<div class="outline-text-4" id="text-orgbc1c7f6">
+<div id="outline-container-org1485794" class="outline-4">
+<h4 id="org1485794">検索: Solr で日本語</h4>
+<div class="outline-text-4" id="text-org1485794">
 <p>
 <code>scheme.xml</code> の修正が必要。とりあえず
 </p>
@@ -775,17 +774,17 @@ diff は以下:
     &lt;field name="_version_" type="long" indexed="true" stored="true"/&gt;</code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org5ddb495" class="outline-4">
-<h4 id="org5ddb495">offlineimap</h4>
-<div class="outline-text-4" id="text-org5ddb495">
+<div id="outline-container-org0005199" class="outline-4">
+<h4 id="org0005199">offlineimap</h4>
+<div class="outline-text-4" id="text-org0005199">
 <p>
 (2015/05/10) 以前使っていた時のメモ。もう使わないけれど、たまに検索でココを見に来ている人がいるみたいなので、残しておくことに。
 <a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="orgbaad28b"></a>インストール<br />
-<div class="outline-text-5" id="text-orgbaad28b">
+<li><a id="org0830b19"></a>インストール<br />
+<div class="outline-text-5" id="text-org0830b19">
 <p>
 apt万歳, ってことで.
 </p>
@@ -794,8 +793,8 @@ $ sudo apt-get install offlineimap
 </pre>
 </div>
 </li>
-<li><a id="orgd02171e"></a>設定<br />
-<div class="outline-text-5" id="text-orgd02171e">
+<li><a id="orgae3d3c4"></a>設定<br />
+<div class="outline-text-5" id="text-orgae3d3c4">
 <p>
 現状, 以下の通り:
 </p>
@@ -859,7 +858,7 @@ $ sudo apt-get install offlineimap
 [<span class="n">Repository</span> <span class="n">RemoteGmail</span>]
 <span class="c"># Gmail との接続設定: type = IMAP でも良い?
 </span><span class="n">type</span> = <span class="n">Gmail</span>
-<span class="c"># remote&amp;#123;pass,user&amp;$125;eval は offlineimap_utils.py で定義した関数
+<span class="c"># remote{pass,user}eval は offlineimap_utils.py で定義した関数
 </span><span class="n">remoteusereval</span> = <span class="n">get_username</span>(<span class="s2">"imap.gmail.com"</span>)
 <span class="n">remotepasseval</span> = <span class="n">get_password</span>(<span class="s2">"imap.gmail.com"</span>)
 <span class="n">maxsize</span> = <span class="m">2000000000</span>
@@ -903,7 +902,7 @@ $ sudo apt-get install offlineimap
 <span class="c"># certificates がデフォルトで探せない?
 </span><span class="n">sslcacertfile</span> = /<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span>
 <span class="n">remotehost</span> = [<span class="n">main</span> <span class="n">server</span>]
-<span class="c"># remote&amp;#123;pass,user&amp;$125;eval は offlineimap_utils.py で定義した関数
+<span class="c"># remote{pass,user}eval は offlineimap_utils.py で定義した関数
 </span><span class="n">remoteusereval</span> = <span class="n">get_username</span>(<span class="s2">"[main server]"</span>)
 <span class="n">remotepasseval</span> = <span class="n">get_password</span>(<span class="s2">"[main server]"</span>)
 <span class="n">maxsize</span> = <span class="m">2000000000</span>
@@ -953,23 +952,23 @@ $ sudo apt-get install offlineimap
 
     <span class="k">def</span> <span class="nf">has_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">attrs</span> <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#123;"server": self._server, "protocol": self._protocol&amp;$125;
-</span>            <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">}</span>
+            <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
             <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="k">except</span> <span class="n">gkey</span><span class="o">.</span><span class="n">DeniedError</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
 
     <span class="k">def</span> <span class="nf">get_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">attrs</span> <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#123;"server": self._server, "protocol": self._protocol&amp;$125;
-</span>        <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">}</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">"user"</span><span class="p">],</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">secret</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">set_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">pw</span><span class="p">)):</span>
-        <span class="n">attrs</span> <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#123;
-</span>                <span class="s">"user"</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s">"user"</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
                 <span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span>
                 <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">,</span>
-            <span class="o">&amp;</span><span class="err">$</span><span class="mi">125</span><span class="p">;</span>
+            <span class="p">}</span>
         <span class="n">gkey</span><span class="o">.</span><span class="n">item_create_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">get_default_keyring_sync</span><span class="p">(),</span>
                 <span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">pw</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 
@@ -1017,8 +1016,8 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 </p>
 </div>
 </li>
-<li><a id="org9b44443"></a>cron での動作<br />
-<div class="outline-text-5" id="text-org9b44443">
+<li><a id="org05a7685"></a>cron での動作<br />
+<div class="outline-text-5" id="text-org05a7685">
 <p>
 認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意
@@ -1064,7 +1063,7 @@ cron で実行されるスクリプトは, 例えば
 <span class="nb">echo</span> <span class="sb">`</span><span class="nv">LANG</span><span class="o">=</span>C <span class="nb">date</span><span class="sb">`</span>
 <span class="nb">echo</span> <span class="s2">"******************************************************************"</span>
 <span class="c"># for gnome-keyring:</span>
-<span class="nb">.</span> <span class="nv">$&amp;</span><span class="c">#123;HOME&amp;$125;/.Xdbus</span>
+<span class="nb">.</span> <span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/.Xdbus
 <span class="c"># check network is avaliable</span>
 nm-online <span class="nt">-x</span> <span class="o">||</span> <span class="nb">exit </span>0
 <span class="c"># check another offlineimap</span>
@@ -1087,7 +1086,7 @@ nm-online <span class="nt">-x</span> <span class="o">||</span> <span class="nb">
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2019
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2019-12-19 22:31:23 +0000
+          Lastupdate: 2019-12-21 15:27:31 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">

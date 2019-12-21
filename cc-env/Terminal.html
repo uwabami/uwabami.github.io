@@ -28,7 +28,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Terminal.html","headline":"Terminal 生活","dateModified":"2019-12-20T07:32:01+09:00","datePublished":"2019-12-20T07:32:01+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Terminal.html","headline":"Terminal 生活","dateModified":"2019-12-20T07:32:01+09:00","datePublished":"2019-12-20T07:32:01+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -185,11 +185,11 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-orgd721153" class="outline-2">
-<h2 id="orgd721153">始めに</h2>
-<div class="outline-text-2" id="text-orgd721153">
+<div id="outline-container-orga6cc1f9" class="outline-2">
+<h2 id="orgab2c8165"><a id="orga6cc1f9"></a>始めに</h2>
+<div class="outline-text-2" id="text-orgab2c8165">
 <p>
 普段の生活環境(?)であるターミナルの設定アレコレ.
 </p>
@@ -200,9 +200,9 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 </p>
 </div>
 </div>
-<div id="outline-container-org4d437ee" class="outline-2">
-<h2 id="org4d437ee">EAW 対応: ロケールの入れ替え</h2>
-<div class="outline-text-2" id="text-org4d437ee">
+<div id="outline-container-org1dc449e" class="outline-2">
+<h2 id="org1dc449e">EAW 対応: ロケールの入れ替え</h2>
+<div class="outline-text-2" id="text-org1dc449e">
 <p>
 EAW については
 </p>
@@ -226,9 +226,9 @@ East Asian Ambiguous Char と絵文字の文字幅を強制的に "2" とする�
 </p>
 </div>
 </div>
-<div id="outline-container-org35cb8e4" class="outline-2">
-<h2 id="org35cb8e4">rxvt-unicode-256color</h2>
-<div class="outline-text-2" id="text-org35cb8e4">
+<div id="outline-container-org9eb35b3" class="outline-2">
+<h2 id="org9eb35b3">rxvt-unicode-256color</h2>
+<div class="outline-text-2" id="text-org9eb35b3">
 <p>
 Debian では configure オプションの変えた urxvt のパッケージが提供されていた.
 (256色が使いたいので <code>rxvt-unicode-256color</code> を使っていた).
@@ -265,16 +265,16 @@ index 1914539..4c0189e 100644
 <span class="gd">-  bool success = true;
 -
 -  for (;;)
--    &amp;#123;
+-    {
 -      p = FcPatternDuplicate (match);
 -      f = XftFontOpenPattern (disp, p);
 -
 -      if (!f)
--        &amp;#123;
+-        {
 -          FcPatternDestroy (p);
 -          success = false;
 -          break;
--        &amp;$125;
+-        }
 -
 -      FT_Face face = XftLockFace (f);
 -
@@ -291,13 +291,13 @@ index 1914539..4c0189e 100644
 </span>
 -      int glheight = height;
 <span class="gi">+  if (!f)
-+    &amp;#123;
++    {
 +      FcPatternDestroy (p);
 +      return false;
-+    &amp;$125;
++    }
 </span>
 -      for (uint16_t *t = extent_test_chars; t &lt; extent_test_chars + ecb_array_length (extent_test_chars); t++)
-<span class="gd">-        &amp;#123;
+<span class="gd">-        {
 -          FcChar16 ch = *t;
 </span><span class="gi">+  FT_Face face = XftLockFace (f);
 </span>
@@ -322,7 +322,7 @@ index 1914539..4c0189e 100644
 </span>
 -          g.width -= g.x;
 <span class="gi">+  for (uint16_t *t = extent_test_chars; t &lt; extent_test_chars + ecb_array_length (extent_test_chars); t++)
-+    &amp;#123;
++    {
 +      FcChar16 ch = *t;
 </span>
 -          int wcw = WCWIDTH (ch);
@@ -335,14 +335,14 @@ index 1914539..4c0189e 100644
 -          if (width    &lt; g.width       ) width    = g.width;
 <span class="gd">-          if (height   &lt; g.height      ) height   = g.height;
 -          if (glheight &lt; g.height - g.y) glheight = g.height - g.y;
--        &amp;$125;
+-        }
 </span><span class="gi">+      // ignore characters we wouldn't use anyways
 +      bool careful;
 +      if (!has_char (*t, &amp;prop, careful))
 +        continue;
 </span>
 -      if (!width)
-<span class="gd">-        &amp;#123;
+<span class="gd">-        {
 -          rxvt_warn ("unable to calculate font width for '%s', ignoring.\n", name);
 </span><span class="gi">+      XGlyphInfo g;
 +      XftTextExtents16 (disp, f, &amp;ch, 1, &amp;g);
@@ -353,7 +353,7 @@ index 1914539..4c0189e 100644
 </span>
 -          success = false;
 <span class="gd">-          break;
--        &amp;$125;
+-        }
 </span><span class="gi">+      int wcw = WCWIDTH (ch);
 +      if (wcw &gt; 1) g.xOff = g.xOff / wcw;
 </span>
@@ -364,10 +364,10 @@ index 1914539..4c0189e 100644
 -        break;
 </span><span class="gi">+      if (width    &lt; g.xOff  ) width    = g.xOff;
 +      if (height   &lt; g.height) height   = g.height;
-+    &amp;$125;
++    }
 </span>
 -      if (ftheight)
-<span class="gd">-        &amp;#123;
+<span class="gd">-        {
 -          // take smaller steps near the end
 -          if (height &gt; prop.height + 1) ftheight++;
 -          if (height &gt; prop.height + 2) ftheight++;
@@ -375,11 +375,11 @@ index 1914539..4c0189e 100644
 </span><span class="gi">+  bool success = true;
 </span>
 -          ftheight -= height - prop.height;
-<span class="gd">-        &amp;$125;
+<span class="gd">-        }
 -      else
 -        ftheight = prop.height - 1;
 </span><span class="gi">+  if (!width)
-+    &amp;#123;
++    {
 +      rxvt_warn ("unable to calculate font width for '%s', ignoring.\n", name);
 </span>
        XftFontClose (disp, f);
@@ -388,7 +388,7 @@ index 1914539..4c0189e 100644
 </span><span class="gi">+      f = 0;
 +
 +      success = false;
-</span>     &amp;$125;
+</span>     }
 
    FcPatternDestroy (match);
 <span class="p">@@ -1395,7 +1366,7 @@</span> rxvt_font_xft::draw (rxvt_drawable &amp;d, int x, int y,
@@ -412,16 +412,16 @@ index 9eb375a..7b3cdbf 100644
 -                         xpixel + Width2Pixel (count) - 1, ypixel + font-&gt;ascent + 1);
 </span><span class="gi">+                         xpixel, ypixel + Height2Pixel (1) - 1,
 +                         xpixel + Width2Pixel (count) - 1, ypixel + Height2Pixel (1) - 1);
-</span>             &amp;$125;
-         &amp;$125;                     /* for (col....) */
-     &amp;$125;                         /* for (row....) */
+</span>             }
+         }                     /* for (col....) */
+     }                         /* for (row....) */
 <span class="gh">diff --git a/src/table/jis0208_1990_0.h b/src/table/jis0208_1990_0.h
 index b23378f..0febcd3 100644
 </span><span class="gd">--- a/src/table/jis0208_1990_0.h
 </span><span class="gi">+++ b/src/table/jis0208_1990_0.h
-</span><span class="p">@@ -2241,6 +2241,7 @@</span> const uint16_t *jis0208_1990_0_f_i[] = &amp;#123;
+</span><span class="p">@@ -2241,6 +2241,7 @@</span> const uint16_t *jis0208_1990_0_f_i[] = {
 
- static uint32_t cs_jis0208_1990_0_from_unicode (unicode_t unicode) &amp;#123;
+ static uint32_t cs_jis0208_1990_0_from_unicode (unicode_t unicode) {
      if (unicode == 0x2312) return 0x225e;
 <span class="gi">+    if (unicode == 0xff5e) return 0x2141;
 </span>     uint8_t  l = unicode;
@@ -429,9 +429,9 @@ index b23378f..0febcd3 100644
      if (0x00 &lt;= h &amp;&amp; h &lt;= 0xff</code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org8c00426" class="outline-2">
-<h2 id="org8c00426">tmux</h2>
-<div class="outline-text-2" id="text-org8c00426">
+<div id="outline-container-orgbe6a527" class="outline-2">
+<h2 id="orgbe6a527">tmux</h2>
+<div class="outline-text-2" id="text-orgbe6a527">
 <p>
 以前は GNU screen を使っていたのだけれども,
 接続先の環境の多くが UTF-8 をサポートしてくれたので,
@@ -460,98 +460,98 @@ Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 <span class="gi">+++ b/options-table.c
 </span><span class="p">@@ -293,6 +293,12 @@</span>
  	  .default_num = 0
- 	&amp;$125;,
+ 	},
 
-+	&amp;#123; .name = "pane-border-ascii",
++	{ .name = "pane-border-ascii",
 <span class="gi">+	  .type = OPTIONS_TABLE_FLAG,
 +	  .scope = OPTIONS_TABLE_SESSION,
 +	  .default_num = 1
-+	&amp;$125;,
++	},
 +
-</span> 	&amp;#123; .name = "prefix",
+</span> 	{ .name = "prefix",
  	  .type = OPTIONS_TABLE_KEY,
  	  .scope = OPTIONS_TABLE_SESSION,
 <span class="gd">--- a/tty-acs.c
 </span><span class="gi">+++ b/tty-acs.c
 </span><span class="p">@@ -30,38 +30,38 @@</span>
  	const char	*string;
- &amp;$125;;
- const struct tty_acs_entry tty_acs_table[] = &amp;#123;
-<span class="gd">-	&amp;#123; '+', "\342\206\222" &amp;$125;,	/* arrow pointing right */
--	&amp;#123; ',', "\342\206\220" &amp;$125;,	/* arrow pointing left */
--	&amp;#123; '-', "\342\206\221" &amp;$125;,	/* arrow pointing up */
--	&amp;#123; '.', "\342\206\223" &amp;$125;,	/* arrow pointing down */
--	&amp;#123; '0', "\342\226\256" &amp;$125;,	/* solid square block */
--	&amp;#123; '`', "\342\227\206" &amp;$125;,	/* diamond */
--	&amp;#123; 'a', "\342\226\222" &amp;$125;,	/* checker board (stipple) */
--	&amp;#123; 'f', "\302\260" &amp;$125;,		/* degree symbol */
--	&amp;#123; 'g', "\302\261" &amp;$125;,		/* plus/minus */
--	&amp;#123; 'h', "\342\226\222" &amp;$125;,	/* board of squares */
--	&amp;#123; 'i', "\342\230\203" &amp;$125;,	/* lantern symbol */
--	&amp;#123; 'j', "\342\224\230" &amp;$125;,	/* lower right corner */
--	&amp;#123; 'k', "\342\224\220" &amp;$125;,	/* upper right corner */
--	&amp;#123; 'l', "\342\224\214" &amp;$125;,	/* upper left corner */
--	&amp;#123; 'm', "\342\224\224" &amp;$125;,	/* lower left corner */
--	&amp;#123; 'n', "\342\224\274" &amp;$125;,	/* large plus or crossover */
--	&amp;#123; 'o', "\342\216\272" &amp;$125;,	/* scan line 1 */
--	&amp;#123; 'p', "\342\216\273" &amp;$125;,	/* scan line 3 */
--	&amp;#123; 'q', "\342\224\200" &amp;$125;,	/* horizontal line */
--	&amp;#123; 'r', "\342\216\274" &amp;$125;,	/* scan line 7 */
--	&amp;#123; 's', "\342\216\275" &amp;$125;,	/* scan line 9 */
--	&amp;#123; 't', "\342\224\234" &amp;$125;,	/* tee pointing right */
--	&amp;#123; 'u', "\342\224\244" &amp;$125;,	/* tee pointing left */
--	&amp;#123; 'v', "\342\224\264" &amp;$125;,	/* tee pointing up */
--	&amp;#123; 'w', "\342\224\254" &amp;$125;,	/* tee pointing down */
--	&amp;#123; 'x', "\342\224\202" &amp;$125;,	/* vertical line */
--	&amp;#123; 'y', "\342\211\244" &amp;$125;,	/* less-than-or-equal-to */
--	&amp;#123; 'z', "\342\211\245" &amp;$125;,	/* greater-than-or-equal-to */
--	&amp;#123; '&amp;#123;', "\317\200" &amp;$125;,   		/* greek pi */
--	&amp;#123; '|', "\342\211\240" &amp;$125;,	/* not-equal */
--	&amp;#123; '&amp;$125;', "\302\243" &amp;$125;,		/* UK pound sign */
--	&amp;#123; '~', "\302\267" &amp;$125;		/* bullet */
-</span><span class="gi">+	&amp;#123; '+', "&gt;" &amp;$125;,	/* arrow pointing right */
-+	&amp;#123; ',', "&lt;" &amp;$125;,	/* arrow pointing left */
-+	&amp;#123; '-', "^" &amp;$125;,	/* arrow pointing up */
-+	&amp;#123; '.', "." &amp;$125;,	/* arrow pointing down */
-+	&amp;#123; '0', "#" &amp;$125;,	/* solid square block */
-+	&amp;#123; '`', "#" &amp;$125;,	/* diamond */
-+	&amp;#123; 'a', "#" &amp;$125;,	/* checker board (stipple) */
-+	&amp;#123; 'f', "#" &amp;$125;,	/* degree symbol */
-+	&amp;#123; 'g', "#" &amp;$125;,	/* plus/minus */
-+	&amp;#123; 'h', "#" &amp;$125;,	/* board of squares */
-+	&amp;#123; 'i', "#" &amp;$125;,	/* lantern symbol */
-+	&amp;#123; 'j', "+" &amp;$125;,	/* lower right corner */
-+	&amp;#123; 'k', "+" &amp;$125;,	/* upper right corner */
-+	&amp;#123; 'l', "+" &amp;$125;,	/* upper left corner */
-+	&amp;#123; 'm', "+" &amp;$125;,	/* lower left corner */
-+	&amp;#123; 'n', "+" &amp;$125;,	/* large plus or crossover */
-+	&amp;#123; 'o', "_" &amp;$125;,	/* scan line 1 */
-+	&amp;#123; 'p', "_" &amp;$125;,	/* scan line 3 */
-+	&amp;#123; 'q', "-" &amp;$125;,	/* horizontal line */
-+	&amp;#123; 'r', "_" &amp;$125;,	/* scan line 7 */
-+	&amp;#123; 's', "_" &amp;$125;,	/* scan line 9 */
-+	&amp;#123; 't', "+" &amp;$125;,	/* tee pointing right */
-+	&amp;#123; 'u', "+" &amp;$125;,	/* tee pointing left */
-+	&amp;#123; 'v', "+" &amp;$125;,	/* tee pointing up */
-+	&amp;#123; 'w', "+" &amp;$125;,	/* tee pointing down */
-+	&amp;#123; 'x', "|" &amp;$125;,	/* vertical line */
-+	&amp;#123; 'y', "#" &amp;$125;,	/* less-than-or-equal-to */
-+	&amp;#123; 'z', "#" &amp;$125;,	/* greater-than-or-equal-to */
-+	&amp;#123; '&amp;#123;', "#" &amp;$125;,	/* greek pi */
-+	&amp;#123; '|', "#" &amp;$125;,	/* not-equal */
-+	&amp;#123; '&amp;$125;', "#" &amp;$125;,	/* UK pound sign */
-+	&amp;#123; '~', "*" &amp;$125;	/* bullet */
-</span> &amp;$125;;
+ };
+ const struct tty_acs_entry tty_acs_table[] = {
+<span class="gd">-	{ '+', "\342\206\222" },	/* arrow pointing right */
+-	{ ',', "\342\206\220" },	/* arrow pointing left */
+-	{ '-', "\342\206\221" },	/* arrow pointing up */
+-	{ '.', "\342\206\223" },	/* arrow pointing down */
+-	{ '0', "\342\226\256" },	/* solid square block */
+-	{ '`', "\342\227\206" },	/* diamond */
+-	{ 'a', "\342\226\222" },	/* checker board (stipple) */
+-	{ 'f', "\302\260" },		/* degree symbol */
+-	{ 'g', "\302\261" },		/* plus/minus */
+-	{ 'h', "\342\226\222" },	/* board of squares */
+-	{ 'i', "\342\230\203" },	/* lantern symbol */
+-	{ 'j', "\342\224\230" },	/* lower right corner */
+-	{ 'k', "\342\224\220" },	/* upper right corner */
+-	{ 'l', "\342\224\214" },	/* upper left corner */
+-	{ 'm', "\342\224\224" },	/* lower left corner */
+-	{ 'n', "\342\224\274" },	/* large plus or crossover */
+-	{ 'o', "\342\216\272" },	/* scan line 1 */
+-	{ 'p', "\342\216\273" },	/* scan line 3 */
+-	{ 'q', "\342\224\200" },	/* horizontal line */
+-	{ 'r', "\342\216\274" },	/* scan line 7 */
+-	{ 's', "\342\216\275" },	/* scan line 9 */
+-	{ 't', "\342\224\234" },	/* tee pointing right */
+-	{ 'u', "\342\224\244" },	/* tee pointing left */
+-	{ 'v', "\342\224\264" },	/* tee pointing up */
+-	{ 'w', "\342\224\254" },	/* tee pointing down */
+-	{ 'x', "\342\224\202" },	/* vertical line */
+-	{ 'y', "\342\211\244" },	/* less-than-or-equal-to */
+-	{ 'z', "\342\211\245" },	/* greater-than-or-equal-to */
+-	{ '{', "\317\200" },   		/* greek pi */
+-	{ '|', "\342\211\240" },	/* not-equal */
+-	{ '}', "\302\243" },		/* UK pound sign */
+-	{ '~', "\302\267" }		/* bullet */
+</span><span class="gi">+	{ '+', "&gt;" },	/* arrow pointing right */
++	{ ',', "&lt;" },	/* arrow pointing left */
++	{ '-', "^" },	/* arrow pointing up */
++	{ '.', "." },	/* arrow pointing down */
++	{ '0', "#" },	/* solid square block */
++	{ '`', "#" },	/* diamond */
++	{ 'a', "#" },	/* checker board (stipple) */
++	{ 'f', "#" },	/* degree symbol */
++	{ 'g', "#" },	/* plus/minus */
++	{ 'h', "#" },	/* board of squares */
++	{ 'i', "#" },	/* lantern symbol */
++	{ 'j', "+" },	/* lower right corner */
++	{ 'k', "+" },	/* upper right corner */
++	{ 'l', "+" },	/* upper left corner */
++	{ 'm', "+" },	/* lower left corner */
++	{ 'n', "+" },	/* large plus or crossover */
++	{ 'o', "_" },	/* scan line 1 */
++	{ 'p', "_" },	/* scan line 3 */
++	{ 'q', "-" },	/* horizontal line */
++	{ 'r', "_" },	/* scan line 7 */
++	{ 's', "_" },	/* scan line 9 */
++	{ 't', "+" },	/* tee pointing right */
++	{ 'u', "+" },	/* tee pointing left */
++	{ 'v', "+" },	/* tee pointing up */
++	{ 'w', "+" },	/* tee pointing down */
++	{ 'x', "|" },	/* vertical line */
++	{ 'y', "#" },	/* less-than-or-equal-to */
++	{ 'z', "#" },	/* greater-than-or-equal-to */
++	{ '{', "#" },	/* greek pi */
++	{ '|', "#" },	/* not-equal */
++	{ '}', "#" },	/* UK pound sign */
++	{ '~', "*" }	/* bullet */
+</span> };
 
  int
 <span class="p">@@ -80,8 +80,8 @@</span>
- &amp;#123;
+ {
  	struct tty_acs_entry *entry;
 
 -	/* If not a UTF-8 terminal, use the ACS set. */
-<span class="gd">-	if (tty != NULL &amp;&amp; !(tty-&gt;flags &amp; TTY_UTF8)) &amp;#123;
+<span class="gd">-	if (tty != NULL &amp;&amp; !(tty-&gt;flags &amp; TTY_UTF8)) {
 </span><span class="gi">+	/* If pane-border-ascii */
-+	if ( options_get_number(global_s_options, "pane-border-ascii") != 0 ) &amp;#123;
++	if ( options_get_number(global_s_options, "pane-border-ascii") != 0 ) {
 </span> 		if (tty-&gt;term-&gt;acs[ch][0] == '\0')
  			return (NULL);
  		return (&amp;tty-&gt;term-&gt;acs[ch][0]);
@@ -585,13 +585,13 @@ Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
  	const char	*s;
  	int		 opt, flags, keys;
 
--	if (setlocale(LC_CTYPE, "en_US.UTF-8") == NULL) &amp;#123;
+-	if (setlocale(LC_CTYPE, "en_US.UTF-8") == NULL) {
 <span class="gd">-		if (setlocale(LC_CTYPE, "") == NULL)
 -			errx(1, "invalid LC_ALL, LC_CTYPE or LANG");
 -		s = nl_langinfo(CODESET);
 -		if (strcasecmp(s, "UTF-8") != 0 &amp;&amp; strcasecmp(s, "UTF8") != 0)
 -			errx(1, "need UTF-8 locale (LC_CTYPE) but have %s", s);
--	&amp;$125;
+-	}
 </span><span class="gi">+	if (setlocale(LC_CTYPE, "") == NULL)
 +		errx(1, "invalid LC_ALL, LC_CTYPE or LANG");
 +	s = nl_langinfo(CODESET);
@@ -736,15 +736,15 @@ weechat を常に下に表示させておきたいので <code>C-t -</code> で�
 <span class="nv">current_active_window</span><span class="o">=</span><span class="sb">`</span>tmux lsw | <span class="nb">grep </span>active | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
 <span class="nv">current_active_pane</span><span class="o">=</span><span class="sb">`</span>tmux lsp | <span class="nb">grep </span>active | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
 
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$&amp;</span><span class="c">#123;current_weechat_window&amp;$125; -ne $&amp;#123;current_active_window&amp;$125; ] ; then</span>
-    tmux join-pane <span class="nt">-l</span> 10 <span class="nt">-s</span> :<span class="nv">$&amp;</span><span class="c">#123;current_weechat_window&amp;$125;.$&amp;#123;current_weechat_pane&amp;$125; -t :$&amp;#123;current_active_window&amp;$125;</span>
+<span class="k">if</span> <span class="o">[</span> <span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span> <span class="nt">-ne</span> <span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then
+    </span>tmux join-pane <span class="nt">-l</span> 10 <span class="nt">-s</span> :<span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span>.<span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-t</span> :<span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span>
     tmux <span class="k">select</span><span class="nt">-pane</span> <span class="nt">-t</span> 0
 <span class="k">else
     if</span> <span class="o">[</span> <span class="nt">-e</span> <span class="nv">$tmp</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then
-        </span>tmux resize-pane <span class="nt">-t</span> <span class="nv">$&amp;</span><span class="c">#123;current_weechat_pane&amp;$125; -Z</span>
+        </span>tmux resize-pane <span class="nt">-t</span> <span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-Z</span>
         <span class="nb">rm</span> <span class="nt">-f</span> <span class="nv">$tmp</span>
     <span class="k">else
-        </span>tmux resize-pane <span class="nt">-t</span> <span class="nv">$&amp;</span><span class="c">#123;current_weechat_pane&amp;$125; -Z</span>
+        </span>tmux resize-pane <span class="nt">-t</span> <span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-Z</span>
         tmux <span class="k">select</span><span class="nt">-pane</span> <span class="nt">-t</span> 0
         <span class="nb">touch</span> <span class="nv">$tmp</span>
     <span class="k">fi

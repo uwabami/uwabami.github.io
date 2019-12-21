@@ -28,7 +28,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianTeX.html","headline":"TeX 環境の構築","dateModified":"2018-10-25T06:08:26+09:00","datePublished":"2018-10-25T06:08:26+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianTeX.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianTeX.html","headline":"TeX 環境の構築","dateModified":"2018-10-25T06:08:26+09:00","datePublished":"2018-10-25T06:08:26+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianTeX.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -185,10 +185,10 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href='https://uwabami.github.io/cc-env/Emacs.html'>Emacs</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href='https://uwabami.github.io/cc-env/Emacs.html'>Emacs</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-orge3c15d5" class="outline-2">
-<h2 id="org3ef17bbd"><a id="orge3c15d5"></a>Debian でのTeX 環境の構築</h2>
+<div id="outline-container-org40f526e" class="outline-2">
+<h2 id="org3ef17bbd"><a id="org40f526e"></a>Debian でのTeX 環境の構築</h2>
 <div class="outline-text-2" id="text-org3ef17bbd">
 <p>
 個人的には，
@@ -208,9 +208,9 @@ Debian の TeXLive のパッケージメンテナでもある Norbert Perining �
 </p>
 </div>
 </div>
-<div id="outline-container-org005fc4d" class="outline-2">
-<h2 id="org005fc4d">インストール</h2>
-<div class="outline-text-2" id="text-org005fc4d">
+<div id="outline-container-org3cdca4f" class="outline-2">
+<h2 id="org3cdca4f">インストール</h2>
+<div class="outline-text-2" id="text-org3cdca4f">
 <p>
 何も考えずに
 </p>
@@ -226,9 +226,9 @@ Debian の TeXLive のパッケージメンテナでもある Norbert Perining �
 個別にインストールする場合は以下の通り．
 </p>
 </div>
-<div id="outline-container-org8c6c777" class="outline-3">
-<h3 id="org8c6c777">とりあえず <code>pTeX,upTeX</code> を使えるようにする:</h3>
-<div class="outline-text-3" id="text-org8c6c777">
+<div id="outline-container-org8c872ae" class="outline-3">
+<h3 id="org8c872ae">とりあえず <code>pTeX,upTeX</code> を使えるようにする:</h3>
+<div class="outline-text-3" id="text-org8c872ae">
 <p>
 多分, 以下で OK
 </p>
@@ -240,9 +240,9 @@ Debian の TeXLive のパッケージメンテナでもある Norbert Perining �
 </p>
 </div>
 </div>
-<div id="outline-container-orgf245fd8" class="outline-3">
-<h3 id="orgf245fd8"><code>XeTeX, LuaTeX</code> も使えるようにする:</h3>
-<div class="outline-text-3" id="text-orgf245fd8">
+<div id="outline-container-org6f120e1" class="outline-3">
+<h3 id="org6f120e1"><code>XeTeX, LuaTeX</code> も使えるようにする:</h3>
+<div class="outline-text-3" id="text-org6f120e1">
 <p>
 多分, 以下で OK
 </p>
@@ -252,9 +252,9 @@ Debian の TeXLive のパッケージメンテナでもある Norbert Perining �
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd36e481" class="outline-3">
-<h3 id="orgd36e481">DVI と PDF の Viewer</h3>
-<div class="outline-text-3" id="text-orgd36e481">
+<div id="outline-container-orga63ce35" class="outline-3">
+<h3 id="orga63ce35">DVI と PDF の Viewer</h3>
+<div class="outline-text-3" id="text-orga63ce35">
 <pre class="example">
 % sudo apt-get install evince xdvik-ja
 </pre>
@@ -268,9 +268,9 @@ PDF の閲覧には Evince を使うのかな?
 </div>
 </div>
 </div>
-<div id="outline-container-org0fe0d21" class="outline-2">
-<h2 id="org0fe0d21">フォントの埋め込みと表示設定</h2>
-<div class="outline-text-2" id="text-org0fe0d21">
+<div id="outline-container-orga758216" class="outline-2">
+<h2 id="orga758216">フォントの埋め込みと表示設定</h2>
+<div class="outline-text-2" id="text-orga758216">
 <p>
 まず, <code>cjk-gs-integrate</code> を使って,
 Ghostscript に現在システムに導入されているフォントを教えてあげましょう.
@@ -287,13 +287,13 @@ Ghostscript に現在システムに導入されているフォントを教え�
 </pre>
 </div>
 </div>
-<div id="outline-container-org827ab2e" class="outline-2">
-<h2 id="org827ab2e">XeLaTeX, pdfLaTeX, LuaLaTeX での日本語処理.</h2>
-<div class="outline-text-2" id="text-org827ab2e">
+<div id="outline-container-org80d6e05" class="outline-2">
+<h2 id="org80d6e05">XeLaTeX, pdfLaTeX, LuaLaTeX での日本語処理.</h2>
+<div class="outline-text-2" id="text-org80d6e05">
 </div>
-<div id="outline-container-org870800c" class="outline-3">
-<h3 id="org870800c">XeTeX</h3>
-<div class="outline-text-3" id="text-org870800c">
+<div id="outline-container-org33ea83e" class="outline-3">
+<h3 id="org33ea83e">XeTeX</h3>
+<div class="outline-text-3" id="text-org33ea83e">
 <p>
 とりあえず日本語での組版に困る事はないでしょう.
 例えば以下のソースを <code>xelatex</code> で typeset することで，
@@ -311,9 +311,9 @@ IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 \end{document}</code></pre></figure>
 </div>
 </div>
-<div id="outline-container-orgc6afd7a" class="outline-3">
-<h3 id="orgc6afd7a">LuaTeX</h3>
-<div class="outline-text-3" id="text-orgc6afd7a">
+<div id="outline-container-orgb3fa11f" class="outline-3">
+<h3 id="orgb3fa11f">LuaTeX</h3>
+<div class="outline-text-3" id="text-orgb3fa11f">
 <p>
 例えば以下のソースを <code>lualatex</code>
 で typeset することで，IPAex{明朝,ゴシック}が埋め込まれた PDF が生成されます．
@@ -328,9 +328,9 @@ IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 \end{document}</code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org96787df" class="outline-3">
-<h3 id="org96787df">pdfLaTeX で日本語組版</h3>
-<div class="outline-text-3" id="text-org96787df">
+<div id="outline-container-org58ab683" class="outline-3">
+<h3 id="org58ab683">pdfLaTeX で日本語組版</h3>
+<div class="outline-text-3" id="text-org58ab683">
 <p>
 例えば以下を <code>pdflatex</code> で typeset することで，PDF が生成されます．
 </p>
@@ -345,9 +345,9 @@ IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 </div>
 </div>
 
-<div id="outline-container-orgecfcf59" class="outline-2">
-<h2 id="orgecfcf59">足りないスタイルとかあれこれ</h2>
-<div class="outline-text-2" id="text-orgecfcf59">
+<div id="outline-container-orgd7a55a0" class="outline-2">
+<h2 id="orgd7a55a0">足りないスタイルとかあれこれ</h2>
+<div class="outline-text-2" id="text-orgd7a55a0">
 <p>
 <code>texlive-full</code> を入れておくと全部使えるようになる, で良いんだっけ?
 最近は割と何も考えずに全部入れていたりする.
@@ -359,9 +359,9 @@ Emacs で上手く処理したい場合には, <code>auctex</code> とか入れ�
 </p>
 </div>
 </div>
-<div id="outline-container-org31148c3" class="outline-2">
-<h2 id="org31148c3">参考文献</h2>
-<div class="outline-text-2" id="text-org31148c3">
+<div id="outline-container-org83714a5" class="outline-2">
+<h2 id="org83714a5">参考文献</h2>
+<div class="outline-text-2" id="text-org83714a5">
 <ul class="org-ul">
 <li><a href="http://uwabami.junkhub.org/log/20121202.html#p01">次期安定版 Debian 7.0 'Wheezy' での TeX 環境(特に pTeX 環境)について</a></li>
 <li><a href="http://uwabami.junkhub.org/log/20121208.html#p01">Ubuntu 12.04/Debian Squeeze での TeXLive (&gt;=2012) 環境</a></li>

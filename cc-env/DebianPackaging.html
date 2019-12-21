@@ -28,7 +28,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianPackaging.html","headline":"パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest","dateModified":"2019-12-20T07:45:50+09:00","datePublished":"2019-12-20T07:45:50+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianPackaging.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianPackaging.html","headline":"パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest","dateModified":"2019-12-20T07:45:50+09:00","datePublished":"2019-12-20T07:45:50+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianPackaging.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -185,10 +185,10 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-org9260d72" class="outline-2">
-<h2 id="org494811ef"><a id="org9260d72"></a>はじめに</h2>
+<div id="outline-container-org2e56e88" class="outline-2">
+<h2 id="org494811ef"><a id="org2e56e88"></a>はじめに</h2>
 <div class="outline-text-2" id="text-org494811ef">
 <p>
 Debian パッケージを作成するため
@@ -201,9 +201,9 @@ Debian パッケージを作成するため
 </ul>
 </div>
 </div>
-<div id="outline-container-org7a50715" class="outline-2">
-<h2 id="org7a50715">sbuild: clean room build 環境</h2>
-<div class="outline-text-2" id="text-org7a50715">
+<div id="outline-container-org909d219" class="outline-2">
+<h2 id="org909d219">sbuild: clean room build 環境</h2>
+<div class="outline-text-2" id="text-org909d219">
 <p>
 clean room build 環境としては
 </p>
@@ -217,9 +217,9 @@ Debian 公式のビルドインフラが sbuild なので, 私は sbuild を使�
 sbuild に関しては <a href="https://wiki.debian.org/sbuild">sbuild - Debian Wiki</a> を参照下さい.
 </p>
 </div>
-<div id="outline-container-orgcf03ee6" class="outline-3">
-<h3 id="orgcf03ee6">インストールと設定</h3>
-<div class="outline-text-3" id="text-orgcf03ee6">
+<div id="outline-container-org0563bea" class="outline-3">
+<h3 id="org0563bea">インストールと設定</h3>
+<div class="outline-text-3" id="text-org0563bea">
 <p>
 ほぼ, 上述の wiki の通り:
 </p>
@@ -259,9 +259,9 @@ sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
 </div>
 </div>
 </div>
-<div id="outline-container-org6d84570" class="outline-2">
-<h2 id="org6d84570">lintian: パッケージの品質のチェック</h2>
-<div class="outline-text-2" id="text-org6d84570">
+<div id="outline-container-org894061c" class="outline-2">
+<h2 id="org894061c">lintian: パッケージの品質のチェック</h2>
+<div class="outline-text-2" id="text-org894061c">
 <p>
 作成したパッケージが Debian Policy に準拠しているかをチェックするパッケージである lintian を導入.
 </p>
@@ -288,9 +288,9 @@ sbuild からの呼び出しは <code>~/.sbuildrc</code> において
 </p>
 </div>
 </div>
-<div id="outline-container-org39c3523" class="outline-2">
-<h2 id="org39c3523">piuparts: パッケージとしてのテスト</h2>
-<div class="outline-text-2" id="text-org39c3523">
+<div id="outline-container-orgd4201b6" class="outline-2">
+<h2 id="orgd4201b6">piuparts: パッケージとしてのテスト</h2>
+<div class="outline-text-2" id="text-orgd4201b6">
 <p>
 ビルドしたパッケージについてインストール, アップグレード, リムーブ, パージのテストを行なえる
 piuparts を導入しておく.
@@ -310,16 +310,16 @@ piuparts を導入しておく.
 <span class="nv">$piuparts_root_args</span> <span class="o">=</span> <span class="p">['</span><span class="s1">sudo</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">'];</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-orgfd7e873" class="outline-2">
-<h2 id="orgfd7e873">autopkgtest: ビルドしたバイナリの実行テスト</h2>
-<div class="outline-text-2" id="text-orgfd7e873">
+<div id="outline-container-org5150ff6" class="outline-2">
+<h2 id="org5150ff6">autopkgtest: ビルドしたバイナリの実行テスト</h2>
+<div class="outline-text-2" id="text-org5150ff6">
 <p>
 autopkgtest パッケージを導入しておく.
 </p>
 </div>
-<div id="outline-container-orgfb46710" class="outline-3">
-<h3 id="orgfb46710">初期設定</h3>
-<div class="outline-text-3" id="text-orgfb46710">
+<div id="outline-container-orga77f197" class="outline-3">
+<h3 id="orga77f197">初期設定</h3>
+<div class="outline-text-3" id="text-orga77f197">
 <p>
 autopkgtest 環境として, schroot を使うか lxc を使うか, がある.
 当然ながら schroot の方が overhead が少ないのだが,
@@ -363,10 +363,10 @@ LXC の基本設定や dnsmasq での DHCP 取得ができるようになって�
      # rm it
      btrfs subvolume delete /var/cache/lxc/$RELEASE/rootfs-* 2&gt;/dev/null || rm -rf /var/cache/lxc/$RELEASE/rootfs-*
      # create a new rootfs in a temp container
-<span class="gd">-    $LXC_CREATE_PREFIX lxc-create -B best --name=$&amp;#123;NAME&amp;$125;.new $LXC_ARGS
-</span><span class="gi">+    $LXC_CREATE_PREFIX lxc-create --name=$&amp;#123;NAME&amp;$125;.new $LXC_ARGS
-</span>     setup $&amp;#123;NAME&amp;$125;.new
-     sed -i "s/$&amp;#123;NAME&amp;$125;.new/$&amp;#123;NAME&amp;$125;/" $LXCDIR/$&amp;#123;NAME&amp;$125;.new/rootfs/etc/hostname $LXCDIR/$&amp;#123;NAME&amp;$125;.new/rootfs/etc/hosts
+<span class="gd">-    $LXC_CREATE_PREFIX lxc-create -B best --name=${NAME}.new $LXC_ARGS
+</span><span class="gi">+    $LXC_CREATE_PREFIX lxc-create --name=${NAME}.new $LXC_ARGS
+</span>     setup ${NAME}.new
+     sed -i "s/${NAME}.new/${NAME}/" $LXCDIR/${NAME}.new/rootfs/etc/hostname $LXCDIR/${NAME}.new/rootfs/etc/hosts
      # replace the original rootfs; can't make this more atomic unfortunately</code></pre></figure>
 <p>
 なんて事をして,
@@ -384,9 +384,9 @@ LXC の基本設定や dnsmasq での DHCP 取得ができるようになって�
 </ul>
 </div>
 </div>
-<div id="outline-container-orga8b5919" class="outline-3">
-<h3 id="orga8b5919">sbuild からの呼び出し</h3>
-<div class="outline-text-3" id="text-orga8b5919">
+<div id="outline-container-orgd514861" class="outline-3">
+<h3 id="orgd514861">sbuild からの呼び出し</h3>
+<div class="outline-text-3" id="text-orgd514861">
 <p>
 面倒なのは lxc を使う場合には <code>stretch</code>, <code>buster</code>, <code>sid</code> とコードネームなのに対して,
 sbuild/schroot の release は <code>unstable</code> だったりするところ.
@@ -405,16 +405,16 @@ sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>
 外部コマンドの呼び出しは以下
 </p>
 <figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1"># 外部スクリプトで autopkgtest, rdepends の autopkgstest</span>
-<span class="nv">$external_commands</span> <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#123;</span>
+<span class="nv">$external_commands</span> <span class="o">=</span> <span class="p">{</span>
                       <span class="p">'</span><span class="s1">post-build-commands</span><span class="p">'</span> <span class="o">=&gt;</span>
                       <span class="p">['</span><span class="s1">/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e</span><span class="p">'],</span>
-                     <span class="o">&amp;</span><span class="nv">$125</span><span class="p">;;</span></code></pre></figure>
+                     <span class="p">};</span></code></pre></figure>
 </div>
 </div>
 </div>
-<div id="outline-container-org422ea17" class="outline-2">
-<h2 id="org422ea17">~/.sbuildrc</h2>
-<div class="outline-text-2" id="text-org422ea17">
+<div id="outline-container-org38a30f1" class="outline-2">
+<h2 id="org38a30f1">~/.sbuildrc</h2>
+<div class="outline-text-2" id="text-org38a30f1">
 <p>
 現在の <code>~/.sbuildrc</code> は以下の通り
 </p>
@@ -449,10 +449,10 @@ sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>
 <span class="nv">$autopkgtest_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-U</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">',</span> <span class="p">'</span><span class="s1">schroot</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r-%a-sbuild</span><span class="p">'];</span>
 <span class="nv">$autopkgtest_root_args</span> <span class="o">=</span> <span class="p">['</span><span class="s1">sudo</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">'];</span>
 <span class="c1"># 外部スクリプトで autopkgtest, rdepends の autopkgstest</span>
-<span class="nv">$external_commands</span> <span class="o">=</span> <span class="o">&amp;</span><span class="c1">#123;</span>
+<span class="nv">$external_commands</span> <span class="o">=</span> <span class="p">{</span>
                       <span class="p">'</span><span class="s1">post-build-commands</span><span class="p">'</span> <span class="o">=&gt;</span>
                       <span class="p">['</span><span class="s1">/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e</span><span class="p">'],</span>
-                     <span class="o">&amp;</span><span class="nv">$125</span><span class="p">;;</span></code></pre></figure>
+                     <span class="p">};</span></code></pre></figure>
 </div>
 </div>
 <!-- %%%% end content %%%% -->

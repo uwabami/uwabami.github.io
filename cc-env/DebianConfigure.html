@@ -28,7 +28,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianConfigure.html","headline":"Debian: Install 直後の雑多な設定","dateModified":"2019-12-20T07:28:03+09:00","datePublished":"2019-12-20T07:28:03+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianConfigure.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianConfigure.html","headline":"Debian: Install 直後の雑多な設定","dateModified":"2019-12-20T07:28:03+09:00","datePublished":"2019-12-20T07:28:03+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianConfigure.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -185,10 +185,10 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-org4b839a0" class="outline-2">
-<h2 id="org06f0152b"><a id="org4b839a0"></a>始めに</h2>
+<div id="outline-container-orgd01a40e" class="outline-2">
+<h2 id="org06f0152b"><a id="orgd01a40e"></a>始めに</h2>
 <div class="outline-text-2" id="text-org06f0152b">
 <p>
 どんなシステムでも, かならずやっている雑多な設定などをメモ書き.
@@ -196,8 +196,8 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 </p>
 </div>
 </div>
-<div id="outline-container-org5140a19" class="outline-2">
-<h2 id="orge7e506a1"><a id="org5140a19"></a>sudo の設定</h2>
+<div id="outline-container-org13bd62d" class="outline-2">
+<h2 id="orge7e506a1"><a id="org13bd62d"></a>sudo の設定</h2>
 <div class="outline-text-2" id="text-orge7e506a1">
 <p>
 squeeze 以降は sudo グループがあるので, 自分を sudo グループに追加して再ログインした後に作業する.
@@ -213,8 +213,8 @@ squeeze より前なら visudo で自分を追加してユーザアカウント�
 </pre>
 </div>
 </div>
-<div id="outline-container-orga8be436" class="outline-2">
-<h2 id="org59215d0c"><a id="orga8be436"></a>keymap の変更</h2>
+<div id="outline-container-orgec0af37" class="outline-2">
+<h2 id="org59215d0c"><a id="orgec0af37"></a>keymap の変更</h2>
 <div class="outline-text-2" id="text-org59215d0c">
 <p>
 console-setup で設定するようになった.
@@ -236,8 +236,8 @@ X のキーボード設定もこれで設定される.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb438bc5" class="outline-2">
-<h2 id="org4a6d0d7f"><a id="orgb438bc5"></a>MTA の設定</h2>
+<div id="outline-container-org902f7f9" class="outline-2">
+<h2 id="org4a6d0d7f"><a id="org902f7f9"></a>MTA の設定</h2>
 <div class="outline-text-2" id="text-org4a6d0d7f">
 <ul class="org-ul">
 <li>常にネットワークに接続されているデスクトップ/ワークステーションは
@@ -248,8 +248,8 @@ SSMTP を使用して上流のメールサーバに転送.</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgd46d2e8" class="outline-3">
-<h3 id="org10d4f7c8"><a id="orgd46d2e8"></a>SSMTP</h3>
+<div id="outline-container-org9e72315" class="outline-3">
+<h3 id="org10d4f7c8"><a id="org9e72315"></a>SSMTP</h3>
 <div class="outline-text-3" id="text-org10d4f7c8">
 <p>
 .qmail や .forward など, 上流のメールサーバで転送設定をしておく.
@@ -290,8 +290,8 @@ SMTP-AUTH over SSL に対応したい場合は, /etc/ssmtp/ssmtp.conf に
 </div>
 </div>
 </div>
-<div id="outline-container-org5677856" class="outline-2">
-<h2 id="orge24cb334"><a id="org5677856"></a>alsa の初期設定</h2>
+<div id="outline-container-orga0f8dc3" class="outline-2">
+<h2 id="orge24cb334"><a id="orga0f8dc3"></a>alsa の初期設定</h2>
 <div class="outline-text-2" id="text-orge24cb334">
 <p>
 あんまり複雑な事をしなくて良い機材だと楽.
