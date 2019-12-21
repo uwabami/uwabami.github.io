@@ -22,13 +22,13 @@
 <meta property="og:url" content="https://uwabami.github.io/cc-env/DebianMail.html" />
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-12-22T00:27:31+09:00" />
+<meta property="article:published_time" content="2019-12-22T00:54:07+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Mail 環境の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianMail.html","headline":"Mail 環境の設定","dateModified":"2019-12-22T00:27:31+09:00","datePublished":"2019-12-22T00:27:31+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianMail.html","headline":"Mail 環境の設定","dateModified":"2019-12-22T00:54:07+09:00","datePublished":"2019-12-22T00:54:07+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -187,9 +187,9 @@
 <p>
 Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-org4098bdb" class="outline-2">
-<h2 id="org4098bdb">始めに</h2>
-<div class="outline-text-2" id="text-org4098bdb">
+<div id="outline-container-org884b2d1" class="outline-2">
+<h2 id="org02aae9c7"><a id="org884b2d1"></a>始めに</h2>
+<div class="outline-text-2" id="text-org02aae9c7">
 <p>
 メールに関するアレコレ.
 ネットワーク接続を意識したくないので,
@@ -197,9 +197,9 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 </p>
 </div>
 </div>
-<div id="outline-container-org0b7043b" class="outline-2">
-<h2 id="org0b7043b">送信設定: Exim4</h2>
-<div class="outline-text-2" id="text-org0b7043b">
+<div id="outline-container-org8cd12b6" class="outline-2">
+<h2 id="orgc6ac0121"><a id="org8cd12b6"></a>送信設定: Exim4</h2>
+<div class="outline-text-2" id="text-orgc6ac0121">
 <p>
 smarthost での送信だけなら Exim4 が軽量で楽。他にも幾つか選択肢はある。気になるなら <a href="https://wiki.debian.org/Debate/DefaultMTA">Debian Wiki: DefaultMTA</a> あたり参照のこと。欲しい機能は
 </p>
@@ -254,9 +254,9 @@ $ sudo -s
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">MAILDIR_HOME_MAILDIR_LOCATION</span> = $<span class="n">home</span>/<span class="n">Maildir</span>/<span class="n">INBOX</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-orgfb74857" class="outline-2">
-<h2 id="orgfb74857">送信設定: msmtp</h2>
-<div class="outline-text-2" id="text-orgfb74857">
+<div id="outline-container-orgef329ca" class="outline-2">
+<h2 id="org5afde083"><a id="orgef329ca"></a>送信設定: msmtp</h2>
+<div class="outline-text-2" id="text-org5afde083">
 <p>
 <a href="/cc-env/Emacs.html#org2c2abb9b">Wanderlust</a> からメールを送る時には,
 <code>msmtp</code> を使っている.
@@ -291,9 +291,9 @@ msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
 </p>
 </div>
 </div>
-<div id="outline-container-orgab6f4a0" class="outline-2">
-<h2 id="orgab6f4a0">受信</h2>
-<div class="outline-text-2" id="text-orgab6f4a0">
+<div id="outline-container-org45c7d68" class="outline-2">
+<h2 id="orgbf2f5d08"><a id="org45c7d68"></a>受信</h2>
+<div class="outline-text-2" id="text-orgbf2f5d08">
 <p>
 受信/閲覧は
 </p>
@@ -316,16 +316,16 @@ msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
 <li>偶に block するし、imap の接続数が酷い事になる。ということで、2015 年から <a href="http://isync.sourceforge.net/">isync: free IMAP and MailDir mailbox synchronizer</a> に移行した。</li>
 </ul>
 </div>
-<div id="outline-container-orgac172fe" class="outline-3">
-<h3 id="orgac172fe">mbsync/isync</h3>
-<div class="outline-text-3" id="text-orgac172fe">
+<div id="outline-container-org985a7f8" class="outline-3">
+<h3 id="org1b669e8c"><a id="org985a7f8"></a>mbsync/isync</h3>
+<div class="outline-text-3" id="text-org1b669e8c">
 <p>
 isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
 </p>
 </div>
-<div id="outline-container-org9a7a3b4" class="outline-4">
-<h4 id="org9a7a3b4">インストール</h4>
-<div class="outline-text-4" id="text-org9a7a3b4">
+<div id="outline-container-org28888aa" class="outline-4">
+<h4 id="org14da667f"><a id="org28888aa"></a>インストール: mbsync/isync</h4>
+<div class="outline-text-4" id="text-org14da667f">
 <p>
 実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
 </p>
@@ -337,9 +337,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org1c17c97" class="outline-4">
-<h4 id="org1c17c97">設定</h4>
-<div class="outline-text-4" id="text-org1c17c97">
+<div id="outline-container-org8b74e2a" class="outline-4">
+<h4 id="org2ddeb5a8"><a id="org8b74e2a"></a>設定: mbsync/isync</h4>
+<div class="outline-text-4" id="text-org2ddeb5a8">
 <p>
 設定ファイルは <code>~/.mbsyncrc</code>.
 設定例は以下:
@@ -466,9 +466,9 @@ mbsync -l mobile
 </p>
 </div>
 </div>
-<div id="outline-container-org8337073" class="outline-4">
-<h4 id="org8337073">cron での動作</h4>
-<div class="outline-text-4" id="text-org8337073">
+<div id="outline-container-org76473b9" class="outline-4">
+<h4 id="orgf55f00fe"><a id="org76473b9"></a>cron での動作: mbsync/isync</h4>
+<div class="outline-text-4" id="text-orgf55f00fe">
 <p>
 認証に GPG を使っており、認証に Gnome Keyring を用いているので必要な環境変数を読み込んでから実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意:
@@ -520,13 +520,13 @@ timelimit <span class="nt">-T</span> 300 <span class="nt">-t</span> 300 mbsync <
 </div>
 </div>
 </div>
-<div id="outline-container-org781fc0a" class="outline-3">
-<h3 id="org781fc0a">dovecot</h3>
-<div class="outline-text-3" id="text-org781fc0a">
+<div id="outline-container-orgda42c3c" class="outline-3">
+<h3 id="org4a294ad8"><a id="orgda42c3c"></a>dovecot</h3>
+<div class="outline-text-3" id="text-org4a294ad8">
 </div>
-<div id="outline-container-orgff3988c" class="outline-4">
-<h4 id="orgff3988c">インストール</h4>
-<div class="outline-text-4" id="text-orgff3988c">
+<div id="outline-container-org9424f38" class="outline-4">
+<h4 id="orge30e9132"><a id="org9424f38"></a>インストール: dovecot</h4>
+<div class="outline-text-4" id="text-orge30e9132">
 <p>
 最低限 IMAP での接続ができれば良いので
 </p>
@@ -538,9 +538,9 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org59dbcdd" class="outline-4">
-<h4 id="org59dbcdd">設定</h4>
-<div class="outline-text-4" id="text-org59dbcdd">
+<div id="outline-container-org2b6eab5" class="outline-4">
+<h4 id="org003785b7"><a id="org2b6eab5"></a>設定: dovecot</h4>
+<div class="outline-text-4" id="text-org003785b7">
 <p>
 最低限の設定として、
 </p>
@@ -621,17 +621,17 @@ apt 万歳
 </div>
 </div>
 </div>
-<div id="outline-container-org29bdf97" class="outline-3">
-<h3 id="org29bdf97">以下, obsolete</h3>
-<div class="outline-text-3" id="text-org29bdf97">
+<div id="outline-container-org674965f" class="outline-3">
+<h3 id="org9d74f665"><a id="org674965f"></a>以下, obsolete</h3>
+<div class="outline-text-3" id="text-org9d74f665">
 <p>
 検索は mu (maildir-utils) を使うようになったし,
 メールの同期には mbsync を使うようになったので, 以下は昔のお話.
 </p>
 </div>
-<div id="outline-container-orgddac45f" class="outline-4">
-<h4 id="orgddac45f">検索: Solr</h4>
-<div class="outline-text-4" id="text-orgddac45f">
+<div id="outline-container-orgbb188ec" class="outline-4">
+<h4 id="org7b190bb8"><a id="orgbb188ec"></a>検索: Solr</h4>
+<div class="outline-text-4" id="text-org7b190bb8">
 <p>
 Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。ここでは Solr を試してみる
 </p>
@@ -675,9 +675,9 @@ IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定す
 </p>
 </div>
 </div>
-<div id="outline-container-org1485794" class="outline-4">
-<h4 id="org1485794">検索: Solr で日本語</h4>
-<div class="outline-text-4" id="text-org1485794">
+<div id="outline-container-orgae085f6" class="outline-4">
+<h4 id="orgc1f4a23a"><a id="orgae085f6"></a>検索: Solr で日本語</h4>
+<div class="outline-text-4" id="text-orgc1f4a23a">
 <p>
 <code>scheme.xml</code> の修正が必要。とりあえず
 </p>
@@ -774,17 +774,17 @@ diff は以下:
     &lt;field name="_version_" type="long" indexed="true" stored="true"/&gt;</code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org0005199" class="outline-4">
-<h4 id="org0005199">offlineimap</h4>
-<div class="outline-text-4" id="text-org0005199">
+<div id="outline-container-org2808693" class="outline-4">
+<h4 id="org56239831"><a id="org2808693"></a>offlineimap</h4>
+<div class="outline-text-4" id="text-org56239831">
 <p>
 (2015/05/10) 以前使っていた時のメモ。もう使わないけれど、たまに検索でココを見に来ている人がいるみたいなので、残しておくことに。
 <a href="http://offlineimap.org/">OfflineIMAP</a> は,ネットワーク上にあるIMAPサーバと手元のMaildir/IMAPサーバの同期を取るためのソフトウェア.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org0830b19"></a>インストール<br />
-<div class="outline-text-5" id="text-org0830b19">
+<li><a id="org9a0058d3"></a><a id="org7a5197c"></a>インストール: offlineimap<br />
+<div class="outline-text-5" id="text-org9a0058d3">
 <p>
 apt万歳, ってことで.
 </p>
@@ -793,8 +793,8 @@ $ sudo apt-get install offlineimap
 </pre>
 </div>
 </li>
-<li><a id="orgae3d3c4"></a>設定<br />
-<div class="outline-text-5" id="text-orgae3d3c4">
+<li><a id="org9ebeeb17"></a><a id="org8410ef5"></a>設定: offlineimap<br />
+<div class="outline-text-5" id="text-org9ebeeb17">
 <p>
 現状, 以下の通り:
 </p>
@@ -1016,8 +1016,8 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 </p>
 </div>
 </li>
-<li><a id="org05a7685"></a>cron での動作<br />
-<div class="outline-text-5" id="text-org05a7685">
+<li><a id="org79b6cb1b"></a><a id="orgcc26853"></a>cron での動作: offlineimap<br />
+<div class="outline-text-5" id="text-org79b6cb1b">
 <p>
 認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意
@@ -1086,7 +1086,7 @@ nm-online <span class="nt">-x</span> <span class="o">||</span> <span class="nb">
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2019
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2019-12-21 15:27:31 +0000
+          Lastupdate: 2019-12-21 15:54:07 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">

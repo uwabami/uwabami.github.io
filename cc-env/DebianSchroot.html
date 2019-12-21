@@ -28,7 +28,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianSchroot.html","headline":"schroot:お手軽コンテナ(?)","dateModified":"2018-10-25T06:13:54+09:00","datePublished":"2018-10-25T06:13:54+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSchroot.html"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianSchroot.html","headline":"schroot:お手軽コンテナ(?)","dateModified":"2018-10-25T06:13:54+09:00","datePublished":"2018-10-25T06:13:54+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSchroot.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -167,9 +167,9 @@
 <p>
 Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-org4ebee1f" class="outline-2">
-<h2 id="org4ebee1f">始めに.</h2>
-<div class="outline-text-2" id="text-org4ebee1f">
+<div id="outline-container-org766e2f9" class="outline-2">
+<h2 id="org766e2f9">始めに.</h2>
+<div class="outline-text-2" id="text-org766e2f9">
 <p>
 前は 「sid の中で lenny を飼う」でしたけど.
 まあ, やっている事は同じです.
@@ -194,9 +194,9 @@ chroot の中で stable 環境を作成します.
 </p>
 </div>
 </div>
-<div id="outline-container-org4bc4cb3" class="outline-2">
-<h2 id="org4bc4cb3">パッケージの導入</h2>
-<div class="outline-text-2" id="text-org4bc4cb3">
+<div id="outline-container-org52de8b8" class="outline-2">
+<h2 id="org52de8b8">パッケージの導入</h2>
+<div class="outline-text-2" id="text-org52de8b8">
 <p>
 <code>debootstrap</code> と <code>schroot</code> を導入しておきます.
 </p>
@@ -205,9 +205,9 @@ chroot の中で stable 環境を作成します.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc229e2a" class="outline-2">
-<h2 id="orgc229e2a">chroot 環境作成</h2>
-<div class="outline-text-2" id="text-orgc229e2a">
+<div id="outline-container-org9db4722" class="outline-2">
+<h2 id="org9db4722">chroot 環境作成</h2>
+<div class="outline-text-2" id="text-org9db4722">
 <p>
 以下は stable-amd64 を作成する場合のお話.
 </p>
@@ -235,9 +235,9 @@ schroot でログイン後に適宜設定すると良いだろう.
 </div>
 </div>
 
-<div id="outline-container-org3687528" class="outline-2">
-<h2 id="org3687528">schroot の設定</h2>
-<div class="outline-text-2" id="text-org3687528">
+<div id="outline-container-org6ae1a5a" class="outline-2">
+<h2 id="org6ae1a5a">schroot の設定</h2>
+<div class="outline-text-2" id="text-org6ae1a5a">
 <p>
 schroot では, 個々の環境毎に「profile」を指定することで, 柔軟な環境設定が可能となっている.
 例えば, 何も指定しない場合には <code>/etc/schroot/default</code> 以下のファイルが設定に使用され,
@@ -289,9 +289,9 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 </p>
 </div>
 </div>
-<div id="outline-container-org82359de" class="outline-2">
-<h2 id="org82359de">chroot 環境の log 管理</h2>
-<div class="outline-text-2" id="text-org82359de">
+<div id="outline-container-orge72cb4a" class="outline-2">
+<h2 id="orge72cb4a">chroot 環境の log 管理</h2>
+<div class="outline-text-2" id="text-orge72cb4a">
 <p>
 親環境が rsyslogd ならば, <i>etc/rsyslog.d</i> あたりに
 </p>
@@ -301,9 +301,9 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 </p>
 </div>
 </div>
-<div id="outline-container-org62a5dba" class="outline-2">
-<h2 id="org62a5dba">chroot 環境のデーモンの起動</h2>
-<div class="outline-text-2" id="text-org62a5dba">
+<div id="outline-container-org65434c6" class="outline-2">
+<h2 id="org65434c6">chroot 環境のデーモンの起動</h2>
+<div class="outline-text-2" id="text-org65434c6">
 <p>
 以前のメモ.
 </p>
@@ -336,9 +336,9 @@ systemd 環境下だと systemctl で起動するのが良いのかなぁ.
 </p>
 </div>
 </div>
-<div id="outline-container-org56dacab" class="outline-2">
-<h2 id="org56dacab">参考文献</h2>
-<div class="outline-text-2" id="text-org56dacab">
+<div id="outline-container-org983d888" class="outline-2">
+<h2 id="org983d888">参考文献</h2>
+<div class="outline-text-2" id="text-org983d888">
 <ul class="org-ul">
 <li><a href="http://kmuto.jp/d/index.cgi/debian/debootstrap.htm">Etch/Sidの上にSarge環境を作る方法</a></li>
 <li><a href="https://wiki.debian.org/Schroot">Schroot - Debian Wiki</a></li>

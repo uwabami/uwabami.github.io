@@ -28,7 +28,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Debiani3.html","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Debiani3.html","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -187,9 +187,9 @@
 <p>
 Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-orgfcbfb0b" class="outline-2">
-<h2 id="orgfcbfb0b">始めに</h2>
-<div class="outline-text-2" id="text-orgfcbfb0b">
+<div id="outline-container-org0ffff49" class="outline-2">
+<h2 id="orge8854151"><a id="org0ffff49"></a>始めに</h2>
+<div class="outline-text-2" id="text-orge8854151">
 <p>
 スペックがあまり潤沢ではない機材を使うため,
 軽量な wm として <a href="https://i3wm.org/">i3 - improved tiling wm</a> を使い始めた.
@@ -202,9 +202,9 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 </div>
 </div>
 
-<div id="outline-container-orga46efa6" class="outline-2">
-<h2 id="orga46efa6">i3 と一緒に使っているもの</h2>
-<div class="outline-text-2" id="text-orga46efa6">
+<div id="outline-container-org7429491" class="outline-2">
+<h2 id="org3ce1fcee"><a id="org7429491"></a>i3 と一緒に使っているもの</h2>
+<div class="outline-text-2" id="text-org3ce1fcee">
 <p>
 とりあえず現状では以下:
 </p>
@@ -239,16 +239,16 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 </div>
 </div>
 
-<div id="outline-container-org2091712" class="outline-2">
-<h2 id="org2091712">i3 の設定</h2>
-<div class="outline-text-2" id="text-org2091712">
+<div id="outline-container-orgfe135ee" class="outline-2">
+<h2 id="org3565d884"><a id="orgfe135ee"></a>i3 の設定</h2>
+<div class="outline-text-2" id="text-org3565d884">
 <p>
 設定ファイルは末尾に掲載している.
 </p>
 </div>
-<div id="outline-container-org984c35c" class="outline-3">
-<h3 id="org984c35c">xdg-open と run-mailcap</h3>
-<div class="outline-text-3" id="text-org984c35c">
+<div id="outline-container-orga3ada6a" class="outline-3">
+<h3 id="org1290fec2"><a id="orga3ada6a"></a>xdg-open と run-mailcap</h3>
+<div class="outline-text-3" id="text-org1290fec2">
 <p>
 いわゆる GNOME や KDE といった Desktop 環境ではないので,
 たとえば <code>xdg-open</code> の挙動が変わります.
@@ -292,9 +292,9 @@ symbolic link を作成しておきます.
 </p>
 </div>
 </div>
-<div id="outline-container-org456f775" class="outline-3">
-<h3 id="org456f775">Alt+Tab でのフォーカスの切り替え</h3>
-<div class="outline-text-3" id="text-org456f775">
+<div id="outline-container-org3dd840f" class="outline-3">
+<h3 id="org71a2ca6e"><a id="org3dd840f"></a>Alt+Tab でのフォーカスの切り替え</h3>
+<div class="outline-text-3" id="text-org71a2ca6e">
 <p>
 <code>i3-msg -t get_tree</code> で状態が json で出力されるので,
 これを parse して良きに図らえば良い.
@@ -315,9 +315,9 @@ bindsym $Alt+Tab exec $i3t_alt_tab</code></pre></figure>
 </p>
 </div>
 </div>
-<div id="outline-container-orga281239" class="outline-3">
-<h3 id="orga281239">Rofi: ランチャ</h3>
-<div class="outline-text-3" id="text-orga281239">
+<div id="outline-container-org533332c" class="outline-3">
+<h3 id="org02118902"><a id="org533332c"></a>Rofi: ランチャ</h3>
+<div class="outline-text-3" id="text-org02118902">
 <p>
 <a href="https://davedavenport.github.io/rofi/">Rofi</a> は良い感じのランチャ.
 公式 Web の <code>This site is currently looking for a maintainer.</code> が怖いけれど.
@@ -358,9 +358,9 @@ i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
 bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"</code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org5a487c6" class="outline-3">
-<h3 id="org5a487c6">i3bar</h3>
-<div class="outline-text-3" id="text-org5a487c6">
+<div id="outline-container-org4e48719" class="outline-3">
+<h3 id="org8012159d"><a id="org4e48719"></a>i3bar</h3>
+<div class="outline-text-3" id="text-org8012159d">
 <p>
 conky で情報を更新/整形して出力している.
 conky の設定は以下: <code>~/.config/i3/i3bar-conkyrc</code>
@@ -441,9 +441,9 @@ bar {
 }</code></pre></figure>
 </div>
 </div>
-<div id="outline-container-orgf307a2e" class="outline-3">
-<h3 id="orgf307a2e">screen lock: i3lock の設定</h3>
-<div class="outline-text-3" id="text-orgf307a2e">
+<div id="outline-container-orgccd259b" class="outline-3">
+<h3 id="orgeba38d0b"><a id="orgccd259b"></a>screen lock: i3lock の設定</h3>
+<div class="outline-text-3" id="text-orgeba38d0b">
 <p>
 suspend → resume した時に i3lock を走らせたいので
 <code>/etc/systemd/system/i3lock.service</code>:
@@ -470,9 +470,9 @@ WantedBy=sleep.target</code></pre></figure>
 </div>
 </div>
 </div>
-<div id="outline-container-org9e4a364" class="outline-2">
-<h2 id="org9e4a364">i3 の設定ファイル</h2>
-<div class="outline-text-2" id="text-org9e4a364">
+<div id="outline-container-orgb768569" class="outline-2">
+<h2 id="org48c36fb1"><a id="orgb768569"></a>i3 の設定ファイル</h2>
+<div class="outline-text-2" id="text-org48c36fb1">
 <p>
 設定ファイル全体は以下の通り
 </p>
