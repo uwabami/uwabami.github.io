@@ -1,5 +1,5 @@
 <!doctype html>
-<html ⚡ lang="">
+<html ⚡ lang="ja">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
     <meta name="author" content="Youhei SASAKI">
     <!-- end: check google site verification -->
     <!-- alternate -->
-    <link rel="alternate" hreflang="" href="https://uwabami.github.io/cc-env/DebianSchroot.html" />
+    <link rel="alternate" hreflang="ja" href="https://uwabami.github.io/cc-env/DebianSchroot.html" />
     <!-- end: alternate -->
     <!-- begin jekyll seo -->
 <!-- Begin Jekyll SEO tag v2.6.1 -->
@@ -15,7 +15,7 @@
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="schroot:お手軽コンテナ(?)" />
 <meta name="author" content="Youhei SASAKI" />
-<meta property="og:locale" content="en_US" />
+<meta property="og:locale" content="ja" />
 <meta name="description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
 <meta property="og:description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
 <link rel="canonical" href="https://uwabami.github.io/cc-env/DebianSchroot.html" />
@@ -107,7 +107,7 @@
         <!-- page loop -->
         <nav class="navigation flex items-center justify-between">
           <div class="pr1 py1 order-0">
-            <a href="/index.en.html">
+            <a href="/index.html">
               <amp-img layout="fixed"
                        width="1.2rem"
                        height="1.2rem"
@@ -121,25 +121,45 @@
           <input type="checkbox" id="tm" class="navigation-input">
           <label for="tm" class="pl1 py1 order-3 md-hide lg-hide h2">☰</label>
           <div class="navcontents items-center md-flex lg-flex order-1">
-          
-          <div class="px1 py0">
-            <a href="/research/index.en.html">
-              Research
-            </a>
-          </div>
-          <div class="px1 py0">
-            <a href="/software/index.en.html">
-              Repository
-            </a>
-          </div>
+          <!-- lang ja -->
+            <div class="px1 py0">
+              <a href="/research/index.html">
+                Research
+              </a>
+            </div>
+            <div class="dmenu px1 py0">
+              <input type="checkbox" id="dmenu" class="dmenu-input">
+              <label for="dmenu">Software &#9662;</label>
+              <div class="dcontents p0">
+                <ul class="list-reset p0 m0">
+                  <li class="px1 py0">
+                    <a href="/software/index.html">
+                      Repository
+                    </a>
+                  </li>
+                  <li class="px1 py0">
+                    <a href="/cc-env/index.html">
+                      Comp. Memo
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px1 py1">
+              <a href="https://uwabami.junkhub.org/log">blog</a>
+            </div>
           </div>
           <div class="flex-auto"></div>
           <div class="px1 py0 order-2">
-            <form method="GET" class="p0 m0" action="https://www.google.com/cse" target="_top">
+            <form method="GET"
+                  class="p0 m0"
+                  action="https://www.google.com/cse"
+                  target="_top">
               <div class="inline-block relative p0 m0 small">
-                <input name="cx" type="hidden" value="017455171263919107349:oumnpe4bynr" />
+                <input name="cx" type="hidden"
+                       value="017455171263919107349:oumnpe4bynr" />
                 <input name="ie" type="hidden" value="UTF-8" />
-                <input class="gsearch" type="search" placeholder="Search" name="q" required>
+                <input class="gsearch" type="search" placeholder="検索" name="q" required>
               </div>
             </form>
           </div>
@@ -149,7 +169,7 @@
           <div class="flex items-center">
             <!-- create crumbs -->
             <div class="pr1 py0">
-              <a href="/index.en.html">
+              <a href="/index.html">
                 Top
               </a>
             </div>
@@ -167,11 +187,11 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-org766e2f9" class="outline-2">
-<h2 id="org766e2f9">始めに.</h2>
-<div class="outline-text-2" id="text-org766e2f9">
+<div id="outline-container-org061b58e" class="outline-2">
+<h2 id="org061b58e">始めに.</h2>
+<div class="outline-text-2" id="text-org061b58e">
 <p>
 前は 「sid の中で lenny を飼う」でしたけど.
 まあ, やっている事は同じです.
@@ -196,9 +216,9 @@ chroot の中で stable 環境を作成します.
 </p>
 </div>
 </div>
-<div id="outline-container-org52de8b8" class="outline-2">
-<h2 id="org52de8b8">パッケージの導入</h2>
-<div class="outline-text-2" id="text-org52de8b8">
+<div id="outline-container-org7ac7e3b" class="outline-2">
+<h2 id="org7ac7e3b">パッケージの導入</h2>
+<div class="outline-text-2" id="text-org7ac7e3b">
 <p>
 <code>debootstrap</code> と <code>schroot</code> を導入しておきます.
 </p>
@@ -207,9 +227,9 @@ chroot の中で stable 環境を作成します.
 </pre>
 </div>
 </div>
-<div id="outline-container-org9db4722" class="outline-2">
-<h2 id="org9db4722">chroot 環境作成</h2>
-<div class="outline-text-2" id="text-org9db4722">
+<div id="outline-container-org5f25622" class="outline-2">
+<h2 id="org5f25622">chroot 環境作成</h2>
+<div class="outline-text-2" id="text-org5f25622">
 <p>
 以下は stable-amd64 を作成する場合のお話.
 </p>
@@ -237,9 +257,9 @@ schroot でログイン後に適宜設定すると良いだろう.
 </div>
 </div>
 
-<div id="outline-container-org6ae1a5a" class="outline-2">
-<h2 id="org6ae1a5a">schroot の設定</h2>
-<div class="outline-text-2" id="text-org6ae1a5a">
+<div id="outline-container-orge522f18" class="outline-2">
+<h2 id="orge522f18">schroot の設定</h2>
+<div class="outline-text-2" id="text-orge522f18">
 <p>
 schroot では, 個々の環境毎に「profile」を指定することで, 柔軟な環境設定が可能となっている.
 例えば, 何も指定しない場合には <code>/etc/schroot/default</code> 以下のファイルが設定に使用され,
@@ -291,9 +311,9 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 </p>
 </div>
 </div>
-<div id="outline-container-orge72cb4a" class="outline-2">
-<h2 id="orge72cb4a">chroot 環境の log 管理</h2>
-<div class="outline-text-2" id="text-orge72cb4a">
+<div id="outline-container-org5cea227" class="outline-2">
+<h2 id="org5cea227">chroot 環境の log 管理</h2>
+<div class="outline-text-2" id="text-org5cea227">
 <p>
 親環境が rsyslogd ならば, <i>etc/rsyslog.d</i> あたりに
 </p>
@@ -303,9 +323,9 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 </p>
 </div>
 </div>
-<div id="outline-container-org65434c6" class="outline-2">
-<h2 id="org65434c6">chroot 環境のデーモンの起動</h2>
-<div class="outline-text-2" id="text-org65434c6">
+<div id="outline-container-orgb10fc13" class="outline-2">
+<h2 id="orgb10fc13">chroot 環境のデーモンの起動</h2>
+<div class="outline-text-2" id="text-orgb10fc13">
 <p>
 以前のメモ.
 </p>
@@ -338,9 +358,9 @@ systemd 環境下だと systemctl で起動するのが良いのかなぁ.
 </p>
 </div>
 </div>
-<div id="outline-container-org983d888" class="outline-2">
-<h2 id="org983d888">参考文献</h2>
-<div class="outline-text-2" id="text-org983d888">
+<div id="outline-container-orgb923ed8" class="outline-2">
+<h2 id="orgb923ed8">参考文献</h2>
+<div class="outline-text-2" id="text-orgb923ed8">
 <ul class="org-ul">
 <li><a href="http://kmuto.jp/d/index.cgi/debian/debootstrap.htm">Etch/Sidの上にSarge環境を作る方法</a></li>
 <li><a href="https://wiki.debian.org/Schroot">Schroot - Debian Wiki</a></li>

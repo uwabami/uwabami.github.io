@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-12-22T00:47:59+09:00" />
+<meta property="article:published_time" content="2019-12-25T18:17:27+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Emacs の設定","dateModified":"2019-12-22T00:47:59+09:00","datePublished":"2019-12-22T00:47:59+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Emacs の設定","dateModified":"2019-12-25T18:17:27+09:00","datePublished":"2019-12-25T18:17:27+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -332,9 +332,8 @@ init.el: README.org
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">require</span> <span class="ss">'package</span> <span class="no">nil</span> <span class="ss">'noerror</span><span class="p">)</span>
 <span class="c1">;; elpa/gnutls workaround</span>
-<span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">version=</span> <span class="s">"26.1"</span> <span class="nv">emacs-version</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">version=</span> <span class="s">"26.2"</span> <span class="nv">emacs-version</span><span class="p">))</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">gnutls-algorithm-priority</span> <span class="s">"NORMAL:-VERS-TLS1.3"</span><span class="p">))</span>
+<span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">string&lt;</span> <span class="nv">emacs-version</span> <span class="s">"26.3"</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">gnutls-algorithm-priority</span> <span class="s">"NORMAL:-VERS-TLS1.3"</span><span class="p">))</span>
 <span class="p">(</span><span class="k">setq</span> <span class="nv">package-enable-at-startup</span> <span class="no">t</span>
       <span class="nv">package-user-dir</span> <span class="nv">my:d:pkg:elpa</span>
       <span class="nv">package-gnupghome-dir</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">".gnupg"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">))</span>
@@ -862,12 +861,18 @@ minibuffer では eldoc にお黙り頂く。
 <p>
 記憶の保存先を <code>~/.emacs.d/tmp/emacs-places</code> に変更.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">saveplace</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">save-place</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">save-place</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">save-place-file</span>  <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"emacs-places"</span>  <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">)</span>
   <span class="ss">:hook</span> <span class="p">(</span><span class="nv">after-init-hook</span> <span class="o">.</span> <span class="nv">save-place-mode</span><span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">save-place-ingore-files-regexp</span>
+        <span class="p">(</span><span class="nb">format</span> <span class="s">"\\(%s\\)\\|\\(%s\\)"</span>
+                <span class="nv">save-place-ignore-files-regexp</span>
+                <span class="nv">tramp-file-name-regexp</span><span class="p">))</span>
+
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -1411,6 +1416,11 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
     <span class="p">(</span><span class="nv">ido-ignore-extensions</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="c1">;; 補完できない場合の挙動 ← "何もしない" は可能かな? nil?</span>
     <span class="p">(</span><span class="nv">ido-cannot-complete-command</span>   <span class="o">.</span> <span class="ss">'ido-next-match</span><span class="p">)</span>
+    <span class="c1">;; 補完候補が無い場合に search を始める長さ ⇒ -1 で停止</span>
+    <span class="p">(</span><span class="nv">ido-auto-merge-work-directories-length</span> <span class="o">.</span> <span class="mi">-1</span><span class="p">)</span>
+    <span class="c1">;; 補完候補が無い場合に search を始める時間</span>
+    <span class="c1">;; run-with-timer に与える値なので, とりあえず長め(30分)にしておく</span>
+    <span class="p">(</span><span class="nv">ido-auto-merge-delay-time</span>     <span class="o">.</span> <span class="mi">1800</span><span class="p">)</span>
     <span class="c1">;; 補完結果の保存</span>
     <span class="p">(</span><span class="nv">ido-save-directory-list-file</span>
      <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"ido.last"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
@@ -1513,42 +1523,26 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-describe-bindings</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org84b555b" class="outline-3">
-<h3 id="org28528ad3"><a id="org84b555b"></a><code>smex</code></h3>
+<div id="outline-container-orgd7fdd5e" class="outline-3">
+<h3 id="org28528ad3"><a id="orgd7fdd5e"></a><code>amx</code></h3>
 <div class="outline-text-3" id="text-org28528ad3">
 <p>
-M-x を ido で. <del>amx の方が良い?</del>
+M-x を ido で. 以前は smex を利用していたが, amx に乗り換えた.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">smex</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"M-x"</span> <span class="o">.</span> <span class="nv">smex</span><span class="p">))</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">amx</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"M-x"</span> <span class="o">.</span> <span class="nv">amx</span><span class="p">))</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">(</span><span class="c1">;; 自動更新</span>
-    <span class="p">(</span><span class="nv">smex-auto-update</span>   <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+  <span class="o">`</span><span class="p">(</span><span class="c1">;; backend 'ivy or 'ido or 'auto</span>
+    <span class="p">(</span><span class="nv">amx-backend</span> <span class="o">.</span> <span class="ss">'ido</span><span class="p">)</span>
     <span class="c1">;; prompt</span>
-    <span class="p">(</span><span class="nv">smex-prompt-string</span> <span class="o">.</span> <span class="s">"smex: "</span><span class="p">)</span>
-    <span class="c1">;; flex match</span>
-    <span class="p">(</span><span class="nv">smex-flex-matching</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">amx-prompt-string</span> <span class="o">.</span> <span class="s">"amx: "</span><span class="p">)</span>
+    <span class="c1">;; keybind</span>
+    <span class="p">(</span><span class="nv">amx-show-key-bindings</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
     <span class="c1">;; 履歴</span>
-    <span class="p">(</span><span class="nv">smex-save-file</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"smex-items"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div id="outline-container-org184388b" class="outline-3">
-<h3 id="org7eb97621"><a id="org184388b"></a>ido-ghq</h3>
-<div class="outline-text-3" id="text-org7eb97621">
-<p>
-ghq list を ido で選んで dired で開く
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-ghq</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"ghq"</span><span class="p">)</span>
-  <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">ido-ghq</span>
-           <span class="ss">:type</span> <span class="nv">github</span>
-           <span class="ss">:pkgname</span> <span class="s">"uwabami/ido-ghq"</span><span class="p">)</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x f"</span> <span class="o">.</span> <span class="nv">ido-ghq-open</span><span class="p">))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">ido-ghq-short-list</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">amx-save-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"amx-items"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">amx-history-length</span> <span class="o">.</span> <span class="mi">128</span><span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -3381,13 +3375,14 @@ Major modeとの衝突があるので止めた方が良い, らしい．
 </div>
 </div>
 <div id="outline-container-orgce20bbe" class="outline-3">
-<h3 id="org67465ee0"><a id="orgce20bbe"></a><span class="todo TODO">TODO</span> Org-Id <code>[/]</code></h3>
+<h3 id="org67465ee0"><a id="orgce20bbe"></a>Org-Id</h3>
 <div class="outline-text-3" id="text-org67465ee0">
-<p>
-使いこなせてないのだけれど.
-</p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-id</span>
-  <span class="ss">:init</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-id-locations-file</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-id-locations"</span> <span class="nv">my:d:share</span><span class="p">))</span>
+    <span class="c1">;; (org-id-link-to-org-use-id . create-if-interactive-and-no-custom-id)</span>
+    <span class="p">)</span>
+  <span class="ss">:config</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:add-custom-id</span> <span class="p">()</span>
     <span class="s">"Add \"CUSTOM_ID\" to the current tree if not assigned yet."</span>
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
@@ -3400,27 +3395,12 @@ e.g. \"org3ca6ef0c\"."</span>
       <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">org-uuidgen-p</span> <span class="nv">id</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">downcase</span> <span class="p">(</span><span class="nv">concat</span> <span class="s">"org"</span>  <span class="p">(</span><span class="nv">substring</span> <span class="p">(</span><span class="nv">org-id-new</span> <span class="s">""</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">8</span><span class="p">))))))</span>
   <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">my:org-with-point-at</span> <span class="p">(</span><span class="nv">pom</span> <span class="k">&amp;rest</span> <span class="nv">body</span><span class="p">)</span>
-    <span class="s">"Move to buffer and point of point-or-marker POM for the duration of BODY."</span>
-    <span class="p">(</span><span class="k">declare</span> <span class="p">(</span><span class="nv">debug</span> <span class="p">(</span><span class="nv">form</span> <span class="nv">body</span><span class="p">))</span> <span class="p">(</span><span class="nv">indent</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">org-with-gensyms</span> <span class="p">(</span><span class="nv">mpom</span><span class="p">)</span>
-      <span class="o">`</span><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="o">,</span><span class="nv">mpom</span> <span class="o">,</span><span class="nv">pom</span><span class="p">))</span>
-         <span class="p">(</span><span class="nv">save-excursion</span>
-           <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">markerp</span> <span class="o">,</span><span class="nv">mpom</span><span class="p">)</span> <span class="p">(</span><span class="nv">set-buffer</span> <span class="p">(</span><span class="nv">marker-buffer</span> <span class="o">,</span><span class="nv">mpom</span><span class="p">)))</span>
-           <span class="p">(</span><span class="nv">org-with-wide-buffer</span>
-            <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nb">or</span> <span class="o">,</span><span class="nv">mpom</span> <span class="p">(</span><span class="nv">point</span><span class="p">)))</span>
-            <span class="o">,@</span><span class="nv">body</span><span class="p">)))))</span>
-  <span class="c1">;;</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-custom-id-get</span> <span class="p">(</span><span class="k">&amp;optional</span> <span class="nv">pom</span> <span class="nv">create</span><span class="p">)</span>
     <span class="s">"Get the CUSTOM_ID property of the entry at point-or-marker POM.
-If POM is nil, refer to the entry at point.  If the entry does
-not have an CUSTOM_ID, the function returns nil.  However, when
-CREATE is non nil, create a CUSTOM_ID if none is present
-already.  In any case, the CUSTOM_ID of the entry is returned.
-
 See https://writequit.org/articles/emacs-org-mode-generate-ids.html"</span>
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">my:org-with-point-at</span> <span class="nv">pom</span>
+    <span class="p">(</span><span class="nb">require</span> <span class="ss">'org-macs</span> <span class="no">nil</span> <span class="ss">'noerror</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-with-point-at</span> <span class="nv">pom</span>
       <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">id</span> <span class="p">(</span><span class="nv">org-entry-get</span> <span class="no">nil</span> <span class="s">"CUSTOM_ID"</span><span class="p">)))</span>
         <span class="p">(</span><span class="nb">cond</span>
          <span class="p">((</span><span class="nb">and</span> <span class="nv">id</span> <span class="p">(</span><span class="nb">stringp</span> <span class="nv">id</span><span class="p">)</span> <span class="p">(</span><span class="nv">string-match</span> <span class="s">"\\S-"</span> <span class="nv">id</span><span class="p">))</span>
@@ -3445,12 +3425,8 @@ See https://writequit.org/articles/emacs-org-mode-generate-ids.html"</span>
           <span class="p">(</span><span class="nv">org-delete-property</span> <span class="s">"ID"</span><span class="p">))))</span>
     <span class="p">(</span><span class="nv">message</span> <span class="s">"--- done."</span><span class="p">))</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:add-org-ids-to-headlines-in-file</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-id-add-to-headlines-in-file</span> <span class="p">()</span>
     <span class="s">"Add CUSTOM_ID properties to all headlines in the current file.
-Which do not already have one.  Only adds ids if the
-`auto-id' option is set to `t' in the file somewhere. ie,
-#+options: auto-id:t
-
 See https://writequit.org/articles/emacs-org-mode-generate-ids.html"</span>
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">save-excursion</span>
@@ -3459,15 +3435,8 @@ See https://writequit.org/articles/emacs-org-mode-generate-ids.html"</span>
       <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">"^#\\+options:.*auto-id:t"</span> <span class="p">(</span><span class="nv">point-max</span><span class="p">)</span> <span class="no">t</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">org-map-entries</span>
          <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">my:org-custom-id-get</span> <span class="p">(</span><span class="nv">point</span><span class="p">)</span> <span class="ss">'create</span><span class="p">))))))</span>
-  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'before-save-hook</span> <span class="ss">'my:add-org-ids-to-headlines-in-file</span><span class="p">)</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">org-id-locations-file</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-id-locations"</span> <span class="nv">my:d:share</span><span class="p">))</span>
-    <span class="c1">;; (org-id-link-to-org-use-id . create-if-interactive-and-no-custom-id)</span>
-    <span class="p">)</span>
+  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'before-save-hook</span> <span class="ss">'my:org-id-add-to-headlines-in-file</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 要設定</li>
-</ul>
 </div>
 </div>
 <div id="outline-container-org0edc11e" class="outline-3">
@@ -3901,6 +3870,16 @@ latex, beamer,jekyll(後述) のみを有効に.
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
+<div id="outline-container-org95a66e2" class="outline-4">
+<h4 id="org95a66e2">HTML</h4>
+<div class="outline-text-4" id="text-org95a66e2">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ox-html</span>
+  <span class="ss">:custom</span>
+  <span class="p">((</span><span class="nv">org-html-table-align-individual-fields</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">org-html-table-default-attributes</span> <span class="o">.</span> <span class="no">nil</span><span class="p">))</span>
+<span class="p">)</span></code></pre></figure>
+</div>
+</div>
 <div id="outline-container-org73005c3" class="outline-4">
 <h4 id="org4d9c6533"><a id="org73005c3"></a>LaTeX, Beamer</h4>
 <div class="outline-text-4" id="text-org4d9c6533">
@@ -3959,7 +3938,7 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
   <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">ox-jekyll</span>
            <span class="ss">:type</span> <span class="nv">github</span>
            <span class="ss">:pkgname</span> <span class="s">"uwabami/ox-jekyll"</span><span class="p">)</span>
-  <span class="ss">:after</span> <span class="nv">ox-html</span>
+  <span class="ss">:after</span> <span class="p">(</span><span class="nv">ox-html</span> <span class="nv">org-wiki</span><span class="p">)</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-wiki-jekyll-finalized1</span> <span class="p">(</span><span class="nv">contents</span> <span class="nv">backend</span> <span class="nv">info</span><span class="p">)</span>
     <span class="s">"Replace some URL"</span>
@@ -4058,7 +4037,7 @@ magit は Emacs の Git Frontend.
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x g"</span> <span class="o">.</span> <span class="nv">magit-status</span><span class="p">))</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">magit-completing-read-function</span> <span class="ss">'ivy</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">magit-completing-read-function</span> <span class="ss">'ido</span>
         <span class="nv">magit-refs-show-commit-count</span>   <span class="ss">'all</span>
         <span class="nv">magit-log-buffer-file-locked</span>   <span class="no">t</span>
         <span class="nv">magit-revision-show-gravatars</span>  <span class="no">nil</span>
@@ -4081,11 +4060,11 @@ magit は Emacs の Git Frontend.
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org24a6596" class="outline-3">
-<h3 id="orgbf01ab39"><a id="org24a6596"></a>ghq</h3>
-<div class="outline-text-3" id="text-orgbf01ab39">
+<div id="outline-container-org184388b" class="outline-3">
+<h3 id="org7eb97621"><a id="org184388b"></a>ido-ghq</h3>
+<div class="outline-text-3" id="text-org7eb97621">
 <p>
-<code>projectile</code> はあんまり使わなくて良い気もしている
+ghq list を ido で選んで dired で開く
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-ghq</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"ghq"</span><span class="p">)</span>
@@ -4114,7 +4093,7 @@ magit は Emacs の Git Frontend.
          <span class="p">(</span><span class="s">"M-g x"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"M-g z"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external-other-window</span><span class="p">))</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">dumb-jump-selector</span> <span class="ss">'ivy</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">dumb-jump-selector</span> <span class="ss">'ido</span>
         <span class="nv">dumb-jump-force-searcher</span> <span class="ss">'rg</span>
         <span class="p">)</span>
   <span class="p">)</span>
@@ -4933,7 +4912,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2019
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2019-12-21 15:47:59 +0000
+          Lastupdate: 2019-12-25 09:17:27 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">

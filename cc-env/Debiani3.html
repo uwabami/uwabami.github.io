@@ -488,29 +488,28 @@ set $execi exec --no-startup-id
 # set $execai exec_always --no-startup-id
 
 # font
-# font xft:Cica 16.5
-font xft:FSMRMP 16.5
+font xft:Inconsolata,xft:FontAwesome 16.5
+# font xft:FSMRMP 16.5
 
 # startup
 # $execi /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &amp;
 # $execi gnome-keyring-daemon --start --components=pkcs11,secrets,gpg &amp;
-$execi /usr/lib/gnome-settings-daemon/gsd-xsettings --gtk-no-debug=all --gdk-no-debug=all &amp;
+$execi /usr/lib/x86_64-linux-gnu/cinnamon-settings-daemon/csd-xsettings --gtk-no-debug=all --gdk-no-debug=all &amp;
 $execi $(sleep 5 &amp;  feh --bg-scale $HOME/Pictures/desktop.png --no-fehbg )
 $execi xrdb -merge $HOME/.Xresources
-# $execi compton
+$execi compton
 $execi nm-applet
-$execi blueman-applet
+# $execi blueman-applet
 # $execi udiskie
 # $execi uim-toolbar-gtk-systray
 $execi QT_SCALE_FACTOR=1.5 nextcloud
-# $execi dropbox start -i
 $execi /usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon
 
 
 # screensaver and power management
 $execi xset -dpms   # disable DPMS
 $execi xset s off   # disable auto screensaver
-# bindsym $mod+Shift+l $execi sh -c "i3lock -n -c 242424"
+bindsym $mod+Shift+l $execi sh -c "i3lock -n -c 242424"
 
 # start a terminal: rxvt-unicide daemon mode
 bindsym Control+Shift+n exec urxvtcd
@@ -518,7 +517,9 @@ bindsym Control+Shift+n exec urxvtcd
 bindsym $Alt+F2 $execi sh -c "rofi -show run"
 
 # change focus
-bindsym $Alt+Tab $execi sh -c "rofi -show windowcd"
+# bindsym $Alt+Tab $execi sh -c "rofi -show windowcd"
+set $i3t_alt_tab ~/.config/i3/i3-alt-tab.py next all
+bindsym $Alt+Tab exec $i3t_alt_tab 2&gt;&amp;1 1&gt;/dev/null
 
 # change focus
 
@@ -530,14 +531,15 @@ bindsym $mod+l focus down
 bindsym $mod+Control+Right focus right
 bindsym $mod+Control+Up focus Up
 
-# set $i3t_alt_tab ~/.config/i3/i3t.py n
-# bindsym $Alt+Tab exec $i3t_alt_tab 2&gt;&amp;1 1&gt;/dev/null
 
 # kill focused window
 bindsym $Alt+F4 kill
 
 # toggle tiling / floating
-bindsym $mod+space floating toggle
+bindsym $Alt+Return floating toggle
+# enter fullscreen mode for the focused container
+bindsym $mod+F12 fullscreen toggle
+
 
 # move focused window
 bindsym $mod+Left move left
@@ -545,8 +547,6 @@ bindsym $mod+Down move down
 bindsym $mod+Up move up
 bindsym $mod+Right move right
 
-# enter fullscreen mode for the focused container
-bindsym $Alt+Return fullscreen toggle
 
 # change container layout (tabbed, stacked, toggle split)
 bindsym $mod+s layout stacking
@@ -605,15 +605,14 @@ bindsym XF86MonBrightnessDown $execi /usr/local/sbin/xbacklight -dec
 # status bar
 bar {
     position    top
-    tray_output eDP-1
-    tray_padding 2
-    font xft:FSMRMP 16.5
-    status_command i3blocks
-    mode dock
-    separator_symbol " | "
-    binding_mode_indicator yes
+    tray_output eDP1
+    tray_padding 0
+    font xft:Inconsolata,Xft:FontAwesome 18
+    # status_command $HOME/.config/i3/run-conky.sh
+    status_command i3status -c $HOME/.config/i3/i3status.conf
+    # binding_mode_indicator yes
     colors {
-      background #242424
+      background #020202
       statusline #F6F3E8
       separator  #111822
       focused_workspace  #111822 #222244 #F6F3E8
@@ -625,7 +624,7 @@ bar {
 }
 
 # class                 border  bground text    indicator child_border
-client.focused          #111822 #22224A #F6F3E8 #2B2B2B   #2B2B2B
+client.focused          #111822 #222244 #F6F3E8 #2B2B2B   #2B2B2B
 client.focused_inactive #020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
 client.unfocused        #020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
 client.urgent           #A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B
@@ -638,12 +637,13 @@ for_window [class="(?i)ekiga"] floating enable
 for_window [class="(?i)feh"] floating enable
 for_window [class="(?i)vlc"] floating enable
 for_window [class="(?i)firefox"] floating enable
+for_window [class="(?i)nemo"] floating enable
 
 # startup
 # assign [class="(?i)zathura" ] 2
 assign [class="(?i)evince" ] 2
-assign [class="(?i)eclipse" ] 3
-assign [class="(?i)Apache Directory Studio" ] 3
+assign [class="(?i)nemo" ] 3
+# assign [class="(?i)Apache Directory Studio" ] 3
 # assign [class="(?i)rabbit" ] 3
 # assign [class="(?i)Zotero"] 3
 assign [class="(?i)firefox"] 4
