@@ -184,8 +184,8 @@
 <p>
 Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-org884b2d1" class="outline-2">
-<h2 id="org02aae9c7"><a id="org884b2d1"></a>始めに</h2>
+<div>
+<h2 id="org02aae9c7">始めに</h2>
 <div class="outline-text-2" id="text-org02aae9c7">
 <p>
 メールに関するアレコレ.
@@ -194,8 +194,8 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 </p>
 </div>
 </div>
-<div id="outline-container-org8cd12b6" class="outline-2">
-<h2 id="orgc6ac0121"><a id="org8cd12b6"></a>送信設定: Exim4</h2>
+<div>
+<h2 id="orgc6ac0121">送信設定: Exim4</h2>
 <div class="outline-text-2" id="text-orgc6ac0121">
 <p>
 smarthost での送信だけなら Exim4 が軽量で楽。他にも幾つか選択肢はある。気になるなら <a href="https://wiki.debian.org/Debate/DefaultMTA">Debian Wiki: DefaultMTA</a> あたり参照のこと。欲しい機能は
@@ -251,8 +251,8 @@ $ sudo -s
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">MAILDIR_HOME_MAILDIR_LOCATION</span> = $<span class="n">home</span>/<span class="n">Maildir</span>/<span class="n">INBOX</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-orgef329ca" class="outline-2">
-<h2 id="org5afde083"><a id="orgef329ca"></a>送信設定: msmtp</h2>
+<div>
+<h2 id="org5afde083">送信設定: msmtp</h2>
 <div class="outline-text-2" id="text-org5afde083">
 <p>
 <a href="/cc-env/Emacs.html#org2c2abb9b">Wanderlust</a> からメールを送る時には,
@@ -288,8 +288,8 @@ msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
 </p>
 </div>
 </div>
-<div id="outline-container-org45c7d68" class="outline-2">
-<h2 id="orgbf2f5d08"><a id="org45c7d68"></a>受信</h2>
+<div>
+<h2 id="orgbf2f5d08">受信</h2>
 <div class="outline-text-2" id="text-orgbf2f5d08">
 <p>
 受信/閲覧は
@@ -313,15 +313,15 @@ msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
 <li>偶に block するし、imap の接続数が酷い事になる。ということで、2015 年から <a href="http://isync.sourceforge.net/">isync: free IMAP and MailDir mailbox synchronizer</a> に移行した。</li>
 </ul>
 </div>
-<div id="outline-container-org985a7f8" class="outline-3">
-<h3 id="org1b669e8c"><a id="org985a7f8"></a>mbsync/isync</h3>
+<div>
+<h3 id="org1b669e8c">mbsync/isync</h3>
 <div class="outline-text-3" id="text-org1b669e8c">
 <p>
 isync/mbsync はリモートの IMAP サーバとローカルの Maildir を同期するソフトウェア。
 </p>
 </div>
-<div id="outline-container-org28888aa" class="outline-4">
-<h4 id="org14da667f"><a id="org28888aa"></a>インストール: mbsync/isync</h4>
+<div>
+<h4 id="org14da667f">インストール: mbsync/isync</h4>
 <div class="outline-text-4" id="text-org14da667f">
 <p>
 実行バイナリは <code>isync</code> もしくは <code>mbsync</code> 。以前の名前が <code>isync</code> なので、Debian のパッケージ名はそのままである。
@@ -334,8 +334,8 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org8b74e2a" class="outline-4">
-<h4 id="org2ddeb5a8"><a id="org8b74e2a"></a>設定: mbsync/isync</h4>
+<div>
+<h4 id="org2ddeb5a8">設定: mbsync/isync</h4>
 <div class="outline-text-4" id="text-org2ddeb5a8">
 <p>
 設定ファイルは <code>~/.mbsyncrc</code>.
@@ -463,8 +463,8 @@ mbsync -l mobile
 </p>
 </div>
 </div>
-<div id="outline-container-org76473b9" class="outline-4">
-<h4 id="orgf55f00fe"><a id="org76473b9"></a>cron での動作: mbsync/isync</h4>
+<div>
+<h4 id="orgf55f00fe">cron での動作: mbsync/isync</h4>
 <div class="outline-text-4" id="text-orgf55f00fe">
 <p>
 認証に GPG を使っており、認証に Gnome Keyring を用いているので必要な環境変数を読み込んでから実行するようにする.
@@ -517,12 +517,12 @@ timelimit <span class="nt">-T</span> 300 <span class="nt">-t</span> 300 mbsync <
 </div>
 </div>
 </div>
-<div id="outline-container-orgda42c3c" class="outline-3">
-<h3 id="org4a294ad8"><a id="orgda42c3c"></a>dovecot</h3>
+<div>
+<h3 id="org4a294ad8">dovecot</h3>
 <div class="outline-text-3" id="text-org4a294ad8">
 </div>
-<div id="outline-container-org9424f38" class="outline-4">
-<h4 id="orge30e9132"><a id="org9424f38"></a>インストール: dovecot</h4>
+<div>
+<h4 id="orge30e9132">インストール: dovecot</h4>
 <div class="outline-text-4" id="text-orge30e9132">
 <p>
 最低限 IMAP での接続ができれば良いので
@@ -535,8 +535,8 @@ apt 万歳
 </p>
 </div>
 </div>
-<div id="outline-container-org2b6eab5" class="outline-4">
-<h4 id="org003785b7"><a id="org2b6eab5"></a>設定: dovecot</h4>
+<div>
+<h4 id="org003785b7">設定: dovecot</h4>
 <div class="outline-text-4" id="text-org003785b7">
 <p>
 最低限の設定として、
@@ -618,16 +618,16 @@ apt 万歳
 </div>
 </div>
 </div>
-<div id="outline-container-org674965f" class="outline-3">
-<h3 id="org9d74f665"><a id="org674965f"></a>以下, obsolete</h3>
+<div>
+<h3 id="org9d74f665">以下, obsolete</h3>
 <div class="outline-text-3" id="text-org9d74f665">
 <p>
 検索は mu (maildir-utils) を使うようになったし,
 メールの同期には mbsync を使うようになったので, 以下は昔のお話.
 </p>
 </div>
-<div id="outline-container-orgbb188ec" class="outline-4">
-<h4 id="org7b190bb8"><a id="orgbb188ec"></a>検索: Solr</h4>
+<div>
+<h4 id="org7b190bb8">検索: Solr</h4>
 <div class="outline-text-4" id="text-org7b190bb8">
 <p>
 Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。ここでは Solr を試してみる
@@ -672,8 +672,8 @@ IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定す
 </p>
 </div>
 </div>
-<div id="outline-container-orgae085f6" class="outline-4">
-<h4 id="orgc1f4a23a"><a id="orgae085f6"></a>検索: Solr で日本語</h4>
+<div>
+<h4 id="orgc1f4a23a">検索: Solr で日本語</h4>
 <div class="outline-text-4" id="text-orgc1f4a23a">
 <p>
 <code>scheme.xml</code> の修正が必要。とりあえず
@@ -771,8 +771,8 @@ diff は以下:
     &lt;field name="_version_" type="long" indexed="true" stored="true"/&gt;</code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org2808693" class="outline-4">
-<h4 id="org56239831"><a id="org2808693"></a>offlineimap</h4>
+<div>
+<h4 id="org56239831">offlineimap</h4>
 <div class="outline-text-4" id="text-org56239831">
 <p>
 (2015/05/10) 以前使っていた時のメモ。もう使わないけれど、たまに検索でココを見に来ている人がいるみたいなので、残しておくことに。
@@ -780,7 +780,7 @@ diff は以下:
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org9a0058d3"></a><a id="org7a5197c"></a>インストール: offlineimap<br />
+<li>インストール: offlineimap<br />
 <div class="outline-text-5" id="text-org9a0058d3">
 <p>
 apt万歳, ってことで.
@@ -790,7 +790,7 @@ $ sudo apt-get install offlineimap
 </pre>
 </div>
 </li>
-<li><a id="org9ebeeb17"></a><a id="org8410ef5"></a>設定: offlineimap<br />
+<li>設定: offlineimap<br />
 <div class="outline-text-5" id="text-org9ebeeb17">
 <p>
 現状, 以下の通り:
@@ -1013,7 +1013,7 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 </p>
 </div>
 </li>
-<li><a id="org79b6cb1b"></a><a id="orgcc26853"></a>cron での動作: offlineimap<br />
+<li>cron での動作: offlineimap<br />
 <div class="outline-text-5" id="text-org79b6cb1b">
 <p>
 認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから実行するようにする.

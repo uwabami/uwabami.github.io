@@ -184,8 +184,8 @@
 <p>
 Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
-<div id="outline-container-orgfd6d312" class="outline-2">
-<h2 id="org494811ef"><a id="orgfd6d312"></a>はじめに</h2>
+<div>
+<h2 id="org494811ef">はじめに</h2>
 <div class="outline-text-2" id="text-org494811ef">
 <p>
 Debian パッケージを作成するため
@@ -198,8 +198,8 @@ Debian パッケージを作成するため
 </ul>
 </div>
 </div>
-<div id="outline-container-org01fb084" class="outline-2">
-<h2 id="orgf00f2fde"><a id="org01fb084"></a>sbuild: clean room build 環境</h2>
+<div>
+<h2 id="orgf00f2fde">sbuild: clean room build 環境</h2>
 <div class="outline-text-2" id="text-orgf00f2fde">
 <p>
 clean room build 環境としては
@@ -214,8 +214,8 @@ Debian 公式のビルドインフラが sbuild なので, 私は sbuild を使�
 sbuild に関しては <a href="https://wiki.debian.org/sbuild">sbuild - Debian Wiki</a> を参照下さい.
 </p>
 </div>
-<div id="outline-container-orga4cc5ae" class="outline-3">
-<h3 id="orgb0668c8e"><a id="orga4cc5ae"></a>インストールと設定</h3>
+<div>
+<h3 id="orgb0668c8e">インストールと設定</h3>
 <div class="outline-text-3" id="text-orgb0668c8e">
 <p>
 ほぼ, 上述の wiki の通り:
@@ -256,8 +256,8 @@ sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
 </div>
 </div>
 </div>
-<div id="outline-container-org432cfa4" class="outline-2">
-<h2 id="orgc93b0208"><a id="org432cfa4"></a>lintian: パッケージの品質のチェック</h2>
+<div>
+<h2 id="orgc93b0208">lintian: パッケージの品質のチェック</h2>
 <div class="outline-text-2" id="text-orgc93b0208">
 <p>
 作成したパッケージが Debian Policy に準拠しているかをチェックするパッケージである lintian を導入.
@@ -285,8 +285,8 @@ sbuild からの呼び出しは <code>~/.sbuildrc</code> において
 </p>
 </div>
 </div>
-<div id="outline-container-orga563043" class="outline-2">
-<h2 id="orge1e68773"><a id="orga563043"></a>piuparts: パッケージとしてのテスト</h2>
+<div>
+<h2 id="orge1e68773">piuparts: パッケージとしてのテスト</h2>
 <div class="outline-text-2" id="text-orge1e68773">
 <p>
 ビルドしたパッケージについてインストール, アップグレード, リムーブ, パージのテストを行なえる
@@ -307,15 +307,15 @@ piuparts を導入しておく.
 <span class="nv">$piuparts_root_args</span> <span class="o">=</span> <span class="p">['</span><span class="s1">sudo</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">'];</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-orgc5a0021" class="outline-2">
-<h2 id="org7bc04000"><a id="orgc5a0021"></a>autopkgtest: ビルドしたバイナリの実行テスト</h2>
+<div>
+<h2 id="org7bc04000">autopkgtest: ビルドしたバイナリの実行テスト</h2>
 <div class="outline-text-2" id="text-org7bc04000">
 <p>
 autopkgtest パッケージを導入しておく.
 </p>
 </div>
-<div id="outline-container-org5b8ab30" class="outline-3">
-<h3 id="org057e5425"><a id="org5b8ab30"></a>初期設定</h3>
+<div>
+<h3 id="org057e5425">初期設定</h3>
 <div class="outline-text-3" id="text-org057e5425">
 <p>
 autopkgtest 環境として, schroot を使うか lxc を使うか, がある.
@@ -381,8 +381,8 @@ LXC の基本設定や dnsmasq での DHCP 取得ができるようになって�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf31892a" class="outline-3">
-<h3 id="org80b81a6f"><a id="orgf31892a"></a>sbuild からの呼び出し</h3>
+<div>
+<h3 id="org80b81a6f">sbuild からの呼び出し</h3>
 <div class="outline-text-3" id="text-org80b81a6f">
 <p>
 面倒なのは lxc を使う場合には <code>stretch</code>, <code>buster</code>, <code>sid</code> とコードネームなのに対して,
@@ -409,8 +409,8 @@ sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>
 </div>
 </div>
 </div>
-<div id="outline-container-org37a4dae" class="outline-2">
-<h2 id="orgd7556e5a"><a id="org37a4dae"></a>~/.sbuildrc</h2>
+<div>
+<h2 id="orgd7556e5a">~/.sbuildrc</h2>
 <div class="outline-text-2" id="text-orgd7556e5a">
 <p>
 現在の <code>~/.sbuildrc</code> は以下の通り

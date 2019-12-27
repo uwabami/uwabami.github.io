@@ -181,8 +181,8 @@
           <h1 class="page-title my2 py0 px0">このサイトができるまで</h1>
           <hr>
 <!-- %%%% start content %%%% -->
-<div id="outline-container-orgf21c7ed" class="outline-2">
-<h2 id="orgf6d9ca16"><a id="orgf21c7ed"></a>はじめに</h2>
+<div>
+<h2 id="orgf6d9ca16">はじめに</h2>
 <div class="outline-text-2" id="text-orgf6d9ca16">
 <p>
 <span class="alert">以下, obsolteです</span>
@@ -195,8 +195,8 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org2918fcc" class="outline-2">
-<h2 id="org75a23660"><a id="org2918fcc"></a>作ったモノ</h2>
+<div>
+<h2 id="org75a23660">作ったモノ</h2>
 <div class="outline-text-2" id="text-org75a23660">
 <p>
 コードの詳細は Github をご覧下さい。
@@ -206,8 +206,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdcd2ff7" class="outline-2">
-<h2 id="org3090fb2b"><a id="orgdcd2ff7"></a>使い方</h2>
+<div>
+<h2 id="org3090fb2b">使い方</h2>
 <div class="outline-text-2" id="text-org3090fb2b">
 <p>
 jekyll の <code>_plugin</code> に submodule としてでも放り込んで下さい。
@@ -230,15 +230,15 @@ downcase したのち Front Matter として使用できます。
 </p>
 </div>
 </div>
-<div id="outline-container-org488dfa0" class="outline-2">
-<h2 id="orgc63f2eda"><a id="org488dfa0"></a>解説(?)</h2>
+<div>
+<h2 id="orgc63f2eda">解説(?)</h2>
 <div class="outline-text-2" id="text-orgc63f2eda">
 <p>
 解説するようなモンでもないですけれど。
 </p>
 </div>
-<div id="outline-container-orgb1a080b" class="outline-3">
-<h3 id="org2fd63952"><a id="orgb1a080b"></a>org ファイルの変換</h3>
+<div>
+<h3 id="org2fd63952">org ファイルの変換</h3>
 <div class="outline-text-3" id="text-org2fd63952">
 <p>
 ファイルの HTML への変換には <a href="https://github.com/wallyqs/org-ruby">wallyqs/org-ruby</a> を使っています。
@@ -264,8 +264,8 @@ plugin が使えないため、リンク先のアプローチを取る必要が�
 </ol>
 </div>
 </div>
-<div id="outline-container-org80b44ff" class="outline-3">
-<h3 id="org96b42bdb"><a id="org80b44ff"></a>org-ruby の拡張(?)</h3>
+<div>
+<h3 id="org96b42bdb">org-ruby の拡張(?)</h3>
 <div class="outline-text-3" id="text-org96b42bdb">
 <p>
 最新の org-ruby では org-mode の search link を export してくれません。そんな訳で monkey patch です。
@@ -378,8 +378,8 @@ plugin が使えないため、リンク先のアプローチを取る必要が�
 <span class="k">end</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org874394e" class="outline-3">
-<h3 id="orge8399542"><a id="org874394e"></a>任意の org ファイルを Jekyll で扱うために</h3>
+<div>
+<h3 id="orge8399542">任意の org ファイルを Jekyll で扱うために</h3>
 <div class="outline-text-3" id="text-orge8399542">
 <p>
 Jekyll の原稿として org ファイルを使用する際の不満は、
@@ -399,8 +399,8 @@ Jekyll の blog 記事の範疇に無いページ( いわゆる <code>Page</code
 そんな訳で、結局自分でプラグインを書きました。
 </p>
 </div>
-<div id="outline-container-org2fb7306" class="outline-4">
-<h4 id="org75093801"><a id="org2fb7306"></a><code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
+<div>
+<h4 id="org75093801"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
 <div class="outline-text-4" id="text-org75093801">
 <p>
 org ファイルに Front Matter 相当の情報が存在することを前提として処理、すなわち、拡張子が <code>.org</code> の場合は常に <code>true</code> を返すようにします。
@@ -424,8 +424,8 @@ org ファイルに Front Matter 相当の情報が存在することを前提�
 <span class="k">end</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org370f418" class="outline-4">
-<h4 id="org3891ff25"><a id="org370f418"></a><code>Jekyll::Convertible</code> の上書き</h4>
+<div>
+<h4 id="org3891ff25"><code>Jekyll::Convertible</code> の上書き</h4>
 <div class="outline-text-4" id="text-org3891ff25">
 <p>
 <code>org</code> ファイルの <code>#+TITLE</code> 等を FRONT<sub>MATTER</sub> として扱った上で、
@@ -479,8 +479,8 @@ org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 <span class="k">end</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org96c99d0" class="outline-4">
-<h4 id="org4e95be57"><a id="org96c99d0"></a><code>Jekyll::OrgConverter</code> の追加</h4>
+<div>
+<h4 id="org4e95be57"><code>Jekyll::OrgConverter</code> の追加</h4>
 <div class="outline-text-4" id="text-org4e95be57">
 <p>
 Converter の追加は Jekyll 本家のドキュメントにもあるので、割と簡単です。実際の処理は上書きした <code>Jekyll::Convertible</code> で行なわれています。ただ、search link を処理するために、最後にリンクを置換しています。
@@ -516,8 +516,8 @@ Converter の追加は Jekyll 本家のドキュメントにもあるので、�
 </div>
 </div>
 </div>
-<div id="outline-container-org7553f73" class="outline-2">
-<h2 id="org7e56c6b3"><a id="org7553f73"></a>まとめ…?</h2>
+<div>
+<h2 id="org7e56c6b3">まとめ…?</h2>
 <div class="outline-text-2" id="text-org7e56c6b3">
 <p>
 まあ、ちゃんと動いているみたいですし、これで良いのかなぁ。
