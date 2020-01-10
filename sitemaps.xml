@@ -31,6 +31,11 @@
     <changefreq>monthly</changefreq>
   </url>
 <url>
+    <loc>https://uwabami.github.io/software/tdiary-style-org/index.en.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/software/tdiary-style-org/index.en.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+<url>
     <loc>https://uwabami.github.io/cc-env/DebianApt.html</loc>
     <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/cc-env/DebianApt.html" />
     <changefreq>monthly</changefreq>
@@ -123,6 +128,11 @@
 <url>
     <loc>https://uwabami.github.io/software/index.html</loc>
     <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/index.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+<url>
+    <loc>https://uwabami.github.io/software/tdiary-style-org/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/tdiary-style-org/index.html" />
     <changefreq>monthly</changefreq>
   </url>
 <url>

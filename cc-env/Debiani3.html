@@ -331,16 +331,27 @@ bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"</code></pre></figure>
 <h3 id="org8012159d">i3bar</h3>
 <div class="outline-text-3" id="text-org8012159d">
 <p>
-i3bar では情報を出さずに system tray を出すだけにしている.
+i3barは背景透過した上で,
+</p>
+<ul class="org-ul">
+<li>i3statusでバッテリ情報と日付</li>
+<li>primary display に system tray を出すだけ.</li>
+</ul>
+<p>
+そのうち日付やバッテリ情報も conky 任せにするかもしれない(幅寄せが面倒&#x2026;)
+</p>
+
+<p>
 status ラインは以下の通り
 </p>
 <figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space"># status bar
 bar {
     position    top
-    tray_output primary
-    tray_padding 0
+    tray_output eDP1
+    tray_padding -4
     font xft:Inconsolata,Xft:FontAwesome 18
     i3bar_command i3bar --transparency
+    status_command i3status -c $HOME/.config/i3/i3status.conf
     binding_mode_indicator yes
     colors {
       background #02020200
@@ -353,14 +364,42 @@ bar {
       binding_mode       #A00000 #900000 #f6f3e8
     }
 }</code></pre></figure>
+<p>
+i3status は以下
+</p>
+<figure class="highlight"><pre><code class="language-conf-unix" data-lang="conf-unix">general {
+        colors = true
+        interval = 1
+        output_format = i3bar
+        markup ="pango"
+}
+
+order += "tztime local"
+order += "battery all"
+
+tztime local {
+        align = left
+        min_width = "2020/12/31(木) 23:59:59"
+        format = "%Y/%m/%d(%a) %H:%M:%S"
+}
+
+battery all {
+        align = left
+        min_width = " 80.00%"
+        format = "&lt;span color='#ffbf7f'&gt;%status %percentage&lt;/span&gt;"
+        status_unk = 
+        status_full = 
+        status_chr = 
+        status_bat = 
+}</code></pre></figure>
 </div>
 </div>
 <div>
 <h3 id="org32bf169b">conky</h3>
 <div class="outline-text-3" id="text-org32bf169b">
 <p>
-<code>i3bar</code> を <code>transparency</code> を有効にして動作させて,
-上部に conky でグラフとか書いたり.
+system load を表示させている.
+幅の調整なんかは lua でやった方が良いのかも.
 </p>
 
 <figure class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="c1">-- -*- mode: lua; coding: utf-8 -*-</span>
