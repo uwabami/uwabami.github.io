@@ -30,7 +30,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Debiani3.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Debiani3.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -182,17 +182,25 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="orge8854151">始めに</h2>
 <div class="outline-text-2" id="text-orge8854151">
 <p>
-スペックがあまり潤沢ではない機材を使うため, 軽量な wm として <a href="https://i3wm.org/">i3 - improved tiling wm</a> を使い始めた.
+スペックがあまり潤沢ではない機材を使うため,
+軽量な wm として <a href="https://i3wm.org/">i3</a> を使い始めた.
 </p>
 
 <p>
-元々常にtmuxを全画面にして作業しているわけでタイル型である恩恵を受けられるのか, という疑問はあったのだが, 使ってみたら「綺麗」かつ「驚きの軽さ」ということで, すっかり気にいってしまった.
+元々常にtmuxを全画面にして作業しているので,
+「タイル型wmの恩恵を受けられるのか?」という疑問はあったのだが,
+使ってみたら「綺麗」かつ「驚きの軽さ」ということで,
+すっかり気にいってしまった.
+</p>
+
+<p>
+<a href="https://uwabami.github.io/cc-env/Debiani3/desktop-1920x1200.png"><amp-img layout="responsive" width="576" height="360" src="https://uwabami.github.io/cc-env/Debiani3/desktop-576x360.png" alt="desktop" class="p2"></amp-img></a>
 </p>
 </div>
 </div>
@@ -381,7 +389,7 @@ bar {
    <span class="c1">-- Force UTF8? note that UTF8 support required XFT</span>
    <span class="n">override_utf8_locale</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
    <span class="n">use_xft</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-   <span class="n">font</span> <span class="o">=</span> <span class="s1">'FSMRMP:style=Bold:size=19.5'</span><span class="p">,</span>
+   <span class="n">font</span> <span class="o">=</span> <span class="s1">'FSMRMP:style=Bold:size=4'</span><span class="p">,</span>
    <span class="c1">-- use_xft =  false,</span>
    <span class="c1">-- font='-shinonome-gothic-medium-r-normal--14-130-75-75-c-70-iso8859-1',</span>
 
@@ -397,10 +405,10 @@ bar {
    <span class="c1">-- top_right, top_middle, bottom_left, bottom_right, bottom_middle,</span>
    <span class="c1">-- middle_left, middle_middle, middle_right, or none (also can be</span>
    <span class="c1">-- abreviated as tl, tr, tm, bl, br, bm, ml, mm, mr)</span>
-   <span class="n">alignment</span> <span class="o">=</span> <span class="s1">'top_middle'</span><span class="p">,</span>
+   <span class="n">alignment</span> <span class="o">=</span> <span class="s1">'tl'</span><span class="p">,</span>
    <span class="c1">-- Gap between borders of screen and text</span>
    <span class="c1">-- same thing as passing -x at command line</span>
-   <span class="n">gap_x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="n">gap_x</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
    <span class="n">gap_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
    <span class="c1">-- Minimum size of text area</span>
    <span class="n">minimum_width</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
@@ -418,30 +426,65 @@ bar {
    <span class="c1">-- Draw borders around text</span>
    <span class="n">draw_borders</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
    <span class="n">draw_graph_borders</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-   <span class="n">default_color</span> <span class="o">=</span> <span class="s1">'#aaaaaa'</span><span class="p">,</span>
+   <span class="n">default_color</span> <span class="o">=</span> <span class="s1">'#ffffff'</span><span class="p">,</span>
    <span class="n">default_shade_color</span> <span class="o">=</span> <span class="s1">'#242424'</span><span class="p">,</span>
 <span class="p">};</span>
-
+<span class="c1">-- ${cpu cpu0}%${font}</span>
 <span class="n">conky</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">[[
-${voffset  2}\
-${goto    0}${color 888888}${cpugraph cpu1 26,50 ff4c4c ff7f7f}${color}\
-${goto   51}${color 888888}${cpugraph cpu2 26,50 ff4c4c ff7f7f}${color}\
-${goto  104}${color 888888}${cpugraph cpu3 26,50 ff4c4c ff7f7f}${color}\
-${goto  157}${color 888888}${cpugraph cpu4 26,50 ff4c4c ff7f7f}${color}\
-${goto  210}${color 888888}${memgraph 26,50 4c4cff 7f7fff}${color}\
-${goto  263}${color 888888}${diskiograph_read /dev/sda 26,50 FCAF3E FCAF3E}\
-${goto  316}${color 888888}${diskiograph_write /dev/sda 26,50 FFFF4C FFFF4C}\
-${goto  369}${if_existing /proc/net/route wlp2s0}\
-${upspeedgraph wlp2s0 26,50 4CFFFF 7FFFFF}\
-${else} --- ${endif}\
-${goto  422}${if_existing /proc/net/route wlp2s0}\
-${downspeedgraph wlp2s0 26,50 4CFF4C 7FFF7F}\
-${else} --- ${endif}\
-${goto  481}${if_match "${acpiacadapter}" == "on-line"}\
-${color ffbf7f}${battery_percent BAT1}%${color}\
+${font FSMRMP:size=16.5}${color #f09000}CPU${color}: 100%${font}
+${goto      0}${color #ff0000}${cpubar cpu1 8,22} ${cpubar cpu3 8,22}${color}
+${voffset -15.5}\
+${goto     51}${color #ff0000}${cpubar cpu2 8,22} ${cpubar cpu4 8,22}${color}
+${voffset -32}\
+${goto    108}${color 888888}${cpugraph cpu0 26,50 ff4c4c ff7f7f}${color}
+${voffset -36}\
+${goto    164}\
+${font FSMRMP:size=16.5}${color #f09000}RAM${color}: $memperc%${font}
+${goto    164}\
+${color #0000ff}${membar 8,85}${color}
+${voffset -34}\
+${goto    256}${color 888888}${memgraph 26,50 4c4cff 7f7fff}${color}
+${voffset -34}\
+${goto    310}\
+${font FSMRMP:size=16.5}${color #f09000}DISK${color}: $fs_used_perc%${font}
+${goto    310}${color #aaaaaa}${fs_bar 8,95}${color}
+${voffset -34}\
+${goto    413}\
+${color 888888}${diskiograph_read /dev/sda 26,50 FCAF3E FCAF3E} \
+${color 888888}${diskiograph_write /dev/sda 26,50 FFFF4C FFFF4C}
+${if_existing /proc/net/route wlp2s0}\
+${voffset -32}\
+${goto    520}\
+${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}
+${voffset  -2}\
+${goto    520}\
+${font FSMRMP:size=13.5}${color #ffffff}${addr wlp2s0}${font}${color}
+${voffset -30}\
+${goto    660}\
+${color 888888}\
+${upspeedgraph wlp2s0 26,50 4CFFFF 7FFFFF} \
+${downspeedgraph wlp2s0 26,50 4CFF4C 7FFF7F}${color}\
 ${else}\
-${color ffff4c}${battery_percent BAT1}%${color}${endif}\
-${goto  563}${time %Y/%m/%d(%a) %H:%M:%S}\
+${if_existing /proc/net/route enp0s31f6}\
+${voffset -32}\
+${goto    520}\
+${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}
+${voffset  -2}\
+${goto    520}\
+${font FSMRMP:size=13.5}${color #ffffff}${addr enp0s31f6}${font}${color}
+${voffset -30}\
+${goto    660}\
+${color 888888}\
+${upspeedgraph enp0s31f6 26,50 4CFFFF 7FFFFF} \
+${downspeedgraph enp0s31f6 26,50 4CFF4C 7FFF7F}${color}\
+${else}\
+${voffset -32}\
+${goto    520}\
+${font FSMRMP:size=10.5}${color #aaaaaa} ${color}${font}
+${voffset  -2}\
+${goto    520}\
+${font FSMRMP:size=13.5}${color #aaaaaa}---.---.---.---${color}${font}
+${endif}${endif}
 ]]</span><span class="p">;</span></code></pre></figure>
 </div>
 </div>
@@ -606,14 +649,15 @@ bindsym XF86MonBrightnessDown $execi /usr/bin/xbacklight -dec 5
 bar {
     position top
     tray_output eDP1
-    tray_padding 0
+    tray_padding -4
     font xft:Inconsolata,Xft:FontAwesome 18
     i3bar_command i3bar --transparency
+    status_command i3status -c $HOME/.config/i3/i3status.conf
     binding_mode_indicator yes
     colors {
       background #02020200
-      # statusline #F6F3E8
-      # separator  #111822
+      statusline #F6F3E8
+      separator  #111822
       focused_workspace  #111822 #222244 #F6F3E8
       active_workspace   #555555 #555555 #F6F3E8
       inactive_workspace #020202 #242424 #888888

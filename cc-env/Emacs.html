@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-01-09T21:59:24+09:00" />
+<meta property="article:published_time" content="2020-01-11T00:07:05+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Emacs の設定","dateModified":"2020-01-09T21:59:24+09:00","datePublished":"2020-01-09T21:59:24+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Emacs の設定","dateModified":"2020-01-11T00:07:05+09:00","datePublished":"2020-01-11T00:07:05+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -3993,15 +3993,15 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
 <div>
 <h3 id="orge77c5c82">Org-Publish</h3>
 <div class="outline-text-3" id="text-orge77c5c82">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ox-publish</span>
-  <span class="ss">:after</span> <span class="p">(</span><span class="nv">org-wiki</span> <span class="nv">org-jekyll</span><span class="p">)</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">org-wiki-publish</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-publish</span> <span class="p">(</span><span class="nv">org-wiki-make-org-publish-plist</span>
-                  <span class="ss">'org-jekyll-publish-to-html</span><span class="p">)</span>
-                 <span class="no">t</span><span class="p">))</span>
-  <span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (leaf org-publish)</span>
+<span class="c1">;;;###autoload</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">org-wiki-publish</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">require</span> <span class="ss">'org-wiki</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">require</span> <span class="ss">'ox-jekyll</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">org-publish</span> <span class="p">(</span><span class="nv">org-wiki-make-org-publish-plist</span>
+                <span class="ss">'org-jekyll-publish-to-html</span><span class="p">)</span>
+               <span class="no">t</span><span class="p">))</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -4451,17 +4451,6 @@ markdown自体はあまり好きじゃないんだけれど,
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">textile-mode</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">lua-mode</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h2 id="orgdea4257d"><span class="todo TODO">TODO</span> Gobby クライアント: <code>rudel</code></h2>
-<div class="outline-text-2" id="text-orgdea4257d">
-<p>
-試してみているが, ちゃんと繋らない. pending
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">rudel</span>
-  <span class="ss">:disabled</span> <span class="no">t</span>
-  <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -4949,7 +4938,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-01-09 12:59:24 +0000
+          Lastupdate: 2020-01-10 15:07:05 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
