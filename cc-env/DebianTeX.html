@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-12-22T00:49:55+09:00" />
+<meta property="article:published_time" content="2020-01-11T01:13:46+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="TeX 環境の構築" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianTeX.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"TeX 環境の構築","dateModified":"2019-12-22T00:49:55+09:00","datePublished":"2019-12-22T00:49:55+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianTeX.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianTeX.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"TeX 環境の構築","dateModified":"2020-01-11T01:13:46+09:00","datePublished":"2020-01-11T01:13:46+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianTeX.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -182,7 +182,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href='https://uwabami.github.io/cc-env/Emacs.html'>Emacs</a> <a href="index.html#orge0707863">Debian</a>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href='https://uwabami.github.io/cc-env/Emacs.html'>Emacs</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="org3ef17bbd">Debian でのTeX 環境の構築</h2>
@@ -190,10 +190,19 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 <p>
 個人的には，
 </p>
+
 <ul class="org-ul">
 <li>pLaTeX: (計算機にそれほど詳しくない)他人とデータのやりとりをする時(共著なんか)</li>
-<li>XeLaTeX or LuaTeX: 個人で作業する時，もしくは複数人でも説明が楽な相手の場合と使い分けています．多分，多くの人々が現状では p(La)TeX をお使いかと思います．共著作業の際に(年上の方々に)説明するのが楽ですし，学会のTeXフォーマットが p(La)TeX 前提だったりするので，わりと離れられませんよね.</li>
+<li>XeLaTeX or LuaTeX: 個人で作業する時，もしくは複数人でも説明が楽な相手の場合</li>
 </ul>
+
+<p>
+と使い分けています．
+多分，多くの人々が現状では p(La)TeX をお使いかと思います．
+共著作業の際に(年上の方々に)説明するのが楽ですし，
+学会のTeXフォーマットが p(La)TeX 前提だったりするので，
+わりと離れられませんよね.
+</p>
 
 <p>
 Jessie の頃のお話ですが，
@@ -201,7 +210,8 @@ TeXLive リリースマネージャであり，
 Debian の TeXLive のパッケージメンテナでもある Norbert Perining さんによる
 <a href="http://www.preining.info/blog/2014/12/writing-japanese-in-latex-part-1-introduction/">Writing Japanese in LaTeX : Part 1 – Introduction | There and back again"</a>
 もご覧下さい.
-英語の記事ですが，現在使える TeX Engine での日本語組版についてのサマリがあります.
+英語の記事ですが，
+現在使える TeX Engine での日本語組版についてのサマリがあります.
 </p>
 </div>
 </div>
@@ -215,8 +225,7 @@ Debian の TeXLive のパッケージメンテナでもある Norbert Perining �
 % sudo apt-get install texlive-full
 </pre>
 <p>
-でも良いですが，結構なサイズになります
-(とはいえ，今時数GB程度だと気にならないかと思いますけれど)．
+でも良いですが，結構なサイズになります(とはいえ，今時数GB程度だと気にならないかと思いますけれど)．
 </p>
 
 <p>
@@ -296,16 +305,25 @@ Ghostscript に現在システムに導入されているフォントを教え�
 例えば以下のソースを <code>xelatex</code> で typeset することで，
 IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 </p>
-<figure class="highlight"><pre><code class="language-japanese-latex" data-lang="japanese-latex">\documentclass[a4paper]{bxjsarticle}
-\usepackage{zxjatype}
-\usepackage[ipa]{zxjafont}
-\usepackage{xltxtra}
+<figure class="highlight"><pre><code class="language-latex" data-lang="latex"><span class="k">\documentclass</span><span class="na">[a4paper]</span><span class="p">{</span>bxjsarticle<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>zxjatype<span class="p">}</span>
+<span class="k">\usepackage</span><span class="na">[ipa]</span><span class="p">{</span>zxjafont<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>xltxtra<span class="p">}</span>
 
-\begin{document}
+<span class="nt">\begin{document}</span>
 
-\section{幸田露伴「雲のいろ〳〵――卿雲」}
-景雲といひ、卿雲といひ、慶雲といへる、しかと指し定められたる雲にはあらざるべし。卿雲爛たり糺縵〻たり、といへる、煙にあらず雲にあらず紫を曳き光を流す、といへる、大人作矣、五色氤氳、といへる、金柯初めて繞繚、玉葉漸く氤氳、といへる、還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、といへる詩の句などによりて見れば、歸するところは美しき雲といふまでなり。
-\end{document}</code></pre></figure>
+<span class="k">\section</span><span class="p">{</span>幸田露伴「雲のいろ〳〵――卿雲」<span class="p">}</span>
+
+景雲といひ、卿雲といひ、慶雲といへる、
+しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、
+煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、
+金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、
+歸するところは美しき雲といふまでなり。
+<span class="nt">\end{document}</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -315,14 +333,21 @@ IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 例えば以下のソースを <code>lualatex</code>
 で typeset することで，IPAex{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 </p>
-<figure class="highlight"><pre><code class="language-japanese-latex" data-lang="japanese-latex">\documentclass{ltjsarticle}
-\usepackage[ipaex]{luatexja-preset}
-\begin{document}
+<figure class="highlight"><pre><code class="language-latex" data-lang="latex"><span class="k">\documentclass</span><span class="p">{</span>ltjsarticle<span class="p">}</span>
+<span class="k">\usepackage</span><span class="na">[ipaex]</span><span class="p">{</span>luatexja-preset<span class="p">}</span>
+<span class="nt">\begin{document}</span>
 
-\section{幸田露伴「雲のいろ〳〵――卿雲」}
-景雲といひ、卿雲といひ、慶雲といへる、しかと指し定められたる雲にはあらざるべし。卿雲爛たり糺縵〻たり、といへる、煙にあらず雲にあらず紫を曳き光を流す、といへる、大人作矣、五色氤氳、といへる、金柯初めて繞繚、玉葉漸く氤氳、といへる、還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、といへる詩の句などによりて見れば、歸するところは美しき雲といふまでなり。
-
-\end{document}</code></pre></figure>
+<span class="k">\section</span><span class="p">{</span>幸田露伴「雲のいろ〳〵――卿雲」<span class="p">}</span>
+景雲といひ、卿雲といひ、慶雲といへる、
+しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、
+煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、
+金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、
+歸するところは美しき雲といふまでなり。
+<span class="nt">\end{document}</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -331,17 +356,23 @@ IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 <p>
 例えば以下を <code>pdflatex</code> で typeset することで，PDF が生成されます．
 </p>
-<figure class="highlight"><pre><code class="language-japanese-latex" data-lang="japanese-latex">\documentclass[pdflatex,jadriver=standard]{bxjsarticle}
-\begin{document}
+<figure class="highlight"><pre><code class="language-latex" data-lang="latex"><span class="k">\documentclass</span><span class="na">[pdflatex,jadriver=standard]</span><span class="p">{</span>bxjsarticle<span class="p">}</span>
+<span class="nt">\begin{document}</span>
 
-\section{幸田露伴「雲のいろ〳〵――卿雲」}
-景雲といひ、卿雲といひ、慶雲といへる、しかと指し定められたる雲にはあらざるべし。卿雲爛たり糺縵〻たり、といへる、煙にあらず雲にあらず紫を曳き光を流す、といへる、大人作矣、五色氤氳、といへる、金柯初めて繞繚、玉葉漸く氤氳、といへる、還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、といへる詩の句などによりて見れば、歸するところは美しき雲といふまでなり。
-
-\end{document}</code></pre></figure>
+<span class="k">\section</span><span class="p">{</span>幸田露伴「雲のいろ〳〵――卿雲」<span class="p">}</span>
+景雲といひ、卿雲といひ、慶雲といへる、
+しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、
+煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、
+金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、
+歸するところは美しき雲といふまでなり。
+<span class="nt">\end{document}</span></code></pre></figure>
 </div>
 </div>
 </div>
-
 <div>
 <h2 id="orga3f4c5a1">足りないスタイルとかあれこれ</h2>
 <div class="outline-text-2" id="text-orga3f4c5a1">
@@ -352,7 +383,6 @@ IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 
 <p>
 Emacs で上手く処理したい場合には, <code>auctex</code> とか入れておくと良いかと.
-(最近 <code>YaTeX</code> 使ってないんだけれど, これ, LuaTeX なんかに対応してるんだっけ?)
 </p>
 </div>
 </div>
@@ -383,9 +413,9 @@ Emacs で上手く処理したい場合には, <code>auctex</code> とか入れ�
       <!-- include footer -->
       <footer class="container bottom-0 left-0 right-0 small">
         <hr/>
-        <p class="p0 m0 right-align">&copy; 2006-2019
+        <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2019-12-21 15:49:55 +0000
+          Lastupdate: 2020-01-10 16:13:46 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">

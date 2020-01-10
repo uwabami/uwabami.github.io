@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-12-22T00:54:07+09:00" />
+<meta property="article:published_time" content="2020-01-11T01:18:15+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Mail 環境の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianMail.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Mail 環境の設定","dateModified":"2019-12-22T00:54:07+09:00","datePublished":"2019-12-22T00:54:07+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianMail.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Mail 環境の設定","dateModified":"2020-01-11T01:18:15+09:00","datePublished":"2020-01-11T01:18:15+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -181,8 +181,19 @@
           <h1 class="page-title my2 py0 px0">Mail 環境の設定</h1>
           <hr>
 <!-- %%%% start content %%%% -->
+<div id="table-of-contents">
+<h2>&#30446;&#27425;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org02aae9c7">始めに</a></li>
+<li><a href="#orgc6ac0121">送信設定: Exim4</a></li>
+<li><a href="#org5afde083">送信設定: msmtp</a></li>
+<li><a href="#orgbf2f5d08">受信</a></li>
+</ul>
+</div>
+</div>
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
+Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="org02aae9c7">始めに</h2>
@@ -198,24 +209,31 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 <h2 id="orgc6ac0121">送信設定: Exim4</h2>
 <div class="outline-text-2" id="text-orgc6ac0121">
 <p>
-smarthost での送信だけなら Exim4 が軽量で楽。他にも幾つか選択肢はある。気になるなら <a href="https://wiki.debian.org/Debate/DefaultMTA">Debian Wiki: DefaultMTA</a> あたり参照のこと。欲しい機能は
+smarthost での送信だけなら Exim4 が軽量で楽。
+他にも幾つか選択肢はある。気になるなら <a href="https://wiki.debian.org/Debate/DefaultMTA">Debian Wiki: DefaultMTA</a> あたり参照のこと。
+欲しい機能は
 </p>
 <ul class="org-ul">
 <li>上流の MTA への smarthost 送信。</li>
 <li>offline 時の queue</li>
-<li>localhost:25 での待受なので、軽いしとりあえず Exim4 をそのまま使っている。</li>
+<li>localhost:25 での待受</li>
 </ul>
+<p>
+なので、軽いしとりあえず Exim4 をそのまま使っている。
+</p>
 <pre class="example">
 $ sudo -s
 # dpkg-reconfigure -plow exim4-config
-  メール設定の一般的なタイプ: 2. スマートホストでメール送信; SMTP または fetchmail で受信するシステムメール名: localhost
+  メール設定の一般的なタイプ: 2. スマートホストでメール送信; SMTP または fetchmail で受信する
+  システムメール名: localhost
   入力側 SMTP 接続をリスンする IP アドレス: 127.0.0.1
   メールを受け取るその他の宛先: [空白]
   メールをリレーするマシン: [空白]
   送出スマートホストの IP アドレスまたはホスト名: スマートホスト用の送信サーバ::587
   送出するメールでローカルメール名を隠しますか? no
   DNS クエリの数を最小限に留めますか (ダイヤルオンデマンド)? no
-  ローカルメールの配送方式: 1. /var/mail/ 内の mbox 形式設定を小さなファイルに分割しますか?: no
+  ローカルメールの配送方式: 1. /var/mail/ 内の mbox 形式
+  設定を小さなファイルに分割しますか?: no
   root と postmaster のメール受信者: 適当に設定
 </pre>
 <p>
@@ -296,8 +314,11 @@ msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
 </p>
 <ul class="org-ul">
 <li><a href="http://isync.sourceforge.net/">isync</a> で、リモートの IMAP サーバのメールをローカルに Maildir 形式で保存</li>
-<li>ローカルで dovecot-imapd を起動してメールを閲覧としている.</li>
+<li>ローカルで dovecot-imapd を起動してメールを閲覧</li>
 </ul>
+<p>
+としている.
+</p>
 
 <p>
 最近の MUA は多かれ少なかれ IMAP 接続でも手元にメールを持ってくるので,
@@ -306,12 +327,16 @@ msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
 </p>
 
 <p>
-以前 <a href="http://gihyo.jp/admin/serial/01/ubuntu-recipe/0247">第247回 Offlineimap＋Dovecotによる快適メール環境：Ubuntu Weekly Recipe</a> なんて記事を書いた。その時は offlineimap を使っていたのだけれども
+以前 <a href="http://gihyo.jp/admin/serial/01/ubuntu-recipe/0247">第247回 Offlineimap＋Dovecotによる快適メール環境：Ubuntu Weekly Recipe</a> なんて記事を書いた。
+その時は offlineimap を使っていたのだけれども
 </p>
 <ul class="org-ul">
 <li>遅い。特に 2014 年あたりから Gmail の同期が体感できるレベルで遅くなった</li>
-<li>偶に block するし、imap の接続数が酷い事になる。ということで、2015 年から <a href="http://isync.sourceforge.net/">isync: free IMAP and MailDir mailbox synchronizer</a> に移行した。</li>
+<li>偶に block するし、imap の接続数が酷い事になる。</li>
 </ul>
+<p>
+ということで、2015 年から <a href="http://isync.sourceforge.net/">isync: free IMAP and MailDir mailbox synchronizer</a> に移行した。
+</p>
 </div>
 <div>
 <h3 id="org1b669e8c">mbsync/isync</h3>
@@ -363,9 +388,12 @@ apt 万歳
 </ul></li>
 <li>PassCmd で gpg 暗号化した netrc 形式のファイルからパスワードを取得している.
 <ul class="org-ul">
-<li>これ、User なんかにも使えないかなぁ、とか思ったり今のところ特に使用に際して困った事はおきていない。</li>
+<li>これ、User なんかにも使えないかなぁ、とか思ったり</li>
 </ul></li>
 </ul>
+<p>
+今のところ特に使用に際して困った事はおきていない。
+</p>
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">IMAPAccount</span> <span class="n">mobile</span>
 <span class="n">Host</span> <span class="n">mobile</span>.<span class="n">example</span>.<span class="n">com</span>
 <span class="n">User</span> <span class="n">TheMobileUserAccount</span>
@@ -458,8 +486,11 @@ apt 万歳
 mbsync -l mobile
 </pre>
 <p>
-などとして、同期する <code>Maildir</code> を確認すると良い。リモートとローカルでどういうマッピングがされているかわかるだろう。
-25万通(6.5G)の同期にだいたい 3 時間ぐらい。回線速度に依存するだろうけれど、offlineimap より目に見えて速い(気がする)。また、IMAP Pipeline で処理されているので、サーバ上の IMAP connection の数は 1 つのみだった。
+などとして、同期する <code>Maildir</code> を確認すると良い。
+リモートとローカルでどういうマッピングがされているかわかるだろう。
+25万通(6.5G)の同期にだいたい 3 時間ぐらい。
+回線速度に依存するだろうけれど、offlineimap より目に見えて速い(気がする)。
+また、IMAP Pipeline で処理されているので、サーバ上の IMAP connection の数は 1 つのみだった。
 </p>
 </div>
 </div>
@@ -467,7 +498,8 @@ mbsync -l mobile
 <h4 id="orgf55f00fe">cron での動作: mbsync/isync</h4>
 <div class="outline-text-4" id="text-orgf55f00fe">
 <p>
-認証に GPG を使っており、認証に Gnome Keyring を用いているので必要な環境変数を読み込んでから実行するようにする.
+認証に GPG を使っており、認証に Gnome Keyring を用いているので
+必要な環境変数を読み込んでから実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意:
 </p>
 <figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/bash</span>
@@ -512,7 +544,8 @@ nm-online <span class="nt">-x</span>  2&gt;/dev/null <span class="o">||</span> <
 <span class="c"># check another offlineimap</span>
 timelimit <span class="nt">-T</span> 300 <span class="nt">-t</span> 300 mbsync <span class="nt">-c</span> <span class="nv">$CONF</span> <span class="nt">-a</span> 2&gt;&amp;1 <span class="o">||</span> <span class="nb">exit </span>0</code></pre></figure>
 <p>
-とか。mbsync 自体の timeout や PID  管理ができないので、 <code>timelinit</code> コマンドで処理をするようにしている。実際は、二回目以降の同期は(回線速度に依存するだろうけれど) 20 秒ぐらい。
+とか。mbsync 自体の timeout や PID  管理ができないので、 <code>timelinit</code> コマンドで処理をするようにしている。
+実際は、二回目以降の同期は(回線速度に依存するだろうけれど) 20 秒ぐらい。
 </p>
 </div>
 </div>
@@ -544,8 +577,11 @@ apt 万歳
 <ul class="org-ul">
 <li>localhost で起動. 認証は PAM に任せる(login パスワードと同じ)</li>
 <li>Maildir 形式で mbsync(もしくは offlineimap)で同期したMaildirを読む.</li>
-<li>IMAP もしくは IMAP over SSL のみための設定を行なう</li>
+<li>IMAP もしくは IMAP over SSL のみ</li>
 </ul>
+<p>
+ための設定を行なう
+</p>
 
 <p>
 以下、設定ファイル中のコメント行を除いた部分だけを記載しているので注意
@@ -553,7 +589,8 @@ apt 万歳
 </p>
 
 <p>
-先ず待受サーバ。どの IP アドレスで待ち受けるかは <code>/etc/dovecot/dovecot.conf</code> にあるので
+先ず待受サーバ。
+どの IP アドレスで待ち受けるかは <code>/etc/dovecot/dovecot.conf</code> にあるので
 </p>
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf">...
 <span class="n">listen</span> = <span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span>
@@ -630,7 +667,8 @@ apt 万歳
 <h4 id="org7b190bb8">検索: Solr</h4>
 <div class="outline-text-4" id="text-org7b190bb8">
 <p>
-Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。ここでは Solr を試してみる
+Dovecot には FTS(Full Text Search) 用の plugin が幾つかある。
+ここでは Solr を試してみる
 </p>
 
 <p>
@@ -660,7 +698,8 @@ Jetty の起動設定は <code>/etc/default/jetty8</code> にあるので
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">mail_plugins</span> = <span class="n">fts</span> <span class="n">fts_solr</span></code></pre></figure>
 <p>
 を追加しておく。
-IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定すれば良いのだが、この場合は <code>doveadm fts rescan -u USERNAME</code> ができない。最後に <code>/etc/dovecot/conf.d/90-plugin.conf</code> で
+IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定すれば良いのだが、この場合は <code>doveadm fts rescan -u USERNAME</code> ができない。
+最後に <code>/etc/dovecot/conf.d/90-plugin.conf</code> で
 </p>
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">plugin</span> {
   <span class="n">fts_autoindex</span> = <span class="n">yes</span>
@@ -676,12 +715,16 @@ IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定す
 <h4 id="orgc1f4a23a">検索: Solr で日本語</h4>
 <div class="outline-text-4" id="text-orgc1f4a23a">
 <p>
-<code>scheme.xml</code> の修正が必要。とりあえず
+<code>scheme.xml</code> の修正が必要。
+とりあえず
 </p>
 <ul class="org-ul">
 <li><code>/etc/solr/conf/scheme.xml</code> より <code>text_cjk</code> および <code>text_ja</code> の部分を抜き出して, dovecot の提供していた <code>scheme.xml</code> に追加</li>
-<li><code>hdr,body,subject</code> を <code>text_cjk</code> で解析するようにしてみた.</li>
+<li><code>hdr,body,subject</code> を <code>text_cjk</code> で解析するように</li>
 </ul>
+<p>
+してみた.
+</p>
 
 <p>
 diff は以下:
@@ -1016,7 +1059,8 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 <li>cron での動作: offlineimap<br />
 <div class="outline-text-5" id="text-org79b6cb1b">
 <p>
-認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから実行するようにする.
+認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから
+実行するようにする.
 先ず <code>~/bin/export_x_info.sh</code> を以下の内容で用意
 </p>
 <figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/bash</span>
@@ -1081,9 +1125,9 @@ nm-online <span class="nt">-x</span> <span class="o">||</span> <span class="nb">
       <!-- include footer -->
       <footer class="container bottom-0 left-0 right-0 small">
         <hr/>
-        <p class="p0 m0 right-align">&copy; 2006-2019
+        <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2019-12-21 15:54:07 +0000
+          Lastupdate: 2020-01-10 16:18:15 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
