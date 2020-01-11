@@ -30,7 +30,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Debiani3.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Debiani3.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -247,7 +247,8 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 いわゆる GNOME や KDE といった Desktop 環境ではないので,
 たとえば <code>xdg-open</code> の挙動が変わります.
 それ自体は問題無いのですが, <code>~/.mailcap</code> の設定次第では
-<code>run-mailcap</code> が <code>xdg-open</code> を呼び, <code>xdg-open</code> が <code>run-mailcap</code> を呼び, といった無限ループが発生します.
+<code>run-mailcap</code> が <code>xdg-open</code> を呼び, <code>xdg-open</code> が <code>run-mailcap</code> を呼び, といった
+無限ループが発生します.
 <del>run-mailcapを抜けば良い, という話もありますが, これ=mime-support=パッケージで提供されているので, 抜くとpython が抜けて大変な目に会います</del>
 </p>
 
@@ -335,9 +336,10 @@ i3barは背景透過した上で,
 </p>
 <ul class="org-ul">
 <li>i3statusでバッテリ情報と日付</li>
-<li>primary display に system tray を出すだけ.</li>
+<li>primary display に system tray を出す</li>
 </ul>
 <p>
+だけ.
 そのうち日付やバッテリ情報も conky 任せにするかもしれない(幅寄せが面倒&#x2026;)
 </p>
 
@@ -466,63 +468,65 @@ system load を表示させている.
    <span class="n">draw_borders</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
    <span class="n">draw_graph_borders</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
    <span class="n">default_color</span> <span class="o">=</span> <span class="s1">'#ffffff'</span><span class="p">,</span>
-   <span class="n">default_shade_color</span> <span class="o">=</span> <span class="s1">'#242424'</span><span class="p">,</span>
+   <span class="c1">-- default_shade_color = '#242424',</span>
 <span class="p">};</span>
 <span class="c1">-- ${cpu cpu0}%${font}</span>
 <span class="n">conky</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">[[
-${font FSMRMP:size=16.5}${color #f09000}CPU${color}: 100%${font}
-${goto      0}${color #ff0000}${cpubar cpu1 8,22} ${cpubar cpu3 8,22}${color}
-${voffset -15.5}\
-${goto     51}${color #ff0000}${cpubar cpu2 8,22} ${cpubar cpu4 8,22}${color}
-${voffset -32}\
-${goto    108}${color 888888}${cpugraph cpu0 26,50 ff4c4c ff7f7f}${color}
-${voffset -36}\
+${font FSMRMP:size=16.5}${color #f09000}CPU${color}: ${cpu cpu0}%${font}\
+${voffset   8}\
+${goto      0}${color #ff0000}${cpubar cpu1 8,22} ${cpubar cpu3 8,22}${color}\
+${goto     51}${color #ff0000}${cpubar cpu2 8,22} ${cpubar cpu4 8,22}${color}\
+${voffset -21}\
+${goto    108}${color 888888}${cpugraph cpu0 26,50 ff0000 ff7f7f}${color}\
 ${goto    164}\
-${font FSMRMP:size=16.5}${color #f09000}RAM${color}: $memperc%${font}
+${voffset  -2}\
+${font FSMRMP:size=16.5}${color #f09000}RAM${color}: $memperc%${font}\
+${voffset   8}\
 ${goto    164}\
-${color #0000ff}${membar 8,85}${color}
-${voffset -34}\
-${goto    256}${color 888888}${memgraph 26,50 4c4cff 7f7fff}${color}
-${voffset -34}\
+${color #0000ff}${membar 8,85}${color}\
+${voffset -20}\
+${goto    256}${color 888888}${memgraph 26,50 0000ff 7f7fff}${color}\
+${voffset  -2}\
 ${goto    310}\
-${font FSMRMP:size=16.5}${color #f09000}DISK${color}: $fs_used_perc%${font}
-${goto    310}${color #aaaaaa}${fs_bar 8,95}${color}
-${voffset -34}\
+${font FSMRMP:size=16.5}${color #f09000}DISK${color}: ${fs_used_perc}%${font}\
+${voffset   8}\
+${goto    310}${color #aaaaaa}${fs_bar 8,95}${color}\
+${voffset -20}\
 ${goto    413}\
 ${color 888888}${diskiograph_read /dev/sda 26,50 FCAF3E FCAF3E} \
-${color 888888}${diskiograph_write /dev/sda 26,50 FFFF4C FFFF4C}
+${color 888888}${diskiograph_write /dev/sda 26,50 FFFF4C FFFF4C}\
 ${if_existing /proc/net/route wlp2s0}\
-${voffset -32}\
+${voffset   2}\
 ${goto    520}\
-${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}
-${voffset  -2}\
+${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}\
+${voffset   5}\
 ${goto    520}\
-${font FSMRMP:size=13.5}${color #ffffff}${addr wlp2s0}${font}${color}
-${voffset -30}\
+${font FSMRMP:size=13.5}${color #ffffff}${addr wlp2s0}${font}${color}\
+${voffset -23}\
 ${goto    660}\
 ${color 888888}\
 ${upspeedgraph wlp2s0 26,50 4CFFFF 7FFFFF} \
 ${downspeedgraph wlp2s0 26,50 4CFF4C 7FFF7F}${color}\
 ${else}\
 ${if_existing /proc/net/route enp0s31f6}\
-${voffset -32}\
+${voffset   2}\
 ${goto    520}\
-${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}
-${voffset  -2}\
+${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}\
+${voffset   5}\
 ${goto    520}\
-${font FSMRMP:size=13.5}${color #ffffff}${addr enp0s31f6}${font}${color}
-${voffset -30}\
+${font FSMRMP:size=13.5}${color #ffffff}${addr enp0s31f6}${font}${color}\
+${voffset -23}\
 ${goto    660}\
 ${color 888888}\
 ${upspeedgraph enp0s31f6 26,50 4CFFFF 7FFFFF} \
 ${downspeedgraph enp0s31f6 26,50 4CFF4C 7FFF7F}${color}\
 ${else}\
-${voffset -32}\
+${voffset   2}\
 ${goto    520}\
-${font FSMRMP:size=10.5}${color #aaaaaa} ${color}${font}
-${voffset  -2}\
+${font FSMRMP:size=10.5}${color #aaaaaa} ${color}${font}\
+${voffset   5}\
 ${goto    520}\
-${font FSMRMP:size=13.5}${color #aaaaaa}---.---.---.---${color}${font}
+${font FSMRMP:size=13.5}${color #aaaaaa}---.---.---.---${color}${font}\
 ${endif}${endif}
 ]]</span><span class="p">;</span></code></pre></figure>
 </div>
@@ -578,16 +582,15 @@ set $execi exec --no-startup-id
 font xft:Inconsolata,xft:FontAwesome 18
 
 # startup
-$execi $(sleep 5 &amp;  feh --bg-scale $HOME/Pictures/desktop.png --no-fehbg)
 $execi xrdb -merge $HOME/.Xresources
 $execi compton
 $execi nm-applet
-$execi blueman-applet
+# $execi blueman-applet
 # $execi udiskie
-# $execi uim-toolbar-gtk-systray
-$execi conky -c $HOME/.config/i3/conkyrc
-$execi $(sleep 5 &amp; nextcloud)
 $execi /usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon
+$execi $(sleep 5 &amp;  feh --bg-scale $HOME/Pictures/desktop.png --no-fehbg)
+$execi $(sleep 5 &amp; conky -c $HOME/.config/i3/conkyrc)
+$execi $(sleep 5 &amp; nextcloud)
 
 # screensaver and power management
 $execi xset -dpms   # disable DPMS
@@ -723,6 +726,7 @@ for_window [class="(?i)firefox"] floating enable
 # startup
 assign [class="(?i)evince" ] 2
 assign [class="(?i)pcmanfm" ] 3
+assign [class="(?i)Mendeley Desktop" ] 3
 assign [class="(?i)firefox"] 4</code></pre></figure>
 </div>
 </div>
