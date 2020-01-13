@@ -7,30 +7,30 @@
     <meta name="author" content="Youhei SASAKI">
     <!-- end: check google site verification -->
     <!-- alternate -->
-    <link rel="alternate" hreflang="ja" href="https://uwabami.github.io/cc-env/DebianPackaging.html" />
+    <link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/tdiary-mode/index.html" />
     <!-- end: alternate -->
     <!-- begin jekyll seo -->
 <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest | Youhei SASAKI’s official site</title>
+<title>tDiary-mode | Youhei SASAKI’s official site</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest" />
+<meta property="og:title" content="tDiary-mode" />
 <meta name="author" content="Youhei SASAKI" />
 <meta property="og:locale" content="ja" />
 <meta name="description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
 <meta property="og:description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
-<link rel="canonical" href="https://uwabami.github.io/cc-env/DebianPackaging.html" />
-<meta property="og:url" content="https://uwabami.github.io/cc-env/DebianPackaging.html" />
+<link rel="canonical" href="https://uwabami.github.io/software/tdiary-mode/" />
+<meta property="og:url" content="https://uwabami.github.io/software/tdiary-mode/" />
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-12-22T00:49:44+09:00" />
+<meta property="article:published_time" content="2020-01-14T12:30:39+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
-<meta property="twitter:title" content="パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest" />
+<meta property="twitter:title" content="tDiary-mode" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianPackaging.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest","dateModified":"2019-12-22T00:49:44+09:00","datePublished":"2019-12-22T00:49:44+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianPackaging.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/software/tdiary-mode/","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"tDiary-mode","dateModified":"2020-01-14T12:30:39+09:00","datePublished":"2020-01-14T12:30:39+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-mode/"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -168,7 +168,8 @@
                 Top
               </a>
             </div>
-            &gt;<div class="px1"><a href="/cc-env/index.html">Cc-env</a></div>      <!-- end page loop -->
+            &gt;<div class="px1"><a href="/software/index.html">Software</a></div>
+            &gt;<div class="px1"><a href="/software/tdiary-mode/index.html">Tdiary-mode</a></div>      <!-- end page loop -->
             <div class="flex-auto py0"></div>
             <div class="pr0 py0"><!-- end: lang selector -->
             </div>
@@ -178,278 +179,147 @@
       <!-- end include: navbar -->
       <main role="main">
         <div class="container content">
-          <h1 class="page-title my2 py0 px0">パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest</h1>
+          <h1 class="page-title my2 py0 px0">tDiary-mode</h1>
           <hr>
 <!-- %%%% start content %%%% -->
-<p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
+<div id="outline-container-org3c15c00" class="outline-2">
+<h2 id="org69e913f6"><a id="org3c15c00"></a>What's this?</h2>
+<div class="outline-text-2" id="text-org69e913f6">
+<p><span id="forkongithub">
+  <a href="https://github.com/uwabami/rdtool">Fork me on GitHub</a>
+</span>
 </p>
-<div>
-<h2 id="org494811ef">はじめに</h2>
-<div class="outline-text-2" id="text-org494811ef">
+
 <p>
-Debian パッケージを作成するため
+Emacs から tDiary を更新するための Major mode です.
+</p>
+
+<p>
+以前は Junichiro Kita さんが作成されておりましたが,
 </p>
 <ul class="org-ul">
-<li>sbuild: ビルド時の依存環境をテストしつつビルドする</li>
-<li>lintian: パッケージの品質のチェック</li>
-<li>piuparts: パッケージとしてのテスト</li>
-<li>autopkgtest: ビルドしたバイナリの実行テストができるようにしておきます.</li>
+<li>Emacs &gt;= 24.4 以降への対応</li>
+<li>SSL 対応(標準の tls.el を利用)</li>
+<li>apel 依存性の削除</li>
+</ul>
+<p>
+といった事を細々とやっておりましたので, 公開いたします.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org23cdb58" class="outline-2">
+<h2 id="org3494318d"><a id="org23cdb58"></a>How to Use</h2>
+<div class="outline-text-2" id="text-org3494318d">
+<p>
+load-path の通った所に <a href="tdiary-mode.el">tdiary-mode.el</a> を置いて,
+以下を <code>.emacs</code> に記載して下さい.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; 更新する日記のリスト</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-diary-list</span> <span class="o">'</span><span class="p">((</span><span class="s">"my 1st diary"</span> <span class="s">"http://example.com/tdiary/"</span><span class="p">)</span>
+                          <span class="p">(</span><span class="s">"my 2nd diary"</span> <span class="s">"http://example.com/tdiary2/"</span><span class="p">)))</span>
+<span class="c1">;; 更新後に日記原稿を保存するディレクトリ</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-text-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"~/path-to-saved-diary"</span><span class="p">))</span>
+<span class="c1">;; preview に使う関数</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-browser-function</span> <span class="ss">'browse-url</span><span class="p">)</span>
+<span class="c1">;; csrf key</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-csrf-key</span> <span class="s">"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"</span><span class="p">)</span>
+<span class="c1">;; スタイルに応じて: org スタイル</span>
+<span class="p">(</span><span class="k">setq</span>  <span class="nv">tdiary-style-mode</span> <span class="ss">'org-mode</span>
+       <span class="nv">tdiary-text-suffix</span> <span class="s">".org"</span><span class="p">)</span>
+<span class="c1">;; スタイルに応じて: tDiary as html スタイル</span>
+<span class="c1">;; (setq  tdiary-style-mode 'html-mode</span>
+<span class="c1">;;        tdiary-text-suffix ".td")</span>
+<span class="c1">;; スタイルに応じて: gfm スタイル</span>
+<span class="c1">;; (setq  tdiary-style-mode 'markdown-mode</span>
+<span class="c1">;;        tdiary-text-suffix ".md")</span>
+<span class="c1">;; スタイルに応じて: RD スタイル</span>
+<span class="c1">;; (setq  tdiary-style-mode 'rd-mode</span>
+<span class="c1">;;        tdiary-text-suffix ".rd")</span>
+<span class="c1">;; 以下, お好みで: テンプレートとして登録する plugin の定義</span>
+<span class="c1">;;  (setq tdiary-plugin-definition</span>
+<span class="c1">;;    '(</span>
+<span class="c1">;;      ("STRONG" ("&lt;%=STRONG %Q|" (p "str: ") "| %&gt;"))</span>
+<span class="c1">;;      ("PRE" ("&lt;%=PRE %Q|" (p "str: ") "| %&gt;"))</span>
+<span class="c1">;;      ("CITE" ("&lt;%=CITE %Q|" (p "str: ") "| %&gt;"))</span>
+<span class="c1">;;      ))</span>
+<span class="c1">;;  (add-hook 'tdiary-mode-hook</span>
+<span class="c1">;;        '(lambda ()</span>
+<span class="c1">;;       (local-set-key "\C-i" 'tdiary-complete-plugin)))</span>
+<span class="c1">;; autoload</span>
+<span class="p">(</span><span class="nv">autoload</span> <span class="ss">'tdiary-mode</span> <span class="s">"tdiary-mode"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">autoload</span> <span class="ss">'tdiary-new</span> <span class="s">"tdiary-mode"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">autoload</span> <span class="ss">'tdiary-new-diary</span> <span class="s">"tdiary-mode"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">autoload</span> <span class="ss">'tdiary-replace</span> <span class="s">"tdiary-mode"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
+
+<p>
+パスワードを保存したい場合には
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-passwd-file</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tdiary-passwd"</span> <span class="s">".tdiary-passwd"</span><span class="p">))</span></code></pre></figure>
+<p>
+とでもしておいて
+</p>
+<pre class="example">
+M-x tdiary-password-save
+</pre>
+<p>
+として下さい(そのうち <code>auth-source</code> に対応する予定です).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd04d996" class="outline-2">
+<h2 id="org66f25035"><a id="orgd04d996"></a>Notice</h2>
+<div class="outline-text-2" id="text-org66f25035">
+<p>
+上手く書き込みできない場合にはご自身のtDiaryで
+CSRFの設定がどうなっているかを確認してください.
+tDiaryが動いているマシンにsshできるのであればCSRF KEYは
+<code>tdiary.conf</code> に書いてあります.
+</p>
+
+<p>
+sshができない場合は何かしらの方法でCSRF KEYを知る必要がありますが,
+良いアイデアがありません.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org98734d4" class="outline-2">
+<h2 id="orgea20b5bc"><a id="org98734d4"></a>ToDO <code>[/]</code></h2>
+<div class="outline-text-2" id="text-orgea20b5bc">
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> melpa への登録申請</li>
+<li class="off"><code>[&#xa0;]</code> 認証情報を <code>auth-source</code> で扱う</li>
+<li class="off"><code>[&#xa0;]</code> Customize 対応</li>
 </ul>
 </div>
 </div>
-<div>
-<h2 id="orgf00f2fde">sbuild: clean room build 環境</h2>
-<div class="outline-text-2" id="text-orgf00f2fde">
-<p>
-clean room build 環境としては
-</p>
-<ul class="org-ul">
-<li>pbuilder/cowbuilder/qemubuilder</li>
-<li>sbuild</li>
-</ul>
-<p>
-の二通りがあります. どちらが良いのか, は完全に好みの問題だと思いますが
-Debian 公式のビルドインフラが sbuild なので, 私は sbuild を使っています.
-sbuild に関しては <a href="https://wiki.debian.org/sbuild">sbuild - Debian Wiki</a> を参照下さい.
-</p>
+
+<div id="outline-container-org4ca9cd3" class="outline-2">
+<h2 id="orgcb46cc98"><a id="org4ca9cd3"></a>Contributing</h2>
+<div class="outline-text-2" id="text-orgcb46cc98">
+<ol class="org-ol">
+<li>Fork it</li>
+<li>Create your feature branch (`git checkout -b my-new-feature`)</li>
+<li>Commit your changes (`git commit -am 'Add some feature'`)</li>
+<li>Push to the branch (`git push origin my-new-feature`)</li>
+<li>Create new Pull Request</li>
+</ol>
 </div>
-<div>
-<h3 id="orgb0668c8e">インストールと設定</h3>
-<div class="outline-text-3" id="text-orgb0668c8e">
-<p>
-ほぼ, 上述の wiki の通り:
-</p>
+</div>
+
+<div id="outline-container-org2791af5" class="outline-2">
+<h2 id="orgdb62b53b"><a id="org2791af5"></a>LICENSE</h2>
+<div class="outline-text-2" id="text-orgdb62b53b">
 <pre class="example">
-sudo apt-get install sbuild
-sudo sbuild-adduser $LOGNAME
-newgrp sbuild
+  Copyright (C) 2002 Junichiro Kita
+                2017-2019 Youhei SASAKI
+  License: GPL-2.0+
 </pre>
 <p>
-chroot の作成は以下
+@see <a href="LICENSE">LICENSE</a> for detail.
 </p>
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">for </span>a <span class="k">in </span>amd64 i386<span class="p">;</span> <span class="k">do
-  for </span>d <span class="k">in </span>stable testing unstable <span class="p">;</span> <span class="k">do
-    </span><span class="nb">sudo </span><span class="nv">LANG</span><span class="o">=</span>C sbuild-createchroot <span class="nt">--arch</span><span class="o">=</span><span class="nv">$a</span> <span class="nt">--include</span><span class="o">=</span>eatmydata,gnupg <span class="nv">$d</span> <span class="se">\</span>
-        /srv/chroot/<span class="nv">$d</span>-<span class="nv">$a</span><span class="nt">-sbuild</span> http://dennou-k.gfd-dennou.org/debian
-  <span class="k">done
-done</span></code></pre></figure>
-<p>
-これで, <code>/srv/chroot/</code> 以下に sbuild 用の chroot 環境ができる.
-ついでに <code>/etc/schroot/chroot.d/</code> 以下に sbuild 用の設定ファイルができるので,
-</p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">union</span>-<span class="n">type</span>=<span class="n">overlay</span>
-<span class="n">union</span>-<span class="n">overlay</span>-<span class="n">directory</span>=/<span class="n">dev</span>/<span class="n">shm</span></code></pre></figure>
-<p>
-を設定しておくと良い(overlayfs で動作します)
-</p>
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">for </span>conf <span class="k">in</span> <span class="si">$(</span><span class="nb">grep</span> <span class="nt">-l</span> ’^union-type<span class="o">=</span>’ /etc/schroot/chroot.d/<span class="k">*</span><span class="nt">-sbuild</span><span class="k">*</span><span class="si">)</span><span class="p">;</span> <span class="k">do
-    if</span> <span class="o">!</span> <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"^union-type="</span> <span class="s2">"</span><span class="nv">$conf</span><span class="s2">"</span> <span class="p">;</span> <span class="k">then
-        </span><span class="nb">echo</span>  <span class="s1">'union-type=overlay'</span> | <span class="nb">sudo tee</span>  <span class="nt">--append</span> <span class="s2">"</span><span class="nv">$conf</span><span class="s2">"</span>
-        <span class="nb">echo</span> ’union-overlay-directory<span class="o">=</span>/dev/shm’ | <span class="nb">sudo tee</span> <span class="nt">--append</span> <span class="s2">"</span><span class="nv">$conf</span><span class="s2">"</span>
-    <span class="k">fi
-done</span></code></pre></figure>
-<p>
-sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
-末尾にあるのでそちらを参照のこと．
-</p>
-</div>
-</div>
-</div>
-<div>
-<h2 id="orgc93b0208">lintian: パッケージの品質のチェック</h2>
-<div class="outline-text-2" id="text-orgc93b0208">
-<p>
-作成したパッケージが Debian Policy に準拠しているかをチェックするパッケージである lintian を導入.
-</p>
-<pre class="example">
-% sudo apt-get install lintian
-</pre>
-<p>
-設定は以下の通り. <code>pedantic</code> と <code>info</code> は, まあ趣味でしょうか.
-</p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">display</span>-<span class="n">info</span> = <span class="n">yes</span>
-<span class="n">pedantic</span> = <span class="n">yes</span>
-<span class="n">color</span> = <span class="n">auto</span>
-<span class="n">show</span>-<span class="n">overrides</span> = <span class="n">yes</span></code></pre></figure>
-<p>
-sbuild からの呼び出しは <code>~/.sbuildrc</code> において
-</p>
-<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1">## lintinan</span>
-<span class="c1"># build 後に lintian を走らせる</span>
-<span class="nv">$run_lintian</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="c1"># lintian の option. お好みで。</span>
-<span class="nv">$lintian_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-i</span><span class="p">',</span> <span class="p">'</span><span class="s1">-I</span><span class="p">'];</span></code></pre></figure>
-<p>
-とでもしておくと良いだろう.
-</p>
-</div>
-</div>
-<div>
-<h2 id="orge1e68773">piuparts: パッケージとしてのテスト</h2>
-<div class="outline-text-2" id="text-orge1e68773">
-<p>
-ビルドしたパッケージについてインストール, アップグレード, リムーブ, パージのテストを行なえる
-piuparts を導入しておく.
-</p>
-<pre class="example">
-% sudo apt-get install piuparts
-</pre>
-<p>
-実際の呼び出しは sbuild から行なう.
-</p>
-<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1">## piuparts</span>
-<span class="c1"># build 後に piuparts を走らせる</span>
-<span class="nv">$run_piuparts</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="c1"># piuparts の option。ここでは sbuild 用に作成した schroot で走らせる</span>
-<span class="nv">$piuparts_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-N</span><span class="p">',</span> <span class="p">'</span><span class="s1">-d</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r</span><span class="p">',</span> <span class="p">'</span><span class="s1">--keep-sources-list</span><span class="p">',</span> <span class="p">'</span><span class="s1">--schroot</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r-%a-sbuild</span><span class="p">'];</span>
-<span class="c1"># root_args</span>
-<span class="nv">$piuparts_root_args</span> <span class="o">=</span> <span class="p">['</span><span class="s1">sudo</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">'];</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h2 id="org7bc04000">autopkgtest: ビルドしたバイナリの実行テスト</h2>
-<div class="outline-text-2" id="text-org7bc04000">
-<p>
-autopkgtest パッケージを導入しておく.
-</p>
-</div>
-<div>
-<h3 id="org057e5425">初期設定</h3>
-<div class="outline-text-3" id="text-org057e5425">
-<p>
-autopkgtest 環境として, schroot を使うか lxc を使うか, がある.
-当然ながら schroot の方が overhead が少ないのだが,
-<a href="https://ci.debian.net/">Debian Continuous Integration</a> での動作テストもあるので,
-debci に揃えることに.
-</p>
-
-<p>
-LXC の基本設定や dnsmasq での DHCP 取得ができるようになっていると,
-あとは debci setup で良い&#x2026;のだと思う. <b>本来は</b>
-</p>
-<pre class="example">
-% sudo apt install debci
-% sudo MIRROR="http://dennou-k.gfd-dennou.org/debian" \
-   debci setup -s unstable --backend lxc -a amd64
-</pre>
-<p>
-ここではまった.
-</p>
-<ul class="org-ul">
-<li>今使っている環境が btrfs</li>
-<li>debci setup → autopkgtest-build-lxc が呼ばれる</li>
-<li>autopkgtest-build-lxc では lxc-create で "-B best" が呼ばれている</li>
-<li>btrfs と lxc-destroy に関するバグ? なのか, コンテナの差分更新後 lxc-destroy ができずに失敗するというオチに.</li>
-</ul>
-
-<p>
-結局
-</p>
-<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">--- /usr/bin/autopkgtest-build-lxc.orig	2017-09-07 20:15:12.615081394 +0900
-</span><span class="gi">+++ /usr/bin/autopkgtest-build-lxc	2017-09-07 20:16:31.584016755 +0900
-</span><span class="p">@@ -150,14 +150,14 @@</span>
-
- if [ ! -e $LXCDIR/$NAME ]; then
-     # first-time run: just create the container
-<span class="gd">-    $LXC_CREATE_PREFIX lxc-create -B best --name=$NAME $LXC_ARGS
-</span><span class="gi">+    $LXC_CREATE_PREFIX lxc-create --name=$NAME $LXC_ARGS
-</span>     setup $NAME
- else
-     # remove LXC rootfs caches; on btrfs this might be a subvolume, otherwise
-     # rm it
-     btrfs subvolume delete /var/cache/lxc/$RELEASE/rootfs-* 2&gt;/dev/null || rm -rf /var/cache/lxc/$RELEASE/rootfs-*
-     # create a new rootfs in a temp container
-<span class="gd">-    $LXC_CREATE_PREFIX lxc-create -B best --name=${NAME}.new $LXC_ARGS
-</span><span class="gi">+    $LXC_CREATE_PREFIX lxc-create --name=${NAME}.new $LXC_ARGS
-</span>     setup ${NAME}.new
-     sed -i "s/${NAME}.new/${NAME}/" $LXCDIR/${NAME}.new/rootfs/etc/hostname $LXCDIR/${NAME}.new/rootfs/etc/hosts
-     # replace the original rootfs; can't make this more atomic unfortunately</code></pre></figure>
-<p>
-なんて事をして,
-</p>
-<pre class="example">
-% sudo dpkg-divert \
-  --divert /usr/bin/autopkgtest-build-lxc.orig
-  --rename /usr/bin/autopkgtest-build-lxc
-</pre>
-<p>
-としてお茶を濁す.
-</p>
-<ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 設定ファイルがあったらそっちを優先して欲しいのだが.</li>
-</ul>
-</div>
-</div>
-<div>
-<h3 id="org80b81a6f">sbuild からの呼び出し</h3>
-<div class="outline-text-3" id="text-org80b81a6f">
-<p>
-面倒なのは lxc を使う場合には <code>stretch</code>, <code>buster</code>, <code>sid</code> とコードネームなのに対して,
-sbuild/schroot の release は <code>unstable</code> だったりするところ.
-</p>
-
-<p>
-sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>external_commands</code> で呼び出すことにする.
-</p>
-<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1">## autopkgtest</span>
-<span class="c1"># build 後に autopkgtest の実行 ⇒ 実行しない. post-build-commands で実行</span>
-<span class="nv">$run_autopkgtest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="c1"># sbuild 用に作成した schroot で走らせる場合は以下を有効に</span>
-<span class="c1"># $autopkgtest_opts = ['-U', '--', 'schroot', '%r-%a-sbuild'];</span>
-<span class="c1"># $autopkgtest_root_args = ['sudo', '--'];</span></code></pre></figure>
-<p>
-外部コマンドの呼び出しは以下
-</p>
-<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1"># 外部スクリプトで autopkgtest, rdepends の autopkgstest</span>
-<span class="nv">$external_commands</span> <span class="o">=</span> <span class="p">{</span>
-                      <span class="p">'</span><span class="s1">post-build-commands</span><span class="p">'</span> <span class="o">=&gt;</span>
-                      <span class="p">['</span><span class="s1">/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e</span><span class="p">'],</span>
-                     <span class="p">};</span></code></pre></figure>
-</div>
-</div>
-</div>
-<div>
-<h2 id="orgd7556e5a">~/.sbuildrc</h2>
-<div class="outline-text-2" id="text-orgd7556e5a">
-<p>
-現在の <code>~/.sbuildrc</code> は以下の通り
-</p>
-<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1"># -*- mode: cperl -*-</span>
-<span class="c1">## basic</span>
-<span class="c1"># architecture: all も build する</span>
-<span class="nv">$build_arch_all</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="c1"># デフォルトで source packag も build する</span>
-<span class="nv">$build_source</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
-<span class="c1">## debsign</span>
-<span class="c1"># GPG key id</span>
-<span class="nv">$key_id</span> <span class="o">=</span> <span class="p">'</span><span class="s1">66A4EA704FE240558D6AC2E69394F354891D7E07</span><span class="p">';</span>
-
-<span class="c1">## lintinan</span>
-<span class="c1"># build 後に lintian を走らせる</span>
-<span class="nv">$run_lintian</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="c1"># lintian の option.</span>
-<span class="nv">$lintian_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-i</span><span class="p">',</span> <span class="p">'</span><span class="s1">-I</span><span class="p">'];</span>
-
-<span class="c1">## piuparts</span>
-<span class="c1"># build 後に piuparts を走らせる</span>
-<span class="nv">$run_piuparts</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="c1"># piuparts の option. ここでは sbuild 用に作成した schroot で走らせる</span>
-<span class="nv">$piuparts_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-N</span><span class="p">',</span> <span class="p">'</span><span class="s1">--warn-on-leftovers-after-purge</span><span class="p">',</span> <span class="p">'</span><span class="s1">-d</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r</span><span class="p">',</span> <span class="p">'</span><span class="s1">--keep-sources-list</span><span class="p">',</span> <span class="p">'</span><span class="s1">--log-level=info</span><span class="p">',</span> <span class="p">'</span><span class="s1">--schroot</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r-%a-sbuild</span><span class="p">'];</span>
-<span class="nv">$piuparts_root_args</span> <span class="o">=</span> <span class="p">['</span><span class="s1">sudo</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">'];</span>
-
-<span class="c1">## autopkgtest</span>
-<span class="c1"># build 後に autopkgtest の実行</span>
-<span class="nv">$run_autopkgtest</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="c1"># sbuild 用に作成した schroot で走らせる場合は以下を有効に</span>
-<span class="nv">$autopkgtest_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-U</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">',</span> <span class="p">'</span><span class="s1">schroot</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r-%a-sbuild</span><span class="p">'];</span>
-<span class="nv">$autopkgtest_root_args</span> <span class="o">=</span> <span class="p">['</span><span class="s1">sudo</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">'];</span>
-<span class="c1"># 外部スクリプトで autopkgtest, rdepends の autopkgstest</span>
-<span class="nv">$external_commands</span> <span class="o">=</span> <span class="p">{</span>
-                      <span class="p">'</span><span class="s1">post-build-commands</span><span class="p">'</span> <span class="o">=&gt;</span>
-                      <span class="p">['</span><span class="s1">/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e</span><span class="p">'],</span>
-                     <span class="p">};</span></code></pre></figure>
 </div>
 </div>
 <!-- %%%% end content %%%% -->
@@ -458,9 +328,9 @@ sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>
       <!-- include footer -->
       <footer class="container bottom-0 left-0 right-0 small">
         <hr/>
-        <p class="p0 m0 right-align">&copy; 2006-2019
+        <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2019-12-21 15:49:44 +0000
+          Lastupdate: 2020-01-14 03:30:39 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
