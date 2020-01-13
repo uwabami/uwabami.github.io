@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://uwabami.github.io/index.en.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/index.en.html" />
+    <loc>https://uwabami.github.io/software/rdtool/index.en.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/software/rdtool/index.en.html" />
     <changefreq>monthly</changefreq>
   </url>
 <url>
@@ -11,23 +11,18 @@
     <changefreq>monthly</changefreq>
   </url>
 <url>
+    <loc>https://uwabami.github.io/index.en.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/index.en.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+<url>
     <loc>https://uwabami.github.io/software/rail/index.en.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/software/rail/index.en.html" />
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://uwabami.github.io/software/rdtool/index.en.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/software/rdtool/index.en.html" />
-    <changefreq>monthly</changefreq>
-  </url>
-<url>
     <loc>https://uwabami.github.io/research/index.en.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/research/index.en.html" />
-    <changefreq>monthly</changefreq>
-  </url>
-<url>
-    <loc>https://uwabami.github.io/software/index.en.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/software/index.en.html" />
     <changefreq>monthly</changefreq>
   </url>
 <url>
@@ -101,8 +96,8 @@
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://uwabami.github.io/index.html</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/index.html" />
+    <loc>https://uwabami.github.io/software/rdtool/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/rdtool/index.html" />
     <changefreq>monthly</changefreq>
   </url>
 <url>
@@ -111,18 +106,8 @@
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://uwabami.github.io/software/rail/index.html</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/rail/index.html" />
-    <changefreq>monthly</changefreq>
-  </url>
-<url>
-    <loc>https://uwabami.github.io/software/rdtool/index.html</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/rdtool/index.html" />
-    <changefreq>monthly</changefreq>
-  </url>
-<url>
-    <loc>https://uwabami.github.io/research/index.html</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/research/index.html" />
+    <loc>https://uwabami.github.io/software/tdiary-mode/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/tdiary-mode/index.html" />
     <changefreq>monthly</changefreq>
   </url>
 <url>
@@ -131,8 +116,18 @@
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://uwabami.github.io/software/tdiary-mode/index.html</loc>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/tdiary-mode/index.html" />
+    <loc>https://uwabami.github.io/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/index.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+<url>
+    <loc>https://uwabami.github.io/software/rail/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/rail/index.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+<url>
+    <loc>https://uwabami.github.io/research/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/research/index.html" />
     <changefreq>monthly</changefreq>
   </url>
 <url>
