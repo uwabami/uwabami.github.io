@@ -31,7 +31,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"WebSite","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Youhei SASAKI’s Official site","name":"Youhei SASAKI’s official site","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"WebSite","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","name":"Youhei SASAKI’s official site","headline":"Youhei SASAKI’s Official site","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -187,7 +187,14 @@
 <div id="outline-container-orgad7e124" class="outline-2">
 <h2 id="org29f5edd8"><a id="orgad7e124"></a>About Me</h2>
 <div class="outline-text-2" id="text-org29f5edd8">
-<p><amp-img layout="responsive" width="1" height="1" src="assets/img/face.png" alt="portrait" id="portrait" class="profile-picture p2"></amp-img>
+<p><amp-img layout="responsive" width="1" height="1"
+         src="assets/img/face.webp" alt="portrait" id="portrait"
+         class="profile-picture p2">
+  <amp-img fallback
+           layout="responsive" width="1" height="1" src="assets/img/face.png"
+           alt="portrait" id="portrait" class="profile-picture p2">
+  </amp-img>
+</amp-img>
 </p>
 
 <dl class="org-dl">
@@ -319,7 +326,7 @@
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-01-14 03:42:07 +0900
+          Lastupdate: 2020-01-15 14:30:56 +0900
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
