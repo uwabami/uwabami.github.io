@@ -474,27 +474,27 @@ system load を表示させている.
 <span class="n">conky</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">[[
 ${font FSMRMP:size=16.5}${color #f09000}CPU${color}: ${cpu cpu0}%${font}\
 ${voffset   8}\
-${goto      0}${color #ff0000}${cpubar cpu1 8,22} ${cpubar cpu3 8,22}${color}\
-${goto     51}${color #ff0000}${cpubar cpu2 8,22} ${cpubar cpu4 8,22}${color}\
-${voffset -21}\
-${goto    108}${color 888888}${cpugraph cpu0 26,50 ff0000 ff7f7f}${color}\
+${goto      0}${color #ff0000}${cpubar cpu1 8,24} ${cpubar cpu3 8,24}${color}\
+${goto     54}${color #ff0000}${cpubar cpu2 8,24} ${cpubar cpu4 8,24}${color}\
+${voffset -20}\
+${goto    108}${color 888888}${cpugraph cpu0 28,50 ff0000 ff7f7f}${color}\
 ${goto    164}\
 ${voffset  -2}\
 ${font FSMRMP:size=16.5}${color #f09000}RAM${color}: $memperc%${font}\
-${voffset   8}\
+${voffset   9}\
 ${goto    164}\
 ${color #0000ff}${membar 8,85}${color}\
 ${voffset -20}\
-${goto    256}${color 888888}${memgraph 26,50 0000ff 7f7fff}${color}\
+${goto    256}${color 888888}${memgraph 28,50 0000ff 7f7fff}${color}\
 ${voffset  -2}\
 ${goto    310}\
-${font FSMRMP:size=16.5}${color #f09000}DISK${color}: ${fs_used_perc}%${font}\
-${voffset   8}\
-${goto    310}${color #aaaaaa}${fs_bar 8,95}${color}\
+${font FSMRMP:size=16.5}${color #f09000}DISK${color}: ${fs_used_perc /}%${font}\
+${voffset   9}\
+${goto    310}${color #aaaaaa}${fs_bar 8,95 /}${color}\
 ${voffset -20}\
 ${goto    413}\
-${color 888888}${diskiograph_read /dev/sda 26,50 FCAF3E FCAF3E} \
-${color 888888}${diskiograph_write /dev/sda 26,50 FFFF4C FFFF4C}\
+${color 888888}${diskiograph_read /dev/dm-0 28,50 FCAF3E FCAF3E} \
+${color 888888}${diskiograph_write /dev/dm-0 28,50 FFFF4C FFFF4C}\
 ${if_existing /proc/net/route wlp2s0}\
 ${voffset   2}\
 ${goto    520}\
@@ -502,11 +502,11 @@ ${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}\
 ${voffset   5}\
 ${goto    520}\
 ${font FSMRMP:size=13.5}${color #ffffff}${addr wlp2s0}${font}${color}\
-${voffset -23}\
+${voffset -24}\
 ${goto    660}\
 ${color 888888}\
-${upspeedgraph wlp2s0 26,50 4CFFFF 7FFFFF} \
-${downspeedgraph wlp2s0 26,50 4CFF4C 7FFF7F}${color}\
+${upspeedgraph wlp2s0 28,50 4CFFFF 7FFFFF} \
+${downspeedgraph wlp2s0 28,50 4CFF4C 7FFF7F}${color}\
 ${else}\
 ${if_existing /proc/net/route enp0s31f6}\
 ${voffset   2}\
@@ -515,11 +515,11 @@ ${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}\
 ${voffset   5}\
 ${goto    520}\
 ${font FSMRMP:size=13.5}${color #ffffff}${addr enp0s31f6}${font}${color}\
-${voffset -23}\
+${voffset -24}\
 ${goto    660}\
 ${color 888888}\
-${upspeedgraph enp0s31f6 26,50 4CFFFF 7FFFFF} \
-${downspeedgraph enp0s31f6 26,50 4CFF4C 7FFF7F}${color}\
+${upspeedgraph enp0s31f6 28,50 4CFFFF 7FFFFF} \
+${downspeedgraph enp0s31f6 28,50 4CFF4C 7FFF7F}${color}\
 ${else}\
 ${voffset   2}\
 ${goto    520}\
