@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianInstall.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Debian の Install","dateModified":"2019-12-22T00:52:27+09:00","datePublished":"2019-12-22T00:52:27+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianInstall.html"},"@context":"https://schema.org"}</script>
+{"headline":"Debian の Install","dateModified":"2019-12-22T00:52:27+09:00","datePublished":"2019-12-22T00:52:27+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/DebianInstall.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianInstall.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -184,7 +184,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="orge67dc034">始めに</h2>
@@ -209,7 +209,8 @@ Laptop 機 へ Debian GNU/Linux をインストールした際のメモ.
 <li>weekly-build: <a href="http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/">http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/</a>
 <ul class="org-ul">
 <li>debian-testing-amd64-netinst.iso</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>
 を落としてくる.
@@ -240,14 +241,16 @@ jigdo については <a href="https://www.debian.org/CD/jigdo-cd/index.ja.html"
 古いMacPro 用に作成する必要があったのでメモを残しておく.
 </p>
 <ul class="org-ul">
-<li>参考: <a href="https://wiki.debian.org/InstallingDebianOn/Apple/MacBook/2-1">InstallingDebianOn/Apple/MacBook/2-1 - Debian Wiki</a></li>
+<li>参考: <a href="https://wiki.debian.org/InstallingDebianOn/Apple/MacBook/2-1">InstallingDebianOn/Apple/MacBook/2-1 - Debian Wiki</a>
+</li>
 <li>Linux 環境で作成する.  <code>grub-efi-ia32-bin</code> をインストールする.</li>
 <li>インストーラとして,
 <a href="http://ftp.de.debian.org/debian/dists/jessie/main/installer-i386/current/images/netboot/mini.iso">http://ftp.de.debian.org/debian/dists/jessie/main/installer-i386/current/images/netboot/mini.iso</a>
 を使うので, ダウンロードしておく</li>
 <li>USB メモリの先頭に, 適当なサイズ(50MB もあれば十分) のFAT32(W95 FAT32) MBR パーティションを作成</li>
 <li>マウントする(以下,  <code>/media/usb</code> にマウントしたとする)</li>
-<li><p>
+<li>
+<p>
 IA32 EFI をインストール
 </p>
 <pre class="example">
@@ -255,8 +258,10 @@ IA32 EFI をインストール
                --efi-directory=/media/usb \
                --boot-directory=/media/usb/boot \
                --removable
-</pre></li>
-<li><p>
+</pre>
+</li>
+<li>
+<p>
 <code>/media/usb/boot/grub/grub.cfg</code> ファイルを以下の内容で作成
 </p>
 <pre class="example">
@@ -273,9 +278,12 @@ fi
 linux (hd0,msdos1)/linux
 initrd (hd0,msdos1)/initrd.gz
 boot
-</pre></li>
-<li><code>mini.iso</code> から <code>initrd.gz</code> と <code>linux</code> を取り出して, <code>/media/usb</code> 以下に置く</li>
-<li><code>mini.iso</code> そのものを <code>/media/usb</code> に置く</li>
+</pre>
+</li>
+<li>
+<code>mini.iso</code> から <code>initrd.gz</code> と <code>linux</code> を取り出して, <code>/media/usb</code> 以下に置く</li>
+<li>
+<code>mini.iso</code> そのものを <code>/media/usb</code> に置く</li>
 </ul>
 
 <p>
@@ -468,12 +476,12 @@ Windows の「復旧」と「ページングファイル」を無効化してい
 
 <p>
 Windows10 は殆んど使う気がないので, 128GB/1TB まで削りました.
-こんだけディスク大きいと, 先頭に数GB取られてもまったく気にならない&#x2026;(笑).
-あとは Windows Update をかけておきます(これが長い&#x2026;).
+こんだけディスク大きいと, 先頭に数GB取られてもまったく気にならない…(笑).
+あとは Windows Update をかけておきます(これが長い…).
 </p>
 
 <p>
-リカバリディスクも作成しておくと良いでしょう(これもまた長い&#x2026;).
+リカバリディスクも作成しておくと良いでしょう(これもまた長い…).
 </p>
 </div>
 </div>
@@ -1003,12 +1011,15 @@ lspci の出力結果は以下
 <li>添付のリカバリディスクでブートして動作確認
 <ul class="org-ul">
 <li>HDD 内のリカバリ領域を削除するのが目的. リカバリ領域無しでも出荷状態に戻せることを確認.</li>
-</ul></li>
-<li><a href="http://gparted.sourceforge.net/livecd.php">GParted</a> の LiveCD で起動して&#x2026;
+</ul>
+</li>
+<li>
+<a href="http://gparted.sourceforge.net/livecd.php">GParted</a> の LiveCD で起動して…
 <ul class="org-ul">
 <li>先頭のリカバリ領域を削除</li>
 <li>C: のサイズを 20 GB に変更.</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
 <p>
@@ -1041,7 +1052,7 @@ Windows 領域を sda2 に移すの忘れていた. 気持ち悪いけれど, �
 <ul class="org-ul">
 <li>CPU: Core2Duo SU9400</li>
 <li>RAM: 4GB(2GBx2)</li>
-<li>HDD: 2.5型 HDD 320GB, 光学ドライブ無しにしました. あとから気がついたけれど, 日本語配列の刻印無しキーボードも選択すれば良かったかな&#x2026;</li>
+<li>HDD: 2.5型 HDD 320GB, 光学ドライブ無しにしました. あとから気がついたけれど, 日本語配列の刻印無しキーボードも選択すれば良かったかな…</li>
 </ul>
 </div>
 <div>
@@ -1246,13 +1257,15 @@ lspci の出力結果は以下を参照:
 <ul class="org-ul">
 <li>どうあがいても最小構成で C: に 40 GB 割り当てようとする.</li>
 <li>BIOS の upgrade 程度にしか使う気が無いのに, この無駄さ加減.</li>
-</ul></li>
+</ul>
+</li>
 <li>Knoppix で起動. GParted を用いて
 <ul class="org-ul">
 <li>先頭のリカバリ領域を削除</li>
 <li>後方の D: を削除</li>
 <li>C: を sda2 に移動, サイズを 20 GB に変更.</li>
-</ul></li>
+</ul>
+</li>
 <li>もういちどリカバリディスクで起動して, Windows の修復を実行</li>
 </ul>
 <p>
@@ -1339,7 +1352,7 @@ boot と swap に分ける必要はあるのか定かではない. 癖のよう�
 <div class="outline-text-2" id="text-orge01c0840">
 <p>
 install レポートを提出しましょう.
-適当な <a href='https://uwabami.github.io/cc-env/DebianMTA.html'>MTA</a> の設定が終わったら,
+適当な <a href="https://uwabami.github.io/cc-env/DebianMTA.html">MTA</a> の設定が終わったら,
 </p>
 <pre class="example">
 # reportbug --configure

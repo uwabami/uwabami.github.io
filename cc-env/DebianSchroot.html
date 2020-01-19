@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianSchroot.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"schroot:お手軽コンテナ(?)","dateModified":"2018-10-25T06:13:54+09:00","datePublished":"2018-10-25T06:13:54+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSchroot.html"},"@context":"https://schema.org"}</script>
+{"headline":"schroot:お手軽コンテナ(?)","dateModified":"2018-10-25T06:13:54+09:00","datePublished":"2018-10-25T06:13:54+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/DebianSchroot.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSchroot.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -184,7 +184,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="index.html#orge0707863">Debian</a>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="org766e2f9">始めに.</h2>
@@ -262,9 +262,12 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 例えば, 何も指定しない場合には <code>/etc/schroot/default</code> 以下のファイルが設定に使用され,
 </p>
 <ul class="org-ul">
-<li><code>/etc/schroot/default/copyfiles</code>: <code>/etc/resolv.conf</code> のコピー</li>
-<li><code>/etc/schroot/default/fstab</code>: <code>$HOME</code> 等の bind mount</li>
-<li><code>/etc/schroot/default/nssdatabases</code>: 認証に使用するファイル等のコピーが行なわれる(以前は <code>/etc/shadow</code> をコピーして, なんてやっていたが, 今は不要).</li>
+<li>
+<code>/etc/schroot/default/copyfiles</code>: <code>/etc/resolv.conf</code> のコピー</li>
+<li>
+<code>/etc/schroot/default/fstab</code>: <code>$HOME</code> 等の bind mount</li>
+<li>
+<code>/etc/schroot/default/nssdatabases</code>: 認証に使用するファイル等のコピーが行なわれる(以前は <code>/etc/shadow</code> をコピーして, なんてやっていたが, 今は不要).</li>
 </ul>
 
 <p>

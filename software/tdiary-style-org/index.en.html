@@ -41,7 +41,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/software/tdiary-style-org/index.en.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"TDiary::Style::Org","dateModified":"2018-10-17T06:15:46+09:00","datePublished":"2018-10-17T06:15:46+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/index.en.html"},"@context":"https://schema.org"}</script>
+{"headline":"TDiary::Style::Org","dateModified":"2018-10-17T06:15:46+09:00","datePublished":"2018-10-17T06:15:46+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/software/tdiary-style-org/index.en.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/index.en.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -174,7 +174,7 @@
 <div>
 <h2 id="orgbe33c2ee">What's this?</h2>
 <div class="outline-text-2" id="text-orgbe33c2ee">
-<p><amp-img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" width="72px" height="20px" layout=fixed class="travis_badge"></amp-img>
+<p><amp-img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" width="72px" height="20px" layout="fixed" class="travis_badge"><noscript><img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" width="72px" height="20px" class="travis_badge"></noscript></amp-img>
 <span id="forkongithub">
   <a href="https://github.com/uwabami/tdiary-style-org">Fork me on GitHub</a>
 </span>
@@ -185,10 +185,10 @@ The <code>TDiary::Style::Org</code> is provide <a href="http://orgmode.org/">Org
 Convert Org to HTML by  <a href="https://github.com/wallyqs/org-ruby">wallyqs/org-ruby: An Org mode parser written in Ruby</a>.
 </p>
 <div class="sm-col md-col-6 sm-col-12 pr1">
-<amp-img src="https://uwabami.github.io/software/tdiary-style-org/src.png" width="960" height="753" layout="responsive" alt="src"></amp-img>
+<amp-img src="https://uwabami.github.io/software/tdiary-style-org/src.png" width="960" height="753" layout="responsive" alt="src"><noscript><img src="https://uwabami.github.io/software/tdiary-style-org/src.png" width="960" height="753" alt="src"></noscript></amp-img>
 </div>
 <div class="sm-col md-col-6 sm-col-12 pl1">
-<amp-img src="https://uwabami.github.io/software/tdiary-style-org/result.png" width="960" height="753" layout="responsive" alt="result"></amp-img>
+<amp-img src="https://uwabami.github.io/software/tdiary-style-org/result.png" width="960" height="753" layout="responsive" alt="result"><noscript><img src="https://uwabami.github.io/software/tdiary-style-org/result.png" width="960" height="753" alt="result"></noscript></amp-img>
 </div>
 </div>
 </div>
@@ -229,9 +229,11 @@ If you want to use this style, add @style into tdiary.conf below:
 Basically, samve as  <a href="http://orgmode.org/">Org-mode</a>.
 </p>
 <ul class="org-ul">
-<li>First Heading <code>*</code> is converted to <code>&lt;h3&gt;</code></li>
+<li>First Heading <code>*</code> is converted to <code>&lt;h3&gt;</code>
+</li>
 <li>Org-mode <code>TAG</code> is converted to CATEGORY of tDiary</li>
-<li>plugin syntax: <code>((%plugin, 'val'%))</code></li>
+<li>plugin syntax: <code>((%plugin, 'val'%))</code>
+</li>
 </ul>
 </div>
 </div>
@@ -248,18 +250,24 @@ Basically, samve as  <a href="http://orgmode.org/">Org-mode</a>.
 </div>
 </div>
 <div>
-<h2 id="org479649c4"><span class="todo TODO">TODO</span> ToDo</h2>
+<h2 id="org479649c4">
+<span class="todo TODO">TODO</span> ToDo</h2>
 <div class="outline-text-2" id="text-org479649c4">
 <ul class="org-ul">
-<li>on going&#x2026; <code>[2/3]</code>
+<li>on going… <code>[2/3]</code>
 <ul class="org-ul">
-<li class="on"><code>[X]</code> can't convert TAG to CATEGORY of tDiary</li>
-<li class="on"><code>[X]</code> How to use plugin? -&gt; RD style like: <code>((%plugin, 'val'%))</code>
+<li class="on">
+<code>[X]</code> can't convert TAG to CATEGORY of tDiary</li>
+<li class="on">
+<code>[X]</code> How to use plugin? -&gt; RD style like: <code>((%plugin, 'val'%))</code>
 <ul class="org-ul">
 <li>Is this syntax best?</li>
-</ul></li>
-<li class="off"><code>[&#xa0;]</code> can't handlinng "alt" in image link: due to org-ruby limitation.</li>
-</ul></li>
+</ul>
+</li>
+<li class="off">
+<code>[ ]</code> can't handlinng "alt" in image link: due to org-ruby limitation.</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianMail.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Mail 環境の設定","dateModified":"2020-01-11T01:18:15+09:00","datePublished":"2020-01-11T01:18:15+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"@context":"https://schema.org"}</script>
+{"headline":"Mail 環境の設定","dateModified":"2020-01-11T01:18:15+09:00","datePublished":"2020-01-11T01:18:15+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/DebianMail.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -184,7 +184,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <div id="table-of-contents">
-<h2>&#30446;&#27425;</h2>
+<h2>目次</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org02aae9c7">始めに</a></li>
@@ -195,7 +195,7 @@
 </div>
 </div>
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="org02aae9c7">始めに</h2>
@@ -315,7 +315,8 @@ msmtp-enqueue.sh <span class="nv">$ARGS</span> 1&gt;/dev/null
 受信/閲覧は
 </p>
 <ul class="org-ul">
-<li><a href="http://isync.sourceforge.net/">isync</a> で、リモートの IMAP サーバのメールをローカルに Maildir 形式で保存</li>
+<li>
+<a href="http://isync.sourceforge.net/">isync</a> で、リモートの IMAP サーバのメールをローカルに Maildir 形式で保存</li>
 <li>ローカルで dovecot-imapd を起動してメールを閲覧</li>
 </ul>
 <p>
@@ -369,29 +370,41 @@ apt 万歳
 設定例は以下:
 </p>
 <ul class="org-ul">
-<li><code>~/Maildir/</code> 以下にサーバのメールを同期する</li>
-<li><code>~/Maildir/INBOX.mobile.XXX</code> に imap.mobile.com のメールを同期.
+<li>
+<code>~/Maildir/</code> 以下にサーバのメールを同期する</li>
+<li>
+<code>~/Maildir/INBOX.mobile.XXX</code> に imap.mobile.com のメールを同期.
 <ul class="org-ul">
 <li>明示的に <code>Pattern</code> を指定することで、指定ディレクトリ以外を同期しないことにする</li>
-</ul></li>
-<li><code>~/Maildir/INBOX.Gmail.XXX</code> に Gmail のメールを同期
+</ul>
+</li>
+<li>
+<code>~/Maildir/INBOX.Gmail.XXX</code> に Gmail のメールを同期
 <ul class="org-ul">
 <li>明示的に <code>Pattern</code> を指定することで、指定ディレクトリ以外を同期しないことにする</li>
-<li><code>[Gmail]/</code> というラベルを上手く扱えないので、同期チャンネルを複数設定することで対応
+<li>
+<code>[Gmail]/</code> というラベルを上手く扱えないので、同期チャンネルを複数設定することで対応
 <ul class="org-ul">
 <li>今のところ SPAM 堕ちしたメールの確認のためだけに <code>~/Maildir/INBOX.Gmail.Junk</code> のみ確認している</li>
-</ul></li>
-</ul></li>
-<li><code>~/Maildir/INBOX</code> に <code>work.example.com</code> のメールを同期
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<code>~/Maildir/INBOX</code> に <code>work.example.com</code> のメールを同期
 <ul class="org-ul">
-<li><code>work.example.com</code> メールサーバのディレクトリが <code>work/2014</code> 等と "/" 区切りになっているので <code>Flatten: .</code> で
+<li>
+<code>work.example.com</code> メールサーバのディレクトリが <code>work/2014</code> 等と "/" 区切りになっているので <code>Flatten: .</code> で
 <code>INBOX.work.2014</code> 等に変換する。そのために <code>MaildirStore</code> を複数設定している</li>
-<li><code>Pattern: * !*mobile* !*Gmail*</code> で同期から除外する <code>Maildir</code> を指定する</li>
-</ul></li>
+<li>
+<code>Pattern: * !*mobile* !*Gmail*</code> で同期から除外する <code>Maildir</code> を指定する</li>
+</ul>
+</li>
 <li>PassCmd で gpg 暗号化した netrc 形式のファイルからパスワードを取得している.
 <ul class="org-ul">
 <li>これ、User なんかにも使えないかなぁ、とか思ったり</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>
 今のところ特に使用に際して困った事はおきていない。
@@ -709,7 +722,7 @@ IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定す
   <span class="n">fts_solr</span> = <span class="n">break</span>-<span class="n">imap</span>-<span class="n">search</span> <span class="n">url</span>=<span class="n">http</span>://<span class="n">localhost</span>:<span class="m">8089</span>/<span class="n">solr</span>/
 }</code></pre></figure>
 <p>
-としておく。これで jetty8 および dovecot を再起動すると、検索が効く様になる&#x2026;?
+としておく。これで jetty8 および dovecot を再起動すると、検索が効く様になる…?
 </p>
 </div>
 </div>
@@ -721,8 +734,10 @@ IMAP でしか使わないのであれば <code>20-imap.conf</code> に指定す
 とりあえず
 </p>
 <ul class="org-ul">
-<li><code>/etc/solr/conf/scheme.xml</code> より <code>text_cjk</code> および <code>text_ja</code> の部分を抜き出して, dovecot の提供していた <code>scheme.xml</code> に追加</li>
-<li><code>hdr,body,subject</code> を <code>text_cjk</code> で解析するように</li>
+<li>
+<code>/etc/solr/conf/scheme.xml</code> より <code>text_cjk</code> および <code>text_ja</code> の部分を抜き出して, dovecot の提供していた <code>scheme.xml</code> に追加</li>
+<li>
+<code>hdr,body,subject</code> を <code>text_cjk</code> で解析するように</li>
 </ul>
 <p>
 してみた.
@@ -825,7 +840,7 @@ diff は以下:
 </p>
 </div>
 <ul class="org-ul">
-<li>インストール: offlineimap<br />
+<li>インストール: offlineimap<br>
 <div class="outline-text-5" id="text-org9a0058d3">
 <p>
 apt万歳, ってことで.
@@ -835,22 +850,26 @@ $ sudo apt-get install offlineimap
 </pre>
 </div>
 </li>
-<li>設定: offlineimap<br />
+<li>設定: offlineimap<br>
 <div class="outline-text-5" id="text-org9ebeeb17">
 <p>
 現状, 以下の通り:
 </p>
 <ul class="org-ul">
-<li><a href="http://offlineimap.org/">OfflineIMAP</a> のメタ情報は <code>~/Mail/offlineimap</code> 以下に格納</li>
+<li>
+<a href="http://offlineimap.org/">OfflineIMAP</a> のメタ情報は <code>~/Mail/offlineimap</code> 以下に格納</li>
 <li>同期するサーバは二箇所:
 <ul class="org-ul">
 <li>Main サーバのメールは <code>~/Mail/imap</code> 以下に格納.
 <ul class="org-ul">
 <li>この際, IMAP Namespace である <code>INBOX.</code> を除外して <code>Maildir</code> を作成</li>
-<li><code>~/Mail/imap/[Gmail]</code> は同期しない</li>
-</ul></li>
+<li>
+<code>~/Mail/imap/[Gmail]</code> は同期しない</li>
+</ul>
+</li>
 <li>Gmail のメールは <code>~/Mail/imap/[Gmail]/</code> 以下に格納</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
 # offlineimaprc
@@ -1058,7 +1077,7 @@ IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加す�
 </p>
 </div>
 </li>
-<li>cron での動作: offlineimap<br />
+<li>cron での動作: offlineimap<br>
 <div class="outline-text-5" id="text-org79b6cb1b">
 <p>
 認証に GnomeKeyring を使っているので <code>DBUS_SESSION_BUS_ADDRESS</code> を設定してから

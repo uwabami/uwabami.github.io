@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/JekyllandOrg.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"このサイトができるまで","dateModified":"2018-10-25T06:11:26+09:00","datePublished":"2018-10-25T06:11:26+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/JekyllandOrg.html"},"@context":"https://schema.org"}</script>
+{"headline":"このサイトができるまで","dateModified":"2018-10-25T06:11:26+09:00","datePublished":"2018-10-25T06:11:26+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/JekyllandOrg.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/JekyllandOrg.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -402,7 +402,8 @@ Jekyll の blog 記事の範疇に無いページ( いわゆる <code>Page</code
 </p>
 </div>
 <div>
-<h4 id="org75093801"><code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
+<h4 id="org75093801">
+<code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
 <div class="outline-text-4" id="text-org75093801">
 <p>
 org ファイルに Front Matter 相当の情報が存在することを前提として処理、すなわち、拡張子が <code>.org</code> の場合は常に <code>true</code> を返すようにします。
@@ -427,7 +428,8 @@ org ファイルに Front Matter 相当の情報が存在することを前提�
 </div>
 </div>
 <div>
-<h4 id="org3891ff25"><code>Jekyll::Convertible</code> の上書き</h4>
+<h4 id="org3891ff25">
+<code>Jekyll::Convertible</code> の上書き</h4>
 <div class="outline-text-4" id="text-org3891ff25">
 <p>
 <code>org</code> ファイルの <code>#+TITLE</code> 等を FRONT<sub>MATTER</sub> として扱った上で、
@@ -482,7 +484,8 @@ org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 </div>
 </div>
 <div>
-<h4 id="org4e95be57"><code>Jekyll::OrgConverter</code> の追加</h4>
+<h4 id="org4e95be57">
+<code>Jekyll::OrgConverter</code> の追加</h4>
 <div class="outline-text-4" id="text-org4e95be57">
 <p>
 Converter の追加は Jekyll 本家のドキュメントにもあるので、割と簡単です。実際の処理は上書きした <code>Jekyll::Convertible</code> で行なわれています。ただ、search link を処理するために、最後にリンクを置換しています。

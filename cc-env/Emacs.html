@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Emacs の設定","dateModified":"2020-01-15T23:37:23+09:00","datePublished":"2020-01-15T23:37:23+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"@context":"https://schema.org"}</script>
+{"headline":"Emacs の設定","dateModified":"2020-01-15T23:37:23+09:00","datePublished":"2020-01-15T23:37:23+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/Emacs.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -184,7 +184,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href='https://uwabami.github.io/cc-env/Emacs.html'>Emacs</a>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="https://uwabami.github.io/cc-env/Emacs.html">Emacs</a>
 </p>
 <div>
 <h2 id="org66fa74cd">はじめに</h2>
@@ -193,9 +193,9 @@ Related <a href='https://uwabami.github.io/cc-env/index.html'>Index</a> <a href=
 ここでは私の Emacs の設定についてまとめています．
 </p>
 
-<amp-img src="https://travis-ci.org/uwabami/emacs.svg?branch=master" width="72px" height="20px" layout=fixed class="travis_badge"></amp-img>
-<amp-img src="https://img.shields.io/badge/License-GPLv3-blue.svg" width="92px" height="20px" layout="fixed"></amp-img>
-<a href="https://github.com/uwabami/emacs"><span class="icon-github"><svg id="SVGRoot" width="20px" height="20px" version="1.1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m5.4144 12.761c0 0.0645-0.0742 0.11613-0.16774 0.11613-0.10645 0.01-0.18064-0.0419-0.18064-0.11613 0-0.0645 0.0742-0.11613 0.16774-0.11613 0.0968-0.01 0.18064 0.0419 0.18064 0.11613zm-1.0032-0.14516c-0.0226 0.0645 0.0419 0.13871 0.13871 0.15806 0.0839 0.0323 0.18064 0 0.2-0.0645 0.0194-0.0645-0.0419-0.13871-0.13871-0.16775-0.0839-0.0226-0.17742 0.01-0.2 0.0742zm1.4258-0.0548c-0.0935 0.0226-0.15806 0.0839-0.14838 0.15806 0.01 0.0645 0.0935 0.10645 0.19032 0.0839 0.0936-0.0226 0.15806-0.0839 0.14839-0.14838-0.01-0.0613-0.0968-0.10323-0.19033-0.0935zm2.1226-12.361c-4.4742 0-7.8968 3.3968-7.8968 7.871 0 3.5774 2.2516 6.6387 5.4677 7.7161 0.41291 0.0742 0.55807-0.18064 0.55807-0.39032 0-0.2-0.01-1.3032-0.01-1.9806 0 0-2.2581 0.48387-2.7323-0.96129 0 0-0.36774-0.93871-0.89677-1.1806 0 0-0.73871-0.50645 0.0516-0.49677 0 0 0.80323 0.0645 1.2452 0.83226 0.70645 1.2452 1.8903 0.88709 2.3516 0.67419 0.0742-0.51613 0.28387-0.87419 0.51613-1.0871-1.8032-0.2-3.6226-0.46129-3.6226-3.5645 0-0.8871 0.24516-1.3323 0.76129-1.9-0.0839-0.20968-0.35806-1.0742 0.0839-2.1903 0.6742-0.20967 2.2258 0.87097 2.2258 0.87097 0.64516-0.18064 1.3387-0.27419 2.0258-0.27419 0.68709 0 1.3806 0.0936 2.0258 0.27419 0 0 1.5516-1.0839 2.2258-0.87097 0.44193 1.1194 0.16774 1.9806 0.0839 2.1903 0.51613 0.57096 0.83226 1.0161 0.83226 1.9 0 3.1129-1.9 3.3613-3.7032 3.5645 0.29678 0.25484 0.54839 0.73871 0.54839 1.4968 0 1.0871-0.01 2.4322-0.01 2.6968 0 0.20968 0.14839 0.46452 0.55807 0.39032 3.2258-1.071 5.4129-4.1322 5.4129-7.7097 0-4.4742-3.629-7.871-8.1032-7.871zm-4.7613 11.126c-0.0419 0.0323-0.0323 0.10646 0.0226 0.16775 0.0516 0.0516 0.12581 0.0742 0.16775 0.0323 0.0419-0.0323 0.0323-0.10645-0.0226-0.16774-0.0516-0.0516-0.12581-0.0742-0.16775-0.0323zm-0.34838-0.26129c-0.0226 0.0419 0.01 0.0935 0.0742 0.12581 0.0516 0.0323 0.11613 0.0226 0.13871-0.0226 0.0226-0.0419-0.01-0.0935-0.0742-0.12581-0.0645-0.0194-0.11613-0.01-0.13871 0.0226zm1.0452 1.1484c-0.0516 0.0419-0.0323 0.13871 0.0419 0.2 0.0742 0.0742 0.16775 0.0839 0.20968 0.0323 0.0419-0.0419 0.0226-0.13871-0.0419-0.2-0.071-0.0742-0.16775-0.0839-0.20968-0.0323zm-0.36774-0.47419c-0.0516 0.0323-0.0516 0.11613 0 0.19032 0.0516 0.0742 0.13871 0.10645 0.18064 0.0742 0.0516-0.0419 0.0516-0.1258 0-0.2-0.0452-0.0742-0.12903-0.10645-0.18064-0.0645z" fill="currentColor" stroke-width=".032258"/></svg></span></a>
+<amp-img src="https://travis-ci.org/uwabami/emacs.svg?branch=master" width="72px" height="20px" layout="fixed" class="travis_badge"><noscript><img src="https://travis-ci.org/uwabami/emacs.svg?branch=master" width="72px" height="20px" class="travis_badge"></noscript></amp-img>
+<amp-img src="https://img.shields.io/badge/License-GPLv3-blue.svg" width="92px" height="20px" layout="fixed"><noscript><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" width="92px" height="20px"></noscript></amp-img>
+<a href="https://github.com/uwabami/emacs"><span class="icon-github"><svg id="SVGRoot" width="20px" height="20px" version="1.1" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m5.4144 12.761c0 0.0645-0.0742 0.11613-0.16774 0.11613-0.10645 0.01-0.18064-0.0419-0.18064-0.11613 0-0.0645 0.0742-0.11613 0.16774-0.11613 0.0968-0.01 0.18064 0.0419 0.18064 0.11613zm-1.0032-0.14516c-0.0226 0.0645 0.0419 0.13871 0.13871 0.15806 0.0839 0.0323 0.18064 0 0.2-0.0645 0.0194-0.0645-0.0419-0.13871-0.13871-0.16775-0.0839-0.0226-0.17742 0.01-0.2 0.0742zm1.4258-0.0548c-0.0935 0.0226-0.15806 0.0839-0.14838 0.15806 0.01 0.0645 0.0935 0.10645 0.19032 0.0839 0.0936-0.0226 0.15806-0.0839 0.14839-0.14838-0.01-0.0613-0.0968-0.10323-0.19033-0.0935zm2.1226-12.361c-4.4742 0-7.8968 3.3968-7.8968 7.871 0 3.5774 2.2516 6.6387 5.4677 7.7161 0.41291 0.0742 0.55807-0.18064 0.55807-0.39032 0-0.2-0.01-1.3032-0.01-1.9806 0 0-2.2581 0.48387-2.7323-0.96129 0 0-0.36774-0.93871-0.89677-1.1806 0 0-0.73871-0.50645 0.0516-0.49677 0 0 0.80323 0.0645 1.2452 0.83226 0.70645 1.2452 1.8903 0.88709 2.3516 0.67419 0.0742-0.51613 0.28387-0.87419 0.51613-1.0871-1.8032-0.2-3.6226-0.46129-3.6226-3.5645 0-0.8871 0.24516-1.3323 0.76129-1.9-0.0839-0.20968-0.35806-1.0742 0.0839-2.1903 0.6742-0.20967 2.2258 0.87097 2.2258 0.87097 0.64516-0.18064 1.3387-0.27419 2.0258-0.27419 0.68709 0 1.3806 0.0936 2.0258 0.27419 0 0 1.5516-1.0839 2.2258-0.87097 0.44193 1.1194 0.16774 1.9806 0.0839 2.1903 0.51613 0.57096 0.83226 1.0161 0.83226 1.9 0 3.1129-1.9 3.3613-3.7032 3.5645 0.29678 0.25484 0.54839 0.73871 0.54839 1.4968 0 1.0871-0.01 2.4322-0.01 2.6968 0 0.20968 0.14839 0.46452 0.55807 0.39032 3.2258-1.071 5.4129-4.1322 5.4129-7.7097 0-4.4742-3.629-7.871-8.1032-7.871zm-4.7613 11.126c-0.0419 0.0323-0.0323 0.10646 0.0226 0.16775 0.0516 0.0516 0.12581 0.0742 0.16775 0.0323 0.0419-0.0323 0.0323-0.10645-0.0226-0.16774-0.0516-0.0516-0.12581-0.0742-0.16775-0.0323zm-0.34838-0.26129c-0.0226 0.0419 0.01 0.0935 0.0742 0.12581 0.0516 0.0323 0.11613 0.0226 0.13871-0.0226 0.0226-0.0419-0.01-0.0935-0.0742-0.12581-0.0645-0.0194-0.11613-0.01-0.13871 0.0226zm1.0452 1.1484c-0.0516 0.0419-0.0323 0.13871 0.0419 0.2 0.0742 0.0742 0.16775 0.0839 0.20968 0.0323 0.0419-0.0419 0.0226-0.13871-0.0419-0.2-0.071-0.0742-0.16775-0.0839-0.20968-0.0323zm-0.36774-0.47419c-0.0516 0.0323-0.0516 0.11613 0 0.19032 0.0516 0.0742 0.13871 0.10645 0.18064 0.0742 0.0516-0.0419 0.0516-0.1258 0-0.2-0.0452-0.0742-0.12903-0.10645-0.18064-0.0645z" fill="currentColor" stroke-width=".032258"></path></svg></span></a>
 
 <p>
 基本方針は以下の通り:
@@ -215,7 +215,8 @@ Emacsに関連するDebianパッケージを幾つかメンテナンスしてい
 </div>
 </div>
 <div>
-<h3 id="orgd2ba4ef2"><a href="https://github.com/conao3/leaf.el">leaf.el</a>でEmacs のパッケージの導入と設定を行なう</h3>
+<h3 id="orgd2ba4ef2">
+<a href="https://github.com/conao3/leaf.el">leaf.el</a>でEmacs のパッケージの導入と設定を行なう</h3>
 <div class="outline-text-3" id="text-orgd2ba4ef2">
 <p>
 設定には<a href="https://github.com/conao3/leaf.el">leaf.el</a>を利用します．
@@ -314,7 +315,8 @@ init.el: README.org
 </div>
 </div>
 <div>
-<h2 id="orgcf4176e7">Package 関連: <a href="https://emacs-jp.github.io/packages/package-management/package-el">package.el</a>, <a href="https://github.com/conao3/leaf.el">leaf.el</a>, <a href="https://github.com/dimitri/el-get">el-get</a></h2>
+<h2 id="orgcf4176e7">Package 関連: <a href="https://emacs-jp.github.io/packages/package-management/package-el">package.el</a>, <a href="https://github.com/conao3/leaf.el">leaf.el</a>, <a href="https://github.com/dimitri/el-get">el-get</a>
+</h2>
 <div class="outline-text-2" id="text-orgcf4176e7">
 <p>
 <a href="https://github.com/conao3/leaf.el">leaf.el</a>のおかげで,
@@ -322,7 +324,9 @@ init.el: README.org
 </p>
 </div>
 <div>
-<h3 id="orgc51eb87d"><span class="todo TODO">TODO</span> <a href="https://emacs-jp.github.io/packages/package-management/package-el">package.el</a> <code>[0/1]</code></h3>
+<h3 id="orgc51eb87d">
+<span class="todo TODO">TODO</span> <a href="https://emacs-jp.github.io/packages/package-management/package-el">package.el</a> <code>[0/1]</code>
+</h3>
 <div class="outline-text-3" id="text-orgc51eb87d">
 <p>
 パッケージは基本的に <code>pacakge.el</code> で導入するので, 先ずはその設定.
@@ -343,7 +347,8 @@ init.el: README.org
     <span class="p">))</span>
 <span class="p">(</span><span class="nv">package-initialize</span><span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> travis-ci.org での elpa の SSL error の workaround どうしたら良いの?</li>
+<li class="off">
+<code>[ ]</code> travis-ci.org での elpa の SSL error の workaround どうしたら良いの?</li>
 </ul>
 </div>
 </div>
@@ -378,7 +383,8 @@ init.el: README.org
 </div>
 </div>
 <div>
-<h2 id="org9abae8f2"><code>exec-path-from-shell</code>: 環境変数の読み込み</h2>
+<h2 id="org9abae8f2">
+<code>exec-path-from-shell</code>: 環境変数の読み込み</h2>
 <div class="outline-text-2" id="text-org9abae8f2">
 <p>
 shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引き継ぐために
@@ -398,7 +404,7 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
 <li><code>PATH</code></li>
 </ul>
 <p>
-を読み込んでいます(多いな&#x2026;).
+を読み込んでいます(多いな…).
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">exec-path-from-shell</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
@@ -493,7 +499,7 @@ zsh prompt風味．
 <h3 id="orge279b0e0">scratch を殺さない. 消したら再生成</h3>
 <div class="outline-text-3" id="text-orge279b0e0">
 <p>
-&#x2026;元ネタがどこだったのか忘れてしまった&#x2026;
+…元ネタがどこだったのか忘れてしまった…
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*keepscratchbuffer</span>
   <span class="ss">:preface</span>
@@ -578,13 +584,15 @@ zsh prompt風味．
 </div>
 </div>
 <div>
-<h3 id="orgaee31636"><code>customize</code> で設定していたアレコレ</h3>
+<h3 id="orgaee31636">
+<code>customize</code> で設定していたアレコレ</h3>
 <div class="outline-text-3" id="text-orgaee31636">
 <p>
 <code>custom.el</code> にある設定は極力こちらに移すようにしている.
 </p>
 <ul class="org-ul">
-<li><code>gc-cons-threshold</code> はとりあえず default の設定に.
+<li>
+<code>gc-cons-threshold</code> はとりあえず default の設定に.
 メモリ喰いな拡張を入れている場合には,
 安易に <code>gc-cons-threshold</code> を上げるのは考えものである.
 「gc が走る→大きな領域を掃除するのでその間 emacs が止まる」
@@ -592,7 +600,8 @@ zsh prompt風味．
 <li>大抵の場合ターミナル内で <code>-nw</code> として起動するし,
 メニューは触ったことないので使わないので,
 フレーム, ツールバー等を非表示にする．</li>
-<li><code>.elc</code> と <code>.el</code> の timestamp を比較し, 新しい方を読み込む
+<li>
+<code>.elc</code> と <code>.el</code> の timestamp を比較し, 新しい方を読み込む
 (<code>load-prefer-newer</code> は Emacs &gt;= 24.4 から).</li>
 <li>yes or no を y or n に</li>
 </ul>
@@ -649,7 +658,8 @@ zsh prompt風味．
 </div>
 </div>
 <div>
-<h3 id="org9eac26e0"><code>startup</code>: 起動は静かに</h3>
+<h3 id="org9eac26e0">
+<code>startup</code>: 起動は静かに</h3>
 <div class="outline-text-3" id="text-org9eac26e0">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">startup</span>
   <span class="ss">:custom</span>
@@ -662,7 +672,8 @@ zsh prompt風味．
 </div>
 </div>
 <div>
-<h3 id="org58ba514c"><code>hl-mode</code>: 現在行のハイライト</h3>
+<h3 id="org58ba514c">
+<code>hl-mode</code>: 現在行のハイライト</h3>
 <div class="outline-text-3" id="text-org58ba514c">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">hl-line</span>
   <span class="ss">:hook</span>
@@ -680,7 +691,8 @@ zsh prompt風味．
 </div>
 </div>
 <div>
-<h3 id="org281c29f0"><code>show-paren-mode</code>: 対応する括弧を強調表示</h3>
+<h3 id="org281c29f0">
+<code>show-paren-mode</code>: 対応する括弧を強調表示</h3>
 <div class="outline-text-3" id="text-org281c29f0">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">paren</span>
   <span class="ss">:custom</span>
@@ -691,7 +703,8 @@ zsh prompt風味．
 </div>
 </div>
 <div>
-<h3 id="orgdd3a7c08"><code>linum-mode</code> : 行番号表示</h3>
+<h3 id="orgdd3a7c08">
+<code>linum-mode</code> : 行番号表示</h3>
 <div class="outline-text-3" id="text-orgdd3a7c08">
 <p>
 必要に応じて有効にするので, 基本使わない.
@@ -741,7 +754,8 @@ zsh prompt風味．
 </div>
 </div>
 <div>
-<h3 id="org41afd6b6"><code>autorevert</code>: ファイルが変更されたら再読み込み</h3>
+<h3 id="org41afd6b6">
+<code>autorevert</code>: ファイルが変更されたら再読み込み</h3>
 <div class="outline-text-3" id="text-org41afd6b6">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">autorevert</span>
   <span class="ss">:hook</span>
@@ -750,7 +764,8 @@ zsh prompt風味．
 </div>
 </div>
 <div>
-<h3 id="org246148ce"><code>savehist</code>: 変更履歴を保存</h3>
+<h3 id="org246148ce">
+<code>savehist</code>: 変更履歴を保存</h3>
 <div class="outline-text-3" id="text-org246148ce">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">savehist</span>
   <span class="ss">:custom</span>
@@ -786,7 +801,8 @@ zsh prompt風味．
 </div>
 </div>
 <div>
-<h3 id="org6a5a84f9"><code>eldoc</code>: emacs-lisp document</h3>
+<h3 id="org6a5a84f9">
+<code>eldoc</code>: emacs-lisp document</h3>
 <div class="outline-text-3" id="text-org6a5a84f9">
 <p>
 minibuffer では eldoc にお黙り頂く。
@@ -804,7 +820,8 @@ minibuffer では eldoc にお黙り頂く。
 </div>
 </div>
 <div>
-<h3 id="org2157dacb"><code>midnight</code>: 一定期間使用しなかった buffer を自動削除</h3>
+<h3 id="org2157dacb">
+<code>midnight</code>: 一定期間使用しなかった buffer を自動削除</h3>
 <div class="outline-text-3" id="text-org2157dacb">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">midnight</span>
   <span class="ss">:config</span>
@@ -812,7 +829,8 @@ minibuffer では eldoc にお黙り頂く。
 </div>
 </div>
 <div>
-<h3 id="org9a0cf611"><code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</h3>
+<h3 id="org9a0cf611">
+<code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</h3>
 <div class="outline-text-3" id="text-org9a0cf611">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">uniquify</span>
   <span class="ss">:config</span>
@@ -823,10 +841,11 @@ minibuffer では eldoc にお黙り頂く。
 </div>
 </div>
 <div>
-<h3 id="org68c5e01b"><code>whitespace</code>: 空白の強調表示</h3>
+<h3 id="org68c5e01b">
+<code>whitespace</code>: 空白の強調表示</h3>
 <div class="outline-text-3" id="text-org68c5e01b">
 <p>
-背景も変えようかなぁ&#x2026;
+背景も変えようかなぁ…
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">whitespace</span>
   <span class="ss">:diminish</span> <span class="p">((</span><span class="nv">global-whitespace-mode</span> <span class="s">""</span><span class="p">)</span>
@@ -853,7 +872,8 @@ minibuffer では eldoc にお黙り頂く。
 </div>
 </div>
 <div>
-<h3 id="org285d3b12"><code>saveplace</code>: 前回の修正位置を記憶する.</h3>
+<h3 id="org285d3b12">
+<code>saveplace</code>: 前回の修正位置を記憶する.</h3>
 <div class="outline-text-3" id="text-org285d3b12">
 <p>
 記憶の保存先を <code>~/.emacs.d/tmp/emacs-places</code> に変更.
@@ -874,7 +894,8 @@ minibuffer では eldoc にお黙り頂く。
 </div>
 </div>
 <div>
-<h3 id="orgd064b693"><code>time-stamp</code>: 保存時に timestamp を自動更新</h3>
+<h3 id="orgd064b693">
+<code>time-stamp</code>: 保存時に timestamp を自動更新</h3>
 <div class="outline-text-3" id="text-orgd064b693">
 <p>
 デフォルトではいろいろと衝突したので
@@ -897,7 +918,9 @@ timestamp を更新する様にした．
 </div>
 </div>
 <div>
-<h3 id="org04853162"><span class="done SOMEDAY">SOMEDAY</span> <code>tramp</code>: ssh 越しにファイルを編集 <code>[0/1]</code></h3>
+<h3 id="org04853162">
+<span class="done SOMEDAY">SOMEDAY</span> <code>tramp</code>: ssh 越しにファイルを編集 <code>[0/1]</code>
+</h3>
 <div class="outline-text-3" id="text-org04853162">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">tramp</span>
   <span class="ss">:preface</span>
@@ -913,12 +936,15 @@ timestamp を更新する様にした．
                            <span class="p">(</span><span class="nb">delete-file</span> <span class="nv">tramp-persistency-file-name</span><span class="p">))))</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 偶に挙動不審</li>
+<li class="off">
+<code>[ ]</code> 偶に挙動不審</li>
 </ul>
 </div>
 </div>
 <div>
-<h3 id="org35bd4bc4"><span class="todo TODO">TODO</span> <code>eww</code>: 内蔵ブラウザ <code>[0/3]</code></h3>
+<h3 id="org35bd4bc4">
+<span class="todo TODO">TODO</span> <code>eww</code>: 内蔵ブラウザ <code>[0/3]</code>
+</h3>
 <div class="outline-text-3" id="text-org35bd4bc4">
 <p>
 リンクを簡単に辿る(Hit-a-Hint) のために <code>ace-link</code> も入れておく
@@ -984,8 +1010,10 @@ timestamp を更新する様にした．
   <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'eww-mode-hook</span> <span class="ss">'eww-mode-hook--disable-image</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 背景色の指定</li>
-<li class="off"><code>[&#xa0;]</code> 幅の強制</li>
+<li class="off">
+<code>[ ]</code> 背景色の指定</li>
+<li class="off">
+<code>[ ]</code> 幅の強制</li>
 </ul>
 </div>
 </div>
@@ -1013,7 +1041,8 @@ timestamp を更新する様にした．
 </div>
 </div>
 <div>
-<h3 id="org931fd3cc"><code>server</code>: Emacs server</h3>
+<h3 id="org931fd3cc">
+<code>server</code>: Emacs server</h3>
 <div class="outline-text-3" id="text-org931fd3cc">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">server</span>
   <span class="ss">:require</span> <span class="no">t</span>
@@ -1039,9 +1068,11 @@ timestamp を更新する様にした．
 <h2 id="org1a8b35da">認証関連: <code>plstore</code>, <code>password-store</code> など</h2>
 <div class="outline-text-2" id="text-org1a8b35da">
 <ul class="org-ul">
-<li><code>leaf-plstore</code> で <code>plstore</code> が使えるようになったので,
+<li>
+<code>leaf-plstore</code> で <code>plstore</code> が使えるようになったので,
 その設定をしておく.</li>
-<li><code>auth-password-store</code> で auth-source として <code>password-store</code> を使う.</li>
+<li>
+<code>auth-password-store</code> で auth-source として <code>password-store</code> を使う.</li>
 </ul>
 <p>
 といった事をしている.
@@ -1065,7 +1096,8 @@ timestamp を更新する様にした．
 </div>
 </div>
 <div>
-<h2 id="org43970469"><code>recentf</code>: 最近使ったファイル履歴の保管</h2>
+<h2 id="org43970469">
+<code>recentf</code>: 最近使ったファイル履歴の保管</h2>
 <div class="outline-text-2" id="text-org43970469">
 <p>
 ファイルを開く際には <code>my:counsel-recentf</code> を使うので,
@@ -1121,11 +1153,13 @@ timestamp を更新する様にした．
 </div>
 </div>
 <div>
-<h2 id="orgadf8c6bf"><span class="done SOMEDAY">SOMEDAY</span> 言語の設定 <code>[0/1]</code></h2>
+<h2 id="orgadf8c6bf">
+<span class="done SOMEDAY">SOMEDAY</span> 言語の設定 <code>[0/1]</code>
+</h2>
 <div class="outline-text-2" id="text-orgadf8c6bf">
 <p>
 最近のEmacsはlocaleから文字コードを自動判別するらしいので,
-以前良く設定していた以下は不要らしいですね(ホントかな&#x2026;?)。
+以前良く設定していた以下は不要らしいですね(ホントかな…?)。
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">set-language-environment</span> <span class="s">"Japanese"</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">prefer-coding-system</span> <span class="ss">'utf-8</span><span class="p">)</span>
@@ -1134,7 +1168,8 @@ timestamp を更新する様にした．
 <span class="p">(</span><span class="nv">set-terminal-coding-system</span> <span class="ss">'utf-8</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">set-default</span> <span class="ss">'buffer-file-coding-system</span> <span class="ss">'utf-8</span><span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> m17n.org の消滅によって, 参照元が消えた。適切な参照元はどこだろうか。</li>
+<li class="off">
+<code>[ ]</code> m17n.org の消滅によって, 参照元が消えた。適切な参照元はどこだろうか。</li>
 </ul>
 </div>
 <div>
@@ -1161,7 +1196,8 @@ Emacs23 から内部が Unicode ベースになっています。
 </div>
 </div>
 <div>
-<h2 id="orgd903bf1d"><code>all-the-icons-in-terminal</code>: ターミナルでもicon fontを使いたい。</h2>
+<h2 id="orgd903bf1d">
+<code>all-the-icons-in-terminal</code>: ターミナルでもicon fontを使いたい。</h2>
 <div class="outline-text-2" id="text-orgd903bf1d">
 <p>
 <a href="https://github.com/domtronn/all-the-icons.el">all-the-icons.el</a>のデータを修正して,
@@ -1195,7 +1231,9 @@ Emacs23 から内部が Unicode ベースになっています。
   <span class="p">)</span></code></pre></figure>
 </div>
 <div>
-<h3 id="orgd3ca00ac"><span class="todo TODO">TODO</span> East Asian Ambiguos 対応 <code>[0/1]</code></h3>
+<h3 id="orgd3ca00ac">
+<span class="todo TODO">TODO</span> East Asian Ambiguos 対応 <code>[0/1]</code>
+</h3>
 <div class="outline-text-3" id="text-orgd3ca00ac">
 <p>
 East Asian Ambiguosを2文字幅にして, ついでに
@@ -1212,7 +1250,8 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
   <span class="p">(</span><span class="nv">eaw-and-emoji-fullwidth</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 最近, EAWは一文字幅強制の方が良いかなぁ, とか悩み中.</li>
+<li class="off">
+<code>[ ]</code> 最近, EAWは一文字幅強制の方が良いかなぁ, とか悩み中.</li>
 </ul>
 </div>
 </div>
@@ -1300,7 +1339,8 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 </div>
 </div>
 <div>
-<h2 id="org5d9ade19"><code>migemo</code>: インクリメンタル検索</h2>
+<h2 id="org5d9ade19">
+<code>migemo</code>: インクリメンタル検索</h2>
 <div class="outline-text-2" id="text-org5d9ade19">
 <p>
 無いと途方に暮れる．
@@ -1328,7 +1368,8 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 </div>
 </div>
 <div>
-<h2 id="orge3fb8a64">補完: <code>ido</code></h2>
+<h2 id="orge3fb8a64">補完: <code>ido</code>
+</h2>
 <div class="outline-text-2" id="text-orge3fb8a64">
 <p>
 補完は <code>ido</code> が軽いし速いので好み.
@@ -1336,7 +1377,8 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 </p>
 </div>
 <div>
-<h3 id="orgc92613c0"><code>ido</code> の設定</h3>
+<h3 id="orgc92613c0">
+<code>ido</code> の設定</h3>
 <div class="outline-text-3" id="text-orgc92613c0">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x C-f"</span> <span class="o">.</span> <span class="nv">ido-find-file</span><span class="p">))</span>
@@ -1428,7 +1470,8 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 </div>
 </div>
 <div>
-<h3 id="org72b78bcc"><code>flx-ido</code>: flex match の強化</h3>
+<h3 id="org72b78bcc">
+<code>flx-ido</code>: flex match の強化</h3>
 <div class="outline-text-3" id="text-org72b78bcc">
 <p>
 曖昧マッチが非常に直感的になった．地味に便利で手放せない．
@@ -1444,7 +1487,8 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 </div>
 </div>
 <div>
-<h3 id="orge285b835"><code>ido-flx-with-migemo</code>: flx + migemo</h3>
+<h3 id="orge285b835">
+<code>ido-flx-with-migemo</code>: flx + migemo</h3>
 <div class="outline-text-3" id="text-orge285b835">
 <p>
 これは便利だ
@@ -1459,7 +1503,9 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 </div>
 </div>
 <div>
-<h3 id="orgba1f040e"><span class="todo TODO">TODO</span> <code>ido-vertical-mode</code>: 候補を縦に並べて表示 <code>[/]</code></h3>
+<h3 id="orgba1f040e">
+<span class="todo TODO">TODO</span> <code>ido-vertical-mode</code>: 候補を縦に並べて表示 <code>[/]</code>
+</h3>
 <div class="outline-text-3" id="text-orgba1f040e">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-vertical-mode</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
@@ -1478,12 +1524,14 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
   <span class="p">(</span><span class="nv">ido-vertical-mode</span> <span class="mi">1</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> Debian パッケージは古い．更新すること</li>
+<li class="off">
+<code>[ ]</code> Debian パッケージは古い．更新すること</li>
 </ul>
 </div>
 </div>
 <div>
-<h3 id="org56240c5e"><code>ido-recentf</code>: recentf を ido で</h3>
+<h3 id="org56240c5e">
+<code>ido-recentf</code>: recentf を ido で</h3>
 <div class="outline-text-3" id="text-org56240c5e">
 <p>
 "recentf-list" の結果を整形して, minibuffer に納まる様に縮小したり
@@ -1549,7 +1597,9 @@ M-x を ido で. 以前は smex を利用していたが, amx に乗り換えた
 <div class="outline-text-2" id="text-orgd9b46f9c">
 </div>
 <div>
-<h3 id="orge28d4f35"><span class="todo TODO">TODO</span> 導入 <code>[0/1]</code>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Debian">Debian</span></span></h3>
+<h3 id="orge28d4f35">
+<span class="todo TODO">TODO</span> 導入 <code>[0/1]</code>   <span class="tag"><span class="Debian">Debian</span></span>
+</h3>
 <div class="outline-text-3" id="text-orge28d4f35">
 <p>
 emacs-jpのfolk版を利用中。
@@ -1563,18 +1613,21 @@ modeline の表示そのものは無効化しておく．
   <span class="p">((</span><span class="nv">elscreen-display-tab</span>           <span class="o">.</span> <span class="mi">8</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">elscreen-tab-display-control</span>   <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">elscreen-display-screen-number</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">elscreen-prefix-key</span>            <span class="o">.</span> <span class="s">""</span><span class="p">)</span> <span class="c1">;; なんか嫌だなぁ...</span>
+   <span class="p">(</span><span class="nv">elscreen-prefix-key</span>            <span class="o">.</span> <span class="s">""</span><span class="p">)</span> <span class="c1">;; なんか嫌だなぁ...</span>
    <span class="p">)</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">elscreen-start</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> Debian パッケージ版は古い．更新すべき</li>
+<li class="off">
+<code>[ ]</code> Debian パッケージ版は古い．更新すべき</li>
 </ul>
 </div>
 </div>
 <div>
-<h3 id="org1767ff1c"><span class="todo TODO">TODO</span> elscreen + zsh での連携 <code>[/]</code></h3>
+<h3 id="org1767ff1c">
+<span class="todo TODO">TODO</span> elscreen + zsh での連携 <code>[/]</code>
+</h3>
 <div class="outline-text-3" id="text-org1767ff1c">
 <p>
 詳細は
@@ -1603,13 +1656,15 @@ modeline の表示そのものは無効化しておく．
                      <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span> <span class="p">(</span><span class="nv">current-frame-configuration</span><span class="p">))))))</span>
      <span class="nv">default-directory</span><span class="p">)))</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 最近動かない事があるのだが&#x2026;</li>
+<li class="off">
+<code>[ ]</code> 最近動かない事があるのだが…</li>
 </ul>
 </div>
 </div>
 </div>
 <div>
-<h2 id="orgb83f65a0">日本語入力: <code>ddskk</code></h2>
+<h2 id="orgb83f65a0">日本語入力: <code>ddskk</code>
+</h2>
 <div class="outline-text-2" id="text-orgb83f65a0">
 <p>
 <a href="http://openlab.ring.gr.jp/skk/ddskk-ja.html">Daredevil SKK (DDSKK)</a> をメインで使用中．無いと途方に暮れる．
@@ -1870,7 +1925,9 @@ minibuffer 内では強制的に skk off.
 <div class="outline-text-2" id="text-org15a06190">
 </div>
 <div>
-<h3 id="orgc780f35e"><span class="done SOMEDAY">SOMEDAY</span> <code>redpen-paragraph</code>: <a href="http://redpen.cc/">redpen</a> による文章校正 <code>[/]</code></h3>
+<h3 id="orgc780f35e">
+<span class="done SOMEDAY">SOMEDAY</span> <code>redpen-paragraph</code>: <a href="http://redpen.cc/">redpen</a> による文章校正 <code>[/]</code>
+</h3>
 <div class="outline-text-3" id="text-orgc780f35e">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">redpen-paragraph</span>
   <span class="ss">:disabled</span> <span class="no">t</span>
@@ -1901,12 +1958,14 @@ minibuffer 内では強制的に skk off.
     <span class="nv">redpen-paragraph-force-reading-whole</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> うまく動いていない. 一旦保留</li>
+<li class="off">
+<code>[ ]</code> うまく動いていない. 一旦保留</li>
 </ul>
 </div>
 </div>
 <div>
-<h3 id="org3737a28e"><code>ispell</code>: spell checker</h3>
+<h3 id="org3737a28e">
+<code>ispell</code>: spell checker</h3>
 <div class="outline-text-3" id="text-org3737a28e">
 <p>
 ispell はコマンドとして <code>aspell</code> を利用する.
@@ -1921,7 +1980,9 @@ ispell はコマンドとして <code>aspell</code> を利用する.
 </div>
 </div>
 <div>
-<h3 id="org820e6b6d"><code>flyspell</code>: on-the-fly spell checker <code>[0/1]</code></h3>
+<h3 id="org820e6b6d">
+<code>flyspell</code>: on-the-fly spell checker <code>[0/1]</code>
+</h3>
 <div class="outline-text-3" id="text-org820e6b6d">
 <p>
 flyspell-mode は別途有効化しておいた方が良いのかもしれない
@@ -1943,12 +2004,14 @@ flyspell-mode は別途有効化しておいた方が良いのかもしれない
   <span class="p">((</span><span class="nv">LaTeX-mode-hook</span> <span class="o">.</span> <span class="nv">flyspell-mode</span><span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> flyspell-prog-mode との switch が欲しい</li>
+<li class="off">
+<code>[ ]</code> flyspell-prog-mode との switch が欲しい</li>
 </ul>
 </div>
 </div>
 <div>
-<h3 id="org3002f57f"><code>lookup</code>: 電子辞書の検索</h3>
+<h3 id="org3002f57f">
+<code>lookup</code>: 電子辞書の検索</h3>
 <div class="outline-text-3" id="text-org3002f57f">
 <p>
 EPWING化した辞書群を検索するために <code>lookup-el</code> ver. 1.4 系列を利用
@@ -2016,7 +2079,8 @@ clipboard と PRIMARY の同期には <code>gpaste</code> を使っている．
 </div>
 </div>
 <div>
-<h2 id="org5f756509"><code>ibuffer</code>: buffer の操作</h2>
+<h2 id="org5f756509">
+<code>ibuffer</code>: buffer の操作</h2>
 <div class="outline-text-2" id="text-org5f756509">
 <p>
 buffer を眺めるのは ibuffer が好み
@@ -2070,7 +2134,8 @@ buffer を眺めるのは ibuffer が好み
 </div>
 </div>
 <div>
-<h2 id="org2c2abb9b"><code>wanderulst</code>: MUA の設定</h2>
+<h2 id="org2c2abb9b">
+<code>wanderulst</code>: MUA の設定</h2>
 <div class="outline-text-2" id="text-org2c2abb9b">
 <p>
 MUA として Wanderlust を使っている
@@ -2116,7 +2181,7 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
   <span class="ss">:config</span>
   <span class="p">)</span></code></pre></figure>
 <p>
-割と <code>/etc/emacs/site-start.d/65wl-beta.el</code> と重複している気がするが&#x2026;
+割と <code>/etc/emacs/site-start.d/65wl-beta.el</code> と重複している気がするが…
 </p>
 </div>
 </div>
@@ -2159,7 +2224,7 @@ SEMI や FLIM などの UA の表示に <a href="http://uwabami.github.com/rail/
 ちなみに rail を有効にすると, 以下の様に User-Agent が表示される
 </p>
 <div class="col-7 px2 mx-auto">
-<amp-img layout="responsive" width=640 height=400 src="https://uwabami.github.io/software/rail/wanderlust_with_or_without_rail.png" alt="rail preview"></amp-img>
+<amp-img layout="responsive" width="640" height="400" src="https://uwabami.github.io/software/rail/wanderlust_with_or_without_rail.png" alt="rail preview"><noscript><img width="640" height="400" src="https://uwabami.github.io/software/rail/wanderlust_with_or_without_rail.png" alt="rail preview"></noscript></amp-img>
 </div>
 
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">rail</span>
@@ -2382,7 +2447,7 @@ from に応じて wl-from, wl-envelope-from,
             <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nv">make-local-variable</span> <span class="ss">'wl-from</span><span class="p">)</span>
                  <span class="p">(</span><span class="nv">std11-fetch-field</span> <span class="s">"From"</span><span class="p">))))</span></code></pre></figure>
 <p>
-送信時に自動的に wl-draft-config-alist を適用&#x2026;しない?
+送信時に自動的に wl-draft-config-alist を適用…しない?
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">remove-hook</span> <span class="ss">'wl-draft-send-hook</span> <span class="ss">'wl-draft-config-exec</span><span class="p">)</span></code></pre></figure>
 </div>
@@ -2861,7 +2926,7 @@ Gmail の「スター付き」フォルダでも有効
 <h5 id="org594e5622">表示順の変更</h5>
 <div class="outline-text-5" id="text-org594e5622">
 <p>
-Mew 風&#x2026;
+Mew 風…
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">wl-message-sort-field-list</span>
       <span class="o">'</span><span class="p">(</span><span class="s">"^Subject:"</span>
@@ -3225,7 +3290,8 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 </div>
 </div>
 <div>
-<h3 id="org215a97b9">メールからの予定の取り込み: <code>mhc</code></h3>
+<h3 id="org215a97b9">メールからの予定の取り込み: <code>mhc</code>
+</h3>
 <div class="outline-text-3" id="text-org215a97b9">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">mhc</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">)</span> <span class="s">"/.config/mhc"</span><span class="p">))</span>
@@ -3240,7 +3306,8 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 </div>
 </div>
 <div>
-<h2 id="orgc0b8a536">閉じタグの入力補助: <code>smartparens</code></h2>
+<h2 id="orgc0b8a536">閉じタグの入力補助: <code>smartparens</code>
+</h2>
 <div class="outline-text-2" id="text-orgc0b8a536">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">smartparens</span>
   <span class="ss">:disabled</span> <span class="no">t</span>
@@ -3258,7 +3325,8 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 </div>
 </div>
 <div>
-<h2 id="org1f0e431b">カラーコードに色付け: <code>rainbow-mode</code></h2>
+<h2 id="org1f0e431b">カラーコードに色付け: <code>rainbow-mode</code>
+</h2>
 <div class="outline-text-2" id="text-org1f0e431b">
 <p>
 <code>#RRGGBB</code> のカラーコードに勝手に色が付く．CSS の編集中なんかで地味に便利．
@@ -3276,7 +3344,8 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 </div>
 </div>
 <div>
-<h2 id="orgdddd3388">対応する括弧を見易く: <code>rainbow-delimiters</code></h2>
+<h2 id="orgdddd3388">対応する括弧を見易く: <code>rainbow-delimiters</code>
+</h2>
 <div class="outline-text-2" id="text-orgdddd3388">
 <p>
 対応する括弧を強調表示してくれる
@@ -3299,7 +3368,8 @@ Major modeとの衝突があるので止めた方が良い, らしい．
 </p>
 </div>
 <div>
-<h3 id="orgb143e870">基本設定: <code>org</code></h3>
+<h3 id="orgb143e870">基本設定: <code>org</code>
+</h3>
 <div class="outline-text-3" id="text-orgb143e870">
 <p>
 目新しい設定はしていない, と思う．
@@ -3756,7 +3826,8 @@ notmuch のインデックスの方が良いかもしれない, と最近思っ�
 </div>
 </div>
 <div>
-<h3 id="org6a1d2f0c">OrgとGoogle カレンダーの連携: <code>org-gcal</code></h3>
+<h3 id="org6a1d2f0c">OrgとGoogle カレンダーの連携: <code>org-gcal</code>
+</h3>
 <div class="outline-text-3" id="text-org6a1d2f0c">
 <p>
 request token 等の置き場所の変更
@@ -3802,7 +3873,8 @@ request token 等の置き場所の変更
 </div>
 </div>
 <div>
-<h3 id="org5908f7b5">OrgとRedmine の連携: <code>orgmine</code></h3>
+<h3 id="org5908f7b5">OrgとRedmine の連携: <code>orgmine</code>
+</h3>
 <div class="outline-text-3" id="text-org5908f7b5">
 <p>
 素晴しい!!
@@ -4107,7 +4179,8 @@ ghq list を ido で選んで dired で開く
 </div>
 </div>
 <div>
-<h2 id="org710c040c">関数定義を辿る: <code>dump-jump</code>, <code>smart-jump</code></h2>
+<h2 id="org710c040c">関数定義を辿る: <code>dump-jump</code>, <code>smart-jump</code>
+</h2>
 <div class="outline-text-2" id="text-org710c040c">
 <p>
 あまり上手く使えていない.
@@ -4133,7 +4206,8 @@ ghq list を ido で選んで dired で開く
 </div>
 </div>
 <div>
-<h2 id="org935a4dbf">言語毎の補完: <code>company-mode</code></h2>
+<h2 id="org935a4dbf">言語毎の補完: <code>company-mode</code>
+</h2>
 <div class="outline-text-2" id="text-org935a4dbf">
 <p>
 まだうまく使いこなせていない．
@@ -4142,7 +4216,7 @@ ghq list を ido で選んで dired で開く
 <li><a href="https://qiita.com/wktkshn/items/3ac46671d1c242a59f7e">company-dabbrevで日本語を補完しない</a></li>
 </ul>
 <p>
-を有効にしてみたが, これで良いのかしら&#x2026;?
+を有効にしてみたが, これで良いのかしら…?
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">company</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
@@ -4175,14 +4249,22 @@ ghq list を ido で選んで dired で開く
    <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="on"><code>[X]</code> <a href="https://github.com/TheBB/company-reftex">TheBB/company-reftex</a></li>
-<li class="on"><code>[X]</code> <a href="https://github.com/vspinu/company-math">vspinu/company-math</a></li>
-<li class="on"><code>[X]</code> <a href="https://github.com/alexeyr/company-auctex">alexeyr/company-auctex</a></li>
+<li class="on">
+<code>[X]</code> <a href="https://github.com/TheBB/company-reftex">TheBB/company-reftex</a>
+</li>
+<li class="on">
+<code>[X]</code> <a href="https://github.com/vspinu/company-math">vspinu/company-math</a>
+</li>
+<li class="on">
+<code>[X]</code> <a href="https://github.com/alexeyr/company-auctex">alexeyr/company-auctex</a>
+</li>
 </ul>
 </div>
 </div>
 <div>
-<h2 id="orgffdbe5ff"><span class="done SOMEDAY">SOMEDAY</span> テンプレート補完: <code>yasnippet</code> <code>[/]</code></h2>
+<h2 id="orgffdbe5ff">
+<span class="done SOMEDAY">SOMEDAY</span> テンプレート補完: <code>yasnippet</code> <code>[/]</code>
+</h2>
 <div class="outline-text-2" id="text-orgffdbe5ff">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">yasnippet</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
@@ -4209,13 +4291,16 @@ ghq list を ido で選んで dired で開く
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">yatemplate</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 意図しない所で発火してテンプレートが挿入されてしまうので
+<li class="off">
+<code>[ ]</code> 意図しない所で発火してテンプレートが挿入されてしまうので
 保留中</li>
 </ul>
 </div>
 </div>
 <div>
-<h2 id="orgd4b6f681"><span class="todo TODO">TODO</span> <code>flymake</code>: on-the-fly check <code>[/]</code></h2>
+<h2 id="orgd4b6f681">
+<span class="todo TODO">TODO</span> <code>flymake</code>: on-the-fly check <code>[/]</code>
+</h2>
 <div class="outline-text-2" id="text-orgd4b6f681">
 <p>
 on-the-fly syntax checker.
@@ -4233,12 +4318,14 @@ on-the-fly syntax checker.
   <span class="c1">;; TeX: Update error pattern</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> 設定調整が必要</li>
+<li class="off">
+<code>[ ]</code> 設定調整が必要</li>
 </ul>
 </div>
 </div>
 <div>
-<h2 id="org44ddff4c">LSP: <code>eglot</code></h2>
+<h2 id="org44ddff4c">LSP: <code>eglot</code>
+</h2>
 <div class="outline-text-2" id="text-org44ddff4c">
 <p>
 <code>lsp-mode</code> より設定がシンプルそうなので, こっちを試している
@@ -4261,7 +4348,8 @@ on-the-fly syntax checker.
 </div>
 </div>
 <div>
-<h2 id="org88a3cb1b">TeX: <code>AUCTeX</code></h2>
+<h2 id="org88a3cb1b">TeX: <code>AUCTeX</code>
+</h2>
 <div class="outline-text-2" id="text-org88a3cb1b">
 <p>
 Debian パッケージ版を使う．
@@ -4456,7 +4544,9 @@ markdown自体はあまり好きじゃないんだけれど,
 </div>
 </div>
 <div>
-<h2 id="org9992a617"><span class="todo TODO">TODO</span> 日記: <code>tDiary</code> <code>[0/1]</code></h2>
+<h2 id="org9992a617">
+<span class="todo TODO">TODO</span> 日記: <code>tDiary</code> <code>[0/1]</code>
+</h2>
 <div class="outline-text-2" id="text-org9992a617">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">tdiary-mode</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="nv">my:d:password-store</span>
@@ -4477,7 +4567,8 @@ markdown自体はあまり好きじゃないんだけれど,
   <span class="p">(</span><span class="nv">tdiary-passwd-file-load</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> org2blog で tDiary を更新できないか妄想している</li>
+<li class="off">
+<code>[ ]</code> org2blog で tDiary を更新できないか妄想している</li>
 </ul>
 </div>
 </div>
@@ -4486,7 +4577,9 @@ markdown自体はあまり好きじゃないんだけれど,
 <div class="outline-text-2" id="text-orgbf458527">
 </div>
 <div>
-<h3 id="org4c769ff7"><span class="done SOMEDAY">SOMEDAY</span> xterm-color <code>[0/1]</code></h3>
+<h3 id="org4c769ff7">
+<span class="done SOMEDAY">SOMEDAY</span> xterm-color <code>[0/1]</code>
+</h3>
 <div class="outline-text-3" id="text-org4c769ff7">
 <p>
 色を端末と揃える。
@@ -4517,12 +4610,15 @@ markdown自体はあまり好きじゃないんだけれど,
         <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> ちゃんと効いてない, ような?</li>
+<li class="off">
+<code>[ ]</code> ちゃんと効いてない, ような?</li>
 </ul>
 </div>
 </div>
 <div>
-<h3 id="org356b9857"><span class="todo TODO">TODO</span> フォント <code>[0/1]</code></h3>
+<h3 id="org356b9857">
+<span class="todo TODO">TODO</span> フォント <code>[0/1]</code>
+</h3>
 <div class="outline-text-3" id="text-org356b9857">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">my:load-window-config</span> <span class="p">()</span>
   <span class="s">"load window-system specific settings"</span>
@@ -4558,7 +4654,8 @@ markdown自体はあまり好きじゃないんだけれど,
 <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">window-system</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">my:load-window-config</span><span class="p">))</span></code></pre></figure>
 <ul class="org-ul">
-<li class="off"><code>[&#xa0;]</code> FSMRMP のラテン文字が全角にならない. 要調整</li>
+<li class="off">
+<code>[ ]</code> FSMRMP のラテン文字が全角にならない. 要調整</li>
 </ul>
 <pre class="example">
 幅の確認:
@@ -4586,7 +4683,8 @@ Greek, Math, 絵文字は全角, 他は半角で 2:1 になっているかの確
 </div>
 </div>
 <div>
-<h3 id="org20d8ce5c">Major, Minor モードの表示のカスタマイズ: <code>diminish</code>, <code>delight</code></h3>
+<h3 id="org20d8ce5c">Major, Minor モードの表示のカスタマイズ: <code>diminish</code>, <code>delight</code>
+</h3>
 <div class="outline-text-3" id="text-org20d8ce5c">
 <p>
 基本個々のモードの設定でカスタマイズしているけれども．
@@ -4869,7 +4967,8 @@ doom-modeline内の幅の勘定をしている関数をoverride</li>
 </div>
 </div>
 <div>
-<h3 id="org7e722d0e">theme: <code>doom-theme</code></h3>
+<h3 id="org7e722d0e">theme: <code>doom-theme</code>
+</h3>
 <div class="outline-text-3" id="text-org7e722d0e">
 <p>
 これまで弄っていた font-lock を
