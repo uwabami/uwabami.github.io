@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"datePublished":"2020-01-11T01:09:28+09:00","@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","dateModified":"2020-01-11T01:09:28+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSquid.html"},"url":"https://uwabami.github.io/cc-env/DebianSquid.html","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"Squid で広告避け","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSquid.html"},"@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianSquid.html","author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"Squid で広告避け","dateModified":"2020-01-11T01:09:28+09:00","datePublished":"2020-01-11T01:09:28+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -254,7 +254,68 @@ apt 万歳
 <p>
 以下のスクリプトで適当に生成
 </p>
-
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#! /bin/bash</span>
+<span class="nv">URL</span><span class="o">=()</span>
+<span class="c"># adaway default</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"https://adaway.org/hosts.txt"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"http://winhelp2002.mvps.org/hosts.txt"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&amp;showintro=0&amp;mimetype=plaintext"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"https://hosts-file.net/ad_servers.txt"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"https://sites.google.com/site/hosts2ch/ja"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"https://raw.githubusercontent.com/multiverse2011/adawaylist-jp/master/hosts"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"https://warui.intaa.net/adhosts/hosts.txt"</span><span class="o">)</span>
+<span class="nv">URL</span><span class="o">=(</span><span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"https://280blocker.net/files/280blocker_domain.txt"</span><span class="o">)</span>
+<span class="c">#</span>
+<span class="nb">echo</span> <span class="s2">"download hosts list"</span>
+<span class="k">for</span> <span class="o">((</span> i <span class="o">=</span> 0<span class="p">;</span> i &lt; <span class="k">${#</span><span class="nv">URL</span><span class="p">[@]</span><span class="k">}</span><span class="p">;</span> ++i <span class="o">))</span><span class="p">;</span> <span class="k">do
+    </span><span class="nb">echo </span>wget <span class="nt">-q</span> <span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span> <span class="nt">-O</span> tmp-<span class="nv">$i</span>.txt
+    wget <span class="nt">-q</span> <span class="s2">"</span><span class="k">${</span><span class="nv">URL</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="k">}</span><span class="s2">"</span> <span class="nt">-O</span> tmp-<span class="nv">$i</span>.txt
+    <span class="nb">echo</span> <span class="s2">"create tmp-</span><span class="nv">$i</span><span class="s2">-list.txt"</span>
+    <span class="nb">cat </span>tmp-<span class="nv">$i</span>.txt | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-v</span> localhost | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-v</span> 255.255.255.255 | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-v</span> ^# | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-v</span> ^white | <span class="se">\</span>
+        <span class="nb">sed</span> <span class="s1">'/^$/d'</span> | <span class="se">\</span>
+        <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/\t/ /g'</span> | <span class="se">\</span>
+        nkf <span class="nt">-w</span> <span class="nt">-Lu</span> <span class="nt">-d</span> <span class="o">&gt;</span> tmp-<span class="nv">$i</span><span class="nt">-list</span>.txt
+    <span class="nb">rm</span> <span class="nt">-f</span> tmp-<span class="nv">$i</span>.txt
+<span class="k">done</span>
+<span class="c">#</span>
+<span class="nb">echo</span> <span class="s2">"merge tmp list"</span>
+<span class="k">for </span>f <span class="k">in</span> <span class="sb">`</span>/bin/ls <span class="nt">-1</span> tmp-?-list.txt<span class="sb">`</span><span class="p">;</span> <span class="k">do
+    </span><span class="nb">cat</span> <span class="nv">$f</span> | <span class="nb">grep</span> <span class="nt">-v</span> ^# <span class="o">&gt;&gt;</span> tmp-list.txt
+    <span class="nb">rm</span> <span class="nt">-f</span> <span class="nv">$f</span>
+<span class="k">done
+</span><span class="nb">cat </span>tmp-list.txt | <span class="se">\</span>
+    <span class="nb">sed</span> <span class="s1">'/^$/d'</span> | <span class="se">\</span>
+    <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/#.*$//g'</span> | <span class="se">\</span>
+    <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/^0\.0\.0\.0/127\.0\.0\.1/g'</span> | <span class="se">\</span>
+    <span class="nb">sort</span> <span class="nt">-u</span> <span class="o">&gt;</span> adaway.txt
+<span class="c"># wget -q https://warui.intaa.net/adhosts/whitelist.txt -O tmp-white.txt</span>
+<span class="c"># cat tmp-white.txt | while read line</span>
+<span class="c"># do</span>
+<span class="c">#     sed -i -e '/$line/d' adaway.txt</span>
+<span class="c"># done</span>
+<span class="c"># whitelist</span>
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="nt">-e</span> <span class="s1">'/apis.google.com/d'</span> adaway.txt
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="nt">-e</span> <span class="s1">'/google-analytics.l.google.com/d'</span> adaway.txt
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="nt">-e</span> <span class="s1">'/google-analytics.com/d'</span> adaway.txt
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="nt">-e</span> <span class="s1">'s/127.0.0.1 //g'</span> adaway.txt
+<span class="nb">echo</span> <span class="nt">-n</span> <span class="s1">''</span> <span class="o">&gt;</span> adaway_hosts.txt
+<span class="nb">cat </span>adaway.txt | <span class="k">while </span><span class="nb">read </span>line
+<span class="k">do
+    </span><span class="nb">echo </span>0.0.0.0 <span class="nv">$line</span> <span class="o">&gt;&gt;</span> adaway_hosts.txt
+<span class="k">done</span>
+<span class="c"># nginx hosts</span>
+<span class="nb">cat </span>adaway_hosts.txt | <span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'s/^0\.0\.0\.0/server_name/g'</span> <span class="nt">-e</span> <span class="s1">'s/$/;/g'</span> <span class="o">&gt;</span> adaway_nginx_hosts.txt
+<span class="c">## ipv6</span>
+<span class="c"># cat adaway.txt | sed -e 's/127.0.0.1/::1/g' &gt; adaway_ipv6.txt</span>
+<span class="c"># cat adaway.txt &gt;&gt; adaway_ipv6.txt</span>
+<span class="c"># mv adaway_ipv6.txt adaway.txt</span>
+<span class="nb">echo</span> <span class="s2">"cleanup"</span>
+<span class="nb">rm</span> <span class="nt">-f</span> tmp-list.txt
+<span class="nb">rm</span> <span class="nt">-f</span> tmp-white.txt</code></pre></figure>
 
 <p>
 リストを保守して下さっている皆様に感謝.
@@ -272,7 +333,104 @@ apt 万歳
 <li>本気で匿名化したいわけでも無いので, ヘッダの処理は適当</li>
 <li>20080 番で動作といった所.</li>
 </ul>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c">## Adblock
+## DNS
+# read hosts file -&gt; 0.0.0.0
+</span><span class="n">hosts_file</span> /<span class="n">etc</span>/<span class="n">squid</span>/<span class="n">adaway_hosts</span>.<span class="n">txt</span>
+<span class="n">acl</span> <span class="n">ad_black</span> <span class="n">dstdomain</span> <span class="s2">"/etc/squid/adaway.txt"</span>
+<span class="n">http_access</span> <span class="n">deny</span> <span class="n">ad_black</span>
+<span class="c"># Custom Error Page (force empty)
+</span><span class="n">error_directory</span> /<span class="n">etc</span>/<span class="n">squid</span>/<span class="n">error</span>/
+<span class="c"># dns_v4_first on
+</span><span class="n">dns_nameservers</span> <span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span>
 
+<span class="c">## ACL
+</span><span class="n">acl</span> <span class="n">local</span> <span class="n">src</span> <span class="m">192</span>.<span class="m">168</span>.<span class="m">122</span>.<span class="m">0</span>/<span class="m">24</span> <span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span> ::<span class="m">1</span> <span class="n">fe80</span>::/<span class="m">10</span>
+<span class="n">http_access</span> <span class="n">allow</span> <span class="n">local</span>
+<span class="n">http_access</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="c">## access port
+#
+# 20080 番で動作
+#
+# http_port 20080
+</span><span class="n">http_port</span> <span class="m">20080</span> <span class="n">ssl</span>-<span class="n">bump</span> \
+ <span class="n">generate</span>-<span class="n">host</span>-<span class="n">certificates</span>=<span class="n">on</span> \
+ <span class="n">dynamic_cert_mem_cache_size</span>=<span class="m">4</span><span class="n">MB</span> \
+ <span class="n">cert</span>=/<span class="n">usr</span>/<span class="n">local</span>/<span class="n">share</span>/<span class="n">ca</span>-<span class="n">certificates</span>/<span class="n">junkhub</span>.<span class="n">org</span>/<span class="n">iris_cert</span>.<span class="n">crt</span> \
+ <span class="n">key</span>=/<span class="n">usr</span>/<span class="n">local</span>/<span class="n">share</span>/<span class="n">ca</span>-<span class="n">certificates</span>/<span class="n">junkhub</span>.<span class="n">org</span>/<span class="n">iris_key</span>.<span class="n">pem</span> \
+ <span class="n">tls</span>-<span class="n">dh</span>=<span class="n">prime256v1</span>:/<span class="n">etc</span>/<span class="n">squid</span>/<span class="n">dhparam</span>.<span class="n">pem</span>
+<span class="n">sslcrtd_program</span> /<span class="n">usr</span>/<span class="n">lib</span>/<span class="n">squid</span>/<span class="n">security_file_certgen</span> \
+  -<span class="n">s</span> /<span class="n">var</span>/<span class="n">spool</span>/<span class="n">squid</span>/<span class="n">ssl_db</span> \
+  -<span class="n">M</span> <span class="m">64</span><span class="n">MB</span>
+<span class="n">tls_outgoing_options</span> \
+  <span class="n">cafile</span>=/<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span> \
+  <span class="n">options</span>=<span class="n">NO_SSLv3</span>,<span class="n">ALL</span>
+<span class="n">acl</span> <span class="n">step1</span> <span class="n">at_step</span> <span class="n">SslBump1</span>
+<span class="n">acl</span> <span class="n">ssl_exclude_domains</span> <span class="n">dstdomain</span> <span class="s2">"/etc/squid/ssl_white.txt"</span>
+<span class="n">ssl_bump</span> <span class="n">splice</span> <span class="n">ssl_exclude_domains</span>
+<span class="n">ssl_bump</span> <span class="n">peek</span> <span class="n">step1</span>
+<span class="n">ssl_bump</span> <span class="n">bump</span> <span class="n">all</span>
+
+<span class="c">## ICAP
+</span><span class="n">icap_enable</span> <span class="n">off</span>
+
+<span class="c">## ICMP
+#
+# disable all ICMP request
+#
+</span><span class="n">pinger_enable</span> <span class="n">off</span>
+<span class="n">query_icmp</span> <span class="n">off</span>
+
+<span class="c">## Log Format
+#
+# Apache like
+#
+# access_log stdio:/var/log/squid/access.log common
+# logformat common %&gt;a %ui %un [%tl] "%rm %ru HTTP/%rv" &gt;Hs %&lt;st %Ss:%Sh
+</span><span class="n">access_log</span> <span class="n">stdio</span>:/<span class="n">dev</span>/<span class="n">null</span> <span class="n">common</span>
+
+<span class="c"># Logs are managed by logrotate on Debian
+# @see include /etc/squid/conf.d/debian.conf
+</span><span class="n">logfile_rotate</span> <span class="m">0</span>
+
+
+<span class="c">## Cache
+#
+# don't use any cache
+#
+# no_cache deny all
+</span><span class="n">cache_store_log</span> <span class="n">none</span>
+<span class="n">cache_access_log</span> <span class="n">none</span>
+<span class="n">cache_log</span> /<span class="n">dev</span>/<span class="n">null</span>
+<span class="n">logfile_rotate</span> <span class="m">0</span>
+<span class="n">coredump_dir</span> /<span class="n">var</span>/<span class="n">spool</span>/<span class="n">squid</span>
+<span class="n">ipcache_size</span> <span class="m">0</span>
+
+<span class="c">## Anonymous
+# forwarded_for transparent
+</span><span class="n">forwarded_for</span> <span class="n">off</span>
+<span class="n">visible_hostname</span> <span class="n">unknown</span>
+<span class="n">request_header_access</span> <span class="n">X</span>-<span class="n">FORWARDED</span>-<span class="n">FOR</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">request_header_access</span> <span class="n">VIA</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">request_header_access</span> <span class="n">CACHE</span>-<span class="n">CONTROL</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">request_header_access</span> <span class="n">If</span>-<span class="n">MODIFIED</span>-<span class="n">SINCE</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="c"># request_header_access CONNECTION deny all
+</span><span class="n">request_header_access</span> <span class="n">UPGRADE</span>-<span class="n">INSECURE</span>-<span class="n">REQUESTS</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">request_header_access</span> <span class="n">DNT</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">X</span>-<span class="n">FORWARDED</span>-<span class="n">FOR</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">VIA</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">CACHE</span>-<span class="n">CONTROL</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">If</span>-<span class="n">MODIFIED</span>-<span class="n">SINCE</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">UPGRADE</span>-<span class="n">INSECURE</span>-<span class="n">REQUESTS</span> <span class="n">deny</span> <span class="n">all</span>
+<span class="n">reply_header_access</span> <span class="n">DNT</span> <span class="n">deny</span> <span class="n">all</span>
+
+<span class="n">pid_filename</span> /<span class="n">run</span>/<span class="n">squid</span>.<span class="n">pid</span>
+<span class="c">## fast
+</span><span class="n">pipeline_prefetch</span> <span class="m">0</span>
+<span class="n">shutdown_lifetime</span> <span class="m">0</span>.<span class="m">01</span> <span class="n">seconds</span>
+
+<span class="c">#
+</span><span class="n">always_direct</span> <span class="n">allow</span> <span class="n">local</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -283,7 +441,28 @@ apt 万歳
 キャッシュを動かす気も無いので子プロセスは生成されない.
 ということで, systemd 用の service ファイルを以下の様にでっち上げた.
 </p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c">## Copyright (C) 1996-2018 The Squid Software Foundation and contributors
+##
+## Squid software is distributed under GPLv2+ license and includes
+## contributions from numerous individuals and organizations.
+## Please see the COPYING and CONTRIBUTORS files for details.
+##
+</span>
+[<span class="n">Unit</span>]
+<span class="n">Description</span>=<span class="n">Squid</span> <span class="n">Web</span> <span class="n">Proxy</span> <span class="n">Server</span>
+<span class="n">Documentation</span>=<span class="n">man</span>:<span class="n">squid</span>(<span class="m">8</span>)
+<span class="n">After</span>=<span class="n">network</span>.<span class="n">target</span> <span class="n">network</span>-<span class="n">online</span>.<span class="n">target</span> <span class="n">nss</span>-<span class="n">lookup</span>.<span class="n">target</span>
 
+[<span class="n">Service</span>]
+<span class="n">Type</span>=<span class="n">forking</span>
+<span class="n">PIDFile</span>=/<span class="n">run</span>/<span class="n">squid</span>.<span class="n">pid</span>
+<span class="n">ExecStartPre</span>=/<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">squid</span> --<span class="n">foreground</span> -<span class="n">z</span>
+<span class="n">ExecStart</span>=/<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">squid</span> -<span class="n">sYC</span>
+<span class="n">ExecReload</span>=/<span class="n">bin</span>/<span class="n">kill</span> -<span class="n">HUP</span> $<span class="n">MAINPID</span>
+<span class="n">KillMode</span>=<span class="n">mixed</span>
+
+[<span class="n">Install</span>]
+<span class="n">WantedBy</span>=<span class="n">multi</span>-<span class="n">user</span>.<span class="n">target</span></code></pre></figure>
 <p>
 あとは
 </p>

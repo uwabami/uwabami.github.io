@@ -41,7 +41,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"datePublished":"2018-10-17T06:15:52+09:00","@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","dateModified":"2018-10-17T06:15:52+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/"},"url":"https://uwabami.github.io/software/tdiary-style-org/","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"TDiary::Style::Org","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/"},"@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/software/tdiary-style-org/","author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"TDiary::Style::Org","dateModified":"2018-10-17T06:15:52+09:00","datePublished":"2018-10-17T06:15:52+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -210,9 +210,15 @@ Org から HTML の変換には <a href="https://github.com/wallyqs/org-ruby">wa
 </p>
 
 
-<amp-img src="src.webp" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753" layout="responsive"><amp-img src="src.png" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753" layout="responsive" fallback></amp-img><noscript><img src="src.png" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753"></noscript></amp-img>
+<div class="figure">
+<p><amp-img src="src.webp" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753" layout="responsive"><amp-img src="src.png" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753" layout="responsive" fallback></amp-img><noscript><img src="src.png" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753"></noscript></amp-img>
+</p>
+</div>
 
-<amp-img src="result.webp" alt="result.webp" class="sm-col md-col-6 sm-col-12 pl2" width="970" height="753" layout="responsive"><amp-img src="result.png" alt="result.webp" class="sm-col md-col-6 sm-col-12 pl2" width="970" height="753" layout="responsive" fallback></amp-img><noscript><img src="result.png" alt="result.webp" class="sm-col md-col-6 sm-col-12 pl2" width="970" height="753"></noscript></amp-img>
+<div class="figure">
+<p><amp-img src="result.webp" alt="result.webp" class="sm-col md-col-6 sm-col-12 pl2" width="970" height="753" layout="responsive"><amp-img src="result.png" alt="result.webp" class="sm-col md-col-6 sm-col-12 pl2" width="970" height="753" layout="responsive" fallback></amp-img><noscript><img src="result.png" alt="result.webp" class="sm-col md-col-6 sm-col-12 pl2" width="970" height="753"></noscript></amp-img>
+</p>
+</div>
 </div>
 </div>
 
@@ -222,7 +228,7 @@ Org から HTML の変換には <a href="https://github.com/wallyqs/org-ruby">wa
 <p>
 tDiary の <code>Gemfile.local</code> に
 </p>
-
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">'tdiary-style-org'</span></code></pre></figure>
 <p>
 を追加して，
 </p>
@@ -246,7 +252,7 @@ tDiary の <code>Gemfile.local</code> に
 <p>
 <code>tdiary.conf</code> の <code>@style</code> で以下の用に指定します．
 </p>
-
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vi">@style</span> <span class="o">=</span> <span class="s1">'Org'</span></code></pre></figure>
 </div>
 </div>
 <div>

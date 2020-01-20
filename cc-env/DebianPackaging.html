@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"datePublished":"2019-12-22T00:49:44+09:00","@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","dateModified":"2019-12-22T00:49:44+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianPackaging.html"},"url":"https://uwabami.github.io/cc-env/DebianPackaging.html","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianPackaging.html"},"@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianPackaging.html","author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest","dateModified":"2019-12-22T00:49:44+09:00","datePublished":"2019-12-22T00:49:44+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -230,16 +230,27 @@ newgrp sbuild
 <p>
 chroot の作成は以下
 </p>
-
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">for </span>a <span class="k">in </span>amd64 i386<span class="p">;</span> <span class="k">do
+  for </span>d <span class="k">in </span>stable testing unstable <span class="p">;</span> <span class="k">do
+    </span><span class="nb">sudo </span><span class="nv">LANG</span><span class="o">=</span>C sbuild-createchroot <span class="nt">--arch</span><span class="o">=</span><span class="nv">$a</span> <span class="nt">--include</span><span class="o">=</span>eatmydata,gnupg <span class="nv">$d</span> <span class="se">\</span>
+        /srv/chroot/<span class="nv">$d</span>-<span class="nv">$a</span><span class="nt">-sbuild</span> http://dennou-k.gfd-dennou.org/debian
+  <span class="k">done
+done</span></code></pre></figure>
 <p>
 これで, <code>/srv/chroot/</code> 以下に sbuild 用の chroot 環境ができる.
 ついでに <code>/etc/schroot/chroot.d/</code> 以下に sbuild 用の設定ファイルができるので,
 </p>
-
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">union</span>-<span class="n">type</span>=<span class="n">overlay</span>
+<span class="n">union</span>-<span class="n">overlay</span>-<span class="n">directory</span>=/<span class="n">dev</span>/<span class="n">shm</span></code></pre></figure>
 <p>
 を設定しておくと良い(overlayfs で動作します)
 </p>
-
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="k">for </span>conf <span class="k">in</span> <span class="si">$(</span><span class="nb">grep</span> <span class="nt">-l</span> ’^union-type<span class="o">=</span>’ /etc/schroot/chroot.d/<span class="k">*</span><span class="nt">-sbuild</span><span class="k">*</span><span class="si">)</span><span class="p">;</span> <span class="k">do
+    if</span> <span class="o">!</span> <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"^union-type="</span> <span class="s2">"</span><span class="nv">$conf</span><span class="s2">"</span> <span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span>  <span class="s1">'union-type=overlay'</span> | <span class="nb">sudo tee</span>  <span class="nt">--append</span> <span class="s2">"</span><span class="nv">$conf</span><span class="s2">"</span>
+        <span class="nb">echo</span> ’union-overlay-directory<span class="o">=</span>/dev/shm’ | <span class="nb">sudo tee</span> <span class="nt">--append</span> <span class="s2">"</span><span class="nv">$conf</span><span class="s2">"</span>
+    <span class="k">fi
+done</span></code></pre></figure>
 <p>
 sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
 末尾にあるのでそちらを参照のこと．
@@ -259,11 +270,18 @@ sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
 <p>
 設定は以下の通り. <code>pedantic</code> と <code>info</code> は, まあ趣味でしょうか.
 </p>
-
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">display</span>-<span class="n">info</span> = <span class="n">yes</span>
+<span class="n">pedantic</span> = <span class="n">yes</span>
+<span class="n">color</span> = <span class="n">auto</span>
+<span class="n">show</span>-<span class="n">overrides</span> = <span class="n">yes</span></code></pre></figure>
 <p>
 sbuild からの呼び出しは <code>~/.sbuildrc</code> において
 </p>
-
+<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1">## lintinan</span>
+<span class="c1"># build 後に lintian を走らせる</span>
+<span class="nv">$run_lintian</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1"># lintian の option. お好みで。</span>
+<span class="nv">$lintian_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-i</span><span class="p">',</span> <span class="p">'</span><span class="s1">-I</span><span class="p">'];</span></code></pre></figure>
 <p>
 とでもしておくと良いだろう.
 </p>
@@ -282,7 +300,13 @@ piuparts を導入しておく.
 <p>
 実際の呼び出しは sbuild から行なう.
 </p>
-
+<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1">## piuparts</span>
+<span class="c1"># build 後に piuparts を走らせる</span>
+<span class="nv">$run_piuparts</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1"># piuparts の option。ここでは sbuild 用に作成した schroot で走らせる</span>
+<span class="nv">$piuparts_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-N</span><span class="p">',</span> <span class="p">'</span><span class="s1">-d</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r</span><span class="p">',</span> <span class="p">'</span><span class="s1">--keep-sources-list</span><span class="p">',</span> <span class="p">'</span><span class="s1">--schroot</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r-%a-sbuild</span><span class="p">'];</span>
+<span class="c1"># root_args</span>
+<span class="nv">$piuparts_root_args</span> <span class="o">=</span> <span class="p">['</span><span class="s1">sudo</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">'];</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -324,7 +348,25 @@ LXC の基本設定や dnsmasq での DHCP 取得ができるようになって�
 <p>
 結局
 </p>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">--- /usr/bin/autopkgtest-build-lxc.orig	2017-09-07 20:15:12.615081394 +0900
+</span><span class="gi">+++ /usr/bin/autopkgtest-build-lxc	2017-09-07 20:16:31.584016755 +0900
+</span><span class="p">@@ -150,14 +150,14 @@</span>
 
+ if [ ! -e $LXCDIR/$NAME ]; then
+     # first-time run: just create the container
+<span class="gd">-    $LXC_CREATE_PREFIX lxc-create -B best --name=$NAME $LXC_ARGS
+</span><span class="gi">+    $LXC_CREATE_PREFIX lxc-create --name=$NAME $LXC_ARGS
+</span>     setup $NAME
+ else
+     # remove LXC rootfs caches; on btrfs this might be a subvolume, otherwise
+     # rm it
+     btrfs subvolume delete /var/cache/lxc/$RELEASE/rootfs-* 2&gt;/dev/null || rm -rf /var/cache/lxc/$RELEASE/rootfs-*
+     # create a new rootfs in a temp container
+<span class="gd">-    $LXC_CREATE_PREFIX lxc-create -B best --name=${NAME}.new $LXC_ARGS
+</span><span class="gi">+    $LXC_CREATE_PREFIX lxc-create --name=${NAME}.new $LXC_ARGS
+</span>     setup ${NAME}.new
+     sed -i "s/${NAME}.new/${NAME}/" $LXCDIR/${NAME}.new/rootfs/etc/hostname $LXCDIR/${NAME}.new/rootfs/etc/hosts
+     # replace the original rootfs; can't make this more atomic unfortunately</code></pre></figure>
 <p>
 なんて事をして,
 </p>
@@ -353,11 +395,20 @@ sbuild/schroot の release は <code>unstable</code> だったりするところ
 <p>
 sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>external_commands</code> で呼び出すことにする.
 </p>
-
+<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1">## autopkgtest</span>
+<span class="c1"># build 後に autopkgtest の実行 ⇒ 実行しない. post-build-commands で実行</span>
+<span class="nv">$run_autopkgtest</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1"># sbuild 用に作成した schroot で走らせる場合は以下を有効に</span>
+<span class="c1"># $autopkgtest_opts = ['-U', '--', 'schroot', '%r-%a-sbuild'];</span>
+<span class="c1"># $autopkgtest_root_args = ['sudo', '--'];</span></code></pre></figure>
 <p>
 外部コマンドの呼び出しは以下
 </p>
-
+<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1"># 外部スクリプトで autopkgtest, rdepends の autopkgstest</span>
+<span class="nv">$external_commands</span> <span class="o">=</span> <span class="p">{</span>
+                      <span class="p">'</span><span class="s1">post-build-commands</span><span class="p">'</span> <span class="o">=&gt;</span>
+                      <span class="p">['</span><span class="s1">/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e</span><span class="p">'],</span>
+                     <span class="p">};</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -367,7 +418,41 @@ sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>
 <p>
 現在の <code>~/.sbuildrc</code> は以下の通り
 </p>
+<figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1"># -*- mode: cperl -*-</span>
+<span class="c1">## basic</span>
+<span class="c1"># architecture: all も build する</span>
+<span class="nv">$build_arch_all</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1"># デフォルトで source packag も build する</span>
+<span class="nv">$build_source</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
+<span class="c1">## debsign</span>
+<span class="c1"># GPG key id</span>
+<span class="nv">$key_id</span> <span class="o">=</span> <span class="p">'</span><span class="s1">66A4EA704FE240558D6AC2E69394F354891D7E07</span><span class="p">';</span>
+
+<span class="c1">## lintinan</span>
+<span class="c1"># build 後に lintian を走らせる</span>
+<span class="nv">$run_lintian</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1"># lintian の option.</span>
+<span class="nv">$lintian_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-i</span><span class="p">',</span> <span class="p">'</span><span class="s1">-I</span><span class="p">'];</span>
+
+<span class="c1">## piuparts</span>
+<span class="c1"># build 後に piuparts を走らせる</span>
+<span class="nv">$run_piuparts</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1"># piuparts の option. ここでは sbuild 用に作成した schroot で走らせる</span>
+<span class="nv">$piuparts_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-N</span><span class="p">',</span> <span class="p">'</span><span class="s1">--warn-on-leftovers-after-purge</span><span class="p">',</span> <span class="p">'</span><span class="s1">-d</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r</span><span class="p">',</span> <span class="p">'</span><span class="s1">--keep-sources-list</span><span class="p">',</span> <span class="p">'</span><span class="s1">--log-level=info</span><span class="p">',</span> <span class="p">'</span><span class="s1">--schroot</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r-%a-sbuild</span><span class="p">'];</span>
+<span class="nv">$piuparts_root_args</span> <span class="o">=</span> <span class="p">['</span><span class="s1">sudo</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">'];</span>
+
+<span class="c1">## autopkgtest</span>
+<span class="c1"># build 後に autopkgtest の実行</span>
+<span class="nv">$run_autopkgtest</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1"># sbuild 用に作成した schroot で走らせる場合は以下を有効に</span>
+<span class="nv">$autopkgtest_opts</span> <span class="o">=</span> <span class="p">['</span><span class="s1">-U</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">',</span> <span class="p">'</span><span class="s1">schroot</span><span class="p">',</span> <span class="p">'</span><span class="s1">%r-%a-sbuild</span><span class="p">'];</span>
+<span class="nv">$autopkgtest_root_args</span> <span class="o">=</span> <span class="p">['</span><span class="s1">sudo</span><span class="p">',</span> <span class="p">'</span><span class="s1">--</span><span class="p">'];</span>
+<span class="c1"># 外部スクリプトで autopkgtest, rdepends の autopkgstest</span>
+<span class="nv">$external_commands</span> <span class="o">=</span> <span class="p">{</span>
+                      <span class="p">'</span><span class="s1">post-build-commands</span><span class="p">'</span> <span class="o">=&gt;</span>
+                      <span class="p">['</span><span class="s1">/home/uwabami/.sbuild.d/sbuild-debci-rdepends %c %e</span><span class="p">'],</span>
+                     <span class="p">};</span></code></pre></figure>
 </div>
 </div>
 <!-- %%%% end content %%%% -->

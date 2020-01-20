@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"datePublished":"2018-10-25T06:11:26+09:00","@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","dateModified":"2018-10-25T06:11:26+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/JekyllandOrg.html"},"url":"https://uwabami.github.io/cc-env/JekyllandOrg.html","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"このサイトができるまで","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/JekyllandOrg.html"},"@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/JekyllandOrg.html","author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"このサイトができるまで","dateModified":"2018-10-25T06:11:26+09:00","datePublished":"2018-10-25T06:11:26+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -223,7 +223,9 @@ org ファイルを html へ出力する際のタグのカスタマイズをし�
 <p>
 原稿となる org ファイルには、最低限
 </p>
-
+<figure class="highlight"><pre><code class="language-org" data-lang="org">#+TITLE:
+#+DATE:
+#+LAYOUT:</code></pre></figure>
 <p>
 を記載しておいて下さい。これが Jekyll の Front Matter になります。他にも <code>#+HTML</code> および <code>#+LATEX</code> 以外の Option が書け、
 downcase したのち Front Matter として使用できます。
@@ -271,7 +273,111 @@ plugin が使えないため、リンク先のアプローチを取る必要が�
 最新の org-ruby では org-mode の search link を export してくれません。そんな訳で monkey patch です。
 <code>Orgmode::HtmlOutputBuffer.inline_formatting</code> が割と大きな method なので、小さな monkey patch のつもりが、ほぼコピペになってしまいました…。
 </p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#! /usr/bin/env ruby</span>
+<span class="c1"># -*- mode: ruby; coding: utf-8 -*-</span>
+<span class="c1"># file: org_monkey.rb</span>
+<span class="c1">#</span>
+<span class="c1"># Monkey Patch: Add support org search link</span>
+<span class="nb">require</span> <span class="s1">'org-ruby'</span>
 
+<span class="k">module</span> <span class="nn">Orgmode</span>
+  <span class="c1"># monkey patch Orgmode::to_html inline_formatter</span>
+  <span class="k">class</span> <span class="nc">HtmlOutputBuffer</span> <span class="o">&lt;</span> <span class="no">OutputBuffer</span>
+
+    <span class="kp">alias_method</span> <span class="ss">:_orig_add_line_attributes</span><span class="p">,</span> <span class="ss">:add_line_attributes</span>
+    <span class="k">def</span> <span class="nf">add_line_attributes</span><span class="p">(</span><span class="n">headline</span><span class="p">)</span>
+      <span class="n">_orig_add_line_attributes</span><span class="p">(</span><span class="n">headline</span><span class="p">)</span>
+      <span class="vi">@output</span> <span class="o">&lt;&lt;</span> <span class="s2">"&lt;a id=</span><span class="se">\"</span><span class="si">#{</span><span class="n">headline</span><span class="p">.</span><span class="nf">headline_text</span><span class="si">}</span><span class="se">\"</span><span class="s2">&gt;&lt;span class='anchor'&gt;_&lt;/span&gt;&lt;/a&gt;"</span>
+    <span class="k">end</span>
+
+    <span class="kp">alias_method</span> <span class="ss">:_orig_inline_formatting</span><span class="p">,</span> <span class="ss">:inline_formatting</span>
+    <span class="k">def</span> <span class="nf">inline_formatting</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+      <span class="vi">@re_help</span><span class="p">.</span><span class="nf">rewrite_emphasis</span> <span class="n">str</span> <span class="k">do</span> <span class="o">|</span><span class="n">marker</span><span class="p">,</span> <span class="n">s</span><span class="o">|</span>
+        <span class="k">if</span> <span class="n">marker</span> <span class="o">==</span> <span class="s2">"="</span> <span class="n">or</span> <span class="n">marker</span> <span class="o">==</span> <span class="s2">"~"</span>
+          <span class="n">s</span> <span class="o">=</span> <span class="n">escapeHTML</span> <span class="n">s</span>
+          <span class="s2">"&lt;</span><span class="si">#{</span><span class="no">Tags</span><span class="p">[</span><span class="n">marker</span><span class="p">][</span><span class="ss">:open</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt;</span><span class="si">#{</span><span class="n">s</span><span class="si">}</span><span class="s2">&lt;/</span><span class="si">#{</span><span class="no">Tags</span><span class="p">[</span><span class="n">marker</span><span class="p">][</span><span class="ss">:close</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt;"</span>
+        <span class="k">else</span>
+          <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;</span><span class="si">#{</span><span class="no">Tags</span><span class="p">[</span><span class="n">marker</span><span class="p">][</span><span class="ss">:open</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt;"</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span> <span class="o">+</span>
+            <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;/</span><span class="si">#{</span><span class="no">Tags</span><span class="p">[</span><span class="n">marker</span><span class="p">][</span><span class="ss">:close</span><span class="p">]</span><span class="si">}</span><span class="s2">&gt;"</span><span class="p">)</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+
+      <span class="k">if</span> <span class="vi">@options</span><span class="p">[</span><span class="ss">:use_sub_superscripts</span><span class="p">]</span> <span class="k">then</span>
+        <span class="vi">@re_help</span><span class="p">.</span><span class="nf">rewrite_subp</span> <span class="n">str</span> <span class="k">do</span> <span class="o">|</span><span class="n">type</span><span class="p">,</span> <span class="n">text</span><span class="o">|</span>
+          <span class="k">if</span> <span class="n">type</span> <span class="o">==</span> <span class="s2">"_"</span> <span class="k">then</span>
+            <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;sub&gt;"</span><span class="p">)</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;/sub&gt;"</span><span class="p">)</span>
+          <span class="k">elsif</span> <span class="n">type</span> <span class="o">==</span> <span class="s2">"^"</span> <span class="k">then</span>
+            <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;sup&gt;"</span><span class="p">)</span> <span class="o">+</span> <span class="n">text</span> <span class="o">+</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;/sup&gt;"</span><span class="p">)</span>
+          <span class="k">end</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+
+      <span class="vi">@re_help</span><span class="p">.</span><span class="nf">rewrite_links</span> <span class="n">str</span> <span class="k">do</span> <span class="o">|</span><span class="n">link</span><span class="p">,</span> <span class="n">defi</span><span class="o">|</span>
+        <span class="p">[</span><span class="n">link</span><span class="p">,</span> <span class="n">defi</span><span class="p">].</span><span class="nf">compact</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">text</span><span class="o">|</span>
+          <span class="c1"># We don't support search links right now. Get rid of it.</span>
+          <span class="c1"># -&gt; Support search links!!</span>
+          <span class="n">text</span><span class="p">.</span><span class="nf">sub!</span><span class="p">(</span><span class="sr">/\A(file:[^\s]+)::([^\s]*?)\Z/</span><span class="p">,</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">1#</span><span class="se">\\</span><span class="s2">2"</span><span class="p">)</span>
+          <span class="n">text</span><span class="p">.</span><span class="nf">sub!</span><span class="p">(</span><span class="sr">/\Afile:(?=[^\s]+\Z)/</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+        <span class="k">end</span>
+
+        <span class="c1"># We don't add a description for images in links, because its</span>
+        <span class="c1"># empty value forces the image to be inlined.</span>
+        <span class="n">defi</span> <span class="o">||=</span> <span class="n">link</span> <span class="k">unless</span> <span class="n">link</span> <span class="o">=~</span> <span class="vi">@re_help</span><span class="p">.</span><span class="nf">org_image_file_regexp</span>
+
+        <span class="k">if</span> <span class="n">defi</span> <span class="o">=~</span> <span class="vi">@re_help</span><span class="p">.</span><span class="nf">org_image_file_regexp</span>
+          <span class="n">defi</span> <span class="o">=</span> <span class="n">quote_tags</span> <span class="s2">"&lt;img src=</span><span class="se">\"</span><span class="si">#{</span><span class="n">defi</span><span class="si">}</span><span class="se">\"</span><span class="s2"> alt=</span><span class="se">\"</span><span class="si">#{</span><span class="n">defi</span><span class="si">}</span><span class="se">\"</span><span class="s2"> /&gt;"</span>
+        <span class="k">end</span>
+
+        <span class="k">if</span> <span class="n">defi</span>
+          <span class="n">link</span> <span class="o">=</span> <span class="vi">@options</span><span class="p">[</span><span class="ss">:link_abbrevs</span><span class="p">][</span><span class="n">link</span><span class="p">]</span> <span class="k">if</span> <span class="vi">@options</span><span class="p">[</span><span class="ss">:link_abbrevs</span><span class="p">].</span><span class="nf">has_key?</span> <span class="n">link</span>
+          <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;a href=</span><span class="se">\"</span><span class="si">#{</span><span class="n">link</span><span class="si">}</span><span class="se">\"</span><span class="s2">&gt;"</span><span class="p">)</span> <span class="o">+</span> <span class="n">defi</span> <span class="o">+</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;/a&gt;"</span><span class="p">)</span>
+        <span class="k">else</span>
+          <span class="n">quote_tags</span> <span class="s2">"&lt;img src=</span><span class="se">\"</span><span class="si">#{</span><span class="n">link</span><span class="si">}</span><span class="se">\"</span><span class="s2"> alt=</span><span class="se">\"</span><span class="si">#{</span><span class="n">link</span><span class="si">}</span><span class="se">\"</span><span class="s2"> /&gt;"</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+
+      <span class="k">if</span> <span class="vi">@output_type</span> <span class="o">==</span> <span class="ss">:table_row</span>
+        <span class="n">str</span><span class="p">.</span><span class="nf">gsub!</span> <span class="sr">/^\|\s*/</span><span class="p">,</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;td&gt;"</span><span class="p">)</span>
+        <span class="n">str</span><span class="p">.</span><span class="nf">gsub!</span> <span class="sr">/\s*\|$/</span><span class="p">,</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;/td&gt;"</span><span class="p">)</span>
+        <span class="n">str</span><span class="p">.</span><span class="nf">gsub!</span> <span class="sr">/\s*\|\s*/</span><span class="p">,</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;/td&gt;&lt;td&gt;"</span><span class="p">)</span>
+      <span class="k">end</span>
+
+      <span class="k">if</span> <span class="vi">@output_type</span> <span class="o">==</span> <span class="ss">:table_header</span>
+        <span class="n">str</span><span class="p">.</span><span class="nf">gsub!</span> <span class="sr">/^\|\s*/</span><span class="p">,</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;th&gt;"</span><span class="p">)</span>
+        <span class="n">str</span><span class="p">.</span><span class="nf">gsub!</span> <span class="sr">/\s*\|$/</span><span class="p">,</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;/th&gt;"</span><span class="p">)</span>
+        <span class="n">str</span><span class="p">.</span><span class="nf">gsub!</span> <span class="sr">/\s*\|\s*/</span><span class="p">,</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;/th&gt;&lt;th&gt;"</span><span class="p">)</span>
+      <span class="k">end</span>
+
+      <span class="k">if</span> <span class="vi">@options</span><span class="p">[</span><span class="ss">:export_footnotes</span><span class="p">]</span> <span class="k">then</span>
+        <span class="vi">@re_help</span><span class="p">.</span><span class="nf">rewrite_footnote</span> <span class="n">str</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="p">,</span> <span class="n">defi</span><span class="o">|</span>
+          <span class="c1"># TODO escape name for url?</span>
+          <span class="vi">@footnotes</span><span class="p">[</span><span class="nb">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">defi</span> <span class="k">if</span> <span class="n">defi</span>
+          <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;sup&gt;&lt;a class=</span><span class="se">\"</span><span class="s2">footref</span><span class="se">\"</span><span class="s2"> name=</span><span class="se">\"</span><span class="s2">fnr.</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="se">\"</span><span class="s2"> href=</span><span class="se">\"</span><span class="s2">#fn.</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="se">\"</span><span class="s2">&gt;"</span><span class="p">)</span> <span class="o">+</span>
+            <span class="nb">name</span> <span class="o">+</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;/a&gt;&lt;/sup&gt;"</span><span class="p">)</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+
+      <span class="c1"># Two backslashes \\ at the end of the line make a line break without breaking paragraph.</span>
+      <span class="k">if</span> <span class="vi">@output_type</span> <span class="o">!=</span> <span class="ss">:table_row</span> <span class="n">and</span> <span class="vi">@output_type</span> <span class="o">!=</span> <span class="ss">:table_header</span> <span class="k">then</span>
+        <span class="n">str</span><span class="p">.</span><span class="nf">sub!</span> <span class="sr">/\\\\$/</span><span class="p">,</span> <span class="n">quote_tags</span><span class="p">(</span><span class="s2">"&lt;br /&gt;"</span><span class="p">)</span>
+      <span class="k">end</span>
+
+      <span class="n">escape_string!</span> <span class="n">str</span>
+      <span class="no">Orgmode</span><span class="p">.</span><span class="nf">special_symbols_to_html</span> <span class="n">str</span>
+      <span class="n">str</span> <span class="o">=</span> <span class="vi">@re_help</span><span class="p">.</span><span class="nf">restore_code_snippets</span> <span class="n">str</span>
+    <span class="k">end</span>
+
+    <span class="kp">alias_method</span> <span class="ss">:_orig_normalize_lang</span><span class="p">,</span> <span class="ss">:normalize_lang</span>
+    <span class="k">def</span> <span class="nf">normalize_lang</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+      <span class="k">case</span> <span class="n">lang</span>
+      <span class="k">when</span> <span class="s1">'conf'</span>
+        <span class="s1">'ruby'</span>
+      <span class="k">else</span>
+        <span class="n">_orig_normalize_lang</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -302,7 +408,23 @@ Jekyll の blog 記事の範疇に無いページ( いわゆる <code>Page</code
 <p>
 org ファイルに Front Matter 相当の情報が存在することを前提として処理、すなわち、拡張子が <code>.org</code> の場合は常に <code>true</code> を返すようにします。
 </p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<span class="c1"># -*- mode: ruby; coding: utf-8 -*-</span>
+<span class="c1"># file: org_utils.rb</span>
+<span class="k">module</span> <span class="nn">Jekyll</span>
+  <span class="c1"># Judge the file is Org mode?</span>
+  <span class="k">module</span> <span class="nn">Utils</span>
+    <span class="kp">alias_method</span> <span class="ss">:_orig_has_yaml_header?</span><span class="p">,</span> <span class="ss">:has_yaml_header?</span>
 
+    <span class="k">def</span> <span class="nf">has_yaml_header?</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+      <span class="k">if</span> <span class="no">File</span><span class="p">.</span><span class="nf">extname</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="o">=~</span> <span class="sr">/org/</span>
+        <span class="kp">true</span>
+      <span class="k">else</span>
+        <span class="n">_orig_has_yaml_header?</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -314,7 +436,51 @@ org ファイルに Front Matter 相当の情報が存在することを前提�
 html に出力します。また <code>#+TITLE</code> が 2 回出力されるのを防ぐために、
 org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 </p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#! /usr/bin/env ruby</span>
+<span class="c1"># -*- mode: ruby; coding: utf-8 -*-</span>
+<span class="nb">require</span> <span class="s1">'org-ruby'</span>
 
+<span class="k">module</span> <span class="nn">Jekyll</span>
+  <span class="c1"># Handling Org options as YAML front matter, escape liquid tag</span>
+  <span class="k">module</span> <span class="nn">Convertible</span>
+    <span class="kp">alias_method</span> <span class="ss">:_orig_read_yaml</span><span class="p">,</span> <span class="ss">:read_yaml</span>
+
+    <span class="k">def</span> <span class="nf">read_yaml</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">opts</span> <span class="o">=</span> <span class="p">{})</span>
+      <span class="k">if</span> <span class="nb">name</span> <span class="o">=~</span> <span class="sr">/org$/</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="n">site</span><span class="p">.</span><span class="nf">in_source_dir</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="nb">name</span><span class="p">),</span>
+                            <span class="n">merged_file_read_opts</span><span class="p">(</span><span class="n">opts</span><span class="p">))</span>
+        <span class="k">if</span> <span class="no">File</span><span class="p">.</span><span class="nf">exist?</span><span class="p">(</span><span class="s1">'_html_tags.yml'</span><span class="p">)</span>
+          <span class="n">org</span> <span class="o">=</span> <span class="no">Orgmode</span><span class="o">::</span><span class="no">Parser</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">content</span><span class="p">,</span>
+                                            <span class="ss">markup_file: </span><span class="s1">'_html_tags.yml'</span><span class="p">)</span>
+        <span class="k">else</span>
+          <span class="n">org</span> <span class="o">=</span> <span class="no">Orgmode</span><span class="o">::</span><span class="no">Parser</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">end</span>
+        <span class="n">yaml_front_matter</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">org</span><span class="p">.</span><span class="nf">in_buffer_settings</span><span class="p">.</span><span class="nf">each_pair</span> <span class="k">do</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span>
+          <span class="n">yaml_front_matter</span><span class="p">.</span><span class="nf">merge!</span><span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="nf">downcase</span> <span class="o">=&gt;</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">end</span>
+        <span class="c1"># remove '#+HTML'</span>
+        <span class="n">yaml_front_matter</span> <span class="o">=</span> <span class="n">yaml_front_matter</span><span class="p">.</span><span class="nf">delete_if</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">'html'</span> <span class="p">}</span>
+        <span class="c1"># remove '#+LATEX'</span>
+        <span class="n">yaml_front_matter</span> <span class="o">=</span> <span class="n">yaml_front_matter</span><span class="p">.</span><span class="nf">delete_if</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">'latex'</span> <span class="p">}</span>
+        <span class="nb">self</span><span class="p">.</span><span class="nf">data</span> <span class="o">=</span> <span class="no">SafeYAML</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">yaml_front_matter</span><span class="p">.</span><span class="nf">to_yaml</span> <span class="o">+</span> <span class="s2">"---</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+        <span class="c1"># remove '#+TITLE' avoid double exporting</span>
+        <span class="n">org</span><span class="p">.</span><span class="nf">in_buffer_settings</span><span class="p">.</span><span class="nf">delete_if</span> <span class="p">{</span><span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">'TITLE'</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="n">yaml_front_matter</span><span class="p">.</span><span class="nf">key?</span><span class="p">(</span><span class="s1">'liquid'</span><span class="p">)</span>
+          <span class="nb">self</span><span class="p">.</span><span class="nf">content</span> <span class="o">=</span> <span class="n">org</span><span class="p">.</span><span class="nf">to_html</span>
+          <span class="nb">self</span><span class="p">.</span><span class="nf">content</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">content</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s1">'&amp;#8216;'</span><span class="p">,</span> <span class="s2">"'"</span><span class="p">)</span>
+          <span class="nb">self</span><span class="p">.</span><span class="nf">content</span> <span class="o">=</span> <span class="nb">self</span><span class="p">.</span><span class="nf">content</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s1">'&amp;#8217;'</span><span class="p">,</span> <span class="s2">"'"</span><span class="p">)</span>
+        <span class="k">else</span>
+          <span class="nb">self</span><span class="p">.</span><span class="nf">content</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="no">ORG</span><span class="sh">
+</span><span class="si">#{</span><span class="n">org</span><span class="p">.</span><span class="nf">to_html</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="s1">'{'</span><span class="p">,</span><span class="s1">'&amp;#123;'</span><span class="p">).</span><span class="nf">gsub</span><span class="p">(</span><span class="s1">'{'</span><span class="p">,</span><span class="s1">'&amp;#125;'</span><span class="p">)</span><span class="si">}</span><span class="sh">
+</span><span class="no">ORG</span>
+        <span class="k">end</span>
+      <span class="k">else</span>
+        <span class="n">_orig_read_yaml</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="nb">name</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -324,7 +490,33 @@ org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 <p>
 Converter の追加は Jekyll 本家のドキュメントにもあるので、割と簡単です。実際の処理は上書きした <code>Jekyll::Convertible</code> で行なわれています。ただ、search link を処理するために、最後にリンクを置換しています。
 </p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<span class="c1"># -*- mode: ruby; coding: utf-8 -*-</span>
+<span class="c1"># file: org.rb</span>
+<span class="nb">require</span> <span class="s1">'org-ruby'</span>
 
+<span class="k">module</span> <span class="nn">Jekyll</span>
+  <span class="c1"># Add New Converter handling org-mode</span>
+  <span class="c1"># main logic -&gt; @see org_convertible.rb</span>
+  <span class="k">class</span> <span class="nc">OrgConverter</span> <span class="o">&lt;</span> <span class="no">Converter</span>
+    <span class="n">safe</span> <span class="kp">true</span>
+    <span class="n">priority</span> <span class="ss">:low</span>
+
+    <span class="k">def</span> <span class="nf">matches</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span>
+      <span class="n">ext</span> <span class="o">=~</span> <span class="sr">/^\.org$/i</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">output_ext</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span>
+      <span class="s1">'.html'</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+      <span class="c1"># ad hoc file link conversion</span>
+      <span class="n">content</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="sr">/&lt;a href="([^(http:\/\/|https:\/\/|mailto:)]\S+)\.org/</span><span class="p">,</span>
+                   <span class="s2">"&lt;a href=</span><span class="se">\"\\</span><span class="s2">1.html"</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
 </div>
 </div>
 </div>

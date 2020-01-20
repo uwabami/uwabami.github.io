@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"datePublished":"2020-01-11T01:13:46+09:00","@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","dateModified":"2020-01-11T01:13:46+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianTeX.html"},"url":"https://uwabami.github.io/cc-env/DebianTeX.html","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"TeX 環境の構築","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianTeX.html"},"@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianTeX.html","author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"TeX 環境の構築","dateModified":"2020-01-11T01:13:46+09:00","datePublished":"2020-01-11T01:13:46+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -308,7 +308,25 @@ Ghostscript に現在システムに導入されているフォントを教え�
 例えば以下のソースを <code>xelatex</code> で typeset することで，
 IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 </p>
+<figure class="highlight"><pre><code class="language-latex" data-lang="latex"><span class="k">\documentclass</span><span class="na">[a4paper]</span><span class="p">{</span>bxjsarticle<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>zxjatype<span class="p">}</span>
+<span class="k">\usepackage</span><span class="na">[ipa]</span><span class="p">{</span>zxjafont<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>xltxtra<span class="p">}</span>
 
+<span class="nt">\begin{document}</span>
+
+<span class="k">\section</span><span class="p">{</span>幸田露伴「雲のいろ〳〵――卿雲」<span class="p">}</span>
+
+景雲といひ、卿雲といひ、慶雲といへる、
+しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、
+煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、
+金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、
+歸するところは美しき雲といふまでなり。
+<span class="nt">\end{document}</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -318,7 +336,21 @@ IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 例えば以下のソースを <code>lualatex</code>
 で typeset することで，IPAex{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 </p>
+<figure class="highlight"><pre><code class="language-latex" data-lang="latex"><span class="k">\documentclass</span><span class="p">{</span>ltjsarticle<span class="p">}</span>
+<span class="k">\usepackage</span><span class="na">[ipaex]</span><span class="p">{</span>luatexja-preset<span class="p">}</span>
+<span class="nt">\begin{document}</span>
 
+<span class="k">\section</span><span class="p">{</span>幸田露伴「雲のいろ〳〵――卿雲」<span class="p">}</span>
+景雲といひ、卿雲といひ、慶雲といへる、
+しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、
+煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、
+金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、
+歸するところは美しき雲といふまでなり。
+<span class="nt">\end{document}</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -327,7 +359,20 @@ IPA{明朝,ゴシック}が埋め込まれた PDF が生成されます．
 <p>
 例えば以下を <code>pdflatex</code> で typeset することで，PDF が生成されます．
 </p>
+<figure class="highlight"><pre><code class="language-latex" data-lang="latex"><span class="k">\documentclass</span><span class="na">[pdflatex,jadriver=standard]</span><span class="p">{</span>bxjsarticle<span class="p">}</span>
+<span class="nt">\begin{document}</span>
 
+<span class="k">\section</span><span class="p">{</span>幸田露伴「雲のいろ〳〵――卿雲」<span class="p">}</span>
+景雲といひ、卿雲といひ、慶雲といへる、
+しかと指し定められたる雲にはあらざるべし。
+卿雲爛たり糺縵〻たり、といへる、
+煙にあらず雲にあらず紫を曳き光を流す、といへる、
+大人作矣、五色氤氳、といへる、
+金柯初めて繞繚、玉葉漸く氤氳、といへる、
+還つて九霄に入りて沆瀣を成し、夕嵐生ずる處鶴松に歸る、
+といへる詩の句などによりて見れば、
+歸するところは美しき雲といふまでなり。
+<span class="nt">\end{document}</span></code></pre></figure>
 </div>
 </div>
 </div>
