@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/Debiani3.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/Debiani3.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -202,7 +202,7 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 </p>
 
 <p>
-<a href="https://uwabami.github.io/cc-env/Debiani3/desktop-1920x1200.png"><amp-img src="https://uwabami.github.io/cc-env/Debiani3/desktop-576x360.png" width="576" height="360" layout="responsive"><noscript><img src="https://uwabami.github.io/cc-env/Debiani3/desktop-576x360.png" width="576" height="360"></noscript></amp-img></a>
+<a href="https://uwabami.github.io/cc-env/Debiani3/desktop-1920x1200.png"><amp-img src="https://uwabami.github.io/cc-env/Debiani3/desktop-576x360.webp" width="576" height="360" class="px2" layout="responsive"><amp-img src="https://uwabami.github.io/cc-env/Debiani3/desktop-576x360.png" width="576" height="360" class="px2" layout="responsive" fallback></amp-img><noscript><img src="https://uwabami.github.io/cc-env/Debiani3/desktop-576x360.png" width="576" height="360" class="px2"></noscript></amp-img></a>
 </p>
 </div>
 </div>
@@ -258,31 +258,7 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 <p>
 というわけで, 安直には <code>xdg-open</code> を修正すれば良いですね:
 </p>
-<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">--- /usr/bin/xdg-open.orig	2015-10-06 04:19:48.000000000 +0900
-</span><span class="gi">+++ /usr/bin/xdg-open	2017-07-24 21:18:32.191564009 +0900
-</span><span class="p">@@ -787,20 +787,9 @@</span>
-         if [ -n "$DISPLAY" ]; then
-             filetype=`xdg-mime query filetype "$file" | sed "s/;.*//"`
-             open_generic_xdg_mime "$file" "$filetype"
-<span class="gd">-        fi
--
--        if which run-mailcap 2&gt;/dev/null 1&gt;&amp;2; then
--            run-mailcap --action=view "$file"
--            if [ $? -eq 0 ]; then
--                exit_success
--            fi
--        fi
--
--        if [ -n "$DISPLAY" ] &amp;&amp; mimeopen -v 2&gt;/dev/null 1&gt;&amp;2; then
--            mimeopen -L -n "$file"
--            if [ $? -eq 0 ]; then
--                exit_success
--            fi
-</span><span class="gi">+        else
-+            echo "can't handle: please set mime type via xdg-mime"
-+            exit_failure_operation_failed
-</span>         fi
-     fi</code></pre></figure>
+
 
 <p>
 あと, <code>~/.local/share/applications/mimeapps.list</code> から <code>~/.config/mimeapps.list</code> へ symbolic link を作成しておきます.
@@ -301,34 +277,12 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 今はこんな塩梅:
 </p>
 
-<figure class="highlight"><pre><code class="language-conf-xdefaults" data-lang="conf-xdefaults">! -*- mode:conf-xdefaults; coding: utf-8 -*-
-!! Rofi
-rofi.modi: run,window,,windowcd,drun,ssh
-rofi.combi-modi: windowcd,drun
-rofi.lines: 6
-rofi.font: FSMRMP 24
-rofi.bw: 2
-rofi.location: 0
-rofi.padding: 5
-rofi.sidebar-mode: true
-rofi.hide-scrollbar: true
-rofi.fixed-num-lines: true
-rofi.kb-row-up: Up,Control+p,Shift+Tab,Alt+Tab
-rofi.kb-row-down: Down,Control+n
-rofi.kb-cancel: Escape,Control+g,Control+bracketleft,Control+c
-rofi.kb-mode-next: Shift+Right,Control+i,Control+Tab
-rofi.kb-mode-previous: Shift+Left,Control+Shift+i
-rofi.color-enabled: true
-rofi.color-window: #3a4c54, #2a373e, #c3c6c8
-rofi.color-normal: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
-rofi.color-active: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
-rofi.color-urgent: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3</code></pre></figure>
+
 
 <p>
 i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
 </p>
-<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">bindsym $Alt+F2 $execi sh -c "rofi -show combi"
-bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"</code></pre></figure>
+
 </div>
 </div>
 <div>
@@ -349,54 +303,11 @@ i3barは背景透過した上で,
 <p>
 status ラインは以下の通り
 </p>
-<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space"># status bar
-bar {
-    position    top
-    tray_output eDP1
-    tray_padding -4
-    font xft:Inconsolata,Xft:FontAwesome 18
-    i3bar_command i3bar --transparency
-    status_command i3status -c $HOME/.config/i3/i3status.conf
-    binding_mode_indicator yes
-    colors {
-      background #02020200
-      statusline #F6F3E8
-      separator  #111822
-      focused_workspace  #111822 #222244 #F6F3E8
-      active_workspace   #555555 #555555 #F6F3E8
-      inactive_workspace #020202 #242424 #888888
-      urgent_workspace   #A00000 #900000 #F6F3E8
-      binding_mode       #A00000 #900000 #f6f3e8
-    }
-}</code></pre></figure>
+
 <p>
 i3status は以下
 </p>
-<figure class="highlight"><pre><code class="language-conf-unix" data-lang="conf-unix">general {
-        colors = true
-        interval = 1
-        output_format = i3bar
-        markup ="pango"
-}
 
-order += "tztime local"
-order += "battery all"
-
-tztime local {
-        align = left
-        min_width = "2020/12/31(木) 23:59:59"
-        format = "%Y/%m/%d(%a) %H:%M:%S"
-}
-
-battery all {
-        align = left
-        min_width = " 80.00%"
-        format = "&lt;span color='#ffbf7f'&gt;%status %percentage&lt;/span&gt;"
-        status_unk = 
-        status_full = 
-        status_chr = 
-        status_bat = 
-}</code></pre></figure>
 </div>
 </div>
 <div>
@@ -407,131 +318,7 @@ system load を表示させている.
 幅の調整なんかは lua でやった方が良いのかも.
 </p>
 
-<figure class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="c1">-- -*- mode: lua; coding: utf-8 -*-</span>
-<span class="n">conky</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="c1">--########################</span>
-   <span class="c1">-- Global config section #</span>
-   <span class="c1">--########################</span>
-   <span class="c1">-- Update interval in seconds</span>
-   <span class="n">update_interval</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-   <span class="c1">-- This is the number of times Conky will update before quitting (0: unlimited)</span>
-   <span class="n">total_run_times</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-   <span class="c1">-- number of net samples to average (1: disable averaging)</span>
-   <span class="n">net_avg_samples</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-   <span class="c1">-- number of cpu samples to average (1: disable averaging)</span>
-   <span class="n">cpu_avg_samples</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
 
-   <span class="n">imlib_cache_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-   <span class="c1">-- Use double buffering (reduces flicker, may not work for everyone)</span>
-   <span class="n">double_buffer</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-   <span class="c1">-- Subtract file system buffers from used memory?</span>
-   <span class="n">no_buffers</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-
-   <span class="c1">--################</span>
-   <span class="c1">-- Text settings #</span>
-   <span class="c1">--################</span>
-   <span class="c1">-- Force UTF8? note that UTF8 support required XFT</span>
-   <span class="n">override_utf8_locale</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-   <span class="n">use_xft</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-   <span class="n">font</span> <span class="o">=</span> <span class="s1">'FSMRMP:style=Bold:size=4'</span><span class="p">,</span>
-   <span class="c1">-- use_xft =  false,</span>
-   <span class="c1">-- font='-shinonome-gothic-medium-r-normal--14-130-75-75-c-70-iso8859-1',</span>
-
-   <span class="c1">--##################</span>
-   <span class="c1">-- Window settings #</span>
-   <span class="c1">--##################</span>
-   <span class="c1">-- Create own window instead of using desktop (required in nautilus)</span>
-   <span class="n">own_window</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-   <span class="n">own_window_type</span> <span class="o">=</span> <span class="s1">'override'</span><span class="p">,</span>
-   <span class="n">own_window_transparent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-   <span class="n">own_window_hints</span> <span class="o">=</span> <span class="s1">'undecorated,below,sticky,skip_pager,skip_taskbar'</span><span class="p">,</span>
-   <span class="c1">-- Text alignment, other possible values are commented top_left,</span>
-   <span class="c1">-- top_right, top_middle, bottom_left, bottom_right, bottom_middle,</span>
-   <span class="c1">-- middle_left, middle_middle, middle_right, or none (also can be</span>
-   <span class="c1">-- abreviated as tl, tr, tm, bl, br, bm, ml, mm, mr)</span>
-   <span class="n">alignment</span> <span class="o">=</span> <span class="s1">'tl'</span><span class="p">,</span>
-   <span class="c1">-- Gap between borders of screen and text</span>
-   <span class="c1">-- same thing as passing -x at command line</span>
-   <span class="n">gap_x</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
-   <span class="n">gap_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-   <span class="c1">-- Minimum size of text area</span>
-   <span class="n">minimum_width</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
-   <span class="n">maximum_width</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
-
-   <span class="c1">--####################</span>
-   <span class="c1">-- Graphics settings #</span>
-   <span class="c1">--####################</span>
-   <span class="n">default_bar_width</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-   <span class="n">default_bar_height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-   <span class="c1">-- Draw shades?</span>
-   <span class="n">draw_shades</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-   <span class="c1">-- Draw outlines?</span>
-   <span class="n">draw_outline</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-   <span class="c1">-- Draw borders around text</span>
-   <span class="n">draw_borders</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-   <span class="n">draw_graph_borders</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-   <span class="n">default_color</span> <span class="o">=</span> <span class="s1">'#ffffff'</span><span class="p">,</span>
-   <span class="c1">-- default_shade_color = '#242424',</span>
-<span class="p">};</span>
-<span class="c1">-- ${cpu cpu0}%${font}</span>
-<span class="n">conky</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">[[
-${font FSMRMP:size=16.5}${color #f09000}CPU${color}: ${cpu cpu0}%${font}\
-${voffset   8}\
-${goto      0}${color #ff0000}${cpubar cpu1 8,24} ${cpubar cpu3 8,24}${color}\
-${goto     54}${color #ff0000}${cpubar cpu2 8,24} ${cpubar cpu4 8,24}${color}\
-${voffset -20}\
-${goto    108}${color 888888}${cpugraph cpu0 28,50 ff0000 ff7f7f}${color}\
-${goto    164}\
-${voffset  -2}\
-${font FSMRMP:size=16.5}${color #f09000}RAM${color}: $memperc%${font}\
-${voffset   9}\
-${goto    164}\
-${color #0000ff}${membar 8,85}${color}\
-${voffset -20}\
-${goto    256}${color 888888}${memgraph 28,50 0000ff 7f7fff}${color}\
-${voffset  -2}\
-${goto    310}\
-${font FSMRMP:size=16.5}${color #f09000}DISK${color}: ${fs_used_perc /}%${font}\
-${voffset   9}\
-${goto    310}${color #aaaaaa}${fs_bar 8,95 /}${color}\
-${voffset -20}\
-${goto    413}\
-${color 888888}${diskiograph_read /dev/dm-0 28,50 FCAF3E FCAF3E} \
-${color 888888}${diskiograph_write /dev/dm-0 28,50 FFFF4C FFFF4C}\
-${if_existing /proc/net/route wlp2s0}\
-${voffset   2}\
-${goto    520}\
-${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}\
-${voffset   5}\
-${goto    520}\
-${font FSMRMP:size=13.5}${color #ffffff}${addr wlp2s0}${font}${color}\
-${voffset -24}\
-${goto    660}\
-${color 888888}\
-${upspeedgraph wlp2s0 28,50 4CFFFF 7FFFFF} \
-${downspeedgraph wlp2s0 28,50 4CFF4C 7FFF7F}${color}\
-${else}\
-${if_existing /proc/net/route enp0s31f6}\
-${voffset   2}\
-${goto    520}\
-${font FSMRMP:size=10.5}${color #4cff4c} ${color}${font}\
-${voffset   5}\
-${goto    520}\
-${font FSMRMP:size=13.5}${color #ffffff}${addr enp0s31f6}${font}${color}\
-${voffset -24}\
-${goto    660}\
-${color 888888}\
-${upspeedgraph enp0s31f6 28,50 4CFFFF 7FFFFF} \
-${downspeedgraph enp0s31f6 28,50 4CFF4C 7FFF7F}${color}\
-${else}\
-${voffset   2}\
-${goto    520}\
-${font FSMRMP:size=10.5}${color #aaaaaa} ${color}${font}\
-${voffset   5}\
-${goto    520}\
-${font FSMRMP:size=13.5}${color #aaaaaa}---.---.---.---${color}${font}\
-${endif}${endif}
-]]</span><span class="p">;</span></code></pre></figure>
 </div>
 </div>
 
@@ -543,18 +330,7 @@ suspend → resume した時に i3lock を走らせたいので
 <code>/etc/systemd/system/i3lock.service</code>:
 </p>
 
-<figure class="highlight"><pre><code class="language-systemd" data-lang="systemd">[Unit]
-Description=Starts i3lock at suspend time
-After=sleep.target
 
-[Service]
-User=uwabami
-Type=forking
-Environment=DISPLAY=:0
-ExecStart=/usr/bin/i3lock -p win -c 444444
-
-[Install]
-WantedBy=sleep.target</code></pre></figure>
 
 <p>
 を作成して有効にしておく.
@@ -573,164 +349,7 @@ WantedBy=sleep.target</code></pre></figure>
 設定ファイル全体は以下の通り
 </p>
 
-<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">#-*- mode:conf-space ; coding: utf-8 -*-
-# macro
-set $mod Mod4
-set $Alt Mod1
-set $execi exec --no-startup-id
-# set $execa exec_always
-# set $execai exec_always --no-startup-id
 
-# font
-font xft:Inconsolata,xft:FontAwesome 18
-
-# startup
-$execi xrdb -merge $HOME/.Xresources
-$execi compton
-$execi nm-applet
-# $execi blueman-applet
-# $execi udiskie
-$execi /usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon
-$execi $(sleep 5 &amp;  feh --bg-scale $HOME/Pictures/desktop.png --no-fehbg)
-$execi $(sleep 5 &amp; conky -c $HOME/.config/i3/conkyrc)
-$execi $(sleep 5 &amp; nextcloud)
-
-# screensaver and power management
-$execi xset -dpms   # disable DPMS
-$execi xset s off   # disable auto screensaver
-bindsym $mod+Shift+l $execi sh -c "i3lock -n -c 242424"
-
-# start a terminal: rxvt-unicide daemon mode
-bindsym Control+Shift+n exec urxvtcd
-# start launcher: rofi @see ~/.Xresources
-bindsym $Alt+F2 $execi sh -c "rofi -show run"
-
-# change focus
-# bindsym $Alt+Tab $execi sh -c "rofi -show windowcd"
-set $i3t_alt_tab ~/.config/i3/i3-alt-tab.py next
-bindsym $Alt+Tab exec $i3t_alt_tab 2&gt;&amp;1 1&gt;/dev/null
-
-# change focus
-bindsym $mod+j focus left
-bindsym $mod+Control+Left focus left
-bindsym $mod+k focus right
-bindsym $mod+Control+Down focus down
-bindsym $mod+l focus down
-bindsym $mod+Control+Right focus right
-bindsym $mod+Control+Up focus Up
-
-
-# kill focused window
-bindsym $Alt+F4 kill
-
-# toggle tiling / floating
-bindsym $Alt+Return floating toggle
-# enter fullscreen mode for the focused container
-bindsym $mod+F12 fullscreen toggle
-
-
-# move focused window
-bindsym $mod+Left move left
-bindsym $mod+Down move down
-bindsym $mod+Up move up
-bindsym $mod+Right move right
-
-
-# change container layout (tabbed, stacked, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+t layout toggle split
-workspace_layout tabbed
-
-# focus the parent container
-bindsym $mod+a focus parent
-# focus the child container
-bindsym $mod+d focus child
-
-# resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-# switch to workspace
-bindsym $Alt+1 workspace 1
-bindsym $Alt+2 workspace 2
-bindsym $Alt+3 workspace 3
-bindsym $Alt+4 workspace 4
-bindsym $Alt+5 workspace 5
-bindsym $Alt+6 workspace 6
-
-# move focused container to workspace
-bindsym $Alt+Shift+1 move container to workspace 1
-bindsym $Alt+Shift+2 move container to workspace 2
-bindsym $Alt+Shift+3 move container to workspace 3
-bindsym $Alt+Shift+4 move container to workspace 4
-bindsym $Alt+Shift+5 move container to workspace 5
-bindsym $Alt+Shift+6 move container to workspace 6
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace
-bindsym $mod+Shift+r restart
-# exit
-# bindsym $mod+Shift+e exec i3-msg exit
-
-# media key
-bindsym XF86AudioRaiseVolume $execi pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume $execi pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute $execi pactl set-sink-mute 0 toggle
-bindsym XF86MonBrightnessUp $execi /usr/bin/xbacklight -inc 5
-bindsym XF86MonBrightnessDown $execi /usr/bin/xbacklight -dec 5
-
-# status bar
-bar {
-    position top
-    tray_output eDP1
-    tray_padding -4
-    font xft:Inconsolata,Xft:FontAwesome 18
-    i3bar_command i3bar --transparency
-    status_command i3status -c $HOME/.config/i3/i3status.conf
-    binding_mode_indicator yes
-    colors {
-      background #02020200
-      statusline #F6F3E8
-      separator  #111822
-      focused_workspace  #111822 #222244 #F6F3E8
-      active_workspace   #555555 #555555 #F6F3E8
-      inactive_workspace #020202 #242424 #888888
-      urgent_workspace   #A00000 #900000 #F6F3E8
-      binding_mode       #A00000 #900000 #f6f3e8
-    }
-}
-
-# class                 border  bground text    indicator child_border
-client.focused          #111822 #222244 #F6F3E8 #2B2B2B   #2B2B2B
-client.focused_inactive #020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
-client.unfocused        #020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
-client.urgent           #A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
-
-# specific window settings
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [class="(?i)feh"] floating enable
-for_window [class="(?i)vlc"] floating enable
-for_window [class="(?i)firefox"] floating enable
-# for_window [class="(?i)pcmanfm"] floating enable
-
-# startup
-assign [class="(?i)evince" ] 2
-assign [class="(?i)pcmanfm" ] 3
-assign [class="(?i)Mendeley Desktop" ] 3
-assign [class="(?i)firefox"] 4</code></pre></figure>
 </div>
 </div>
 <!-- %%%% end content %%%% -->

@@ -41,7 +41,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"headline":"TDiary::Style::Org","dateModified":"2018-10-17T06:15:46+09:00","datePublished":"2018-10-17T06:15:46+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/software/tdiary-style-org/index.en.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/index.en.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"TDiary::Style::Org","dateModified":"2018-10-17T06:15:46+09:00","datePublished":"2018-10-17T06:15:46+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/software/tdiary-style-org/index.en.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/index.en.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -174,7 +174,7 @@
 <div>
 <h2 id="orgbe33c2ee">What's this?</h2>
 <div class="outline-text-2" id="text-orgbe33c2ee">
-<p><amp-img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" width="72px" height="20px" layout="fixed" class="travis_badge"><noscript><img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" width="72px" height="20px" class="travis_badge"></noscript></amp-img>
+<p><amp-img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" width="72px" height="20px" layout="fixed" class="travis_badge"><amp-img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" width="72px" height="20px" layout="fixed" class="travis_badge" fallback></amp-img><noscript><img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" width="72px" height="20px" class="travis_badge"></noscript></amp-img>
 <span id="forkongithub">
   <a href="https://github.com/uwabami/tdiary-style-org">Fork me on GitHub</a>
 </span>
@@ -184,12 +184,11 @@
 The <code>TDiary::Style::Org</code> is provide <a href="http://orgmode.org/">Org-mode</a> style for <a href="http://www.tdiary.org/">tDiary</a>.
 Convert Org to HTML by  <a href="https://github.com/wallyqs/org-ruby">wallyqs/org-ruby: An Org mode parser written in Ruby</a>.
 </p>
-<div class="sm-col md-col-6 sm-col-12 pr1">
-<amp-img src="https://uwabami.github.io/software/tdiary-style-org/src.png" width="960" height="753" layout="responsive" alt="src"><noscript><img src="https://uwabami.github.io/software/tdiary-style-org/src.png" width="960" height="753" alt="src"></noscript></amp-img>
-</div>
-<div class="sm-col md-col-6 sm-col-12 pl1">
-<amp-img src="https://uwabami.github.io/software/tdiary-style-org/result.png" width="960" height="753" layout="responsive" alt="result"><noscript><img src="https://uwabami.github.io/software/tdiary-style-org/result.png" width="960" height="753" alt="result"></noscript></amp-img>
-</div>
+
+
+<amp-img src="src.webp" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753" layout="responsive"><amp-img src="src.png" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753" layout="responsive" fallback></amp-img><noscript><img src="src.png" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753"></noscript></amp-img>
+
+<amp-img src="result.webp" alt="result.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753" layout="responsive"><amp-img src="result.png" alt="result.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753" layout="responsive" fallback></amp-img><noscript><img src="result.png" alt="result.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753"></noscript></amp-img>
 </div>
 </div>
 <div>
@@ -198,7 +197,7 @@ Convert Org to HTML by  <a href="https://github.com/wallyqs/org-ruby">wallyqs/or
 <p>
 Add this line to your application's Gemfile.local:
 </p>
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">'tdiary-style-org'</span></code></pre></figure>
+
 <p>
 And then execute:
 </p>
@@ -219,7 +218,7 @@ Or install it yourself as:
 <p>
 If you want to use this style, add @style into tdiary.conf below:
 </p>
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vi">@style</span> <span class="o">=</span> <span class="s1">'Org'</span></code></pre></figure>
+
 </div>
 </div>
 <div>

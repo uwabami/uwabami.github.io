@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"headline":"tDiary-mode","dateModified":"2020-01-14T12:39:47+09:00","datePublished":"2020-01-14T12:39:47+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/software/tdiary-mode/","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-mode/"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"tDiary-mode","dateModified":"2020-01-14T12:39:47+09:00","datePublished":"2020-01-14T12:39:47+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/software/tdiary-mode/","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-mode/"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -219,47 +219,12 @@ Emacs から tDiary を更新するための Major mode です.
 load-path の通った所に <a href="tdiary-mode.el">tdiary-mode.el</a> を置いて,
 以下を <code>.emacs</code> に記載して下さい.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; 更新する日記のリスト</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-diary-list</span> <span class="o">'</span><span class="p">((</span><span class="s">"my 1st diary"</span> <span class="s">"http://example.com/tdiary/"</span><span class="p">)</span>
-                          <span class="p">(</span><span class="s">"my 2nd diary"</span> <span class="s">"http://example.com/tdiary2/"</span><span class="p">)))</span>
-<span class="c1">;; 更新後に日記原稿を保存するディレクトリ</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-text-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"~/path-to-saved-diary"</span><span class="p">))</span>
-<span class="c1">;; preview に使う関数</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-browser-function</span> <span class="ss">'browse-url</span><span class="p">)</span>
-<span class="c1">;; csrf key</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-csrf-key</span> <span class="s">"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"</span><span class="p">)</span>
-<span class="c1">;; スタイルに応じて: org スタイル</span>
-<span class="p">(</span><span class="k">setq</span>  <span class="nv">tdiary-style-mode</span> <span class="ss">'org-mode</span>
-       <span class="nv">tdiary-text-suffix</span> <span class="s">".org"</span><span class="p">)</span>
-<span class="c1">;; スタイルに応じて: tDiary as html スタイル</span>
-<span class="c1">;; (setq  tdiary-style-mode 'html-mode</span>
-<span class="c1">;;        tdiary-text-suffix ".td")</span>
-<span class="c1">;; スタイルに応じて: gfm スタイル</span>
-<span class="c1">;; (setq  tdiary-style-mode 'markdown-mode</span>
-<span class="c1">;;        tdiary-text-suffix ".md")</span>
-<span class="c1">;; スタイルに応じて: RD スタイル</span>
-<span class="c1">;; (setq  tdiary-style-mode 'rd-mode</span>
-<span class="c1">;;        tdiary-text-suffix ".rd")</span>
-<span class="c1">;; 以下, お好みで: テンプレートとして登録する plugin の定義</span>
-<span class="c1">;;  (setq tdiary-plugin-definition</span>
-<span class="c1">;;    '(</span>
-<span class="c1">;;      ("STRONG" ("&lt;%=STRONG %Q|" (p "str: ") "| %&gt;"))</span>
-<span class="c1">;;      ("PRE" ("&lt;%=PRE %Q|" (p "str: ") "| %&gt;"))</span>
-<span class="c1">;;      ("CITE" ("&lt;%=CITE %Q|" (p "str: ") "| %&gt;"))</span>
-<span class="c1">;;      ))</span>
-<span class="c1">;;  (add-hook 'tdiary-mode-hook</span>
-<span class="c1">;;        '(lambda ()</span>
-<span class="c1">;;       (local-set-key "\C-i" 'tdiary-complete-plugin)))</span>
-<span class="c1">;; autoload</span>
-<span class="p">(</span><span class="nv">autoload</span> <span class="ss">'tdiary-mode</span> <span class="s">"tdiary-mode"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">autoload</span> <span class="ss">'tdiary-new</span> <span class="s">"tdiary-mode"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">autoload</span> <span class="ss">'tdiary-new-diary</span> <span class="s">"tdiary-mode"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">autoload</span> <span class="ss">'tdiary-replace</span> <span class="s">"tdiary-mode"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
+
 
 <p>
 パスワードを保存したい場合には
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-passwd-file</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tdiary-passwd"</span> <span class="s">".tdiary-passwd"</span><span class="p">))</span></code></pre></figure>
+
 <p>
 とでもしておいて
 </p>

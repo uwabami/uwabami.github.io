@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"headline":"Debian: Install 直後の雑多な設定","dateModified":"2019-12-20T07:28:03+09:00","datePublished":"2019-12-20T07:28:03+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/DebianConfigure.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianConfigure.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Debian: Install 直後の雑多な設定","dateModified":"2019-12-20T07:28:03+09:00","datePublished":"2019-12-20T07:28:03+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/DebianConfigure.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianConfigure.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -222,11 +222,7 @@ X のキーボード設定もこれで設定される.
 ファイルが存在すればその内容を読むようになっている.
 現状は以下の通り:
 </p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">BACKSPACE</span>=<span class="s2">"guess"</span>
-<span class="n">XKBLAYOUT</span>=<span class="s2">"jp"</span>
-<span class="n">XKBMODEL</span>=<span class="s2">"pc105"</span>
-<span class="n">XKBVARIANT</span>=<span class="s2">""</span>
-<span class="n">XKBOPTIONS</span>=<span class="s2">"ctrl:nocaps"</span></code></pre></figure>
+
 <p>
 その後で
 </p>
@@ -282,9 +278,7 @@ $ sudo -s
 ついでに /etc/crontab に MAILTO を追記しておく.
 SMTP-AUTH over SSL に対応したい場合は, /etc/ssmtp/ssmtp.conf に
 </p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">AuthUser</span>=[<span class="n">SMTP</span>-<span class="n">AUTH</span> のユーザ名]
-<span class="n">AuthPass</span>=[<span class="n">SMTP</span>-<span class="n">AUTH</span> のパスワード]
-<span class="n">UseTLS</span>=<span class="n">YES</span></code></pre></figure>
+
 <p>
 と書いておくと良い.
 </p>
@@ -314,7 +308,7 @@ VAIO type G ではイヤホン差しても外部出力が mute にならない�
 alsamixer での表示が悲しい感じになる.
 <code>/etc/modprobe.d/alsa-base.conf</code> の末尾に
 </p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">options</span> <span class="n">snd</span>-<span class="n">hda</span>-<span class="n">intel</span> <span class="n">model</span>=<span class="n">basic</span></code></pre></figure>
+
 <p>
 なんて追記しておくと良い.
 </p>

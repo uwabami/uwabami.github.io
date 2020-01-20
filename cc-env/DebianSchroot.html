@@ -40,7 +40,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"headline":"schroot:お手軽コンテナ(?)","dateModified":"2018-10-25T06:13:54+09:00","datePublished":"2018-10-25T06:13:54+09:00","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/DebianSchroot.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSchroot.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"schroot:お手軽コンテナ(?)","dateModified":"2018-10-25T06:13:54+09:00","datePublished":"2018-10-25T06:13:54+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","url":"https://uwabami.github.io/cc-env/DebianSchroot.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSchroot.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -274,14 +274,7 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 作成した <code>/src/chroot/stable-amd64</code> の設定を <code>/etc/schroot/schroot.conf</code> に,
 例えば以下の様に書いておく:
 </p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf">[<span class="n">stable</span>-<span class="n">amd64</span>]
-<span class="n">description</span>=<span class="n">Debian</span> <span class="n">stable</span> <span class="n">amd64</span>
-<span class="n">directory</span>=/<span class="n">src</span>/<span class="n">chroot</span>/<span class="n">stable</span>-<span class="n">amd64</span>
-<span class="n">users</span>=[この <span class="n">schroot</span> 環境を利用できるユーザの名前]
-<span class="n">root</span>-<span class="n">groups</span>=[<span class="n">root</span> としてログインできる親環境のグループの指定]
-<span class="n">aliases</span>=<span class="n">stable</span>,<span class="n">default</span>
-<span class="n">type</span>=<span class="n">directory</span>
-<span class="n">profile</span>=<span class="n">desktop</span></code></pre></figure>
+
 <p>
 この場合,
 </p>
@@ -317,7 +310,7 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 <p>
 親環境が rsyslogd ならば, <i>etc/rsyslog.d</i> あたりに
 </p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf">$<span class="n">AddUnixListenSocket</span> /<span class="n">var</span>/<span class="n">chroot</span>/<span class="n">stable</span>-<span class="n">amd64</span>/<span class="n">dev</span>/<span class="n">log</span></code></pre></figure>
+
 <p>
 と書いておくと chroot 環境の /dev/log も見に行ってくれる.
 </p>
@@ -334,24 +327,7 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 武藤さんが載せていたスクリプトをそのまま仕込むことにする.
 とりあえずは syslog-ng と cron だけ.
 </p>
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/sh</span>
-revw<span class="o">(){</span>
-  <span class="nb">set</span> <span class="nt">--</span> <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
-  <span class="nv">r</span><span class="o">=</span><span class="s2">""</span>
-  <span class="k">while</span> <span class="o">[</span> <span class="nv">$# </span><span class="nt">-gt</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">do
-    </span><span class="nv">w</span><span class="o">=</span><span class="nv">$1</span><span class="p">;</span> <span class="nb">shift
-    </span><span class="nv">r</span><span class="o">=</span><span class="s2">"</span><span class="nv">$w</span><span class="s2"> </span><span class="nv">$r</span><span class="s2">"</span>
-  <span class="k">done
-  </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$r</span><span class="s2">"</span>
-<span class="o">}</span>
-<span class="nb">echo</span> <span class="s2">"start services (chroot sid):"</span>
-<span class="nv">services</span><span class="o">=</span><span class="s2">"anacron cron"</span>
-<span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"stop"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
-  </span><span class="nv">services</span><span class="o">=</span><span class="si">$(</span>revw <span class="nv">$services</span><span class="si">)</span>
-<span class="k">fi
-for </span>s <span class="k">in</span> <span class="nv">$services</span><span class="p">;</span> <span class="k">do
-  </span>schroot <span class="nt">-q</span> <span class="nt">-c</span> stable-amd64 /etc/init.d/<span class="nv">$s</span> <span class="nv">$1</span>
-<span class="k">done</span></code></pre></figure>
+
 <p>
 systemd 環境下だと systemctl で起動するのが良いのかなぁ.
 試していないけれど.
