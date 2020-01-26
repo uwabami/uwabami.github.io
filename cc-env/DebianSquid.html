@@ -33,14 +33,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-01-11T01:09:28+09:00" />
+<meta property="article:published_time" content="2020-01-27T01:03:52+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Squid で広告避け" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianSquid.html","headline":"Squid で広告避け","datePublished":"2020-01-11T01:09:28+09:00","dateModified":"2020-01-11T01:09:28+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSquid.html"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSquid.html"},"@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianSquid.html","author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"Squid で広告避け","dateModified":"2020-01-27T01:03:52+09:00","datePublished":"2020-01-27T01:03:52+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -194,7 +194,8 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 </p>
 
 <p>
-最初は職場, 居室, モバイル等でネットワーク環境が変わる際にいちいちプロキシの設定を変えるとかやってられん, ということで
+最初は職場, 居室, モバイル等でネットワーク環境が変わる際に
+いちいちプロキシの設定を変えるとかやってられん, ということで
 </p>
 
 <ul class="org-ul">
@@ -212,18 +213,26 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 それに加えて
 </p>
 <ul class="org-ul">
-<li>そういえば squid って hosts ファイル読めたよねということで, これは広告避けにつかえるな, ということに.</li>
+<li>そういえば squid って hosts ファイル読めたよね</li>
 </ul>
+<p>
+ということで, これは広告避けにつかえるな, ということに.
+</p>
 
 <p>
 Web 広告については, まあ, いろんな意見があって良いと思います.
 サービスの収益化は必要でしょうし,
 邪魔にならない広告ならまあ良いんですけれど…
 </p>
+
 <ul class="org-ul">
 <li>Flash とか mp4 で動画バリバリ</li>
-<li>閲覧中にポップアップ→誤クリックとか, そういう奴が多すぎます.</li>
+<li>閲覧中にポップアップ→誤クリック</li>
 </ul>
+
+<p>
+とか, そういう奴が多すぎます.
+</p>
 
 <p>
 最近は https で繋がってくる事も多いので,
@@ -232,25 +241,128 @@ Web 広告については, まあ, いろんな意見があって良いと思い
 </div>
 </div>
 <div>
-<h2 id="org95d7cacd">導入と設定</h2>
+<h2 id="org95d7cacd">squid を SSL Bump できる様にビルドする</h2>
 <div class="outline-text-2" id="text-org95d7cacd">
 <p>
-導入
-</p>
-<pre class="example">
-% sudo apt-get install squid
-</pre>
-<p>
-apt 万歳
+SSL Bumpについては
+<a href="https://wiki.squid-cache.org/Features/SslBump">Features/SslBump - Squid Web Proxy Wiki</a>
+を参照のこと.
+要はsquidが MTM して, SSL/TLS を処理する.
 </p>
 
 <p>
-現状の設定は以下の通り:
+Debianの squid は SSL Bump が有効になっていないので,
+野良ビルドする必要がある.
 </p>
 </div>
+
 <div>
-<h3 id="org40c787af">広告避けの host ファイル</h3>
-<div class="outline-text-3" id="text-org40c787af">
+<h3 id="org583598cb">野良ビルド用の環境構築</h3>
+<div class="outline-text-3" id="text-org583598cb">
+<p>
+真面目なビルド環境の構築については
+<a href="https://uwabami.github.io/cc-env/DebianPackaging.html">パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest</a>
+を参照のこと. ただ, 野良ビルドの場合にはここまで頑張る必要も無いので
+最低限
+</p>
+<pre class="example">
+% sudo apt-get install devscripts debhelper fakeroot build-essenstial
+</pre>
+<p>
+として, 最低限環境を用意しておく.
+</p>
+</div>
+</div>
+
+<div>
+<h3 id="org88c764db">squid を SSL Bump を有効にして野良ビルド</h3>
+<div class="outline-text-3" id="text-org88c764db">
+<p>
+ソースの取得は
+</p>
+<pre class="example">
+% apt-get source squid
+</pre>
+<p>
+依存パッケージの取得は
+</p>
+<pre class="example">
+% sudo apt-get build-dep squid
+</pre>
+<p>
+巷に溢れる記事では,
+build 時の依存パッケージを全部並べていたりするのだけれど
+<code>apt-get build-dep</code> は知っておいて損は無い.
+</p>
+
+<p>
+ビルド時の修正点は以下
+</p>
+<ol class="org-ol">
+<li>
+<p>
+<code>debian/rules</code>: configure で ssl bump を有効に
+</p>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/debian/rules b/debian/rules
+index ba9104f3..e0952f62 100755
+</span><span class="gd">--- a/debian/rules
+</span><span class="gi">+++ b/debian/rules
+</span><span class="p">@@ -62,6 +62,8 @@</span> DEB_CONFIGURE_EXTRA_FLAGS := BUILDCXXFLAGS="$(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS)"
+                --with-filedescriptors=65536 \
+                --with-large-files \
+                --with-default-user=proxy \
+<span class="gi">+               --enable-ssl-crtd \
++               --with-openssl \
+</span>                --with-gnutls
+
+ ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)</code></pre></figure>
+</li>
+<li>
+<p>
+<code>debian/control</code>: 今後のために build-depends に libssl-dev を追加
+</p>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/debian/control b/debian/control
+index 8d23f69e..d10052dc 100644
+</span><span class="gd">--- a/debian/control
+</span><span class="gi">+++ b/debian/control
+</span><span class="p">@@ -26,6 +26,7 @@</span> Build-Depends: ed, libltdl-dev, pkg-config
+        , libsasl2-dev
+        , libxml2-dev
+        , nettle-dev
+<span class="gi">+       , libssl-dev
+</span>
+ Package: squid3
+ Architecture: all</code></pre></figure>
+</li>
+<li>
+<p>
+<code>debian/changelog</code>: NMU(Non Maintainer Upload) を指定
+</p>
+<pre class="example">
+% dch --nmu
+</pre>
+</li>
+<li>
+<p>
+ビルド
+</p>
+<pre class="example">
+% debuild -rfakeroot -uc -us -tc
+</pre>
+</li>
+</ol>
+
+<p>
+あとは出来上がった deb ファイルをインストールする.
+この時点で起動するかどうかは確認しておこう.
+</p>
+</div>
+</div>
+</div>
+
+<div>
+<h2 id="org40c787af">広告避けの host ファイル</h2>
+<div class="outline-text-2" id="text-org40c787af">
 <p>
 以下のスクリプトで適当に生成
 </p>
@@ -323,16 +435,31 @@ apt 万歳
 </div>
 </div>
 <div>
-<h3 id="org2b656e91"><code>/etc/squid/squid.conf</code></h3>
-<div class="outline-text-3" id="text-org2b656e91">
+<h2 id="org2b656e91"><code>/etc/squid/squid.conf</code></h2>
+<div class="outline-text-2" id="text-org2b656e91">
 <p>
-現状は
+起動する前に <code>security_file_certgen</code> のファイル置き場を作成しておくと良い.
 </p>
+<pre class="example">
+% sudo -u proxy /usr/lib/squid/security_file_certgen \
+       -s /var/spool/squid/ssl_db -M 4B
+</pre>
+
+<p>
+現在の設定ファイルは以下の通り
+</p>
+
 <ul class="org-ul">
 <li>キャッシュはしない(した方が良いのかな…?)</li>
 <li>本気で匿名化したいわけでも無いので, ヘッダの処理は適当</li>
-<li>20080 番で動作といった所.</li>
+<li>20080 番で動作</li>
 </ul>
+
+<p>
+といった所.
+SSL-Bump(MTM)用の証明書は適宜作成しておく.
+</p>
+
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c">## Adblock
 ## DNS
 # read hosts file -&gt; 0.0.0.0
@@ -433,50 +560,6 @@ apt 万歳
 </span><span class="n">always_direct</span> <span class="n">allow</span> <span class="n">local</span></code></pre></figure>
 </div>
 </div>
-<div>
-<h3 id="orgf96bcd64">systemd と仲良く: <code>/etc/systemd/system/squid.service</code>
-</h3>
-<div class="outline-text-3" id="text-orgf96bcd64">
-<p>
-キャッシュを動かす気も無いので子プロセスは生成されない.
-ということで, systemd 用の service ファイルを以下の様にでっち上げた.
-</p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c">## Copyright (C) 1996-2018 The Squid Software Foundation and contributors
-##
-## Squid software is distributed under GPLv2+ license and includes
-## contributions from numerous individuals and organizations.
-## Please see the COPYING and CONTRIBUTORS files for details.
-##
-</span>
-[<span class="n">Unit</span>]
-<span class="n">Description</span>=<span class="n">Squid</span> <span class="n">Web</span> <span class="n">Proxy</span> <span class="n">Server</span>
-<span class="n">Documentation</span>=<span class="n">man</span>:<span class="n">squid</span>(<span class="m">8</span>)
-<span class="n">After</span>=<span class="n">network</span>.<span class="n">target</span> <span class="n">network</span>-<span class="n">online</span>.<span class="n">target</span> <span class="n">nss</span>-<span class="n">lookup</span>.<span class="n">target</span>
-
-[<span class="n">Service</span>]
-<span class="n">Type</span>=<span class="n">forking</span>
-<span class="n">PIDFile</span>=/<span class="n">run</span>/<span class="n">squid</span>.<span class="n">pid</span>
-<span class="n">ExecStartPre</span>=/<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">squid</span> --<span class="n">foreground</span> -<span class="n">z</span>
-<span class="n">ExecStart</span>=/<span class="n">usr</span>/<span class="n">sbin</span>/<span class="n">squid</span> -<span class="n">sYC</span>
-<span class="n">ExecReload</span>=/<span class="n">bin</span>/<span class="n">kill</span> -<span class="n">HUP</span> $<span class="n">MAINPID</span>
-<span class="n">KillMode</span>=<span class="n">mixed</span>
-
-[<span class="n">Install</span>]
-<span class="n">WantedBy</span>=<span class="n">multi</span>-<span class="n">user</span>.<span class="n">target</span></code></pre></figure>
-<p>
-あとは
-</p>
-<pre class="example">
-% sudo systemctl daemon-reload
-% sudo systemctl enable squid
-% sudo systemctl start squid
-</pre>
-<p>
-で快適. あとは適宜 <code>HTTP_PROXY</code> 等を設定しておくなど.
-</p>
-</div>
-</div>
-</div>
 <!-- %%%% end content %%%% -->
         </div>
       </main>
@@ -485,7 +568,7 @@ apt 万歳
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-01-10 16:09:28 +0000
+          Lastupdate: 2020-01-26 16:03:52 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
