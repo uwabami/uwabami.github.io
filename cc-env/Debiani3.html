@@ -216,9 +216,8 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 <ul class="org-ul">
 <li>ターミナル関連: urxvt と tmux → <a href="https://uwabami.github.io/cc-env/Terminal.org.html">Terminal生活</a>
 </li>
-<li>ファイルマネージャ: pcmanfm と ranger</li>
-<li>ブラウザ: firefox + vimium</li>
-<li>外付けドライブの管理: udiskie</li>
+<li>ファイルマネージャ: pcmanfm</li>
+<li>ブラウザ: firefox + vimium-ff</li>
 <li>ランチャ: rofi</li>
 </ul>
 
@@ -249,8 +248,16 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 <p>
 いわゆる GNOME や KDE といった Desktop 環境ではないので,
 たとえば <code>xdg-open</code> の挙動が変わります.
-それ自体は問題無いのですが, <code>~/.mailcap</code> の設定次第では
-<code>run-mailcap</code> が <code>xdg-open</code> を呼び, <code>xdg-open</code> が <code>run-mailcap</code> を呼び, といった
+</p>
+
+<p>
+それ自体は問題無いのですが,
+以下の様に
+</p>
+<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">*/*; xdg-open "%s"</code></pre></figure>
+<p>
+<code>~/.mailcap</code> を <code>xdg-open</code> に丸投げしていて, さらに <code>$DISPLAY</code> (もしくは <code>$WAYLAND_DISPLAY</code>)が無い場合には,
+<code>xdg-open</code> が <code>run-mailcap</code> を呼ぶ→ <code>run-mailcap</code> が <code>xdg-open</code> を呼び, といった
 無限ループが発生します.
 <del>run-mailcapを抜けば良い, という話もありますが, これ=mime-support=パッケージで提供されているので, 抜くとpython が抜けて大変な目に会います</del>
 </p>
@@ -325,10 +332,12 @@ rofi.color-active: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
 rofi.color-urgent: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3</code></pre></figure>
 
 <p>
-i3の方では Alt+F2, Alt+Shift+Tab で呼び出せるようにしている:
+i3の方では Alt+Shift+Tab で呼び出せるようにしている:
 </p>
-<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">bindsym $Alt+F2 $execi sh -c "rofi -show combi"
-bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"</code></pre></figure>
+<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"</code></pre></figure>
+<p>
+Alt+Tab は <a href="https://github.com/yoshimoto/i3-alt-tab.py">https://github.com/yoshimoto/i3-alt-tab.py</a> をありがたく使わせて貰っている.
+</p>
 </div>
 </div>
 <div>
@@ -343,7 +352,6 @@ i3barは背景透過した上で,
 </ul>
 <p>
 だけ.
-そのうち日付やバッテリ情報も conky 任せにするかもしれない(幅寄せが面倒…)
 </p>
 
 <p>
@@ -351,7 +359,8 @@ status ラインは以下の通り
 </p>
 <figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space"># status bar
 bar {
-    position    top
+    output eDP1
+    position top
     tray_output eDP1
     tray_padding -4
     font xft:Inconsolata,Xft:FontAwesome 18
@@ -378,16 +387,13 @@ i3status は以下
         output_format = i3bar
         markup ="pango"
 }
-
 order += "tztime local"
-order += "battery all"
-
 tztime local {
         align = left
         min_width = "2020/12/31(木) 23:59:59"
         format = "%Y/%m/%d(%a) %H:%M:%S"
 }
-
+order += "battery all"
 battery all {
         align = left
         min_width = " 80.00%"
@@ -404,7 +410,6 @@ battery all {
 <div class="outline-text-3" id="text-org32bf169b">
 <p>
 system load を表示させている.
-幅の調整なんかは lua でやった方が良いのかも.
 </p>
 
 <figure class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="c1">-- -*- mode: lua; coding: utf-8 -*-</span>
@@ -455,8 +460,8 @@ system load を表示させている.
    <span class="n">gap_x</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
    <span class="n">gap_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
    <span class="c1">-- Minimum size of text area</span>
-   <span class="n">minimum_width</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
-   <span class="n">maximum_width</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
+   <span class="n">minimum_width</span> <span class="o">=</span> <span class="mi">1440</span><span class="p">,</span>
+   <span class="n">maximum_width</span> <span class="o">=</span> <span class="mi">1440</span><span class="p">,</span>
 
    <span class="c1">--####################</span>
    <span class="c1">-- Graphics settings #</span>
@@ -498,43 +503,65 @@ ${voffset -20}\
 ${goto    413}\
 ${color 888888}${diskiograph_read /dev/dm-0 28,50 FCAF3E FCAF3E} \
 ${color 888888}${diskiograph_write /dev/dm-0 28,50 FFFF4C FFFF4C}\
-${if_existing /proc/net/route wlp2s0}\
-${voffset   2}\
+${if_existing /proc/net/route tun0}\
+${voffset  -2}\
 ${goto    520}\
-${font FSMRMP:size=10.5}${color #4cff4c}Wifi${color}${font}\
-${voffset   5}\
+${font FSMRMP:size=13.5}${color #4cff4c} VPN${color}${font}\
+${voffset   4}\
 ${goto    520}\
-${font FSMRMP:size=13.5}${color #ffffff}${addr wlp2s0}${font}${color}\
+${font FSMRMP:size=15}${color #ffffff}${addr tun0}${font}${color}\
 ${voffset -24}\
-${goto    660}\
+${goto    675}\
+${color 888888}\
+${upspeedgraph wlp2s0 28,50 4CFFFF 7FFFFF} \
+${downspeedgraph wlp2s0 28,50 4CFF4C 7FFF7F}${color}\
+${else}\
+${if_existing /proc/net/route wlp2s0}\
+${voffset  -2}\
+${goto    520}\
+${font FSMRMP:size=13.5}${color #4cff4c} Wifi${color}${font}\
+${voffset   4}\
+${goto    520}\
+${font FSMRMP:size=15}${color #ffffff}${addr wlp2s0}${font}${color}\
+${voffset -24}\
+${goto    675}\
 ${color 888888}\
 ${upspeedgraph wlp2s0 28,50 4CFFFF 7FFFFF} \
 ${downspeedgraph wlp2s0 28,50 4CFF4C 7FFF7F}${color}\
 ${else}\
 ${if_existing /proc/net/route enp0s31f6}\
-${voffset   2}\
+${voffset  -2}\
 ${goto    520}\
-${font FSMRMP:size=10.5}${color #4cff4c}LAN ${color}${font}\
-${voffset   5}\
+${font FSMRMP:size=13.5}${color #4cff4c} LAN${color}${font}\
+${voffset   4}\
 ${goto    520}\
-${font FSMRMP:size=13.5}${color #ffffff}${addr enp0s31f6}${font}${color}\
+${font FSMRMP:size=15}${color #ffffff}${addr enp0s31f6}${font}${color}\
 ${voffset -24}\
-${goto    660}\
+${goto    675}\
 ${color 888888}\
 ${upspeedgraph enp0s31f6 28,50 4CFFFF 7FFFFF} \
 ${downspeedgraph enp0s31f6 28,50 4CFF4C 7FFF7F}${color}\
 ${else}\
-${voffset   2}\
+${voffset  -2}\
 ${goto    520}\
-${font FSMRMP:size=10.5}${color #aaaaaa}--- ${color}${font}\
-${voffset   5}\
+${font FSMRMP:size=13.5}${color #aaaaaa} --- ${color}${font}\
+${voffset   4}\
 ${goto    520}\
-${font FSMRMP:size=13.5}${color #aaaaaa}---.---.---.---${color}${font}\
-${endif}${endif}
-]]</span><span class="p">;</span></code></pre></figure>
+${font FSMRMP:size=15}${color #aaaaaa}---.---.---.---${color}${font}\
+${endif}${endif}${endif}
+]]</span><span class="p">;</span>
+<span class="c1">-- ${goto    800}\</span>
+<span class="c1">-- ${voffset   4}\</span>
+<span class="c1">-- ${font FSMRMP:size=18}\</span>
+<span class="c1">-- ${time %Y/%m/%d (%a) %H:%M:%S}\</span>
+<span class="c1">-- ${goto   1100}\</span>
+<span class="c1">-- ${if_existing /sys/class/power_supply/BAT1/status Discharging}\</span>
+<span class="c1">-- ${color ffbf7f} ${battery_percent BAT1}%${color}\</span>
+<span class="c1">-- ${else}\</span>
+<span class="c1">-- ${color ffff7f} ${battery_percent BAT1}%${color}\</span>
+<span class="c1">-- ${endif}\</span></code></pre></figure>
 </div>
 </div>
-
 <div>
 <h3 id="orgeba38d0b">screen lock: i3lock の設定</h3>
 <div class="outline-text-3" id="text-orgeba38d0b">
@@ -558,10 +585,6 @@ WantedBy=sleep.target</code></pre></figure>
 
 <p>
 を作成して有効にしておく.
-</p>
-
-<p>
-本当は <code>~/.config/systemd/user</code> で設定したいのだけれど, 権限が無いのか上手くいかない. polkit を適宜設定すれば良いのかもしれないけれど.
 </p>
 </div>
 </div>
@@ -589,9 +612,8 @@ $execi xrdb -merge $HOME/.Xresources
 $execi compton
 $execi nm-applet
 # $execi blueman-applet
-# $execi udiskie
 $execi /usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon
-$execi $(sleep 5 &amp;  feh --bg-scale $HOME/Pictures/desktop.png --no-fehbg)
+$execi $(sleep 5 &amp; feh --bg-fill $HOME/Pictures/desktop.png --image-bg black --no-fehbg)
 $execi $(sleep 5 &amp; conky -c $HOME/.config/i3/conkyrc)
 $execi $(sleep 5 &amp; nextcloud)
 
@@ -606,9 +628,9 @@ bindsym Control+Shift+n exec urxvtcd
 bindsym $Alt+F2 $execi sh -c "rofi -show run"
 
 # change focus
-# bindsym $Alt+Tab $execi sh -c "rofi -show windowcd"
-set $i3t_alt_tab ~/.config/i3/i3-alt-tab.py next
-bindsym $Alt+Tab exec $i3t_alt_tab 2&gt;&amp;1 1&gt;/dev/null
+bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"
+set $i3t_alt_tab ~/.config/i3/i3-alt-tab.py
+bindsym $Alt+Tab exec $i3t_alt_tab n all 2&gt;&amp;1 1&gt;/dev/null
 
 # change focus
 bindsym $mod+j focus left
@@ -692,6 +714,7 @@ bindsym XF86MonBrightnessDown $execi /usr/bin/xbacklight -dec 5
 
 # status bar
 bar {
+    output eDP1
     position top
     tray_output eDP1
     tray_padding -4
