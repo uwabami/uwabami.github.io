@@ -33,14 +33,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-12-22T00:48:53+09:00" />
+<meta property="article:published_time" content="2020-02-01T22:34:58+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Terminal 生活" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Terminal.html","headline":"Terminal 生活","datePublished":"2019-12-22T00:48:53+09:00","dateModified":"2019-12-22T00:48:53+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Terminal.html","headline":"Terminal 生活","datePublished":"2020-02-01T22:34:58+09:00","dateModified":"2020-02-01T22:34:58+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -184,7 +184,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="orgab2c8165">始めに</h2>
@@ -215,7 +215,8 @@ EAW については
 
 <p>
 手元の環境では
-East Asian Ambiguous Char と絵文字の文字幅を強制的に "2" とする修正ロケールを使っている.
+East Asian Ambiguous Char と絵文字の文字幅を強制的に "2" とする
+修正ロケールを使っている.
 </p>
 <ul class="org-ul">
 <li><a href="https://github.com/uwabami/locale-eaw-emoji">uwabami/locale-eaw-emoji: UAX#11 Ambiguous と UTR #51 Emoiji を全角とする修正 locale</a></li>
@@ -223,11 +224,38 @@ East Asian Ambiguous Char と絵文字の文字幅を強制的に "2" とする�
 <p>
 微妙に間違っている気もしないではないが, まあ良いか, 的な.
 </p>
+
+<p>
+UNICODE の Box drawing char は "1" にした方が良いかなぁ…
+</p>
 </div>
 </div>
 <div>
-<h2 id="org7d8278b3">rxvt-unicode-256color</h2>
+<h2 id="orgb8ad7afe">自作合成フォント:</h2>
+<div class="outline-text-2" id="text-orgb8ad7afe">
+<p>
+「プログラミング」とか「等幅」とかで検索すると
+イロイロな合成フォントが見つかりますが,
+いまいち気にいるフォントが無かったので, 自作することにしました.
+</p>
+
+<ul class="org-ul">
+<li><a href="https://github.com/uwabami/isfit-plus">uwabami/isfit-plus: Icon Symbols Font In Terminal plus</a></li>
+<li><a href="https://github.com/uwabami/fsmrmp">uwabami/fsmrmp: FSMRMP - Patched Font: 'Fantasque Sans Mono' + 'Rounded Mgen+'</a></li>
+</ul>
+
+<p>
+現状はとりあえずこれで良しとする感じ.
+</p>
+</div>
+</div>
+<div>
+<h2 id="org7d8278b3">rxvt-unicode の patch 当て</h2>
 <div class="outline-text-2" id="text-org7d8278b3">
+<p>
+<b><span class="alert">Obsolete</span></b> 合成フォントを自作するようになったので最近はここまで凝ったことしてないです.
+</p>
+
 <p>
 Debian では configure オプションの変えた urxvt のパッケージが提供されていた.
 (256色が使いたいので <code>rxvt-unicode-256color</code> を使っていた).
@@ -252,7 +280,6 @@ rxvt-unicode-lite - dummy transitional package for rxvt-unicode
 <p>
 パッチは以下. これに  Debian パッケージをこのパッチを当てて rebuild して使っている.
 </p>
-
 <figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/src/rxvtfont.C b/src/rxvtfont.C
 index 1914539..4c0189e 100644
 </span><span class="gd">--- a/src/rxvtfont.C
@@ -438,6 +465,155 @@ tmux に移行した.
 </p>
 
 <p>
+設定は以下の通り.
+</p>
+<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
+#
+# Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+# $Lastupdate: 2019-10-05 10:48:58$
+# License: Public domain.
+
+## general
+# ESC での遅延解消: don't wait
+set -sg escape-time 0
+# Window を 0,  Pane を 1 始まりに
+set -g base-index 0
+set -g pane-base-index 0
+# mouse 操作を無効化
+setw -g mouse on
+# disable bell action
+set -g bell-action none
+# Window renmae enabled
+setw -g automatic-rename off
+# default で起動するコマンド: zsh
+set -g default-command zsh
+# prefix の有効時間: no wait
+set-option -g repeat-time 0
+
+## display
+# TERM等の設定
+set -g default-terminal screen-256color
+# set-option -ga terminal-overrides ",rxvt-unicode-256color:Tc"
+set-environment -g NCURSES_NO_UTF8_ACS 0
+# 罫線素片の扱い: rxvt ならコレで良いのだが...
+# set -ag terminal-overrides ',*:U8=0'
+# 罫線素片の扱い: VTE 系はわざわざ Unicode に置き換える, ので ASCII で描画する
+# set-option -g pane-border-ascii 0  # ←あてて build してある場合は不要
+set-environment -g VTE_CJK_WIDTH 1 # ←最近ちゃんと効いてない気がする.
+# メッセージ表示時間(既定値は1000?)
+set -g display-time 4000
+# 後方スクロール行数(既定値は2000)
+set -g history-limit 8192
+setw -g pane-active-border-style "fg=#ff4c4c,bg=default"
+setw -g pane-border-style "fg=#4cffff,bg=default"
+# don't show other activity
+set -g monitor-activity off
+set -g visual-activity off
+set -g allow-rename on
+# pane number display
+set -g display-panes-time 4000
+
+set -g status-style "bg=#020202,fg=#888888"
+# set -g status-interval 1
+setw -g window-status-current-style "fg=#ff4c4c,bg=default"
+setw -g message-style "fg=#242424,bg=#4cff4c,bright"
+setw -g status-left-length 25
+setw -g status-right-length 15
+setw -g status-left "#[fg=#4c4cff][#[fg=#f6f3e8]#h#[fg=#4c4cff]]#[default] "
+setw -g status-right "#[fg=#4c4cff]|#[fg=#f6f3e8]#(date +%y/%m/%d)#[fg=#4c4cff]|#[default]"
+
+## keybind
+# prefix:
+unbind C-b                 # 既定のPrefixキー(Ctrl+b)の割り当てを解除
+set -g prefix C-t          # Ctrl+tをPrefixキーにする
+bind C-t send-prefix       # prefix-key の入力を渡す
+# reload
+bind r source-file ~/.tmux/tmux.conf \; display "Reload config file"
+# コピーモードで vi + emacs 風
+setw -g mode-keys vi
+bind -T copy-mode-vi C-a send-keys -X start-of-line
+bind -T copy-mode-vi C-e send-keys -X end-of-line
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard &gt;/dev/null'
+bind -T copy-mode-vi NPage send-keys -X page-down
+bind -T copy-mode-vi PPage send-keys -X page-up
+unbind ]
+bind ] run-shell "xclip -o -selection clipboard | tmux load-buffer - &amp;&amp; tmux paste-buffer"
+unbind %
+unbind '"'
+# bind-key          z resize-pane -Z
+unbind z
+# bind-key        C-z suspend-client
+unbind C-z
+unbind Z
+unbind s
+bind s split-window -v
+unbind |
+bind | split-window -h
+unbind o
+bind o display-pane
+
+unbind C-c
+bind C-c new-window
+unbind C-p
+bind C-p previous-window
+unbind C-n
+bind C-n next-window
+
+## Custom command
+unbind-key -
+bind - run-shell ~/.config/tmux/weechat-toggle.sh
+# unbind-key b
+bind-key b split-window 'tmux lsw | peco | cut -d":" -f 1 | xargs tmux select-window -t'
+
+unbind C-Up
+unbind C-Down
+unbind C-Left
+unbind C-Right
+unbind M-Up
+unbind M-Down
+unbind M-Left
+unbind M-Right</code></pre></figure>
+
+<p>
+weechat を常に下に表示させておきたいので <code>C-t -</code> でトグルできるように
+以下の <code>weechat-toggle.sh</code> を割り当てている.
+</p>
+
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/sh</span>
+<span class="nv">tmp</span><span class="o">=</span><span class="nv">$HOME</span>/.config/tmux/weechat.tmp
+<span class="nv">current_weechat_window</span><span class="o">=</span><span class="sb">`</span>tmux lsp <span class="nt">-a</span> <span class="nt">-F</span> <span class="s2">"#I: #T"</span> | <span class="nb">grep </span>WeeChat | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
+<span class="nv">current_weechat_pane</span><span class="o">=</span><span class="sb">`</span>tmux lsp <span class="nt">-a</span> <span class="nt">-F</span> <span class="s2">"#P: #T"</span> | <span class="nb">grep </span>WeeChat | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
+<span class="c"># current_weechat_window=`tmux lsp -a -F "#I: #T" | grep screen | cut -d":" -f 1`</span>
+<span class="c"># current_weechat_pane=`tmux lsp -a -F "#P: #T" | grep screen | cut -d":" -f 1`</span>
+<span class="nv">current_active_window</span><span class="o">=</span><span class="sb">`</span>tmux lsw | <span class="nb">grep </span>active | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
+<span class="nv">current_active_pane</span><span class="o">=</span><span class="sb">`</span>tmux lsp | <span class="nb">grep </span>active | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span> <span class="nt">-ne</span> <span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then
+    </span>tmux join-pane <span class="nt">-l</span> 12 <span class="nt">-s</span> :<span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span>.<span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-t</span> :<span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span>
+    tmux <span class="k">select</span><span class="nt">-pane</span> <span class="nt">-t</span> 0
+<span class="k">else
+    if</span> <span class="o">[</span> <span class="nt">-e</span> <span class="nv">$tmp</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then
+        </span>tmux resize-pane <span class="nt">-t</span> <span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-Z</span>
+        <span class="nb">rm</span> <span class="nt">-f</span> <span class="nv">$tmp</span>
+    <span class="k">else
+        </span>tmux resize-pane <span class="nt">-t</span> <span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-Z</span>
+        tmux <span class="k">select</span><span class="nt">-pane</span> <span class="nt">-t</span> 0
+        <span class="nb">touch</span> <span class="nv">$tmp</span>
+    <span class="k">fi
+fi</span></code></pre></figure>
+
+<p>
+…weechat 自体にはイロイロと表示しているので,
+気がちってしょうがない, かもしれない(笑)
+</p>
+</div>
+</div>
+<div>
+<h2 id="org7bd35331">tmux の EAW 対応 patch (<b>obsolete</b>)</h2>
+<div class="outline-text-2" id="text-org7bd35331">
+<p>
+<b><span class="alert">Obsolete</span></b> EAW対応としてロケールを入れ替えるようになったので, 最近は patch はあててないです.
 ただ, tmux 2.3 の EAW 文字幅問題の扱いに多少(?)不満があるので,
 以下二つのパッチを当てて rebuild して使っている.
 </p>
@@ -604,155 +780,6 @@ Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 これらのパッチを当てた Debian パッケージを作成し,
 tmux.conf にて <code>set-option -g pane-border-ascii 0</code> を指定している.
 </p>
-
-<p>
-tmux の設定は以下の通り.
-</p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
-#
-# Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
-# $Lastupdate: 2018-10-23 02:58:17$
-# License: Public domain.
-</span>
-<span class="c">## general
-# ESC での遅延解消: don't wait
-</span><span class="n">set</span> -<span class="n">sg</span> <span class="n">escape</span>-<span class="n">time</span> <span class="m">0</span>
-<span class="c"># Window を 0,  Pane を 1 始まりに
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
-<span class="n">set</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
-<span class="c"># mouse 操作を無効化
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mouse</span> <span class="n">off</span>
-<span class="c"># disable bell action
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">bell</span>-<span class="n">action</span> <span class="n">none</span>
-<span class="c"># Window renmae enabled
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">automatic</span>-<span class="n">rename</span> <span class="n">off</span>
-<span class="c"># default で起動するコマンド: zsh
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">default</span>-<span class="n">command</span> <span class="n">zsh</span>
-<span class="c"># prefix の有効時間: no wait
-</span><span class="n">set</span>-<span class="n">option</span> -<span class="n">g</span> <span class="n">repeat</span>-<span class="n">time</span> <span class="m">0</span>
-
-<span class="c">## display
-# TERM等の設定
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">default</span>-<span class="n">terminal</span> <span class="n">screen</span>-<span class="m">256</span><span class="n">color</span>
-<span class="n">set</span>-<span class="n">environment</span> -<span class="n">g</span> <span class="n">NCURSES_NO_UTF8_ACS</span> <span class="m">0</span>
-<span class="c"># 罫線素片の扱い: rxvt ならコレで良いのだが...
-</span><span class="n">set</span> -<span class="n">ag</span> <span class="n">terminal</span>-<span class="n">overrides</span> <span class="s1">',*:U8=0'</span>
-<span class="c"># 罫線素片の扱い: VTE 系はわざわざ Unicode に置き換える, ので ASCII で描画する
-# set-option -g pane-border-ascii 0  # ←あてて build してある場合は不要
-</span><span class="n">set</span>-<span class="n">environment</span> -<span class="n">g</span> <span class="n">VTE_CJK_WIDTH</span> <span class="m">1</span> <span class="c"># ←最近ちゃんと効いてない気がする.
-# メッセージ表示時間(既定値は1000?)
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">display</span>-<span class="n">time</span> <span class="m">4000</span>
-<span class="c"># 後方スクロール行数(既定値は2000)
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">history</span>-<span class="n">limit</span> <span class="m">8192</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">active</span>-<span class="n">border</span>-<span class="n">fg</span> <span class="s2">"#ff4c4c"</span>
-<span class="c"># setw -g pane-active-border-bg "#020202"
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">active</span>-<span class="n">border</span>-<span class="n">bg</span> <span class="n">default</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">fg</span> <span class="s2">"#4cffff"</span>
-<span class="c"># setw -g pane-border-bg "#020202"
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">bg</span> <span class="n">default</span>
-<span class="c"># don't show other activity
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">monitor</span>-<span class="n">activity</span> <span class="n">off</span>
-<span class="n">set</span> -<span class="n">g</span> <span class="n">visual</span>-<span class="n">activity</span> <span class="n">off</span>
-<span class="n">set</span> -<span class="n">g</span> <span class="n">allow</span>-<span class="n">rename</span> <span class="n">on</span>
-<span class="c"># pane number display
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">display</span>-<span class="n">panes</span>-<span class="n">time</span> <span class="m">4000</span>
-
-<span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">bg</span> <span class="s2">"#020202"</span>
-<span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">fg</span> <span class="s2">"#888888"</span>
-<span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">attr</span> <span class="n">default</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">window</span>-<span class="n">status</span>-<span class="n">current</span>-<span class="n">fg</span> <span class="s2">"#ff4c4c"</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">window</span>-<span class="n">status</span>-<span class="n">current</span>-<span class="n">bg</span> <span class="n">default</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">window</span>-<span class="n">status</span>-<span class="n">current</span>-<span class="n">attr</span> <span class="n">default</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">message</span>-<span class="n">fg</span> <span class="s2">"#242424"</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">message</span>-<span class="n">bg</span> <span class="s2">"#4cff4c"</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">message</span>-<span class="n">attr</span> <span class="n">bright</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">left</span>-<span class="n">length</span> <span class="m">25</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">right</span>-<span class="n">length</span> <span class="m">15</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">left</span> <span class="s2">"#[fg=#4c4cff][#[fg=#f6f3e8]#h#[fg=#4c4cff]]#[default] "</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">right</span> <span class="s2">"#[fg=#4c4cff]|#[fg=#f6f3e8]#(date +%y/%m/%d)#[fg=#4c4cff]|#[default]"</span>
-
-<span class="c">## keybind
-# prefix:
-</span><span class="n">unbind</span> <span class="n">C</span>-<span class="n">b</span>                 <span class="c"># 既定のPrefixキー(Ctrl+b)の割り当てを解除
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">prefix</span> <span class="n">C</span>-<span class="n">t</span>          <span class="c"># Ctrl+tをPrefixキーにする
-</span><span class="n">bind</span> <span class="n">C</span>-<span class="n">t</span> <span class="n">send</span>-<span class="n">prefix</span>       <span class="c"># prefix-key の入力を渡す
-# reload
-</span><span class="n">bind</span> <span class="n">r</span> <span class="n">source</span>-<span class="n">file</span> ~/.<span class="n">tmux</span>/<span class="n">tmux</span>.<span class="n">conf</span> \; <span class="n">display</span> <span class="s2">"Reload config file"</span>
-<span class="c"># コピーモードで vi + emacs 風
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mode</span>-<span class="n">keys</span> <span class="n">vi</span>
-<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">C</span>-<span class="n">a</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">start</span>-<span class="n">of</span>-<span class="n">line</span>
-<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">C</span>-<span class="n">e</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">end</span>-<span class="n">of</span>-<span class="n">line</span>
-<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">v</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">begin</span>-<span class="n">selection</span>
-<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">y</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">copy</span>-<span class="n">pipe</span>-<span class="n">and</span>-<span class="n">cancel</span> <span class="s1">'xclip -in -selection clipboard &gt;/dev/null'</span>
-<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">NPage</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">page</span>-<span class="n">down</span>
-<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">PPage</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">page</span>-<span class="n">up</span>
-<span class="n">unbind</span> ]
-<span class="n">bind</span> ] <span class="n">run</span>-<span class="n">shell</span> <span class="s2">"xclip -o -selection clipboard | tmux load-buffer - &amp;&amp; tmux paste-buffer"</span>
-<span class="n">unbind</span> %
-<span class="n">unbind</span> <span class="s1">'"'</span>
-<span class="c"># bind-key          z resize-pane -Z
-</span><span class="n">unbind</span> <span class="n">z</span>
-<span class="c"># bind-key        C-z suspend-client
-</span><span class="n">unbind</span> <span class="n">C</span>-<span class="n">z</span>
-<span class="n">unbind</span> <span class="n">Z</span>
-<span class="n">unbind</span> <span class="n">s</span>
-<span class="n">bind</span> <span class="n">s</span> <span class="n">split</span>-<span class="n">window</span> -<span class="n">v</span>
-<span class="n">unbind</span> |
-<span class="n">bind</span> | <span class="n">split</span>-<span class="n">window</span> -<span class="n">h</span>
-<span class="n">unbind</span> <span class="n">o</span>
-<span class="n">bind</span> <span class="n">o</span> <span class="n">display</span>-<span class="n">pane</span>
-
-<span class="n">unbind</span> <span class="n">C</span>-<span class="n">c</span>
-<span class="n">bind</span> <span class="n">C</span>-<span class="n">c</span> <span class="n">new</span>-<span class="n">window</span>
-<span class="n">unbind</span> <span class="n">C</span>-<span class="n">p</span>
-<span class="n">bind</span> <span class="n">C</span>-<span class="n">p</span> <span class="n">previous</span>-<span class="n">window</span>
-<span class="n">unbind</span> <span class="n">C</span>-<span class="n">n</span>
-<span class="n">bind</span> <span class="n">C</span>-<span class="n">n</span> <span class="n">next</span>-<span class="n">window</span>
-
-<span class="c">## Custom command
-</span><span class="n">unbind</span>-<span class="n">key</span> -
-<span class="n">bind</span> - <span class="n">run</span>-<span class="n">shell</span> ~/.<span class="n">tmux</span>/<span class="n">weechat</span>-<span class="n">toggle</span>.<span class="n">sh</span>
-<span class="c"># unbind-key b
-</span><span class="n">bind</span>-<span class="n">key</span> <span class="n">b</span> <span class="n">split</span>-<span class="n">window</span> <span class="s1">'tmux lsw | peco | cut -d":" -f 1 | xargs tmux select-window -t'</span>
-
-<span class="n">unbind</span> <span class="n">C</span>-<span class="n">Up</span>
-<span class="n">unbind</span> <span class="n">C</span>-<span class="n">Down</span>
-<span class="n">unbind</span> <span class="n">C</span>-<span class="n">Left</span>
-<span class="n">unbind</span> <span class="n">C</span>-<span class="n">Right</span>
-<span class="n">unbind</span> <span class="n">M</span>-<span class="n">Up</span>
-<span class="n">unbind</span> <span class="n">M</span>-<span class="n">Down</span>
-<span class="n">unbind</span> <span class="n">M</span>-<span class="n">Left</span>
-<span class="n">unbind</span> <span class="n">M</span>-<span class="n">Right</span></code></pre></figure>
-
-<p>
-weechat を常に下に表示させておきたいので <code>C-t -</code> でトグルできるように以下の <code>weechat-toggle.sh</code> を割り当てている.
-</p>
-
-<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/sh</span>
-<span class="nv">tmp</span><span class="o">=</span><span class="nv">$HOME</span>/.tmux/weechat.tmp
-<span class="nv">current_weechat_window</span><span class="o">=</span><span class="sb">`</span>tmux lsp <span class="nt">-a</span> <span class="nt">-F</span> <span class="s2">"#I: #T"</span> | <span class="nb">grep </span>WeeChat | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
-<span class="nv">current_weechat_pane</span><span class="o">=</span><span class="sb">`</span>tmux lsp <span class="nt">-a</span> <span class="nt">-F</span> <span class="s2">"#P: #T"</span> | <span class="nb">grep </span>WeeChat | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
-<span class="nv">current_active_window</span><span class="o">=</span><span class="sb">`</span>tmux lsw | <span class="nb">grep </span>active | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
-<span class="nv">current_active_pane</span><span class="o">=</span><span class="sb">`</span>tmux lsp | <span class="nb">grep </span>active | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
-
-<span class="k">if</span> <span class="o">[</span> <span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span> <span class="nt">-ne</span> <span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then
-    </span>tmux join-pane <span class="nt">-l</span> 10 <span class="nt">-s</span> :<span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span>.<span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-t</span> :<span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span>
-    tmux <span class="k">select</span><span class="nt">-pane</span> <span class="nt">-t</span> 0
-<span class="k">else
-    if</span> <span class="o">[</span> <span class="nt">-e</span> <span class="nv">$tmp</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then
-        </span>tmux resize-pane <span class="nt">-t</span> <span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-Z</span>
-        <span class="nb">rm</span> <span class="nt">-f</span> <span class="nv">$tmp</span>
-    <span class="k">else
-        </span>tmux resize-pane <span class="nt">-t</span> <span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-Z</span>
-        tmux <span class="k">select</span><span class="nt">-pane</span> <span class="nt">-t</span> 0
-        <span class="nb">touch</span> <span class="nv">$tmp</span>
-    <span class="k">fi
-fi</span></code></pre></figure>
-
-<p>
-…weechat 自体にはイロイロと表示しているので,
-気がちってしょうがない, かもしれない(笑)
-</p>
 </div>
 </div>
 <!-- %%%% end content %%%% -->
@@ -761,9 +788,9 @@ fi</span></code></pre></figure>
       <!-- include footer -->
       <footer class="container bottom-0 left-0 right-0 small">
         <hr/>
-        <p class="p0 m0 right-align">&copy; 2006-2019
+        <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2019-12-21 15:48:53 +0000
+          Lastupdate: 2020-02-01 13:34:58 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
