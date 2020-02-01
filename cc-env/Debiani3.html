@@ -357,26 +357,26 @@ i3barは背景透過した上で,
 <p>
 status ラインは以下の通り
 </p>
-<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space"># status bar
-bar {
-    output eDP1
-    position top
-    tray_output eDP1
-    tray_padding -4
-    font xft:Inconsolata,Xft:FontAwesome 18
-    i3bar_command i3bar --transparency
-    status_command i3status -c $HOME/.config/i3/i3status.conf
-    binding_mode_indicator yes
-    colors {
-      background #02020200
-      statusline #F6F3E8
-      separator  #111822
-      focused_workspace  #111822 #222244 #F6F3E8
-      active_workspace   #555555 #555555 #F6F3E8
-      inactive_workspace #020202 #242424 #888888
-      urgent_workspace   #A00000 #900000 #F6F3E8
-      binding_mode       #A00000 #900000 #f6f3e8
-    }
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># status bar
+</span><span class="n">bar</span> {
+    <span class="n">output</span> <span class="n">eDP1</span>
+    <span class="n">position</span> <span class="n">top</span>
+    <span class="n">tray_output</span> <span class="n">eDP1</span>
+    <span class="n">tray_padding</span> -<span class="m">4</span>
+    <span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">Xft</span>:<span class="n">FontAwesome</span> <span class="m">18</span>
+    <span class="n">i3bar_command</span> <span class="n">i3bar</span> --<span class="n">transparency</span>
+    <span class="n">status_command</span> <span class="n">i3status</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3status</span>.<span class="n">conf</span>
+    <span class="n">binding_mode_indicator</span> <span class="n">yes</span>
+    <span class="n">colors</span> {
+      <span class="n">background</span> <span class="c">#02020200
+</span>      <span class="n">statusline</span> <span class="c">#F6F3E8
+</span>      <span class="n">separator</span>  <span class="c">#111822
+</span>      <span class="n">focused_workspace</span>  <span class="c">#111822 #222244 #F6F3E8
+</span>      <span class="n">active_workspace</span>   <span class="c">#555555 #555555 #F6F3E8
+</span>      <span class="n">inactive_workspace</span> <span class="c">#020202 #242424 #888888
+</span>      <span class="n">urgent_workspace</span>   <span class="c">#A00000 #900000 #F6F3E8
+</span>      <span class="n">binding_mode</span>       <span class="c">#A00000 #900000 #f6f3e8
+</span>    }
 }</code></pre></figure>
 <p>
 i3status は以下
@@ -596,164 +596,164 @@ WantedBy=sleep.target</code></pre></figure>
 設定ファイル全体は以下の通り
 </p>
 
-<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">#-*- mode:conf-space ; coding: utf-8 -*-
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c">#-*- mode:conf-space ; coding: utf-8 -*-
 # macro
-set $mod Mod4
-set $Alt Mod1
-set $execi exec --no-startup-id
-# set $execa exec_always
+</span><span class="n">set</span> $<span class="n">mod</span> <span class="n">Mod4</span>
+<span class="n">set</span> $<span class="n">Alt</span> <span class="n">Mod1</span>
+<span class="n">set</span> $<span class="n">execi</span> <span class="n">exec</span> --<span class="n">no</span>-<span class="n">startup</span>-<span class="n">id</span>
+<span class="c"># set $execa exec_always
 # set $execai exec_always --no-startup-id
+</span>
+<span class="c"># font
+</span><span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">xft</span>:<span class="n">FontAwesome</span> <span class="m">18</span>
 
-# font
-font xft:Inconsolata,xft:FontAwesome 18
+<span class="c"># startup
+</span>$<span class="n">execi</span> <span class="n">xrdb</span> -<span class="n">merge</span> $<span class="n">HOME</span>/.<span class="n">Xresources</span>
+$<span class="n">execi</span> <span class="n">compton</span>
+$<span class="n">execi</span> <span class="n">nm</span>-<span class="n">applet</span>
+<span class="c"># $execi blueman-applet
+</span>$<span class="n">execi</span> /<span class="n">usr</span>/<span class="n">lib</span>/<span class="n">x86_64</span>-<span class="n">linux</span>-<span class="n">gnu</span>/<span class="n">gpaste</span>/<span class="n">gpaste</span>-<span class="n">daemon</span>
+$<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</span> &amp; <span class="n">feh</span> --<span class="n">bg</span>-<span class="n">fill</span> $<span class="n">HOME</span>/<span class="n">Pictures</span>/<span class="n">desktop</span>.<span class="n">png</span> --<span class="n">image</span>-<span class="n">bg</span> <span class="n">black</span> --<span class="n">no</span>-<span class="n">fehbg</span>)
+$<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</span> &amp; <span class="n">conky</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">conkyrc</span>)
+$<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</span> &amp; <span class="n">nextcloud</span>)
 
-# startup
-$execi xrdb -merge $HOME/.Xresources
-$execi compton
-$execi nm-applet
-# $execi blueman-applet
-$execi /usr/lib/x86_64-linux-gnu/gpaste/gpaste-daemon
-$execi $(sleep 5 &amp; feh --bg-fill $HOME/Pictures/desktop.png --image-bg black --no-fehbg)
-$execi $(sleep 5 &amp; conky -c $HOME/.config/i3/conkyrc)
-$execi $(sleep 5 &amp; nextcloud)
+<span class="c"># screensaver and power management
+</span>$<span class="n">execi</span> <span class="n">xset</span> -<span class="n">dpms</span>   <span class="c"># disable DPMS
+</span>$<span class="n">execi</span> <span class="n">xset</span> <span class="n">s</span> <span class="n">off</span>   <span class="c"># disable auto screensaver
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Shift</span>+<span class="n">l</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"i3lock -n -c 242424"</span>
 
-# screensaver and power management
-$execi xset -dpms   # disable DPMS
-$execi xset s off   # disable auto screensaver
-bindsym $mod+Shift+l $execi sh -c "i3lock -n -c 242424"
+<span class="c"># start a terminal: rxvt-unicide daemon mode
+</span><span class="n">bindsym</span> <span class="n">Control</span>+<span class="n">Shift</span>+<span class="n">n</span> <span class="n">exec</span> <span class="n">urxvtcd</span>
+<span class="c"># start launcher: rofi @see ~/.Xresources
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">F2</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"rofi -show run"</span>
 
-# start a terminal: rxvt-unicide daemon mode
-bindsym Control+Shift+n exec urxvtcd
-# start launcher: rofi @see ~/.Xresources
-bindsym $Alt+F2 $execi sh -c "rofi -show run"
+<span class="c"># change focus
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="n">Tab</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"rofi -show window"</span>
+<span class="n">set</span> $<span class="n">i3t_alt_tab</span> ~/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3</span>-<span class="n">alt</span>-<span class="n">tab</span>.<span class="n">py</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Tab</span> <span class="n">exec</span> $<span class="n">i3t_alt_tab</span> <span class="n">n</span> <span class="n">all</span> <span class="m">2</span>&gt;&amp;<span class="m">1</span> <span class="m">1</span>&gt;/<span class="n">dev</span>/<span class="n">null</span>
 
-# change focus
-bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"
-set $i3t_alt_tab ~/.config/i3/i3-alt-tab.py
-bindsym $Alt+Tab exec $i3t_alt_tab n all 2&gt;&amp;1 1&gt;/dev/null
-
-# change focus
-bindsym $mod+j focus left
-bindsym $mod+Control+Left focus left
-bindsym $mod+k focus right
-bindsym $mod+Control+Down focus down
-bindsym $mod+l focus down
-bindsym $mod+Control+Right focus right
-bindsym $mod+Control+Up focus Up
-
-
-# kill focused window
-bindsym $Alt+F4 kill
-
-# toggle tiling / floating
-bindsym $Alt+Return floating toggle
-# enter fullscreen mode for the focused container
-bindsym $mod+F12 fullscreen toggle
+<span class="c"># change focus
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">j</span> <span class="n">focus</span> <span class="n">left</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Control</span>+<span class="n">Left</span> <span class="n">focus</span> <span class="n">left</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">k</span> <span class="n">focus</span> <span class="n">right</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Control</span>+<span class="n">Down</span> <span class="n">focus</span> <span class="n">down</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">l</span> <span class="n">focus</span> <span class="n">down</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Control</span>+<span class="n">Right</span> <span class="n">focus</span> <span class="n">right</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Control</span>+<span class="n">Up</span> <span class="n">focus</span> <span class="n">Up</span>
 
 
-# move focused window
-bindsym $mod+Left move left
-bindsym $mod+Down move down
-bindsym $mod+Up move up
-bindsym $mod+Right move right
+<span class="c"># kill focused window
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">F4</span> <span class="n">kill</span>
+
+<span class="c"># toggle tiling / floating
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Return</span> <span class="n">floating</span> <span class="n">toggle</span>
+<span class="c"># enter fullscreen mode for the focused container
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">F12</span> <span class="n">fullscreen</span> <span class="n">toggle</span>
 
 
-# change container layout (tabbed, stacked, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+t layout toggle split
-workspace_layout tabbed
+<span class="c"># move focused window
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Left</span> <span class="n">move</span> <span class="n">left</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Down</span> <span class="n">move</span> <span class="n">down</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Up</span> <span class="n">move</span> <span class="n">up</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Right</span> <span class="n">move</span> <span class="n">right</span>
 
-# focus the parent container
-bindsym $mod+a focus parent
-# focus the child container
-bindsym $mod+d focus child
 
-# resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+<span class="c"># change container layout (tabbed, stacked, toggle split)
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">s</span> <span class="n">layout</span> <span class="n">stacking</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">w</span> <span class="n">layout</span> <span class="n">tabbed</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">t</span> <span class="n">layout</span> <span class="n">toggle</span> <span class="n">split</span>
+<span class="n">workspace_layout</span> <span class="n">tabbed</span>
+
+<span class="c"># focus the parent container
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">a</span> <span class="n">focus</span> <span class="n">parent</span>
+<span class="c"># focus the child container
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">d</span> <span class="n">focus</span> <span class="n">child</span>
+
+<span class="c"># resize window (you can also use the mouse for that)
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">r</span> <span class="n">mode</span> <span class="s2">"resize"</span>
+<span class="n">mode</span> <span class="s2">"resize"</span> {
+        <span class="c"># These bindings trigger as soon as you enter the resize mode
+</span>        <span class="n">bindsym</span> <span class="n">Left</span> <span class="n">resize</span> <span class="n">shrink</span> <span class="n">width</span> <span class="m">10</span> <span class="n">px</span> <span class="n">or</span> <span class="m">10</span> <span class="n">ppt</span>
+        <span class="n">bindsym</span> <span class="n">Down</span> <span class="n">resize</span> <span class="n">grow</span> <span class="n">height</span> <span class="m">10</span> <span class="n">px</span> <span class="n">or</span> <span class="m">10</span> <span class="n">ppt</span>
+        <span class="n">bindsym</span> <span class="n">Up</span> <span class="n">resize</span> <span class="n">shrink</span> <span class="n">height</span> <span class="m">10</span> <span class="n">px</span> <span class="n">or</span> <span class="m">10</span> <span class="n">ppt</span>
+        <span class="n">bindsym</span> <span class="n">Right</span> <span class="n">resize</span> <span class="n">grow</span> <span class="n">width</span> <span class="m">10</span> <span class="n">px</span> <span class="n">or</span> <span class="m">10</span> <span class="n">ppt</span>
+        <span class="c"># back to normal: Enter or Escape
+</span>        <span class="n">bindsym</span> <span class="n">Return</span> <span class="n">mode</span> <span class="s2">"default"</span>
+        <span class="n">bindsym</span> <span class="n">Escape</span> <span class="n">mode</span> <span class="s2">"default"</span>
 }
 
-# switch to workspace
-bindsym $Alt+1 workspace 1
-bindsym $Alt+2 workspace 2
-bindsym $Alt+3 workspace 3
-bindsym $Alt+4 workspace 4
-bindsym $Alt+5 workspace 5
-bindsym $Alt+6 workspace 6
+<span class="c"># switch to workspace
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">1</span> <span class="n">workspace</span> <span class="m">1</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">2</span> <span class="n">workspace</span> <span class="m">2</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">3</span> <span class="n">workspace</span> <span class="m">3</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">4</span> <span class="n">workspace</span> <span class="m">4</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">5</span> <span class="n">workspace</span> <span class="m">5</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">6</span> <span class="n">workspace</span> <span class="m">6</span>
 
-# move focused container to workspace
-bindsym $Alt+Shift+1 move container to workspace 1
-bindsym $Alt+Shift+2 move container to workspace 2
-bindsym $Alt+Shift+3 move container to workspace 3
-bindsym $Alt+Shift+4 move container to workspace 4
-bindsym $Alt+Shift+5 move container to workspace 5
-bindsym $Alt+Shift+6 move container to workspace 6
+<span class="c"># move focused container to workspace
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">1</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">1</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">2</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">2</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">3</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">3</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">4</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">4</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">5</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">5</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">6</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">6</span>
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace
-bindsym $mod+Shift+r restart
-# exit
+<span class="c"># reload the configuration file
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Shift</span>+<span class="n">c</span> <span class="n">reload</span>
+<span class="c"># restart i3 inplace
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Shift</span>+<span class="n">r</span> <span class="n">restart</span>
+<span class="c"># exit
 # bindsym $mod+Shift+e exec i3-msg exit
+</span>
+<span class="c"># media key
+</span><span class="n">bindsym</span> <span class="n">XF86AudioRaiseVolume</span> $<span class="n">execi</span> <span class="n">pactl</span> <span class="n">set</span>-<span class="n">sink</span>-<span class="n">volume</span> <span class="m">0</span> +<span class="m">5</span>%
+<span class="n">bindsym</span> <span class="n">XF86AudioLowerVolume</span> $<span class="n">execi</span> <span class="n">pactl</span> <span class="n">set</span>-<span class="n">sink</span>-<span class="n">volume</span> <span class="m">0</span> -<span class="m">5</span>%
+<span class="n">bindsym</span> <span class="n">XF86AudioMute</span> $<span class="n">execi</span> <span class="n">pactl</span> <span class="n">set</span>-<span class="n">sink</span>-<span class="n">mute</span> <span class="m">0</span> <span class="n">toggle</span>
+<span class="n">bindsym</span> <span class="n">XF86MonBrightnessUp</span> $<span class="n">execi</span> /<span class="n">usr</span>/<span class="n">bin</span>/<span class="n">xbacklight</span> -<span class="n">inc</span> <span class="m">5</span>
+<span class="n">bindsym</span> <span class="n">XF86MonBrightnessDown</span> $<span class="n">execi</span> /<span class="n">usr</span>/<span class="n">bin</span>/<span class="n">xbacklight</span> -<span class="n">dec</span> <span class="m">5</span>
 
-# media key
-bindsym XF86AudioRaiseVolume $execi pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume $execi pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute $execi pactl set-sink-mute 0 toggle
-bindsym XF86MonBrightnessUp $execi /usr/bin/xbacklight -inc 5
-bindsym XF86MonBrightnessDown $execi /usr/bin/xbacklight -dec 5
-
-# status bar
-bar {
-    output eDP1
-    position top
-    tray_output eDP1
-    tray_padding -4
-    font xft:Inconsolata,Xft:FontAwesome 18
-    i3bar_command i3bar --transparency
-    status_command i3status -c $HOME/.config/i3/i3status.conf
-    binding_mode_indicator yes
-    colors {
-      background #02020200
-      statusline #F6F3E8
-      separator  #111822
-      focused_workspace  #111822 #222244 #F6F3E8
-      active_workspace   #555555 #555555 #F6F3E8
-      inactive_workspace #020202 #242424 #888888
-      urgent_workspace   #A00000 #900000 #F6F3E8
-      binding_mode       #A00000 #900000 #f6f3e8
-    }
+<span class="c"># status bar
+</span><span class="n">bar</span> {
+    <span class="n">output</span> <span class="n">eDP1</span>
+    <span class="n">position</span> <span class="n">top</span>
+    <span class="n">tray_output</span> <span class="n">eDP1</span>
+    <span class="n">tray_padding</span> -<span class="m">4</span>
+    <span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">Xft</span>:<span class="n">FontAwesome</span> <span class="m">18</span>
+    <span class="n">i3bar_command</span> <span class="n">i3bar</span> --<span class="n">transparency</span>
+    <span class="n">status_command</span> <span class="n">i3status</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3status</span>.<span class="n">conf</span>
+    <span class="n">binding_mode_indicator</span> <span class="n">yes</span>
+    <span class="n">colors</span> {
+      <span class="n">background</span> <span class="c">#02020200
+</span>      <span class="n">statusline</span> <span class="c">#F6F3E8
+</span>      <span class="n">separator</span>  <span class="c">#111822
+</span>      <span class="n">focused_workspace</span>  <span class="c">#111822 #222244 #F6F3E8
+</span>      <span class="n">active_workspace</span>   <span class="c">#555555 #555555 #F6F3E8
+</span>      <span class="n">inactive_workspace</span> <span class="c">#020202 #242424 #888888
+</span>      <span class="n">urgent_workspace</span>   <span class="c">#A00000 #900000 #F6F3E8
+</span>      <span class="n">binding_mode</span>       <span class="c">#A00000 #900000 #f6f3e8
+</span>    }
 }
 
-# class                 border  bground text    indicator child_border
-client.focused          #111822 #222244 #F6F3E8 #2B2B2B   #2B2B2B
-client.focused_inactive #020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
-client.unfocused        #020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
-client.urgent           #A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
-
-# specific window settings
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [class="(?i)feh"] floating enable
-for_window [class="(?i)vlc"] floating enable
-for_window [class="(?i)firefox"] floating enable
-# for_window [class="(?i)pcmanfm"] floating enable
-
-# startup
-assign [class="(?i)evince" ] 2
-assign [class="(?i)pcmanfm" ] 3
-assign [class="(?i)Mendeley Desktop" ] 3
-assign [class="(?i)firefox"] 4</code></pre></figure>
+<span class="c"># class                 border  bground text    indicator child_border
+</span><span class="n">client</span>.<span class="n">focused</span>          <span class="c">#111822 #222244 #F6F3E8 #2B2B2B   #2B2B2B
+</span><span class="n">client</span>.<span class="n">focused_inactive</span> <span class="c">#020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
+</span><span class="n">client</span>.<span class="n">unfocused</span>        <span class="c">#020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
+</span><span class="n">client</span>.<span class="n">urgent</span>           <span class="c">#A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B
+</span><span class="n">client</span>.<span class="n">placeholder</span>      <span class="c">#000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+</span>
+<span class="c"># specific window settings
+</span><span class="n">for_window</span> [<span class="n">window_role</span>=<span class="s2">"pop-up"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">window_role</span>=<span class="s2">"task_dialog"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)feh"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)vlc"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="c"># for_window [class="(?i)pcmanfm"] floating enable
+</span>
+<span class="c"># startup
+</span><span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)evince"</span> ] <span class="m">2</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)pcmanfm"</span> ] <span class="m">3</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)Mendeley Desktop"</span> ] <span class="m">3</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="m">4</span></code></pre></figure>
 </div>
 </div>
 <!-- %%%% end content %%%% -->
