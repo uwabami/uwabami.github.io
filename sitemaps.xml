@@ -36,11 +36,6 @@
     <changefreq>monthly</changefreq>
   </url>
 <url>
-    <loc>https://uwabami.github.io/software/rail/index.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/software/rail/index.html" />
-    <changefreq>monthly</changefreq>
-  </url>
-<url>
     <loc>https://uwabami.github.io/research/index.en.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://uwabami.github.io/research/index.en.html" />
     <changefreq>monthly</changefreq>
@@ -118,6 +113,11 @@
 <url>
     <loc>https://uwabami.github.io/software/tdiary-style-org/index.html</loc>
     <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/tdiary-style-org/index.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+<url>
+    <loc>https://uwabami.github.io/software/rail/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/software/rail/index.html" />
     <changefreq>monthly</changefreq>
   </url>
 <url>
