@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","url":"https://uwabami.github.io/cc-env/Debiani3.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/Debiani3.html","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -177,7 +177,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="orge8854151">始めに</h2>
@@ -477,7 +477,7 @@ ${voffset   8}\
 ${goto      0}${color #ff0000}${cpubar cpu1 8,24} ${cpubar cpu3 8,24}${color}\
 ${goto     54}${color #ff0000}${cpubar cpu2 8,24} ${cpubar cpu4 8,24}${color}\
 ${voffset -20}\
-${goto    108}${color 888888}${cpugraph cpu0 28,50 ff0000 ff7f7f}${color}\
+${goto    108}${color 888888}${cpugraph cpu0 28,50 ff0000 ff0000}${color}\
 ${goto    164}\
 ${voffset  -2}\
 ${font FSMRMP:size=16.5}${color #f09000}RAM${color}: $memperc%${font}\
@@ -485,7 +485,7 @@ ${voffset   9}\
 ${goto    164}\
 ${color #0000ff}${membar 8,85}${color}\
 ${voffset -20}\
-${goto    256}${color 888888}${memgraph 28,50 0000ff 7f7fff}${color}\
+${goto    256}${color 888888}${memgraph 28,50 0000ff 0000ff}${color}\
 ${voffset  -2}\
 ${goto    310}\
 ${font FSMRMP:size=16.5}${color #f09000}DISK${color}: ${fs_used_perc /}%${font}\
@@ -518,8 +518,8 @@ ${font FSMRMP:size=15}${color #ffffff}${addr wlp2s0}${font}${color}\
 ${voffset -24}\
 ${goto    675}\
 ${color 888888}\
-${upspeedgraph wlp2s0 28,50 4CFFFF 7FFFFF} \
-${downspeedgraph wlp2s0 28,50 4CFF4C 7FFF7F}${color}\
+${upspeedgraph wlp2s0 28,50 4CFFFF 4CFFFF} \
+${downspeedgraph wlp2s0 28,50 4CFF4C 4CFF4C}${color}\
 ${else}\
 ${if_existing /proc/net/route enp0s31f6}\
 ${voffset  -2}\
@@ -531,8 +531,8 @@ ${font FSMRMP:size=15}${color #ffffff}${addr enp0s31f6}${font}${color}\
 ${voffset -24}\
 ${goto    675}\
 ${color 888888}\
-${upspeedgraph enp0s31f6 28,50 4CFFFF 7FFFFF} \
-${downspeedgraph enp0s31f6 28,50 4CFF4C 7FFF7F}${color}\
+${upspeedgraph enp0s31f6 28,50 4CFFFF 4CFFFF} \
+${downspeedgraph enp0s31f6 28,50 4CFF4C 4CFF4C}${color}\
 ${else}\
 ${voffset  -2}\
 ${goto    520}\

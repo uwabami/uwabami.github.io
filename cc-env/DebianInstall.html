@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"Debian の Install","dateModified":"2019-12-22T00:52:27+09:00","datePublished":"2019-12-22T00:52:27+09:00","url":"https://uwabami.github.io/cc-env/DebianInstall.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianInstall.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/DebianInstall.html","headline":"Debian の Install","dateModified":"2019-12-22T00:52:27+09:00","datePublished":"2019-12-22T00:52:27+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianInstall.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -1045,8 +1045,11 @@ Windows 領域を sda2 に移すの忘れていた. 気持ち悪いけれど, �
 <ul class="org-ul">
 <li>CPU: Core2Duo SU9400</li>
 <li>RAM: 4GB(2GBx2)</li>
-<li>HDD: 2.5型 HDD 320GB, 光学ドライブ無しにしました. あとから気がついたけれど, 日本語配列の刻印無しキーボードも選択すれば良かったかな…</li>
+<li>HDD: 2.5型 HDD 320GB, 光学ドライブ無し</li>
 </ul>
+<p>
+にしました. あとから気がついたけれど, 日本語配列の刻印無しキーボードも選択すれば良かったかな…
+</p>
 </div>
 <div>
 <h3 id="org0888f3c2">ハードウェア情報: VAIO typeG</h3>
@@ -1329,13 +1332,16 @@ install の結果として今回は以下の様に.
 </pre>
 
 <p>
-元の Windows 領域は 8GB に. 使う気は無いけどバッテリーのエコモード切り替えや W05K のアクティベーションは Windows で行なう必要があるので, 止むなく残す.
+元の Windows 領域は 8GB に. 使う気は無いけど
+バッテリーのエコモード切り替えや W05K のアクティベーションは Windows で
+行なう必要があるので, 止むなく残す.
 </p>
 
 <p>
 boot と swap に分ける必要はあるのか定かではない. 癖のようなもの.
 また, swap 領域を / より先に持ってきているのは TuxOnIce のため.
-「resume する領域が先にあった方が良い」という情報をどこかで見た記憶があるのでそのようにしている. これも嘘かもしれない.
+「resume する領域が先にあった方が良い」という情報をどこかで見た記憶があるので
+そのようにしている. これも嘘かもしれない.
 </p>
 </div>
 </div>

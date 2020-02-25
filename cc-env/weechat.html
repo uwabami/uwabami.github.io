@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"weechat の設定","dateModified":"2018-10-25T06:13:30+09:00","datePublished":"2018-10-25T06:13:30+09:00","url":"https://uwabami.github.io/cc-env/weechat.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/weechat.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/weechat.html","headline":"weechat の設定","dateModified":"2018-10-25T06:13:30+09:00","datePublished":"2018-10-25T06:13:30+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/weechat.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -214,8 +214,11 @@ IRC クライアントとして <a href="https://weechat.org/">weechat</a> を�
 </p>
 <ul class="org-ul">
 <li>VPS に znc を入れて IRC バウンサとして動作</li>
-<li>VPS 自体には autossh で dynamic port forwad で接続という状況なので, 先ずは socks5 proxy の設定から</li>
+<li>VPS 自体には autossh で dynamic port forwad で接続</li>
 </ul>
+<p>
+という状況なので, 先ずは socks5 proxy の設定から
+</p>
 <pre class="example">
   /proxy add &lt;name&gt; &lt;type&gt; &lt;address&gt; &lt;port&gt; [&lt;username&gt; &lt;password&gt;]
 </pre>
@@ -236,8 +239,11 @@ IRC クライアントとして <a href="https://weechat.org/">weechat</a> を�
 </pre>
 <ul class="org-ul">
 <li>&lt;proxy<sub>name</sub>&gt; は <a href="DebianSquid.html">Proxyの設定</a> で追加した proxy の名前</li>
-<li>&lt;znc channel password&gt; は znc のチャンネル区別に使うパスワードといった感じ.</li>
+<li>&lt;znc channel password&gt; は znc のチャンネル区別に使うパスワード</li>
 </ul>
+<p>
+といった感じ.
+</p>
 
 <p>
 他に設定しておくことがあれば
@@ -364,7 +370,8 @@ status line
 <h3 id="org86510f73">log の無効化</h3>
 <div class="outline-text-3" id="text-org86510f73">
 <p>
-log 取りは znc に任せているので、weechat でログを取る必要はない。というわけで、log plugin を無効化しておく(他にも色々切ってるけれど).
+log 取りは znc に任せているので、weechat でログを取る必要はない。
+というわけで、log plugin を無効化しておく(他にも色々切ってるけれど).
 読み込んでいるのは以下.
 </p>
 <pre class="example">
@@ -397,7 +404,8 @@ log 取りは znc に任せているので、weechat でログを取る必要は
 <h2 id="org27f7821d">カスタマイズ: 色</h2>
 <div class="outline-text-2" id="text-org27f7821d">
 <p>
-これが地味に凝りだすと大変だったりする。使える色は <code>weechat --colors</code> で確認できる。
+これが地味に凝りだすと大変だったりする。
+使える色は <code>weechat --colors</code> で確認できる。
 </p>
 
 <div class="col-6 px2 mx-auto">

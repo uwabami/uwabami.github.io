@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest","dateModified":"2019-12-22T00:49:44+09:00","datePublished":"2019-12-22T00:49:44+09:00","url":"https://uwabami.github.io/cc-env/DebianPackaging.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianPackaging.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/DebianPackaging.html","headline":"パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest","dateModified":"2019-12-22T00:49:44+09:00","datePublished":"2019-12-22T00:49:44+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianPackaging.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -189,8 +189,11 @@ Debian パッケージを作成するため
 <li>sbuild: ビルド時の依存環境をテストしつつビルドする</li>
 <li>lintian: パッケージの品質のチェック</li>
 <li>piuparts: パッケージとしてのテスト</li>
-<li>autopkgtest: ビルドしたバイナリの実行テストができるようにしておきます.</li>
+<li>autopkgtest: ビルドしたバイナリの実行テスト</li>
 </ul>
+<p>
+ができるようにしておきます.
+</p>
 </div>
 </div>
 <div>
@@ -255,7 +258,8 @@ sbuild の設定は <code>~/.sbuildrc</code> に書いておく.
 <h2 id="orgc93b0208">lintian: パッケージの品質のチェック</h2>
 <div class="outline-text-2" id="text-orgc93b0208">
 <p>
-作成したパッケージが Debian Policy に準拠しているかをチェックするパッケージである lintian を導入.
+作成したパッケージが Debian Policy に準拠しているかを
+チェックするパッケージである lintian を導入.
 </p>
 <pre class="example">
 % sudo apt-get install lintian
@@ -284,7 +288,8 @@ sbuild からの呼び出しは <code>~/.sbuildrc</code> において
 <h2 id="orge1e68773">piuparts: パッケージとしてのテスト</h2>
 <div class="outline-text-2" id="text-orge1e68773">
 <p>
-ビルドしたパッケージについてインストール, アップグレード, リムーブ, パージのテストを行なえる
+ビルドしたパッケージについて
+インストール, アップグレード, リムーブ, パージのテストを行なえる
 piuparts を導入しておく.
 </p>
 <pre class="example">
@@ -335,8 +340,11 @@ LXC の基本設定や dnsmasq での DHCP 取得ができるようになって�
 <li>今使っている環境が btrfs</li>
 <li>debci setup → autopkgtest-build-lxc が呼ばれる</li>
 <li>autopkgtest-build-lxc では lxc-create で "-B best" が呼ばれている</li>
-<li>btrfs と lxc-destroy に関するバグ? なのか, コンテナの差分更新後 lxc-destroy ができずに失敗するというオチに.</li>
+<li>btrfs と lxc-destroy に関するバグ? なのか, コンテナの差分更新後 lxc-destroy ができずに失敗する</li>
 </ul>
+<p>
+というオチに.
+</p>
 
 <p>
 結局
@@ -386,7 +394,8 @@ sbuild/schroot の release は <code>unstable</code> だったりするところ
 </p>
 
 <p>
-sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>external_commands</code> で呼び出すことにする.
+sbuild 自体にも autopkgtest の呼び出しはあるが, ここでは <code>external_commands</code> で
+呼び出すことにする.
 </p>
 <figure class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="c1">## autopkgtest</span>
 <span class="c1"># build 後に autopkgtest の実行 ⇒ 実行しない. post-build-commands で実行</span>

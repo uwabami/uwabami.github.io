@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"このサイトができるまで","dateModified":"2018-10-25T06:11:26+09:00","datePublished":"2018-10-25T06:11:26+09:00","url":"https://uwabami.github.io/cc-env/JekyllandOrg.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/JekyllandOrg.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/JekyllandOrg.html","headline":"このサイトができるまで","dateModified":"2018-10-25T06:11:26+09:00","datePublished":"2018-10-25T06:11:26+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/JekyllandOrg.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -186,7 +186,9 @@
 <p>
 このサイトは、記事を Emacs の <a href="http://orgmode.org/">Org mode</a> で書いて、
 <a href="http://jekyllrb.com/">Jekyll</a> で HTML に変換しています。
-<code>org</code> ファイルそのものに(なるべく)手を加えることなく、それなりに一貫性を持ってコンテンツを作成するために、幾つかプラグインを書いています。その解説など。
+<code>org</code> ファイルそのものに(なるべく)手を加えることなく、
+それなりに一貫性を持ってコンテンツを作成するために、
+幾つかプラグインを書いています。その解説など。
 </p>
 </div>
 </div>
@@ -220,7 +222,8 @@ org ファイルを html へ出力する際のタグのカスタマイズをし�
 #+DATE:
 #+LAYOUT:</code></pre></figure>
 <p>
-を記載しておいて下さい。これが Jekyll の Front Matter になります。他にも <code>#+HTML</code> および <code>#+LATEX</code> 以外の Option が書け、
+を記載しておいて下さい。これが Jekyll の Front Matter になります。
+他にも <code>#+HTML</code> および <code>#+LATEX</code> 以外の Option が書け、
 downcase したのち Front Matter として使用できます。
 </p>
 </div>
@@ -246,8 +249,11 @@ downcase したのち Front Matter として使用できます。
 
 <p>
 org-exporter による「code block 実行結果の埋め込み」を使いたい場合には、
-org-exporter での html 出力をカスタマイズした後に、jekyll で処理することになります。このアプローチは <a href="http://juanreyero.com/open/org-jekyll/">org-jekyll, export blog posts from org-mode</a> でしょう。また、Github Pages でコンテンツを公開することを考える場合には、
-plugin が使えないため、リンク先のアプローチを取る必要があります。
+org-exporter での html 出力をカスタマイズした後に、jekyll で処理することになります。
+このアプローチは <a href="http://juanreyero.com/open/org-jekyll/">org-jekyll, export blog posts from org-mode</a> でしょう。
+また、Github Pages でコンテンツを公開することを考える場合には、
+plugin が使えないため、
+リンク先のアプローチを取る必要があります。
 </p>
 
 <p>
@@ -255,16 +261,21 @@ plugin が使えないため、リンク先のアプローチを取る必要が�
 </p>
 <ol class="org-ol">
 <li>jekyll を動作させるサーバ上の Emacs のバージョンと手元のバージョンとの乖離</li>
-<li>org のファイルと html ファイルの双方をリポジトリで管理する無駄さから、結局 org ファイルを直接 jekyll で処理することにしました。</li>
+<li>org のファイルと html ファイルの双方をリポジトリで管理する無駄さ</li>
 </ol>
+<p>
+から、結局 org ファイルを直接 jekyll で処理することにしました。
+</p>
 </div>
 </div>
 <div>
 <h3 id="org96b42bdb">org-ruby の拡張(?)</h3>
 <div class="outline-text-3" id="text-org96b42bdb">
 <p>
-最新の org-ruby では org-mode の search link を export してくれません。そんな訳で monkey patch です。
-<code>Orgmode::HtmlOutputBuffer.inline_formatting</code> が割と大きな method なので、小さな monkey patch のつもりが、ほぼコピペになってしまいました…。
+最新の org-ruby では org-mode の search link を export してくれません。
+そんな訳で monkey patch です。
+<code>Orgmode::HtmlOutputBuffer.inline_formatting</code> が割と大きな method なので、
+小さな monkey patch のつもりが、ほぼコピペになってしまいました…。
 </p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#! /usr/bin/env ruby</span>
 <span class="c1"># -*- mode: ruby; coding: utf-8 -*-</span>
@@ -381,12 +392,20 @@ Jekyll の原稿として org ファイルを使用する際の不満は、
 </p>
 <ol class="org-ol">
 <li>Jekyll の原稿として認識してもらうためには、
-org ファイルに yaml で書かれた <a href="http://jekyllrb.com/docs/frontmatter/">Front Matter</a> が必要。しかしながら、これは org としては美しくない。</li>
-<li>Front Matter に記述する内容は、そもそも org ファイルに存在する内容が多い( <code>#+TITLE</code> とか)。つまり情報が重複している。でした。</li>
+org ファイルに yaml で書かれた <a href="http://jekyllrb.com/docs/frontmatter/">Front Matter</a> が必要。
+しかしながら、これは org としては美しくない。</li>
+<li>Front Matter に記述する内容は、
+そもそも org ファイルに存在する内容が多い( <code>#+TITLE</code> とか)。
+つまり情報が重複している。</li>
 </ol>
+<p>
+でした。
+</p>
 
 <p>
-これらの不満を解消してくれるプラグインとしては、既に <a href="https://github.com/eggcaker/jekyll-org">eggcaker/jekyll-org</a> があります。ただし、これは <code>Post</code> 専用なので、
+これらの不満を解消してくれるプラグインとしては、
+既に <a href="https://github.com/eggcaker/jekyll-org">eggcaker/jekyll-org</a> があります。
+ただし、これは <code>Post</code> 専用なので、
 Jekyll の blog 記事の範疇に無いページ( いわゆる <code>Page</code> 等)は対象としていません。
 </p>
 
@@ -399,7 +418,8 @@ Jekyll の blog 記事の範疇に無いページ( いわゆる <code>Page</code
 <code>Jekyll::Utils.has_yaml_header?</code> の上書き</h4>
 <div class="outline-text-4" id="text-org75093801">
 <p>
-org ファイルに Front Matter 相当の情報が存在することを前提として処理、すなわち、拡張子が <code>.org</code> の場合は常に <code>true</code> を返すようにします。
+org ファイルに Front Matter 相当の情報が存在することを前提として処理、
+すなわち、拡張子が <code>.org</code> の場合は常に <code>true</code> を返すようにします。
 </p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
 <span class="c1"># -*- mode: ruby; coding: utf-8 -*-</span>
@@ -426,7 +446,8 @@ org ファイルに Front Matter 相当の情報が存在することを前提�
 <div class="outline-text-4" id="text-org3891ff25">
 <p>
 <code>org</code> ファイルの <code>#+TITLE</code> 等を FRONT<sub>MATTER</sub> として扱った上で、
-html に出力します。また <code>#+TITLE</code> が 2 回出力されるのを防ぐために、
+html に出力します。
+また <code>#+TITLE</code> が 2 回出力されるのを防ぐために、
 org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 </p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#! /usr/bin/env ruby</span>
@@ -481,7 +502,9 @@ org-ruby で処理する前に <code>#+TITLE</code> を削除しています。
 <code>Jekyll::OrgConverter</code> の追加</h4>
 <div class="outline-text-4" id="text-org4e95be57">
 <p>
-Converter の追加は Jekyll 本家のドキュメントにもあるので、割と簡単です。実際の処理は上書きした <code>Jekyll::Convertible</code> で行なわれています。ただ、search link を処理するために、最後にリンクを置換しています。
+Converter の追加は Jekyll 本家のドキュメントにもあるので、
+割と簡単です。実際の処理は上書きした <code>Jekyll::Convertible</code> で行なわれています。
+ただ、search link を処理するために、最後にリンクを置換しています。
 </p>
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#!/usr/bin/env ruby</span>
 <span class="c1"># -*- mode: ruby; coding: utf-8 -*-</span>

@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"Terminal 生活","dateModified":"2020-02-01T23:49:43+09:00","datePublished":"2020-02-01T23:49:43+09:00","url":"https://uwabami.github.io/cc-env/Terminal.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/Terminal.html","headline":"Terminal 生活","dateModified":"2020-02-01T23:49:43+09:00","datePublished":"2020-02-01T23:49:43+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -177,7 +177,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="orgab2c8165">始めに</h2>
@@ -257,7 +257,7 @@ tmux に移行した.
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
 #
 # Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
-# $Lastupdate: 2019-10-05 10:48:58$
+# $Lastupdate: 2020-02-01 14:50:43$
 # License: Public domain.
 </span>
 <span class="c">## general
@@ -283,10 +283,10 @@ tmux に移行した.
 <span class="c"># set-option -ga terminal-overrides ",rxvt-unicode-256color:Tc"
 </span><span class="n">set</span>-<span class="n">environment</span> -<span class="n">g</span> <span class="n">NCURSES_NO_UTF8_ACS</span> <span class="m">0</span>
 <span class="c"># 罫線素片の扱い: rxvt ならコレで良いのだが...
-# set -ag terminal-overrides ',*:U8=0'
-# 罫線素片の扱い: VTE 系はわざわざ Unicode に置き換える, ので ASCII で描画する
+</span><span class="n">set</span> -<span class="n">ag</span> <span class="n">terminal</span>-<span class="n">overrides</span> <span class="s1">',*:U8=0'</span>
+<span class="c"># 罫線素片の扱い: VTE 系はわざわざ Unicode に置き換える, ので ASCII で描画する
 # set-option -g pane-border-ascii 0  # ←あてて build してある場合は不要
-</span><span class="n">set</span>-<span class="n">environment</span> -<span class="n">g</span> <span class="n">VTE_CJK_WIDTH</span> <span class="m">1</span> <span class="c"># ←最近ちゃんと効いてない気がする.
+# set-environment -g VTE_CJK_WIDTH 1 # ←最近ちゃんと効いてない気がする.
 # メッセージ表示時間(既定値は1000?)
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">display</span>-<span class="n">time</span> <span class="m">4000</span>
 <span class="c"># 後方スクロール行数(既定値は2000)
@@ -377,7 +377,7 @@ weechat を常に下に表示させておきたいので <code>C-t -</code> で�
 <span class="nv">current_active_pane</span><span class="o">=</span><span class="sb">`</span>tmux lsp | <span class="nb">grep </span>active | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
 
 <span class="k">if</span> <span class="o">[</span> <span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span> <span class="nt">-ne</span> <span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then
-    </span>tmux join-pane <span class="nt">-l</span> 12 <span class="nt">-s</span> :<span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span>.<span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-t</span> :<span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span>
+    </span>tmux join-pane <span class="nt">-l</span> 10 <span class="nt">-s</span> :<span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span>.<span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-t</span> :<span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span>
     tmux <span class="k">select</span><span class="nt">-pane</span> <span class="nt">-t</span> 0
 <span class="k">else
     if</span> <span class="o">[</span> <span class="nt">-e</span> <span class="nv">$tmp</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then

@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"Squid で広告避け","dateModified":"2020-01-27T01:03:52+09:00","datePublished":"2020-01-27T01:03:52+09:00","url":"https://uwabami.github.io/cc-env/DebianSquid.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSquid.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/DebianSquid.html","headline":"Squid で広告避け","dateModified":"2020-01-27T01:03:52+09:00","datePublished":"2020-01-27T01:03:52+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSquid.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -177,7 +177,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="https://uwabami.github.io/cc-env/index.html#orge0707863">Debian</a>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="orgda6fb6ff">はじめに</h2>
@@ -481,7 +481,7 @@ SSL-Bump(MTM)用の証明書は適宜作成しておく.
  <span class="n">tls</span>-<span class="n">dh</span>=<span class="n">prime256v1</span>:/<span class="n">etc</span>/<span class="n">squid</span>/<span class="n">dhparam</span>.<span class="n">pem</span>
 <span class="n">sslcrtd_program</span> /<span class="n">usr</span>/<span class="n">lib</span>/<span class="n">squid</span>/<span class="n">security_file_certgen</span> \
   -<span class="n">s</span> /<span class="n">var</span>/<span class="n">spool</span>/<span class="n">squid</span>/<span class="n">ssl_db</span> \
-  -<span class="n">M</span> <span class="m">64</span><span class="n">MB</span>
+  -<span class="n">M</span> <span class="m">4</span><span class="n">MB</span>
 <span class="n">tls_outgoing_options</span> \
   <span class="n">cafile</span>=/<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span> \
   <span class="n">options</span>=<span class="n">NO_SSLv3</span>,<span class="n">ALL</span>
