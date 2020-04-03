@@ -35,14 +35,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-02-26T08:14:18+09:00" />
+<meta property="article:published_time" content="2020-04-01T11:41:51+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/Emacs.html","headline":"Emacs の設定","dateModified":"2020-02-26T08:14:18+09:00","datePublished":"2020-02-26T08:14:18+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"datePublished":"2020-04-01T11:41:51+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"headline":"Emacs の設定","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html","author":{"@type":"Person","name":"Youhei SASAKI"},"dateModified":"2020-04-01T11:41:51+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -2266,7 +2266,7 @@ mime-setup がロードされる前に記述する必要あり.
   <span class="ss">:preface</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">mime-view-text/html-previewer</span> <span class="ss">'shr</span>
         <span class="nv">mime-setup-enable-inline-html</span> <span class="ss">'shr</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">defvar</span> <span class="nv">my:shr-width</span> <span class="mi">72</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">defvar</span> <span class="nv">my:shr-width</span> <span class="mi">78</span><span class="p">)</span>
   <span class="c1">;;</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:shr-insert-document</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">them</span><span class="p">)</span>
     <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">shr-width</span> <span class="nv">my:shr-width</span><span class="p">))</span> <span class="p">(</span><span class="nb">apply</span> <span class="nv">them</span><span class="p">)))</span>
@@ -3764,14 +3764,20 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 他には wanderlust のメールを扱えるように <code>org-wl</code> を読み込んで template を追加したぐらい.
 notmuch のインデックスの方が良いかもしれない, と最近思っている.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ol-wl</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">my:dpkg-status</span> <span class="s">"wl-beta"</span><span class="p">)</span>
-               <span class="p">(</span><span class="nv">my:dpkg-status</span> <span class="s">"wl"</span><span class="p">))</span>
-           <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">))</span>
-  <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">ol-wl</span>
-           <span class="ss">:url</span> <span class="s">"https://code.orgmode.org/bzg/org-mode/raw/master/contrib/lisp/ol-wl.el"</span>
-           <span class="p">)</span>
-  <span class="p">)</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (leaf ol</span>
+<span class="c1">;;   :el-get (ol</span>
+<span class="c1">;;            :url "https://code.orgmode.org/bzg/org-mode/raw/master/lisp/ol.el"))</span>
+<span class="c1">;; (leaf ol-wl</span>
+<span class="c1">;;   :if (or (my:dpkg-status "wl-beta")</span>
+<span class="c1">;;           (my:dpkg-status "wl"))</span>
+<span class="c1">;;   :after ol</span>
+<span class="c1">;;   :el-get (ol-wl</span>
+<span class="c1">;;            :url "https://code.orgmode.org/bzg/org-mode/raw/master/contrib/lisp/ol-wl.el"</span>
+<span class="c1">;;            )</span>
+<span class="c1">;;   :init</span>
+<span class="c1">;;   (with-eval-after-load 'wl</span>
+<span class="c1">;;     (require 'ol-wl))</span>
+<span class="c1">;;   )</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-capture</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x m"</span> <span class="o">.</span> <span class="nv">org-capture</span><span class="p">))</span>
@@ -3788,6 +3794,7 @@ notmuch のインデックスの方が良いかもしれない, と最近思っ�
      <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">c</span><span class="p">)</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">equal</span> <span class="nv">c</span> <span class="nv">?\[</span><span class="p">)</span> <span class="nv">?\(</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">equal</span> <span class="nv">c</span> <span class="nv">?\]</span><span class="p">)</span> <span class="nv">?\)</span> <span class="nv">c</span><span class="p">)))</span>
              <span class="nv">string-to-transform</span><span class="p">))</span>
     <span class="p">)</span>
+  <span class="c1">;;</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">org-default-notes-file</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">my:d:org</span> <span class="s">"journal.org"</span><span class="p">)</span>
         <span class="nv">org-capture-templates</span>
         <span class="o">`</span><span class="p">(</span>
@@ -3799,13 +3806,13 @@ notmuch のインデックスの方が良いかもしれない, と最近思っ�
            <span class="ss">:kill-buffer</span> <span class="no">t</span>
            <span class="p">)</span>
           <span class="c1">;; "* TODO &lt;%&lt;%Y-%m-%d&gt;&gt; %:subject %^g\n  %?\n  %a\n  #+BEGIN_QUOTE\n%i\n  #+END_QUOTE"</span>
-          <span class="p">(</span><span class="s">"e"</span> <span class="s">"Email TODO"</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">"** TODO %(format-time-string org-journal-time-format) [[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(my:transform-square-brackets-to-round-ones \"%:subject\")]]\n  :PROPERTIES:\n  :CREATED: %u\n  :END:%?\n"</span>
-           <span class="ss">:prepend</span> <span class="no">nil</span>
-           <span class="ss">:unnarrowed</span> <span class="no">nil</span>
-           <span class="ss">:kill-buffer</span> <span class="no">t</span>
-           <span class="p">)</span>
+          <span class="c1">;; ("e" "Email TODO" plain</span>
+          <span class="c1">;;  (function my:org-journal-add-date-entry-capture)</span>
+          <span class="c1">;;  "** TODO %(format-time-string org-journal-time-format) [[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(my:transform-square-brackets-to-round-ones \"%:subject\")]]\n  :PROPERTIES:\n  :CREATED: %u\n  :END:%?\n"</span>
+          <span class="c1">;;  :prepend nil</span>
+          <span class="c1">;;  :unnarrowed nil</span>
+          <span class="c1">;;  :kill-buffer t</span>
+          <span class="c1">;;  )</span>
           <span class="p">(</span><span class="s">"m"</span> <span class="s">"Memo/Journal Entry"</span> <span class="nv">plain</span>
            <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
            <span class="s">"** MEMO %(format-time-string org-journal-time-format) %?"</span>
@@ -3858,8 +3865,8 @@ request token 等の置き場所の変更
                                <span class="s">"org-gcal"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">org-gcal-token-file</span>   <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span>
                                <span class="s">"org-gcal/.org-gcal-token"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">org-gcal-down-days</span>    <span class="o">.</span> <span class="mi">90</span><span class="p">)</span>  <span class="c1">;; 過去 3 month</span>
-    <span class="p">(</span><span class="nv">org-gcal-up-days</span>      <span class="o">.</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1">;; 未来 6 month</span>
+    <span class="p">(</span><span class="nv">org-gcal-down-days</span>    <span class="o">.</span> <span class="mi">30</span><span class="p">)</span>  <span class="c1">;; 過去 1 month</span>
+    <span class="p">(</span><span class="nv">org-gcal-up-days</span>      <span class="o">.</span> <span class="mi">90</span><span class="p">)</span>  <span class="c1">;; 未来 3 month</span>
     <span class="p">(</span><span class="nv">org-gcal-auto-archive</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-gcal-notify-p</span>     <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
     <span class="c1">;;</span>
@@ -3910,8 +3917,19 @@ request token 等の置き場所の変更
            <span class="ss">:type</span> <span class="nv">github</span>
            <span class="ss">:pkgname</span> <span class="s">"uwabami/org-wiki"</span><span class="p">)</span>
   <span class="ss">:custom</span>
-  <span class="p">((</span><span class="nv">org-wiki-location</span>     <span class="o">.</span> <span class="s">"~/Public/cc-env"</span><span class="p">)</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-wiki-location</span>    <span class="o">.</span> <span class="s">"~/Public/cc-env"</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">org-wiki-publish-root</span> <span class="o">.</span> <span class="s">"{{site.url}}/cc-env/"</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">org-wiki-template</span>
+    <span class="o">.</span>
+    <span class="o">,</span><span class="p">(</span><span class="nv">concat</span> <span class="s">"#+TITLE: %n\n"</span>
+             <span class="s">"#+date: 20\n"</span>
+             <span class="s">"#+LAYOUT: default\n"</span>
+             <span class="s">"#+options: auto-id:t\n"</span>
+             <span class="s">"#+PREMALINK: /cc-env/%n.html\n"</span>
+             <span class="s">"#+REF: cc-env/%n\n"</span>
+             <span class="s">"Related [[wiki:index][Index]] [[~/Public/cc-env/index.org::#orge0707863][Debian]]\n"</span>
+             <span class="s">"* %n\n"</span>
+             <span class="p">))</span>
    <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
@@ -4155,6 +4173,18 @@ magit は Emacs の Git Frontend.
 </div>
 </div>
 <div>
+<h3 id="org6727f452">Forge</h3>
+<div class="outline-text-3" id="text-org6727f452">
+<p>
+Gitub/Gitlab と Magit の連携
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">forge</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
+  <span class="ss">:after</span> <span class="nv">magit</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
 <h3 id="org994abf0f">Git Gutter+</h3>
 <div class="outline-text-3" id="text-org994abf0f">
 <p>
@@ -4317,13 +4347,14 @@ on-the-fly syntax checker.
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"fortls"</span><span class="p">)</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:custom</span>
-  <span class="p">((</span><span class="nv">lsp-print-io</span>             <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">lsp-print-io</span>             <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">lsp-trace</span>                <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">lsp-print-performance</span>    <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">lsp-auto-guess-root</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">lsp-document-sync-method</span> <span class="o">.</span> <span class="ss">'incremental</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">lsp-response-timeout</span>     <span class="o">.</span> <span class="mi">5</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">lsp-prefer-flymake</span>       <span class="o">.</span><span class="ss">'flymake</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">lsp-session-file</span>         <span class="o">.,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"lsp-session-v1"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
    <span class="p">)</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">lsp-ui</span>
@@ -4563,7 +4594,9 @@ markdown自体はあまり好きじゃないんだけれど,
   <span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-text-directory</span> <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">)</span> <span class="s">"/Nextcloud/tdiary/"</span><span class="p">)</span>
         <span class="nv">tdiary-diary-list</span> <span class="o">'</span><span class="p">((</span><span class="s">"log"</span> <span class="s">"https://uwabami.junkhub.org/log/"</span><span class="p">))</span>
         <span class="nv">tdiary-style-mode</span> <span class="ss">'org-mode</span>
-        <span class="nv">tdiary-text-suffix</span> <span class="s">".org"</span><span class="p">)</span>
+        <span class="nv">tdiary-text-suffix</span> <span class="s">".org"</span>
+        <span class="nv">tdiary-http-timeout</span> <span class="mi">100</span>
+        <span class="p">)</span>
   <span class="p">(</span><span class="nv">tdiary-passwd-file-load</span><span class="p">)</span>
   <span class="c1">;; (with-eval-after-load 'tdiary-mode</span>
   <span class="c1">;;   (setq tdiary-text-save-p t))</span>
@@ -5074,7 +5107,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-02-25 23:14:18 +0000
+          Lastupdate: 2020-04-01 02:41:51 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
