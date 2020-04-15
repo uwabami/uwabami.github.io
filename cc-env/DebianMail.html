@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"datePublished":"2020-01-11T01:18:15+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"headline":"Mail 環境の設定","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianMail.html","author":{"@type":"Person","name":"Youhei SASAKI"},"dateModified":"2020-01-11T01:18:15+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"dateModified":"2020-01-11T01:18:15+09:00","url":"https://uwabami.github.io/cc-env/DebianMail.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"headline":"Mail 環境の設定","author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","datePublished":"2020-01-11T01:18:15+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -991,7 +991,7 @@ $ sudo apt-get install offlineimap
 <span class="kn">import</span> <span class="nn">gnomekeyring</span> <span class="k">as</span> <span class="n">gkey</span>
 <span class="c1"># Ad hoc fix for Striptime behavior
 </span><span class="kn">import</span> <span class="nn">locale</span>
-<span class="n">locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">LC_TIME</span><span class="p">,</span> <span class="s">'C'</span><span class="p">)</span>
+<span class="n">locale</span><span class="p">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="p">.</span><span class="n">LC_TIME</span><span class="p">,</span> <span class="s">'C'</span><span class="p">)</span>
 
 <span class="c1">##################
 # Gnome keyring  #
@@ -999,41 +999,41 @@ $ sudo apt-get install offlineimap
 </span>
 <span class="k">class</span> <span class="nc">Keyring</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">protocol</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="n">server</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span> <span class="o">=</span> <span class="n">protocol</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_keyring</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">get_default_keyring_sync</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_server</span> <span class="o">=</span> <span class="n">server</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_keyring</span> <span class="o">=</span> <span class="n">gkey</span><span class="p">.</span><span class="n">get_default_keyring_sync</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">has_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">}</span>
-            <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_server</span><span class="p">,</span> <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_protocol</span><span class="p">}</span>
+            <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="p">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="p">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
             <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-        <span class="k">except</span> <span class="n">gkey</span><span class="o">.</span><span class="n">DeniedError</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">gkey</span><span class="p">.</span><span class="n">DeniedError</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
 
     <span class="k">def</span> <span class="nf">get_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">}</span>
-        <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="o">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">"user"</span><span class="p">],</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">secret</span><span class="p">)</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_server</span><span class="p">,</span> <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_protocol</span><span class="p">}</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">gkey</span><span class="p">.</span><span class="n">find_items_sync</span><span class="p">(</span><span class="n">gkey</span><span class="p">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">attributes</span><span class="p">[</span><span class="s">"user"</span><span class="p">],</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">secret</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">set_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">pw</span><span class="p">)):</span>
         <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s">"user"</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
-                <span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span>
-                <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span><span class="p">,</span>
+                <span class="s">"server"</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_server</span><span class="p">,</span>
+                <span class="s">"protocol"</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">_protocol</span><span class="p">,</span>
             <span class="p">}</span>
-        <span class="n">gkey</span><span class="o">.</span><span class="n">item_create_sync</span><span class="p">(</span><span class="n">gkey</span><span class="o">.</span><span class="n">get_default_keyring_sync</span><span class="p">(),</span>
-                <span class="n">gkey</span><span class="o">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">pw</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="n">gkey</span><span class="p">.</span><span class="n">item_create_sync</span><span class="p">(</span><span class="n">gkey</span><span class="p">.</span><span class="n">get_default_keyring_sync</span><span class="p">(),</span>
+                <span class="n">gkey</span><span class="p">.</span><span class="n">ITEM_NETWORK_PASSWORD</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">pw</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_username</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
     <span class="n">keyring</span> <span class="o">=</span> <span class="n">Keyring</span><span class="p">(</span><span class="s">"offlineimap"</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s">"imap"</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_credentials</span><span class="p">()</span>
+    <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="o">=</span> <span class="n">keyring</span><span class="p">.</span><span class="n">get_credentials</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">username</span>
 
 <span class="k">def</span> <span class="nf">get_password</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
     <span class="n">keyring</span> <span class="o">=</span> <span class="n">Keyring</span><span class="p">(</span><span class="s">"offlineimap"</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s">"imap"</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="o">=</span> <span class="n">keyring</span><span class="o">.</span><span class="n">get_credentials</span><span class="p">()</span>
+    <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="o">=</span> <span class="n">keyring</span><span class="p">.</span><span class="n">get_credentials</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">password</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
@@ -1043,9 +1043,9 @@ $ sudo apt-get install offlineimap
         <span class="n">confirm</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s">"confirm password: "</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">password</span> <span class="o">!=</span> <span class="n">confirm</span><span class="p">:</span>
             <span class="k">print</span> <span class="s">"password doesn't match confirmation!"</span>
-            <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">keyring</span> <span class="o">=</span> <span class="n">Keyring</span><span class="p">(</span><span class="s">"offlineimap"</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s">"imap"</span><span class="p">)</span>
-        <span class="n">keyring</span><span class="o">.</span><span class="n">set_credentials</span><span class="p">((</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span>
+        <span class="n">keyring</span><span class="p">.</span><span class="n">set_credentials</span><span class="p">((</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span>
 
 <span class="c1">############################
 # NameTrans 'INBOX' suffix #
@@ -1063,8 +1063,8 @@ $ sudo apt-get install offlineimap
     <span class="k">if</span> <span class="p">(</span><span class="n">foldername</span> <span class="o">==</span> <span class="s">"INBOX"</span><span class="p">):</span>
         <span class="n">retval</span> <span class="o">=</span> <span class="s">""</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">retval</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">"^INBOX</span><span class="err">\</span><span class="s">."</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="n">foldername</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">retval</span></code></pre></figure>
+        <span class="n">retval</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">"^INBOX</span><span class="si">\</span><span class="err">.</span><span class="se">"</span><span class="s">, "", foldername)
+    return retval</span></code></pre></figure>
 <p>
 IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加すると良い.
 </p>
