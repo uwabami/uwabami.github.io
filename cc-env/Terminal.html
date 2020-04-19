@@ -257,7 +257,7 @@ tmux に移行した.
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
 #
 # Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
-# $Lastupdate: 2020-02-01 14:50:43$
+# $Lastupdate: 2020-03-19 17:53:11$
 # License: Public domain.
 </span>
 <span class="c">## general
@@ -283,8 +283,8 @@ tmux に移行した.
 <span class="c"># set-option -ga terminal-overrides ",rxvt-unicode-256color:Tc"
 </span><span class="n">set</span>-<span class="n">environment</span> -<span class="n">g</span> <span class="n">NCURSES_NO_UTF8_ACS</span> <span class="m">0</span>
 <span class="c"># 罫線素片の扱い: rxvt ならコレで良いのだが...
-</span><span class="n">set</span> -<span class="n">ag</span> <span class="n">terminal</span>-<span class="n">overrides</span> <span class="s1">',*:U8=0'</span>
-<span class="c"># 罫線素片の扱い: VTE 系はわざわざ Unicode に置き換える, ので ASCII で描画する
+# set -ag terminal-overrides ',*:U8=0'
+# 罫線素片の扱い: VTE 系はわざわざ Unicode に置き換える, ので ASCII で描画する
 # set-option -g pane-border-ascii 0  # ←あてて build してある場合は不要
 # set-environment -g VTE_CJK_WIDTH 1 # ←最近ちゃんと効いてない気がする.
 # メッセージ表示時間(既定値は1000?)

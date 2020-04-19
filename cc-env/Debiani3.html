@@ -439,6 +439,7 @@ system load を表示させている.
    <span class="c1">-- Window settings #</span>
    <span class="c1">--##################</span>
    <span class="c1">-- Create own window instead of using desktop (required in nautilus)</span>
+   <span class="n">own_window_class</span> <span class="o">=</span> <span class="s1">'conky'</span><span class="p">,</span>
    <span class="n">own_window</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
    <span class="n">own_window_type</span> <span class="o">=</span> <span class="s1">'override'</span><span class="p">,</span>
    <span class="n">own_window_transparent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
@@ -591,13 +592,13 @@ WantedBy=sleep.target</code></pre></figure>
 
 <span class="c"># startup
 </span>$<span class="n">execi</span> <span class="n">xrdb</span> -<span class="n">merge</span> $<span class="n">HOME</span>/.<span class="n">Xresources</span>
-$<span class="n">execi</span> <span class="n">compton</span>
+$<span class="n">execi</span> <span class="n">compton</span> -<span class="n">bcCG</span>
 $<span class="n">execi</span> <span class="n">nm</span>-<span class="n">applet</span>
-<span class="c"># $execi blueman-applet
-</span>$<span class="n">execi</span> /<span class="n">usr</span>/<span class="n">lib</span>/<span class="n">x86_64</span>-<span class="n">linux</span>-<span class="n">gnu</span>/<span class="n">gpaste</span>/<span class="n">gpaste</span>-<span class="n">daemon</span>
-$<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</span> &amp; <span class="n">feh</span> --<span class="n">bg</span>-<span class="n">fill</span> $<span class="n">HOME</span>/<span class="n">Pictures</span>/<span class="n">desktop</span>.<span class="n">png</span> --<span class="n">image</span>-<span class="n">bg</span> <span class="n">black</span> --<span class="n">no</span>-<span class="n">fehbg</span>)
-$<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</span> &amp; <span class="n">conky</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">conkyrc</span>)
-$<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</span> &amp; <span class="n">nextcloud</span>)
+$<span class="n">execi</span> <span class="n">blueman</span>-<span class="n">applet</span>
+$<span class="n">execi</span> /<span class="n">usr</span>/<span class="n">libexec</span>/<span class="n">gpaste</span>/<span class="n">gpaste</span>-<span class="n">daemon</span>
+$<span class="n">execi</span> <span class="n">feh</span> --<span class="n">bg</span>-<span class="n">fill</span> $<span class="n">HOME</span>/<span class="n">Pictures</span>/<span class="n">desktop</span>.<span class="n">png</span> --<span class="n">image</span>-<span class="n">bg</span> <span class="n">black</span> --<span class="n">no</span>-<span class="n">fehbg</span>
+$<span class="n">execi</span> <span class="n">conky</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">conkyrc</span>
+$<span class="n">execi</span> <span class="n">nextcloud</span>
 
 <span class="c"># screensaver and power management
 </span>$<span class="n">execi</span> <span class="n">xset</span> -<span class="n">dpms</span>   <span class="c"># disable DPMS
@@ -610,9 +611,10 @@ $<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</
 </span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">F2</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"rofi -show run"</span>
 
 <span class="c"># change focus
-</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="n">Tab</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"rofi -show window"</span>
-<span class="n">set</span> $<span class="n">i3t_alt_tab</span> ~/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3</span>-<span class="n">alt</span>-<span class="n">tab</span>.<span class="n">py</span>
+# bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"
+</span><span class="n">set</span> $<span class="n">i3t_alt_tab</span> ~/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3</span>-<span class="n">alt</span>-<span class="n">tab</span>.<span class="n">py</span>
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Tab</span> <span class="n">exec</span> $<span class="n">i3t_alt_tab</span> <span class="n">n</span> <span class="n">all</span> <span class="m">2</span>&gt;&amp;<span class="m">1</span> <span class="m">1</span>&gt;/<span class="n">dev</span>/<span class="n">null</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="n">Tab</span> <span class="n">exec</span> $<span class="n">i3t_alt_tab</span> <span class="n">n</span> <span class="m">2</span>&gt;&amp;<span class="m">1</span> <span class="m">1</span>&gt;/<span class="n">dev</span>/<span class="n">null</span>
 
 <span class="c"># change focus
 </span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">j</span> <span class="n">focus</span> <span class="n">left</span>
@@ -660,7 +662,6 @@ $<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</
 </span>        <span class="n">bindsym</span> <span class="n">Return</span> <span class="n">mode</span> <span class="s2">"default"</span>
         <span class="n">bindsym</span> <span class="n">Escape</span> <span class="n">mode</span> <span class="s2">"default"</span>
 }
-
 <span class="c"># switch to workspace
 </span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">1</span> <span class="n">workspace</span> <span class="m">1</span>
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">2</span> <span class="n">workspace</span> <span class="m">2</span>
@@ -668,6 +669,11 @@ $<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">4</span> <span class="n">workspace</span> <span class="m">4</span>
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">5</span> <span class="n">workspace</span> <span class="m">5</span>
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">6</span> <span class="n">workspace</span> <span class="m">6</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">7</span> <span class="n">workspace</span> <span class="m">7</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">8</span> <span class="n">workspace</span> <span class="m">8</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">9</span> <span class="n">workspace</span> <span class="m">9</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="n">Left</span> <span class="n">workspace</span> <span class="n">prev</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="n">Right</span> <span class="n">workspace</span> <span class="n">next</span>
 
 <span class="c"># move focused container to workspace
 </span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">1</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">1</span>
@@ -676,6 +682,9 @@ $<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">4</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">4</span>
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">5</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">5</span>
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">6</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">6</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">7</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">7</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">8</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">8</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">9</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">9</span>
 
 <span class="c"># reload the configuration file
 </span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Shift</span>+<span class="n">c</span> <span class="n">reload</span>
@@ -693,11 +702,12 @@ $<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</
 
 <span class="c"># status bar
 </span><span class="n">bar</span> {
+    <span class="n">mode</span> <span class="n">dock</span>
     <span class="n">output</span> <span class="n">eDP1</span>
     <span class="n">position</span> <span class="n">top</span>
     <span class="n">tray_output</span> <span class="n">eDP1</span>
-    <span class="n">tray_padding</span> -<span class="m">4</span>
-    <span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">Xft</span>:<span class="n">FontAwesome</span> <span class="m">18</span>
+    <span class="n">tray_padding</span> <span class="m">0</span>
+    <span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">Xft</span>:<span class="n">FontAwesome</span> <span class="m">19</span>.<span class="m">5</span>
     <span class="n">i3bar_command</span> <span class="n">i3bar</span> --<span class="n">transparency</span>
     <span class="n">status_command</span> <span class="n">i3status</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3status</span>.<span class="n">conf</span>
     <span class="n">binding_mode_indicator</span> <span class="n">yes</span>
@@ -726,13 +736,16 @@ $<span class="n">execi</span> $(<span class="n">sleep</span> <span class="m">5</
 <span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)feh"</span>] <span class="n">floating</span> <span class="n">enable</span>
 <span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)vlc"</span>] <span class="n">floating</span> <span class="n">enable</span>
 <span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="n">floating</span> <span class="n">enable</span>
-<span class="c"># for_window [class="(?i)pcmanfm"] floating enable
-</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)zotero"</span>] <span class="n">floating</span> <span class="n">enable</span>
+
 <span class="c"># startup
 </span><span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)evince"</span> ] <span class="m">2</span>
 <span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)pcmanfm"</span> ] <span class="m">3</span>
-<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)Mendeley Desktop"</span> ] <span class="m">3</span>
-<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="m">4</span></code></pre></figure>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)zotero"</span> ] <span class="m">3</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)slack"</span> ] <span class="m">3</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="m">4</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)teams"</span> ] <span class="m">5</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)remmina"</span> ] <span class="m">6</span></code></pre></figure>
 </div>
 </div>
 <!-- %%%% end content %%%% -->
