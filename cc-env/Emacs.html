@@ -35,14 +35,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-04-20T00:14:45+09:00" />
+<meta property="article:published_time" content="2020-04-23T22:59:29+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"datePublished":"2020-04-20T00:14:45+09:00","url":"https://uwabami.github.io/cc-env/Emacs.html","@type":"BlogPosting","dateModified":"2020-04-20T00:14:45+09:00","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"Emacs の設定","@context":"https://schema.org"}</script>
+{"url":"https://uwabami.github.io/cc-env/Emacs.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"Emacs の設定","dateModified":"2020-04-23T22:59:29+09:00","datePublished":"2020-04-23T22:59:29+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -397,17 +397,16 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
   <span class="ss">:defun</span> <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">)</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">exec-path-from-shell-check-startup-files</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">exec-path-from-shell-variables</span>
-    <span class="o">.</span>  <span class="o">'</span><span class="p">(</span><span class="s">"SHELL"</span>
-         <span class="s">"DEBFULLNAME"</span>
-         <span class="s">"DEBEMAIL"</span>
-         <span class="s">"SKKSERVER"</span>
-         <span class="s">"TEXMFHOME"</span>
-         <span class="s">"http_proxy"</span>
-         <span class="s">"GPG_KEY_ID"</span>
-         <span class="s">"GPG_AGENT_INFO"</span>
-         <span class="s">"PASSWORD_STORE_DIR"</span>
-         <span class="s">"PATH"</span><span class="p">)))</span>
+   <span class="p">(</span><span class="nv">exec-path-from-shell-variables</span>           <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="s">"SHELL"</span>
+                                                 <span class="s">"DEBFULLNAME"</span>
+                                                 <span class="s">"DEBEMAIL"</span>
+                                                 <span class="s">"SKKSERVER"</span>
+                                                 <span class="s">"TEXMFHOME"</span>
+                                                 <span class="s">"http_proxy"</span>
+                                                 <span class="s">"GPG_KEY_ID"</span>
+                                                 <span class="s">"GPG_AGENT_INFO"</span>
+                                                 <span class="s">"PASSWORD_STORE_DIR"</span>
+                                                 <span class="s">"PATH"</span><span class="p">)))</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">)</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">user-full-name</span>    <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"DEBFULLNAME"</span><span class="p">))</span>
@@ -691,7 +690,7 @@ Emacs23 から内部が Unicode ベースになっています。
     <span class="p">(</span><span class="nv">read-file-name-completion-ignore-case</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>  <span class="c1">; 大文字小文字区別無し</span>
     <span class="p">(</span><span class="nv">save-abbrevs</span>           <span class="o">.</span> <span class="ss">'silent</span><span class="p">)</span>
     <span class="c1">;; backup</span>
-    <span class="p">(</span><span class="nv">auto-save-list-file-prefix</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">concat</span> <span class="nv">my:d:tmp</span> <span class="s">".saves-"</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">auto-save-list-file-prefix</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">".saves-"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">auto-save-default</span>       <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">auto-save-timeout</span>       <span class="o">.</span> <span class="mi">15</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">auto-save-interval</span>      <span class="o">.</span> <span class="mi">60</span><span class="p">)</span>
@@ -783,7 +782,7 @@ Emacs23 から内部が Unicode ベースになっています。
 <div class="outline-text-3" id="text-org45fe96c0">
 <ul class="org-ul">
 <li>debug は表示しない: 必要に応じて t に変更する</li>
-<li>Compile-Log の非表示:     ほとんど見ないし．</li>
+<li>Compile-Log の非表示: ほとんど見ないし．</li>
 <li>Warning の抑制: これもほとんど見ないし．</li>
 </ul>
 <p>
@@ -884,8 +883,10 @@ minibuffer では eldoc にお黙り頂く。
 <code>midnight</code>: 一定期間使用しなかった buffer を自動削除</h3>
 <div class="outline-text-3" id="text-org2157dacb">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">midnight</span>
+  <span class="ss">:custom</span>
+  <span class="p">((</span><span class="nv">clean-buffer-list-delay-general</span> <span class="o">.</span> <span class="mi">1</span><span class="p">))</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">clean-buffer-list-delay-general</span> <span class="mi">1</span><span class="p">))</span></code></pre></figure>
+  <span class="p">(</span><span class="nv">midnight-mode</span><span class="p">))</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -893,10 +894,9 @@ minibuffer では eldoc にお黙り頂く。
 <code>uniquify</code>: モードラインのファイル名にディレクトリも表示する</h3>
 <div class="outline-text-3" id="text-org9a0cf611">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">uniquify</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">uniquify-buffer-name-style</span> <span class="ss">'post-forward-angle-brackets</span>
-        <span class="nv">uniquify-min-dir-content</span> <span class="mi">1</span>
-        <span class="p">)</span>
+  <span class="ss">:custom</span>
+  <span class="p">((</span><span class="nv">uniquify-buffer-name-style</span> <span class="o">.</span> <span class="ss">'post-forward-angle-brackets</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">uniquify-min-dir-content</span>   <span class="o">.</span> <span class="mi">1</span><span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -911,22 +911,22 @@ minibuffer では eldoc にお黙り頂く。
   <span class="ss">:blackout</span> <span class="p">((</span><span class="nv">global-whitespace-mode</span> <span class="o">.</span> <span class="s">""</span><span class="p">)</span>
              <span class="p">(</span><span class="nv">whitespace-mode</span>        <span class="o">.</span> <span class="s">""</span><span class="p">))</span>
   <span class="ss">:hook</span> <span class="p">(</span><span class="nv">after-init-hook</span> <span class="o">.</span> <span class="nv">global-whitespace-mode</span><span class="p">)</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">whitespace-line-column</span> <span class="mi">72</span>
-        <span class="nv">whitespace-style</span> <span class="o">'</span><span class="p">(</span><span class="nv">face</span>        <span class="c1">; faceを使って視覚化する．</span>
-                           <span class="nv">trailing</span>    <span class="c1">; 行末の空白を対象とする．</span>
-                           <span class="nv">tabs</span>        <span class="c1">; tab</span>
-                           <span class="nv">spaces</span>      <span class="c1">; space</span>
-                           <span class="p">)</span>
-        <span class="nv">whitespace-display-mappings</span> <span class="o">'</span><span class="p">((</span><span class="nv">space-mark</span> <span class="nv">?\u3000</span> <span class="nv">[?\□]</span><span class="p">)</span>
-                                      <span class="p">(</span><span class="nv">tab-mark</span> <span class="nv">?\t</span> <span class="nv">[?\u00BB</span> <span class="nv">?\t]</span> <span class="nv">[?\\</span> <span class="nv">?\t]</span><span class="p">))</span>
-        <span class="nv">whitespace-space-regexp</span> <span class="s">"\\(\u3000+\\)"</span>
-        <span class="nv">whitespace-global-modes</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span> <span class="nv">eww-mode</span>
-                                      <span class="nv">term-mode</span>
-                                      <span class="nv">eshell-mode</span>
-                                      <span class="nv">org-agenda-mode</span>
-                                      <span class="nv">calendar-mode</span><span class="p">)</span>
-        <span class="p">)</span>
+  <span class="ss">:custom</span>
+  <span class="p">((</span><span class="nv">whitespace-line-column</span>      <span class="o">.</span> <span class="mi">72</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">whitespace-style</span>            <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">face</span>        <span class="c1">; faceを使う</span>
+                                    <span class="nv">trailing</span>    <span class="c1">; 行末の空白を対象.</span>
+                                    <span class="nv">tabs</span>        <span class="c1">; tab</span>
+                                    <span class="nv">spaces</span>      <span class="c1">; space</span>
+                                    <span class="p">))</span>
+   <span class="p">(</span><span class="nv">whitespace-display-mappings</span> <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nv">space-mark</span> <span class="nv">?\u3000</span> <span class="nv">[?\□]</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="nv">tab-mark</span> <span class="nv">?\t</span> <span class="nv">[?\u00BB</span> <span class="nv">?\t]</span> <span class="nv">[?\\</span> <span class="nv">?\t]</span><span class="p">)))</span>
+   <span class="p">(</span><span class="nv">whitespace-space-regexp</span>     <span class="o">.</span> <span class="s">"\\(\u3000+\\)"</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">whitespace-global-modes</span>     <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span> <span class="nv">eww-mode</span>
+                                        <span class="nv">term-mode</span>
+                                        <span class="nv">eshell-mode</span>
+                                        <span class="nv">org-agenda-mode</span>
+                                        <span class="nv">calendar-mode</span><span class="p">))</span>
+   <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -948,7 +948,6 @@ minibuffer では eldoc にお黙り頂く。
         <span class="p">(</span><span class="nb">format</span> <span class="s">"\\(%s\\)\\|\\(%s\\)"</span>
                 <span class="nv">save-place-ignore-files-regexp</span>
                 <span class="nv">tramp-file-name-regexp</span><span class="p">))</span>
-
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -991,7 +990,7 @@ timestamp を更新する様にした．
     <span class="p">)</span>
   <span class="ss">:hook</span>
   <span class="p">(</span><span class="nv">kill-emacs-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-                       <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="nv">custom-file</span><span class="p">)</span>
+                       <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="nv">tramp-persistency-file-name</span><span class="p">)</span>
                            <span class="p">(</span><span class="nb">delete-file</span> <span class="nv">tramp-persistency-file-name</span><span class="p">))))</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
@@ -1184,6 +1183,18 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
     <span class="p">(</span><span class="nv">global-set-key</span> <span class="nv">[ns-drag-file]</span> <span class="ss">'ns-find-file</span><span class="p">)</span>
     <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org3416eeb2">
+<span class="done SOMEDAY">SOMEDAY</span> Windows(WSL2)対応 <code>[/]</code>
+</h3>
+<div class="outline-text-3" id="text-org3416eeb2">
+<figure class="highlight"><pre><code class="language-nil" data-lang="nil"></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> 使う気になったら何かしなければならない, 気がしている</li>
+</ul>
 </div>
 </div>
 <div>
@@ -1518,17 +1529,11 @@ ghq list を ido で選んで dired で開く
 リンクを簡単に辿る(Hit-a-Hint) のために <code>ace-link</code> も入れておく
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">eww</span>
-  <span class="ss">:defvar</span> <span class="p">(</span><span class="nv">shr-put-image-function</span>
-           <span class="nv">shr-external-browser</span><span class="p">)</span>
   <span class="ss">:preface</span>
   <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"eww"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">make-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"eww"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
   <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ace-link</span>
-    <span class="ss">:ensure</span> <span class="no">t</span>
-    <span class="ss">:config</span>
-    <span class="p">(</span><span class="nv">ace-link-setup-default</span><span class="p">)</span>
-    <span class="p">)</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ace-link</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">addressbar</span>
     <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">addressbar</span>
              <span class="ss">:type</span> <span class="nv">github</span>
@@ -1541,9 +1546,13 @@ ghq list を ido で選んで dired で開く
       <span class="p">(</span><span class="nv">addressbar-search-command-alist</span>
        <span class="o">.</span>  <span class="o">'</span><span class="p">(</span><span class="s">"g"</span> <span class="o">.</span> <span class="s">"https://google.com/search?&amp;gws_rd=cr&amp;complete=0&amp;pws=0&amp;tbs=li:1&amp;q="</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">addressbar-display-url-max-length</span> <span class="o">.</span> <span class="mi">60</span><span class="p">)</span>
-      <span class="p">)</span>
-    <span class="ss">:config</span>
-    <span class="c1">;; (add-to-list 'ivy-ignore-buffers "\\ \*eww*")</span>
+      <span class="p">))</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">shr</span>
+    <span class="ss">:custom</span>
+    <span class="p">((</span><span class="nv">shr-use-colors</span>    <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">shr-use-fonts</span>     <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">shr-image-animate</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">shr-width</span>         <span class="o">.</span> <span class="mi">72</span><span class="p">))</span>
     <span class="p">)</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"&lt;f2&gt;"</span> <span class="o">.</span> <span class="nv">eww</span><span class="p">)</span>
          <span class="p">(</span><span class="ss">:eww-mode-map</span>
@@ -1566,32 +1575,33 @@ ghq list を ido で選んで dired で開く
           <span class="p">(</span><span class="s">"N"</span>   <span class="o">.</span> <span class="nv">isearch-previous</span><span class="p">)</span>
           <span class="p">(</span><span class="s">"f"</span>   <span class="o">.</span> <span class="nv">ace-link-eww</span><span class="p">))</span>
          <span class="p">)</span>
-  <span class="ss">:init</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">eww-disable-images</span> <span class="p">()</span>
-    <span class="s">"ewwで画像表示させない"</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">setq-local</span> <span class="nv">shr-put-image-function</span> <span class="ss">'shr-put-image-alt</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">eww-reload</span><span class="p">))</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">eww-enable-images</span> <span class="p">()</span>
-    <span class="s">"ewwで画像表示させる"</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">setq-local</span> <span class="nv">shr-put-image-function</span> <span class="ss">'shr-put-image</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">eww-reload</span><span class="p">))</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">shr-put-image-alt</span> <span class="p">(</span><span class="nv">spec</span> <span class="nv">alt</span> <span class="k">&amp;optional</span> <span class="nv">flags</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">insert</span> <span class="nv">alt</span><span class="p">))</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">eww-bookmarks-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"eww"</span> <span class="nv">my:d:tmp</span><span class="p">)</span>
-        <span class="nv">eww-search-prefix</span> <span class="s">"https://www.google.com/search?&amp;gws_rd=cr&amp;complete=0&amp;pws=0&amp;tbs=li:1&amp;q="</span>
-        <span class="nv">shr-use-colors</span> <span class="no">nil</span>
-        <span class="nv">shr-use-fonts</span> <span class="no">nil</span>
-        <span class="nv">shr-width</span> <span class="mi">72</span>
-        <span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">eww-mode-hook--disable-image</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nv">setq-local</span> <span class="nv">shr-put-image-function</span> <span class="ss">'shr-put-image-alt</span><span class="p">))</span>
-  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'eww-mode-hook</span> <span class="ss">'eww-mode-hook--disable-image</span><span class="p">)</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">eww-bookmarks-directory</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"eww"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">eww-search-prefix</span>
+     <span class="o">.</span> <span class="s">"https://www.google.com/search?&amp;gws_rd=cr&amp;complete=0&amp;pws=0&amp;tbs=li:1&amp;q="</span><span class="p">))</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">ace-link-setup-default</span><span class="p">)</span>
+  <span class="c1">;; :init</span>
+  <span class="c1">;; ;;</span>
+  <span class="c1">;; (defun eww-disable-images ()</span>
+  <span class="c1">;;   "ewwで画像表示させない"</span>
+  <span class="c1">;;   (interactive)</span>
+  <span class="c1">;;   (setq-local shr-put-image-function 'shr-put-image-alt)</span>
+  <span class="c1">;;   (eww-reload))</span>
+  <span class="c1">;; ;;</span>
+  <span class="c1">;; (defun eww-enable-images ()</span>
+  <span class="c1">;;   "ewwで画像表示させる"</span>
+  <span class="c1">;;   (interactive)</span>
+  <span class="c1">;;   (setq-local shr-put-image-function 'shr-put-image)</span>
+  <span class="c1">;;   (eww-reload))</span>
+  <span class="c1">;; (defun shr-put-image-alt (spec alt &amp;optional flags)</span>
+  <span class="c1">;;   (insert alt))</span>
+  <span class="c1">;; ;;</span>
+  <span class="c1">;; ;;</span>
+  <span class="c1">;; (defun eww-mode-hook--disable-image ()</span>
+  <span class="c1">;;   (setq-local shr-put-image-function 'shr-put-image-alt))</span>
+  <span class="c1">;; (add-hook 'eww-mode-hook 'eww-mode-hook--disable-image)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
 <li class="off">
@@ -2265,25 +2275,19 @@ mime-setup がロードされる前に記述する必要あり.
   <span class="ss">:preface</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">mime-view-text/html-previewer</span> <span class="ss">'shr</span>
         <span class="nv">mime-setup-enable-inline-html</span> <span class="ss">'shr</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">defvar</span> <span class="nv">my:shr-width</span> <span class="mi">78</span><span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:shr-insert-document</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">them</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">shr-width</span> <span class="nv">my:shr-width</span><span class="p">))</span> <span class="p">(</span><span class="nb">apply</span> <span class="nv">them</span><span class="p">)))</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:mime-shr-preview-text/html</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">advice-add</span> <span class="ss">'shr-insert-document</span> <span class="ss">:around</span> <span class="ss">'my:shr-insert-document</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">unwind-protect</span>
-        <span class="p">(</span><span class="nb">apply</span> <span class="nv">args</span><span class="p">)</span>
-      <span class="p">(</span><span class="nv">advice-remove</span> <span class="ss">'shr-insert-document</span> <span class="ss">'my:shr-insert-document</span><span class="p">)))</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nv">advice-add</span> <span class="ss">'mime-shr-preview-text/html</span> <span class="ss">:around</span>
-              <span class="ss">'my:mime-shr-preview-text/html</span><span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'shr</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">shr-use-colors</span> <span class="no">nil</span>
-          <span class="nv">shr-use-fonts</span> <span class="no">nil</span>
-          <span class="nv">shr-width</span> <span class="mi">72</span><span class="p">))</span>
+  <span class="c1">;; (defvar my:shr-width 72)</span>
+  <span class="c1">;; ;;</span>
+  <span class="c1">;; (defun my:shr-insert-document (&amp;rest them)</span>
+  <span class="c1">;;   (let ((shr-width my:shr-width)) (apply them)))</span>
+  <span class="c1">;; ;;</span>
+  <span class="c1">;; (defun my:mime-shr-preview-text/html (&amp;rest args)</span>
+  <span class="c1">;;   (advice-add 'shr-insert-document :around 'my:shr-insert-document)</span>
+  <span class="c1">;;   (unwind-protect</span>
+  <span class="c1">;;       (apply args)</span>
+  <span class="c1">;;     (advice-remove 'shr-insert-document 'my:shr-insert-document)))</span>
+  <span class="c1">;; :advice</span>
+  <span class="c1">;; (:around mime-shr-preview-text/html</span>
+  <span class="c1">;;          my:mime-shr-preview-text/html)</span>
   <span class="p">)</span></code></pre></figure>
 <p>
 どのアプリケーションで開くか → <code>xdg-open</code> に丸投げ．
@@ -2304,8 +2308,8 @@ MIME の例の保存先の変更
 text/plain より html を優先 <code>(- -;)</code>
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">mime-view-type-subtype-score-alist</span>
-      <span class="o">'</span><span class="p">(((</span><span class="nv">text</span> <span class="o">.</span> <span class="nv">plain</span><span class="p">)</span> <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="p">((</span><span class="nv">text</span> <span class="o">.</span> <span class="nv">html</span><span class="p">)</span>  <span class="o">.</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="o">'</span><span class="p">(((</span><span class="nv">text</span> <span class="o">.</span> <span class="nv">plain</span><span class="p">)</span> <span class="o">.</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">((</span><span class="nv">text</span> <span class="o">.</span> <span class="nv">html</span><span class="p">)</span>  <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
         <span class="p">))</span></code></pre></figure>
 <p>
 音を鳴らすアレやコレの無効化
@@ -4210,6 +4214,7 @@ Gitub/Gitlab と Magit の連携
 あまり上手く使えていない.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">dumb-jump</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"rg"</span><span class="p">)</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"M-g o"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-other-window</span><span class="p">)</span>
@@ -4217,12 +4222,11 @@ Gitub/Gitlab と Magit の連携
          <span class="p">(</span><span class="s">"M-g i"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prompt</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"M-g x"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"M-g z"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external-other-window</span><span class="p">))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">dumb-jump-selector</span> <span class="ss">'ido</span>
-        <span class="nv">dumb-jump-force-searcher</span> <span class="ss">'rg</span>
-        <span class="p">)</span>
+  <span class="ss">:custom</span> <span class="o">'</span><span class="p">((</span><span class="nv">dumb-jump-selector</span>       <span class="o">.</span> <span class="ss">'ido</span><span class="p">)</span>
+            <span class="p">(</span><span class="nv">dumb-jump-force-searcher</span> <span class="o">.</span> <span class="ss">'rg</span><span class="p">))</span>
   <span class="p">)</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">smart-jump</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">smart-jump-setup-default-registers</span><span class="p">)</span>
@@ -5105,7 +5109,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
 <div>
 <h2 id="orgd89ceb4b">Debug</h2>
 <div class="outline-text-2" id="text-orgd89ceb4b">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">esup</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <!-- %%%% end content %%%% -->
@@ -5116,7 +5120,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-04-19 15:14:45 +0000
+          Lastupdate: 2020-04-23 13:59:29 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">

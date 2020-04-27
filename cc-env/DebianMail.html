@@ -35,14 +35,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-01-11T01:18:15+09:00" />
+<meta property="article:published_time" content="2020-04-27T19:58:58+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Mail 環境の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"datePublished":"2020-01-11T01:18:15+09:00","url":"https://uwabami.github.io/cc-env/DebianMail.html","@type":"BlogPosting","dateModified":"2020-01-11T01:18:15+09:00","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"Mail 環境の設定","@context":"https://schema.org"}</script>
+{"url":"https://uwabami.github.io/cc-env/DebianMail.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"Mail 環境の設定","dateModified":"2020-04-27T19:58:58+09:00","datePublished":"2020-04-27T19:58:58+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -249,19 +249,22 @@ $ sudo -s
 </p>
 
 <p>
-(2012/07/30) このままだと message-id が "乱数列@hostname" になるので
-<code>/etc/exim4/exim4.conf.template</code> あたりに
+(2020/04/27) このままだと message-id が "乱数列@hostname" になるので
+<code>/etc/exim4/exim4.conf.localmacros</code> に
 </p>
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">message_id_header_domain</span> = ドメイン名
 <span class="n">message_id_header_text</span>   = ホスト名</code></pre></figure>
 <p>
-を追加して <code>update-exim4.conf</code> を走らせておくと良い。
+を追加して <code>update-exim4.conf</code> を走らせておく.
 </p>
 
 <p>
 ローカル配送先を適宜設定したい場合には
 </p>
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="n">MAILDIR_HOME_MAILDIR_LOCATION</span> = $<span class="n">home</span>/<span class="n">Maildir</span>/<span class="n">INBOX</span></code></pre></figure>
+<p>
+などとしておく.
+</p>
 </div>
 </div>
 <div>
@@ -1141,7 +1144,7 @@ nm-online <span class="nt">-x</span> <span class="o">||</span> <span class="nb">
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-01-10 16:18:15 +0000
+          Lastupdate: 2020-04-27 10:58:58 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">

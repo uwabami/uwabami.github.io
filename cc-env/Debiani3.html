@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"datePublished":"2018-10-25T22:42:33+09:00","url":"https://uwabami.github.io/cc-env/Debiani3.html","@type":"BlogPosting","dateModified":"2018-10-25T22:42:33+09:00","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"i3 の設定","@context":"https://schema.org"}</script>
+{"url":"https://uwabami.github.io/cc-env/Debiani3.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -591,6 +591,7 @@ WantedBy=sleep.target</code></pre></figure>
 </span><span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">xft</span>:<span class="n">FontAwesome</span> <span class="m">18</span>
 
 <span class="c"># startup
+# $execi /usr/libexec/gsd-xsettings --gtk-no-debug=All --gdk-no-debug=all
 </span>$<span class="n">execi</span> <span class="n">xrdb</span> -<span class="n">merge</span> $<span class="n">HOME</span>/.<span class="n">Xresources</span>
 $<span class="n">execi</span> <span class="n">compton</span> -<span class="n">bcCG</span>
 $<span class="n">execi</span> <span class="n">nm</span>-<span class="n">applet</span>
@@ -603,7 +604,7 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
 <span class="c"># screensaver and power management
 </span>$<span class="n">execi</span> <span class="n">xset</span> -<span class="n">dpms</span>   <span class="c"># disable DPMS
 </span>$<span class="n">execi</span> <span class="n">xset</span> <span class="n">s</span> <span class="n">off</span>   <span class="c"># disable auto screensaver
-</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Shift</span>+<span class="n">l</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"i3lock -n -c 242424"</span>
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Shift</span>+<span class="n">l</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"i3lock -n -c 020202"</span>
 
 <span class="c"># start a terminal: rxvt-unicide daemon mode
 </span><span class="n">bindsym</span> <span class="n">Control</span>+<span class="n">Shift</span>+<span class="n">n</span> <span class="n">exec</span> <span class="n">urxvtcd</span>
