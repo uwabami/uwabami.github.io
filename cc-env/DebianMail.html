@@ -24,7 +24,7 @@
     <!-- begin jekyll seo -->
 <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Mail 環境の設定 | Youhei SASAKI’s official site</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.0.1" />
 <meta property="og:title" content="Mail 環境の設定" />
 <meta name="author" content="Youhei SASAKI" />
 <meta property="og:locale" content="ja" />
@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/DebianMail.html","headline":"Mail 環境の設定","dateModified":"2020-04-27T19:58:58+09:00","datePublished":"2020-04-27T19:58:58+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/DebianMail.html","headline":"Mail 環境の設定","dateModified":"2020-04-27T19:58:58+09:00","datePublished":"2020-04-27T19:58:58+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianMail.html"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -1066,8 +1066,8 @@ $ sudo apt-get install offlineimap
     <span class="k">if</span> <span class="p">(</span><span class="n">foldername</span> <span class="o">==</span> <span class="s">"INBOX"</span><span class="p">):</span>
         <span class="n">retval</span> <span class="o">=</span> <span class="s">""</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">retval</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">"^INBOX</span><span class="si">\</span><span class="err">.</span><span class="se">"</span><span class="s">, "", foldername)
-    return retval</span></code></pre></figure>
+        <span class="n">retval</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">"^INBOX\."</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="n">foldername</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">retval</span></code></pre></figure>
 <p>
 IMAP の名前空間が複雑な(?)場合には, 適宜正規表現を追加すると良い.
 </p>
