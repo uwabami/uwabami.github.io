@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"headline":"schroot:お手軽コンテナ(?)","url":"https://uwabami.github.io/cc-env/DebianSchroot.html","datePublished":"2018-10-25T06:13:54+09:00","dateModified":"2018-10-25T06:13:54+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSchroot.html"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","author":{"@type":"Person","name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/DebianSchroot.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSchroot.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"schroot:お手軽コンテナ(?)","dateModified":"2018-10-25T06:13:54+09:00","datePublished":"2018-10-25T06:13:54+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -180,8 +180,8 @@
 Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
 <div>
-<h2 id="org1b7b3d6">始めに.</h2>
-<div class="outline-text-2" id="text-org1b7b3d6">
+<h2 id="org44bac263">始めに.</h2>
+<div class="outline-text-2" id="text-org44bac263">
 <p>
 前は 「sid の中で lenny を飼う」でしたけど.
 まあ, やっている事は同じです.
@@ -208,8 +208,8 @@ chroot の中で stable 環境を作成します.
 </div>
 </div>
 <div>
-<h2 id="org751c1e8">パッケージの導入</h2>
-<div class="outline-text-2" id="text-org751c1e8">
+<h2 id="org4c43683d">パッケージの導入</h2>
+<div class="outline-text-2" id="text-org4c43683d">
 <p>
 <code>debootstrap</code> と <code>schroot</code> を導入しておきます.
 </p>
@@ -219,8 +219,8 @@ chroot の中で stable 環境を作成します.
 </div>
 </div>
 <div>
-<h2 id="orgdf96417">chroot 環境作成</h2>
-<div class="outline-text-2" id="text-orgdf96417">
+<h2 id="orgb109009e">chroot 環境作成</h2>
+<div class="outline-text-2" id="text-orgb109009e">
 <p>
 以下は stable-amd64 を作成する場合のお話.
 </p>
@@ -249,8 +249,8 @@ schroot でログイン後に適宜設定すると良いだろう.
 </div>
 
 <div>
-<h2 id="orgee48e29">schroot の設定</h2>
-<div class="outline-text-2" id="text-orgee48e29">
+<h2 id="org54bbf0d7">schroot の設定</h2>
+<div class="outline-text-2" id="text-org54bbf0d7">
 <p>
 schroot では, 個々の環境毎に「profile」を指定することで, 柔軟な環境設定が可能となっている.
 例えば, 何も指定しない場合には <code>/etc/schroot/default</code> 以下のファイルが設定に使用され,
@@ -312,8 +312,8 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 </div>
 </div>
 <div>
-<h2 id="org877acf1">chroot 環境の log 管理</h2>
-<div class="outline-text-2" id="text-org877acf1">
+<h2 id="orgbd7ab237">chroot 環境の log 管理</h2>
+<div class="outline-text-2" id="text-orgbd7ab237">
 <p>
 親環境が rsyslogd ならば, <i>etc/rsyslog.d</i> あたりに
 </p>
@@ -324,8 +324,8 @@ schroot では, 個々の環境毎に「profile」を指定することで, 柔�
 </div>
 </div>
 <div>
-<h2 id="org3cd7c57">chroot 環境のデーモンの起動</h2>
-<div class="outline-text-2" id="text-org3cd7c57">
+<h2 id="orge9ae531a">chroot 環境のデーモンの起動</h2>
+<div class="outline-text-2" id="text-orge9ae531a">
 <p>
 以前のメモ.
 </p>
@@ -359,8 +359,8 @@ systemd 環境下だと systemctl で起動するのが良いのかなぁ.
 </div>
 </div>
 <div>
-<h2 id="org171fd10">参考文献</h2>
-<div class="outline-text-2" id="text-org171fd10">
+<h2 id="org9c654357">参考文献</h2>
+<div class="outline-text-2" id="text-org9c654357">
 <ul class="org-ul">
 <li><a href="http://kmuto.jp/d/index.cgi/debian/debootstrap.htm">Etch/Sidの上にSarge環境を作る方法</a></li>
 <li><a href="https://wiki.debian.org/Schroot">Schroot - Debian Wiki</a></li>

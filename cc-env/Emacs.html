@@ -35,14 +35,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-04-23T22:59:29+09:00" />
+<meta property="article:published_time" content="2020-05-13T19:32:59+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"headline":"Emacs の設定","url":"https://uwabami.github.io/cc-env/Emacs.html","datePublished":"2020-04-23T22:59:29+09:00","dateModified":"2020-04-23T22:59:29+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","author":{"@type":"Person","name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/Emacs.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"Emacs の設定","dateModified":"2020-05-13T19:32:59+09:00","datePublished":"2020-05-13T19:32:59+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -329,8 +329,12 @@ init.el: README.org
 <span class="p">(</span><span class="k">setq</span> <span class="nv">package-enable-at-startup</span> <span class="no">t</span>
       <span class="nv">package-user-dir</span> <span class="nv">my:d:pkg:elpa</span>
       <span class="nv">package-gnupghome-dir</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">".gnupg"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">))</span>
+      <span class="nv">package-archives</span>
+      <span class="o">'</span><span class="p">((</span><span class="s">"gnu"</span>   <span class="o">.</span> <span class="s">"https://elpa.gnu.org/packages/"</span><span class="p">)</span>
+        <span class="p">(</span><span class="s">"melpa"</span> <span class="o">.</span> <span class="s">"https://melpa.org/packages/"</span><span class="p">)</span>
+        <span class="c1">;; ("org"   . "https://orgmode.org/elpa/")</span>
+        <span class="p">)</span>
       <span class="p">)</span>
-<span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'package-archives</span> <span class="o">'</span><span class="p">(</span><span class="s">"melpa"</span> <span class="o">.</span> <span class="s">"https://melpa.org/packages/"</span><span class="p">)</span> <span class="no">t</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">eval-when-compile</span>
   <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tmp/bootstrap-stamp"</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">package-refresh-contents</span><span class="p">)</span>
@@ -439,6 +443,8 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
   <span class="p">(</span><span class="k">setq</span> <span class="nv">leaf-default-plstore</span>
         <span class="p">(</span><span class="nv">plstore-open</span>
          <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"plstore.plist"</span> <span class="nv">my:d:password-store</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'vc-directory-exclusion-list</span>
+               <span class="p">(</span><span class="nv">expand-file-name</span> <span class="nv">my:d:password-store</span><span class="p">))</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">password-store</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">auth-source-pass</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
@@ -668,7 +674,7 @@ Emacs23 から内部が Unicode ベースになっています。
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">cus-start</span>
   <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">(</span><span class="c1">;; gc</span>
+  <span class="o">`</span><span class="p">(</span>
     <span class="p">(</span><span class="nv">gc-cons-threshold</span>       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nb">*</span> <span class="mi">8</span> <span class="mi">1024</span> <span class="mi">1024</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">garbage-collection-messages</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
     <span class="c1">;; 表示</span>
@@ -817,8 +823,10 @@ Emacs23 から内部が Unicode ベースになっています。
 <code>autorevert</code>: ファイルが変更されたら再読み込み</h3>
 <div class="outline-text-3" id="text-org41afd6b6">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">autorevert</span>
-  <span class="ss">:hook</span>
-  <span class="p">((</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">global-auto-revert-mode</span><span class="p">))</span>
+  <span class="ss">:custom</span>
+  <span class="p">((</span><span class="nv">auto-revert-interval</span> <span class="o">.</span> <span class="mf">0.1</span><span class="p">))</span>
+  <span class="ss">:global-minor-mode</span>
+  <span class="nv">global-auto-revert-mode</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -977,8 +985,7 @@ timestamp を更新する様にした．
 </div>
 <div>
 <h3 id="org04853162">
-<span class="done SOMEDAY">SOMEDAY</span> <code>tramp</code>: ssh 越しにファイルを編集 <code>[0/1]</code>
-</h3>
+<code>tramp</code>: ssh 越しにファイルを編集</h3>
 <div class="outline-text-3" id="text-org04853162">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">tramp</span>
   <span class="ss">:preface</span>
@@ -993,10 +1000,6 @@ timestamp を更新する様にした．
                        <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="nv">tramp-persistency-file-name</span><span class="p">)</span>
                            <span class="p">(</span><span class="nb">delete-file</span> <span class="nv">tramp-persistency-file-name</span><span class="p">))))</span>
   <span class="p">)</span></code></pre></figure>
-<ul class="org-ul">
-<li class="off">
-<code>[ ]</code> 偶に挙動不審</li>
-</ul>
 </div>
 </div>
 <div>
@@ -1190,7 +1193,7 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 <span class="done SOMEDAY">SOMEDAY</span> Windows(WSL2)対応 <code>[/]</code>
 </h3>
 <div class="outline-text-3" id="text-org3416eeb2">
-<figure class="highlight"><pre><code class="language-nil" data-lang="nil"></code></pre></figure>
+<figure class="highlight"><pre><code class="language-nil" data-lang="nil">;; nothing - -;</code></pre></figure>
 <ul class="org-ul">
 <li class="off">
 <code>[ ]</code> 使う気になったら何かしなければならない, 気がしている</li>
@@ -1286,240 +1289,6 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
-<div>
-<h2 id="orge3fb8a64">補完: <code>ido</code>
-</h2>
-<div class="outline-text-2" id="text-orge3fb8a64">
-<p>
-補完は <code>ido</code> が軽いし速いので好み.
-見た目がちょっと簡素すぎる気もするので、なんとか弄りたい所ではある。
-</p>
-</div>
-<div>
-<h3 id="orgc92613c0">
-<code>ido</code> の設定</h3>
-<div class="outline-text-3" id="text-orgc92613c0">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-completing-read+</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-describe-bindings</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x C-f"</span> <span class="o">.</span> <span class="nv">ido-find-file</span><span class="p">))</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-disable-line-trucation</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nv">make-local-variable</span> <span class="ss">'truncate-lines</span><span class="p">)</span> <span class="no">nil</span><span class="p">))</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-remove-tramp-from-cache</span> <span class="no">nil</span>
-    <span class="s">"Remove any TRAMP entries from `ido-dir-file-cache'.
-    This stops tramp from trying to connect to remote hosts on emacs startup,
-    which can be very annoying."</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">ido-dir-file-cache</span>
-          <span class="p">(</span><span class="nv">cl-remove-if</span>
-           <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
-             <span class="p">(</span><span class="nv">string-match</span> <span class="s">"/\\(rsh\\|ssh\\|telnet\\|su\\|sudo\\|sshx\\|krlogin\\|ksu\\|rcp\\|scp\\|rsync\\|scpx\\|fcp\\|nc\\|ftp\\|smb\\|adb\\):"</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">x</span><span class="p">)))</span>
-           <span class="nv">ido-dir-file-cache</span><span class="p">)))</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-kill-emacs-hook</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nv">my:ido-remove-tramp-from-cache</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ido-save-history</span><span class="p">))</span>
-  <span class="ss">:advice</span> <span class="p">(</span><span class="ss">:override</span> <span class="nv">ido-kill-emacs-hook</span>
-                     <span class="nv">my:ido-kill-emacs-hook</span><span class="p">)</span>
-  <span class="ss">:hook</span> <span class="p">((</span><span class="nv">ido-setup-hook</span>
-          <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-              <span class="p">(</span><span class="nv">define-key</span> <span class="nv">ido-completion-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-h"</span><span class="p">)</span> <span class="ss">'ido-delete-backward-updir</span><span class="p">)</span>
-              <span class="p">(</span><span class="nv">define-key</span> <span class="nv">ido-completion-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-l"</span><span class="p">)</span> <span class="ss">'ido-delete-backward-updir</span><span class="p">)))</span>
-         <span class="p">(</span><span class="nv">ido-minibuffer-setup-hook</span> <span class="o">.</span> <span class="nv">my:ido-disable-line-trucation</span><span class="p">))</span>
-  <span class="ss">:init</span>
-  <span class="c1">;; 補完で無視する拡張子の追加．そのうち増える．</span>
-  <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="nv">ext</span> <span class="nv">in</span>
-           <span class="o">'</span><span class="p">(</span><span class="c1">;; TeX</span>
-             <span class="s">".dvi"</span>
-             <span class="s">".fdb_latexmk"</span>
-             <span class="s">".fls"</span>
-             <span class="s">".ilg"</span>
-             <span class="s">".jqz"</span>
-             <span class="s">".nav"</span>
-             <span class="s">".out"</span>
-             <span class="s">".snm"</span>
-             <span class="s">".synctex\\.gz"</span>
-             <span class="s">".vrb"</span>
-             <span class="c1">;; fortran &gt;= 90</span>
-             <span class="s">".mod"</span>
-             <span class="c1">;; zsh</span>
-             <span class="s">".zwc"</span>
-             <span class="c1">;; libtool</span>
-             <span class="s">".in"</span>
-             <span class="s">".libs/"</span>
-             <span class="c1">;; fxxkin Apple</span>
-             <span class="s">".DS_Store"</span>
-             <span class="s">"._DS_Store"</span>
-             <span class="p">)</span>
-           <span class="nb">do</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'completion-ignored-extensions</span> <span class="nv">ext</span><span class="p">))</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">(</span><span class="c1">;; prefix match 入力を先頭一致可能</span>
-    <span class="p">(</span><span class="nv">ido-enable-prefix</span>             <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="c1">;; TAB で名前の一致までその後 RET で実行</span>
-    <span class="p">(</span><span class="nv">ido-confirm-unique-completion</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="c1">;; . を prefix として扱う</span>
-    <span class="p">(</span><span class="nv">ido-enable-dot-prefix</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="c1">;; flx matching を試す際には prefix を無効化すること</span>
-    <span class="p">(</span><span class="nv">ido-enable-flex-matching</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="c1">;;</span>
-    <span class="p">(</span><span class="nv">ido-default-file-method</span>       <span class="o">.</span> <span class="ss">'selected-window</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ido-default-buffer-method</span>     <span class="o">.</span> <span class="ss">'selected-window</span><span class="p">)</span>
-    <span class="c1">;; avoid [Too Big]</span>
-    <span class="p">(</span><span class="nv">ido-max-directory-size</span>        <span class="o">.</span> <span class="mi">1000000</span><span class="p">)</span>
-    <span class="c1">;; Tramp では無効化</span>
-    <span class="p">(</span><span class="nv">ido-enable-tramp-completion</span>   <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="c1">;; ido-vertical も調べないとアカン様な.</span>
-    <span class="p">(</span><span class="nv">ido-use-faces</span>                 <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="c1">;; 拡張子には match しない</span>
-    <span class="p">(</span><span class="nv">ido-ignore-extensions</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="c1">;; 補完できない場合の挙動 ← "何もしない" は可能かな? nil?</span>
-    <span class="p">(</span><span class="nv">ido-cannot-complete-command</span>   <span class="o">.</span> <span class="ss">'ido-next-match</span><span class="p">)</span>
-    <span class="c1">;; 補完候補が無い場合に search を始める長さ ⇒ -1 で停止</span>
-    <span class="p">(</span><span class="nv">ido-auto-merge-work-directories-length</span> <span class="o">.</span> <span class="mi">-1</span><span class="p">)</span>
-    <span class="c1">;; 補完候補が無い場合に search を始める時間</span>
-    <span class="c1">;; run-with-timer に与える値なので, とりあえず長め(30分)にしておく</span>
-    <span class="p">(</span><span class="nv">ido-auto-merge-delay-time</span>     <span class="o">.</span> <span class="mi">1800</span><span class="p">)</span>
-    <span class="c1">;; 補完結果の保存</span>
-    <span class="p">(</span><span class="nv">ido-save-directory-list-file</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"ido.last"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">ido-mode</span> <span class="no">t</span><span class="p">)</span>
-  <span class="c1">;; (ido-everywhere t)   ; &lt;- 過去の選択を覚えている奴と相性悪い.</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="org72b78bcc">
-<code>flx-ido</code>: flex match の強化</h3>
-<div class="outline-text-3" id="text-org72b78bcc">
-<p>
-曖昧マッチが非常に直感的になった．地味に便利で手放せない．
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">flx-ido</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">flx-ido-use-faces</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">flx-ido-threshold</span> <span class="o">.</span> <span class="mi">10000</span><span class="p">))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">flx-ido-mode</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="orge285b835">
-<code>ido-flx-with-migemo</code>: flx + migemo</h3>
-<div class="outline-text-3" id="text-orge285b835">
-<p>
-これは便利だ
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-flex-with-migemo</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"cmigemo"</span><span class="p">)</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:after</span> <span class="p">(</span><span class="nv">flx</span> <span class="nv">migemo</span><span class="p">)</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">ido-flex-with-migemo-mode</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="orgba1f040e">
-<span class="done SOMEDAY">SOMEDAY</span> <code>ido-vertical-mode</code>: 候補を縦に並べて表示 <code>[/]</code>
-</h3>
-<div class="outline-text-3" id="text-orgba1f040e">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-vertical-mode</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:after</span> <span class="nv">all-the-icons-in-terminal</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">defface</span> <span class="nv">my:ido-indicator</span>
-    <span class="o">'</span><span class="p">((((</span><span class="nc">class</span> <span class="nv">color</span><span class="p">)</span> <span class="p">(</span><span class="nv">background</span> <span class="nv">light</span><span class="p">))</span> <span class="ss">:foreground</span> <span class="s">"#FFBF7F"</span><span class="p">)</span>
-      <span class="p">(((</span><span class="nc">class</span> <span class="nv">color</span><span class="p">)</span> <span class="p">(</span><span class="nv">background</span> <span class="nv">dark</span><span class="p">))</span> <span class="ss">:foreground</span> <span class="s">"#FFBF7F"</span><span class="p">))</span>
-    <span class="s">"Face used by Ido highlighting the arrow."</span><span class="p">)</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">(</span><span class="c1">;; 補完候補数の表示</span>
-    <span class="p">(</span><span class="nv">ido-vertical-show-count</span>  <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="c1">;; キーバインド</span>
-    <span class="p">(</span><span class="nv">ido-vertical-define-keys</span> <span class="o">.</span> <span class="ss">'C-n-C-p-up-down-left-right</span><span class="p">)</span>
-    <span class="c1">;; minibuffer の高さ制限</span>
-    <span class="p">(</span><span class="nv">ido-max-window-height</span>    <span class="o">.</span> <span class="mf">0.3</span><span class="p">)</span>
-    <span class="c1">;; 候補選択表示のカスタマイズ</span>
-    <span class="p">(</span><span class="nv">ido-vertical-indicator</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nb">format</span> <span class="s">"%s"</span>
-                <span class="p">(</span><span class="nv">all-the-icons-faicon</span> <span class="s">"hand-o-right"</span>
-                                      <span class="ss">:face</span> <span class="ss">'my:ido-indicator</span><span class="p">)))</span>
-    <span class="p">)</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">ido-vertical-mode</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-<ul class="org-ul">
-<li class="off">
-<code>[ ]</code> Debian パッケージは古い．更新すること</li>
-</ul>
-</div>
-</div>
-<div>
-<h3 id="org28528ad3"><code>amx</code></h3>
-<div class="outline-text-3" id="text-org28528ad3">
-<p>
-M-x を ido で. 以前は smex を利用していたが, amx に乗り換えた.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">amx</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"M-x"</span> <span class="o">.</span> <span class="nv">amx</span><span class="p">))</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">(</span><span class="c1">;; backend 'ivy or 'ido or 'auto</span>
-    <span class="p">(</span><span class="nv">amx-backend</span> <span class="o">.</span> <span class="ss">'ido</span><span class="p">)</span>
-    <span class="c1">;; prompt</span>
-    <span class="p">(</span><span class="nv">amx-prompt-string</span> <span class="o">.</span> <span class="s">"amx: "</span><span class="p">)</span>
-    <span class="c1">;; keybind</span>
-    <span class="p">(</span><span class="nv">amx-show-key-bindings</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="c1">;; 履歴</span>
-    <span class="p">(</span><span class="nv">amx-save-file</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"amx-items"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">amx-history-length</span> <span class="o">.</span> <span class="mi">128</span><span class="p">))</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="org56240c5e">
-<code>ido-recentf</code>: recentf を ido で</h3>
-<div class="outline-text-3" id="text-org56240c5e">
-<p>
-"recentf-list" の結果を整形して, minibuffer に納まる様に縮小したり
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*ido-recentf-open</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">ido-recentf-open</span> <span class="p">()</span>
-    <span class="s">"Use `ido-completing-read' to \\[find-file] a recent file"</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">files</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">f</span><span class="p">)</span>
-                           <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">my:shorten-file-path</span> <span class="nv">f</span> <span class="mi">70</span><span class="p">)</span> <span class="nv">f</span><span class="p">))</span>
-                         <span class="nv">recentf-list</span><span class="p">)))</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">selected</span> <span class="p">(</span><span class="nv">ido-completing-read</span> <span class="s">"Files: "</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#'</span><span class="nb">car</span> <span class="nv">files</span><span class="p">))))</span>
-        <span class="p">(</span><span class="nv">find-file</span> <span class="p">(</span><span class="nv">assoc-default</span> <span class="nv">selected</span> <span class="nv">files</span><span class="p">)))))</span>
-  <span class="ss">:bind</span> <span class="p">(</span><span class="s">"C-x C-r"</span> <span class="o">.</span> <span class="nv">ido-recentf-open</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="org7eb97621">ido-ghq</h3>
-<div class="outline-text-3" id="text-org7eb97621">
-<p>
-ghq list を ido で選んで dired で開く
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-ghq</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"ghq"</span><span class="p">)</span>
-  <span class="ss">:el-get</span> <span class="nv">uwabami/ido-ghq</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x f"</span> <span class="o">.</span> <span class="nv">ido-ghq-open</span><span class="p">))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">ido-ghq-short-list</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-</div>
-
 <div>
 <h2 id="org35bd4bc4">
 <span class="done SOMEDAY">SOMEDAY</span> <code>eww</code>: 内蔵ブラウザ <code>[0/3]</code>
@@ -1931,6 +1700,240 @@ minibuffer 内では強制的に skk off.
 </div>
 </div>
 </div>
+<div>
+<h2 id="orge3fb8a64">補完: <code>ido</code>
+</h2>
+<div class="outline-text-2" id="text-orge3fb8a64">
+<p>
+補完は <code>ido</code> が軽いし速いので好み.
+見た目がちょっと簡素すぎる気もするので、なんとか弄りたい所ではある。
+</p>
+</div>
+<div>
+<h3 id="orgc92613c0">
+<code>ido</code> の設定</h3>
+<div class="outline-text-3" id="text-orgc92613c0">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-completing-read+</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-describe-bindings</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x C-f"</span> <span class="o">.</span> <span class="nv">ido-find-file</span><span class="p">))</span>
+  <span class="ss">:preface</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-disable-line-trucation</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nv">make-local-variable</span> <span class="ss">'truncate-lines</span><span class="p">)</span> <span class="no">nil</span><span class="p">))</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-remove-tramp-from-cache</span> <span class="no">nil</span>
+    <span class="s">"Remove any TRAMP entries from `ido-dir-file-cache'.
+    This stops tramp from trying to connect to remote hosts on emacs startup,
+    which can be very annoying."</span>
+    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">ido-dir-file-cache</span>
+          <span class="p">(</span><span class="nv">cl-remove-if</span>
+           <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">string-match</span> <span class="s">"/\\(rsh\\|ssh\\|telnet\\|su\\|sudo\\|sshx\\|krlogin\\|ksu\\|rcp\\|scp\\|rsync\\|scpx\\|fcp\\|nc\\|ftp\\|smb\\|adb\\):"</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">x</span><span class="p">)))</span>
+           <span class="nv">ido-dir-file-cache</span><span class="p">)))</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-kill-emacs-hook</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nv">my:ido-remove-tramp-from-cache</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ido-save-history</span><span class="p">))</span>
+  <span class="ss">:advice</span> <span class="p">(</span><span class="ss">:override</span> <span class="nv">ido-kill-emacs-hook</span>
+                     <span class="nv">my:ido-kill-emacs-hook</span><span class="p">)</span>
+  <span class="ss">:hook</span> <span class="p">((</span><span class="nv">ido-setup-hook</span>
+          <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+              <span class="p">(</span><span class="nv">define-key</span> <span class="nv">ido-completion-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-h"</span><span class="p">)</span> <span class="ss">'ido-delete-backward-updir</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">define-key</span> <span class="nv">ido-completion-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-l"</span><span class="p">)</span> <span class="ss">'ido-delete-backward-updir</span><span class="p">)))</span>
+         <span class="p">(</span><span class="nv">ido-minibuffer-setup-hook</span> <span class="o">.</span> <span class="nv">my:ido-disable-line-trucation</span><span class="p">))</span>
+  <span class="ss">:init</span>
+  <span class="c1">;; 補完で無視する拡張子の追加．そのうち増える．</span>
+  <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="nv">ext</span> <span class="nv">in</span>
+           <span class="o">'</span><span class="p">(</span><span class="c1">;; TeX</span>
+             <span class="s">".dvi"</span>
+             <span class="s">".fdb_latexmk"</span>
+             <span class="s">".fls"</span>
+             <span class="s">".ilg"</span>
+             <span class="s">".jqz"</span>
+             <span class="s">".nav"</span>
+             <span class="s">".out"</span>
+             <span class="s">".snm"</span>
+             <span class="s">".synctex\\.gz"</span>
+             <span class="s">".vrb"</span>
+             <span class="c1">;; fortran &gt;= 90</span>
+             <span class="s">".mod"</span>
+             <span class="c1">;; zsh</span>
+             <span class="s">".zwc"</span>
+             <span class="c1">;; libtool</span>
+             <span class="s">".in"</span>
+             <span class="s">".libs/"</span>
+             <span class="c1">;; fxxkin Apple</span>
+             <span class="s">".DS_Store"</span>
+             <span class="s">"._DS_Store"</span>
+             <span class="p">)</span>
+           <span class="nb">do</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'completion-ignored-extensions</span> <span class="nv">ext</span><span class="p">))</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">(</span><span class="c1">;; prefix match 入力を先頭一致可能</span>
+    <span class="p">(</span><span class="nv">ido-enable-prefix</span>             <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="c1">;; TAB で名前の一致までその後 RET で実行</span>
+    <span class="p">(</span><span class="nv">ido-confirm-unique-completion</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;; . を prefix として扱う</span>
+    <span class="p">(</span><span class="nv">ido-enable-dot-prefix</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;; flx matching を試す際には prefix を無効化すること</span>
+    <span class="p">(</span><span class="nv">ido-enable-flex-matching</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;;</span>
+    <span class="p">(</span><span class="nv">ido-default-file-method</span>       <span class="o">.</span> <span class="ss">'selected-window</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ido-default-buffer-method</span>     <span class="o">.</span> <span class="ss">'selected-window</span><span class="p">)</span>
+    <span class="c1">;; avoid [Too Big]</span>
+    <span class="p">(</span><span class="nv">ido-max-directory-size</span>        <span class="o">.</span> <span class="mi">1000000</span><span class="p">)</span>
+    <span class="c1">;; Tramp では無効化</span>
+    <span class="p">(</span><span class="nv">ido-enable-tramp-completion</span>   <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="c1">;; ido-vertical も調べないとアカン様な.</span>
+    <span class="p">(</span><span class="nv">ido-use-faces</span>                 <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;; 拡張子には match しない</span>
+    <span class="p">(</span><span class="nv">ido-ignore-extensions</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;; 補完できない場合の挙動 ← "何もしない" は可能かな? nil?</span>
+    <span class="p">(</span><span class="nv">ido-cannot-complete-command</span>   <span class="o">.</span> <span class="ss">'ido-next-match</span><span class="p">)</span>
+    <span class="c1">;; 補完候補が無い場合に search を始める長さ ⇒ -1 で停止</span>
+    <span class="p">(</span><span class="nv">ido-auto-merge-work-directories-length</span> <span class="o">.</span> <span class="mi">-1</span><span class="p">)</span>
+    <span class="c1">;; 補完候補が無い場合に search を始める時間</span>
+    <span class="c1">;; run-with-timer に与える値なので, とりあえず長め(30分)にしておく</span>
+    <span class="p">(</span><span class="nv">ido-auto-merge-delay-time</span>     <span class="o">.</span> <span class="mi">1800</span><span class="p">)</span>
+    <span class="c1">;; 補完結果の保存</span>
+    <span class="p">(</span><span class="nv">ido-save-directory-list-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"ido.last"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">ido-mode</span> <span class="no">t</span><span class="p">)</span>
+  <span class="c1">;; (ido-everywhere t)   ; &lt;- 過去の選択を覚えている奴と相性悪い.</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org72b78bcc">
+<code>flx-ido</code>: flex match の強化</h3>
+<div class="outline-text-3" id="text-org72b78bcc">
+<p>
+曖昧マッチが非常に直感的になった．地味に便利で手放せない．
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">flx-ido</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">flx-ido-use-faces</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">flx-ido-threshold</span> <span class="o">.</span> <span class="mi">10000</span><span class="p">))</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">flx-ido-mode</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="orge285b835">
+<code>ido-flx-with-migemo</code>: flx + migemo</h3>
+<div class="outline-text-3" id="text-orge285b835">
+<p>
+これは便利だ
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-flex-with-migemo</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"cmigemo"</span><span class="p">)</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:after</span> <span class="p">(</span><span class="nv">flx</span> <span class="nv">migemo</span><span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">ido-flex-with-migemo-mode</span><span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="orgba1f040e">
+<span class="done SOMEDAY">SOMEDAY</span> <code>ido-vertical-mode</code>: 候補を縦に並べて表示 <code>[/]</code>
+</h3>
+<div class="outline-text-3" id="text-orgba1f040e">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-vertical-mode</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:after</span> <span class="nv">all-the-icons-in-terminal</span>
+  <span class="ss">:preface</span>
+  <span class="p">(</span><span class="nv">defface</span> <span class="nv">my:ido-indicator</span>
+    <span class="o">'</span><span class="p">((((</span><span class="nc">class</span> <span class="nv">color</span><span class="p">)</span> <span class="p">(</span><span class="nv">background</span> <span class="nv">light</span><span class="p">))</span> <span class="ss">:foreground</span> <span class="s">"#FFBF7F"</span><span class="p">)</span>
+      <span class="p">(((</span><span class="nc">class</span> <span class="nv">color</span><span class="p">)</span> <span class="p">(</span><span class="nv">background</span> <span class="nv">dark</span><span class="p">))</span> <span class="ss">:foreground</span> <span class="s">"#FFBF7F"</span><span class="p">))</span>
+    <span class="s">"Face used by Ido highlighting the arrow."</span><span class="p">)</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">(</span><span class="c1">;; 補完候補数の表示</span>
+    <span class="p">(</span><span class="nv">ido-vertical-show-count</span>  <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;; キーバインド</span>
+    <span class="p">(</span><span class="nv">ido-vertical-define-keys</span> <span class="o">.</span> <span class="ss">'C-n-C-p-up-down-left-right</span><span class="p">)</span>
+    <span class="c1">;; minibuffer の高さ制限</span>
+    <span class="p">(</span><span class="nv">ido-max-window-height</span>    <span class="o">.</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="c1">;; 候補選択表示のカスタマイズ</span>
+    <span class="p">(</span><span class="nv">ido-vertical-indicator</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nb">format</span> <span class="s">"%s"</span>
+                <span class="p">(</span><span class="nv">all-the-icons-faicon</span> <span class="s">"hand-o-right"</span>
+                                      <span class="ss">:face</span> <span class="ss">'my:ido-indicator</span><span class="p">)))</span>
+    <span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">ido-vertical-mode</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> Debian パッケージは古い．更新すること</li>
+</ul>
+</div>
+</div>
+<div>
+<h3 id="org28528ad3"><code>amx</code></h3>
+<div class="outline-text-3" id="text-org28528ad3">
+<p>
+M-x を ido で. 以前は smex を利用していたが, amx に乗り換えた.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">amx</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"M-x"</span> <span class="o">.</span> <span class="nv">amx</span><span class="p">))</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">(</span><span class="c1">;; backend 'ivy or 'ido or 'auto</span>
+    <span class="p">(</span><span class="nv">amx-backend</span> <span class="o">.</span> <span class="ss">'ido</span><span class="p">)</span>
+    <span class="c1">;; prompt</span>
+    <span class="p">(</span><span class="nv">amx-prompt-string</span> <span class="o">.</span> <span class="s">"amx: "</span><span class="p">)</span>
+    <span class="c1">;; keybind</span>
+    <span class="p">(</span><span class="nv">amx-show-key-bindings</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="c1">;; 履歴</span>
+    <span class="p">(</span><span class="nv">amx-save-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"amx-items"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">amx-history-length</span> <span class="o">.</span> <span class="mi">128</span><span class="p">))</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org56240c5e">
+<code>ido-recentf</code>: recentf を ido で</h3>
+<div class="outline-text-3" id="text-org56240c5e">
+<p>
+"recentf-list" の結果を整形して, minibuffer に納まる様に縮小したり
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*ido-recentf-open</span>
+  <span class="ss">:preface</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">ido-recentf-open</span> <span class="p">()</span>
+    <span class="s">"Use `ido-completing-read' to \\[find-file] a recent file"</span>
+    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">files</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">f</span><span class="p">)</span>
+                           <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">my:shorten-file-path</span> <span class="nv">f</span> <span class="mi">70</span><span class="p">)</span> <span class="nv">f</span><span class="p">))</span>
+                         <span class="nv">recentf-list</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">selected</span> <span class="p">(</span><span class="nv">ido-completing-read</span> <span class="s">"Files: "</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#'</span><span class="nb">car</span> <span class="nv">files</span><span class="p">))))</span>
+        <span class="p">(</span><span class="nv">find-file</span> <span class="p">(</span><span class="nv">assoc-default</span> <span class="nv">selected</span> <span class="nv">files</span><span class="p">)))))</span>
+  <span class="ss">:bind</span> <span class="p">(</span><span class="s">"C-x C-r"</span> <span class="o">.</span> <span class="nv">ido-recentf-open</span><span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org7eb97621">ido-ghq</h3>
+<div class="outline-text-3" id="text-org7eb97621">
+<p>
+ghq list を ido で選んで dired で開く
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-ghq</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"ghq"</span><span class="p">)</span>
+  <span class="ss">:el-get</span> <span class="nv">uwabami/ido-ghq</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x f"</span> <span class="o">.</span> <span class="nv">ido-ghq-open</span><span class="p">))</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">ido-ghq-short-list</span> <span class="no">t</span><span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+</div>
+
 <div>
 <h2 id="org15a06190">校正, 辞書等</h2>
 <div class="outline-text-2" id="text-org15a06190">
@@ -3373,6 +3376,8 @@ Major modeとの衝突があるので止めた方が良い, らしい．
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org</span>
   <span class="ss">:blackout</span> <span class="o">`</span><span class="p">((</span><span class="nv">org-mode</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">all-the-icons-icon-for-mode</span> <span class="ss">'org-mode</span><span class="p">)))</span>
+  <span class="ss">:init</span>
+  <span class="c1">;; (leaf org-plus-contrib :ensure t)</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x n s"</span> <span class="o">.</span> <span class="nv">org-narrow-to-subtree</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"C-x n w"</span> <span class="o">.</span> <span class="nv">widen</span><span class="p">))</span>
   <span class="ss">:mode</span>
@@ -3404,16 +3409,16 @@ Major modeとの衝突があるので止めた方が良い, らしい．
     <span class="c1">;; 折り返し無し</span>
     <span class="p">(</span><span class="nv">org-startup-truncated</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="c1">;; link handler -&gt; xdg-open 任せ</span>
-    <span class="p">(</span><span class="nv">org-file-apps-defaults</span>     <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nv">remote</span> <span class="o">.</span> <span class="nv">emacs</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="nv">system</span> <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="no">t</span>      <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)))</span>
-    <span class="p">(</span><span class="nv">org-file-apps-defaults-gnu</span> <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nv">remote</span> <span class="o">.</span> <span class="nv">emacs</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="nv">system</span> <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="no">t</span>      <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)))</span>
-    <span class="p">(</span><span class="nv">org-file-apps</span>              <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nv">auto-mode</span> <span class="o">.</span> <span class="nv">emacs</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="s">"\\.mm\\'"</span> <span class="o">.</span> <span class="nv">default</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="s">"\\.x?html?\\'"</span> <span class="o">.</span> <span class="nv">default</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="s">"\\.pdf\\'"</span> <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)))</span>
+    <span class="c1">;; (org-file-apps-defaults     . '((remote . emacs)</span>
+    <span class="c1">;;                                 (system . "xdg-open %s")</span>
+    <span class="c1">;;                                 (t      . "xdg-open %s")))</span>
+    <span class="c1">;; (org-file-apps-defaults-gnu . '((remote . emacs)</span>
+    <span class="c1">;;                                 (system . "xdg-open %s")</span>
+    <span class="c1">;;                                 (t      . "xdg-open %s")))</span>
+    <span class="c1">;; (org-file-apps              . '((auto-mode . emacs)</span>
+    <span class="c1">;;                                 ("\\.mm\\'" . default)</span>
+    <span class="c1">;;                                 ("\\.x?html?\\'" . "xdg-open %s")</span>
+    <span class="c1">;;                                 ("\\.pdf\\'" . "xdg-open %s")))</span>
     <span class="c1">;; GTD: 状態の追加</span>
     <span class="p">(</span><span class="nv">org-todo-keywords</span>          <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nc">sequence</span> <span class="s">"TODO(t)"</span> <span class="s">"WAIT(w)"</span> <span class="s">"|"</span> <span class="s">"DONE(d)"</span> <span class="s">"CANCEL(c)"</span> <span class="s">"SOMEDAY(s)"</span><span class="p">)</span>
                                     <span class="p">(</span><span class="k">type</span> <span class="s">"ARTICLE(a)"</span><span class="p">)</span>
@@ -3428,7 +3433,10 @@ Major modeとの衝突があるので止めた方が良い, らしい．
                                     <span class="p">(</span><span class="s">"Book"</span>       <span class="o">.</span> <span class="nv">?b</span><span class="p">)</span>
                                     <span class="p">(</span><span class="s">"Emacs"</span>      <span class="o">.</span> <span class="nv">?e</span><span class="p">)</span>
                                     <span class="p">(</span><span class="s">"TeX"</span>        <span class="o">.</span> <span class="nv">?t</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="s">"Ruby"</span>       <span class="o">.</span> <span class="nv">?r</span><span class="p">)))</span>
+                                    <span class="p">(</span><span class="s">"Ruby"</span>       <span class="o">.</span> <span class="nv">?r</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="s">"IGNORE"</span>     <span class="o">.</span> <span class="nv">?i</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="s">"PLANNED"</span>    <span class="o">.</span> <span class="nv">?p</span><span class="p">)</span>
+                                    <span class="p">))</span>
     <span class="c1">;; DONE → Archive.org に移動</span>
     <span class="p">(</span><span class="nv">org-archive-location</span>       <span class="o">.</span> <span class="s">"Archive.org::"</span><span class="p">)</span>
     <span class="c1">;; modules → とりあえずクリアしておく</span>
@@ -3658,7 +3666,10 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
    <span class="c1">;; YY/MM/DD (曜)</span>
    <span class="p">(</span><span class="nv">org-agenda-format-date</span>       <span class="o">.</span> <span class="s">"%Y/%m/%d (%a)"</span><span class="p">)</span>
    <span class="c1">;; 日曜始まり</span>
+   <span class="p">(</span><span class="nv">org-agenda-start-on-weekday</span>  <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">org-agenda-weekend-days</span>      <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+   <span class="c1">;; 繰り返し日付も表示</span>
+   <span class="p">(</span><span class="nv">org-agenda-repeating-timestampo-show-all</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
    <span class="c1">;; 表示関数</span>
    <span class="p">(</span><span class="nv">org-agenda-day-face-function</span> <span class="o">.</span> <span class="ss">'my:org-agenda-day-face-function</span><span class="p">)</span>
    <span class="c1">;; GTD 用の設定</span>
@@ -3696,7 +3707,6 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
              <span class="s">"Univ.org"</span>
              <span class="s">"DebianJP.org"</span>
              <span class="s">"twitter.org"</span>
-             <span class="s">"journal.org"</span>
              <span class="s">"redmine_GFD.org"</span>
              <span class="s">"redmine_FluidSoc.org"</span>
              <span class="p">))</span>
@@ -3726,18 +3736,17 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-journal</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
            <span class="p">(</span><span class="nb">&gt;=</span> <span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">))</span>
-  <span class="ss">:commands</span> <span class="p">(</span><span class="nv">org-journal-update-auto-mode-alist</span><span class="p">)</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x M"</span>    <span class="o">.</span> <span class="nv">my:org-journal-new-entry</span><span class="p">)</span>
          <span class="p">(</span><span class="ss">:org-journal-mode-map</span>
           <span class="p">(</span><span class="s">"C-c C-c"</span> <span class="o">.</span> <span class="nv">my:org-journal-entry-save-and-exit</span><span class="p">)))</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-journal-new-entry</span> <span class="p">(</span><span class="nv">prefix</span> <span class="k">&amp;optional</span> <span class="nb">time</span><span class="p">)</span>
     <span class="s">"Add new journal entry on new elscreen"</span>
     <span class="p">(</span><span class="nv">interactive</span> <span class="s">"P"</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">elscreen-create</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-new-entry</span> <span class="nv">prefix</span> <span class="nb">time</span><span class="p">))</span>
-
+    <span class="p">(</span><span class="nv">org-journal-new-entry</span> <span class="no">nil</span> <span class="nb">time</span><span class="p">))</span>
+  <span class="c1">;;</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-journal-entry-save-and-exit</span> <span class="p">()</span>
     <span class="s">"Save journal entry and close elscreen buffer"</span>
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
@@ -3748,15 +3757,19 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
     <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span><span class="p">()</span>
         <span class="p">(</span><span class="nv">setq-local</span> <span class="nv">truncate-lines</span> <span class="no">t</span><span class="p">))))</span>
   <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">org-journal-dir</span>                       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"journal/"</span> <span class="nv">my:d:org</span><span class="p">))</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-journal-file-type</span>                 <span class="o">.</span> <span class="ss">'yearly</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-journal-dir</span>                       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"journal"</span> <span class="nv">my:d:org</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">org-journal-file-format</span>               <span class="o">.</span> <span class="s">"%Y.org"</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-journal-cache-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-journal.cache"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">org-journal-date-format</span>               <span class="o">.</span> <span class="s">"%x (%a)"</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-enable-agenda-integration</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-file-format</span>               <span class="o">.</span> <span class="s">"%Y-%m-%d.org"</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-journal-time-format</span>               <span class="o">.</span> <span class="s">"&lt;%Y-%m-%d %R&gt; "</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-journal-time-prefix</span>               <span class="o">.</span> <span class="s">"** MEMO "</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-journal-enable-agenda-integration</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-journal-find-file</span>                 <span class="o">.</span> <span class="ss">'find-file</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-cache-file</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-journal.cache"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">org-journal-carryover-delete-empty-journal</span> <span class="o">.</span> <span class="ss">'ask</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-journal-start-on-weekday</span>          <span class="o">.</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">;; sunday</span>
+    <span class="p">)</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">eval-and-compile</span> <span class="ss">'browse-url</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'org-journal</span>
@@ -3765,28 +3778,14 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </div>
 </div>
 <div>
-<h3 id="orgbe835a6b">Capture: メモ取り</h3>
+<h3 id="orgbe835a6b">Org-capture: メモ取り</h3>
 <div class="outline-text-3" id="text-orgbe835a6b">
 <p>
 キーバインドは以前 changelog memo をやっていた時の癖で <code>C-x m</code> をメモにしている.
-他には wanderlust のメールを扱えるように <code>org-wl</code> を読み込んで template を追加したぐらい.
-notmuch のインデックスの方が良いかもしれない, と最近思っている.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ol-wl</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">my:dpkg-status</span> <span class="s">"wl-beta"</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">my:dpkg-status</span> <span class="s">"wl"</span><span class="p">))</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ol</span>
-    <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">ol</span>
-             <span class="ss">:url</span> <span class="s">"https://code.orgmode.org/bzg/org-mode/raw/master/lisp/ol.el"</span><span class="p">))</span>
-  <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">ol-wl</span>
-           <span class="ss">:url</span> <span class="s">"https://code.orgmode.org/bzg/org-mode/raw/master/contrib/lisp/ol-wl.el"</span><span class="p">)</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'wl</span>
-    <span class="p">(</span><span class="nb">require</span> <span class="ss">'ol-wl</span><span class="p">))</span>
-  <span class="p">)</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-capture</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-capture</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
+  <span class="ss">:preface</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x m"</span> <span class="o">.</span> <span class="nv">org-capture</span><span class="p">))</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-journal-add-date-entry-capture</span> <span class="p">()</span>
@@ -3802,7 +3801,7 @@ notmuch のインデックスの方が良いかもしれない, と最近思っ�
              <span class="nv">string-to-transform</span><span class="p">))</span>
     <span class="p">)</span>
   <span class="c1">;;</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-default-notes-file</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">my:d:org</span> <span class="s">"journal.org"</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-default-notes-file</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">my:d:org</span> <span class="s">"Memo.org"</span><span class="p">)</span>
         <span class="nv">org-capture-templates</span>
         <span class="o">`</span><span class="p">(</span>
           <span class="p">(</span><span class="s">"t"</span> <span class="s">"TODO"</span> <span class="nv">plain</span>
@@ -3812,14 +3811,6 @@ notmuch のインデックスの方が良いかもしれない, と最近思っ�
            <span class="ss">:unnarrowed</span> <span class="no">nil</span>
            <span class="ss">:kill-buffer</span> <span class="no">t</span>
            <span class="p">)</span>
-          <span class="c1">;; "* TODO &lt;%&lt;%Y-%m-%d&gt;&gt; %:subject %^g\n  %?\n  %a\n  #+BEGIN_QUOTE\n%i\n  #+END_QUOTE"</span>
-          <span class="c1">;; ("e" "Email TODO" plain</span>
-          <span class="c1">;;  (function my:org-journal-add-date-entry-capture)</span>
-          <span class="c1">;;  "** TODO %(format-time-string org-journal-time-format) [[wl:\%5Bmsgid:%:message-id-no-brackets\%5D][%(my:transform-square-brackets-to-round-ones \"%:subject\")]]\n  :PROPERTIES:\n  :CREATED: %u\n  :END:%?\n"</span>
-          <span class="c1">;;  :prepend nil</span>
-          <span class="c1">;;  :unnarrowed nil</span>
-          <span class="c1">;;  :kill-buffer t</span>
-          <span class="c1">;;  )</span>
           <span class="p">(</span><span class="s">"m"</span> <span class="s">"Memo/Journal Entry"</span> <span class="nv">plain</span>
            <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
            <span class="s">"** MEMO %(format-time-string org-journal-time-format) %?"</span>
@@ -4169,8 +4160,19 @@ magit は Emacs の Git Frontend.
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">magit</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x g"</span> <span class="o">.</span> <span class="nv">magit-status</span><span class="p">))</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">transient</span>
+    <span class="ss">:custom</span>
+    <span class="o">`</span><span class="p">((</span><span class="nv">transient-history-file</span>
+       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"transient-history.el"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">transient-levels-file</span>
+       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"transient-levels.el"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">transient-values-file</span>
+       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"transient-values.el"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">transient-force-fixed-pitch</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
+    <span class="p">)</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">magit-completing-read-function</span> <span class="ss">'ido</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="c1">;; magit-completing-read-function 'ido</span>
         <span class="nv">magit-refs-show-commit-count</span>   <span class="ss">'all</span>
         <span class="nv">magit-log-buffer-file-locked</span>   <span class="no">t</span>
         <span class="nv">magit-revision-show-gravatars</span>  <span class="no">nil</span>
@@ -4222,7 +4224,7 @@ Gitub/Gitlab と Magit の連携
          <span class="p">(</span><span class="s">"M-g i"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prompt</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"M-g x"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"M-g z"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external-other-window</span><span class="p">))</span>
-  <span class="ss">:custom</span> <span class="o">'</span><span class="p">((</span><span class="nv">dumb-jump-selector</span>       <span class="o">.</span> <span class="ss">'ido</span><span class="p">)</span>
+  <span class="ss">:custom</span> <span class="o">'</span><span class="p">(</span><span class="c1">;; (dumb-jump-selector       . 'ido)</span>
             <span class="p">(</span><span class="nv">dumb-jump-force-searcher</span> <span class="o">.</span> <span class="ss">'rg</span><span class="p">))</span>
   <span class="p">)</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">smart-jump</span>
@@ -4672,13 +4674,13 @@ markdown自体はあまり好きじゃないんだけれど,
       <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="no">nil</span> <span class="ss">'alpha</span> <span class="mi">95</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span>
                           <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                          <span class="ss">:height</span> <span class="mi">195</span><span class="p">)</span>
+                          <span class="ss">:height</span> <span class="mi">190</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'fixed-pitch</span> <span class="no">nil</span>
                           <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                          <span class="ss">:height</span> <span class="mi">195</span><span class="p">)</span>
+                          <span class="ss">:height</span> <span class="mi">190</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'variable-pitch</span> <span class="no">nil</span>
                           <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                          <span class="ss">:height</span> <span class="mi">195</span><span class="p">)</span>
+                          <span class="ss">:height</span> <span class="mi">190</span><span class="p">)</span>
       <span class="c1">;; Math symbols</span>
       <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
                         <span class="o">'</span><span class="p">(</span><span class="m">#x2200</span> <span class="o">.</span> <span class="m">#x22FF</span><span class="p">)</span>
@@ -5063,7 +5065,7 @@ doom-theme をベースに移植中: <a href="https://github.com/uwabami/emacs-d
   <span class="p">(</span><span class="nv">doom-darkpastel-set-background</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">load-theme</span> <span class="ss">'doom-darkpastel</span> <span class="no">t</span><span class="p">)</span>
-  <span class="c1">;; (eaw-and-emoji-fullwidth)</span>
+  <span class="p">(</span><span class="nv">eaw-and-emoji-fullwidth</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -5078,6 +5080,12 @@ doom-theme をベースに移植中: <a href="https://github.com/uwabami/emacs-d
           <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
             <span class="p">(</span><span class="nv">message</span> <span class="s">"init time: %.3f sec"</span>
                      <span class="p">(</span><span class="nv">float-time</span> <span class="p">(</span><span class="nv">time-subtract</span> <span class="nv">after-init-time</span> <span class="nv">before-init-time</span><span class="p">)))))</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h2 id="orgd89ceb4b">Debug</h2>
+<div class="outline-text-2" id="text-orgd89ceb4b">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">esup</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -5106,12 +5114,6 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
 </pre>
 </div>
 </div>
-<div>
-<h2 id="orgd89ceb4b">Debug</h2>
-<div class="outline-text-2" id="text-orgd89ceb4b">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">esup</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
-</div>
-</div>
 <!-- %%%% end content %%%% -->
         </div>
       </main>
@@ -5120,7 +5122,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-04-23 13:59:29 +0000
+          Lastupdate: 2020-05-13 10:32:59 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">

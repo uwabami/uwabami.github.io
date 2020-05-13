@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"headline":"i3 の設定","url":"https://uwabami.github.io/cc-env/Debiani3.html","datePublished":"2018-10-25T22:42:33+09:00","dateModified":"2018-10-25T22:42:33+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","author":{"@type":"Person","name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/Debiani3.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -673,8 +673,9 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">7</span> <span class="n">workspace</span> <span class="m">7</span>
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">8</span> <span class="n">workspace</span> <span class="m">8</span>
 <span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">9</span> <span class="n">workspace</span> <span class="m">9</span>
-<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="n">Left</span> <span class="n">workspace</span> <span class="n">prev</span>
-<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="n">Right</span> <span class="n">workspace</span> <span class="n">next</span>
+
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Control</span>+<span class="n">Left</span> <span class="n">workspace</span> <span class="n">prev</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Control</span>+<span class="n">Right</span> <span class="n">workspace</span> <span class="n">next</span>
 
 <span class="c"># move focused container to workspace
 </span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">1</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">1</span>
@@ -704,9 +705,9 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
 <span class="c"># status bar
 </span><span class="n">bar</span> {
     <span class="n">mode</span> <span class="n">dock</span>
-    <span class="n">output</span> <span class="n">eDP1</span>
+    <span class="n">output</span> <span class="n">eDP</span>-<span class="m">1</span>
     <span class="n">position</span> <span class="n">top</span>
-    <span class="n">tray_output</span> <span class="n">eDP1</span>
+    <span class="n">tray_output</span> <span class="n">eDP</span>-<span class="m">1</span>
     <span class="n">tray_padding</span> <span class="m">0</span>
     <span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">Xft</span>:<span class="n">FontAwesome</span> <span class="m">19</span>.<span class="m">5</span>
     <span class="n">i3bar_command</span> <span class="n">i3bar</span> --<span class="n">transparency</span>
@@ -716,7 +717,7 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
       <span class="n">background</span> <span class="c">#02020200
 </span>      <span class="n">statusline</span> <span class="c">#F6F3E8
 </span>      <span class="n">separator</span>  <span class="c">#111822
-</span>      <span class="n">focused_workspace</span>  <span class="c">#111822 #222244 #F6F3E8
+</span>      <span class="n">focused_workspace</span>  <span class="c">#111844 #222244 #F6F3E8
 </span>      <span class="n">active_workspace</span>   <span class="c">#555555 #555555 #F6F3E8
 </span>      <span class="n">inactive_workspace</span> <span class="c">#020202 #242424 #888888
 </span>      <span class="n">urgent_workspace</span>   <span class="c">#A00000 #900000 #F6F3E8
@@ -725,7 +726,7 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
 }
 
 <span class="c"># class                 border  bground text    indicator child_border
-</span><span class="n">client</span>.<span class="n">focused</span>          <span class="c">#111822 #222244 #F6F3E8 #2B2B2B   #2B2B2B
+</span><span class="n">client</span>.<span class="n">focused</span>          <span class="c">#111866 #333366 #F6F3E8 #2B2B2B   #2B2B2B
 </span><span class="n">client</span>.<span class="n">focused_inactive</span> <span class="c">#020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
 </span><span class="n">client</span>.<span class="n">unfocused</span>        <span class="c">#020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
 </span><span class="n">client</span>.<span class="n">urgent</span>           <span class="c">#A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B
@@ -746,7 +747,8 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
 <span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)slack"</span> ] <span class="m">3</span>
 <span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="m">4</span>
 <span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)teams"</span> ] <span class="m">5</span>
-<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)remmina"</span> ] <span class="m">6</span></code></pre></figure>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)remmina"</span> ] <span class="m">6</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)zoom"</span> ] <span class="m">6</span></code></pre></figure>
 </div>
 </div>
 <!-- %%%% end content %%%% -->
