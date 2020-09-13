@@ -24,7 +24,7 @@
     <!-- begin jekyll seo -->
 <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Emacs の設定 | Youhei SASAKI’s official site</title>
-<meta name="generator" content="Jekyll v4.0.1" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Emacs の設定" />
 <meta name="author" content="Youhei SASAKI" />
 <meta property="og:locale" content="ja" />
@@ -35,14 +35,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-05-13T19:32:59+09:00" />
+<meta property="article:published_time" content="2020-09-01T19:58:55+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/Emacs.html","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"headline":"Emacs の設定","dateModified":"2020-05-13T19:32:59+09:00","datePublished":"2020-05-13T19:32:59+09:00","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"https://uwabami.github.io/cc-env/Emacs.html","headline":"Emacs の設定","dateModified":"2020-09-01T19:58:55+09:00","datePublished":"2020-09-01T19:58:55+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -58,7 +58,7 @@
     <!-- Custom css based on following two framework -->
     <!-- - normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css -->
     <!-- - basscss v8.1.2 | MIT License | github.com/basscss/basscss -->
-    <style amp-custom>@font-face{font-family:'Inconsolata';font-style:normal;font-weight:400;font-display:swap;src:local("Inconsolata Regular"),local("Inconsolata-Regular"),url("/assets/fonts/inconsolata-v18-latin-regular.woff2") format("woff2")}@font-face{font-family:'Inconsolata';font-style:Bold;font-weight:700;font-display:swap;src:local("Inconsolata Bold"),local("Inconsolata-Bold"),url("/assets/fonts/inconsolata-v18-latin-700.woff2") format("woff2")}@font-face{font-family:'Isfit+';font-style:normal;font-weight:400;font-display:swap;src:local("isfit+"),local("isfit-plus"),url("/assets/fonts/isfit-plus.woff2") format("woff2")}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:"Inconsolata","游ゴシック体",YuGothic,"游ゴシック","Yu Gothic","メイリオ","Isfit+","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:"Inconsolata","游ゴシック体",YuGothic,"游ゴシック","Yu Gothic","メイリオ","Isfit+","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}.h00{font-size:4rem}.h0{font-size:3rem}.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:700}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:320px}.max-width-2{max-width:480px}.max-width-3{max-width:600px}.max-width-4{max-width:800px}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-.5rem;margin-right:-.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.m-auto{margin:auto}.mt-auto{margin-top:auto}.mr-auto{margin-right:auto}.mb-auto{margin-bottom:auto}.ml-auto{margin-left:auto}.mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.33333%}.col-2{width:16.66667%}.col-3{width:25%}.col-4{width:33.33333%}.col-5{width:41.66667%}.col-6{width:50%}.col-7{width:58.33333%}.col-8{width:66.66667%}.col-9{width:75%}.col-10{width:83.33333%}.col-11{width:91.66667%}.col-12{width:100%}@media (min-width: 40.06rem){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.33333%}.sm-col-2{width:16.66667%}.sm-col-3{width:25%}.sm-col-4{width:33.33333%}.sm-col-5{width:41.66667%}.sm-col-6{width:50%}.sm-col-7{width:58.33333%}.sm-col-8{width:66.66667%}.sm-col-9{width:75%}.sm-col-10{width:83.33333%}.sm-col-11{width:91.66667%}.sm-col-12{width:100%}}@media (min-width: 52.06rem){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.33333%}.md-col-2{width:16.66667%}.md-col-3{width:25%}.md-col-4{width:33.33333%}.md-col-5{width:41.66667%}.md-col-6{width:50%}.md-col-7{width:58.33333%}.md-col-8{width:66.66667%}.md-col-9{width:75%}.md-col-10{width:83.33333%}.md-col-11{width:91.66667%}.md-col-12{width:100%}}@media (min-width: 64rem){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.33333%}.lg-col-2{width:16.66667%}.lg-col-3{width:25%}.lg-col-4{width:33.33333%}.lg-col-5{width:41.66667%}.lg-col-6{width:50%}.lg-col-7{width:58.33333%}.lg-col-8{width:66.66667%}.lg-col-9{width:75%}.lg-col-10{width:83.33333%}.lg-col-11{width:91.66667%}.lg-col-12{width:100%}}.flex{display:-webkit-box;display:flex}@media (min-width: 40.06rem){.sm-flex{display:-webkit-box;display:flex}}@media (min-width: 52.06rem){.lg-flex{display:-webkit-box;display:flex}}.flex-column{-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{-webkit-box-align:start;align-items:flex-start}.items-end{-webkit-box-align:end;align-items:flex-end}.items-center{-webkit-box-align:center;align-items:center}.items-baseline{-webkit-box-align:baseline;align-items:baseline}.items-stretch{-webkit-box-align:stretch;align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{-webkit-box-pack:start;justify-content:flex-start}.justify-end{-webkit-box-pack:end;justify-content:flex-end}.justify-center{-webkit-box-pack:center;justify-content:center}.justify-between{-webkit-box-pack:justify;justify-content:space-between}.justify-around{justify-content:space-around}.justify-evenly{-webkit-box-pack:space-evenly;justify-content:space-evenly}.content-start{align-content:flex-start}.content-end{align-content:flex-end}.content-center{align-content:center}.content-between{align-content:space-between}.content-around{align-content:space-around}.content-stretch{align-content:stretch}.flex-auto{-webkit-box-flex:1;flex:1 1 auto;min-width:0;min-height:0}.flex-none{-webkit-box-flex:0;flex:none}.order-0{-webkit-box-ordinal-group:1;order:0}.order-1{-webkit-box-ordinal-group:2;order:1}.order-2{-webkit-box-ordinal-group:3;order:2}.order-3{-webkit-box-ordinal-group:4;order:3}.order-last{-webkit-box-ordinal-group:100000;order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40rem){.xs-hide{display:none}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.sm-hide{display:none}}@media (min-width: 52.06rem) and (max-width: 64rem){.md-hide{display:none}}@media (min-width: 64rem){.lg-hide{display:none}}.display-none{display:none}h1{font-weight:normal}.content em{font-weight:normal;font-style:normal}.content strong{font-weight:normal;font-size:1.5rem}.content .alert{font-weight:bold;color:#ff4136}.content a:hover{text-decoration:underline}.content ol{counter-reset:list}.content ol>li{list-style-position:none;position:relative;list-style:none;margin-top:5px;margin-bottom:5px}.content dd{padding:0;margin-right:0;margin-left:15pt}.content ul>li{margin:5px 0 5px 0}.content ul{padding:0 20px 0 20px}.content ol{padding:0 30px 0 30px}.content ol>li:before{content:"[" counter(list, decimal) "] ";counter-increment:list;position:absolute;left:-30px}.content blockquote{border-left:5px solid #333333;margin:10px 0 10px 0;padding:0px 8px 0px 8px;font-style:normal}.content h2{border-bottom:1px solid #5af;font-weight:normal;margin:1rem 0 0 0;padding:0}.content h3{border-bottom:1px dashed #4ae;font-weight:normal;margin:1rem 0 0 0}.content h4{border-bottom:1px dotted #4ff;font-weight:normal;margin:1rem 0 0 0}.content h5{border-bottom:1px dashed #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content h6{border-bottom:1px dotted #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content p{text-align:justify;text-justify:inter-ideograph;hanging-punctuation:allow-end;font-feature-settings:"halt" 1}html{height:100%;-ms-text-size-adjust:100%;font-size:15pt;font-family:"Inconsolata","游ゴシック体",YuGothic,"游ゴシック","Yu Gothic","メイリオ","Isfit+","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}body{margin:0;line-height:1.25;min-width:315px;height:100%;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased;padding-top:5rem}wrapper{min-height:100%}main{display:block;margin:0 auto;max-width:800px}header{display:block;margin:0 auto;max-width:800px;box-shadow:0 6px 10px -10px rgba(0,0,0,0.7)}.logo{border-radius:80%}.gsearch{max-width:40vw;font-family:"Inconsolata","游ゴシック体",YuGothic,"游ゴシック","Yu Gothic","メイリオ","Isfit+","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}hr{padding:0;margin:8px 0;border:0;height:0;border-top:1px solid rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.8)}footer{display:block;margin:0 auto}.icon-envelope{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}.icon-amp{color:#ff851b}.research li:nth-child(even){background-color:#f5f5f5}.small{font-size:80%}.doi{font-size:80%}#table-of-contents{margin:0;padding:0;display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;border-bottom:1px solid rgba(0,0,0,0.1)}#table-of-contents h2{margin:0;padding:0;font-size:1rem;border:none;margin-right:1rem}#table-of-contents h2:after{content:":";padding:0;margin:0}#table-of-contents #text-table-of-contents ul{margin:0;padding:0}#table-of-contents #text-table-of-contents ul li{list-style:none;padding:0;display:inline-block}#table-of-contents #text-table-of-contents ul li+li:before{content:"/ ";padding:0;margin:0;color:#ccc}a{text-decoration:none;color:#18bc9c}a:hover{text-decoration:underline}@media (max-width: 40rem){body{padding-top:4.8rem}.wrapper{padding:0 .5rem;background-color:#fff}header{padding:0 .5rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}header input.navigation-input:checked~.navcontents .dmenu input{display:none}header input.navigation-input:checked~.navcontents .dmenu label{display:none}header input.navigation-input:checked~.navcontents .dmenu .dcontents{height:auto;opacity:1;padding:0 10px}.page-title{font-size:1.5rem}amp-img.profile-picture{height:4rem;width:4rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.6rem;margin-left:1.6rem}#table-of-contents{display:none}footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){body{padding-top:4.8rem}.wrapper{padding:0 1rem;background-color:#fff}header{padding:0 1rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:center}header input.navigation-input:checked~.navcontents .dmenu input{display:none}header input.navigation-input:checked~.navcontents .dmenu label{display:none}header input.navigation-input:checked~.navcontents .dmenu .dcontents{height:auto;opacity:1;padding:0 10px}amp-img.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.6rem;margin-left:1.6rem}footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 2rem;background-color:#fff}header{padding:0 2rem;background-color:#fff}header .navigation-input{display:none}header .dmenu input.dmenu-input{display:none;width:0}header .dmenu label{text-decoration:none;color:#18bc9c}header .dmenu input.dmenu-input:checked~label{margin-right:15pt}header .dmenu .dcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header .dmenu input.dmenu-input:checked~.dcontents{position:absolute;padding:0 10px;height:auto;opacity:1;background-color:#fff}amp-img.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 2rem}}@media (min-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 4rem;background-color:#fff}header{background-color:#fff}header .navigation-input{display:none}header .dmenu input.dmenu-input{display:none;width:0}header .dmenu label{text-decoration:none;color:#18bc9c}header .dmenu input.dmenu-input:checked~label{margin-right:15pt}header .dmenu .dcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header .dmenu input.dmenu-input:checked~.dcontents{position:absolute;padding:0 10px;height:auto;opacity:1;background-color:#fff}amp-img.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 4rem}}table{margin:15px 0;border-collapse:collapse;width:100%;padding:0}table tr{border-top:1px solid #cccccc;background-color:white;margin:0;padding:0}table tr:nth-child(2n){background-color:#f8f8f8}table tr th{font-weight:bold;border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr td{border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr th :first-child,table tr td :first-child{margin:0}table tr th :last-child,table tr td :last-child{margin:0}pre{font-size:100%;padding:5px 10px;margin:0 auto;color:#020202;background-color:#eeeeff;overflow:auto;border:2px;border-radius:3px;font-family:inherit}code{background-color:#eeeeff;color:#020202;weight:normal;font-family:inherit}figure.highlight{margin:0;padding:0;border:0;font-family:inherit}.highlight{padding:5px 10px;background-color:#eeeeff;color:#f8f8f2;font-family:inherit}.highlight .hll{background-color:#eeeeff}.highlight .c{color:#008800}.highlight .err{border:1px solid #FF0000}.highlight .k{color:#AA22FF;font-weight:bold}.highlight .o{color:#666666}.highlight .cm{color:#008800}.highlight .cp{color:#008800}.highlight .c1{color:#008800}.highlight .cs{color:#008800;font-weight:bold}.highlight .gd{color:#A00000}.highlight .gr{color:#FF0000}.highlight .gh{color:#000080;font-weight:bold}.highlight .gi{color:#00A000}.highlight .go{color:#808080}.highlight .gp{color:#000080;font-weight:bold}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#0040D0}.highlight .kc{color:#AA22FF;font-weight:bold}.highlight .kd{color:#AA22FF;font-weight:bold}.highlight .kn{color:#AA22FF;font-weight:bold}.highlight .kp{color:#AA22FF}.highlight .kr{color:#AA22FF;font-weight:bold}.highlight .kt{color:#00BB00;font-weight:bold}.highlight .m{color:#666666}.highlight .s{color:#BB4444}.highlight .na{color:#BB4444}.highlight .nb{color:#AA22FF}.highlight .nc{color:#0000FF}.highlight .no{color:#880000}.highlight .nd{color:#AA22FF}.highlight .ni{color:#999999;font-weight:bold}.highlight .ne{color:#D2413A;font-weight:bold}.highlight .nf{color:#00A000}.highlight .nl{color:#A0A000}.highlight .nn{color:#0000FF;font-weight:bold}.highlight .nt{color:#008000;font-weight:bold}.highlight .nv{color:#B8860B}.highlight .ow{color:#AA22FF;font-weight:bold}.highlight .w{color:#bbbbbb}.highlight .mf{color:#666666}.highlight .mh{color:#666666}.highlight .mi{color:#666666}.highlight .mo{color:#666666}.highlight .sb{color:#BB4444}.highlight .sc{color:#BB4444}.highlight .sd{color:#BB4444}.highlight .s2{color:#BB4444}.highlight .se{color:#BB6622;font-weight:bold}.highlight .sh{color:#BB4444}.highlight .si{color:#BB6688;font-weight:bold}.highlight .sx{color:#008000}.highlight .sr{color:#BB6688}.highlight .s1{color:#BB4444}.highlight .ss{color:#B8860B}.highlight .bp{color:#AA22FF}.highlight .vc{color:#B8860B}.highlight .vg{color:#B8860B}.highlight .vi{color:#B8860B}.highlight .il{color:#666666}span.anchor{display:none}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}p.source{text-align:right;font-size:80%}p.source cite{font-style:normal}.day h2{font-size:1rem}.comment{display:none}.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:-.8rem}.tdiary-profile{width:70%}.tdiary-profile-picture{border-radius:50%}.footer{text-align:right;font-size:80%}.gsearch{max-width:40vw}@media (max-width: 40rem){.footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){.footer{padding:0 2rem}}@media (min-width: 64rem){.footer{padding:0 4rem}}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}    </style>
+    <style amp-custom>@font-face{font-family:'Inconsolata';font-style:normal;font-weight:400;font-display:swap;src:local("Inconsolata Regular"),local("Inconsolata-Regular"),url("/assets/fonts/inconsolata-v18-latin-regular.woff2") format("woff2")}@font-face{font-family:'Inconsolata';font-style:Bold;font-weight:700;font-display:swap;src:local("Inconsolata Bold"),local("Inconsolata-Bold"),url("/assets/fonts/inconsolata-v18-latin-700.woff2") format("woff2")}@font-face{font-family:'Isfit+';font-style:normal;font-weight:400;font-display:swap;src:local("isfit+"),local("isfit-plus"),url("/assets/fonts/isfit-plus.woff2") format("woff2")}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:"Inconsolata","游ゴシック体",YuGothic,"游ゴシック","Yu Gothic","メイリオ","Isfit+","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:"Inconsolata","游ゴシック体",YuGothic,"游ゴシック","Yu Gothic","メイリオ","Isfit+","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}.h00{font-size:4rem}.h0{font-size:3rem}.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:700}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:320px}.max-width-2{max-width:480px}.max-width-3{max-width:600px}.max-width-4{max-width:800px}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-.5rem;margin-right:-.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.m-auto{margin:auto}.mt-auto{margin-top:auto}.mr-auto{margin-right:auto}.mb-auto{margin-bottom:auto}.ml-auto{margin-left:auto}.mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.33333%}.col-2{width:16.66667%}.col-3{width:25%}.col-4{width:33.33333%}.col-5{width:41.66667%}.col-6{width:50%}.col-7{width:58.33333%}.col-8{width:66.66667%}.col-9{width:75%}.col-10{width:83.33333%}.col-11{width:91.66667%}.col-12{width:100%}@media (min-width: 40.06rem){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.33333%}.sm-col-2{width:16.66667%}.sm-col-3{width:25%}.sm-col-4{width:33.33333%}.sm-col-5{width:41.66667%}.sm-col-6{width:50%}.sm-col-7{width:58.33333%}.sm-col-8{width:66.66667%}.sm-col-9{width:75%}.sm-col-10{width:83.33333%}.sm-col-11{width:91.66667%}.sm-col-12{width:100%}}@media (min-width: 52.06rem){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.33333%}.md-col-2{width:16.66667%}.md-col-3{width:25%}.md-col-4{width:33.33333%}.md-col-5{width:41.66667%}.md-col-6{width:50%}.md-col-7{width:58.33333%}.md-col-8{width:66.66667%}.md-col-9{width:75%}.md-col-10{width:83.33333%}.md-col-11{width:91.66667%}.md-col-12{width:100%}}@media (min-width: 64rem){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.33333%}.lg-col-2{width:16.66667%}.lg-col-3{width:25%}.lg-col-4{width:33.33333%}.lg-col-5{width:41.66667%}.lg-col-6{width:50%}.lg-col-7{width:58.33333%}.lg-col-8{width:66.66667%}.lg-col-9{width:75%}.lg-col-10{width:83.33333%}.lg-col-11{width:91.66667%}.lg-col-12{width:100%}}.flex{display:-webkit-box;display:flex}@media (min-width: 40.06rem){.sm-flex{display:-webkit-box;display:flex}}@media (min-width: 52.06rem){.lg-flex{display:-webkit-box;display:flex}}.flex-column{-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{-webkit-box-align:start;align-items:flex-start}.items-end{-webkit-box-align:end;align-items:flex-end}.items-center{-webkit-box-align:center;align-items:center}.items-baseline{-webkit-box-align:baseline;align-items:baseline}.items-stretch{-webkit-box-align:stretch;align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{-webkit-box-pack:start;justify-content:flex-start}.justify-end{-webkit-box-pack:end;justify-content:flex-end}.justify-center{-webkit-box-pack:center;justify-content:center}.justify-between{-webkit-box-pack:justify;justify-content:space-between}.justify-around{justify-content:space-around}.justify-evenly{-webkit-box-pack:space-evenly;justify-content:space-evenly}.content-start{align-content:flex-start}.content-end{align-content:flex-end}.content-center{align-content:center}.content-between{align-content:space-between}.content-around{align-content:space-around}.content-stretch{align-content:stretch}.flex-auto{-webkit-box-flex:1;flex:1 1 auto;min-width:0;min-height:0}.flex-none{-webkit-box-flex:0;flex:none}.order-0{-webkit-box-ordinal-group:1;order:0}.order-1{-webkit-box-ordinal-group:2;order:1}.order-2{-webkit-box-ordinal-group:3;order:2}.order-3{-webkit-box-ordinal-group:4;order:3}.order-last{-webkit-box-ordinal-group:100000;order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40rem){.xs-hide{display:none}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.sm-hide{display:none}}@media (min-width: 52.06rem) and (max-width: 64rem){.md-hide{display:none}}@media (min-width: 64rem){.lg-hide{display:none}}.display-none{display:none}h1{font-weight:normal}.content em{font-weight:normal;font-style:normal}.content strong{font-weight:normal;font-size:1.5rem}.content .alert{font-weight:bold;color:#ff4136}.content a:hover{text-decoration:underline}.content ol{counter-reset:list}.content ol>li{list-style-position:none;position:relative;list-style:none;margin-top:5px;margin-bottom:5px}.content dd{padding:0;margin-right:0;margin-left:15pt}.content ul>li{margin:5px 0 5px 0}.content ul{padding:0 20px 0 20px}.content ol{padding:0 30px 0 30px}.content ol>li:before{content:"(" counter(list, decimal) ") ";counter-increment:list;position:absolute;left:-35px}.content blockquote{border-left:5px solid #333333;margin:10px 0 10px 0;padding:0px 8px 0px 8px;font-style:normal}.content h2{border-bottom:1px solid #5af;font-weight:normal;margin:1rem 0 0 0;padding:0}.content h3{border-bottom:1px dashed #4ae;font-weight:normal;margin:1rem 0 0 0}.content h4{border-bottom:1px dotted #4ff;font-weight:normal;margin:1rem 0 0 0}.content h5{border-bottom:1px dashed #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content h6{border-bottom:1px dotted #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content p{text-align:justify;text-justify:inter-ideograph;hanging-punctuation:allow-end;font-feature-settings:"halt" 1}html{height:100%;-ms-text-size-adjust:100%;font-size:15pt;font-family:"Inconsolata","游ゴシック体",YuGothic,"游ゴシック","Yu Gothic","メイリオ","Isfit+","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}body{margin:0;line-height:1.25;min-width:315px;height:100%;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased;padding-top:5rem}wrapper{min-height:100%}main{display:block;margin:0 auto;max-width:800px}header{display:block;margin:0 auto;max-width:800px;box-shadow:0 6px 10px -10px rgba(0,0,0,0.7)}.logo{border-radius:80%}.gsearch{max-width:40vw;font-family:"Inconsolata","游ゴシック体",YuGothic,"游ゴシック","Yu Gothic","メイリオ","Isfit+","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}hr{padding:0;margin:8px 0;border:0;height:0;border-top:1px solid rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.8)}footer{display:block;margin:0 auto}.icon-envelope{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}.icon-amp{color:#ff851b}.research li:nth-child(even){background-color:#f5f5f5}.small{font-size:80%}.doi{font-size:80%}#table-of-contents{margin:0;padding:0;display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;border-bottom:1px solid rgba(0,0,0,0.1)}#table-of-contents h2{margin:0;padding:0;font-size:1rem;border:none;margin-right:1rem}#table-of-contents h2:after{content:":";padding:0;margin:0}#table-of-contents #text-table-of-contents ul{margin:0;padding:0}#table-of-contents #text-table-of-contents ul li{list-style:none;padding:0;display:inline-block}#table-of-contents #text-table-of-contents ul li+li:before{content:"/ ";padding:0;margin:0;color:#ccc}a{text-decoration:none;color:#18bc9c}a:hover{text-decoration:underline}@media (max-width: 40rem){body{padding-top:4.8rem}.wrapper{padding:0 .5rem;background-color:#fff}header{padding:0 .5rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}header input.navigation-input:checked~.navcontents .dmenu input{display:none}header input.navigation-input:checked~.navcontents .dmenu label{display:none}header input.navigation-input:checked~.navcontents .dmenu .dcontents{height:auto;opacity:1;padding:0 10px}.page-title{font-size:1.5rem}amp-img.profile-picture{height:4rem;width:4rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.6rem;margin-left:1.6rem}#table-of-contents{display:none}footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){body{padding-top:4.8rem}.wrapper{padding:0 1rem;background-color:#fff}header{padding:0 1rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:center}header input.navigation-input:checked~.navcontents .dmenu input{display:none}header input.navigation-input:checked~.navcontents .dmenu label{display:none}header input.navigation-input:checked~.navcontents .dmenu .dcontents{height:auto;opacity:1;padding:0 10px}amp-img.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.6rem;margin-left:1.6rem}footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 2rem;background-color:#fff}header{padding:0 2rem;background-color:#fff}header .navigation-input{display:none}header .dmenu input.dmenu-input{display:none;width:0}header .dmenu label{text-decoration:none;color:#18bc9c}header .dmenu input.dmenu-input:checked~label{margin-right:15pt}header .dmenu .dcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header .dmenu input.dmenu-input:checked~.dcontents{position:absolute;padding:0 10px;height:auto;opacity:1;background-color:#fff}amp-img.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 2rem}}@media (min-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 4rem;background-color:#fff}header{background-color:#fff}header .navigation-input{display:none}header .dmenu input.dmenu-input{display:none;width:0}header .dmenu label{text-decoration:none;color:#18bc9c}header .dmenu input.dmenu-input:checked~label{margin-right:15pt}header .dmenu .dcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header .dmenu input.dmenu-input:checked~.dcontents{position:absolute;padding:0 10px;height:auto;opacity:1;background-color:#fff}amp-img.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 4rem}}table{margin:15px 0;border-collapse:collapse;width:100%;padding:0}table tr{border-top:1px solid #cccccc;background-color:white;margin:0;padding:0}table tr:nth-child(2n){background-color:#f8f8f8}table tr th{font-weight:bold;border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr td{border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr th :first-child,table tr td :first-child{margin:0}table tr th :last-child,table tr td :last-child{margin:0}pre{font-size:100%;padding:5px 10px;margin:0 auto;color:#020202;background-color:#eeeeff;overflow:auto;border:2px;border-radius:3px;font-family:inherit}code{background-color:#eeeeff;color:#020202;weight:normal;font-family:inherit}figure.highlight{margin:0;padding:0;border:0;font-family:inherit}.highlight{padding:5px 10px;background-color:#eeeeff;color:#f8f8f2;font-family:inherit}.highlight .hll{background-color:#eeeeff}.highlight .c{color:#008800}.highlight .err{border:1px solid #FF0000}.highlight .k{color:#AA22FF;font-weight:bold}.highlight .o{color:#666666}.highlight .cm{color:#008800}.highlight .cp{color:#008800}.highlight .c1{color:#008800}.highlight .cs{color:#008800;font-weight:bold}.highlight .gd{color:#A00000}.highlight .gr{color:#FF0000}.highlight .gh{color:#000080;font-weight:bold}.highlight .gi{color:#00A000}.highlight .go{color:#808080}.highlight .gp{color:#000080;font-weight:bold}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#0040D0}.highlight .kc{color:#AA22FF;font-weight:bold}.highlight .kd{color:#AA22FF;font-weight:bold}.highlight .kn{color:#AA22FF;font-weight:bold}.highlight .kp{color:#AA22FF}.highlight .kr{color:#AA22FF;font-weight:bold}.highlight .kt{color:#00BB00;font-weight:bold}.highlight .m{color:#666666}.highlight .s{color:#BB4444}.highlight .na{color:#BB4444}.highlight .nb{color:#AA22FF}.highlight .nc{color:#0000FF}.highlight .no{color:#880000}.highlight .nd{color:#AA22FF}.highlight .ni{color:#999999;font-weight:bold}.highlight .ne{color:#D2413A;font-weight:bold}.highlight .nf{color:#00A000}.highlight .nl{color:#A0A000}.highlight .nn{color:#0000FF;font-weight:bold}.highlight .nt{color:#008000;font-weight:bold}.highlight .nv{color:#B8860B}.highlight .ow{color:#AA22FF;font-weight:bold}.highlight .w{color:#bbbbbb}.highlight .mf{color:#666666}.highlight .mh{color:#666666}.highlight .mi{color:#666666}.highlight .mo{color:#666666}.highlight .sb{color:#BB4444}.highlight .sc{color:#BB4444}.highlight .sd{color:#BB4444}.highlight .s2{color:#BB4444}.highlight .se{color:#BB6622;font-weight:bold}.highlight .sh{color:#BB4444}.highlight .si{color:#BB6688;font-weight:bold}.highlight .sx{color:#008000}.highlight .sr{color:#BB6688}.highlight .s1{color:#BB4444}.highlight .ss{color:#B8860B}.highlight .bp{color:#AA22FF}.highlight .vc{color:#B8860B}.highlight .vg{color:#B8860B}.highlight .vi{color:#B8860B}.highlight .il{color:#666666}span.anchor{display:none}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}p.source{text-align:right;font-size:80%}p.source cite{font-style:normal}.day h2{font-size:1rem}.comment{display:none}.profile-picture{height:8rem;width:8rem;position:relative;float:right;border-radius:50%;margin-top:-.8rem}.tdiary-profile{width:70%}.tdiary-profile-picture{border-radius:50%}.footer{text-align:right;font-size:80%}.gsearch{max-width:40vw}@media (max-width: 40rem){.footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){.footer{padding:0 2rem}}@media (min-width: 64rem){.footer{padding:0 4rem}}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}    </style>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   </head>
   <body>
@@ -177,7 +177,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="https://uwabami.github.io/cc-env/Emacs.html">Emacs</a>
+Related <a href="index.html">Index</a> <a href="Emacs.html">Emacs</a>
 </p>
 <div>
 <h2 id="org66fa74cd">はじめに</h2>
@@ -300,10 +300,10 @@ init.el: README.org
 <h3 id="org87c9febb">Byte-Compile 時の Common Lisp の読み込み</h3>
 <div class="outline-text-3" id="text-org87c9febb">
 <p>
-幾つかん関数で <code>Common-Lisp</code> 的挙動が期待されているので,
+幾つかの関数で <code>Common-Lisp</code> 的挙動が期待されているので,
 <code>cl-lib</code> を読み込んでおきます．
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-when-compile</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'cl-lib</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-and-compile</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'cl-lib</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -446,6 +446,13 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
   <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'vc-directory-exclusion-list</span>
                <span class="p">(</span><span class="nv">expand-file-name</span> <span class="nv">my:d:password-store</span><span class="p">))</span>
   <span class="ss">:init</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">auth-source</span>
+    <span class="ss">:custom</span>
+    <span class="o">`</span><span class="p">((</span><span class="nv">auth-source-gpg-encrypt-to</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">getenv</span> <span class="s">"GPG_KEY_ID"</span><span class="p">))</span>
+      <span class="c1">;; (auth-sources</span>
+      <span class="c1">;; . ,(expand-file-name "authinfo.gpg" my:d:password-store))</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">password-store</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">auth-source-pass</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">plstore</span>
@@ -656,11 +663,16 @@ Emacs23 から内部が Unicode ベースになっています。
 </p>
 <ul class="org-ul">
 <li>
-<code>gc-cons-threshold</code> はとりあえず default の設定に.
-メモリ喰いな拡張を入れている場合には,
+<code>gc-cons-threshold</code> はとりあえずデフォルトのままに.
+<ul class="org-ul">
+<li>メモリ喰いな拡張を入れている場合には,
 安易に <code>gc-cons-threshold</code> を上げるのは考えものである.
 「gc が走る→大きな領域を掃除するのでその間 emacs が止まる」
 という事を頻繁に経験することになるだろう.</li>
+<li>
+<code>idle-timer</code> で入力が無い時に GC を走らせることにしてみた.</li>
+</ul>
+</li>
 <li>大抵の場合ターミナル内で <code>-nw</code> として起動するし,
 メニューは触ったことないので使わないので,
 フレーム, ツールバー等を非表示にする．</li>
@@ -675,8 +687,8 @@ Emacs23 から内部が Unicode ベースになっています。
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">cus-start</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">(</span>
-    <span class="p">(</span><span class="nv">gc-cons-threshold</span>       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nb">*</span> <span class="mi">8</span> <span class="mi">1024</span> <span class="mi">1024</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">garbage-collection-messages</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="c1">;; (gc-cons-threshold       . ,(* 1024 1024 1024)) ;; 1GiB</span>
+    <span class="c1">;; (garbage-collection-messages . t)</span>
     <span class="c1">;; 表示</span>
     <span class="p">(</span><span class="nv">tool-bar-mode</span>          <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>  <span class="c1">; 基本 "-nw" なので不要</span>
     <span class="p">(</span><span class="nv">scroll-bar-mode</span>        <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>  <span class="c1">; 基本 "-nw" なので不要</span>
@@ -713,12 +725,19 @@ Emacs23 から内部が Unicode ベースになっています。
     <span class="p">(</span><span class="nv">undo-limit</span>              <span class="o">.</span> <span class="mi">200000</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">undo-strong-limit</span>       <span class="o">.</span> <span class="mi">260000</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">history-length</span>          <span class="o">.</span> <span class="no">t</span><span class="p">)</span>  <span class="c1">;; 無制限(の筈)</span>
+    <span class="c1">;; (save-silently           . t)</span>
+    <span class="c1">;;</span>
+    <span class="p">(</span><span class="nv">safe-local-variable-values</span>
+     <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nv">org-link-file-path-type</span> <span class="o">.</span> <span class="nv">absolute</span><span class="p">)))</span>
     <span class="p">)</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">boundp</span> <span class="ss">'load-prefer-newer</span><span class="p">)</span>
     <span class="p">(</span><span class="k">setq</span> <span class="nv">load-prefer-newer</span> <span class="no">t</span><span class="p">))</span>
   <span class="c1">;; yes or no を y or n に</span>
   <span class="p">(</span><span class="nv">fset</span> <span class="ss">'yes-or-no-p</span> <span class="ss">'y-or-n-p</span><span class="p">)</span>
+  <span class="c1">;; GC</span>
+  <span class="c1">;; Run GC every 60 seconds if emacs is idle.</span>
+  <span class="p">(</span><span class="nv">run-with-idle-timer</span> <span class="mf">60.0</span> <span class="no">t</span> <span class="nf">#'</span><span class="nv">garbage-collect</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -794,23 +813,20 @@ Emacs23 から内部が Unicode ベースになっています。
 <p>
 他にも増えそうだが
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*byte-compile</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">development</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-and-compile</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">bytecomp</span>
     <span class="ss">:custom</span>
-    <span class="p">((</span><span class="nv">debug-on-error</span>        <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-     <span class="p">(</span><span class="nv">byte-compile-warnings</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span>
+    <span class="p">((</span><span class="nv">byte-compile-warnings</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span>
                                 <span class="nv">free-vars</span>
                                 <span class="nv">unresolved</span>
                                 <span class="nv">callargs</span>
                                 <span class="nv">redefine</span>
-                                <span class="c1">;;        obsolete</span>
+                                <span class="nv">obsolete</span>
                                 <span class="nv">noruntime</span>
                                 <span class="nv">cl-functions</span>
                                 <span class="nv">interactive-only</span>
-                                <span class="nv">make-local</span><span class="p">)</span>
-                            <span class="p">)</span>
-     <span class="p">)</span>
+                                <span class="nv">make-local</span><span class="p">))</span>
+     <span class="p">(</span><span class="nv">debug-on-error</span>        <span class="o">.</span> <span class="no">nil</span><span class="p">))</span>
     <span class="ss">:config</span>
     <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">win</span> <span class="p">(</span><span class="nv">get-buffer-window</span> <span class="s">"*Compile-Log*"</span><span class="p">)))</span>
       <span class="p">(</span><span class="nb">when</span> <span class="nv">win</span> <span class="p">(</span><span class="nv">delete-window</span> <span class="nv">win</span><span class="p">)))</span>
@@ -975,7 +991,7 @@ timestamp を更新する様にした．
    <span class="p">(</span><span class="nv">time-stamp-line-limit</span> <span class="o">.</span> <span class="mi">10</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">time-stamp-start</span>      <span class="o">.</span> <span class="s">"$Lastupdate: 2"</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">time-stamp-end</span>        <span class="o">.</span> <span class="s">"\\$"</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">time-stamp-format</span>     <span class="o">.</span> <span class="s">"%03y-%02m-%02d %02H:%02M:%02S"</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">time-stamp-format</span>     <span class="o">.</span> <span class="s">"%Y-%02m-%02d %02H:%02M:%02S"</span><span class="p">)</span>
    <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <p>
@@ -1088,7 +1104,7 @@ timestamp を更新する様にした．
    <span class="p">(</span><span class="nv">focus-out-hook</span>  <span class="o">.</span> <span class="nv">my:recentf-cleanup-silence</span><span class="p">))</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">recentf-save-file</span>       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"recentf"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">recentf-max-saved-items</span> <span class="o">.</span> <span class="mi">128</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">recentf-max-saved-items</span> <span class="o">.</span> <span class="mi">2000</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">recentf-auto-cleanup</span>    <span class="o">.</span> <span class="ss">'never</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">recentf-exclude</span>         <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="s">".recentf"</span>
                                  <span class="s">"^/tmp\\.*"</span>
@@ -1118,6 +1134,7 @@ timestamp を更新する様にした．
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">all-the-icons</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:init</span> <span class="p">(</span><span class="nv">leaf</span> <span class="nv">memoize</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="ss">:require</span> <span class="no">t</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">all-the-icons-scale-factor</span>   <span class="o">.</span> <span class="mf">0.9</span><span class="p">)</span>
@@ -1496,7 +1513,7 @@ ddskk の 14.2 以降から同梱されるようになった(ありがたい)
 <p>
 変換候補の表示位置
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">skk-show-candidates-always-pop-to-buffer</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">skk-show-candidates-always-pop-to-buffer</span> <span class="no">nil</span><span class="p">)</span></code></pre></figure>
 <p>
 候補表示件数を2列に
 </p>
@@ -1535,11 +1552,13 @@ mode-line が動くのが許せないので, ちょっと修正
   <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">elem</span>
            <span class="o">'</span><span class="p">((</span><span class="nv">abbrev</span> <span class="s">" [aA]"</span> <span class="o">.</span> <span class="s">"--[aA]:"</span><span class="p">)</span>
              <span class="p">(</span><span class="nv">latin</span> <span class="s">" [_A]"</span> <span class="o">.</span> <span class="s">"--[_A]:"</span><span class="p">)</span>
-             <span class="p">(</span><span class="nv">default</span> <span class="s">" [--]"</span> <span class="o">.</span> <span class="s">"--[--]:"</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nv">default</span> <span class="s">" [--]"</span> <span class="o">.</span> <span class="s">"--[--]:"</span><span class="p">))</span>
+           <span class="p">)</span>
     <span class="p">(</span><span class="k">setq</span> <span class="nv">ad-return-value</span>
           <span class="p">(</span><span class="nb">append</span> <span class="p">(</span><span class="nb">cons</span> <span class="nv">elem</span> <span class="no">nil</span><span class="p">)</span>
                   <span class="p">(</span><span class="nv">delq</span> <span class="p">(</span><span class="nb">assoc</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">elem</span><span class="p">)</span> <span class="nv">ad-return-value</span><span class="p">)</span> <span class="nv">ad-return-value</span><span class="p">)))))</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">skk-show-inline</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
+<span class="c1">;;</span>
+<span class="c1">;;(setq skk-show-inline t)</span></code></pre></figure>
 <p>
 カーソルには色をつけない
 </p>
@@ -1598,7 +1617,8 @@ Enter で改行しない
 <p>
 変換候補を縦に表示
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">skk-show-inline</span> <span class="ss">'vertical</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (setq skk-show-inline 'vertical)</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">skk-show-inline</span> <span class="no">nil</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -1716,7 +1736,7 @@ minibuffer 内では強制的に skk off.
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-completing-read+</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-describe-bindings</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
+  <span class="c1">;; (leaf ido-describe-bindings :ensure t)</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x C-f"</span> <span class="o">.</span> <span class="nv">ido-find-file</span><span class="p">))</span>
   <span class="ss">:preface</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-disable-line-trucation</span> <span class="p">()</span>
@@ -1933,7 +1953,6 @@ ghq list を ido で選んで dired で開く
 </div>
 </div>
 </div>
-
 <div>
 <h2 id="org15a06190">校正, 辞書等</h2>
 <div class="outline-text-2" id="text-org15a06190">
@@ -2246,6 +2265,8 @@ SEMI や FLIM などの UA の表示に <a href="http://uwabami.github.com/rail/
 
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">rail</span>
   <span class="ss">:init</span>
+  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">locate-library</span> <span class="s">"rail"</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">el-get-bundle</span> <span class="nv">uwabami/rail</span><span class="p">))</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">rail-emulate-genjis</span> <span class="no">t</span><span class="p">)</span>
   <span class="ss">:require</span> <span class="no">t</span>
   <span class="p">)</span></code></pre></figure>
@@ -2276,6 +2297,8 @@ mime-setup がロードされる前に記述する必要あり.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">mime-setup</span>
   <span class="ss">:preface</span>
+  <span class="c1">;; (leaf w3m-load)</span>
+  <span class="c1">;; (leaf mime-w3m :require t)</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">mime-view-text/html-previewer</span> <span class="ss">'shr</span>
         <span class="nv">mime-setup-enable-inline-html</span> <span class="ss">'shr</span><span class="p">)</span>
   <span class="c1">;; (defvar my:shr-width 72)</span>
@@ -3388,7 +3411,7 @@ Major modeとの衝突があるので止めた方が良い, らしい．
   <span class="c1">;;  org-mode では ＃+DATE: をひっかける用に(＃は小文字)．</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-timestamp-hook</span> <span class="p">()</span>
     <span class="s">"Change `time-stamp-start' in org-mode"</span>
-    <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nv">make-local-variable</span> <span class="ss">'time-stamp-start</span><span class="p">)</span> <span class="s">"#\\+date: 2"</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nv">make-local-variable</span> <span class="ss">'time-stamp-start</span><span class="p">)</span> <span class="s">"#\\+date: "</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nv">make-local-variable</span> <span class="ss">'time-stamp-end</span><span class="p">)</span>   <span class="s">"\$"</span><span class="p">)</span>
     <span class="p">)</span>
   <span class="c1">;; GTD: TODO→...→DONE としたエントリを =Arhive.org= に移動</span>
@@ -3409,16 +3432,16 @@ Major modeとの衝突があるので止めた方が良い, らしい．
     <span class="c1">;; 折り返し無し</span>
     <span class="p">(</span><span class="nv">org-startup-truncated</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="c1">;; link handler -&gt; xdg-open 任せ</span>
-    <span class="c1">;; (org-file-apps-defaults     . '((remote . emacs)</span>
-    <span class="c1">;;                                 (system . "xdg-open %s")</span>
-    <span class="c1">;;                                 (t      . "xdg-open %s")))</span>
-    <span class="c1">;; (org-file-apps-defaults-gnu . '((remote . emacs)</span>
-    <span class="c1">;;                                 (system . "xdg-open %s")</span>
-    <span class="c1">;;                                 (t      . "xdg-open %s")))</span>
-    <span class="c1">;; (org-file-apps              . '((auto-mode . emacs)</span>
-    <span class="c1">;;                                 ("\\.mm\\'" . default)</span>
-    <span class="c1">;;                                 ("\\.x?html?\\'" . "xdg-open %s")</span>
-    <span class="c1">;;                                 ("\\.pdf\\'" . "xdg-open %s")))</span>
+    <span class="p">(</span><span class="nv">org-file-apps-defaults</span>     <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nv">remote</span> <span class="o">.</span> <span class="nv">emacs</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="nv">system</span> <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="no">t</span>      <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">org-file-apps-defaults-gnu</span> <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nv">remote</span> <span class="o">.</span> <span class="nv">emacs</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="nv">system</span> <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="no">t</span>      <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">org-file-apps</span>              <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nv">auto-mode</span> <span class="o">.</span> <span class="nv">emacs</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="s">"\\.mm\\'"</span> <span class="o">.</span> <span class="nv">default</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="s">"\\.x?html?\\'"</span> <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)</span>
+                                    <span class="p">(</span><span class="s">"\\.pdf\\'"</span> <span class="o">.</span> <span class="s">"xdg-open %s"</span><span class="p">)))</span>
     <span class="c1">;; GTD: 状態の追加</span>
     <span class="p">(</span><span class="nv">org-todo-keywords</span>          <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nc">sequence</span> <span class="s">"TODO(t)"</span> <span class="s">"WAIT(w)"</span> <span class="s">"|"</span> <span class="s">"DONE(d)"</span> <span class="s">"CANCEL(c)"</span> <span class="s">"SOMEDAY(s)"</span><span class="p">)</span>
                                     <span class="p">(</span><span class="k">type</span> <span class="s">"ARTICLE(a)"</span><span class="p">)</span>
@@ -3454,6 +3477,12 @@ Major modeとの衝突があるので止めた方が良い, らしい．
   <span class="c1">;;                         ("\\.pdf\\'" . "xdg-open %s")))</span>
   <span class="c1">;;   )</span>
   <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org9eec991e">Org-Tempo: テンプレート補完/展開</h3>
+<div class="outline-text-3" id="text-org9eec991e">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-tempo</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -3558,7 +3587,6 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-agenda</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-c a"</span> <span class="o">.</span> <span class="nv">org-agenda</span><span class="p">))</span>
   <span class="ss">:init</span>
-  <span class="c1">;; イケてない...</span>
   <span class="p">(</span><span class="nb">require</span> <span class="ss">'japanese-holidays</span><span class="p">)</span>
   <span class="c1">;;</span>
   <span class="p">(</span><span class="nv">defface</span> <span class="nv">my:org-agenda-date-saturday</span>
@@ -3785,24 +3813,22 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-capture</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
-  <span class="ss">:preface</span>
+  <span class="ss">:init</span>
+<span class="c1">;;  (leaf org-wl</span>
+<span class="c1">;;    :if (or (my:dpkg-status "wl")</span>
+<span class="c1">;;            (my:dpkg-status "wl-beta"))</span>
+<span class="c1">;;    :el-get uwabami/org-wl</span>
+<span class="c1">;;    )</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x m"</span> <span class="o">.</span> <span class="nv">org-capture</span><span class="p">))</span>
+  <span class="ss">:pl-setq</span>
+  <span class="p">(</span><span class="nv">my:org:calendar1</span> <span class="nv">my:org:calendar2</span><span class="p">)</span>   <span class="c1">;; 名前がイケてないっ!</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-journal-add-date-entry-capture</span> <span class="p">()</span>
     <span class="p">(</span><span class="nv">org-journal-new-entry</span> <span class="no">t</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nv">point-max</span><span class="p">))</span>
     <span class="p">)</span>
-  <span class="c1">;; @see https://github.com/sprig/org-capture-extension/issues/37</span>
-  <span class="c1">;; Brackets '{' '}' in link description cause broken org-mode link #37]]</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:transform-square-brackets-to-round-ones</span> <span class="p">(</span><span class="nv">string-to-transform</span><span class="p">)</span>
-    <span class="s">"Transforms [ into ( and ] into ), other chars left unchanged."</span>
-    <span class="p">(</span><span class="nv">concat</span>
-     <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">c</span><span class="p">)</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">equal</span> <span class="nv">c</span> <span class="nv">?\[</span><span class="p">)</span> <span class="nv">?\(</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">equal</span> <span class="nv">c</span> <span class="nv">?\]</span><span class="p">)</span> <span class="nv">?\)</span> <span class="nv">c</span><span class="p">)))</span>
-             <span class="nv">string-to-transform</span><span class="p">))</span>
-    <span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-default-notes-file</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">my:d:org</span> <span class="s">"Memo.org"</span><span class="p">)</span>
-        <span class="nv">org-capture-templates</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-default-notes-file</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Memo.org"</span> <span class="nv">my:d:org</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-capture-templates</span>
         <span class="o">`</span><span class="p">(</span>
           <span class="p">(</span><span class="s">"t"</span> <span class="s">"TODO"</span> <span class="nv">plain</span>
            <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
@@ -3811,16 +3837,30 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
            <span class="ss">:unnarrowed</span> <span class="no">nil</span>
            <span class="ss">:kill-buffer</span> <span class="no">t</span>
            <span class="p">)</span>
-          <span class="p">(</span><span class="s">"m"</span> <span class="s">"Memo/Journal Entry"</span> <span class="nv">plain</span>
+          <span class="p">(</span><span class="s">"m"</span> <span class="s">"メモを追加"</span> <span class="nv">plain</span>
            <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
            <span class="s">"** MEMO %(format-time-string org-journal-time-format) %?"</span>
            <span class="ss">:prepend</span> <span class="no">nil</span>
            <span class="ss">:unnarrowed</span> <span class="no">nil</span>
            <span class="ss">:kill-buffer</span> <span class="no">t</span>
            <span class="p">)</span>
-          <span class="p">(</span><span class="s">"a"</span> <span class="s">"Aritcle Entry"</span> <span class="nv">plain</span>
+          <span class="p">(</span><span class="s">"a"</span> <span class="s">"少し長めの記事を追加する"</span> <span class="nv">plain</span>
            <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
            <span class="s">"** ARTICLE %(format-time-string org-journal-time-format) %? "</span>
+           <span class="ss">:prepend</span> <span class="no">nil</span>
+           <span class="ss">:unnarrowed</span> <span class="no">nil</span>
+           <span class="ss">:kill-buffer</span> <span class="no">t</span>
+           <span class="p">)</span>
+          <span class="p">(</span><span class="s">"s"</span> <span class="s">"個人予定表スケジュールを追加"</span> <span class="nv">plain</span>
+           <span class="p">(</span><span class="nv">file</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Schedule.org"</span> <span class="nv">my:d:org</span><span class="p">))</span>
+           <span class="s">"* %^{prompt}\n  :PROPERTIES:\n  :calendar-id: %(format \"%s\" my:org:calendar1)\n  :END:\n  :org-gcal:\n%?\n%i\n  :END:"</span>
+           <span class="ss">:prepend</span> <span class="no">nil</span>
+           <span class="ss">:unnarrowed</span> <span class="no">nil</span>
+           <span class="ss">:kill-buffer</span> <span class="no">t</span>
+           <span class="p">)</span>
+          <span class="p">(</span><span class="s">"u"</span> <span class="s">"仕事予定表スケジュールを追加"</span> <span class="nv">plain</span>
+           <span class="p">(</span><span class="nv">file</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Univ.org"</span> <span class="nv">my:d:org</span><span class="p">))</span>
+           <span class="s">"* %^{prompt}\n  :PROPERTIES:\n  :calendar-id: %(format \"%s\" my:org:calendar2)\n  :END:\n  :org-gcal:\n%?\n%i\n  :END:"</span>
            <span class="ss">:prepend</span> <span class="no">nil</span>
            <span class="ss">:unnarrowed</span> <span class="no">nil</span>
            <span class="ss">:kill-buffer</span> <span class="no">t</span>
@@ -3858,15 +3898,20 @@ request token 等の置き場所の変更
     <span class="ss">:config</span>
     <span class="p">(</span><span class="k">setq</span> <span class="nv">request-storage-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"request"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">)</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">persist</span>
+    <span class="ss">:config</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">persist--directory-location</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"persist"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">org-gcal-dir</span>          <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span>
                                <span class="s">"org-gcal"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">org-gcal-token-file</span>   <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span>
                                <span class="s">"org-gcal/.org-gcal-token"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">org-gcal-down-days</span>    <span class="o">.</span> <span class="mi">30</span><span class="p">)</span>  <span class="c1">;; 過去 1 month</span>
-    <span class="p">(</span><span class="nv">org-gcal-up-days</span>      <span class="o">.</span> <span class="mi">90</span><span class="p">)</span>  <span class="c1">;; 未来 3 month</span>
+    <span class="p">(</span><span class="nv">org-gcal-down-days</span>    <span class="o">.</span>  <span class="mi">30</span><span class="p">)</span>  <span class="c1">;; 過去 30 日</span>
+    <span class="p">(</span><span class="nv">org-gcal-up-days</span>      <span class="o">.</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1">;; 未来 180 日</span>
     <span class="p">(</span><span class="nv">org-gcal-auto-archive</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-gcal-notify-p</span>     <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-gcal-remove-api-cancelled-evetnts</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-gcal-remove-events-with-cancelled-todo</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="c1">;;</span>
     <span class="p">(</span><span class="nv">alert-log-messages</span>    <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">alert-default-style</span>   <span class="o">.</span><span class="ss">'libnotify</span><span class="p">))</span>
@@ -3874,6 +3919,7 @@ request token 等の置き場所の変更
   <span class="p">(</span><span class="nv">org-gcal-client-id</span>
    <span class="nv">org-gcal-client-secret</span>
    <span class="nv">org-gcal-file-alist</span><span class="p">)</span>
+  <span class="ss">:hook</span> <span class="p">(</span><span class="nv">org-capture-after-finalize-hook</span>  <span class="o">.</span> <span class="nv">org-gcal-fetch</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -3903,6 +3949,22 @@ request token 等の置き場所の変更
           <span class="nv">orgmine-note-block-end</span>   <span class="s">"#+end_src\n"</span>
           <span class="nv">orgmine-default-todo-keyword</span> <span class="s">"新規"</span><span class="p">)</span>
     <span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org0ea55d7d">OrgとTrelloの連携: <code>org-trello</code>
+</h3>
+<div class="outline-text-3" id="text-org0ea55d7d">
+<p>
+ToDo管理に Trello を使い始めたので, 設定
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-trello</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="nv">my:d:password-store</span>
+           <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">))</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-trello-files</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Trello.org"</span> <span class="nv">my:d:org</span><span class="p">))))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -4172,7 +4234,7 @@ magit は Emacs の Git Frontend.
       <span class="p">(</span><span class="nv">transient-force-fixed-pitch</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
     <span class="p">)</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="c1">;; magit-completing-read-function 'ido</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">magit-completing-read-function</span> <span class="ss">'ivy</span>
         <span class="nv">magit-refs-show-commit-count</span>   <span class="ss">'all</span>
         <span class="nv">magit-log-buffer-file-locked</span>   <span class="no">t</span>
         <span class="nv">magit-revision-show-gravatars</span>  <span class="no">nil</span>
@@ -4216,7 +4278,6 @@ Gitub/Gitlab と Magit の連携
 あまり上手く使えていない.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">dumb-jump</span>
-  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"rg"</span><span class="p">)</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"M-g o"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-other-window</span><span class="p">)</span>
@@ -4224,11 +4285,10 @@ Gitub/Gitlab と Magit の連携
          <span class="p">(</span><span class="s">"M-g i"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prompt</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"M-g x"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"M-g z"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external-other-window</span><span class="p">))</span>
-  <span class="ss">:custom</span> <span class="o">'</span><span class="p">(</span><span class="c1">;; (dumb-jump-selector       . 'ido)</span>
+  <span class="ss">:custom</span> <span class="o">'</span><span class="p">((</span><span class="nv">dumb-jump-selector</span>       <span class="o">.</span> <span class="ss">'ivy</span><span class="p">)</span>
             <span class="p">(</span><span class="nv">dumb-jump-force-searcher</span> <span class="o">.</span> <span class="ss">'rg</span><span class="p">))</span>
   <span class="p">)</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">smart-jump</span>
-  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">smart-jump-setup-default-registers</span><span class="p">)</span>
@@ -4236,7 +4296,8 @@ Gitub/Gitlab と Magit の連携
 </div>
 </div>
 <div>
-<h2 id="org935a4dbf">言語毎の補完: <code>company-mode</code>
+<h2 id="org935a4dbf">
+<span class="done SOMEDAY">SOMEDAY</span> 言語毎の補完: <code>company-mode</code>
 </h2>
 <div class="outline-text-2" id="text-org935a4dbf">
 <p>
@@ -4250,6 +4311,7 @@ Gitub/Gitlab と Magit の連携
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">company</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:blackout</span> <span class="no">t</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">company-idle-delay</span>            <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
@@ -4532,6 +4594,21 @@ markdown自体はあまり好きじゃないんだけれど,
 </div>
 </div>
 <div>
+<h2 id="orge4a7e301">PlantUML</h2>
+<div class="outline-text-2" id="text-orge4a7e301">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">plantuml-mode</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"plantuml"</span><span class="p">)</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">plantuml-executable-path</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">executable-find</span> <span class="s">"plantuml"</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">plantuml-default-exec-mode</span> <span class="o">.</span> <span class="ss">'executable</span><span class="p">))</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="nv">add-to-list</span>
+   <span class="ss">'org-src-lang-modes</span> <span class="o">'</span><span class="p">(</span><span class="s">"plantuml"</span> <span class="o">.</span> <span class="nv">plantuml</span><span class="p">))</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
 <h2 id="orga28ad005">その他のモード設定</h2>
 <div class="outline-text-2" id="text-orga28ad005">
 <p>
@@ -4674,21 +4751,21 @@ markdown自体はあまり好きじゃないんだけれど,
       <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="no">nil</span> <span class="ss">'alpha</span> <span class="mi">95</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span>
                           <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                          <span class="ss">:height</span> <span class="mi">190</span><span class="p">)</span>
+                          <span class="ss">:height</span> <span class="mi">195</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'fixed-pitch</span> <span class="no">nil</span>
                           <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                          <span class="ss">:height</span> <span class="mi">190</span><span class="p">)</span>
+                          <span class="ss">:height</span> <span class="mi">195</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'variable-pitch</span> <span class="no">nil</span>
                           <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                          <span class="ss">:height</span> <span class="mi">190</span><span class="p">)</span>
+                          <span class="ss">:height</span> <span class="mi">195</span><span class="p">)</span>
       <span class="c1">;; Math symbols</span>
       <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
                         <span class="o">'</span><span class="p">(</span><span class="m">#x2200</span> <span class="o">.</span> <span class="m">#x22FF</span><span class="p">)</span>
-                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"Ricty"</span> <span class="ss">:height</span> <span class="mi">195</span><span class="p">))</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">195</span><span class="p">))</span>
       <span class="c1">;; Greek</span>
       <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
                         <span class="o">'</span><span class="p">(</span><span class="m">#x0370</span> <span class="o">.</span> <span class="m">#x03FF</span><span class="p">)</span>
-                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"Ricty"</span> <span class="ss">:height</span> <span class="mi">195</span><span class="p">))</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">195</span><span class="p">))</span>
       <span class="c1">;; Some Icons</span>
       <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
                         <span class="o">'</span><span class="p">(</span><span class="m">#xE0A0</span> <span class="o">.</span> <span class="m">#xEEE0</span><span class="p">)</span>
@@ -4718,11 +4795,11 @@ markdown自体はあまり好きじゃないんだけれど,
       <span class="c1">;; Math symbols</span>
       <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
                         <span class="o">'</span><span class="p">(</span><span class="m">#x2200</span> <span class="o">.</span> <span class="m">#x22FF</span><span class="p">)</span>
-                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"Ricty"</span> <span class="ss">:height</span> <span class="mi">150</span><span class="p">))</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">150</span><span class="p">))</span>
       <span class="c1">;; Greek</span>
       <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
                         <span class="o">'</span><span class="p">(</span><span class="m">#x0370</span> <span class="o">.</span> <span class="m">#x03FF</span><span class="p">)</span>
-                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"Ricty"</span> <span class="ss">:height</span> <span class="mi">150</span><span class="p">))</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">150</span><span class="p">))</span>
       <span class="c1">;; Some Icons</span>
       <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
                         <span class="o">'</span><span class="p">(</span><span class="m">#xE0A0</span> <span class="o">.</span> <span class="m">#xEEE0</span><span class="p">)</span>
@@ -4733,7 +4810,7 @@ markdown自体はあまり好きじゃないんだけれど,
       <span class="p">)))</span></code></pre></figure>
 <ul class="org-ul">
 <li class="off">
-<code>[ ]</code> FSMRMP のラテン文字が全角にならない. 要調整</li>
+<code>[ ]</code> FSMRMP のギリシャ文字が全角にならない. 要調整</li>
 </ul>
 <pre class="example">
 幅の確認:
@@ -4780,268 +4857,6 @@ Greek, Math, 絵文字は全角, 他は半角で 2:1 になっているかの確
 </div>
 </div>
 <div>
-<h3 id="orge9fff107">doom-modeline</h3>
-<div class="outline-text-3" id="text-orge9fff107">
-<p>
-細かい所が気になるので, 色々弄ってます．
-</p>
-<ul class="org-ul">
-<li>アイコン表示の際に(EAWのせいで)幅が狂うので,
-doom-modeline内の幅の勘定をしている関数をoverride</li>
-<li>SKKの表示が欲しいので追加</li>
-<li>bufferのアイコンはfilenameじゃなくてmajor-modeを見にいく.</li>
-</ul>
-<p>
-他にも弄りたい所はあるけれど．
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*doom-modeline-settings</span>
-  <span class="ss">:blackout</span> <span class="o">`</span><span class="p">((</span><span class="nv">isearch-mode</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nb">format</span> <span class="s">" %s"</span> <span class="p">(</span><span class="nv">all-the-icons-faicon</span> <span class="s">"search"</span><span class="p">))))</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">doom-modeline</span>
-    <span class="c1">;; :disabled t</span>
-    <span class="ss">:ensure</span> <span class="no">t</span>
-    <span class="ss">:preface</span>
-    <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:doom-modeline--set-char-widths</span> <span class="p">(</span><span class="nv">alist</span><span class="p">)</span>
-      <span class="s">"Do nothing"</span><span class="p">)</span>
-    <span class="ss">:init</span>
-    <span class="c1">;;</span>
-    <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:skk-setup-modeline</span> <span class="p">()</span>
-      <span class="s">"skk-setup-modeline による modeline の更新を無効化"</span>
-      <span class="p">(</span><span class="nv">eval-when-compile</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'skk</span><span class="p">))</span>
-      <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">fboundp</span> <span class="ss">'skk-make-indicator-alist</span><span class="p">)</span>
-          <span class="p">(</span><span class="k">setq</span> <span class="nv">skk-indicator-alist</span> <span class="p">(</span><span class="nv">skk-make-indicator-alist</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nv">force-mode-line-update</span> <span class="no">t</span><span class="p">))</span>
-    <span class="c1">;;</span>
-    <span class="p">(</span><span class="nb">defvar</span> <span class="nv">doom-modeline--buffer-file-state-icon</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:doom-modeline-update-buffer-file-state-icon</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">_</span><span class="p">)</span>
-      <span class="s">"Update the buffer or file state in mode-line."</span>
-      <span class="p">(</span><span class="k">setq</span> <span class="nv">doom-modeline--buffer-file-state-icon</span>
-            <span class="p">(</span><span class="nb">ignore-errors</span>
-              <span class="p">(</span><span class="nb">cond</span> <span class="p">(</span><span class="nv">buffer-read-only</span>
-                     <span class="p">(</span><span class="nv">doom-modeline-buffer-file-state-icon</span>
-                      <span class="s">"lock"</span>
-                      <span class="p">(</span><span class="nv">all-the-icons-material</span> <span class="s">"lock"</span><span class="p">)</span>
-                      <span class="ss">'doom-modeline-warning</span><span class="p">))</span>
-                    <span class="p">((</span><span class="nb">and</span> <span class="nv">buffer-file-name</span> <span class="p">(</span><span class="nv">buffer-modified-p</span><span class="p">)</span>
-                          <span class="nv">doom-modeline-buffer-modification-icon</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nv">doom-modeline-buffer-file-state-icon</span>
-                      <span class="s">"save"</span>
-                      <span class="p">(</span><span class="nv">all-the-icons-material</span> <span class="s">"save"</span><span class="p">)</span>
-                      <span class="ss">'doom-modeline-buffer-modified</span><span class="p">))</span>
-                    <span class="p">((</span><span class="nb">and</span> <span class="nv">buffer-file-name</span>
-                          <span class="p">(</span><span class="nb">not</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="nv">buffer-file-name</span><span class="p">)))</span>
-                     <span class="p">(</span><span class="nv">doom-modeline-buffer-file-state-icon</span>
-                      <span class="s">"edit"</span>
-                      <span class="p">(</span><span class="nv">all-the-icons-faicon</span> <span class="s">"edit"</span><span class="p">)</span>
-                      <span class="ss">'doom-modeline-urgent</span><span class="p">))</span>
-                    <span class="p">((</span><span class="nb">or</span> <span class="p">(</span><span class="nv">buffer-narrowed-p</span><span class="p">)</span>
-                         <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">bound-and-true-p</span> <span class="nv">fancy-narrow-mode</span><span class="p">)</span>
-                              <span class="p">(</span><span class="nv">fancy-narrow-active-p</span><span class="p">)))</span>
-                     <span class="p">(</span><span class="nv">doom-modeline-buffer-file-state-icon</span>
-                      <span class="s">"vertical_align_center"</span>
-                      <span class="p">(</span><span class="nv">all-the-icons-material</span> <span class="s">"vertical_align_center"</span><span class="p">)</span>
-                      <span class="ss">'doom-modeline-warning</span><span class="p">))</span>
-                    <span class="p">(</span><span class="no">t</span>
-                     <span class="p">(</span><span class="nv">doom-modeline-buffer-file-state-icon</span>
-                      <span class="s">"--"</span>
-                      <span class="s">"--"</span>
-                      <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">doom-modeline--active</span><span class="p">)</span> <span class="ss">'mode-line</span> <span class="ss">'mode-line-inactive</span><span class="p">)))</span>
-                    <span class="p">))))</span>
-    <span class="c1">;;</span>
-    <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:doom-modeline-update-buffer-file-icon</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">_</span><span class="p">)</span>
-      <span class="s">"Update file icon in mode-line, just display major-mode icon. not filename."</span>
-      <span class="p">(</span><span class="k">setq</span> <span class="nv">doom-modeline--buffer-file-icon</span>
-            <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">and</span> <span class="nv">doom-modeline-icon</span> <span class="nv">doom-modeline-major-mode-icon</span><span class="p">)</span>
-              <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">icon</span> <span class="p">(</span><span class="nv">all-the-icons-icon-for-mode</span> <span class="nv">major-mode</span><span class="p">)))</span>
-                <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">symbolp</span> <span class="nv">icon</span><span class="p">)</span>
-                    <span class="p">(</span><span class="k">setq</span> <span class="nv">icon</span> <span class="p">(</span><span class="nv">all-the-icons-faicon</span>
-                                <span class="s">"file-o"</span>
-                                <span class="ss">:face</span> <span class="ss">'all-the-icons-dsilver</span><span class="p">)))</span>
-                <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nb">symbolp</span> <span class="nv">icon</span><span class="p">)</span>
-                  <span class="p">(</span><span class="nv">propertize</span> <span class="nv">icon</span>
-                              <span class="ss">'help-echo</span> <span class="p">(</span><span class="nb">format</span> <span class="s">"Major-mode: %s"</span> <span class="p">(</span><span class="nv">format-mode-line</span> <span class="nv">mode-name</span><span class="p">))))))))</span>
-    <span class="c1">;;</span>
-    <span class="ss">:advice</span> <span class="p">((</span><span class="ss">:override</span> <span class="nv">doom-modeline--set-char-widths</span>
-                        <span class="nv">my:doom-modeline--set-char-widths</span><span class="p">)</span>
-             <span class="p">(</span><span class="ss">:override</span> <span class="nv">skk-setup-modeline</span>
-                        <span class="nv">my:skk-setup-modeline</span><span class="p">))</span>
-             <span class="p">(</span><span class="ss">:override</span> <span class="nv">doom-modeline-update-buffer-file-icon</span>
-                        <span class="nv">my:doom-modeline-update-buffer-file-icon</span><span class="p">)</span>
-             <span class="p">(</span><span class="ss">:override</span> <span class="nv">doom-modeline-update-buffer-file-state-icon</span>
-                        <span class="nv">my:doom-modeline-update-buffer-file-state-icon</span><span class="p">)</span>
-    <span class="ss">:config</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">doom-modeline-height</span> <span class="mi">1</span>
-          <span class="nv">doom-modeline-bar-width</span> <span class="mi">0</span>
-          <span class="nv">doom-modeline-buffer-file-name-style</span> <span class="ss">'buffer-name</span>
-          <span class="nv">doom-modeline-icon</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-major-mode-icon</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-major-mode-color-icon</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-buffer-state-icon</span> <span class="no">nil</span>
-          <span class="nv">doom-modeline-buffer-modification-icon</span> <span class="no">nil</span>
-          <span class="nv">doom-modeline-minor-modes</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-enable-word-count</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-buffer-encoding</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-indent-info</span> <span class="no">nil</span>
-          <span class="nv">doom-modeline-checker-simple-format</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-vcs-max-length</span> <span class="mi">12</span>
-          <span class="nv">doom-modeline-persp-name</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-persp-name-icon</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-lsp</span> <span class="no">t</span>
-          <span class="nv">doom-modeline-github</span> <span class="no">nil</span>
-          <span class="nv">doom-modeline-github-interval</span> <span class="p">(</span><span class="nb">*</span> <span class="mi">30</span> <span class="mi">60</span><span class="p">)</span>
-          <span class="nv">doom-modeline-mu4e</span> <span class="no">nil</span>
-          <span class="nv">doom-modeline-irc</span> <span class="no">nil</span>
-          <span class="nv">doom-modeline-irc-stylize</span> <span class="ss">'identity</span>
-          <span class="nv">doom-modeline-icons-alist</span>
-          <span class="o">'</span><span class="p">(</span><span class="c1">;; macro</span>
-            <span class="p">(</span><span class="s">"fiber_manual_record"</span>    <span class="o">.</span> <span class="s">"\xe849"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"triangle-right"</span>         <span class="o">.</span> <span class="s">"\xf45a"</span><span class="p">)</span>
-            <span class="c1">;; multiple-cursors</span>
-            <span class="p">(</span><span class="s">"i-cursor"</span>               <span class="o">.</span> <span class="s">"\xf246"</span><span class="p">)</span>
-            <span class="c1">;; vcs</span>
-            <span class="p">(</span><span class="s">"git-compare"</span>            <span class="o">.</span> <span class="s">"\xf4ac"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"git-merge"</span>              <span class="o">.</span> <span class="s">"\xf423"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"arrow-down"</span>             <span class="o">.</span> <span class="s">"\xf43f"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"alert"</span>                  <span class="o">.</span> <span class="s">"\xf42d"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"git-branch"</span>             <span class="o">.</span> <span class="s">"\xf420"</span><span class="p">)</span>
-            <span class="c1">;; checker: flycheck/flymake</span>
-            <span class="p">(</span><span class="s">"do_not_disturb_alt"</span>     <span class="o">.</span> <span class="s">"\xeb38"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"check"</span>                  <span class="o">.</span> <span class="s">"\xf62b"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"access_time"</span>            <span class="o">.</span> <span class="s">"\xf64f"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"sim_card_alert"</span>         <span class="o">.</span> <span class="s">"\xe8a7"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"pause"</span>                  <span class="o">.</span> <span class="s">"\xf8e3"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"priority_high"</span>          <span class="o">.</span> <span class="s">"\xea02"</span><span class="p">)</span>
-            <span class="c1">;; Persp</span>
-            <span class="p">(</span><span class="s">"aspect_ratio"</span>           <span class="o">.</span> <span class="s">"\xe851"</span><span class="p">)</span>
-            <span class="c1">;; LSP</span>
-            <span class="p">(</span><span class="s">"rocket"</span>                 <span class="o">.</span> <span class="s">"\xe862"</span><span class="p">)</span>
-            <span class="c1">;; github</span>
-            <span class="p">(</span><span class="s">"github"</span>                 <span class="o">.</span> <span class="s">"\xe70a"</span><span class="p">)</span>
-            <span class="c1">;; debug</span>
-            <span class="p">(</span><span class="s">"bug"</span>                    <span class="o">.</span> <span class="s">"\xe245"</span><span class="p">)</span>
-            <span class="c1">;; mu4e</span>
-            <span class="p">(</span><span class="s">"email"</span>                  <span class="o">.</span> <span class="s">"\xe3ea"</span><span class="p">)</span>
-            <span class="c1">;; ("mail"                . "\xe158")</span>
-            <span class="c1">;; irc</span>
-            <span class="p">(</span><span class="s">"message"</span>                <span class="o">.</span> <span class="s">"\xe3f1"</span><span class="p">)</span>
-            <span class="c1">;; Battery</span>
-            <span class="p">(</span><span class="s">"battery-charging"</span>       <span class="o">.</span> <span class="s">"\xebe4"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"battery-full"</span>           <span class="o">.</span> <span class="s">"\xe2f1"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"battery-three-quarters"</span> <span class="o">.</span> <span class="s">"\xe2f2"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"battery-half"</span>           <span class="o">.</span> <span class="s">"\xe2f3"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"battery-quarter"</span>        <span class="o">.</span> <span class="s">"\xe2f4"</span><span class="p">)</span>
-            <span class="p">(</span><span class="s">"battery-empty"</span>          <span class="o">.</span> <span class="s">"\xe2f5"</span><span class="p">)</span>
-            <span class="p">)</span>
-          <span class="p">)</span>
-    <span class="p">)</span>
-  <span class="ss">:config</span>
-  <span class="c1">;; (eval-when-compile (require 'doom-modeline))</span>
-  <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'doom-modeline</span>
-    <span class="p">(</span><span class="nv">doom-modeline-def-segment</span> <span class="nv">my:input-method-skk</span>
-      <span class="s">"The current ddskk status."</span>
-      <span class="p">(</span><span class="nv">concat</span>
-       <span class="p">(</span><span class="nv">propertize</span>
-        <span class="p">(</span><span class="nb">cond</span>
-         <span class="p">((</span><span class="nb">not</span> <span class="p">(</span><span class="nb">boundp</span> <span class="ss">'skk-modeline-input-mode</span><span class="p">))</span>
-          <span class="s">"[--]"</span><span class="p">)</span>
-         <span class="p">(</span><span class="nv">skk-modeline-input-mode</span>
-          <span class="p">(</span><span class="nv">substring</span> <span class="nv">skk-modeline-input-mode</span> <span class="mi">2</span> <span class="mi">-1</span><span class="p">))</span>
-         <span class="p">(</span><span class="no">t</span>
-          <span class="s">"[--]"</span><span class="p">)</span>
-         <span class="p">))))</span>
-    <span class="c1">;;</span>
-    <span class="p">(</span><span class="nv">doom-modeline-def-segment</span> <span class="nv">my:buffer-encoding</span>
-      <span class="s">"Displays the encoding and eol style of the buffer."</span>
-      <span class="p">(</span><span class="nb">when</span> <span class="nv">doom-modeline-buffer-encoding</span>
-        <span class="p">(</span><span class="nv">propertize</span>
-         <span class="p">(</span><span class="nv">concat</span>
-          <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">sys</span> <span class="p">(</span><span class="nv">coding-system-plist</span> <span class="nv">buffer-file-coding-system</span><span class="p">)))</span>
-            <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nv">memq</span> <span class="p">(</span><span class="nv">plist-get</span> <span class="nv">sys</span> <span class="ss">:category</span><span class="p">)</span>
-                         <span class="o">'</span><span class="p">(</span><span class="nv">coding-category-undecided</span> <span class="nv">coding-category-utf-8</span><span class="p">))</span>
-                   <span class="s">" U"</span><span class="p">)</span>
-                  <span class="p">((</span><span class="nv">memq</span> <span class="p">(</span><span class="nv">plist-get</span> <span class="nv">sys</span> <span class="ss">:name</span><span class="p">)</span>
-                         <span class="o">'</span><span class="p">(</span><span class="nv">coding-category-undecided</span> <span class="nv">japanese-iso-8bit</span><span class="p">))</span>
-                   <span class="s">" E"</span><span class="p">)</span>
-                  <span class="p">((</span><span class="nv">memq</span> <span class="p">(</span><span class="nv">plist-get</span> <span class="nv">sys</span> <span class="ss">:name</span><span class="p">)</span>
-                         <span class="o">'</span><span class="p">(</span><span class="nv">coding-category-undecided</span> <span class="nv">iso-2022-jp</span><span class="p">))</span>
-                   <span class="s">" J"</span><span class="p">)</span>
-                  <span class="p">((</span><span class="nv">memq</span> <span class="p">(</span><span class="nv">plist-get</span> <span class="nv">sys</span> <span class="ss">:name</span><span class="p">)</span>
-                         <span class="o">'</span><span class="p">(</span><span class="nv">coding-category-undecided</span> <span class="nv">japanese-shift-jis</span><span class="p">))</span>
-                   <span class="s">" S"</span><span class="p">)</span>
-                  <span class="p">(</span><span class="no">t</span> <span class="s">" ="</span><span class="p">)))</span>
-          <span class="p">(</span><span class="nv">pcase</span> <span class="p">(</span><span class="nv">coding-system-eol-type</span> <span class="nv">buffer-file-coding-system</span><span class="p">)</span>
-            <span class="p">(</span><span class="mi">0</span> <span class="s">"U"</span><span class="p">)</span>
-            <span class="p">(</span><span class="mi">1</span> <span class="s">"D"</span><span class="p">)</span>
-            <span class="p">(</span><span class="mi">2</span> <span class="s">"A"</span><span class="p">)))</span>
-         <span class="ss">'face</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">doom-modeline--active</span><span class="p">)</span> <span class="ss">'mode-line</span> <span class="ss">'mode-line-inactive</span><span class="p">)</span>
-         <span class="ss">'help-echo</span> <span class="ss">'mode-line-mule-info-help-echo</span>
-         <span class="ss">'mouse-face</span> <span class="o">'</span><span class="p">(</span><span class="ss">:box</span> <span class="mi">0</span><span class="p">)</span>
-         <span class="ss">'local-map</span> <span class="nv">mode-line-coding-system-map</span><span class="p">)))</span>
-    <span class="c1">;;</span>
-    <span class="p">(</span><span class="nv">doom-modeline-def-segment</span> <span class="nv">my:buffer-position</span>
-      <span class="s">"The buffer position information, drop nyan-mode"</span>
-      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">active</span> <span class="p">(</span><span class="nv">doom-modeline--active</span><span class="p">))</span>
-            <span class="p">(</span><span class="nv">lc</span> <span class="o">'</span><span class="p">(</span><span class="nv">line-number-mode</span>
-                  <span class="p">(</span><span class="nv">column-number-mode</span>
-                   <span class="p">(</span><span class="nv">doom-modeline-column-zero-based</span> <span class="s">" %l:%c"</span> <span class="s">" %l:%C"</span><span class="p">)</span>
-                   <span class="s">" %l"</span><span class="p">)</span>
-                  <span class="p">(</span><span class="nv">column-number-mode</span> <span class="p">(</span><span class="nv">doom-modeline-column-zero-based</span> <span class="s">" :%c"</span> <span class="s">" :%C"</span><span class="p">)))))</span>
-        <span class="p">(</span><span class="nv">propertize</span>
-         <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">format-mode-line</span> <span class="nv">lc</span><span class="p">)</span>
-                 <span class="p">(</span><span class="nv">format-mode-line</span> <span class="o">'</span><span class="p">(</span><span class="s">""</span> <span class="nv">doom-modeline-percent-position</span> <span class="s">"%%"</span><span class="p">))</span>
-                 <span class="p">)</span>
-         <span class="ss">'face</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">doom-modeline--active</span><span class="p">)</span> <span class="ss">'mode-line</span> <span class="ss">'mode-line-inactive</span><span class="p">)</span>
-         <span class="ss">'help-echo</span> <span class="err">"</span><span class="nv">Buffer</span> <span class="nv">position\n</span><span class="err">\</span>
-<span class="nv">mouse-1:</span> <span class="nv">Display</span> <span class="nv">Line</span> <span class="nb">and</span> <span class="nv">Column</span> <span class="nv">Mode</span> <span class="nv">Menu</span><span class="s">"
-         'mouse-face '(:box 0)
-         'local-map mode-line-column-line-number-mode-map)))
-    ;;
-    (defvar-local doom-modeline--lsp nil)
-    ;;
-    ;;
-    (doom-modeline-def-modeline 'main
-      '(;; bar
-        "</span> <span class="s">"
-        my:input-method-skk
-        ;; workspace-name
-        my:buffer-encoding
-        ;; major-mode
-        buffer-info
-        ;; window-number
-        ;; modals
-        matches
-        ;; remote-host
-        ;; parrot
-        ;; selection-info
-        )
-      ;;
-      '(
-        ;; objed-state
-        ;; misc-info
-        ;; persp-name
-        ;; fancy-battery
-        ;; grip
-        ;; irc
-        ;; mu4e
-        ;; github
-        ;; debug
-        lsp
-        minor-modes
-        ;; indent-info
-        process
-        vcs
-        checker
-        "</span> <span class="s">"
-        my:buffer-position
-        "</span> <span class="err">"</span>
-        <span class="p">)</span>
-      <span class="p">)</span>
-    <span class="p">)</span>
-  <span class="p">(</span><span class="nv">doom-modeline-mode</span> <span class="mi">+1</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
 <h3 id="org7e722d0e">theme: <code>doom-theme</code>
 </h3>
 <div class="outline-text-3" id="text-org7e722d0e">
@@ -5069,6 +4884,80 @@ doom-theme をベースに移植中: <a href="https://github.com/uwabami/emacs-d
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
+<div>
+<h3 id="org51edfacc">modeline</h3>
+<div class="outline-text-3" id="text-org51edfacc">
+<p>
+powerline を使ってる
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">powerline</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:powerline-ddskk</span> <span class="p">()</span>
+    <span class="s">"skkが読み込まれていなくても状態を表示"</span>
+    <span class="p">(</span><span class="nb">cond</span>
+     <span class="p">((</span><span class="nb">not</span> <span class="p">(</span><span class="nb">boundp</span> <span class="ss">'skk-modeline-input-mode</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">skk-modeline-input-mode</span> <span class="s">"--[--]:"</span><span class="p">))</span>
+     <span class="p">(</span><span class="no">t</span> <span class="nv">skk-modeline-input-mode</span><span class="p">)))</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:skk-setup-modeline</span> <span class="p">()</span>
+      <span class="s">"skk-setup-modeline による modeline の更新を無効化"</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">skk-indicator-alist</span> <span class="p">(</span><span class="nv">skk-make-indicator-alist</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">force-mode-line-update</span> <span class="no">t</span><span class="p">))</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:major-mode-icon</span> <span class="p">(</span><span class="nv">mode</span><span class="p">)</span>
+    <span class="s">"Update file icon in mode-line, just display major-mode icon. not filename."</span>
+    <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">icon</span> <span class="p">(</span><span class="nv">all-the-icons-icon-for-mode</span> <span class="nv">mode</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">symbolp</span> <span class="nv">icon</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">all-the-icons-faicon</span> <span class="s">"file-code-o"</span>
+                              <span class="ss">:face</span> <span class="ss">'all-the-icons-dsilver</span>
+                              <span class="ss">:height</span> <span class="mf">1.0</span><span class="p">)</span>
+      <span class="nv">icon</span><span class="p">)))</span>
+  <span class="ss">:advice</span> <span class="p">(</span><span class="ss">:override</span> <span class="nv">skk-setup-modeline</span> <span class="nv">my:skk-setup-modeline</span><span class="p">)</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">powerline-buffer-size-suffix</span>  <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">powerline-display-hud</span>         <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">powerline-display-buffer-size</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">powerline-text-scale-factor</span>   <span class="o">.</span>  <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:powerline-theme</span> <span class="p">()</span>
+    <span class="s">"Setup the default mode-line."</span>
+    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">my:powerline-ddskk</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">setq-default</span>
+     <span class="nv">mode-line-format</span>
+     <span class="o">'</span><span class="p">(</span><span class="s">"%e"</span>
+       <span class="p">(</span><span class="ss">:eval</span>
+        <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">active</span> <span class="p">(</span><span class="nv">powerline-selected-window-active</span><span class="p">))</span>
+               <span class="p">(</span><span class="nv">mode-line-buffer-id</span> <span class="p">(</span><span class="k">if</span> <span class="nv">active</span> <span class="ss">'mode-line-buffer-id</span> <span class="ss">'mode-line-buffer-id-inactive</span><span class="p">))</span>
+               <span class="p">(</span><span class="nv">mode-line</span> <span class="p">(</span><span class="k">if</span> <span class="nv">active</span> <span class="ss">'mode-line</span> <span class="ss">'mode-line-inactive</span><span class="p">))</span>
+               <span class="p">(</span><span class="nv">face1</span> <span class="p">(</span><span class="k">if</span> <span class="nv">active</span> <span class="ss">'mode-line-highlight</span> <span class="ss">'powerline-inactive2</span><span class="p">))</span>
+               <span class="c1">;; (face1 (if active 'powerline-active1 'powerline-inactive2))</span>
+               <span class="c1">;; (face2 (if active 'powerline-active2 'powerline-inactive2))</span>
+               <span class="c1">;; (face2 (if active 'mode-line-highlight 'powerline-inactive2))</span>
+               <span class="p">(</span><span class="nv">lhs</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">powerline-raw</span> <span class="p">(</span><span class="nv">substring</span> <span class="nv">skk-modeline-input-mode</span> <span class="mi">2</span> <span class="mi">-1</span><span class="p">)</span> <span class="nv">mode-line</span> <span class="ss">'l</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">powerline-raw</span> <span class="s">"%*"</span> <span class="nv">mode-line</span> <span class="ss">'l</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">powerline-raw</span> <span class="nv">mode-line-mule-info</span> <span class="nv">mode-line</span> <span class="ss">'l</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">powerline-raw</span> <span class="p">(</span><span class="nv">my:major-mode-icon</span> <span class="nv">major-mode</span><span class="p">)</span> <span class="nv">mode-line</span> <span class="ss">'l</span><span class="p">)</span>
+                          <span class="c1">;; (powerline-raw (all-the-icons-icon-for-mode major-mode) mode-line 'l)</span>
+                          <span class="p">(</span><span class="nv">powerline-buffer-id</span> <span class="nv">mode-line-buffer-id</span> <span class="ss">'l</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">powerline-raw</span> <span class="s">" "</span><span class="p">)</span>
+                          <span class="p">))</span>
+               <span class="p">(</span><span class="nv">rhs</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">powerline-raw</span> <span class="nv">global-mode-string</span> <span class="nv">face1</span> <span class="ss">'r</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">powerline-vc</span> <span class="nv">face1</span> <span class="ss">'r</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">powerline-raw</span> <span class="s">" "</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">powerline-raw</span> <span class="s">"%6p"</span> <span class="nv">mode-line</span> <span class="ss">'r</span><span class="p">)</span>
+                          <span class="p">)))</span>
+          <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">powerline-render</span> <span class="nv">lhs</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nv">powerline-fill</span> <span class="nv">face1</span> <span class="p">(</span><span class="nv">powerline-width</span> <span class="nv">rhs</span><span class="p">))</span>
+                  <span class="p">(</span><span class="nv">powerline-render</span> <span class="nv">rhs</span><span class="p">))))))</span>
+    <span class="p">)</span>
+  <span class="p">(</span><span class="nv">my:powerline-theme</span><span class="p">)</span>
+  <span class="c1">;; (powerline-revert)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
 </div>
 <div>
 <h2 id="orgca1f29da">起動時間の出力</h2>
@@ -5085,13 +4974,52 @@ doom-theme をベースに移植中: <a href="https://github.com/uwabami/emacs-d
 <div>
 <h2 id="orgd89ceb4b">Debug</h2>
 <div class="outline-text-2" id="text-orgd89ceb4b">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">esup</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">esup</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+  <span class="p">((</span><span class="nv">esup-insignificant-time</span> <span class="o">.</span> <span class="mf">0.01</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">esup-depth</span>              <span class="o">.</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">;; 🤔</span>
+  <span class="p">)</span>
+<span class="p">(</span><span class="nv">leaf</span> <span class="nv">srcery-emacs</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
+  <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">srcery-emacs</span>
+           <span class="ss">:type</span> <span class="nv">github</span>
+           <span class="ss">:pkgname</span> <span class="s">"uwabami/srcery-emacs"</span>
+           <span class="ss">:prepare</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'custom-theme-load-path</span> <span class="nv">default-directory</span><span class="p">)</span>
+           <span class="p">)</span>
+  <span class="ss">:custom</span> <span class="p">((</span><span class="nv">srcery-transparent-background</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+           <span class="p">(</span><span class="nv">srcery-org-height</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+           <span class="p">(</span><span class="nv">srcery-bright-black</span> <span class="o">.</span> <span class="s">"#4f4f4f"</span><span class="p">))</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">load-theme</span> <span class="ss">'srcery</span> <span class="no">t</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-bullets</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+   <span class="p">(</span><span class="nv">org-bullets-bullet-list</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="s">" "</span> <span class="s">"◎ "</span> <span class="s">"□"</span> <span class="s">"・"</span><span class="p">))</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">org-mode-hook</span>
+   <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">org-bullets-mode</span> <span class="mi">1</span><span class="p">)))</span>
+  <span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
-<h2 id="orgf87c4e84">LICENSE</h2>
+<h2 id="orgf87c4e84">最後に</h2>
 <div class="outline-text-2" id="text-orgf87c4e84">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">provide</span> <span class="ss">'init</span><span class="p">)</span></code></pre></figure>
+</div>
+<div>
+<h3 id="org4c97a1e0">provide の設定</h3>
+<div class="outline-text-3" id="text-org4c97a1e0">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">provide</span> <span class="ss">'init</span><span class="p">)</span>
+<span class="c1">;; Local Variables:</span>
+<span class="c1">;; byte-compile-warnings: (not cl-functions obsolete)</span>
+<span class="c1">;; End:</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="orge8960401">LICENSE</h3>
+<div class="outline-text-3" id="text-orge8960401">
 <p>
 幾つかの関数の元ネタとして Emacs 本体のコードを参照したので,
 GPL-3 or later です．
@@ -5114,6 +5042,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
 </pre>
 </div>
 </div>
+</div>
 <!-- %%%% end content %%%% -->
         </div>
       </main>
@@ -5122,7 +5051,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-05-13 10:32:59 +0000
+          Lastupdate: 2020-09-01 10:58:55 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
