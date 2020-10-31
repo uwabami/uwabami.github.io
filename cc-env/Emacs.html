@@ -35,14 +35,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-09-01T19:58:55+09:00" />
+<meta property="article:published_time" content="2020-11-01T12:22:33+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"url":"https://uwabami.github.io/cc-env/Emacs.html","headline":"Emacs の設定","dateModified":"2020-09-01T19:58:55+09:00","datePublished":"2020-09-01T19:58:55+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Emacs の設定","dateModified":"2020-11-01T12:22:33+09:00","datePublished":"2020-11-01T12:22:33+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"url":"https://uwabami.github.io/cc-env/Emacs.html","author":{"@type":"Person","name":"Youhei SASAKI"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -244,7 +244,12 @@ init.el: README.org
 ついでに, 出力される <code>init.el</code> 用のおまじない(?)として
 <code>lexsical-binding</code> を有効にしておきます．
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; -*- lexical-binding: nil -*-</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; -*- lexical-binding: nil -*-</span>
+<span class="c1">;; (require 'profiler)</span>
+<span class="c1">;; (profiler-start 'cpu)</span>
+<span class="c1">;;</span>
+<span class="c1">;; increase gc-cons-threshold duraring startup.</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">gc-cons-threshold</span> <span class="nv">most-positive-fixnum</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -303,7 +308,10 @@ init.el: README.org
 幾つかの関数で <code>Common-Lisp</code> 的挙動が期待されているので,
 <code>cl-lib</code> を読み込んでおきます．
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-and-compile</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'cl-lib</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-and-compile</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'cl-lib</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span>
+<span class="c1">;; el-get が cl に依存しているので, ここで</span>
+<span class="c1">;; `Package cl is deprecated' が表示されるのを止めておく.</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">byte-compile-warnings</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span> <span class="nv">cl-functions</span> <span class="nv">obsolete</span><span class="p">))</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -322,23 +330,22 @@ init.el: README.org
 <p>
 パッケージは基本的に <code>pacakge.el</code> で導入するので, 先ずはその設定.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">require</span> <span class="ss">'package</span> <span class="no">nil</span> <span class="ss">'noerror</span><span class="p">)</span>
-<span class="c1">;; elpa/gnutls workaround</span>
-<span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">string&lt;</span> <span class="nv">emacs-version</span> <span class="s">"26.3"</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">gnutls-algorithm-priority</span> <span class="s">"NORMAL:-VERS-TLS1.3"</span><span class="p">))</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">package-enable-at-startup</span> <span class="no">t</span>
-      <span class="nv">package-user-dir</span> <span class="nv">my:d:pkg:elpa</span>
-      <span class="nv">package-gnupghome-dir</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">".gnupg"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">))</span>
-      <span class="nv">package-archives</span>
-      <span class="o">'</span><span class="p">((</span><span class="s">"gnu"</span>   <span class="o">.</span> <span class="s">"https://elpa.gnu.org/packages/"</span><span class="p">)</span>
-        <span class="p">(</span><span class="s">"melpa"</span> <span class="o">.</span> <span class="s">"https://melpa.org/packages/"</span><span class="p">)</span>
-        <span class="c1">;; ("org"   . "https://orgmode.org/elpa/")</span>
-        <span class="p">)</span>
-      <span class="p">)</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-and-compile</span>
+  <span class="p">(</span><span class="nv">custom-set-variables</span>
+   <span class="o">'</span><span class="p">(</span><span class="nv">package-archives</span> <span class="o">'</span><span class="p">((</span><span class="s">"gnu"</span>   <span class="o">.</span> <span class="s">"https://elpa.gnu.org/packages/"</span><span class="p">)</span>
+                        <span class="p">(</span><span class="s">"melpa"</span> <span class="o">.</span> <span class="s">"https://melpa.org/packages/"</span><span class="p">)</span>
+                        <span class="p">))</span>
+   <span class="o">'</span><span class="p">(</span><span class="nv">package-gnupghome-dir</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">".gnupg"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">)))</span>
+   <span class="o">'</span><span class="p">(</span><span class="nv">package-user-dir</span> <span class="nv">my:d:pkg:elpa</span><span class="p">)</span>
+   <span class="o">'</span><span class="p">(</span><span class="nv">package-enable-at-startup</span> <span class="no">t</span><span class="p">)</span>
+   <span class="p">))</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">gnutls-algorithm-priority</span> <span class="s">"NORMAL:-VERS-TLS1.3"</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">eval-when-compile</span>
   <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tmp/bootstrap-stamp"</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">gnutls-algorithm-priority</span> <span class="s">"NORMAL:-VERS-TLS1.3"</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">package-refresh-contents</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">with-temp-buffer</span> <span class="p">(</span><span class="nv">write-file</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tmp/bootstrap-stamp"</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">with-temp-buffer</span>
+      <span class="p">(</span><span class="nv">write-file</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tmp/bootstrap-stamp"</span><span class="p">)))</span>
     <span class="p">))</span>
 <span class="p">(</span><span class="nv">package-initialize</span><span class="p">)</span></code></pre></figure>
 </div>
@@ -352,15 +359,15 @@ init.el: README.org
 <a href="https://github.com/conao3/leaf.el">leaf.el</a>から<a href="https://github.com/dimitri/el-get">el-get</a>を呼び出します.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">package-installed-p</span> <span class="ss">'leaf</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">package-refresh-contents</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">package-install</span> <span class="ss">'leaf</span> <span class="no">t</span><span class="p">))</span>
-<span class="c1">;; (require 'leaf nil 'noerror)</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">leaf-keywords</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:require</span> <span class="no">t</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">blackout</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">el-get</span>
     <span class="ss">:ensure</span> <span class="no">t</span>
-    <span class="ss">:require</span> <span class="no">t</span>
     <span class="ss">:preface</span>
     <span class="p">(</span><span class="nv">defconst</span> <span class="nv">el-get-dir</span> <span class="nv">my:d:pkg:elget</span><span class="p">)</span> <span class="c1">;; override el-get default</span>
     <span class="ss">:custom</span> <span class="p">((</span><span class="nv">el-get-notify-type</span>       <span class="o">.</span> <span class="ss">'message</span><span class="p">)</span>
@@ -401,16 +408,17 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
   <span class="ss">:defun</span> <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">)</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">exec-path-from-shell-check-startup-files</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">exec-path-from-shell-variables</span>           <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="s">"SHELL"</span>
-                                                 <span class="s">"DEBFULLNAME"</span>
-                                                 <span class="s">"DEBEMAIL"</span>
-                                                 <span class="s">"SKKSERVER"</span>
-                                                 <span class="s">"TEXMFHOME"</span>
-                                                 <span class="s">"http_proxy"</span>
-                                                 <span class="s">"GPG_KEY_ID"</span>
-                                                 <span class="s">"GPG_AGENT_INFO"</span>
-                                                 <span class="s">"PASSWORD_STORE_DIR"</span>
-                                                 <span class="s">"PATH"</span><span class="p">)))</span>
+   <span class="p">(</span><span class="nv">exec-path-from-shell-variables</span>
+    <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="s">"SHELL"</span>
+        <span class="s">"DEBFULLNAME"</span>
+        <span class="s">"DEBEMAIL"</span>
+        <span class="s">"SKKSERVER"</span>
+        <span class="s">"TEXMFHOME"</span>
+        <span class="s">"http_proxy"</span>
+        <span class="s">"GPG_KEY_ID"</span>
+        <span class="s">"GPG_AGENT_INFO"</span>
+        <span class="s">"PASSWORD_STORE_DIR"</span>
+        <span class="s">"PATH"</span><span class="p">)))</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">)</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">user-full-name</span>    <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"DEBFULLNAME"</span><span class="p">))</span>
@@ -418,8 +426,10 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
   <span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:d:password-store</span>
     <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"PASSWORD_STORE_DIR"</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">expand-file-name</span> <span class="p">(</span><span class="nv">concat</span> <span class="s">"Emacs/"</span> <span class="p">(</span><span class="nv">system-name</span><span class="p">))</span>
-                          <span class="p">(</span><span class="nv">getenv</span> <span class="s">"PASSWORD_STORE_DIR"</span><span class="p">)))</span>
-    <span class="no">nil</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">getenv</span> <span class="s">"PASSWORD_STORE_DIR"</span><span class="p">))</span>
+      <span class="s">""</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -439,13 +449,12 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*authentication</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"GPG_KEY_ID"</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:password-store</span><span class="p">))</span>
-  <span class="ss">:preface</span>
+  <span class="ss">:init</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">leaf-default-plstore</span>
         <span class="p">(</span><span class="nv">plstore-open</span>
          <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"plstore.plist"</span> <span class="nv">my:d:password-store</span><span class="p">)))</span>
   <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'vc-directory-exclusion-list</span>
                <span class="p">(</span><span class="nv">expand-file-name</span> <span class="nv">my:d:password-store</span><span class="p">))</span>
-  <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">auth-source</span>
     <span class="ss">:custom</span>
     <span class="o">`</span><span class="p">((</span><span class="nv">auth-source-gpg-encrypt-to</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">getenv</span> <span class="s">"GPG_KEY_ID"</span><span class="p">))</span>
@@ -469,17 +478,6 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
 <p>
 細かい独自関数, など．
 </p>
-</div>
-<div>
-<h3 id="orgc5559fad">dpkg-status</h3>
-<div class="outline-text-3" id="text-orgc5559fad">
-<p>
-もっと良い方法がありそうなモンですが．
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">my:dpkg-status</span> <span class="p">(</span><span class="nc">package</span><span class="p">)</span>
-  <span class="s">"Return the `PACKAGE' status from dpkg --get-selections."</span>
-  <span class="p">(</span><span class="nv">string-match</span> <span class="s">"^ii"</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="p">(</span><span class="nb">format</span> <span class="s">"dpkg -l %s"</span> <span class="nc">package</span><span class="p">))))</span></code></pre></figure>
-</div>
 </div>
 <div>
 <h3 id="org452a76a8">ファイル名を minibuffer におさまる様に整形</h3>
@@ -669,6 +667,9 @@ Emacs23 から内部が Unicode ベースになっています。
 安易に <code>gc-cons-threshold</code> を上げるのは考えものである.
 「gc が走る→大きな領域を掃除するのでその間 emacs が止まる」
 という事を頻繁に経験することになるだろう.</li>
+<li>とはいえ, 起動時には結構 garbage-collect が走るので,
+起動時はl <code>most-positive-fixnum</code> にしておいて,
+起動後に <code>emacs-startup-hook</code> で default に戻すようにしてみた.</li>
 <li>
 <code>idle-timer</code> で入力が無い時に GC を走らせることにしてみた.</li>
 </ul>
@@ -687,7 +688,6 @@ Emacs23 から内部が Unicode ベースになっています。
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">cus-start</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">(</span>
-    <span class="c1">;; (gc-cons-threshold       . ,(* 1024 1024 1024)) ;; 1GiB</span>
     <span class="c1">;; (garbage-collection-messages . t)</span>
     <span class="c1">;; 表示</span>
     <span class="p">(</span><span class="nv">tool-bar-mode</span>          <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>  <span class="c1">; 基本 "-nw" なので不要</span>
@@ -738,6 +738,11 @@ Emacs23 から内部が Unicode ベースになっています。
   <span class="c1">;; GC</span>
   <span class="c1">;; Run GC every 60 seconds if emacs is idle.</span>
   <span class="p">(</span><span class="nv">run-with-idle-timer</span> <span class="mf">60.0</span> <span class="no">t</span> <span class="nf">#'</span><span class="nv">garbage-collect</span><span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span>
+   <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+       <span class="p">(</span><span class="k">setq</span> <span class="nv">gc-cons-threshold</span> <span class="mi">800000</span><span class="p">)</span> <span class="c1">;; default</span>
+       <span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -817,11 +822,11 @@ Emacs23 から内部が Unicode ベースになっています。
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">bytecomp</span>
     <span class="ss">:custom</span>
     <span class="p">((</span><span class="nv">byte-compile-warnings</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span>
+                                <span class="nv">obsolete</span>
                                 <span class="nv">free-vars</span>
                                 <span class="nv">unresolved</span>
                                 <span class="nv">callargs</span>
                                 <span class="nv">redefine</span>
-                                <span class="nv">obsolete</span>
                                 <span class="nv">noruntime</span>
                                 <span class="nv">cl-functions</span>
                                 <span class="nv">interactive-only</span>
@@ -841,8 +846,8 @@ Emacs23 から内部が Unicode ベースになっています。
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">autorevert</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">auto-revert-interval</span> <span class="o">.</span> <span class="mf">0.1</span><span class="p">))</span>
-  <span class="ss">:global-minor-mode</span>
-  <span class="nv">global-auto-revert-mode</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">global-auto-revert-mode</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -852,7 +857,8 @@ Emacs23 から内部が Unicode ベースになっています。
 <div class="outline-text-3" id="text-org246148ce">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">savehist</span>
   <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">savehist-file</span>   <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"history"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">savehist-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"history"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
   <span class="ss">:hook</span>
   <span class="p">((</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">savehist-mode</span><span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
@@ -868,13 +874,17 @@ Emacs23 から内部が Unicode ベースになっています。
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*change-default-file-location</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">(</span><span class="c1">;; url</span>
-    <span class="p">(</span><span class="nv">url-configuration-directory</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"url"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">url-configuration-directory</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"url"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="c1">;; nsm</span>
-    <span class="p">(</span><span class="nv">nsm-settings-file</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"nsm.data"</span> <span class="nv">my:d:tmp</span> <span class="p">))</span>
+    <span class="p">(</span><span class="nv">nsm-settings-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"nsm.data"</span> <span class="nv">my:d:tmp</span> <span class="p">))</span>
     <span class="c1">;; bookmark</span>
-    <span class="p">(</span><span class="nv">bookmark-default-file</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"bookmarks"</span> <span class="nv">my:d:share</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">bookmark-default-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"bookmarks"</span> <span class="nv">my:d:share</span><span class="p">))</span>
     <span class="c1">;; eshell</span>
-    <span class="p">(</span><span class="nv">eshell-directory-name</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"eshell"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">eshell-directory-name</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"eshell"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <p>
@@ -897,8 +907,9 @@ minibuffer では eldoc にお黙り頂く。
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:shutup-eldoc-message</span> <span class="p">(</span><span class="nv">f</span> <span class="k">&amp;optional</span> <span class="nb">string</span><span class="p">)</span>
     <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">active-minibuffer-window</span><span class="p">)</span>
       <span class="p">(</span><span class="nb">funcall</span> <span class="nv">f</span> <span class="nb">string</span><span class="p">)))</span>
-  <span class="ss">:advice</span> <span class="p">(</span><span class="ss">:around</span> <span class="nv">eldoc-message</span>
-                   <span class="nv">my:shutup-eldoc-message</span><span class="p">)</span>
+  <span class="ss">:advice</span>
+  <span class="p">(</span><span class="ss">:around</span> <span class="nv">eldoc-message</span>
+           <span class="nv">my:shutup-eldoc-message</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -909,8 +920,8 @@ minibuffer では eldoc にお黙り頂く。
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">midnight</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">clean-buffer-list-delay-general</span> <span class="o">.</span> <span class="mi">1</span><span class="p">))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">midnight-mode</span><span class="p">))</span></code></pre></figure>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">midnight-mode</span><span class="p">))</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -937,11 +948,12 @@ minibuffer では eldoc にお黙り頂く。
   <span class="ss">:hook</span> <span class="p">(</span><span class="nv">after-init-hook</span> <span class="o">.</span> <span class="nv">global-whitespace-mode</span><span class="p">)</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">whitespace-line-column</span>      <span class="o">.</span> <span class="mi">72</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">whitespace-style</span>            <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">face</span>        <span class="c1">; faceを使う</span>
-                                    <span class="nv">trailing</span>    <span class="c1">; 行末の空白を対象.</span>
-                                    <span class="nv">tabs</span>        <span class="c1">; tab</span>
-                                    <span class="nv">spaces</span>      <span class="c1">; space</span>
-                                    <span class="p">))</span>
+   <span class="p">(</span><span class="nv">whitespace-style</span>
+    <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">face</span>        <span class="c1">; faceを使う</span>
+        <span class="nv">trailing</span>    <span class="c1">; 行末の空白を対象.</span>
+        <span class="nv">tabs</span>        <span class="c1">; tab</span>
+        <span class="nv">spaces</span>      <span class="c1">; space</span>
+        <span class="p">))</span>
    <span class="p">(</span><span class="nv">whitespace-display-mappings</span> <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="nv">space-mark</span> <span class="nv">?\u3000</span> <span class="nv">[?\□]</span><span class="p">)</span>
                                     <span class="p">(</span><span class="nv">tab-mark</span> <span class="nv">?\t</span> <span class="nv">[?\u00BB</span> <span class="nv">?\t]</span> <span class="nv">[?\\</span> <span class="nv">?\t]</span><span class="p">)))</span>
    <span class="p">(</span><span class="nv">whitespace-space-regexp</span>     <span class="o">.</span> <span class="s">"\\(\u3000+\\)"</span><span class="p">)</span>
@@ -964,9 +976,10 @@ minibuffer では eldoc にお黙り頂く。
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">save-place</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">save-place</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">save-place-file</span>  <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"emacs-places"</span>  <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">save-place-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"emacs-places"</span>  <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">)</span>
-  <span class="ss">:hook</span> <span class="p">(</span><span class="nv">after-init-hook</span> <span class="o">.</span> <span class="nv">save-place-mode</span><span class="p">)</span>
+  <span class="ss">:hook</span> <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">save-place-mode</span><span class="p">)</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">save-place-ingore-files-regexp</span>
         <span class="p">(</span><span class="nb">format</span> <span class="s">"\\(%s\\)\\|\\(%s\\)"</span>
@@ -1012,9 +1025,10 @@ timestamp を更新する様にした．
     <span class="p">(</span><span class="nv">tramp-completion-reread-directory-timeout</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
     <span class="p">)</span>
   <span class="ss">:hook</span>
-  <span class="p">(</span><span class="nv">kill-emacs-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-                       <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="nv">tramp-persistency-file-name</span><span class="p">)</span>
-                           <span class="p">(</span><span class="nb">delete-file</span> <span class="nv">tramp-persistency-file-name</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">kill-emacs-hook</span>
+   <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+       <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="nv">tramp-persistency-file-name</span><span class="p">)</span>
+           <span class="p">(</span><span class="nb">delete-file</span> <span class="nv">tramp-persistency-file-name</span><span class="p">))))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -1027,13 +1041,13 @@ timestamp を更新する様にした．
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">browse-url</span>
   <span class="ss">:require</span> <span class="no">t</span>
   <span class="ss">:bind</span> <span class="p">(</span><span class="s">"C-c C-j"</span> <span class="o">.</span> <span class="nv">browse-url-at-point</span><span class="p">)</span>
-  <span class="ss">:config</span>
+  <span class="ss">:defer-config</span>
   <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nv">executable-find</span> <span class="s">"xdg-open"</span><span class="p">)</span>
          <span class="p">(</span><span class="k">setq</span> <span class="nv">browse-url-browser-function</span> <span class="ss">'browse-url-xdg-open</span>
-               <span class="nv">shr-external-browser</span> <span class="ss">'browse-url-xdg-open</span><span class="p">))</span>
+               <span class="nv">browse-url-secondary-browser-function</span> <span class="ss">'browse-url-xdg-open</span><span class="p">))</span>
         <span class="p">((</span><span class="nb">eq</span> <span class="nv">system-type</span> <span class="ss">'darwin</span><span class="p">)</span>
          <span class="p">(</span><span class="k">setq</span> <span class="nv">browse-url-browser-function</span> <span class="ss">'browse-url-default-macosx-browser</span>
-               <span class="nv">shr-external-browser</span> <span class="ss">'browse-url-default-macosx-browser</span><span class="p">))</span>
+               <span class="nv">browse-url-secondary-browser-function</span> <span class="ss">'browse-url-default-macosx-browser</span><span class="p">))</span>
         <span class="p">(</span><span class="no">t</span>
          <span class="c1">;; (setq browse-url-browser-function 'w3m-browse-url)</span>
          <span class="p">(</span><span class="k">setq</span> <span class="nv">browse-url-browser-function</span> <span class="ss">'eww-browse-url</span><span class="p">)</span>
@@ -1099,7 +1113,7 @@ timestamp を更新する様にした．
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">recentf-ext</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="ss">:hook</span>
-  <span class="p">((</span><span class="nv">after-init-hook</span> <span class="o">.</span> <span class="nv">recentf-mode</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">recentf-mode</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">focus-out-hook</span>  <span class="o">.</span> <span class="nv">my:recentf-save-list-silence</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">focus-out-hook</span>  <span class="o">.</span> <span class="nv">my:recentf-cleanup-silence</span><span class="p">))</span>
   <span class="ss">:custom</span>
@@ -1217,14 +1231,14 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 </ul>
 </div>
 </div>
+</div>
 <div>
-<h3 id="org7d9d4027">カレンダー設定</h3>
-<div class="outline-text-3" id="text-org7d9d4027">
+<h2 id="org7d9d4027">カレンダー設定</h2>
+<div class="outline-text-2" id="text-org7d9d4027">
 <p>
 表示の更新と <code>japanese-holidays</code> による日本の休日の追加
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">calendar</span>
-  <span class="c1">;; :require t</span>
   <span class="ss">:custom</span>
   <span class="p">(</span><span class="c1">;; 祝日をカレンダーに表示</span>
    <span class="p">(</span><span class="nv">mark-holidays-in-calendar</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
@@ -1235,27 +1249,28 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
    <span class="p">(</span><span class="nv">calendar-day-header-array</span> <span class="o">.</span> <span class="nv">[</span><span class="s">"日"</span> <span class="s">"月"</span> <span class="s">"火"</span> <span class="s">"水"</span> <span class="s">"木"</span> <span class="s">"金"</span> <span class="s">"土"</span><span class="nv">]</span><span class="p">)</span>
    <span class="c1">;; 日曜開始</span>
    <span class="p">(</span><span class="nv">calendar-week-start-day</span>   <span class="o">.</span> <span class="mi">0</span><span class="p">))</span>
-  <span class="p">)</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">japanese-holidays</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:after</span> <span class="nv">calendar</span>
-  <span class="ss">:hook</span> <span class="p">((</span><span class="nv">calendar-today-visible-hook</span>   <span class="o">.</span> <span class="nv">japanese-holiday-mark-weekend</span><span class="p">)</span>
-         <span class="p">(</span><span class="nv">calendar-today-invisible-hook</span> <span class="o">.</span> <span class="nv">japanese-holiday-mark-weekend</span><span class="p">)</span>
-         <span class="p">(</span><span class="nv">calendar-today-visible-hook</span>   <span class="o">.</span> <span class="nv">calendar-mark-today</span><span class="p">))</span>
-  <span class="ss">:custom</span>
-  <span class="p">((</span><span class="nv">japanese-holiday-weekend</span>         <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="mi">0</span> <span class="mi">6</span><span class="p">))</span>
-   <span class="p">(</span><span class="nv">japanese-holiday-weekend-marker</span>  <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">holiday</span>  <span class="c1">;; 日</span>
-                                         <span class="no">nil</span>      <span class="c1">;; 月</span>
-                                         <span class="no">nil</span>      <span class="c1">;; 火</span>
-                                         <span class="no">nil</span>      <span class="c1">;; 水</span>
-                                         <span class="no">nil</span>      <span class="c1">;; 木</span>
-                                         <span class="no">nil</span>      <span class="c1">;; 金</span>
-                                         <span class="nv">japanese-holiday-saturday</span><span class="p">)))</span>
   <span class="ss">:config</span>
-  <span class="c1">;; これは最後にやらないとだめ? with-eval-after-load 的な?</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">calendar-holidays</span> <span class="p">(</span><span class="nb">append</span> <span class="nv">japanese-holidays</span> <span class="nv">holiday-local-holidays</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="s">"calendar"</span>
+    <span class="p">(</span><span class="nv">leaf</span> <span class="nv">japanese-holidays</span>
+      <span class="ss">:ensure</span> <span class="no">t</span>
+      <span class="ss">:custom</span>
+      <span class="p">((</span><span class="nv">japanese-holiday-weekend</span>         <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="mi">0</span> <span class="mi">6</span><span class="p">))</span>
+       <span class="p">(</span><span class="nv">japanese-holiday-weekend-marker</span>  <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">holiday</span>  <span class="c1">;; 日</span>
+                                             <span class="no">nil</span>      <span class="c1">;; 月</span>
+                                             <span class="no">nil</span>      <span class="c1">;; 火</span>
+                                             <span class="no">nil</span>      <span class="c1">;; 水</span>
+                                             <span class="no">nil</span>      <span class="c1">;; 木</span>
+                                             <span class="no">nil</span>      <span class="c1">;; 金</span>
+                                             <span class="nv">japanese-holiday-saturday</span><span class="p">)))</span>
+      <span class="ss">:hook</span>
+      <span class="p">((</span><span class="nv">calendar-today-visible-hook</span>   <span class="o">.</span> <span class="nv">japanese-holiday-mark-weekend</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">calendar-today-invisible-hook</span> <span class="o">.</span> <span class="nv">japanese-holiday-mark-weekend</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">calendar-today-visible-hook</span>   <span class="o">.</span> <span class="nv">calendar-mark-today</span><span class="p">))</span>
+      <span class="ss">:config</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">calendar-holidays</span> <span class="p">(</span><span class="nb">append</span> <span class="nv">japanese-holidays</span><span class="p">))</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
-</div>
 </div>
 </div>
 <div>
@@ -1702,6 +1717,10 @@ Enter で改行しない
 漢字登録のミスをチェックする
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">skk-check-okurigana-on-touroku</span> <span class="no">t</span><span class="p">)</span></code></pre></figure>
+<p>
+個人辞書の文字コード
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">skk-jisyo-code</span> <span class="ss">'utf-8-unix</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -1795,7 +1814,7 @@ minibuffer 内では強制的に skk off.
     <span class="c1">;; TAB で名前の一致までその後 RET で実行</span>
     <span class="p">(</span><span class="nv">ido-confirm-unique-completion</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="c1">;; . を prefix として扱う</span>
-    <span class="p">(</span><span class="nv">ido-enable-dot-prefix</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ido-enable-dot-prefix</span>         <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
     <span class="c1">;; flx matching を試す際には prefix を無効化すること</span>
     <span class="p">(</span><span class="nv">ido-enable-flex-matching</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="c1">;;</span>
@@ -1837,8 +1856,8 @@ minibuffer 内では強制的に skk off.
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">flx-ido-use-faces</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">flx-ido-threshold</span> <span class="o">.</span> <span class="mi">10000</span><span class="p">))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">flx-ido-mode</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">flx-ido-mode</span> <span class="mi">1</span><span class="p">)))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -1884,8 +1903,8 @@ minibuffer 内では強制的に skk off.
                 <span class="p">(</span><span class="nv">all-the-icons-faicon</span> <span class="s">"hand-o-right"</span>
                                       <span class="ss">:face</span> <span class="ss">'my:ido-indicator</span><span class="p">)))</span>
     <span class="p">)</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">ido-vertical-mode</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">ido-vertical-mode</span> <span class="mi">1</span><span class="p">)))</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
 <li class="off">
@@ -1959,41 +1978,35 @@ ghq list を ido で選んで dired で開く
 </div>
 <div>
 <h3 id="orgc780f35e">
-<span class="done SOMEDAY">SOMEDAY</span> <code>redpen-paragraph</code>: <a href="http://redpen.cc/">redpen</a> による文章校正 <code>[/]</code>
-</h3>
+<code>redpen-paragraph</code>: <a href="http://redpen.cc/">redpen</a> による文章校正</h3>
 <div class="outline-text-3" id="text-orgc780f35e">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">redpen-paragraph</span>
-  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"redpen"</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">file-directory-p</span> <span class="s">"~/.config/redpen"</span><span class="p">))</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:bind</span>
   <span class="p">((</span><span class="s">"C-c C-r"</span> <span class="o">.</span> <span class="nv">redpen-paragraph</span><span class="p">))</span>
   <span class="ss">:hook</span>
-  <span class="p">((</span><span class="nv">LaTeX-mode-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-                        <span class="p">(</span><span class="k">setq</span> <span class="nv">redpen-commands</span>
-                              <span class="o">'</span><span class="p">(</span>
-                                <span class="c1">;; for english command</span>
-                                <span class="s">"redpen -r json2 -c ~/.config/redpen/redpen-conf-en.xml -f latex %s 2&gt;/dev/null"</span>
-                                <span class="c1">;; for japanese command</span>
-                                <span class="s">"redpen -r json2 -c ~/.config/redpen/redpen-conf-ja.xml -f latex %s 2&gt;/dev/null"</span>
-                                <span class="p">)))</span>
-                        <span class="p">))</span>
-  <span class="ss">:config</span>
-  <span class="c1">;; default</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">redpen-commands</span>
+  <span class="p">((</span><span class="nv">LaTeX-mode-hook</span>
+    <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+        <span class="p">(</span><span class="k">setq</span> <span class="nv">redpen-commands</span>
+              <span class="o">'</span><span class="p">(</span>
+                <span class="c1">;; for english command</span>
+                <span class="s">"redpen -r json2 -c ~/.config/redpen/redpen-conf-en.xml -f latex %s 2&gt;/dev/null"</span>
+                <span class="c1">;; for japanese command</span>
+                <span class="s">"redpen -r json2 -c ~/.config/redpen/redpen-conf-ja.xml -f latex %s 2&gt;/dev/null"</span>
+                <span class="p">)))</span>
+    <span class="p">))</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="nb">defvar</span> <span class="nv">redpen-commands</span>
     <span class="o">'</span><span class="p">(</span>
       <span class="c1">;; for english command</span>
       <span class="s">"redpen -r json2 -c ~/.config/redpen/redpen-conf-en.xml %s 2&gt;/dev/null"</span>
       <span class="c1">;; for japanese command</span>
       <span class="s">"redpen -r json2 -c ~/.config/redpen/redpen-conf-ja.xml %s 2&gt;/dev/null"</span>
-      <span class="p">)</span>
-    <span class="nv">redpen-paragraph-force-reading-whole</span> <span class="no">t</span><span class="p">)</span>
+      <span class="p">))</span>
+  <span class="c1">;;redpen-paragraph-force-reading-whole t</span>
   <span class="p">)</span></code></pre></figure>
-<ul class="org-ul">
-<li class="off">
-<code>[ ]</code> うまく動いていない. 一旦保留</li>
-</ul>
 </div>
 </div>
 <div>
@@ -2050,7 +2063,7 @@ flyspell-mode は別途有効化しておいた方が良いのかもしれない
 EPWING化した辞書群を検索するために <code>lookup-el</code> ver. 1.4 系列を利用
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">lookup</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">my:dpkg-status</span> <span class="s">"lookup-el"</span><span class="p">)</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="s">"/etc/emacs/site-start.d/50lookup-el.el"</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">file-exists-p</span> <span class="s">"/usr/local/share/dict/lookup-enabled"</span><span class="p">))</span>
   <span class="ss">:commands</span> <span class="p">(</span><span class="nv">lookup</span> <span class="nv">lookup-region</span> <span class="nv">lookup-pattern</span><span class="p">)</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-c w"</span> <span class="o">.</span> <span class="nv">lookup-pattern</span><span class="p">)</span>
@@ -2185,15 +2198,28 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
 ここでは <code>wl-init-file</code> を指定することで, 設定ファイルを明示している．
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">wl</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">my:dpkg-status</span> <span class="s">"wl"</span><span class="p">)</span>
-               <span class="p">(</span><span class="nv">my:dpkg-status</span> <span class="s">"wl-beta"</span><span class="p">))</span>
-           <span class="p">(</span><span class="nv">my:dpkg-status</span> <span class="s">"rail"</span><span class="p">))</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="s">"/etc/emacs/site-start.d/65wl-beta.el"</span><span class="p">)</span>
   <span class="ss">:commands</span> <span class="p">(</span><span class="nv">wl</span> <span class="nv">wl-other-frame</span> <span class="nv">wl-draft</span> <span class="nv">wl-user-agent</span> <span class="nv">wl-user-agent-compose</span> <span class="nv">wl-draft-send</span> <span class="nv">wl-draft-kill</span><span class="p">)</span>
   <span class="ss">:preface</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:wl-mode-line-buffer-identification</span> <span class="p">(</span><span class="k">&amp;optional</span> <span class="nv">id</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">force-mode-line-update</span> <span class="no">t</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:d:wl-cache-directory</span>
+    <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"wanderlust"</span> <span class="s">"~/.cache"</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span>
+           <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"local/Trash"</span> <span class="nv">my:d:wl-cache-directory</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">make-directory</span>
+     <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"local/Trash"</span> <span class="nv">my:d:wl-cache-directory</span><span class="p">)</span> <span class="no">t</span><span class="p">))</span>
   <span class="ss">:advice</span> <span class="p">(</span><span class="ss">:override</span> <span class="nv">wl-mode-line-buffer-identification</span>
                      <span class="nv">my:wl-mode-line-buffer-identification</span><span class="p">)</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">elmo-msgdb-directory</span>     <span class="o">.</span> <span class="nv">my:d:wl-cache-directory</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">elmo-maildir-folder-path</span> <span class="o">.</span> <span class="nv">my:d:wl-cache-directory</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">elmo-cache-directory</span>     <span class="o">.</span> <span class="nv">my:d:wl-cache-directory</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">wl-score-files-directory</span> <span class="o">.</span> <span class="nv">my:d:wl-cache-directory</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">read-mail-command</span>        <span class="o">.</span> <span class="nf">#'</span><span class="nv">wl</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">wl-init-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"init-wl"</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
+    <span class="p">)</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">define-mail-user-agent</span>
     <span class="ss">'wl-user-agent</span>
@@ -2201,20 +2227,6 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
     <span class="ss">'wl-draft-send</span>
     <span class="ss">'wl-draft-kill</span>
     <span class="ss">'mail-send-hook</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">elmo-msgdb-directory</span> <span class="s">"~/.cache/wanderlust"</span>
-        <span class="nv">elmo-maildir-folder-path</span> <span class="s">"~/.cache/wanderlust"</span>
-        <span class="nv">elmo-cache-directory</span> <span class="s">"~/.cache/wanderlust"</span>
-        <span class="nv">wl-score-files-directory</span> <span class="s">"~/.cache/wanderlust"</span>
-        <span class="nv">wl-init-file</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">user-emacs-directory</span> <span class="s">"init-wl"</span><span class="p">)</span>
-        <span class="nv">mail-user-agent</span> <span class="ss">'wl-user-agent</span>
-        <span class="nv">read-mail-command</span> <span class="ss">'wl</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">elmo-msgdb-directory</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">make-directory</span> <span class="nv">elmo-msgdb-directory</span><span class="p">))</span>
-  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">elmo-msgdb-directory</span> <span class="s">"/local"</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">make-directory</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">elmo-msgdb-directory</span> <span class="s">"/local"</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">elmo-msgdb-directory</span> <span class="s">"/local/Trash"</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">make-directory</span> <span class="p">(</span><span class="nv">concat</span> <span class="nv">elmo-msgdb-directory</span> <span class="s">"/local/Trash"</span><span class="p">)))</span>
-  <span class="ss">:config</span>
   <span class="p">)</span></code></pre></figure>
 <p>
 割と <code>/etc/emacs/site-start.d/65wl-beta.el</code> と重複している気がするが…
@@ -2297,10 +2309,10 @@ mime-setup がロードされる前に記述する必要あり.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">mime-setup</span>
   <span class="ss">:preface</span>
-  <span class="c1">;; (leaf w3m-load)</span>
-  <span class="c1">;; (leaf mime-w3m :require t)</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">mime-view-text/html-previewer</span> <span class="ss">'shr</span>
-        <span class="nv">mime-setup-enable-inline-html</span> <span class="ss">'shr</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">w3m-load</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">mime-w3m</span> <span class="ss">:require</span> <span class="no">t</span><span class="p">)</span>
+  <span class="c1">;; (setq mime-view-text/html-previewer 'shr</span>
+  <span class="c1">;;       mime-setup-enable-inline-html 'shr)</span>
   <span class="c1">;; (defvar my:shr-width 72)</span>
   <span class="c1">;; ;;</span>
   <span class="c1">;; (defun my:shr-insert-document (&amp;rest them)</span>
@@ -2832,9 +2844,9 @@ Gmail の「スター付き」フォルダでも有効
 <div>
 <h5 id="org4a68d8d4">Subject での Tab や複数スペースを無視</h5>
 <div class="outline-text-5" id="text-org4a68d8d4">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">defadvice</span> <span class="nv">std11-unfold-string</span> <span class="p">(</span><span class="nv">after</span> <span class="nv">simply</span> <span class="nv">activate</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">ad-return-value</span>
-        <span class="p">(</span><span class="nv">elmo-replace-in-string</span> <span class="nv">ad-return-value</span> <span class="s">"[ \t]+"</span> <span class="s">" "</span><span class="p">)))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (defadvice std11-unfold-string (after simply activate)</span>
+<span class="c1">;;   (setq ad-return-value</span>
+<span class="c1">;;         (replace-regexp-in-string ad-return-value "[ \t]+" " ")))</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -3325,6 +3337,7 @@ GNOME は <code>.desktop</code> ファイルが無いと「お気に入り」登
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">mhc</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">)</span> <span class="s">"/.config/mhc"</span><span class="p">))</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:commands</span> <span class="p">(</span><span class="nv">mhc-import</span><span class="p">)</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">mhc-calendar-day-strings</span> <span class="nv">[</span><span class="s">"日"</span> <span class="s">"月"</span> <span class="s">"火"</span> <span class="s">"水"</span> <span class="s">"木"</span> <span class="s">"金"</span> <span class="s">"土"</span><span class="nv">]</span>
@@ -3399,10 +3412,15 @@ Major modeとの衝突があるので止めた方が良い, らしい．
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org</span>
   <span class="ss">:blackout</span> <span class="o">`</span><span class="p">((</span><span class="nv">org-mode</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">all-the-icons-icon-for-mode</span> <span class="ss">'org-mode</span><span class="p">)))</span>
-  <span class="ss">:init</span>
-  <span class="c1">;; (leaf org-plus-contrib :ensure t)</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x n s"</span> <span class="o">.</span> <span class="nv">org-narrow-to-subtree</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">"C-x n w"</span> <span class="o">.</span> <span class="nv">widen</span><span class="p">))</span>
+         <span class="p">(</span><span class="s">"C-x n w"</span> <span class="o">.</span> <span class="nv">widen</span><span class="p">)</span>
+         <span class="p">(</span><span class="s">"C-c a"</span>   <span class="o">.</span> <span class="nv">org-agenda</span><span class="p">)</span>
+         <span class="p">(</span><span class="s">"C-x m"</span>   <span class="o">.</span> <span class="nv">org-capture</span><span class="p">)</span>
+         <span class="p">(</span><span class="s">"C-x M"</span>   <span class="o">.</span> <span class="nv">my:org-journal-new-entry</span><span class="p">)</span>
+         <span class="p">)</span>
+  <span class="ss">:advice</span>
+  <span class="p">(</span><span class="ss">:before</span> <span class="nv">org-calendar-holiday</span>
+           <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'japanese-holidays</span><span class="p">)))</span>
   <span class="ss">:mode</span>
   <span class="c1">;; 昔のメモ(howm)も org-mode で開く</span>
   <span class="p">((</span><span class="s">"\\.org\\'"</span> <span class="s">"\\.howm\\'"</span><span class="o">.</span> <span class="nv">org-mode</span><span class="p">))</span>
@@ -3419,9 +3437,9 @@ Major modeとの衝突があるので止めた方が良い, らしい．
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-map-entries</span> <span class="ss">'org-archive-subtree</span> <span class="s">"/DONE"</span> <span class="ss">'file</span><span class="p">))</span>
   <span class="ss">:hook</span>
-  <span class="p">((</span><span class="nv">org-mode-hook</span>                  <span class="o">.</span> <span class="nv">my:org-timestamp-hook</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">org-todo-statistics-hook</span>       <span class="o">.</span> <span class="nv">my:org-archive-done-tasks</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">org-todo-after-statistics-hook</span> <span class="o">.</span> <span class="nv">my:org-archive-done-tasks</span><span class="p">))</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-mode-hook</span>                  <span class="o">.</span> <span class="nv">my:org-timestamp-hook</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-todo-statistics-hook</span>       <span class="o">.</span> <span class="nv">my:org-archive-done-tasks</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-todo-after-statistics-hook</span> <span class="o">.</span> <span class="nv">my:org-archive-done-tasks</span><span class="p">))</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">(</span><span class="c1">;; Nextcloud に保存する</span>
     <span class="p">(</span><span class="nv">org-directory</span>              <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="nv">my:d:org</span><span class="p">))</span>
@@ -3466,6 +3484,10 @@ Major modeとの衝突があるので止めた方が良い, らしい．
     <span class="p">(</span><span class="nv">org-modules</span>  <span class="o">.</span> <span class="o">'</span><span class="p">())</span>
     <span class="p">)</span>
   <span class="ss">:config</span>
+  <span class="c1">;; テンプレート展開</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-tempo</span>
+    <span class="ss">:if</span> <span class="p">(</span><span class="nb">&gt;=</span> <span class="p">(</span><span class="nv">string-to-number</span> <span class="nv">org-version</span><span class="p">)</span> <span class="mf">9.2</span><span class="p">)</span>
+    <span class="ss">:require</span> <span class="no">t</span><span class="p">)</span>
   <span class="c1">;; +打ち消し+ の font-lock の変更 →これはテーマに任せるべき?</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">org-emphasis-alist</span>
         <span class="p">(</span><span class="nb">cons</span> <span class="o">'</span><span class="p">(</span><span class="s">"+"</span> <span class="o">'</span><span class="p">(</span><span class="ss">:strike-through</span> <span class="no">t</span> <span class="ss">:foreground</span> <span class="s">"#999999"</span><span class="p">))</span>
@@ -3480,19 +3502,14 @@ Major modeとの衝突があるので止めた方が良い, らしい．
 </div>
 </div>
 <div>
-<h3 id="org9eec991e">Org-Tempo: テンプレート補完/展開</h3>
-<div class="outline-text-3" id="text-org9eec991e">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-tempo</span><span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
 <h3 id="org67465ee0">Org-Id</h3>
 <div class="outline-text-3" id="text-org67465ee0">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-id</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-macs</span> <span class="ss">:require</span> <span class="no">t</span><span class="p">)</span>
   <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">org-id-locations-file</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-id-locations"</span> <span class="nv">my:d:share</span><span class="p">))</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-id-locations-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-id-locations"</span> <span class="nv">my:d:share</span><span class="p">))</span>
     <span class="c1">;; (org-id-link-to-org-use-id . create-if-interactive-and-no-custom-id)</span>
     <span class="p">)</span>
   <span class="ss">:config</span>
@@ -3557,7 +3574,8 @@ See https://writequit.org/articles/emacs-org-mode-generate-ids.html"</span>
 <div class="outline-text-3" id="text-org99399f3b">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-babel</span>
   <span class="ss">:after</span> <span class="nv">all-the-icons-in-terminal</span>
-  <span class="ss">:blackout</span> <span class="o">`</span><span class="p">((</span><span class="nv">org-src-mode</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nb">format</span> <span class="s">" %s"</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">"code"</span><span class="p">))))</span>
+  <span class="ss">:blackout</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-src-mode</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nb">format</span> <span class="s">" %s"</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">"code"</span><span class="p">))))</span>
   <span class="ss">:custom</span>
   <span class="p">(</span><span class="c1">;; font-lock</span>
    <span class="p">(</span><span class="nv">org-src-fontify-natively</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
@@ -3585,10 +3603,43 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 なんて事もやっている．元ネタは <a href="https://julien.danjou.info/blog/2010/org-mode-and-holidays">Org-mode and holidays</a>
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-agenda</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-c a"</span> <span class="o">.</span> <span class="nv">org-agenda</span><span class="p">))</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="nb">require</span> <span class="ss">'japanese-holidays</span><span class="p">)</span>
-  <span class="c1">;;</span>
+  <span class="ss">:commands</span> <span class="nv">org-agenda</span>
+  <span class="c1">;; :custom</span>
+  <span class="c1">;; (;; day or week</span>
+  <span class="c1">;;  (org-agenda-span              . 'day)</span>
+  <span class="c1">;;  ;; YY/MM/DD (曜)</span>
+  <span class="c1">;;  (org-agenda-format-date       . "%Y/%m/%d (%a)")</span>
+  <span class="c1">;;  ;; 日曜始まり</span>
+  <span class="c1">;;  (org-agenda-start-on-weekday  . 0)</span>
+  <span class="c1">;;  (org-agenda-weekend-days      . '(0))</span>
+  <span class="c1">;;  ;; 繰り返し日付も表示</span>
+  <span class="c1">;;  (org-agenda-repeating-timestampo-show-all . t)</span>
+  <span class="c1">;;  ;; 表示関数</span>
+  <span class="c1">;;  ;; (org-agenda-day-face-function . 'my:org-agenda-day-face-function)</span>
+  <span class="c1">;;  ;; GTD 用の設定</span>
+  <span class="c1">;;  (org-agenda-custom-commands</span>
+  <span class="c1">;;   . '(</span>
+  <span class="c1">;;       ("n" "agenda and all TODO list"</span>
+  <span class="c1">;;        (</span>
+  <span class="c1">;;         (agenda ""</span>
+  <span class="c1">;;                 ((org-agenda-ndays 1)</span>
+  <span class="c1">;;                  (org-agenda-entry-types '(:timestamp :sexp))))</span>
+  <span class="c1">;;         (todo "TODO"</span>
+  <span class="c1">;;               ((org-agenda-prefix-format " %i %-22:c")))</span>
+  <span class="c1">;;         (todo "新規|着手|進行中|確認"</span>
+  <span class="c1">;;               ((org-agenda-prefix-format " %i %-22:c")))</span>
+  <span class="c1">;;         (todo "WAIT"</span>
+  <span class="c1">;;               ((org-agenda-prefix-format " %i %-22:c")))</span>
+
+  <span class="c1">;;         (todo "SOMEDAY"</span>
+  <span class="c1">;;               ((org-agenda-prefix-format " %i %-22:c")))</span>
+  <span class="c1">;;         ))</span>
+  <span class="c1">;;       ("N" "All memo entry"</span>
+  <span class="c1">;;        (;;</span>
+  <span class="c1">;;         (todo "MEMO")</span>
+  <span class="c1">;;         ))</span>
+  <span class="c1">;;       )))</span>
+  <span class="ss">:defer-config</span>
   <span class="p">(</span><span class="nv">defface</span> <span class="nv">my:org-agenda-date-saturday</span>
     <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:foreground</span> <span class="s">"#7FBFFF"</span> <span class="ss">:bold</span> <span class="no">t</span> <span class="p">)))</span>
     <span class="s">"Agenda 表示中の土曜日用のface"</span><span class="p">)</span>
@@ -3644,6 +3695,8 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
                        <span class="p">(</span><span class="nv">cl-return</span> <span class="ss">'my:org-agenda-date-today-weekend</span><span class="p">)</span>
                      <span class="p">(</span><span class="nv">cl-return</span> <span class="ss">'org-agenda-date-weekend</span><span class="p">)))))))</span>
         <span class="p">(</span><span class="nb">when</span> <span class="nv">face</span> <span class="p">(</span><span class="nv">cl-return</span> <span class="nv">face</span><span class="p">)))))</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-agenda-day-face-function</span>
+        <span class="ss">'my:org-agenda-day-face-function</span><span class="p">)</span>
   <span class="c1">;; font-lock の適用</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-agenda-finalize-font-lock</span> <span class="p">()</span>
     <span class="s">"Custom: apply custom font-lock"</span>
@@ -3685,45 +3738,39 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
       <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">"休日:"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">add-text-properties</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-at-eol</span><span class="p">)</span>
                              <span class="o">'</span><span class="p">(</span><span class="nv">face</span> <span class="nv">org-agenda-date-weekend</span><span class="p">)))))</span>
-  <span class="ss">:hook</span>
-  <span class="c1">;; 色付け</span>
-  <span class="p">((</span><span class="nv">org-agenda-finalize-hook</span> <span class="o">.</span> <span class="nv">my:org-agenda-finalize-font-lock</span><span class="p">))</span>
-  <span class="ss">:custom</span>
-  <span class="p">(</span><span class="c1">;; day or week</span>
-   <span class="p">(</span><span class="nv">org-agenda-span</span>              <span class="o">.</span> <span class="ss">'day</span><span class="p">)</span>
-   <span class="c1">;; YY/MM/DD (曜)</span>
-   <span class="p">(</span><span class="nv">org-agenda-format-date</span>       <span class="o">.</span> <span class="s">"%Y/%m/%d (%a)"</span><span class="p">)</span>
-   <span class="c1">;; 日曜始まり</span>
-   <span class="p">(</span><span class="nv">org-agenda-start-on-weekday</span>  <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">org-agenda-weekend-days</span>      <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-   <span class="c1">;; 繰り返し日付も表示</span>
-   <span class="p">(</span><span class="nv">org-agenda-repeating-timestampo-show-all</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-   <span class="c1">;; 表示関数</span>
-   <span class="p">(</span><span class="nv">org-agenda-day-face-function</span> <span class="o">.</span> <span class="ss">'my:org-agenda-day-face-function</span><span class="p">)</span>
-   <span class="c1">;; GTD 用の設定</span>
-   <span class="p">(</span><span class="nv">org-agenda-custom-commands</span>
-    <span class="o">.</span> <span class="o">'</span><span class="p">(</span>
-        <span class="p">(</span><span class="s">"n"</span> <span class="s">"agenda and all TODO list"</span>
-         <span class="p">(</span>
-          <span class="p">(</span><span class="nv">agenda</span> <span class="s">""</span>
-                  <span class="p">((</span><span class="nv">org-agenda-ndays</span> <span class="mi">1</span><span class="p">)</span>
-                   <span class="p">(</span><span class="nv">org-agenda-entry-types</span> <span class="o">'</span><span class="p">(</span><span class="ss">:timestamp</span> <span class="ss">:sexp</span><span class="p">))))</span>
-          <span class="p">(</span><span class="nv">todo</span> <span class="s">"TODO"</span>
-                <span class="p">((</span><span class="nv">org-agenda-prefix-format</span> <span class="s">" %i %-22:c"</span><span class="p">)))</span>
-          <span class="p">(</span><span class="nv">todo</span> <span class="s">"新規|着手|進行中|確認"</span>
-                <span class="p">((</span><span class="nv">org-agenda-prefix-format</span> <span class="s">" %i %-22:c"</span><span class="p">)))</span>
-          <span class="p">(</span><span class="nv">todo</span> <span class="s">"WAIT"</span>
-                <span class="p">((</span><span class="nv">org-agenda-prefix-format</span> <span class="s">" %i %-22:c"</span><span class="p">)))</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'org-agenda-finalize-hook</span>
+            <span class="nf">#'</span><span class="nv">my:org-agenda-finalize-font-lock</span><span class="p">)</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-agenda-span</span> <span class="ss">'day</span>
+        <span class="nv">org-agenda-format-date</span> <span class="s">"%Y/%m/%d (%a)"</span>
+        <span class="nv">org-agenda-start-on-weekday</span> <span class="mi">0</span>
+        <span class="nv">org-agenda-weekend-days</span> <span class="o">'</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="nv">org-agenda-repeating-timestampo-show-all</span> <span class="no">t</span>
+        <span class="nv">org-agenda-day-face-function</span> <span class="ss">'my:org-agenda-day-face-function</span>
+        <span class="nv">org-agenda-custom-commands</span>
+        <span class="o">'</span><span class="p">(</span>
+          <span class="p">(</span><span class="s">"n"</span> <span class="s">"agenda and all TODO list"</span>
+           <span class="p">(</span>
+            <span class="p">(</span><span class="nv">agenda</span> <span class="s">""</span>
+                    <span class="p">((</span><span class="nv">org-agenda-ndays</span> <span class="mi">1</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nv">org-agenda-entry-types</span> <span class="o">'</span><span class="p">(</span><span class="ss">:timestamp</span> <span class="ss">:sexp</span><span class="p">))))</span>
+            <span class="p">(</span><span class="nv">todo</span> <span class="s">"TODO"</span>
+                  <span class="p">((</span><span class="nv">org-agenda-prefix-format</span> <span class="s">" %i %-22:c"</span><span class="p">)))</span>
+            <span class="p">(</span><span class="nv">todo</span> <span class="s">"新規|着手|進行中|確認"</span>
+                  <span class="p">((</span><span class="nv">org-agenda-prefix-format</span> <span class="s">" %i %-22:c"</span><span class="p">)))</span>
+            <span class="p">(</span><span class="nv">todo</span> <span class="s">"WAIT"</span>
+                  <span class="p">((</span><span class="nv">org-agenda-prefix-format</span> <span class="s">" %i %-22:c"</span><span class="p">)))</span>
 
-          <span class="p">(</span><span class="nv">todo</span> <span class="s">"SOMEDAY"</span>
-                <span class="p">((</span><span class="nv">org-agenda-prefix-format</span> <span class="s">" %i %-22:c"</span><span class="p">)))</span>
-          <span class="p">))</span>
-        <span class="p">(</span><span class="s">"N"</span> <span class="s">"All memo entry"</span>
-         <span class="p">(</span><span class="c1">;;</span>
-          <span class="p">(</span><span class="nv">todo</span> <span class="s">"MEMO"</span><span class="p">)</span>
-          <span class="p">))</span>
-        <span class="p">)))</span>
-  <span class="ss">:config</span>
+            <span class="p">(</span><span class="nv">todo</span> <span class="s">"SOMEDAY"</span>
+                  <span class="p">((</span><span class="nv">org-agenda-prefix-format</span> <span class="s">" %i %-22:c"</span><span class="p">)))</span>
+            <span class="p">))</span>
+          <span class="p">(</span><span class="s">"N"</span> <span class="s">"All memo entry"</span>
+           <span class="p">(</span><span class="c1">;;</span>
+            <span class="p">(</span><span class="nv">todo</span> <span class="s">"MEMO"</span><span class="p">)</span>
+            <span class="p">))</span>
+          <span class="p">)</span>
+        <span class="p">)</span>
   <span class="c1">;; 使用するファイル</span>
   <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">file</span>
            <span class="o">'</span><span class="p">(</span><span class="s">"Archive.org"</span>
@@ -3764,8 +3811,8 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-journal</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
            <span class="p">(</span><span class="nb">&gt;=</span> <span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">))</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x M"</span>    <span class="o">.</span> <span class="nv">my:org-journal-new-entry</span><span class="p">)</span>
-         <span class="p">(</span><span class="ss">:org-journal-mode-map</span>
+  <span class="ss">:commands</span> <span class="nv">my:org-journal-new-entry</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="ss">:org-journal-mode-map</span>
           <span class="p">(</span><span class="s">"C-c C-c"</span> <span class="o">.</span> <span class="nv">my:org-journal-entry-save-and-exit</span><span class="p">)))</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:init</span>
@@ -3813,13 +3860,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-capture</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
-  <span class="ss">:init</span>
-<span class="c1">;;  (leaf org-wl</span>
-<span class="c1">;;    :if (or (my:dpkg-status "wl")</span>
-<span class="c1">;;            (my:dpkg-status "wl-beta"))</span>
-<span class="c1">;;    :el-get uwabami/org-wl</span>
-<span class="c1">;;    )</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x m"</span> <span class="o">.</span> <span class="nv">org-capture</span><span class="p">))</span>
+  <span class="ss">:commands</span> <span class="nv">org-capture</span>
   <span class="ss">:pl-setq</span>
   <span class="p">(</span><span class="nv">my:org:calendar1</span> <span class="nv">my:org:calendar2</span><span class="p">)</span>   <span class="c1">;; 名前がイケてないっ!</span>
   <span class="ss">:config</span>
@@ -3839,14 +3880,14 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
            <span class="p">)</span>
           <span class="p">(</span><span class="s">"m"</span> <span class="s">"メモを追加"</span> <span class="nv">plain</span>
            <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">"** MEMO %(format-time-string org-journal-time-format) %?"</span>
+           <span class="s">"** MEMO %(format-time-string org-journal-time-format)%?"</span>
            <span class="ss">:prepend</span> <span class="no">nil</span>
            <span class="ss">:unnarrowed</span> <span class="no">nil</span>
            <span class="ss">:kill-buffer</span> <span class="no">t</span>
            <span class="p">)</span>
           <span class="p">(</span><span class="s">"a"</span> <span class="s">"少し長めの記事を追加する"</span> <span class="nv">plain</span>
            <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">"** ARTICLE %(format-time-string org-journal-time-format) %? "</span>
+           <span class="s">"** ARTICLE %(format-time-string org-journal-time-format)%? "</span>
            <span class="ss">:prepend</span> <span class="no">nil</span>
            <span class="ss">:unnarrowed</span> <span class="no">nil</span>
            <span class="ss">:kill-buffer</span> <span class="no">t</span>
@@ -3906,8 +3947,8 @@ request token 等の置き場所の変更
                                <span class="s">"org-gcal"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">org-gcal-token-file</span>   <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span>
                                <span class="s">"org-gcal/.org-gcal-token"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">org-gcal-down-days</span>    <span class="o">.</span>  <span class="mi">30</span><span class="p">)</span>  <span class="c1">;; 過去 30 日</span>
-    <span class="p">(</span><span class="nv">org-gcal-up-days</span>      <span class="o">.</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1">;; 未来 180 日</span>
+    <span class="p">(</span><span class="nv">org-gcal-down-days</span>    <span class="o">.</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1">;; 未来 180 日</span>
+    <span class="p">(</span><span class="nv">org-gcal-up-days</span>      <span class="o">.</span>  <span class="mi">30</span><span class="p">)</span>  <span class="c1">;; 過去 30 日</span>
     <span class="p">(</span><span class="nv">org-gcal-auto-archive</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-gcal-notify-p</span>     <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-gcal-remove-api-cancelled-evetnts</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
@@ -3959,13 +4000,13 @@ request token 等の置き場所の変更
 <p>
 ToDo管理に Trello を使い始めたので, 設定
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-trello</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="nv">my:d:password-store</span>
-           <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">))</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">org-trello-files</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Trello.org"</span> <span class="nv">my:d:org</span><span class="p">))))</span>
-  <span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (leaf org-trello</span>
+<span class="c1">;;   :if (and my:d:password-store</span>
+<span class="c1">;;            (file-directory-p my:d:org))</span>
+<span class="c1">;;   :ensure t</span>
+<span class="c1">;;   :custom</span>
+<span class="c1">;;   `((org-trello-files . '(,(expand-file-name "Trello.org" my:d:org))))</span>
+<span class="c1">;;   )</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -3978,17 +4019,17 @@ ToDo管理に Trello を使い始めたので, 設定
            <span class="ss">:pkgname</span> <span class="s">"uwabami/org-wiki"</span><span class="p">)</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">org-wiki-location</span>    <span class="o">.</span> <span class="s">"~/Public/cc-env"</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">org-wiki-publish-root</span> <span class="o">.</span> <span class="s">"{{site.url}}/cc-env/"</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">org-wiki-template</span>
-    <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">concat</span> <span class="s">"#+TITLE: %n\n"</span>
-               <span class="s">"#+date: 20\n"</span>
-               <span class="s">"#+LAYOUT: default\n"</span>
-               <span class="s">"#+PREMALINK: /cc-env/%n.html\n"</span>
-               <span class="s">"#+options: auto-id:nil\n"</span>
-               <span class="s">"#+REF: cc-env/%n\n"</span>
-               <span class="s">"Related [[wiki:index][Index]] [[~/Public/cc-env/index.org::#orge0707863][Debian]]\n"</span>
-               <span class="s">"* %n\n"</span>
-               <span class="p">)))</span>
+    <span class="p">(</span><span class="nv">org-wiki-publish-root</span> <span class="o">.</span> <span class="s">"{{site.url}}/cc-env/"</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-wiki-template</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">concat</span> <span class="s">"#+TITLE: %n\n"</span>
+                <span class="s">"#+date: 20\n"</span>
+                <span class="s">"#+LAYOUT: default\n"</span>
+                <span class="s">"#+PREMALINK: /cc-env/%n.html\n"</span>
+                <span class="s">"#+options: auto-id:nil\n"</span>
+                <span class="s">"#+REF: cc-env/%n\n"</span>
+                <span class="s">"Related [[wiki:index][Index]] [[~/Public/cc-env/index.org::#orge0707863][Debian]]\n"</span>
+                <span class="s">"* %n\n"</span>
+                <span class="p">)))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -4093,8 +4134,8 @@ latex, beamer,jekyll(後述) のみを有効に.
 <div class="outline-text-4" id="text-org589a50cc">
 <p>
 Web サイトは Jekyll で作成しています.
-以前は org-file を直接 jekyll で処理していましたが,
-最近は org を Markdown に export して, それを処理する様にしています.
+以前は org file を直接 jekyll で処理していましたが,
+最近は org を html に export して, それを処理する様にしています.
 </p>
 
 <p>
@@ -4105,7 +4146,7 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
   <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">ox-jekyll</span>
            <span class="ss">:type</span> <span class="nv">github</span>
            <span class="ss">:pkgname</span> <span class="s">"uwabami/ox-jekyll"</span><span class="p">)</span>
-  <span class="ss">:after</span> <span class="p">(</span><span class="nv">ox-html</span> <span class="nv">org-wiki</span><span class="p">)</span>
+  <span class="ss">:after</span> <span class="nv">ox-html</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-wiki-jekyll-finalized1</span> <span class="p">(</span><span class="nv">contents</span> <span class="nv">backend</span> <span class="nv">info</span><span class="p">)</span>
     <span class="s">"Replace some URL"</span>
@@ -4115,7 +4156,7 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
                <span class="p">(</span><span class="nv">expand-file-name</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
        <span class="s">"&lt;a href=\"{{baseurl}}/cc-env/Emacs.html"</span>
        <span class="nv">contents</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-export-filter-final-output-functions</span>
+  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-export-filter-body-functions</span>
                <span class="ss">'my:org-wiki-jekyll-finalized1</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-wiki-jekyll-finalized2</span> <span class="p">(</span><span class="nv">contents</span> <span class="nv">backend</span> <span class="nv">info</span><span class="p">)</span>
     <span class="s">"Replace some URL"</span>
@@ -4125,7 +4166,7 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
                <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Public/"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">)))</span>
        <span class="s">"&lt;a href=\"{{site.url}}/"</span>
        <span class="nv">contents</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-export-filter-final-output-functions</span>
+  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-export-filter-body-functions</span>
                <span class="ss">'my:org-wiki-jekyll-finalized2</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-wiki-jekyll-finalized3</span> <span class="p">(</span><span class="nv">contents</span> <span class="nv">backend</span> <span class="nv">info</span><span class="p">)</span>
     <span class="s">"Replace some URL"</span>
@@ -4133,7 +4174,7 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
     <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
      <span class="s">" id=\"outline-container-org.+\" class=\"outline-.+\""</span>
      <span class="s">""</span> <span class="nv">contents</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-export-filter-final-output-functions</span>
+  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-export-filter-body-functions</span>
                <span class="ss">'my:org-wiki-jekyll-finalized3</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-wiki-jekyll-finalized4</span> <span class="p">(</span><span class="nv">contents</span> <span class="nv">backend</span> <span class="nv">info</span><span class="p">)</span>
     <span class="s">"Replace some URL"</span>
@@ -4141,7 +4182,7 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
     <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
      <span class="s">"&lt;a id=\"org.+?\"&gt;&lt;/a&gt;"</span>
      <span class="s">""</span> <span class="nv">contents</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-export-filter-final-output-functions</span>
+  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-export-filter-body-functions</span>
                <span class="ss">'my:org-wiki-jekyll-finalized4</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
@@ -4187,7 +4228,9 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
                                          <span class="s">"\\subsection"</span>
                                          <span class="s">"\\subsubsection"</span>
                                          <span class="s">"\\paragraph"</span>
-                                         <span class="s">"\\subparagraph"</span><span class="p">)))</span>
+                                         <span class="s">"\\subparagraph"</span>
+                                         <span class="s">"\\begin{frame}"</span>
+                                         <span class="p">)))</span>
     <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
@@ -4234,7 +4277,7 @@ magit は Emacs の Git Frontend.
       <span class="p">(</span><span class="nv">transient-force-fixed-pitch</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
     <span class="p">)</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">magit-completing-read-function</span> <span class="ss">'ivy</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">magit-completing-read-function</span> <span class="ss">'ido</span>
         <span class="nv">magit-refs-show-commit-count</span>   <span class="ss">'all</span>
         <span class="nv">magit-log-buffer-file-locked</span>   <span class="no">t</span>
         <span class="nv">magit-revision-show-gravatars</span>  <span class="no">nil</span>
@@ -4278,6 +4321,7 @@ Gitub/Gitlab と Magit の連携
 あまり上手く使えていない.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">dumb-jump</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"rg"</span><span class="p">)</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"M-g o"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-other-window</span><span class="p">)</span>
@@ -4285,10 +4329,11 @@ Gitub/Gitlab と Magit の連携
          <span class="p">(</span><span class="s">"M-g i"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prompt</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"M-g x"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"M-g z"</span> <span class="o">.</span> <span class="nv">dumb-jump-go-prefer-external-other-window</span><span class="p">))</span>
-  <span class="ss">:custom</span> <span class="o">'</span><span class="p">((</span><span class="nv">dumb-jump-selector</span>       <span class="o">.</span> <span class="ss">'ivy</span><span class="p">)</span>
+  <span class="ss">:custom</span> <span class="o">'</span><span class="p">((</span><span class="nv">dumb-jump-selector</span>       <span class="o">.</span> <span class="ss">'ido</span><span class="p">)</span>
             <span class="p">(</span><span class="nv">dumb-jump-force-searcher</span> <span class="o">.</span> <span class="ss">'rg</span><span class="p">))</span>
   <span class="p">)</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">smart-jump</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">smart-jump-setup-default-registers</span><span class="p">)</span>
@@ -4311,17 +4356,30 @@ Gitub/Gitlab と Magit の連携
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">company</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:blackout</span> <span class="no">t</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">edit-category-table-for-company-dabbrev</span> <span class="p">(</span><span class="k">&amp;optional</span> <span class="nv">table</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">define-category</span> <span class="nv">?s</span> <span class="s">"word constituents for company-dabbrev"</span> <span class="nv">table</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">i</span> <span class="mi">0</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="nv">i</span> <span class="mi">128</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">equal</span> <span class="nv">?w</span> <span class="p">(</span><span class="nv">char-syntax</span> <span class="nv">i</span><span class="p">))</span>
+            <span class="p">(</span><span class="nv">modify-category-entry</span> <span class="nv">i</span> <span class="nv">?s</span> <span class="nv">table</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">modify-category-entry</span> <span class="nv">i</span> <span class="nv">?s</span> <span class="nv">table</span> <span class="no">t</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">setq</span> <span class="nv">i</span> <span class="p">(</span><span class="nb">1+</span> <span class="nv">i</span><span class="p">)))))</span>
+  <span class="p">(</span><span class="nv">edit-category-table-for-company-dabbrev</span><span class="p">)</span>
+  <span class="c1">;; (add-hook 'TeX-mode-hook 'edit-category-table-for-company-dabbrev) ; 下の追記参照</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">company-dabbrev-char-regexp</span> <span class="s">"\\cs"</span><span class="p">)</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">company-idle-delay</span>            <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">company-minimum-prefix-length</span> <span class="o">.</span> <span class="mi">4</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">company-selection-wrap-around</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">company-minimum-prefix-length</span> <span class="o">.</span> <span class="mi">4</span><span class="p">)</span>
    <span class="c1">;; disable some noisy default backends</span>
-   <span class="p">(</span><span class="nv">company-backends</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">company-files</span> <span class="nv">company-capf</span>
-                                       <span class="p">(</span><span class="nv">company-gtags</span>
-                                        <span class="nv">company-etags</span>
-                                        <span class="nv">company-keywords</span><span class="p">))))</span>
+   <span class="p">(</span><span class="nv">company-backends</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">company-files</span>
+                         <span class="nv">company-capf</span>
+                         <span class="p">(</span><span class="nv">company-dabbrev-code</span>
+                          <span class="nv">company-gtags</span>
+                          <span class="nv">company-etags</span>
+                          <span class="nv">company-keywords</span><span class="p">))))</span>
   <span class="ss">:bind</span>
   <span class="p">(</span><span class="c1">;; ("&lt;tab&gt;"    . company-indent-or-complete-common)</span>
    <span class="p">(</span><span class="ss">:company-active-map</span>
@@ -4336,9 +4394,9 @@ Gitub/Gitlab と Magit の連携
     <span class="p">(</span><span class="s">"C-n"</span> <span class="o">.</span> <span class="nv">company-select-next</span><span class="p">)))</span>
   <span class="ss">:hook</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">after-init-hook</span>      <span class="o">.</span> <span class="nv">global-company-mode</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">minibuffer-setup-hook</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-                               <span class="p">(</span><span class="nv">company-mode</span> <span class="mi">-1</span><span class="p">)))</span>
-   <span class="p">)</span>
+    <span class="p">(</span><span class="nv">minibuffer-setup-hook</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+                                <span class="p">(</span><span class="nv">company-mode</span> <span class="mi">-1</span><span class="p">)))</span>
+    <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
 <li class="on">
@@ -4468,7 +4526,22 @@ on-the-fly syntax checker.
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">auctex</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"uplatex"</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"latexmk"</span><span class="p">))</span>
+  <span class="c1">;; :ensure t</span>
   <span class="ss">:init</span>
+  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"auctex/auto"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">progn</span>
+      <span class="p">(</span><span class="nv">make-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"auctex/auto"</span> <span class="nv">my:d:tmp</span><span class="p">)</span> <span class="no">t</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">make-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"auctex/style"</span> <span class="nv">my:d:tmp</span><span class="p">)</span> <span class="no">t</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">reftex</span>
+    <span class="ss">:custom</span>
+    <span class="p">((</span><span class="nv">reftex-plug-into-AUCTeX</span>               <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">reftex-cite-prompt-optional-args</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">reftex-toc-split-windows-horizontally</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
+    <span class="p">)</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">company-reftex</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
+<span class="c1">;;  (leaf company-auctex</span>
+<span class="c1">;;    :ensure t</span>
+<span class="c1">;;    )</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">auctex-latexmk</span>
     <span class="ss">:el-get</span> <span class="nv">tom-tan/auctex-latexmk</span>
     <span class="ss">:hook</span> <span class="p">(</span><span class="nv">LaTeX-mode-hook</span> <span class="o">.</span> <span class="nv">auctex-latexmk-setup</span><span class="p">)</span>
@@ -4478,9 +4551,40 @@ on-the-fly syntax checker.
           <span class="nv">japanese-LaTeX-command-default</span> <span class="s">"LaTeX"</span>
           <span class="p">)</span>
     <span class="p">)</span>
-  <span class="c1">;; :ensure t</span>
-  <span class="c1">;; auctex hook</span>
-  <span class="c1">;; :config</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">TeX-auto-local</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"auctex/auto"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">TeX-style-local</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"auctex/style"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">TeX-parse-self</span>                    <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">TeX-auto-save</span>                     <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">TeX-auto-untabify</span>                 <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">TeX-source-correlate-mode</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">TeX-source-correlate-start-server</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">TeX-source-correlate-method</span>       <span class="o">.</span> <span class="ss">'synctex</span><span class="p">)</span>
+    <span class="c1">;; (font-latex-fontify-script         . nil)</span>
+    <span class="c1">;; (font-latex-script-display         . nil)</span>
+    <span class="c1">;; (font-latex-fontify-sectioning     . 1.0)</span>
+    <span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">TeX-command-output-list</span> <span class="o">'</span><span class="p">((</span><span class="s">"LaTeXMk"</span> <span class="p">(</span><span class="s">"pdf"</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'tex-jp</span>
+    <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">command</span> <span class="o">'</span><span class="p">(</span><span class="s">"pTeX"</span> <span class="s">"pLaTeX"</span> <span class="s">"jTeX"</span> <span class="s">"jLaTeX"</span> <span class="s">"jBibTeX"</span> <span class="s">"Mendex"</span>
+                       <span class="s">"upMendex"</span> <span class="s">"pBibTeX"</span> <span class="s">"BibTeX"</span> <span class="s">"Biber"</span> <span class="s">"Ps2pdf"</span> <span class="p">))</span>
+      <span class="p">(</span><span class="nv">delq</span> <span class="p">(</span><span class="nb">assoc</span> <span class="nv">command</span> <span class="nv">TeX-command-list</span><span class="p">)</span> <span class="nv">TeX-command-list</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">TeX-view-program-selection</span> <span class="o">'</span><span class="p">((</span><span class="nv">output-dvi</span> <span class="s">"xdvi"</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nv">output-pdf</span> <span class="s">"Evince"</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nv">output-html</span> <span class="s">"xdg-open"</span><span class="p">)))</span>
+    <span class="p">)</span>
+  <span class="ss">:mode-hook</span>
+  <span class="p">((</span><span class="nv">LaTeX-mode-hook</span>
+    <span class="o">.</span> <span class="p">((</span><span class="nv">turn-on-reftex</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">TeX-source-correlate-mode</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">TeX-PDF-mode</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">LaTeX-math-mode</span><span class="p">)</span>
+       <span class="c1">;; (company-auctex-init)</span>
+       <span class="p">(</span><span class="nv">reftex-mode</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">outline-minor-mode</span><span class="p">))))</span>
   <span class="p">)</span></code></pre></figure>
 <p>
 <code>~/.latexmkrc</code> は以下の通り
@@ -4603,8 +4707,20 @@ markdown自体はあまり好きじゃないんだけれど,
   <span class="o">`</span><span class="p">((</span><span class="nv">plantuml-executable-path</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">executable-find</span> <span class="s">"plantuml"</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">plantuml-default-exec-mode</span> <span class="o">.</span> <span class="ss">'executable</span><span class="p">))</span>
   <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">add-to-list</span>
-   <span class="ss">'org-src-lang-modes</span> <span class="o">'</span><span class="p">(</span><span class="s">"plantuml"</span> <span class="o">.</span> <span class="nv">plantuml</span><span class="p">))</span>
+<span class="c1">;;   (add-to-list</span>
+<span class="c1">;;    'org-src-lang-modes '("plantuml" . plantuml))</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h2 id="org332b8d85">Re:VIEW</h2>
+<div class="outline-text-2" id="text-org332b8d85">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">review-mode</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">review-mode-use-skk-mode</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">reivew-use-em</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -4965,10 +5081,13 @@ powerline を使ってる
 <p>
 <a href="http://memo.sugyan.com/entry/20120120/1327037494">起動時間を計測する 改訂版 - すぎゃーんメモ</a>
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'emacs-startup-hook</span>
-          <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-            <span class="p">(</span><span class="nv">message</span> <span class="s">"init time: %.3f sec"</span>
-                     <span class="p">(</span><span class="nv">float-time</span> <span class="p">(</span><span class="nv">time-subtract</span> <span class="nv">after-init-time</span> <span class="nv">before-init-time</span><span class="p">)))))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*show-startup-time</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span>
+   <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+       <span class="p">(</span><span class="nv">message</span> <span class="s">"init time: %.3f sec"</span>
+                <span class="p">(</span><span class="nv">float-time</span> <span class="p">(</span><span class="nv">time-subtract</span> <span class="nv">after-init-time</span> <span class="nv">before-init-time</span><span class="p">)))))</span>
+  <span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -4979,19 +5098,6 @@ powerline を使ってる
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">esup-insignificant-time</span> <span class="o">.</span> <span class="mf">0.01</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">esup-depth</span>              <span class="o">.</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">;; 🤔</span>
-  <span class="p">)</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">srcery-emacs</span>
-  <span class="ss">:disabled</span> <span class="no">t</span>
-  <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">srcery-emacs</span>
-           <span class="ss">:type</span> <span class="nv">github</span>
-           <span class="ss">:pkgname</span> <span class="s">"uwabami/srcery-emacs"</span>
-           <span class="ss">:prepare</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'custom-theme-load-path</span> <span class="nv">default-directory</span><span class="p">)</span>
-           <span class="p">)</span>
-  <span class="ss">:custom</span> <span class="p">((</span><span class="nv">srcery-transparent-background</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-           <span class="p">(</span><span class="nv">srcery-org-height</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-           <span class="p">(</span><span class="nv">srcery-bright-black</span> <span class="o">.</span> <span class="s">"#4f4f4f"</span><span class="p">))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">load-theme</span> <span class="ss">'srcery</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">)</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-bullets</span>
   <span class="ss">:disabled</span> <span class="no">t</span>
@@ -5011,9 +5117,11 @@ powerline を使ってる
 <div>
 <h3 id="org4c97a1e0">provide の設定</h3>
 <div class="outline-text-3" id="text-org4c97a1e0">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">provide</span> <span class="ss">'init</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (profiler-report)</span>
+<span class="c1">;; (profiler-stop)</span>
+<span class="p">(</span><span class="nb">provide</span> <span class="ss">'init</span><span class="p">)</span>
 <span class="c1">;; Local Variables:</span>
-<span class="c1">;; byte-compile-warnings: (not cl-functions obsolete)</span>
+<span class="c1">;; byte-compile-warnings: (not obsolete cl-functions)</span>
 <span class="c1">;; End:</span></code></pre></figure>
 </div>
 </div>
@@ -5051,7 +5159,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-09-01 10:58:55 +0000
+          Lastupdate: 2020-11-01 03:22:33 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">
