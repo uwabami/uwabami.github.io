@@ -42,7 +42,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Squid で広告避け","dateModified":"2020-01-27T01:03:52+09:00","datePublished":"2020-01-27T01:03:52+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianSquid.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSquid.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianSquid.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianSquid.html","headline":"Squid で広告避け","dateModified":"2020-01-27T01:03:52+09:00","datePublished":"2020-01-27T01:03:52+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -177,7 +177,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
+Related <a href="index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="orgda6fb6ff">はじめに</h2>
@@ -254,7 +254,7 @@ Debianの squid は SSL Bump が有効になっていないので,
 <div class="outline-text-3" id="text-org583598cb">
 <p>
 真面目なビルド環境の構築については
-<a href="https://uwabami.github.io/cc-env/DebianPackaging.html">パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest</a>
+<a href="DebianPackaging.html">パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest</a>
 を参照のこと. ただ, 野良ビルドの場合にはここまで頑張る必要も無いので
 最低限
 </p>
@@ -482,9 +482,11 @@ SSL-Bump(MTM)用の証明書は適宜作成しておく.
 <span class="n">sslcrtd_program</span> /<span class="n">usr</span>/<span class="n">lib</span>/<span class="n">squid</span>/<span class="n">security_file_certgen</span> \
   -<span class="n">s</span> /<span class="n">var</span>/<span class="n">spool</span>/<span class="n">squid</span>/<span class="n">ssl_db</span> \
   -<span class="n">M</span> <span class="m">4</span><span class="n">MB</span>
+<span class="c"># sslcrtd_children 32 startup=5 idle=1
+</span><span class="n">sslproxy_cert_sign_hash</span> <span class="n">sha256</span>
 <span class="n">tls_outgoing_options</span> \
   <span class="n">cafile</span>=/<span class="n">etc</span>/<span class="n">ssl</span>/<span class="n">certs</span>/<span class="n">ca</span>-<span class="n">certificates</span>.<span class="n">crt</span> \
-  <span class="n">options</span>=<span class="n">NO_SSLv3</span>,<span class="n">ALL</span>
+  <span class="n">options</span>=<span class="n">NO_SSLv2</span>,<span class="n">NO_SSLv3</span>,<span class="n">ALL</span>
 <span class="n">acl</span> <span class="n">step1</span> <span class="n">at_step</span> <span class="n">SslBump1</span>
 <span class="n">acl</span> <span class="n">ssl_exclude_domains</span> <span class="n">dstdomain</span> <span class="s2">"/etc/squid/ssl_white.txt"</span>
 <span class="n">ssl_bump</span> <span class="n">splice</span> <span class="n">ssl_exclude_domains</span>
