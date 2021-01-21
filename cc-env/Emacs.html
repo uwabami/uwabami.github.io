@@ -4,13 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="preconnect dns-prefetch" href="//cdn.ampproject.org" crossorigin>
+    <link rel="preconnect dns-prefetch" href="//uwabami.github.io/" crossorigin>
     <!-- amp preload -->
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-geo-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-consent-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-analytics-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-form-0.1.js">
-    <link rel="preconnect dns-prefetch" href="https://uwabami.github.io/" crossorigin>
     <link rel="preload" as="image" href="/assets/img/top.png">
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inconsolata-v18-latin-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inconsolata-v18-latin-700.woff2" crossorigin>
@@ -35,14 +38,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-12-09T21:27:46+09:00" />
+<meta property="article:published_time" content="2020-11-01T12:22:33+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html","headline":"Emacs の設定","dateModified":"2020-12-09T21:27:46+09:00","datePublished":"2020-12-09T21:27:46+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"url":"https://uwabami.github.io/cc-env/Emacs.html","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Emacs の設定","dateModified":"2020-11-01T12:22:33+09:00","datePublished":"2020-11-01T12:22:33+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -186,7 +189,7 @@ Related <a href="index.html">Index</a> <a href="Emacs.html">Emacs</a>
 ここでは私の Emacs の設定についてまとめています．
 </p>
 
-<amp-img src="https://github.com/uwabami/emacs/workflows/build/badge.svg" width="104px" height="20px" layout="fixed" class="travis_badge"><amp-img src="https://github.com/uwabami/emacs/workflows/build/badge.svg" width="104px" height="20px" layout="fixed" class="travis_badge" fallback></amp-img><noscript><img src="https://github.com/uwabami/emacs/workflows/build/badge.svg" width="104px" height="20px" class="travis_badge"></noscript></amp-img>
+<amp-img src="https://travis-ci.org/uwabami/emacs.svg?branch=master" width="72px" height="20px" layout="fixed" class="travis_badge"><amp-img src="https://travis-ci.org/uwabami/emacs.svg?branch=master" width="72px" height="20px" layout="fixed" class="travis_badge" fallback></amp-img><noscript><img src="https://travis-ci.org/uwabami/emacs.svg?branch=master" width="72px" height="20px" class="travis_badge"></noscript></amp-img>
 <amp-img src="https://img.shields.io/badge/License-GPLv3-blue.svg" width="92px" height="20px" layout="fixed"><amp-img src="https://img.shields.io/badge/License-GPLv3-blue.svg" width="92px" height="20px" layout="fixed" fallback></amp-img><noscript><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" width="92px" height="20px"></noscript></amp-img>
 <a href="https://github.com/uwabami/emacs"><span class="icon-github"><svg id="SVGRoot" width="20px" height="20px" version="1.1" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m5.4144 12.761c0 0.0645-0.0742 0.11613-0.16774 0.11613-0.10645 0.01-0.18064-0.0419-0.18064-0.11613 0-0.0645 0.0742-0.11613 0.16774-0.11613 0.0968-0.01 0.18064 0.0419 0.18064 0.11613zm-1.0032-0.14516c-0.0226 0.0645 0.0419 0.13871 0.13871 0.15806 0.0839 0.0323 0.18064 0 0.2-0.0645 0.0194-0.0645-0.0419-0.13871-0.13871-0.16775-0.0839-0.0226-0.17742 0.01-0.2 0.0742zm1.4258-0.0548c-0.0935 0.0226-0.15806 0.0839-0.14838 0.15806 0.01 0.0645 0.0935 0.10645 0.19032 0.0839 0.0936-0.0226 0.15806-0.0839 0.14839-0.14838-0.01-0.0613-0.0968-0.10323-0.19033-0.0935zm2.1226-12.361c-4.4742 0-7.8968 3.3968-7.8968 7.871 0 3.5774 2.2516 6.6387 5.4677 7.7161 0.41291 0.0742 0.55807-0.18064 0.55807-0.39032 0-0.2-0.01-1.3032-0.01-1.9806 0 0-2.2581 0.48387-2.7323-0.96129 0 0-0.36774-0.93871-0.89677-1.1806 0 0-0.73871-0.50645 0.0516-0.49677 0 0 0.80323 0.0645 1.2452 0.83226 0.70645 1.2452 1.8903 0.88709 2.3516 0.67419 0.0742-0.51613 0.28387-0.87419 0.51613-1.0871-1.8032-0.2-3.6226-0.46129-3.6226-3.5645 0-0.8871 0.24516-1.3323 0.76129-1.9-0.0839-0.20968-0.35806-1.0742 0.0839-2.1903 0.6742-0.20967 2.2258 0.87097 2.2258 0.87097 0.64516-0.18064 1.3387-0.27419 2.0258-0.27419 0.68709 0 1.3806 0.0936 2.0258 0.27419 0 0 1.5516-1.0839 2.2258-0.87097 0.44193 1.1194 0.16774 1.9806 0.0839 2.1903 0.51613 0.57096 0.83226 1.0161 0.83226 1.9 0 3.1129-1.9 3.3613-3.7032 3.5645 0.29678 0.25484 0.54839 0.73871 0.54839 1.4968 0 1.0871-0.01 2.4322-0.01 2.6968 0 0.20968 0.14839 0.46452 0.55807 0.39032 3.2258-1.071 5.4129-4.1322 5.4129-7.7097 0-4.4742-3.629-7.871-8.1032-7.871zm-4.7613 11.126c-0.0419 0.0323-0.0323 0.10646 0.0226 0.16775 0.0516 0.0516 0.12581 0.0742 0.16775 0.0323 0.0419-0.0323 0.0323-0.10645-0.0226-0.16774-0.0516-0.0516-0.12581-0.0742-0.16775-0.0323zm-0.34838-0.26129c-0.0226 0.0419 0.01 0.0935 0.0742 0.12581 0.0516 0.0323 0.11613 0.0226 0.13871-0.0226 0.0226-0.0419-0.01-0.0935-0.0742-0.12581-0.0645-0.0194-0.11613-0.01-0.13871 0.0226zm1.0452 1.1484c-0.0516 0.0419-0.0323 0.13871 0.0419 0.2 0.0742 0.0742 0.16775 0.0839 0.20968 0.0323 0.0419-0.0419 0.0226-0.13871-0.0419-0.2-0.071-0.0742-0.16775-0.0839-0.20968-0.0323zm-0.36774-0.47419c-0.0516 0.0323-0.0516 0.11613 0 0.19032 0.0516 0.0742 0.13871 0.10645 0.18064 0.0742 0.0516-0.0419 0.0516-0.1258 0-0.2-0.0452-0.0742-0.12903-0.10645-0.18064-0.0645z" fill="currentColor" stroke-width=".032258"></path></svg></span></a>
 
@@ -215,6 +218,7 @@ Emacsに関連するDebianパッケージを幾つかメンテナンスしてい
 設定には<a href="https://github.com/conao3/leaf.el">leaf.el</a>を利用します．
 VCS からインストールしたいパッケージが幾つかあるので,
 それらについては<a href="https://github.com/dimitri/el-get">el-get</a>を利用しています．
+今後は<a href="https://github.com/conao3/feather.el">feather.el</a>も試してみたいですね．
 </p>
 </div>
 </div>
@@ -239,101 +243,16 @@ init.el: README.org
     $(EMACS) -q -l init.el --batch --eval '(kill-emacs)'
 %.elc: %.el
     $(EMACS) -q -l init.el -batch -f batch-byte-compile $&lt;</code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="org990b5166">設定ファイルのヘッダ</h3>
-<div class="outline-text-3" id="text-org990b5166">
 <p>
-出力される <code>init.el</code> 用のヘッダは以下の通り.
+ついでに, 出力される <code>init.el</code> 用のおまじない(?)として
 <code>lexsical-binding</code> を有効にしておきます．
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; -*- lexical-binding: nil -*-</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="orgae182d4d">起動の高速化</h3>
-<div class="outline-text-3" id="text-orgae182d4d">
-<p>
-この辺は <a href="https://emacs-jp.github.io/tips/startup-optimization">Emacs の起動時間を""詰める""</a> を参考に.
-設定は <code>early-init.el</code> に移動した方が良いのかもしれないかな.
-</p>
-</div>
-<div>
-<h4 id="org373f7f70">Emacs Profiler</h4>
-<div class="outline-text-4" id="text-org373f7f70">
-<p>
-起動の高速化を検証するために, 必要に応じて有効に.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (require 'profiler)</span>
-<span class="c1">;; (profiler-start 'cpu)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h4 id="orgb6dd6727">Magic File Name を一時的に無効化</h4>
-<div class="outline-text-4" id="text-orgb6dd6727">
-<p>
-これだけで 0.2秒縮まった. これは知見である.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:saved-file-name-handler-alist</span> <span class="nv">file-name-handler-alist</span><span class="p">)</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">file-name-handler-alist</span> <span class="no">nil</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'emacs-startup-hook</span>
-          <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-            <span class="p">(</span><span class="k">setq</span> <span class="nv">file-name-handler-alist</span> <span class="nv">my:saved-file-name-handler-alist</span><span class="p">)))</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h4 id="org77e2f299">GC の設定</h4>
-<div class="outline-text-4" id="text-org77e2f299">
-<p>
-起動時に garbage collection を発生させない様にする.
-</p>
-
-<p>
-メモリ喰いな拡張を入れている場合には,
-安易に <code>gc-cons-threshold</code> を上げるのは考えものである.
-「gc が走る→大きな領域を掃除するのでその間 emacs が止まる」
-という事を頻繁に経験することになるだろう.
-</p>
-
-<p>
-とはいえ, デフォルト値のままだと
-起動時に結構 garbage-collect が走って遅くなるので,
-起動時は <code>most-positive-fixnum</code> にしておいて,
-起動後に <code>emacs-startup-hook</code> で default に戻すようにしてみた.
-</p>
-
-<p>
-ついでに <code>idle-timer</code> で入力が無い時に GC を走らせることに.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:default-gc-cons-threshold</span> <span class="nv">gc-cons-threshold</span><span class="p">)</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">gc-cons-threshold</span> <span class="nv">most-positive-fixnum</span><span class="p">)</span>
-<span class="c1">;; Run GC every 60 seconds if emacs is idle.</span>
-<span class="p">(</span><span class="nv">run-with-idle-timer</span> <span class="mf">60.0</span> <span class="no">t</span> <span class="nf">#'</span><span class="nv">garbage-collect</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'emacs-startup-hook</span>
-          <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-            <span class="p">(</span><span class="k">setq</span> <span class="nv">gc-cons-threshold</span> <span class="nv">my:default-gc-cons-threshold</span><span class="p">)))</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h4 id="orgcb2bfa7b">
-<span class="todo TODO">TODO</span> <code>early-init.el</code>
-</h4>
-<div class="outline-text-4" id="text-orgcb2bfa7b">
-<p>
-Emacs &gt;= 27 からの機能だが, いまいち使い方がわからん.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">push</span> <span class="o">'</span><span class="p">(</span><span class="nv">menu-bar-lines</span>     <span class="o">.</span> <span class="no">nil</span><span class="p">)</span> <span class="nv">default-frame-alist</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">push</span> <span class="o">'</span><span class="p">(</span><span class="nv">tool-bar-lines</span>     <span class="o">.</span> <span class="no">nil</span><span class="p">)</span> <span class="nv">default-frame-alist</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">push</span> <span class="o">'</span><span class="p">(</span><span class="nv">scroll-bar-mode</span>    <span class="o">.</span> <span class="no">nil</span><span class="p">)</span> <span class="nv">default-frame-alist</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">push</span> <span class="o">'</span><span class="p">(</span><span class="nv">blink-cursor-mode</span>  <span class="o">.</span> <span class="no">nil</span><span class="p">)</span> <span class="nv">default-frame-alist</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">push</span> <span class="o">'</span><span class="p">(</span><span class="nv">column-number-mode</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span> <span class="nv">default-frame-alist</span><span class="p">)</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">frame-inhibit-implied-resize</span> <span class="no">t</span><span class="p">)</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">site-run-file</span> <span class="no">nil</span><span class="p">)</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">package-enable-at-startup</span> <span class="no">nil</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">provide</span> <span class="ss">'early-init</span><span class="p">)</span>
-<span class="c1">;;; early-init.el ends here</span></code></pre></figure>
-</div>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; -*- lexical-binding: nil -*-</span>
+<span class="c1">;; (require 'profiler)</span>
+<span class="c1">;; (profiler-start 'cpu)</span>
+<span class="c1">;;</span>
+<span class="c1">;; increase gc-cons-threshold duraring startup.</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">gc-cons-threshold</span> <span class="nv">most-positive-fixnum</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -371,7 +290,14 @@ Emacs &gt;= 27 からの機能だが, いまいち使い方がわからん.
 <span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:d:pkg:elpa</span>
   <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"pkg/elpa"</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
 <span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:d:pkg:elget</span>
-  <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"pkg/el-get"</span> <span class="nv">user-emacs-directory</span><span class="p">))</span></code></pre></figure>
+  <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"pkg/el-get"</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">my:d</span> <span class="o">'</span><span class="p">(</span><span class="nv">my:d:share</span>
+                <span class="nv">my:d:tmp</span>
+                <span class="nv">my:d:pkg:elpa</span>
+                <span class="nv">my:d:pkg:elget</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">make-directory</span> <span class="nv">my:d</span> <span class="no">t</span><span class="p">))))</span></code></pre></figure>
 <p>
 その他, 良く使うディレクトリもここで設定しておきます．
 </p>
@@ -385,13 +311,10 @@ Emacs &gt;= 27 からの機能だが, いまいち使い方がわからん.
 幾つかの関数で <code>Common-Lisp</code> 的挙動が期待されているので,
 <code>cl-lib</code> を読み込んでおきます．
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-when-compile</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'cl-lib</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span></code></pre></figure>
-<p>
-ついでに Emacs 27 以降は
-cl が読み込まれていると
-`Package cl is deprecated' が表示されるので, これを止めておく.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">byte-compile-warnings</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span> <span class="nv">cl-functions</span> <span class="nv">obsolete</span><span class="p">))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-and-compile</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'cl-lib</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span>
+<span class="c1">;; el-get が cl に依存しているので, ここで</span>
+<span class="c1">;; `Package cl is deprecated' が表示されるのを止めておく.</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">byte-compile-warnings</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span> <span class="nv">cl-functions</span> <span class="nv">obsolete</span><span class="p">))</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -408,21 +331,21 @@ cl が読み込まれていると
 <h3 id="orgc51eb87d"><a href="https://emacs-jp.github.io/packages/package-management/package-el">package.el</a></h3>
 <div class="outline-text-3" id="text-orgc51eb87d">
 <p>
-パッケージは基本的に <code>package.el</code> で導入するので, 先ずはその設定.
+パッケージは基本的に <code>pacakge.el</code> で導入するので, 先ずはその設定.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; elpa/gnutls workaround</span>
-<span class="p">(</span><span class="nv">eval-and-compile</span>
-  <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">version&lt;=</span>  <span class="nv">emacs-version</span> <span class="s">"26.2"</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">gnutls-algorithm-priority</span> <span class="s">"NORMAL:-VERS-TLS1.3"</span><span class="p">))</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-and-compile</span>
   <span class="p">(</span><span class="nv">custom-set-variables</span>
    <span class="o">'</span><span class="p">(</span><span class="nv">package-archives</span> <span class="o">'</span><span class="p">((</span><span class="s">"gnu"</span>   <span class="o">.</span> <span class="s">"https://elpa.gnu.org/packages/"</span><span class="p">)</span>
                         <span class="p">(</span><span class="s">"melpa"</span> <span class="o">.</span> <span class="s">"https://melpa.org/packages/"</span><span class="p">)</span>
                         <span class="p">))</span>
    <span class="o">'</span><span class="p">(</span><span class="nv">package-gnupghome-dir</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">".gnupg"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">)))</span>
-   <span class="o">'</span><span class="p">(</span><span class="nv">package-user-dir</span> <span class="nv">my:d:pkg:elpa</span><span class="p">))</span>
-  <span class="p">)</span>
+   <span class="o">'</span><span class="p">(</span><span class="nv">package-user-dir</span> <span class="nv">my:d:pkg:elpa</span><span class="p">)</span>
+   <span class="o">'</span><span class="p">(</span><span class="nv">package-enable-at-startup</span> <span class="no">t</span><span class="p">)</span>
+   <span class="p">))</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">gnutls-algorithm-priority</span> <span class="s">"NORMAL:-VERS-TLS1.3"</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">eval-when-compile</span>
   <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tmp/bootstrap-stamp"</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">gnutls-algorithm-priority</span> <span class="s">"NORMAL:-VERS-TLS1.3"</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">package-refresh-contents</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">with-temp-buffer</span>
       <span class="p">(</span><span class="nv">write-file</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tmp/bootstrap-stamp"</span><span class="p">)))</span>
@@ -443,6 +366,7 @@ cl が読み込まれていると
   <span class="p">(</span><span class="nv">package-install</span> <span class="ss">'leaf</span> <span class="no">t</span><span class="p">))</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">leaf-keywords</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:require</span> <span class="no">t</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">blackout</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">el-get</span>
@@ -452,8 +376,9 @@ cl が読み込まれていると
     <span class="ss">:custom</span> <span class="p">((</span><span class="nv">el-get-notify-type</span>       <span class="o">.</span> <span class="ss">'message</span><span class="p">)</span>
              <span class="p">(</span><span class="nv">el-get-git-shallow-clone</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
     <span class="p">)</span>
-  <span class="p">)</span>
-<span class="p">(</span><span class="nv">leaf-keywords-init</span><span class="p">)</span></code></pre></figure>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">leaf-keywords-init</span><span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -467,17 +392,16 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
 今の所
 </p>
 <ul class="org-ul">
-<li><code>DEBEMAIL</code></li>
+<li><code>SHELL</code></li>
 <li><code>DEBFULLNAME</code></li>
-<li><code>GPG_AGENT_INFO</code></li>
+<li><code>DEBEMAIL</code></li>
+<li><code>TEXMFHOME</code></li>
+<li><code>SKKSERVER</code></li>
+<li><code>http_proxy</code></li>
 <li><code>GPG_KEY_ID</code></li>
+<li><code>GPG_AGENT_INFO</code></li>
 <li><code>PASSWORD_STORE_DIR</code></li>
 <li><code>PATH</code></li>
-<li><code>SHELL</code></li>
-<li><code>SKKSERVER</code></li>
-<li><code>TEXMFHOME</code></li>
-<li><code>WSL_DISTRO_NAME</code></li>
-<li><code>http_proxy</code></li>
 </ul>
 <p>
 を読み込んでいます(多いな…).
@@ -487,21 +411,17 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
   <span class="ss">:defun</span> <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">)</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">exec-path-from-shell-check-startup-files</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">exec-path-from-shell-arguments</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">exec-path-from-shell-variables</span>
-    <span class="o">.</span> <span class="o">'</span><span class="p">(</span>
-        <span class="s">"DEBEMAIL"</span>
+    <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="s">"SHELL"</span>
         <span class="s">"DEBFULLNAME"</span>
-        <span class="s">"GPG_AGENT_INFO"</span>
-        <span class="s">"GPG_KEY_ID"</span>
-        <span class="s">"PASSWORD_STORE_DIR"</span>
-        <span class="s">"PATH"</span>
-        <span class="s">"SHELL"</span>
+        <span class="s">"DEBEMAIL"</span>
         <span class="s">"SKKSERVER"</span>
         <span class="s">"TEXMFHOME"</span>
-        <span class="s">"WSL_DISTRO_NAME"</span>
         <span class="s">"http_proxy"</span>
-        <span class="p">)))</span>
+        <span class="s">"GPG_KEY_ID"</span>
+        <span class="s">"GPG_AGENT_INFO"</span>
+        <span class="s">"PASSWORD_STORE_DIR"</span>
+        <span class="s">"PATH"</span><span class="p">)))</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">)</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">user-full-name</span>    <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"DEBFULLNAME"</span><span class="p">))</span>
@@ -509,7 +429,10 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
   <span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:d:password-store</span>
     <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"PASSWORD_STORE_DIR"</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">expand-file-name</span> <span class="p">(</span><span class="nv">concat</span> <span class="s">"Emacs/"</span> <span class="p">(</span><span class="nv">system-name</span><span class="p">))</span>
-                          <span class="p">(</span><span class="nv">getenv</span> <span class="s">"PASSWORD_STORE_DIR"</span><span class="p">))</span> <span class="s">""</span><span class="p">))</span>
+                          <span class="p">(</span><span class="nv">getenv</span> <span class="s">"PASSWORD_STORE_DIR"</span><span class="p">))</span>
+      <span class="s">""</span>
+      <span class="p">)</span>
+    <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -565,8 +488,7 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数をEmacsに引�
 <p>
 zsh prompt風味．
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;;;###autoload</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">my:shorten-file-path</span> <span class="p">(</span><span class="nv">fpath</span> <span class="nv">max-length</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">my:shorten-file-path</span> <span class="p">(</span><span class="nv">fpath</span> <span class="nv">max-length</span><span class="p">)</span>
   <span class="s">"Show up to `max-length' characters of a directory name `fpath' like zsh"</span>
   <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">path</span> <span class="p">(</span><span class="nb">reverse</span> <span class="p">(</span><span class="nv">split-string</span> <span class="p">(</span><span class="nv">abbreviate-file-name</span> <span class="nv">fpath</span><span class="p">)</span> <span class="s">"/"</span><span class="p">)))</span>
          <span class="p">(</span><span class="nv">output</span> <span class="s">""</span><span class="p">)</span>
@@ -592,14 +514,15 @@ zsh prompt風味．
 ゴミが残らないし, 地味に便利．
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*delete-file-if-no-contents</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:delete-file-if-no-contents</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">buffer-file-name</span> <span class="p">(</span><span class="nv">current-buffer</span><span class="p">))</span>
-               <span class="p">(</span><span class="nb">=</span> <span class="p">(</span><span class="nv">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-max</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nb">delete-file</span>
-       <span class="p">(</span><span class="nv">buffer-file-name</span> <span class="p">(</span><span class="nv">current-buffer</span><span class="p">)))))</span>
-  <span class="ss">:hook</span>
-  <span class="p">(</span><span class="nv">after-save-hook</span> <span class="o">.</span> <span class="nv">my:delete-file-if-no-contents</span><span class="p">)</span>
+  <span class="ss">:preface</span> <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:delete-file-if-no-contents</span> <span class="p">()</span>
+             <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">buffer-file-name</span> <span class="p">(</span><span class="nv">current-buffer</span><span class="p">))</span>
+                        <span class="p">(</span><span class="nb">=</span> <span class="p">(</span><span class="nv">point-min</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-max</span><span class="p">)))</span>
+               <span class="p">(</span><span class="nb">delete-file</span>
+                <span class="p">(</span><span class="nv">buffer-file-name</span> <span class="p">(</span><span class="nv">current-buffer</span><span class="p">)))))</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">not</span> <span class="p">(</span><span class="nv">memq</span> <span class="ss">'my:delete-file-if-no-contents</span> <span class="nv">after-save-hook</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">after-save-hook</span>
+            <span class="p">(</span><span class="nb">cons</span> <span class="ss">'my:delete-file-if-no-contents</span> <span class="nv">after-save-hook</span><span class="p">)))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -612,9 +535,9 @@ zsh prompt風味．
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*keepscratchbuffer</span>
   <span class="ss">:preface</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:make-scratch</span> <span class="p">(</span><span class="k">&amp;optional</span> <span class="nv">arg</span><span class="p">)</span>
-    <span class="s">" *scratch* を作成して buffer-list に放り込む."</span>
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
     <span class="p">(</span><span class="k">progn</span>
+      <span class="c1">;; "*scratch*" を作成して buffer-list に放り込む</span>
       <span class="p">(</span><span class="nv">set-buffer</span> <span class="p">(</span><span class="nv">get-buffer-create</span> <span class="s">"*scratch*"</span><span class="p">))</span>
       <span class="p">(</span><span class="nb">funcall</span> <span class="nv">initial-major-mode</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">erase-buffer</span><span class="p">)</span>
@@ -626,27 +549,23 @@ zsh prompt風味．
             <span class="p">(</span><span class="nv">switch-to-buffer</span> <span class="s">"*scratch*"</span><span class="p">)))</span>
       <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nb">=</span> <span class="nv">arg</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">message</span> <span class="s">"*scratch* is cleared up."</span><span class="p">))</span>
             <span class="p">((</span><span class="nb">=</span> <span class="nv">arg</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nv">message</span> <span class="s">"another *scratch* is created"</span><span class="p">)))))</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:buffer-name-list</span> <span class="p">()</span>
-    <span class="s">"buffer 一覧の取得"</span>
-    <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">function</span> <span class="nv">buffer-name</span><span class="p">)</span> <span class="p">(</span><span class="nv">buffer-list</span><span class="p">)))</span>
   <span class="c1">;;</span>
-  <span class="ss">:hook</span>
-  <span class="p">((</span><span class="nv">kill-buffer-query-functions</span>
-    <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-        <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">string=</span> <span class="s">"*scratch*"</span> <span class="p">(</span><span class="nv">buffer-name</span><span class="p">))</span>
-            <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nv">my:make-scratch</span> <span class="mi">0</span><span class="p">)</span> <span class="no">nil</span><span class="p">)</span>
-          <span class="no">t</span><span class="p">)))</span>
-   <span class="p">(</span><span class="nv">after-save-hook</span>
-    <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-        <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nb">member</span> <span class="s">"*scratch*"</span> <span class="p">(</span><span class="nv">my:buffer-name-list</span><span class="p">))</span>
-          <span class="p">(</span><span class="nv">my:make-scratch</span> <span class="mi">1</span><span class="p">)))))</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:buffer-name-list</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">function</span> <span class="nv">buffer-name</span><span class="p">)</span> <span class="p">(</span><span class="nv">buffer-list</span><span class="p">)))</span>
+  <span class="ss">:hook</span>  <span class="p">((</span><span class="nv">kill-buffer-query-functions</span>
+           <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+               <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">string=</span> <span class="s">"*scratch*"</span> <span class="p">(</span><span class="nv">buffer-name</span><span class="p">))</span>
+                   <span class="p">(</span><span class="k">progn</span> <span class="p">(</span><span class="nv">my:make-scratch</span> <span class="mi">0</span><span class="p">)</span> <span class="no">nil</span><span class="p">)</span>
+                 <span class="no">t</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nv">after-save-hook</span>
+           <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+               <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nb">member</span> <span class="s">"*scratch*"</span> <span class="p">(</span><span class="nv">my:buffer-name-list</span><span class="p">))</span>
+                 <span class="p">(</span><span class="nv">my:make-scratch</span> <span class="mi">1</span><span class="p">)))))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
-<h3 id="org1effd724">
-<span class="done SOMEDAY">SOMEDAY</span> 行末の無駄な空白/改行を削除する <code>[/]</code>
-</h3>
+<h3 id="org1effd724">行末の無駄な空白/改行を削除する</h3>
 <div class="outline-text-3" id="text-org1effd724">
 <p>
 @see <a href="http://d.hatena.ne.jp/tototoshi/20101202/1291289625">無駄な行末の空白を削除する(Emacs Advent Calendar jp:2010)</a>
@@ -668,35 +587,8 @@ zsh prompt風味．
              <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="nv">pattern</span> <span class="nv">in</span> <span class="nv">my:delete-trailing-whitespace-exclude-suffix</span>
                       <span class="nv">thereis</span> <span class="p">(</span><span class="nv">string-match</span> <span class="nv">pattern</span> <span class="nv">buffer-file-name</span><span class="p">)))</span>
       <span class="p">(</span><span class="nv">delete-trailing-whitespace</span><span class="p">))))</span>
-  <span class="ss">:hook</span>
-  <span class="p">(</span><span class="nv">before-save-hook</span> <span class="o">.</span> <span class="nv">my:delete-trailing-whitespace</span><span class="p">)</span>
+  <span class="ss">:hook</span> <span class="p">(</span><span class="nv">before-save-hook</span> <span class="o">.</span> <span class="nv">my:delete-trailing-whitespace</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
-<ul class="org-ul">
-<li class="off">
-<code>[ ]</code> <code>cl 依存の書き換え?</code>
-</li>
-</ul>
-</div>
-</div>
-<div>
-<h3 id="org194b826d">ターミナルで <code>C-M-</code> を打つために</h3>
-<div class="outline-text-3" id="text-org194b826d">
-<p>
-詳細は
-<a href="https://superuser.com/questions/83166/using-c-m-to-do-a-query-replace-regexp-in-emacs-running-in-mac-terminal">Using C-M-% to do a query-replace-regexp in Emacs running in Mac terminal</a>
-を参照のこと. terminal では <code>C-%</code> (つまり <code>Control-Shift-5</code> )が入力できない, という話.
-</p>
-
-<p>
-代わりに <code>C-x @</code> を <code>C-M-</code> に解釈させるように設定しておく.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">; cargo cult adaptation of event-apply-control-modifier</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">my:event-apply-control-meta-modifiers</span> <span class="p">(</span><span class="nv">ignore-prompt</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">vector</span>
-   <span class="p">(</span><span class="nv">event-apply-modifier</span> <span class="p">(</span><span class="nv">event-apply-modifier</span> <span class="p">(</span><span class="nv">read-event</span><span class="p">)</span>
-                                               <span class="ss">'control</span> <span class="mi">26</span> <span class="s">"C-"</span><span class="p">)</span>
-                         <span class="ss">'meta</span> <span class="mi">27</span> <span class="s">"M-"</span><span class="p">)))</span>
-<span class="p">(</span><span class="nv">define-key</span> <span class="nv">function-key-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-x @"</span><span class="p">)</span> <span class="ss">'my:event-apply-control-meta-modifiers</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -771,6 +663,20 @@ Emacs23 から内部が Unicode ベースになっています。
 <code>custom.el</code> にある設定は極力こちらに移すようにしている.
 </p>
 <ul class="org-ul">
+<li>
+<code>gc-cons-threshold</code> はとりあえずデフォルトのままに.
+<ul class="org-ul">
+<li>メモリ喰いな拡張を入れている場合には,
+安易に <code>gc-cons-threshold</code> を上げるのは考えものである.
+「gc が走る→大きな領域を掃除するのでその間 emacs が止まる」
+という事を頻繁に経験することになるだろう.</li>
+<li>とはいえ, 起動時には結構 garbage-collect が走るので,
+起動時はl <code>most-positive-fixnum</code> にしておいて,
+起動後に <code>emacs-startup-hook</code> で default に戻すようにしてみた.</li>
+<li>
+<code>idle-timer</code> で入力が無い時に GC を走らせることにしてみた.</li>
+</ul>
+</li>
 <li>大抵の場合ターミナル内で <code>-nw</code> として起動するし,
 メニューは触ったことないので使わないので,
 フレーム, ツールバー等を非表示にする．</li>
@@ -785,12 +691,13 @@ Emacs23 から内部が Unicode ベースになっています。
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">cus-start</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">(</span>
+    <span class="c1">;; (garbage-collection-messages . t)</span>
     <span class="c1">;; 表示</span>
-    <span class="c1">;; (tool-bar-mode          . nil)  ; 基本 "-nw" なので不要</span>
-    <span class="c1">;; (scroll-bar-mode        . nil)  ; 基本 "-nw" なので不要</span>
-    <span class="c1">;; (menu-bar-mode          . nil)  ; 基本 "-nw" なので不要</span>
-    <span class="c1">;; (blink-cursor-mode      . nil)  ; 基本 "-nw" なので不要</span>
-    <span class="c1">;; (column-number-mode     . nil)  ; 基本 "-nw" なので不要</span>
+    <span class="p">(</span><span class="nv">tool-bar-mode</span>          <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>  <span class="c1">; 基本 "-nw" なので不要</span>
+    <span class="p">(</span><span class="nv">scroll-bar-mode</span>        <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>  <span class="c1">; 基本 "-nw" なので不要</span>
+    <span class="p">(</span><span class="nv">menu-bar-mode</span>          <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>  <span class="c1">; 基本 "-nw" なので不要</span>
+    <span class="p">(</span><span class="nv">blink-cursor-mode</span>      <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>  <span class="c1">; 基本 "-nw" なので不要</span>
+    <span class="p">(</span><span class="nv">column-number-mode</span>     <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>  <span class="c1">; 基本 "-nw" なので不要</span>
     <span class="p">(</span><span class="nv">ring-bell-function</span>     <span class="o">.</span> <span class="ss">'ignore</span><span class="p">)</span>   <span class="c1">; ベル無効化</span>
     <span class="c1">;; 編集</span>
     <span class="p">(</span><span class="nv">tab-width</span>              <span class="o">.</span> <span class="mi">4</span><span class="p">)</span>    <span class="c1">;; tab 幅 4</span>
@@ -831,6 +738,14 @@ Emacs23 から内部が Unicode ベースになっています。
     <span class="p">(</span><span class="k">setq</span> <span class="nv">load-prefer-newer</span> <span class="no">t</span><span class="p">))</span>
   <span class="c1">;; yes or no を y or n に</span>
   <span class="p">(</span><span class="nv">fset</span> <span class="ss">'yes-or-no-p</span> <span class="ss">'y-or-n-p</span><span class="p">)</span>
+  <span class="c1">;; GC</span>
+  <span class="c1">;; Run GC every 60 seconds if emacs is idle.</span>
+  <span class="p">(</span><span class="nv">run-with-idle-timer</span> <span class="mf">60.0</span> <span class="no">t</span> <span class="nf">#'</span><span class="nv">garbage-collect</span><span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span>
+   <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+       <span class="p">(</span><span class="k">setq</span> <span class="nv">gc-cons-threshold</span> <span class="mi">800000</span><span class="p">)</span> <span class="c1">;; default</span>
+       <span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -1148,13 +1063,10 @@ timestamp を更新する様にした．
 <code>server</code>: Emacs server</h3>
 <div class="outline-text-3" id="text-org931fd3cc">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">server</span>
-  <span class="ss">:hook</span>
-  <span class="p">(</span><span class="nv">emacs-startup-hook</span>
-   <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-       <span class="p">(</span><span class="k">progn</span>
-         <span class="p">(</span><span class="nb">require</span> <span class="ss">'server</span><span class="p">)</span>
-         <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">server-running-p</span><span class="p">)</span>
-           <span class="p">(</span><span class="nv">server-start</span><span class="p">)))))</span>
+  <span class="ss">:require</span> <span class="no">t</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">server-running-p</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">server-start</span><span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -1169,87 +1081,13 @@ timestamp を更新する様にした．
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
-<div>
-<h3 id="orgcc9538d1">
-<code>tab-bar-mode</code>: Emacsの「tab」</h3>
-<div class="outline-text-3" id="text-orgcc9538d1">
-<p>
-Emacs27から同梱された <code>tab-bar-mode</code> に elscreen から乗り換えた.
-手癖で "C-o" を prefix で使いたいので, その設定をしていたり.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">tab-bar-mode</span>
-  <span class="ss">:emacs&gt;</span> <span class="s">"27"</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="nb">defvar</span> <span class="nv">my:ctrl-o-map</span> <span class="p">(</span><span class="nv">make-sparse-keymap</span><span class="p">)</span>
-    <span class="s">"My original keymap binded to C-o."</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">defalias</span> <span class="ss">'my:ctrl-o-prefix</span> <span class="nv">my:ctrl-o-map</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">global-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-o"</span><span class="p">)</span> <span class="ss">'my:ctrl-o-prefix</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">my:ctrl-o-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"c"</span><span class="p">)</span>   <span class="ss">'tab-new</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">my:ctrl-o-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-c"</span><span class="p">)</span> <span class="ss">'tab-new</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">my:ctrl-o-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"k"</span><span class="p">)</span>   <span class="ss">'tab-close</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">my:ctrl-o-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-k"</span><span class="p">)</span> <span class="ss">'tab-close</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">my:ctrl-o-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"n"</span><span class="p">)</span>   <span class="ss">'tab-next</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">my:ctrl-o-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-n"</span><span class="p">)</span> <span class="ss">'tab-next</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">my:ctrl-o-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"p"</span><span class="p">)</span>   <span class="ss">'tab-previous</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">my:ctrl-o-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-p"</span><span class="p">)</span> <span class="ss">'tab-previous</span><span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:tab-bar-tab-name-truncated</span> <span class="p">()</span>
-    <span class="s">"Custom: Generate tab name from the buffer of the selected window."</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">tab-name</span> <span class="p">(</span><span class="nv">buffer-name</span> <span class="p">(</span><span class="nv">window-buffer</span> <span class="p">(</span><span class="nv">minibuffer-selected-window</span><span class="p">))))</span>
-          <span class="p">(</span><span class="nv">ellipsis</span> <span class="p">(</span><span class="nb">cond</span>
-                     <span class="p">(</span><span class="nv">tab-bar-tab-name-ellipsis</span><span class="p">)</span>
-                     <span class="p">((</span><span class="nv">char-displayable-p</span> <span class="nv">?</span><span class="err">…</span><span class="p">)</span> <span class="s">"…"</span><span class="p">)</span>
-                     <span class="p">(</span><span class="s">"..."</span><span class="p">))))</span>
-      <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">tab-name</span><span class="p">)</span> <span class="nv">tab-bar-tab-name-truncated-max</span><span class="p">)</span>
-          <span class="p">(</span><span class="nb">format</span> <span class="s">"%-12s"</span> <span class="nv">tab-name</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">propertize</span> <span class="p">(</span><span class="nv">truncate-string-to-width</span>
-                     <span class="nv">tab-name</span> <span class="nv">tab-bar-tab-name-truncated-max</span> <span class="no">nil</span> <span class="no">nil</span>
-                     <span class="nv">ellipsis</span><span class="p">)</span>
-                    <span class="ss">'help-echo</span> <span class="nv">tab-name</span><span class="p">))))</span>
-  <span class="ss">:custom</span>
-  <span class="p">((</span><span class="nv">tab-bar-close-button-show</span>      <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">tab-bar-close-last-tab-choice</span>  <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">tab-bar-close-tab-select</span>       <span class="o">.</span> <span class="ss">'left</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">tab-bar-history-mode</span>           <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">tab-bar-new-tab-choice</span>         <span class="o">.</span> <span class="s">"*scratch*"</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">tab-bar-new-button-show</span>        <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">tab-bar-tab-name-function</span>      <span class="o">.</span> <span class="ss">'my:tab-bar-tab-name-truncated</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">tab-bar-tab-name-truncated-max</span> <span class="o">.</span> <span class="mi">12</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">tab-bar-separator</span>              <span class="o">.</span> <span class="s">""</span><span class="p">)</span>
-   <span class="p">)</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">tab-bar-mode</span> <span class="mi">+1</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-<ul class="org-ul">
-<li><a href="https://masutaka.net/chalow/2011-09-28-1.html">ターミナルの zsh と Emacs を風のように駆け抜ける！</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div>
-<h2 id="orgb750c5b3">
-<code>beacon</code>: buffer 切り替え時の行の強調表示</h2>
-<div class="outline-text-2" id="text-orgb750c5b3">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">beacon</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">beacon-color</span>              <span class="o">.</span> <span class="s">"#aa3400"</span><span class="p">)</span>
-    <span class="c1">;; (beacon-size               . 64)</span>
-    <span class="p">(</span><span class="nv">beacon-blink-when-focused</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">)</span>
-  <span class="ss">:custom-face</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">beacon-fallback-background</span> <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:background</span> <span class="s">"#556b2f"</span><span class="p">)))))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">beacon-mode</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
 </div>
 <div>
 <h2 id="org43970469">
 <code>recentf</code>: 最近使ったファイル履歴の保管</h2>
 <div class="outline-text-2" id="text-org43970469">
 <p>
-ファイルを開く際には <code>ido-recentf</code> を使うので,
+ファイルを開く際には <code>my:counsel-recentf</code> を使うので,
 結局履歴を貯める設定をしている事になっている.
 ディレクトリの履歴も取れるので recentf-ext を入れておく
 </p>
@@ -1278,7 +1116,7 @@ Emacs27から同梱された <code>tab-bar-mode</code> に elscreen から乗り
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">recentf-ext</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="ss">:hook</span>
-  <span class="p">((</span><span class="nv">after-init-hook</span> <span class="o">.</span> <span class="nv">recentf-mode</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">recentf-mode</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">focus-out-hook</span>  <span class="o">.</span> <span class="nv">my:recentf-save-list-silence</span><span class="p">)</span>
    <span class="p">(</span><span class="nv">focus-out-hook</span>  <span class="o">.</span> <span class="nv">my:recentf-cleanup-silence</span><span class="p">))</span>
   <span class="ss">:custom</span>
@@ -1298,7 +1136,6 @@ Emacs27から同梱された <code>tab-bar-mode</code> に elscreen から乗り
                                  <span class="s">"^/[^/:]+:"</span>
                                  <span class="s">"bookmarks"</span>
                                  <span class="s">"org-recent-headings.dat"</span>
-                                 <span class="s">"^/mnt/c/\\.*"</span>
                                  <span class="p">)))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
@@ -1386,65 +1223,15 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 </div>
 </div>
 <div>
-<h3 id="org3416eeb2">Windows(WSL2)対応</h3>
+<h3 id="org3416eeb2">
+<span class="done SOMEDAY">SOMEDAY</span> Windows(WSL2)対応 <code>[/]</code>
+</h3>
 <div class="outline-text-3" id="text-org3416eeb2">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*wsl2-path</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"WSL_DISTRO_NAME"</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">set-drvfs-alist</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">drvfs-alist</span>
-          <span class="p">(</span><span class="nb">mapcar</span>
-           <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
-             <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">string-match</span> <span class="s">"\\(.*\\)|\\(.*?\\)/?$"</span> <span class="nv">x</span><span class="p">)</span>
-               <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">))))</span>
-           <span class="p">(</span><span class="nv">split-string</span> <span class="p">(</span><span class="nv">concat</span>
-                          <span class="c1">;; //wsl$ パス情報の追加</span>
-                          <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nb">not</span> <span class="p">(</span><span class="nv">string-match</span> <span class="s">"Microsoft"</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="s">"uname -v"</span><span class="p">)))</span>
-                                    <span class="p">(</span><span class="nb">&gt;=</span> <span class="p">(</span><span class="nv">string-to-number</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span> <span class="p">(</span><span class="nv">split-string</span> <span class="nv">operating-system-release</span> <span class="s">"-"</span><span class="p">)))</span> <span class="mi">18362</span><span class="p">))</span>
-                            <span class="p">(</span><span class="nv">concat</span> <span class="s">"/|"</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="s">"wslpath -m /"</span><span class="p">)))</span>
-                          <span class="p">(</span><span class="nv">shell-command-to-string</span>
-                           <span class="s">"mount | grep -E ' type (9p|drvfs) ' | grep -v '^tools on /init type 9p' | sed -r 's/(.*) on (.*) type (9p|drvfs) .*/\\2\\|\\1/' | sed 's!\\\\!/!g'"</span><span class="p">))</span>
-                         <span class="s">"\n"</span> <span class="no">t</span><span class="p">))))</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nv">defconst</span> <span class="nv">windows-path-style-regexp</span> <span class="s">"\\`\\(.*/\\)?\\([a-zA-Z]:\\\\.*\\|[a-zA-Z]:/.*\\|\\\\\\\\.*\\|//.*\\)"</span><span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">windows-path-convert-file-name</span> <span class="p">(</span><span class="nv">name</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">name</span> <span class="p">(</span><span class="nv">replace-regexp-in-string</span> <span class="nv">windows-path-style-regexp</span> <span class="s">"\\2"</span> <span class="nv">name</span> <span class="no">t</span> <span class="no">nil</span><span class="p">))</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">name</span> <span class="p">(</span><span class="nv">replace-regexp-in-string</span> <span class="s">"\\\\"</span> <span class="s">"/"</span> <span class="nv">name</span><span class="p">))</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">case-fold-search</span> <span class="no">t</span><span class="p">))</span>
-      <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="p">(</span><span class="nv">mountpoint</span> <span class="o">.</span> <span class="nv">source</span><span class="p">)</span> <span class="nv">in</span> <span class="nv">drvfs-alist</span>
-               <span class="k">if</span> <span class="p">(</span><span class="nv">string-match</span> <span class="p">(</span><span class="nv">concat</span> <span class="s">"^\\("</span> <span class="p">(</span><span class="nv">regexp-quote</span> <span class="nv">source</span><span class="p">)</span> <span class="s">"\\)\\($\\|/\\)"</span><span class="p">)</span> <span class="nv">name</span><span class="p">)</span>
-               <span class="nb">return</span> <span class="p">(</span><span class="nv">replace-regexp-in-string</span> <span class="s">"^//"</span> <span class="s">"/"</span> <span class="p">(</span><span class="nv">replace-match</span> <span class="nv">mountpoint</span> <span class="no">t</span> <span class="no">t</span> <span class="nv">name</span> <span class="mi">1</span><span class="p">))</span>
-               <span class="nv">finally</span> <span class="nb">return</span> <span class="nv">name</span><span class="p">)))</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">windows-path-run-real-handler</span> <span class="p">(</span><span class="nv">operation</span> <span class="nv">args</span><span class="p">)</span>
-    <span class="s">"Run OPERATION with ARGS."</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">inhibit-file-name-handlers</span>
-           <span class="p">(</span><span class="nb">cons</span> <span class="ss">'windows-path-map-drive-hook-function</span>
-                 <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nb">eq</span> <span class="nv">inhibit-file-name-operation</span> <span class="nv">operation</span><span class="p">)</span>
-                      <span class="nv">inhibit-file-name-handlers</span><span class="p">)))</span>
-          <span class="p">(</span><span class="nv">inhibit-file-name-operation</span> <span class="nv">operation</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">apply</span> <span class="nv">operation</span> <span class="nv">args</span><span class="p">)))</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">windows-path-map-drive-hook-function</span> <span class="p">(</span><span class="nv">operation</span> <span class="nv">name</span> <span class="k">&amp;rest</span> <span class="nv">args</span><span class="p">)</span>
-    <span class="s">"Run OPERATION on cygwin NAME with ARGS."</span>
-    <span class="p">(</span><span class="nv">windows-path-run-real-handler</span>
-     <span class="nv">operation</span>
-     <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">windows-path-convert-file-name</span> <span class="nv">name</span><span class="p">)</span>
-           <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">stringp</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">args</span><span class="p">))</span>
-               <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">windows-path-convert-file-name</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">args</span><span class="p">))</span>
-                     <span class="p">(</span><span class="nb">cdr</span> <span class="nv">args</span><span class="p">))</span>
-             <span class="nv">args</span><span class="p">))))</span>
-  <span class="ss">:hook</span>
-  <span class="p">(</span><span class="nv">after-init-hook</span>
-   <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-       <span class="p">(</span><span class="k">progn</span>
-         <span class="p">(</span><span class="nv">set-drvfs-alist</span><span class="p">)</span>
-         <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'my:saved-file-name-handler-alist</span>
-                      <span class="p">(</span><span class="nb">cons</span> <span class="nv">windows-path-style-regexp</span>
-                            <span class="ss">'windows-path-map-drive-hook-function</span><span class="p">)))))</span>
-  <span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-nil" data-lang="nil">;; nothing - -;</code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> 使う気になったら何かしなければならない, 気がしている</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1466,7 +1253,7 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
    <span class="c1">;; 日曜開始</span>
    <span class="p">(</span><span class="nv">calendar-week-start-day</span>   <span class="o">.</span> <span class="mi">0</span><span class="p">))</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'calendar</span>
+  <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="s">"calendar"</span>
     <span class="p">(</span><span class="nv">leaf</span> <span class="nv">japanese-holidays</span>
       <span class="ss">:ensure</span> <span class="no">t</span>
       <span class="ss">:custom</span>
@@ -1630,17 +1417,14 @@ CJK 以外の East Asian Ambiguosと絵文字も2文字幅にするようにし�
 </div>
 <div>
 <h2 id="orgd9b46f9c">
-<code>elscreen</code>: バッファー用 GNU screen もどき</h2>
+<span class="done SOMEDAY">SOMEDAY</span> <code>elscreen</code>: バッファー用 GNU screen もどき <code>[0/2]</code>
+</h2>
 <div class="outline-text-2" id="text-orgd9b46f9c">
 <p>
-Emacs &gt;= 27 から <code>tab-bar-mode</code> があるので, それに乗り換えた.
-以下は Emacs &lt;= 26 のお話.
 emacs-jpのfolk版を利用中.
 modeline の表示そのものは無効化しておく．
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;;</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">elscreen</span>
-  <span class="ss">:emacs&lt;</span> <span class="s">"27"</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">elscreen</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">elscreen-display-tab</span>             <span class="o">.</span> <span class="mi">8</span><span class="p">)</span>
@@ -1654,6 +1438,43 @@ modeline の表示そのものは無効化しておく．
 <span class="c1">;; (leaf elscreen-multi-term</span>
 <span class="c1">;;   :el-get  wamei/elscreen-multi-term</span>
 <span class="c1">;;  )</span></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> Debian パッケージ版は古い．更新すべき</li>
+</ul>
+
+<p>
+ついでに elscreen⇔ zsh での連携を設定しておく.
+詳細は
+</p>
+<ul class="org-ul">
+<li><a href="https://masutaka.net/chalow/2011-09-28-1.html">ターミナルの zsh と Emacs を風のように駆け抜ける！</a></li>
+<li><a href="http://syohex.hatenablog.com/entry/20111026/1319606395">cdeを改良</a></li>
+<li><a href="https://qiita.com/__hage/items/2dd732b4dd68e124e8bd">cdeとelscreen-separate-buffer-listの相性が悪い</a></li>
+</ul>
+<p>
+などを参照のこと.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">return-current-working-directory-to-shell</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">expand-file-name</span>
+   <span class="p">(</span><span class="nv">with-current-buffer</span>
+       <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">featurep</span> <span class="ss">'elscreen</span><span class="p">)</span>
+           <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">frame-confs</span> <span class="p">(</span><span class="nv">elscreen-get-frame-confs</span> <span class="p">(</span><span class="nv">selected-frame</span><span class="p">)))</span>
+                  <span class="p">(</span><span class="nv">num</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">assoc</span> <span class="ss">'screen-history</span> <span class="nv">frame-confs</span><span class="p">)))</span>
+                  <span class="p">(</span><span class="nv">cur-window-conf</span>
+                   <span class="p">(</span><span class="nb">assoc</span> <span class="ss">'window-configuration</span>
+                          <span class="p">(</span><span class="nb">assoc</span> <span class="nv">num</span> <span class="p">(</span><span class="nb">assoc</span> <span class="ss">'screen-property</span> <span class="nv">frame-confs</span><span class="p">))))</span>
+                  <span class="p">(</span><span class="nv">marker</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">2</span> <span class="nv">cur-window-conf</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nv">marker-buffer</span> <span class="nv">marker</span><span class="p">))</span>
+         <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span>
+              <span class="p">(</span><span class="nb">assoc</span> <span class="ss">'buffer-list</span>
+                     <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">1</span> <span class="p">(</span><span class="nv">current-frame-configuration</span><span class="p">))))))</span>
+     <span class="nv">default-directory</span><span class="p">)))</span></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> <code>counsel-find-file</code> だと動作しないことがある. 謎</li>
+</ul>
 </div>
 </div>
 <div>
@@ -1877,7 +1698,7 @@ Enter で改行しない
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">cond</span>
  <span class="p">((</span><span class="nv">getenv</span> <span class="s">"SKKSERVER"</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">skk-server-host</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"SKKSERVER"</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">skk-server-host</span> <span class="s">"127.0.0.1"</span>
         <span class="nv">skk-server-portnum</span> <span class="s">"1178"</span>
         <span class="nv">skk-large-jisyo</span> <span class="no">nil</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'skk-search-prog-list</span>
@@ -1922,146 +1743,50 @@ minibuffer 内では強制的に skk off.
 </div>
 </div>
 <div>
-<h2 id="org3babff6c">補完: <code>ivy</code>, <code>counsel</code>,  <code>swiper</code>
+<h2 id="orge3fb8a64">補完: <code>ido</code>
 </h2>
-<div class="outline-text-2" id="text-org3babff6c">
+<div class="outline-text-2" id="text-orge3fb8a64">
 <p>
-以前は <code>ido</code> を使っていたのでまだ挙動に戸惑う事があるけれど．
+補完は <code>ido</code> が軽いし速いので好み.
+見た目がちょっと簡素すぎる気もするので、なんとか弄りたい所ではある。
 </p>
-<ul class="org-ul">
-<li>
-<a href="https://qiita.com/takaxp/items/2fde2c119e419713342b">helm を背に ivy の門を叩く - Qiita</a> を参考の事.</li>
-</ul>
 </div>
 <div>
-<h3 id="orgd0019abf">基本設定: <code>ivy</code>
-</h3>
-<div class="outline-text-3" id="text-orgd0019abf">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ivy</span>
-  <span class="ss">:emacs&gt;=</span> <span class="mf">24.5</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:blackout</span> <span class="no">t</span>
+<h3 id="orgc92613c0">
+<code>ido</code> の設定</h3>
+<div class="outline-text-3" id="text-orgc92613c0">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido</span>
   <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">flx</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ivy-hydra</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-  <span class="ss">:bind</span>
-  <span class="p">((</span><span class="ss">:ivy-minibuffer-map</span>
-    <span class="p">(</span><span class="s">"&lt;escape&gt;"</span> <span class="o">.</span> <span class="nv">minibuffer-keyboard-quit</span><span class="p">)))</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">ivy-use-virtual-buffers</span>     <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-truncate-lines</span>          <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-initial-inputs-alist</span>    <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-extra-directories</span>       <span class="o">.</span> <span class="no">nil</span><span class="p">)</span> <span class="c1">;; "." と ".." を無視</span>
-    <span class="p">(</span><span class="nv">ivy-fixed-height-minibuffer</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-height</span>                  <span class="o">.</span> <span class="mi">9</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-wrap</span>                    <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-use-selectable-prompt</span>   <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-count-format</span>            <span class="o">.</span> <span class="s">"[%d/%d] "</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-re-builders-alist</span>
-     <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="o">.</span> <span class="nv">ivy--regex-fuzzy</span><span class="p">)</span>
-         <span class="p">(</span><span class="nv">swiper</span> <span class="o">.</span> <span class="nv">ivy--regex-plus</span><span class="p">)))</span>
-    <span class="p">(</span><span class="nv">ivy-read-action-function</span> <span class="o">.</span> <span class="ss">'ivy-hydra-read-action</span><span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="org335ca4e4">補完候補の改善: <code>prescient</code>
-</h3>
-<div class="outline-text-3" id="text-org335ca4e4">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"> <span class="p">(</span><span class="nv">leaf</span> <span class="nv">prescient</span>
-   <span class="ss">:ensure</span> <span class="no">t</span>
-   <span class="ss">:commands</span> <span class="p">(</span><span class="nv">prescient-persist-mode</span><span class="p">)</span>
-   <span class="ss">:custom</span>
-   <span class="o">`</span><span class="p">((</span><span class="nv">prescient-aggressive-file-save</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-     <span class="p">(</span><span class="nv">prescient-save-file</span>
-      <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"tmp/prescient-save.el"</span> <span class="nv">user-emacs-directory</span><span class="p">)))</span>
-     <span class="p">(</span><span class="nv">prescient-filter-method</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">fuzzy</span> <span class="nv">regexp</span> <span class="nv">initialism</span><span class="p">))</span>
-     <span class="p">)</span>
-   <span class="ss">:global-minor-mode</span> <span class="nv">prescient-persist-mode</span>
-   <span class="p">)</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">ivy-prescient</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:after</span> <span class="nv">prescient</span> <span class="nv">ivy</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">ivy-prescient-retain-classic-highlighting</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">)</span>
-  <span class="ss">:global-minor-mode</span> <span class="no">t</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="org0527a687">
-<code>counsel</code>: ivy による既存コマンドの拡張</h3>
-<div class="outline-text-3" id="text-org0527a687">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">counsel</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">amx</span>
-    <span class="ss">:ensure</span> <span class="no">t</span>
-    <span class="ss">:custom</span>
-    <span class="o">`</span><span class="p">(</span><span class="c1">;; backend 'ivy or 'ido or 'auto</span>
-      <span class="p">(</span><span class="nv">amx-backend</span>           <span class="o">.</span> <span class="ss">'ivy</span><span class="p">)</span>
-      <span class="c1">;; prompt</span>
-      <span class="p">(</span><span class="nv">amx-prompt-string</span>     <span class="o">.</span> <span class="s">"amx: "</span><span class="p">)</span>
-      <span class="c1">;; keybind</span>
-      <span class="p">(</span><span class="nv">amx-show-key-bindings</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-      <span class="c1">;; 履歴</span>
-      <span class="p">(</span><span class="nv">amx-save-file</span>
-       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"amx-items"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
-      <span class="p">(</span><span class="nv">amx-history-length</span> <span class="o">.</span> <span class="mi">128</span><span class="p">))</span>
-    <span class="p">)</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">s</span> <span class="ss">:ensure</span> <span class="no">t</span> <span class="ss">:require</span> <span class="no">t</span><span class="p">)</span>
-  <span class="c1">;; @see https://github.com/abo-abo/swiper/issues/1333</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:counsel-find-file-fallback-command--enable-ivy</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nv">remove-hook</span> <span class="ss">'minibuffer-setup-hook</span>
-                 <span class="ss">'my:counsel-find-file-fallback-command--enable-ivy</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-mode</span> <span class="no">t</span><span class="p">))</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:counsel-find-file-fallback-command</span> <span class="p">()</span>
-    <span class="s">"Fallback to non-counsel version of find-file."</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">bound-and-true-p</span> <span class="nv">ivy-mode</span><span class="p">)</span>
-      <span class="p">(</span><span class="nv">ivy-mode</span> <span class="mi">-1</span><span class="p">)</span>
-      <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'minibuffer-setup-hook</span>
-                <span class="ss">'my:counsel-find-file-fallback-command--enable-ivy</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">ivy-set-action</span>
-     <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">current-path</span><span class="p">)</span>
-       <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">old-default-directory</span> <span class="nv">default-directory</span><span class="p">))</span>
-         <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">i</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">current-path</span><span class="p">)))</span>
-           <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nb">&gt;</span> <span class="nv">i</span> <span class="mi">0</span><span class="p">)</span>
-             <span class="p">(</span><span class="nb">push</span> <span class="p">(</span><span class="nb">aref</span> <span class="nv">current-path</span> <span class="p">(</span><span class="k">setq</span> <span class="nv">i</span> <span class="p">(</span><span class="nb">1-</span> <span class="nv">i</span><span class="p">)))</span> <span class="nv">unread-command-events</span><span class="p">)))</span>
-         <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">default-directory</span> <span class="s">""</span><span class="p">))</span>
-           <span class="p">(</span><span class="nv">call-interactively</span> <span class="ss">'find-file</span><span class="p">))</span>
-         <span class="p">(</span><span class="k">setq</span> <span class="nv">default-directory</span> <span class="nv">old-default-directory</span><span class="p">))))</span>
-    <span class="p">(</span><span class="nv">ivy-done</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-completing-read+</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
+  <span class="c1">;; (leaf ido-describe-bindings :ensure t)</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x C-f"</span> <span class="o">.</span> <span class="nv">ido-find-file</span><span class="p">))</span>
+  <span class="ss">:preface</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-disable-line-trucation</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nb">set</span> <span class="p">(</span><span class="nv">make-local-variable</span> <span class="ss">'truncate-lines</span><span class="p">)</span> <span class="no">nil</span><span class="p">))</span>
   <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:counsel-recentf</span> <span class="p">()</span>
-    <span class="s">"Custom: Find a file on `recentf-list' with shorten-file-path"</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-remove-tramp-from-cache</span> <span class="no">nil</span>
+    <span class="s">"Remove any TRAMP entries from `ido-dir-file-cache'.
+    This stops tramp from trying to connect to remote hosts on emacs startup,
+    which can be very annoying."</span>
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">require</span> <span class="ss">'recentf</span> <span class="no">nil</span> <span class="ss">'noerror</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">recentf-mode</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ivy-read</span> <span class="s">"Recentf: "</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">f</span><span class="p">)</span>
-                                    <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">my:shorten-file-path</span> <span class="nv">f</span> <span class="mi">68</span><span class="p">)</span> <span class="nv">f</span><span class="p">))</span>
-                                  <span class="nv">recentf-list</span><span class="p">)</span>
-              <span class="ss">:action</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">f</span><span class="p">)</span>
-                        <span class="p">(</span><span class="nv">with-ivy-window</span>
-                          <span class="p">(</span><span class="nv">find-file</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">f</span><span class="p">))))</span>
-              <span class="ss">:require-match</span> <span class="no">t</span>
-              <span class="ss">:caller</span> <span class="ss">'counsel-recentf</span><span class="p">)</span>
-    <span class="p">)</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x C-f"</span> <span class="o">.</span> <span class="nv">counsel-find-file</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">"C-x C-r"</span> <span class="o">.</span> <span class="nv">my:counsel-recentf</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">"M-x"</span>     <span class="o">.</span> <span class="nv">counsel-M-x</span><span class="p">)</span>
-         <span class="p">(</span><span class="ss">:counsel-find-file-map</span>
-          <span class="p">(</span><span class="s">"C-l"</span> <span class="o">.</span> <span class="nv">counsel-up-directory</span><span class="p">)</span>
-          <span class="p">(</span><span class="s">"C-f"</span> <span class="o">.</span> <span class="nv">my:counsel-find-file-fallback-command</span><span class="p">)</span> <span class="c1">;;</span>
-          <span class="p">))</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">counsel-yank-pop-separator</span> <span class="o">.</span> <span class="s">"\n----------\n"</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">counsel-find-file-ignore-regexp</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">rx-to-string</span> <span class="o">'</span><span class="p">(</span><span class="nb">or</span> <span class="s">"./"</span> <span class="s">"../"</span><span class="p">)</span> <span class="ss">'no-group</span><span class="p">)))</span>
-  <span class="ss">:config</span>
-  <span class="c1">;; 無視する拡張子の追加</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">ido-dir-file-cache</span>
+          <span class="p">(</span><span class="nv">cl-remove-if</span>
+           <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">string-match</span> <span class="s">"/\\(rsh\\|ssh\\|telnet\\|su\\|sudo\\|sshx\\|krlogin\\|ksu\\|rcp\\|scp\\|rsync\\|scpx\\|fcp\\|nc\\|ftp\\|smb\\|adb\\):"</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">x</span><span class="p">)))</span>
+           <span class="nv">ido-dir-file-cache</span><span class="p">)))</span>
+  <span class="c1">;;</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ido-kill-emacs-hook</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nv">my:ido-remove-tramp-from-cache</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ido-save-history</span><span class="p">))</span>
+  <span class="ss">:advice</span> <span class="p">(</span><span class="ss">:override</span> <span class="nv">ido-kill-emacs-hook</span>
+                     <span class="nv">my:ido-kill-emacs-hook</span><span class="p">)</span>
+  <span class="ss">:hook</span> <span class="p">((</span><span class="nv">ido-setup-hook</span>
+          <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+              <span class="p">(</span><span class="nv">define-key</span> <span class="nv">ido-completion-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-h"</span><span class="p">)</span> <span class="ss">'ido-delete-backward-updir</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">define-key</span> <span class="nv">ido-completion-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-l"</span><span class="p">)</span> <span class="ss">'ido-delete-backward-updir</span><span class="p">)))</span>
+         <span class="p">(</span><span class="nv">ido-minibuffer-setup-hook</span> <span class="o">.</span> <span class="nv">my:ido-disable-line-trucation</span><span class="p">))</span>
+  <span class="ss">:init</span>
+  <span class="c1">;; 補完で無視する拡張子の追加．そのうち増える．</span>
   <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="nv">ext</span> <span class="nv">in</span>
            <span class="o">'</span><span class="p">(</span><span class="c1">;; TeX</span>
              <span class="s">".dvi"</span>
@@ -2085,49 +1810,167 @@ minibuffer 内では強制的に skk off.
              <span class="s">".DS_Store"</span>
              <span class="s">"._DS_Store"</span>
              <span class="p">)</span>
-           <span class="nb">do</span>
-           <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'completion-ignored-extensions</span> <span class="nv">ext</span><span class="p">))</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">counsel-find-file-ignore-regexp</span>
-        <span class="p">(</span><span class="nb">format</span> <span class="s">"\\%s\\'"</span>
-                <span class="p">(</span><span class="nv">s-replace</span> <span class="s">"/"</span> <span class="s">"\\/"</span>
-                           <span class="p">(</span><span class="nv">s-join</span> <span class="s">"\\'\\|"</span> <span class="nv">completion-ignored-extensions</span><span class="p">))))</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="orge656a4d5"><code>ivy-ghq</code></h3>
-<div class="outline-text-3" id="text-orge656a4d5">
-<p>
-<code>projectile</code> はあんまり使わなくて良い気もしている
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ivy-ghq</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"ghq"</span><span class="p">)</span>
-  <span class="ss">:el-get</span> <span class="p">(</span><span class="nv">ivy-ghq</span>
-           <span class="ss">:type</span> <span class="nv">github</span>
-           <span class="ss">:pkgname</span> <span class="s">"analyticd/ivy-ghq"</span><span class="p">)</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x f"</span> <span class="o">.</span> <span class="nv">ivy-ghq-open</span><span class="p">))</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">ivy-ghq-short-list</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="orgbc552b73">
-<code>ivy-rich</code>, <code>all-the-icons-ivy-rich</code>: 補完候補の情報を増やす</h3>
-<div class="outline-text-3" id="text-orgbc552b73">
-<p>
-現状は <code>counsel-M-x</code> に表示情報を増やすために利用している.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">all-the-icons-ivy-rich</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:global-minor-mode</span> <span class="no">t</span>
-  <span class="p">)</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">ivy-rich</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:after</span> <span class="nv">ivy</span>
+           <span class="nb">do</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'completion-ignored-extensions</span> <span class="nv">ext</span><span class="p">))</span>
   <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">ivy-rich-path-style</span> <span class="o">.</span> <span class="ss">'abbrev</span><span class="p">))</span>
-  <span class="ss">:global-minor-mode</span> <span class="no">t</span>
+  <span class="o">`</span><span class="p">(</span><span class="c1">;; prefix match 入力を先頭一致可能</span>
+    <span class="p">(</span><span class="nv">ido-enable-prefix</span>             <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="c1">;; TAB で名前の一致までその後 RET で実行</span>
+    <span class="p">(</span><span class="nv">ido-confirm-unique-completion</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;; . を prefix として扱う</span>
+    <span class="p">(</span><span class="nv">ido-enable-dot-prefix</span>         <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="c1">;; flx matching を試す際には prefix を無効化すること</span>
+    <span class="p">(</span><span class="nv">ido-enable-flex-matching</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;;</span>
+    <span class="p">(</span><span class="nv">ido-default-file-method</span>       <span class="o">.</span> <span class="ss">'selected-window</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ido-default-buffer-method</span>     <span class="o">.</span> <span class="ss">'selected-window</span><span class="p">)</span>
+    <span class="c1">;; avoid [Too Big]</span>
+    <span class="p">(</span><span class="nv">ido-max-directory-size</span>        <span class="o">.</span> <span class="mi">1000000</span><span class="p">)</span>
+    <span class="c1">;; Tramp では無効化</span>
+    <span class="p">(</span><span class="nv">ido-enable-tramp-completion</span>   <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="c1">;; ido-vertical も調べないとアカン様な.</span>
+    <span class="p">(</span><span class="nv">ido-use-faces</span>                 <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;; 拡張子には match しない</span>
+    <span class="p">(</span><span class="nv">ido-ignore-extensions</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;; 補完できない場合の挙動 ← "何もしない" は可能かな? nil?</span>
+    <span class="p">(</span><span class="nv">ido-cannot-complete-command</span>   <span class="o">.</span> <span class="ss">'ido-next-match</span><span class="p">)</span>
+    <span class="c1">;; 補完候補が無い場合に search を始める長さ ⇒ -1 で停止</span>
+    <span class="p">(</span><span class="nv">ido-auto-merge-work-directories-length</span> <span class="o">.</span> <span class="mi">-1</span><span class="p">)</span>
+    <span class="c1">;; 補完候補が無い場合に search を始める時間</span>
+    <span class="c1">;; run-with-timer に与える値なので, とりあえず長め(30分)にしておく</span>
+    <span class="p">(</span><span class="nv">ido-auto-merge-delay-time</span>     <span class="o">.</span> <span class="mi">1800</span><span class="p">)</span>
+    <span class="c1">;; 補完結果の保存</span>
+    <span class="p">(</span><span class="nv">ido-save-directory-list-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"ido.last"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">ido-mode</span> <span class="no">t</span><span class="p">)</span>
+  <span class="c1">;; (ido-everywhere t)   ; &lt;- 過去の選択を覚えている奴と相性悪い.</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org72b78bcc">
+<code>flx-ido</code>: flex match の強化</h3>
+<div class="outline-text-3" id="text-org72b78bcc">
+<p>
+曖昧マッチが非常に直感的になった．地味に便利で手放せない．
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">flx-ido</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">flx-ido-use-faces</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">flx-ido-threshold</span> <span class="o">.</span> <span class="mi">10000</span><span class="p">))</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">flx-ido-mode</span> <span class="mi">1</span><span class="p">)))</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="orge285b835">
+<code>ido-flx-with-migemo</code>: flx + migemo</h3>
+<div class="outline-text-3" id="text-orge285b835">
+<p>
+これは便利だ
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-flex-with-migemo</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"cmigemo"</span><span class="p">)</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:after</span> <span class="p">(</span><span class="nv">flx</span> <span class="nv">migemo</span><span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">ido-flex-with-migemo-mode</span><span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="orgba1f040e">
+<span class="done SOMEDAY">SOMEDAY</span> <code>ido-vertical-mode</code>: 候補を縦に並べて表示 <code>[/]</code>
+</h3>
+<div class="outline-text-3" id="text-orgba1f040e">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-vertical-mode</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:after</span> <span class="nv">all-the-icons-in-terminal</span>
+  <span class="ss">:preface</span>
+  <span class="p">(</span><span class="nv">defface</span> <span class="nv">my:ido-indicator</span>
+    <span class="o">'</span><span class="p">((((</span><span class="nc">class</span> <span class="nv">color</span><span class="p">)</span> <span class="p">(</span><span class="nv">background</span> <span class="nv">light</span><span class="p">))</span> <span class="ss">:foreground</span> <span class="s">"#FFBF7F"</span><span class="p">)</span>
+      <span class="p">(((</span><span class="nc">class</span> <span class="nv">color</span><span class="p">)</span> <span class="p">(</span><span class="nv">background</span> <span class="nv">dark</span><span class="p">))</span> <span class="ss">:foreground</span> <span class="s">"#FFBF7F"</span><span class="p">))</span>
+    <span class="s">"Face used by Ido highlighting the arrow."</span><span class="p">)</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">(</span><span class="c1">;; 補完候補数の表示</span>
+    <span class="p">(</span><span class="nv">ido-vertical-show-count</span>  <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="c1">;; キーバインド</span>
+    <span class="p">(</span><span class="nv">ido-vertical-define-keys</span> <span class="o">.</span> <span class="ss">'C-n-C-p-up-down-left-right</span><span class="p">)</span>
+    <span class="c1">;; minibuffer の高さ制限</span>
+    <span class="p">(</span><span class="nv">ido-max-window-height</span>    <span class="o">.</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="c1">;; 候補選択表示のカスタマイズ</span>
+    <span class="p">(</span><span class="nv">ido-vertical-indicator</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nb">format</span> <span class="s">"%s"</span>
+                <span class="p">(</span><span class="nv">all-the-icons-faicon</span> <span class="s">"hand-o-right"</span>
+                                      <span class="ss">:face</span> <span class="ss">'my:ido-indicator</span><span class="p">)))</span>
+    <span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">ido-vertical-mode</span> <span class="mi">1</span><span class="p">)))</span>
+  <span class="p">)</span></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> Debian パッケージは古い．更新すること</li>
+</ul>
+</div>
+</div>
+<div>
+<h3 id="org28528ad3"><code>amx</code></h3>
+<div class="outline-text-3" id="text-org28528ad3">
+<p>
+M-x を ido で. 以前は smex を利用していたが, amx に乗り換えた.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">amx</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"M-x"</span> <span class="o">.</span> <span class="nv">amx</span><span class="p">))</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">(</span><span class="c1">;; backend 'ivy or 'ido or 'auto</span>
+    <span class="p">(</span><span class="nv">amx-backend</span> <span class="o">.</span> <span class="ss">'ido</span><span class="p">)</span>
+    <span class="c1">;; prompt</span>
+    <span class="p">(</span><span class="nv">amx-prompt-string</span> <span class="o">.</span> <span class="s">"amx: "</span><span class="p">)</span>
+    <span class="c1">;; keybind</span>
+    <span class="p">(</span><span class="nv">amx-show-key-bindings</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+    <span class="c1">;; 履歴</span>
+    <span class="p">(</span><span class="nv">amx-save-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"amx-items"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">amx-history-length</span> <span class="o">.</span> <span class="mi">128</span><span class="p">))</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org56240c5e">
+<code>ido-recentf</code>: recentf を ido で</h3>
+<div class="outline-text-3" id="text-org56240c5e">
+<p>
+"recentf-list" の結果を整形して, minibuffer に納まる様に縮小したり
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*ido-recentf-open</span>
+  <span class="ss">:preface</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">ido-recentf-open</span> <span class="p">()</span>
+    <span class="s">"Use `ido-completing-read' to \\[find-file] a recent file"</span>
+    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">files</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">f</span><span class="p">)</span>
+                           <span class="p">(</span><span class="nb">cons</span> <span class="p">(</span><span class="nv">my:shorten-file-path</span> <span class="nv">f</span> <span class="mi">70</span><span class="p">)</span> <span class="nv">f</span><span class="p">))</span>
+                         <span class="nv">recentf-list</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">selected</span> <span class="p">(</span><span class="nv">ido-completing-read</span> <span class="s">"Files: "</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#'</span><span class="nb">car</span> <span class="nv">files</span><span class="p">))))</span>
+        <span class="p">(</span><span class="nv">find-file</span> <span class="p">(</span><span class="nv">assoc-default</span> <span class="nv">selected</span> <span class="nv">files</span><span class="p">)))))</span>
+  <span class="ss">:bind</span> <span class="p">(</span><span class="s">"C-x C-r"</span> <span class="o">.</span> <span class="nv">ido-recentf-open</span><span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org7eb97621">ido-ghq</h3>
+<div class="outline-text-3" id="text-org7eb97621">
+<p>
+ghq list を ido で選んで dired で開く
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ido-ghq</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"ghq"</span><span class="p">)</span>
+  <span class="ss">:el-get</span> <span class="nv">uwabami/ido-ghq</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x f"</span> <span class="o">.</span> <span class="nv">ido-ghq-open</span><span class="p">))</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">ido-ghq-short-list</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -2389,7 +2232,7 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
     <span class="ss">'mail-send-hook</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <p>
-割と <code>/etc/emacs/site-start.d/65wl-beta.el</code> と重複している気がするが.
+割と <code>/etc/emacs/site-start.d/65wl-beta.el</code> と重複している気がするが…
 </p>
 </div>
 </div>
@@ -2924,10 +2767,10 @@ Gmail の「スター付き」フォルダでも有効
 スレッドの幅の指定
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">wl-thread-indent-level</span> <span class="mi">2</span><span class="p">)</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">wl-thread-have-younger-brother-str</span> <span class="s">"+"</span> <span class="c1">;; "├" ;; "+"</span>
-      <span class="nv">wl-thread-youngest-child-str</span> <span class="s">"+"</span> <span class="c1">;; "└" ;; "+"</span>
-      <span class="nv">wl-thread-vertical-str</span> <span class="s">"|"</span><span class="c1">;; "│" ;; "|"</span>
-      <span class="nv">wl-thread-horizontal-str</span> <span class="s">"-"</span><span class="c1">;; "─" ;; "-"</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">wl-thread-have-younger-brother-str</span> <span class="s">"+"</span> <span class="c1">;; "├"</span>
+      <span class="nv">wl-thread-youngest-child-str</span> <span class="s">"+"</span> <span class="c1">;; "└"</span>
+      <span class="nv">wl-thread-vertical-str</span> <span class="s">"|"</span> <span class="c1">;; "│"</span>
+      <span class="nv">wl-thread-horizontal-str</span> <span class="s">"-"</span> <span class="c1">;; "─"</span>
       <span class="nv">wl-thread-space-str</span> <span class="s">" "</span><span class="p">)</span></code></pre></figure>
 <p>
 以下の二つの設定を有効にするには
@@ -2975,25 +2818,22 @@ Gmail の「スター付き」フォルダでも有効
 <div>
 <h5 id="org9b1eb3e9">クォートされた文字列もデコードする</h5>
 <div class="outline-text-5" id="text-org9b1eb3e9">
-<p>
-昔はあれこれ設定してたけど, 今は良いのかな?
-とりあえず, デコードする長さを default の 1000 から二桁増やしておく.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">mime-field-decoding-max-size</span> <span class="mi">100000</span><span class="p">)</span>
-<span class="c1">;; (setq mime-header-lexical-analyzer</span>
-<span class="c1">;;       '(</span>
-<span class="c1">;;         eword-analyze-quoted-string</span>
-<span class="c1">;;         eword-analyze-domain-literal</span>
-<span class="c1">;;         eword-analyze-comment</span>
-<span class="c1">;;         eword-analyze-spaces</span>
-<span class="c1">;;         eword-analyze-special</span>
-<span class="c1">;;         eword-analyze-encoded-word</span>
-<span class="c1">;;         eword-analyze-atom))</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">mime-header-lexical-analyzer</span>
+      <span class="o">'</span><span class="p">(</span>
+        <span class="c1">;; eword-analyze-quoted-string</span>
+        <span class="nv">eword-analyze-domain-literal</span>
+        <span class="nv">eword-analyze-comment</span>
+        <span class="nv">eword-analyze-spaces</span>
+        <span class="nv">eword-analyze-special</span>
+        <span class="nv">eword-analyze-encoded-word</span>
+        <span class="nv">eword-analyze-atom</span><span class="p">))</span>
+<span class="c1">;; (mime-set-field-decoder</span>
+<span class="c1">;;  'From nil 'eword-decode-and-unfold-unstructured-field-body)</span>
+<span class="c1">;; (mime-set-field-decoder</span>
+<span class="c1">;;  'To nil 'eword-decode-and-unfold-unstructured-field-body)</span>
 <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'eword-decode</span>
   <span class="p">(</span><span class="nv">mime-set-field-decoder</span>
    <span class="ss">'From</span> <span class="no">nil</span> <span class="ss">'eword-decode-and-unfold-unstructured-field-body</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">mime-set-field-decoder</span>
-   <span class="ss">'CC</span> <span class="no">nil</span> <span class="ss">'eword-decode-and-unfold-unstructured-field-body</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">mime-set-field-decoder</span>
    <span class="ss">'To</span> <span class="no">nil</span> <span class="ss">'eword-decode-and-unfold-unstructured-field-body</span><span class="p">))</span></code></pre></figure>
 </div>
@@ -3328,15 +3168,6 @@ face の色付け
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">wl-default-draft-cite-decorate-author</span> <span class="no">nil</span><span class="p">)</span></code></pre></figure>
 </div>
 <div>
-<h5 id="orgc8e9533f">ドラフトの自動保存の無効化</h5>
-<div class="outline-text-5" id="text-orgc8e9533f">
-<p>
-偶に暴発している様な…? elscreen のせいかしら.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">wl-auto-save-drafts-interval</span> <span class="no">nil</span><span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
 <h5 id="orgccd69748">メール本文の文字コード</h5>
 <div class="outline-text-5" id="text-orgccd69748">
 <p>
@@ -3351,11 +3182,7 @@ face の色付け
 <div>
 <h5 id="org62a575b3">draft mode で orgtbl を有効に</h5>
 <div class="outline-text-5" id="text-org62a575b3">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'wl-draft-mode-hook</span>
-          <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-            <span class="p">(</span><span class="k">progn</span>
-              <span class="p">(</span><span class="nb">require</span> <span class="ss">'org-table</span><span class="p">)</span>
-              <span class="nf">#'</span><span class="nv">turn-on-orgtbl</span><span class="p">)))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'wl-draft-mode-hook</span> <span class="ss">'turn-on-orgtbl</span><span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -3366,18 +3193,17 @@ face の色付け
 設定は以下の通り. Mew 風に <code>C-c &lt;tab&gt;</code> で signature を挿入するようにしている
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">c-sig</span>
-  <span class="ss">:commands</span> <span class="nv">insert-signature-eref</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nv">eval-when-compile</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'wl</span><span class="p">))</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">sig-insert-end</span> <span class="no">t</span>
         <span class="nv">sig-save-to-sig-name-alist</span> <span class="no">nil</span>
         <span class="nv">message-signature-file</span> <span class="no">nil</span><span class="p">)</span>
-  <span class="p">)</span>
-<span class="p">(</span><span class="nv">define-key</span> <span class="nv">wl-draft-mode-map</span> <span class="s">"\C-c\t"</span> <span class="ss">'insert-signature-eref</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'wl-draft-mode-hook</span>
-          <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-            <span class="p">(</span><span class="nv">define-key</span> <span class="p">(</span><span class="nv">current-local-map</span><span class="p">)</span> <span class="s">"\C-c\C-w"</span>
-              <span class="ss">'insert-signature-eref</span><span class="p">)))</span></code></pre></figure>
+  <span class="p">(</span><span class="nv">define-key</span> <span class="nv">wl-draft-mode-map</span> <span class="s">"\C-c\t"</span> <span class="ss">'insert-signature-eref</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'wl-draft-mode-hook</span>
+            <span class="o">'</span><span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+               <span class="p">(</span><span class="nv">define-key</span> <span class="p">(</span><span class="nv">current-local-map</span><span class="p">)</span> <span class="s">"\C-c\C-w"</span>
+                 <span class="ss">'insert-signature-eref</span><span class="p">)))</span>
+  <span class="p">)</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -3593,7 +3419,7 @@ Major modeとの衝突があるので止めた方が良い, らしい．
          <span class="p">(</span><span class="s">"C-x n w"</span> <span class="o">.</span> <span class="nv">widen</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"C-c a"</span>   <span class="o">.</span> <span class="nv">org-agenda</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"C-x m"</span>   <span class="o">.</span> <span class="nv">org-capture</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">"C-x M"</span>   <span class="o">.</span> <span class="nv">org-journal-new-entry</span><span class="p">)</span>
+         <span class="p">(</span><span class="s">"C-x M"</span>   <span class="o">.</span> <span class="nv">my:org-journal-new-entry</span><span class="p">)</span>
          <span class="p">)</span>
   <span class="ss">:advice</span>
   <span class="p">(</span><span class="ss">:before</span> <span class="nv">org-calendar-holiday</span>
@@ -3682,12 +3508,6 @@ Major modeとの衝突があるので止めた方が良い, らしい．
 <h3 id="org67465ee0">Org-Id</h3>
 <div class="outline-text-3" id="text-org67465ee0">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-id</span>
-  <span class="ss">:commands</span>
-  <span class="p">(</span><span class="nv">my:add-custom-id</span>
-   <span class="nv">my:get-custom-id</span>
-   <span class="nv">my:org-custom-id-get</span>
-   <span class="nv">my:delete-all-id-in-file</span>
-   <span class="nv">my:org-id-add-to-headlines-in-file</span><span class="p">)</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-macs</span> <span class="ss">:require</span> <span class="no">t</span><span class="p">)</span>
   <span class="ss">:custom</span>
@@ -3748,11 +3568,7 @@ See https://writequit.org/articles/emacs-org-mode-generate-ids.html"</span>
         <span class="p">(</span><span class="nv">org-map-entries</span>
          <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">my:org-custom-id-get</span> <span class="p">(</span><span class="nv">point</span><span class="p">)</span> <span class="ss">'create</span><span class="p">))))))</span>
   <span class="c1">;;</span>
-  <span class="ss">:hook</span> <span class="p">(</span><span class="nv">before-save-hook</span>
-         <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-             <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nb">eq</span> <span class="nv">major-mode</span> <span class="ss">'org-mode</span><span class="p">)</span>
-                        <span class="p">(</span><span class="nb">eq</span> <span class="nv">buffer-read-only</span> <span class="no">nil</span><span class="p">))</span>
-               <span class="p">(</span><span class="nv">my:org-id-add-to-headlines-in-file</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'before-save-hook</span> <span class="ss">'my:org-id-add-to-headlines-in-file</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -3790,7 +3606,42 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 なんて事もやっている．元ネタは <a href="https://julien.danjou.info/blog/2010/org-mode-and-holidays">Org-mode and holidays</a>
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-agenda</span>
-  <span class="ss">:commands</span> <span class="p">(</span><span class="nv">org-agenda</span><span class="p">)</span>
+  <span class="ss">:commands</span> <span class="nv">org-agenda</span>
+  <span class="c1">;; :custom</span>
+  <span class="c1">;; (;; day or week</span>
+  <span class="c1">;;  (org-agenda-span              . 'day)</span>
+  <span class="c1">;;  ;; YY/MM/DD (曜)</span>
+  <span class="c1">;;  (org-agenda-format-date       . "%Y/%m/%d (%a)")</span>
+  <span class="c1">;;  ;; 日曜始まり</span>
+  <span class="c1">;;  (org-agenda-start-on-weekday  . 0)</span>
+  <span class="c1">;;  (org-agenda-weekend-days      . '(0))</span>
+  <span class="c1">;;  ;; 繰り返し日付も表示</span>
+  <span class="c1">;;  (org-agenda-repeating-timestampo-show-all . t)</span>
+  <span class="c1">;;  ;; 表示関数</span>
+  <span class="c1">;;  ;; (org-agenda-day-face-function . 'my:org-agenda-day-face-function)</span>
+  <span class="c1">;;  ;; GTD 用の設定</span>
+  <span class="c1">;;  (org-agenda-custom-commands</span>
+  <span class="c1">;;   . '(</span>
+  <span class="c1">;;       ("n" "agenda and all TODO list"</span>
+  <span class="c1">;;        (</span>
+  <span class="c1">;;         (agenda ""</span>
+  <span class="c1">;;                 ((org-agenda-ndays 1)</span>
+  <span class="c1">;;                  (org-agenda-entry-types '(:timestamp :sexp))))</span>
+  <span class="c1">;;         (todo "TODO"</span>
+  <span class="c1">;;               ((org-agenda-prefix-format " %i %-22:c")))</span>
+  <span class="c1">;;         (todo "新規|着手|進行中|確認"</span>
+  <span class="c1">;;               ((org-agenda-prefix-format " %i %-22:c")))</span>
+  <span class="c1">;;         (todo "WAIT"</span>
+  <span class="c1">;;               ((org-agenda-prefix-format " %i %-22:c")))</span>
+
+  <span class="c1">;;         (todo "SOMEDAY"</span>
+  <span class="c1">;;               ((org-agenda-prefix-format " %i %-22:c")))</span>
+  <span class="c1">;;         ))</span>
+  <span class="c1">;;       ("N" "All memo entry"</span>
+  <span class="c1">;;        (;;</span>
+  <span class="c1">;;         (todo "MEMO")</span>
+  <span class="c1">;;         ))</span>
+  <span class="c1">;;       )))</span>
   <span class="ss">:defer-config</span>
   <span class="p">(</span><span class="nv">defface</span> <span class="nv">my:org-agenda-date-saturday</span>
     <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:foreground</span> <span class="s">"#7FBFFF"</span> <span class="ss">:bold</span> <span class="no">t</span> <span class="p">)))</span>
@@ -3963,23 +3814,22 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-journal</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
            <span class="p">(</span><span class="nb">&gt;=</span> <span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">))</span>
-  <span class="c1">;; :commands my:org-journal-new-entry</span>
-  <span class="ss">:commands</span> <span class="nv">org-journal-new-entry</span>
-  <span class="c1">;; :bind ((:org-journal-mode-map</span>
-  <span class="c1">;;         ("C-c C-c" . my:org-journal-entry-save-and-exit)))</span>
+  <span class="ss">:commands</span> <span class="nv">my:org-journal-new-entry</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="ss">:org-journal-mode-map</span>
+          <span class="p">(</span><span class="s">"C-c C-c"</span> <span class="o">.</span> <span class="nv">my:org-journal-entry-save-and-exit</span><span class="p">)))</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:init</span>
-  <span class="c1">;; (defun my:org-journal-new-entry (prefix &amp;optional time)</span>
-  <span class="c1">;;   "Add new journal entry on new elscreen"</span>
-  <span class="c1">;;   (interactive "P")</span>
-  <span class="c1">;;   (elscreen-create)</span>
-  <span class="c1">;;   (org-journal-new-entry nil time))</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-journal-new-entry</span> <span class="p">(</span><span class="nv">prefix</span> <span class="k">&amp;optional</span> <span class="nb">time</span><span class="p">)</span>
+    <span class="s">"Add new journal entry on new elscreen"</span>
+    <span class="p">(</span><span class="nv">interactive</span> <span class="s">"P"</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">elscreen-create</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-journal-new-entry</span> <span class="no">nil</span> <span class="nb">time</span><span class="p">))</span>
   <span class="c1">;;</span>
-  <span class="c1">;; (defun my:org-journal-entry-save-and-exit ()</span>
-  <span class="c1">;;   "Save journal entry and close elscreen buffer"</span>
-  <span class="c1">;;   (interactive)</span>
-  <span class="c1">;;   (save-buffer)</span>
-  <span class="c1">;;   (elscreen-kill))</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-journal-entry-save-and-exit</span> <span class="p">()</span>
+    <span class="s">"Save journal entry and close elscreen buffer"</span>
+    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">save-buffer</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">elscreen-kill</span><span class="p">))</span>
   <span class="ss">:hook</span>
   <span class="p">((</span><span class="nv">org-journal-mode-hook</span>
     <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span><span class="p">()</span>
@@ -4171,7 +4021,7 @@ ToDo管理に Trello を使い始めたので, 設定
            <span class="ss">:type</span> <span class="nv">github</span>
            <span class="ss">:pkgname</span> <span class="s">"uwabami/org-wiki"</span><span class="p">)</span>
   <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">org-wiki-location</span>     <span class="o">.</span> <span class="s">"~/Public/cc-env"</span><span class="p">)</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-wiki-location</span>    <span class="o">.</span> <span class="s">"~/Public/cc-env"</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-wiki-publish-root</span> <span class="o">.</span> <span class="s">"{{site.url}}/cc-env/"</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-wiki-template</span>
      <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">concat</span> <span class="s">"#+TITLE: %n\n"</span>
@@ -4399,7 +4249,7 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
 <h3 id="org429f5b00">git{attributes,config,ignore}-mode, git-commit</h3>
 <div class="outline-text-3" id="text-org429f5b00">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*git</span>
-  <span class="ss">:emacs&gt;=</span> <span class="mi">25</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nb">&gt;=</span> <span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">)</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">git-commit</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">gitattributes-mode</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
@@ -4430,7 +4280,7 @@ magit は Emacs の Git Frontend.
       <span class="p">(</span><span class="nv">transient-force-fixed-pitch</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
     <span class="p">)</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">magit-completing-read-function</span> <span class="ss">'ivy</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">magit-completing-read-function</span> <span class="ss">'ido</span>
         <span class="nv">magit-refs-show-commit-count</span>   <span class="ss">'all</span>
         <span class="nv">magit-log-buffer-file-locked</span>   <span class="no">t</span>
         <span class="nv">magit-revision-show-gravatars</span>  <span class="no">nil</span>
@@ -4457,7 +4307,7 @@ Gitub/Gitlab と Magit の連携
 飽きたら止めるかもしれないけれど.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">git-gutter+</span>
-  <span class="ss">:emacs&gt;=</span> <span class="mi">25</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nb">&gt;=</span> <span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">)</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:blackout</span> <span class="o">`</span><span class="p">((</span><span class="nv">git-gutter+-mode</span>
                <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nb">format</span> <span class="s">"%s"</span> <span class="p">(</span><span class="nv">all-the-icons-octicon</span> <span class="s">"git-merge"</span><span class="p">))))</span>
@@ -4494,7 +4344,8 @@ Gitub/Gitlab と Magit の連携
 </div>
 </div>
 <div>
-<h2 id="org935a4dbf">言語毎の補完: <code>company-mode</code>
+<h2 id="org935a4dbf">
+<span class="done SOMEDAY">SOMEDAY</span> 言語毎の補完: <code>company-mode</code>
 </h2>
 <div class="outline-text-2" id="text-org935a4dbf">
 <p>
@@ -4509,12 +4360,22 @@ Gitub/Gitlab と Magit の連携
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">company</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:blackout</span> <span class="no">t</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">edit-category-table-for-company-dabbrev</span> <span class="p">(</span><span class="k">&amp;optional</span> <span class="nv">table</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">define-category</span> <span class="nv">?s</span> <span class="s">"word constituents for company-dabbrev"</span> <span class="nv">table</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">i</span> <span class="mi">0</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="nv">i</span> <span class="mi">128</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">equal</span> <span class="nv">?w</span> <span class="p">(</span><span class="nv">char-syntax</span> <span class="nv">i</span><span class="p">))</span>
+            <span class="p">(</span><span class="nv">modify-category-entry</span> <span class="nv">i</span> <span class="nv">?s</span> <span class="nv">table</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">modify-category-entry</span> <span class="nv">i</span> <span class="nv">?s</span> <span class="nv">table</span> <span class="no">t</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">setq</span> <span class="nv">i</span> <span class="p">(</span><span class="nb">1+</span> <span class="nv">i</span><span class="p">)))))</span>
+  <span class="p">(</span><span class="nv">edit-category-table-for-company-dabbrev</span><span class="p">)</span>
+  <span class="c1">;; (add-hook 'TeX-mode-hook 'edit-category-table-for-company-dabbrev) ; 下の追記参照</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">company-dabbrev-char-regexp</span> <span class="s">"\\cs"</span><span class="p">)</span>
   <span class="ss">:custom</span>
-  <span class="p">((</span><span class="nv">company-require-match</span>             <span class="o">.</span> <span class="ss">'never</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">company-idle-delay</span>                <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">company-selection-wrap-around</span>     <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">company-tooltip-align-annotations</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-   <span class="p">(</span><span class="nv">company-minimum-prefix-length</span>     <span class="o">.</span> <span class="mi">4</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">company-idle-delay</span>            <span class="o">.</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">company-selection-wrap-around</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">company-minimum-prefix-length</span> <span class="o">.</span> <span class="mi">4</span><span class="p">)</span>
    <span class="c1">;; disable some noisy default backends</span>
    <span class="p">(</span><span class="nv">company-backends</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="nv">company-files</span>
                          <span class="nv">company-capf</span>
@@ -4539,31 +4400,7 @@ Gitub/Gitlab と Magit の連携
     <span class="p">(</span><span class="nv">minibuffer-setup-hook</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
                                 <span class="p">(</span><span class="nv">company-mode</span> <span class="mi">-1</span><span class="p">)))</span>
     <span class="p">)</span>
-  <span class="p">)</span>
-<span class="c1">;; (leaf company-statistics</span>
-<span class="c1">;;   :disabled t</span>
-<span class="c1">;;   :ensure t</span>
-<span class="c1">;;   :custom</span>
-<span class="c1">;;   `((company-statistics-size . 2000)</span>
-<span class="c1">;;     (company-statistics-file</span>
-<span class="c1">;;      . ,(expand-file-name "company-statistics-cache.el" my:d:tmp))</span>
-<span class="c1">;;     (company-transformers</span>
-<span class="c1">;;      . (company-sort-by-statistics company-sort-by-backed-importance)))</span>
-<span class="c1">;;   :config</span>
-<span class="c1">;;   (company-statistics-mode)</span>
-<span class="c1">;;   )</span>
-  <span class="c1">;; :init</span>
-  <span class="c1">;; (defun edit-category-table-for-company-dabbrev (&amp;optional table)</span>
-  <span class="c1">;;   (define-category ?s "word constituents for company-dabbrev" table)</span>
-  <span class="c1">;;   (let ((i 0))</span>
-  <span class="c1">;;     (while (&lt; i 128)</span>
-  <span class="c1">;;       (if (equal ?w (char-syntax i))</span>
-  <span class="c1">;;           (modify-category-entry i ?s table)</span>
-  <span class="c1">;;         (modify-category-entry i ?s table t))</span>
-  <span class="c1">;;       (setq i (1+ i)))))</span>
-  <span class="c1">;; (edit-category-table-for-company-dabbrev)</span>
-  <span class="c1">;; ;; (add-hook 'TeX-mode-hook 'edit-category-table-for-company-dabbrev) ; 下の追記参照</span>
-  <span class="c1">;; (setq company-dabbrev-char-regexp "\\cs")</span></code></pre></figure>
+  <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
 <li class="on">
 <code>[X]</code> <a href="https://github.com/TheBB/company-reftex">TheBB/company-reftex</a>
@@ -4590,10 +4427,10 @@ Gitub/Gitlab と Magit の連携
   <span class="o">`</span><span class="p">((</span><span class="nv">yas-indent-line</span>  <span class="o">.</span> <span class="ss">'fixed</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">yas-snippet-dirs</span> <span class="o">.</span> <span class="o">'</span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"snippets"</span> <span class="nv">my:d:share</span><span class="p">))))</span>
   <span class="ss">:hook</span> <span class="p">(</span><span class="nv">after-init-hook</span> <span class="o">.</span> <span class="nv">yas-global-mode</span><span class="p">)</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="ss">:yas-keymap</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="nv">yas-keymap</span>
           <span class="p">(</span><span class="s">"C-&lt;tab&gt;"</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
           <span class="p">(</span><span class="s">"&lt;tab&gt;"</span>   <span class="o">.</span> <span class="no">nil</span><span class="p">))</span>  <span class="c1">; for company</span>
-         <span class="p">(</span><span class="ss">:yas-minor-mode-map</span>
+         <span class="p">(</span><span class="nv">yas-minor-mode-map</span>
           <span class="p">(</span><span class="s">"&lt;tab&gt;"</span>   <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
           <span class="p">(</span><span class="s">"C-&lt;tab&gt;"</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
           <span class="p">(</span><span class="s">"C-c y e"</span> <span class="o">.</span> <span class="nv">yas-expand</span><span class="p">)</span>
@@ -4623,7 +4460,7 @@ on-the-fly syntax checker.
 <code>flycheck</code> はいろいろやりすぎてて私には合わない.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">flymake</span>
-  <span class="ss">:emacs&lt;=</span> <span class="mf">26.1</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nb">&lt;=</span> <span class="mf">26.1</span> <span class="p">(</span><span class="nv">string-to-number</span> <span class="nv">emacs-version</span><span class="p">))</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="p">)</span></code></pre></figure>
 <ul class="org-ul">
@@ -4641,13 +4478,13 @@ on-the-fly syntax checker.
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">lsp-print-io</span>             <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">lsp-trace</span>                <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">lsp-print-performance</span>    <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">lsp-auto-guess-root</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">lsp-document-sync-method</span> <span class="o">.</span> <span class="ss">'incremental</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">lsp-response-timeout</span>     <span class="o">.</span> <span class="mi">5</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">lsp-prefer-flymake</span>       <span class="o">.</span><span class="ss">'flymake</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">lsp-session-file</span>         <span class="o">.,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"lsp-session-v1"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+   <span class="p">(</span><span class="nv">lsp-trace</span>                <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">lsp-print-performance</span>    <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">lsp-auto-guess-root</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">lsp-document-sync-method</span> <span class="o">.</span> <span class="ss">'incremental</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">lsp-response-timeout</span>     <span class="o">.</span> <span class="mi">5</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">lsp-prefer-flymake</span>       <span class="o">.</span><span class="ss">'flymake</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">lsp-session-file</span>         <span class="o">.,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"lsp-session-v1"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
    <span class="p">)</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">lsp-ui</span>
@@ -4692,7 +4529,7 @@ on-the-fly syntax checker.
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">auctex</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"uplatex"</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"latexmk"</span><span class="p">))</span>
-  <span class="ss">:load-path</span> <span class="s">"/usr/share/emacs/site-lisp/auctex"</span>
+  <span class="c1">;; :ensure t</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"auctex/auto"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="k">progn</span>
@@ -4705,7 +4542,9 @@ on-the-fly syntax checker.
      <span class="p">(</span><span class="nv">reftex-toc-split-windows-horizontally</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
     <span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">company-reftex</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-  <span class="c1">;; (leaf company-auctex :ensure t)</span>
+<span class="c1">;;  (leaf company-auctex</span>
+<span class="c1">;;    :ensure t</span>
+<span class="c1">;;    )</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">auctex-latexmk</span>
     <span class="ss">:el-get</span> <span class="nv">tom-tan/auctex-latexmk</span>
     <span class="ss">:hook</span> <span class="p">(</span><span class="nv">LaTeX-mode-hook</span> <span class="o">.</span> <span class="nv">auctex-latexmk-setup</span><span class="p">)</span>
@@ -4715,17 +4554,6 @@ on-the-fly syntax checker.
           <span class="nv">japanese-LaTeX-command-default</span> <span class="s">"LaTeX"</span>
           <span class="p">)</span>
     <span class="p">)</span>
-  <span class="p">(</span><span class="nb">load</span> <span class="s">"auctex"</span> <span class="no">t</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">(</span><span class="nb">load</span> <span class="s">"preview-latex"</span> <span class="no">t</span> <span class="no">t</span><span class="p">)</span>
-  <span class="ss">:hook</span>
-  <span class="p">(</span><span class="nv">LaTeX-mode-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span><span class="p">()</span>
-                       <span class="p">(</span><span class="nv">turn-on-reftex</span><span class="p">)</span>
-                       <span class="p">(</span><span class="nv">TeX-source-correlate-mode</span><span class="p">)</span>
-                       <span class="p">(</span><span class="nv">TeX-PDF-mode</span><span class="p">)</span>
-                       <span class="p">(</span><span class="nv">LaTeX-math-mode</span><span class="p">)</span>
-                       <span class="c1">;; (company-auctex-init)</span>
-                       <span class="p">(</span><span class="nv">reftex-mode</span><span class="p">)</span>
-                       <span class="p">(</span><span class="nv">outline-minor-mode</span><span class="p">)))</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">TeX-auto-local</span>
      <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"auctex/auto"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
@@ -4737,20 +4565,29 @@ on-the-fly syntax checker.
     <span class="p">(</span><span class="nv">TeX-source-correlate-mode</span>         <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">TeX-source-correlate-start-server</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">TeX-source-correlate-method</span>       <span class="o">.</span> <span class="ss">'synctex</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">font-latex-fontify-script</span>         <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">font-latex-script-display</span>         <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">font-latex-fontify-sectioning</span>     <span class="o">.</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="c1">;; (font-latex-fontify-script         . nil)</span>
+    <span class="c1">;; (font-latex-script-display         . nil)</span>
+    <span class="c1">;; (font-latex-fontify-sectioning     . 1.0)</span>
     <span class="p">)</span>
   <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">TeX-command-output-list</span> <span class="o">'</span><span class="p">((</span><span class="s">"LaTeXMk"</span> <span class="p">(</span><span class="s">"pdf"</span><span class="p">))))</span>
   <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'tex-jp</span>
-    <span class="p">(</span><span class="k">progn</span>
-      <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">command</span> <span class="o">'</span><span class="p">(</span><span class="s">"pTeX"</span> <span class="s">"pLaTeX"</span> <span class="s">"jTeX"</span> <span class="s">"jLaTeX"</span> <span class="s">"jBibTeX"</span> <span class="s">"Mendex"</span>
-                         <span class="s">"upMendex"</span> <span class="s">"pBibTeX"</span> <span class="s">"BibTeX"</span> <span class="s">"Biber"</span> <span class="s">"Ps2pdf"</span> <span class="p">))</span>
-        <span class="p">(</span><span class="nv">delq</span> <span class="p">(</span><span class="nb">assoc</span> <span class="nv">command</span> <span class="nv">TeX-command-list</span><span class="p">)</span> <span class="nv">TeX-command-list</span><span class="p">))</span>
-      <span class="p">(</span><span class="k">setq</span> <span class="nv">TeX-command-output-list</span> <span class="o">'</span><span class="p">((</span><span class="s">"LaTeXMk"</span> <span class="p">(</span><span class="s">"pdf"</span><span class="p">)))</span>
-            <span class="nv">TeX-view-program-selection</span> <span class="o">'</span><span class="p">((</span><span class="nv">output-dvi</span> <span class="s">"xdvi"</span><span class="p">)</span>
-                                         <span class="p">(</span><span class="nv">output-pdf</span> <span class="s">"Evince"</span><span class="p">)</span>
-                                         <span class="p">(</span><span class="nv">output-html</span> <span class="s">"xdg-open"</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">command</span> <span class="o">'</span><span class="p">(</span><span class="s">"pTeX"</span> <span class="s">"pLaTeX"</span> <span class="s">"jTeX"</span> <span class="s">"jLaTeX"</span> <span class="s">"jBibTeX"</span> <span class="s">"Mendex"</span>
+                       <span class="s">"upMendex"</span> <span class="s">"pBibTeX"</span> <span class="s">"BibTeX"</span> <span class="s">"Biber"</span> <span class="s">"Ps2pdf"</span> <span class="p">))</span>
+      <span class="p">(</span><span class="nv">delq</span> <span class="p">(</span><span class="nb">assoc</span> <span class="nv">command</span> <span class="nv">TeX-command-list</span><span class="p">)</span> <span class="nv">TeX-command-list</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">TeX-view-program-selection</span> <span class="o">'</span><span class="p">((</span><span class="nv">output-dvi</span> <span class="s">"xdvi"</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nv">output-pdf</span> <span class="s">"Evince"</span><span class="p">)</span>
+                                       <span class="p">(</span><span class="nv">output-html</span> <span class="s">"xdg-open"</span><span class="p">)))</span>
+    <span class="p">)</span>
+  <span class="ss">:mode-hook</span>
+  <span class="p">((</span><span class="nv">LaTeX-mode-hook</span>
+    <span class="o">.</span> <span class="p">((</span><span class="nv">turn-on-reftex</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">TeX-source-correlate-mode</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">TeX-PDF-mode</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">LaTeX-math-mode</span><span class="p">)</span>
+       <span class="c1">;; (company-auctex-init)</span>
+       <span class="p">(</span><span class="nv">reftex-mode</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">outline-minor-mode</span><span class="p">))))</span>
   <span class="p">)</span></code></pre></figure>
 <p>
 <code>~/.latexmkrc</code> は以下の通り
@@ -4806,11 +4643,11 @@ on-the-fly syntax checker.
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">f90-indent</span>
     <span class="ss">:custom</span>
-    <span class="p">((</span><span class="nv">f90-do-indent</span>               <span class="o">.</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">;; 2? 4?</span>
-     <span class="p">(</span><span class="nv">f90-if-indent</span>               <span class="o">.</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">;; 2? 4?</span>
-     <span class="p">(</span><span class="nv">f90-type-indent</span>             <span class="o">.</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">;; 2? 4?</span>
-     <span class="p">(</span><span class="nv">f90-program-indent</span>          <span class="o">.</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">;; 2? 4?</span>
-     <span class="p">(</span><span class="nv">f90-continuation-indent</span>     <span class="o">.</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">;; 2? 4?</span>
+    <span class="p">((</span><span class="nv">f90-do-indent</span>               <span class="o">.</span> <span class="mi">2</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">f90-if-indent</span>               <span class="o">.</span> <span class="mi">2</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">f90-type-indent</span>             <span class="o">.</span> <span class="mi">2</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">f90-program-indent</span>          <span class="o">.</span> <span class="mi">2</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">f90-continuation-indent</span>     <span class="o">.</span> <span class="mi">2</span><span class="p">)</span>
      <span class="p">(</span><span class="nv">f90-directive-comment-re</span>    <span class="o">.</span> <span class="s">"!omp\\$"</span> <span class="p">)</span>
      <span class="p">(</span><span class="nv">f90-indented-comment-re</span>     <span class="o">.</span> <span class="s">"!"</span> <span class="p">)</span>
      <span class="p">(</span><span class="nv">f90-break-delimiters</span>        <span class="o">.</span> <span class="s">"[-+\\*/&gt;&lt;=,% \t]"</span><span class="p">)</span>
@@ -4838,12 +4675,13 @@ markdown自体はあまり好きじゃないんだけれど,
   <span class="ss">:preface</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:disable-electric-indent-local-mode</span> <span class="p">()</span>
     <span class="p">(</span><span class="nv">electric-indent-local-mode</span> <span class="mi">-1</span><span class="p">))</span>
-  <span class="ss">:hook</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">markdown-mode-hook</span> <span class="o">.</span> <span class="nv">my:disable-electric-indent-local-mode</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">gfm-mode-hook</span>      <span class="o">.</span> <span class="nv">my:disable-electric-indent-local-mode</span><span class="p">))</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">markdown-command</span>
-     <span class="o">.</span> <span class="s">"pandoc --from markdown_github -t html5 --mathjax --highlight-style pygments"</span><span class="p">))</span>
+  <span class="ss">:hook</span> <span class="p">((</span><span class="nv">markdown-mode-hook</span> <span class="o">.</span> <span class="nv">my:disable-electric-indent-local-mode</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">gfm-mode-hook</span>      <span class="o">.</span> <span class="nv">my:disable-electric-indent-local-mode</span><span class="p">)</span>
+         <span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">markdown-command</span>
+        <span class="s">"pandoc --from markdown_github -t html5 --mathjax --highlight-style pygments"</span>
+        <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -4884,7 +4722,7 @@ markdown自体はあまり好きじゃないんだけれど,
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">review-mode-use-skk-mode</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">reivew-use-em</span>            <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">reivew-use-em</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
     <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
@@ -4897,10 +4735,6 @@ markdown自体はあまり好きじゃないんだけれど,
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*misc-mode</span>
   <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">rd-mode</span>
-    <span class="ss">:mode</span> <span class="s">"\\.rd$"</span>
-    <span class="ss">:hook</span>
-    <span class="p">(</span><span class="nv">rd-mode-hook</span> <span class="o">.</span> <span class="nv">rd-show-other-block-all</span><span class="p">))</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">yaml-mode</span>
     <span class="ss">:ensure</span> <span class="no">t</span>
     <span class="ss">:mode</span> <span class="s">"\\(\.yml\\|\.yaml\\)"</span>
@@ -4925,9 +4759,9 @@ markdown自体はあまり好きじゃないんだけれど,
           <span class="s">"sid"</span><span class="p">)))</span>
     <span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">woman</span>
-    <span class="c1">;; :custom-face</span>
-    <span class="c1">;; ((woman-bold   . '((t (:inherit font-lock-type-face :bold t))))</span>
-    <span class="c1">;; (woman-italic . '((t (:inherit font-lock-keyword-face :underline t)))))</span>
+    <span class="ss">:custom-face</span>
+    <span class="p">((</span><span class="nv">woman-bold</span>   <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:inherit</span> <span class="nv">font-lock-type-face</span> <span class="ss">:bold</span> <span class="no">t</span><span class="p">))))</span>
+     <span class="p">(</span><span class="nv">woman-italic</span> <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:inherit</span> <span class="nv">font-lock-keyword-face</span> <span class="ss">:underline</span> <span class="no">t</span><span class="p">)))))</span>
     <span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">info-colors</span>
     <span class="ss">:ensure</span> <span class="no">t</span>
@@ -4985,75 +4819,114 @@ markdown自体はあまり好きじゃないんだけれど,
 <div class="outline-text-2" id="text-orgbf458527">
 </div>
 <div>
+<h3 id="org4c769ff7">
+<span class="done SOMEDAY">SOMEDAY</span> xterm-color <code>[0/1]</code>
+</h3>
+<div class="outline-text-3" id="text-org4c769ff7">
+<p>
+色を端末と揃える。
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">xterm-color</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">xterm-color-names</span>
+        <span class="nv">[</span><span class="s">"#000000"</span>    <span class="c1">; black</span>
+         <span class="s">"#FF4C4C"</span>    <span class="c1">; red</span>
+         <span class="s">"#4Cff4C"</span>    <span class="c1">; green</span>
+         <span class="s">"#FFFF4C"</span>    <span class="c1">; yellow</span>
+         <span class="s">"#4C4CFF"</span>    <span class="c1">; blue</span>
+         <span class="s">"#FF4CFF"</span>    <span class="c1">; magenta</span>
+         <span class="s">"#4CFFFF"</span>    <span class="c1">; cyan</span>
+         <span class="s">"#AAAAAA"</span><span class="nv">]</span>   <span class="c1">; white</span>
+        <span class="nv">xterm-color-names-bright</span>
+        <span class="nv">[</span><span class="s">"#020202"</span>    <span class="c1">; black</span>
+         <span class="s">"#FF7F7F"</span>    <span class="c1">; red</span>
+         <span class="s">"#7FFF7F"</span>    <span class="c1">; green</span>
+         <span class="s">"#FFFF7F"</span>    <span class="c1">; yellow</span>
+         <span class="s">"#7F7FFF"</span>    <span class="c1">; blue</span>
+         <span class="s">"#FF7FFF"</span>    <span class="c1">; magenta</span>
+         <span class="s">"#7FFFFF"</span>    <span class="c1">; cyan</span>
+         <span class="s">"#FFFFFF"</span><span class="nv">]</span>   <span class="c1">; white</span>
+        <span class="nv">xterm-color-use-bold-for-bright</span> <span class="no">nil</span>
+        <span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> ちゃんと効いてない, ような?</li>
+</ul>
+</div>
+</div>
+<div>
 <h3 id="org356b9857">
 <span class="done SOMEDAY">SOMEDAY</span> フォント <code>[0/1]</code>
 </h3>
 <div class="outline-text-3" id="text-org356b9857">
-<p>
-試行錯誤中. とはいえ, GUIで使う事は滅多に無いのでなかなか弄る機会が無い.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;;;###autoload</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">my:load-window-config</span> <span class="p">()</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">my:load-window-config</span> <span class="p">()</span>
   <span class="s">"load window-system specific settings"</span>
   <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">progn</span>
-    <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span>
-                        <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                        <span class="ss">:height</span> <span class="mi">135</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'fixed-pitch</span> <span class="no">nil</span>
-                        <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                        <span class="ss">:height</span> <span class="mi">135</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'variable-pitch</span> <span class="no">nil</span>
-                        <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                        <span class="ss">:height</span> <span class="mi">135</span><span class="p">)</span>
-    <span class="c1">;; Math symbols</span>
-    <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
-                      <span class="o">'</span><span class="p">(</span><span class="m">#x2200</span> <span class="o">.</span> <span class="m">#x22FF</span><span class="p">)</span>
-                      <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">135</span><span class="p">))</span>
-    <span class="c1">;; Greek</span>
-    <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
-                      <span class="o">'</span><span class="p">(</span><span class="m">#x0370</span> <span class="o">.</span> <span class="m">#x03FF</span><span class="p">)</span>
-                      <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">135</span><span class="p">))</span>
-    <span class="c1">;; Some Icons</span>
-    <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
-                      <span class="o">'</span><span class="p">(</span><span class="m">#xE0A0</span> <span class="o">.</span> <span class="m">#xEEE0</span><span class="p">)</span>
-                      <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">135</span><span class="p">))</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">use-default-font-for-symbols</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">))</span>
-<span class="c1">;;;###autoload</span>
+  <span class="p">(</span><span class="nb">when</span> <span class="nv">window-system</span>
+    <span class="p">(</span><span class="k">progn</span>
+      <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="no">nil</span> <span class="ss">'alpha</span> <span class="mi">95</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span>
+                          <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
+                          <span class="ss">:height</span> <span class="mi">195</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'fixed-pitch</span> <span class="no">nil</span>
+                          <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
+                          <span class="ss">:height</span> <span class="mi">195</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'variable-pitch</span> <span class="no">nil</span>
+                          <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
+                          <span class="ss">:height</span> <span class="mi">195</span><span class="p">)</span>
+      <span class="c1">;; Math symbols</span>
+      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
+                        <span class="o">'</span><span class="p">(</span><span class="m">#x2200</span> <span class="o">.</span> <span class="m">#x22FF</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">195</span><span class="p">))</span>
+      <span class="c1">;; Greek</span>
+      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
+                        <span class="o">'</span><span class="p">(</span><span class="m">#x0370</span> <span class="o">.</span> <span class="m">#x03FF</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">195</span><span class="p">))</span>
+      <span class="c1">;; Some Icons</span>
+      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
+                        <span class="o">'</span><span class="p">(</span><span class="m">#xE0A0</span> <span class="o">.</span> <span class="m">#xEEE0</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">195</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">use-default-font-for-symbols</span> <span class="no">t</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="no">nil</span> <span class="ss">'alpha</span> <span class="mi">95</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">toggle-frame-maximized</span><span class="p">)</span>
+      <span class="p">)))</span>
+<span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">window-system</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">my:load-window-config</span><span class="p">))</span>
+<span class="c1">;;</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:load-side-window-config</span> <span class="p">()</span>
   <span class="s">"load window-system specific settings"</span>
   <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">progn</span>
-    <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span>
-                        <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                        <span class="ss">:height</span> <span class="mi">120</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'fixed-pitch</span> <span class="no">nil</span>
-                        <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                        <span class="ss">:height</span> <span class="mi">120</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'variable-pitch</span> <span class="no">nil</span>
-                        <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
-                        <span class="ss">:height</span> <span class="mi">120</span><span class="p">)</span>
-    <span class="c1">;; Math symbols</span>
-    <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
-                      <span class="o">'</span><span class="p">(</span><span class="m">#x2200</span> <span class="o">.</span> <span class="m">#x22FF</span><span class="p">)</span>
-                      <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">120</span><span class="p">))</span>
-    <span class="c1">;; Greek</span>
-    <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
-                      <span class="o">'</span><span class="p">(</span><span class="m">#x0370</span> <span class="o">.</span> <span class="m">#x03FF</span><span class="p">)</span>
-                      <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">120</span><span class="p">))</span>
-    <span class="c1">;; Some Icons</span>
-    <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
-                      <span class="o">'</span><span class="p">(</span><span class="m">#xE0A0</span> <span class="o">.</span> <span class="m">#xEEE0</span><span class="p">)</span>
-                      <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">120</span><span class="p">))</span>
-    <span class="p">))</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">*gui</span>
-  <span class="ss">:if</span> <span class="nv">window-system</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="no">nil</span> <span class="ss">'alpha</span> <span class="mi">95</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">use-default-font-for-symbols</span> <span class="no">nil</span><span class="p">)</span>
-<span class="c1">;;  (my:load-window-config)</span>
-  <span class="p">)</span></code></pre></figure>
+  <span class="p">(</span><span class="nb">when</span> <span class="nv">window-system</span>
+    <span class="p">(</span><span class="k">progn</span>
+      <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="no">nil</span> <span class="ss">'alpha</span> <span class="mi">95</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span>
+                          <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
+                          <span class="ss">:height</span> <span class="mi">150</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'fixed-pitch</span> <span class="no">nil</span>
+                          <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
+                          <span class="ss">:height</span> <span class="mi">150</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'variable-pitch</span> <span class="no">nil</span>
+                          <span class="ss">:family</span> <span class="s">"FSMRMP"</span>
+                          <span class="ss">:height</span> <span class="mi">150</span><span class="p">)</span>
+      <span class="c1">;; Math symbols</span>
+      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
+                        <span class="o">'</span><span class="p">(</span><span class="m">#x2200</span> <span class="o">.</span> <span class="m">#x22FF</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">150</span><span class="p">))</span>
+      <span class="c1">;; Greek</span>
+      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
+                        <span class="o">'</span><span class="p">(</span><span class="m">#x0370</span> <span class="o">.</span> <span class="m">#x03FF</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">150</span><span class="p">))</span>
+      <span class="c1">;; Some Icons</span>
+      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span>
+                        <span class="o">'</span><span class="p">(</span><span class="m">#xE0A0</span> <span class="o">.</span> <span class="m">#xEEE0</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"FSMRMP"</span> <span class="ss">:height</span> <span class="mi">150</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">use-default-font-for-symbols</span> <span class="no">t</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="no">nil</span> <span class="ss">'alpha</span> <span class="mi">95</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">toggle-frame-maximized</span><span class="p">)</span>
+      <span class="p">)))</span></code></pre></figure>
 <ul class="org-ul">
 <li class="off">
 <code>[ ]</code> FSMRMP のギリシャ文字が全角にならない. 要調整</li>
@@ -5110,9 +4983,9 @@ Greek, Math, 絵文字は全角, 他は半角で 2:1 になっているかの確
 これまで弄っていた font-lock を
 doom-theme をベースに移植中: <a href="https://github.com/uwabami/emacs-doom-darkpastel">uwabami/emacs-doom-darkpastel</a>
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">frame-background-mode</span> <span class="p">(</span><span class="nv">frame-parameter</span> <span class="no">nil</span> <span class="ss">'background-mode</span><span class="p">))</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (setq frame-background-mode (frame-parameter nil 'background-mode))</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">*doom-themes</span>
-  <span class="ss">:emacs&gt;=</span> <span class="mi">25</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nb">&gt;=</span> <span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">)</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">doom-themes</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">emacs-doom-darkpastel</span>
@@ -5221,11 +5094,9 @@ powerline を使ってる
 </div>
 </div>
 <div>
-<h2 id="orgd89ceb4b">Debug&amp;Test</h2>
+<h2 id="orgd89ceb4b">Debug</h2>
 <div class="outline-text-2" id="text-orgd89ceb4b">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">keg</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">keg-mode</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">esup</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">esup</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:custom</span>
   <span class="p">((</span><span class="nv">esup-insignificant-time</span> <span class="o">.</span> <span class="mf">0.01</span><span class="p">)</span>
@@ -5247,19 +5118,11 @@ powerline を使ってる
 <div class="outline-text-2" id="text-orgf87c4e84">
 </div>
 <div>
-<h3 id="org8d339cf7">profiler report</h3>
-<div class="outline-text-3" id="text-org8d339cf7">
-<p>
-これも必要に応じて
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (profiler-report)</span>
-<span class="c1">;; (profiler-stop)</span></code></pre></figure>
-</div>
-</div>
-<div>
 <h3 id="org4c97a1e0">provide の設定</h3>
 <div class="outline-text-3" id="text-org4c97a1e0">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">provide</span> <span class="ss">'init</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (profiler-report)</span>
+<span class="c1">;; (profiler-stop)</span>
+<span class="p">(</span><span class="nb">provide</span> <span class="ss">'init</span><span class="p">)</span>
 <span class="c1">;; Local Variables:</span>
 <span class="c1">;; byte-compile-warnings: (not obsolete cl-functions)</span>
 <span class="c1">;; End:</span></code></pre></figure>
@@ -5299,7 +5162,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2020
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2020-12-09 12:27:46 +0000
+          Lastupdate: 2020-11-01 03:22:33 +0000
           <br/>
           Powered by
           <a href="http://orgmode.org/" target="_blank" title="Org mode">

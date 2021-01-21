@@ -4,13 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="preconnect dns-prefetch" href="//cdn.ampproject.org" crossorigin>
+    <link rel="preconnect dns-prefetch" href="//uwabami.github.io/" crossorigin>
     <!-- amp preload -->
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-geo-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-consent-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-analytics-0.1.js">
     <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-form-0.1.js">
-    <link rel="preconnect dns-prefetch" href="https://uwabami.github.io/" crossorigin>
     <link rel="preload" as="image" href="/assets/img/top.png">
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inconsolata-v18-latin-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inconsolata-v18-latin-700.woff2" crossorigin>
@@ -42,7 +45,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Terminal.html","headline":"Terminal 生活","dateModified":"2020-02-01T23:49:43+09:00","datePublished":"2020-02-01T23:49:43+09:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"url":"https://uwabami.github.io/cc-env/Terminal.html","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Terminal 生活","dateModified":"2020-02-01T23:49:43+09:00","datePublished":"2020-02-01T23:49:43+09:00","author":{"@type":"Person","name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -177,7 +180,7 @@
           <hr>
 <!-- %%%% start content %%%% -->
 <p>
-Related <a href="index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
 <div>
 <h2 id="orgab2c8165">始めに</h2>
@@ -257,7 +260,7 @@ tmux に移行した.
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
 #
 # Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
-# $Lastupdate: 22020-10-06 12:08:13$
+# $Lastupdate: 2020-03-19 17:53:11$
 # License: Public domain.
 </span>
 <span class="c">## general
@@ -267,7 +270,7 @@ tmux に移行した.
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
 <span class="n">set</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
 <span class="c"># mouse 操作を無効化
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mouse</span> <span class="n">off</span>
+</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mouse</span> <span class="n">on</span>
 <span class="c"># disable bell action
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">bell</span>-<span class="n">action</span> <span class="n">none</span>
 <span class="c"># Window renmae enabled
@@ -285,14 +288,14 @@ tmux に移行した.
 <span class="c"># 罫線素片の扱い: rxvt ならコレで良いのだが...
 # set -ag terminal-overrides ',*:U8=0'
 # 罫線素片の扱い: VTE 系はわざわざ Unicode に置き換える, ので ASCII で描画する
-</span><span class="n">set</span>-<span class="n">option</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">ascii</span> <span class="m">0</span>  <span class="c"># ←あてて build してある場合は不要
+# set-option -g pane-border-ascii 0  # ←あてて build してある場合は不要
 # set-environment -g VTE_CJK_WIDTH 1 # ←最近ちゃんと効いてない気がする.
 # メッセージ表示時間(既定値は1000?)
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">display</span>-<span class="n">time</span> <span class="m">4000</span>
 <span class="c"># 後方スクロール行数(既定値は2000)
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">history</span>-<span class="n">limit</span> <span class="m">8192</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">active</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#ff5252,bg=default"</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#64FCDA,bg=default"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">active</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#ff4c4c,bg=default"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#4cffff,bg=default"</span>
 <span class="c"># don't show other activity
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">monitor</span>-<span class="n">activity</span> <span class="n">off</span>
 <span class="n">set</span> -<span class="n">g</span> <span class="n">visual</span>-<span class="n">activity</span> <span class="n">off</span>
@@ -300,10 +303,10 @@ tmux に移行した.
 <span class="c"># pane number display
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">display</span>-<span class="n">panes</span>-<span class="n">time</span> <span class="m">4000</span>
 
-<span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">style</span> <span class="s2">"bg=default,fg=#888888"</span>
+<span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">style</span> <span class="s2">"bg=#020202,fg=#888888"</span>
 <span class="c"># set -g status-interval 1
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">window</span>-<span class="n">status</span>-<span class="n">current</span>-<span class="n">style</span> <span class="s2">"fg=#ff5252,bg=default"</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">message</span>-<span class="n">style</span> <span class="s2">"fg=#242424,bg=#ffd740,bright"</span>
+</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">window</span>-<span class="n">status</span>-<span class="n">current</span>-<span class="n">style</span> <span class="s2">"fg=#ff4c4c,bg=default"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">message</span>-<span class="n">style</span> <span class="s2">"fg=#242424,bg=#4cff4c,bright"</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">left</span>-<span class="n">length</span> <span class="m">25</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">right</span>-<span class="n">length</span> <span class="m">15</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">left</span> <span class="s2">"#[fg=#4c4cff][#[fg=#f6f3e8]#h#[fg=#4c4cff]]#[default] "</span>
@@ -315,7 +318,7 @@ tmux に移行した.
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">prefix</span> <span class="n">C</span>-<span class="n">t</span>          <span class="c"># Ctrl+tをPrefixキーにする
 </span><span class="n">bind</span> <span class="n">C</span>-<span class="n">t</span> <span class="n">send</span>-<span class="n">prefix</span>       <span class="c"># prefix-key の入力を渡す
 # reload
-</span><span class="n">bind</span> <span class="n">r</span> <span class="n">source</span>-<span class="n">file</span> ~/.<span class="n">tmux</span>.<span class="n">conf</span> \; <span class="n">display</span> <span class="s2">"Reload config file"</span>
+</span><span class="n">bind</span> <span class="n">r</span> <span class="n">source</span>-<span class="n">file</span> ~/.<span class="n">tmux</span>/<span class="n">tmux</span>.<span class="n">conf</span> \; <span class="n">display</span> <span class="s2">"Reload config file"</span>
 <span class="c"># コピーモードで vi + emacs 風
 </span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mode</span>-<span class="n">keys</span> <span class="n">vi</span>
 <span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">C</span>-<span class="n">a</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">start</span>-<span class="n">of</span>-<span class="n">line</span>
