@@ -5,10 +5,6 @@
 
 @font-face { font-family: 'Isfit+'; font-style: normal; font-weight: 400; font-display: swap; src: local("isfit+"), local("isfit-plus"), url("/assets/fonts/isfit-plus.woff2") format("woff2"); }
 
-@font-face { font-family: 'Noto Sans CJK JP'; font-style: normal; font-weight: 400; font-display: swap; src: local("Noto Sans CJK JP"), local("Noto Sans CJK JP"), url("/assets/fonts/NotoSansCJK-Light-subset.woff2") format("woff2"); }
-
-@font-face { font-family: 'Noto Sans CJK JP'; font-style: normal; font-weight: 700; font-display: swap; src: local("Noto Sans CJK JP"), local("Noto Sans CJK JP"), url("/assets/fonts/NotoSansCJK-DemiLight-subset.woff2") format("woff2"); }
-
 html { line-height: 1.15; -webkit-text-size-adjust: 100%; }
 
 body { margin: 0; }
@@ -19,7 +15,7 @@ h1 { font-size: 2em; margin: 0.67em 0; }
 
 hr { box-sizing: content-box; height: 0; overflow: visible; }
 
-pre { font-family: "Inconsolata", "Noto Sans CJK JP", "Isfit+", sans-serif, monospace; font-size: 1em; }
+pre { font-family: "Inconsolata", "Isfit+", sans-serif, monospace; font-size: 1em; }
 
 a { background-color: transparent; }
 
@@ -27,7 +23,7 @@ abbr[title] { border-bottom: none; text-decoration: underline; text-decoration: 
 
 b, strong { font-weight: bolder; }
 
-code, kbd, samp { font-family: "Inconsolata", "Noto Sans CJK JP", "Isfit+", sans-serif, monospace; font-size: 1em; }
+code, kbd, samp { font-family: "Inconsolata", "Isfit+", sans-serif, monospace; font-size: 1em; }
 
 small { font-size: 80%; }
 
@@ -80,7 +76,7 @@ template { display: none; }
 /* Basscss Basic */
 * { box-sizing: border-box; }
 
-body { font-family: "Inconsolata", "Noto Sans CJK JP", "Isfit+", sans-serif; line-height: 1.5; margin: 0; color: #111; background-color: #fff; }
+body { font-family: "Inconsolata", "Isfit+", sans-serif; line-height: 1.5; margin: 0; color: #111; background-color: #fff; }
 
 img { max-width: 100%; height: auto; }
 
@@ -104,7 +100,7 @@ h6 { font-size: .75rem; }
 
 p, dl, ol, ul, pre, blockquote { margin-top: 1em; margin-bottom: 1em; }
 
-code, pre, samp { font-family: "Inconsolata", "Noto Sans CJK JP", "Isfit+", sans-serif; }
+code, pre, samp { font-family: "Inconsolata", "Isfit+", sans-serif; }
 
 code, samp { font-size: 87.5%; padding: .125em; }
 
@@ -670,7 +666,7 @@ h1 { font-weight: normal; }
 
 .content p { text-align: justify; text-justify: inter-ideograph; hanging-punctuation: allow-end; font-feature-settings: "halt" 1; }
 
-html { height: 100%; -ms-text-size-adjust: 100%; font-size: 15pt; font-family: "Inconsolata", "Noto Sans CJK JP", "Isfit+", sans-serif; }
+html { height: 100%; -ms-text-size-adjust: 100%; font-size: 15pt; font-family: "Inconsolata", "Isfit+", sans-serif; }
 
 body { margin: 0; line-height: 1.25; min-width: 315px; height: 100%; overflow-x: hidden; font-smooth: always; -webkit-font-smoothing: antialiased; padding-top: 5rem; }
 
@@ -682,7 +678,7 @@ header { display: block; margin: 0 auto; max-width: 800px; box-shadow: 0 6px 10p
 
 .logo { border-radius: 80%; }
 
-.gsearch { max-width: 40vw; font-family: "Inconsolata", "Noto Sans CJK JP", "Isfit+", sans-serif; }
+.gsearch { max-width: 40vw; font-family: "Inconsolata", "Isfit+", sans-serif; }
 
 hr { padding: 0; margin: 8px 0; border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.8); }
 
