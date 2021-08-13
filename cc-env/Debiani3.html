@@ -51,7 +51,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"url":"https://uwabami.github.io/cc-env/Debiani3.html","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"i3 の設定","dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"url":"https://uwabami.github.io/cc-env/Debiani3.html","author":{"@type":"Person","name":"Youhei SASAKI"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -419,7 +419,8 @@ system load を表示させている.
    <span class="c1">--########################</span>
    <span class="c1">-- Update interval in seconds</span>
    <span class="n">update_interval</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-   <span class="c1">-- This is the number of times Conky will update before quitting (0: unlimited)</span>
+   <span class="c1">-- This is the number of times Conky will update before quitting</span>
+   <span class="c1">-- (0: unlimited)</span>
    <span class="n">total_run_times</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
    <span class="c1">-- number of net samples to average (1: disable averaging)</span>
    <span class="n">net_avg_samples</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -595,12 +596,12 @@ suspend → resume した時に i3lock を走らせたいので
 # set $execai exec_always --no-startup-id
 </span>
 <span class="c"># font
-</span><span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">xft</span>:<span class="n">FontAwesome</span> <span class="m">18</span>
+</span><span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">xft</span>:<span class="n">FontAwesome</span> <span class="m">16</span>.<span class="m">5</span>
 
 <span class="c"># startup
-# $execi /usr/libexec/gsd-xsettings --gtk-no-debug=All --gdk-no-debug=all
+#$execi /usr/libexec/gsd-xsettings --gtk-no-debug=All --gdk-no-debug=all
 </span>$<span class="n">execi</span> <span class="n">xrdb</span> -<span class="n">merge</span> $<span class="n">HOME</span>/.<span class="n">Xresources</span>
-$<span class="n">execi</span> <span class="n">compton</span> -<span class="n">bcCG</span>
+$<span class="n">execi</span> <span class="n">picom</span> -<span class="n">bcCG</span>
 $<span class="n">execi</span> <span class="n">nm</span>-<span class="n">applet</span>
 $<span class="n">execi</span> <span class="n">blueman</span>-<span class="n">applet</span>
 $<span class="n">execi</span> /<span class="n">usr</span>/<span class="n">libexec</span>/<span class="n">gpaste</span>/<span class="n">gpaste</span>-<span class="n">daemon</span>
@@ -619,11 +620,11 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
 </span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">F2</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"rofi -show run"</span>
 
 <span class="c"># change focus
-# bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"
-</span><span class="n">set</span> $<span class="n">i3t_alt_tab</span> ~/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3</span>-<span class="n">alt</span>-<span class="n">tab</span>.<span class="n">py</span>
-<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Tab</span> <span class="n">exec</span> $<span class="n">i3t_alt_tab</span> <span class="n">n</span> <span class="n">all</span> <span class="m">2</span>&gt;&amp;<span class="m">1</span> <span class="m">1</span>&gt;/<span class="n">dev</span>/<span class="n">null</span>
-<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="n">Tab</span> <span class="n">exec</span> $<span class="n">i3t_alt_tab</span> <span class="n">n</span> <span class="m">2</span>&gt;&amp;<span class="m">1</span> <span class="m">1</span>&gt;/<span class="n">dev</span>/<span class="n">null</span>
-
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Tab</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"rofi -show window"</span>
+<span class="c"># set $i3t_alt_tab ~/.config/i3/i3-alt-tab.py
+# bindsym $Alt+Tab exec $i3t_alt_tab n all 2&gt;&amp;1 1&gt;/dev/null
+# bindsym $Alt+Shift+Tab exec $i3t_alt_tab n 2&gt;&amp;1 1&gt;/dev/null
+</span>
 <span class="c"># change focus
 </span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">j</span> <span class="n">focus</span> <span class="n">left</span>
 <span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Control</span>+<span class="n">Left</span> <span class="n">focus</span> <span class="n">left</span>
@@ -706,8 +707,8 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
 </span><span class="n">bindsym</span> <span class="n">XF86AudioRaiseVolume</span> $<span class="n">execi</span> <span class="n">pactl</span> <span class="n">set</span>-<span class="n">sink</span>-<span class="n">volume</span> <span class="m">0</span> +<span class="m">5</span>%
 <span class="n">bindsym</span> <span class="n">XF86AudioLowerVolume</span> $<span class="n">execi</span> <span class="n">pactl</span> <span class="n">set</span>-<span class="n">sink</span>-<span class="n">volume</span> <span class="m">0</span> -<span class="m">5</span>%
 <span class="n">bindsym</span> <span class="n">XF86AudioMute</span> $<span class="n">execi</span> <span class="n">pactl</span> <span class="n">set</span>-<span class="n">sink</span>-<span class="n">mute</span> <span class="m">0</span> <span class="n">toggle</span>
-<span class="n">bindsym</span> <span class="n">XF86MonBrightnessUp</span> $<span class="n">execi</span> /<span class="n">usr</span>/<span class="n">bin</span>/<span class="n">xbacklight</span> -<span class="n">inc</span> <span class="m">5</span>
-<span class="n">bindsym</span> <span class="n">XF86MonBrightnessDown</span> $<span class="n">execi</span> /<span class="n">usr</span>/<span class="n">bin</span>/<span class="n">xbacklight</span> -<span class="n">dec</span> <span class="m">5</span>
+<span class="n">bindsym</span> <span class="n">XF86MonBrightnessUp</span> $<span class="n">execi</span> <span class="n">light</span> -<span class="n">A</span> <span class="m">5</span>
+<span class="n">bindsym</span> <span class="n">XF86MonBrightnessDown</span> $<span class="n">execi</span> <span class="n">light</span> -<span class="n">U</span> <span class="m">5</span>
 
 <span class="c"># status bar
 </span><span class="n">bar</span> {
@@ -743,14 +744,18 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
 </span><span class="n">for_window</span> [<span class="n">window_role</span>=<span class="s2">"pop-up"</span>] <span class="n">floating</span> <span class="n">enable</span>
 <span class="n">for_window</span> [<span class="n">window_role</span>=<span class="s2">"task_dialog"</span>] <span class="n">floating</span> <span class="n">enable</span>
 <span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)feh"</span>] <span class="n">floating</span> <span class="n">enable</span>
-<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)vlc"</span>] <span class="n">floating</span> <span class="n">enable</span>
-<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="c"># for_window [class="(?i)vlc"] floating enable
+</span><span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="n">floating</span> <span class="n">enable</span>
 <span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)zotero"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)zooom"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)teams"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)slack"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)ruby"</span>] <span class="n">floating</span> <span class="n">enable</span>
 
 <span class="c"># startup
 </span><span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)evince"</span> ] <span class="m">2</span>
-<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)pcmanfm"</span> ] <span class="m">3</span>
-<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)zotero"</span> ] <span class="m">3</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)nautilus"</span> ] <span class="m">2</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)zotero"</span> ] <span class="m">2</span>
 <span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)slack"</span> ] <span class="m">3</span>
 <span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="m">4</span>
 <span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)teams"</span> ] <span class="m">5</span>

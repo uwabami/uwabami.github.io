@@ -51,7 +51,7 @@
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"url":"https://uwabami.github.io/cc-env/Terminal.html","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","headline":"Terminal 生活","dateModified":"2020-02-01T23:49:43+09:00","datePublished":"2020-02-01T23:49:43+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"author":{"@type":"Person","name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"Terminal 生活","dateModified":"2020-02-01T23:49:43+09:00","datePublished":"2020-02-01T23:49:43+09:00","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"url":"https://uwabami.github.io/cc-env/Terminal.html","author":{"@type":"Person","name":"Youhei SASAKI"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -264,7 +264,7 @@ tmux に移行した.
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
 #
 # Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
-# $Lastupdate: 2020-03-19 17:53:11$
+# $Lastupdate: 22021-07-09 10:16:46$
 # License: Public domain.
 </span>
 <span class="c">## general
@@ -274,7 +274,7 @@ tmux に移行した.
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
 <span class="n">set</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
 <span class="c"># mouse 操作を無効化
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mouse</span> <span class="n">on</span>
+</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mouse</span> <span class="n">off</span>
 <span class="c"># disable bell action
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">bell</span>-<span class="n">action</span> <span class="n">none</span>
 <span class="c"># Window renmae enabled
@@ -286,8 +286,11 @@ tmux に移行した.
 
 <span class="c">## display
 # TERM等の設定
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">default</span>-<span class="n">terminal</span> <span class="n">screen</span>-<span class="m">256</span><span class="n">color</span>
-<span class="c"># set-option -ga terminal-overrides ",rxvt-unicode-256color:Tc"
+# set-option -ga terminal-overrides ",rxvt-256-color:Tc"
+</span><span class="n">set</span>-<span class="n">option</span> -<span class="n">ga</span> <span class="n">terminal</span>-<span class="n">overrides</span> <span class="s2">",rxvt-*:Tc,xterm-*:Tc"</span>
+<span class="c"># set -g default-terminal "screen-256color"
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">default</span>-<span class="n">terminal</span> <span class="s2">"screen-256color"</span>
+<span class="c"># set -g default-terminal tmux-direct
 </span><span class="n">set</span>-<span class="n">environment</span> -<span class="n">g</span> <span class="n">NCURSES_NO_UTF8_ACS</span> <span class="m">0</span>
 <span class="c"># 罫線素片の扱い: rxvt ならコレで良いのだが...
 # set -ag terminal-overrides ',*:U8=0'
@@ -298,8 +301,8 @@ tmux に移行した.
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">display</span>-<span class="n">time</span> <span class="m">4000</span>
 <span class="c"># 後方スクロール行数(既定値は2000)
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">history</span>-<span class="n">limit</span> <span class="m">8192</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">active</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#ff4c4c,bg=default"</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#4cffff,bg=default"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">active</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#ff5252,bg=default"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#64FCDA,bg=default"</span>
 <span class="c"># don't show other activity
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">monitor</span>-<span class="n">activity</span> <span class="n">off</span>
 <span class="n">set</span> -<span class="n">g</span> <span class="n">visual</span>-<span class="n">activity</span> <span class="n">off</span>
@@ -307,10 +310,10 @@ tmux に移行した.
 <span class="c"># pane number display
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">display</span>-<span class="n">panes</span>-<span class="n">time</span> <span class="m">4000</span>
 
-<span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">style</span> <span class="s2">"bg=#020202,fg=#888888"</span>
+<span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">style</span> <span class="s2">"bg=default,fg=#888888"</span>
 <span class="c"># set -g status-interval 1
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">window</span>-<span class="n">status</span>-<span class="n">current</span>-<span class="n">style</span> <span class="s2">"fg=#ff4c4c,bg=default"</span>
-<span class="n">setw</span> -<span class="n">g</span> <span class="n">message</span>-<span class="n">style</span> <span class="s2">"fg=#242424,bg=#4cff4c,bright"</span>
+</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">window</span>-<span class="n">status</span>-<span class="n">current</span>-<span class="n">style</span> <span class="s2">"fg=#ff5252,bg=default"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">message</span>-<span class="n">style</span> <span class="s2">"fg=#242424,bg=#ffd740,bright"</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">left</span>-<span class="n">length</span> <span class="m">25</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">right</span>-<span class="n">length</span> <span class="m">15</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">left</span> <span class="s2">"#[fg=#4c4cff][#[fg=#f6f3e8]#h#[fg=#4c4cff]]#[default] "</span>
@@ -322,7 +325,7 @@ tmux に移行した.
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">prefix</span> <span class="n">C</span>-<span class="n">t</span>          <span class="c"># Ctrl+tをPrefixキーにする
 </span><span class="n">bind</span> <span class="n">C</span>-<span class="n">t</span> <span class="n">send</span>-<span class="n">prefix</span>       <span class="c"># prefix-key の入力を渡す
 # reload
-</span><span class="n">bind</span> <span class="n">r</span> <span class="n">source</span>-<span class="n">file</span> ~/.<span class="n">tmux</span>/<span class="n">tmux</span>.<span class="n">conf</span> \; <span class="n">display</span> <span class="s2">"Reload config file"</span>
+</span><span class="n">bind</span> <span class="n">r</span> <span class="n">source</span>-<span class="n">file</span> ~/.<span class="n">tmux</span>.<span class="n">conf</span> \; <span class="n">display</span> <span class="s2">"Reload config file"</span>
 <span class="c"># コピーモードで vi + emacs 風
 </span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mode</span>-<span class="n">keys</span> <span class="n">vi</span>
 <span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">C</span>-<span class="n">a</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">start</span>-<span class="n">of</span>-<span class="n">line</span>
@@ -375,7 +378,7 @@ weechat を常に下に表示させておきたいので <code>C-t -</code> で�
 </p>
 
 <figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/sh</span>
-<span class="nv">tmp</span><span class="o">=</span><span class="nv">$HOME</span>/.config/tmux/weechat.tmp
+<span class="nv">tmp</span><span class="o">=</span><span class="nv">$HOME</span>/.tmux.d/weechat.tmp
 <span class="nv">current_weechat_window</span><span class="o">=</span><span class="sb">`</span>tmux lsp <span class="nt">-a</span> <span class="nt">-F</span> <span class="s2">"#I: #T"</span> | <span class="nb">grep </span>WeeChat | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
 <span class="nv">current_weechat_pane</span><span class="o">=</span><span class="sb">`</span>tmux lsp <span class="nt">-a</span> <span class="nt">-F</span> <span class="s2">"#P: #T"</span> | <span class="nb">grep </span>WeeChat | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
 <span class="c"># current_weechat_window=`tmux lsp -a -F "#I: #T" | grep screen | cut -d":" -f 1`</span>
