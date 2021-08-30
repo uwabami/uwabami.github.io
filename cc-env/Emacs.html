@@ -44,14 +44,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-08-16T06:11:03+09:00" />
+<meta property="article:published_time" content="2021-08-31T09:09:03+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"Emacs の設定","dateModified":"2021-08-16T06:11:03+09:00","datePublished":"2021-08-16T06:11:03+09:00","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"url":"https://uwabami.github.io/cc-env/Emacs.html","author":{"@type":"Person","name":"Youhei SASAKI"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","headline":"Emacs の設定","dateModified":"2021-08-31T09:09:03+09:00","datePublished":"2021-08-31T09:09:03+09:00","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"url":"https://uwabami.github.io/cc-env/Emacs.html","author":{"@type":"Person","name":"Youhei SASAKI"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -363,8 +363,8 @@ Emacs &gt;= 27 からの機能だが, いまいち使い方がわからん.
      |-- pkg
      |   |-- elpa/   ←  package.el で導入したパッケージが置かれる場所
      |   `-- el-get/ ←  el-get で導入したパッケージが置かれる場所
-     |-- share/      ←  (基本的に)参照するだけの資源置き場所
-     `-- tmp/        ←  一次ファイルの置き場所
+     `-- share/      ←  (基本的に)参照するだけの資源置き場所
+    ~/.cache/emacs   ←  一次ファイルの置き場所
 </pre>
 <p>
 上記ディレクトリ構成を設定ファイルで使用するために
@@ -376,7 +376,9 @@ Emacs &gt;= 27 からの機能だが, いまいち使い方がわからん.
 <span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:d:share</span>
   <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"share/"</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
 <span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:d:tmp</span>
-  <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"tmp/"</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">".cache/emacs/"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">)))</span>
+<span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:tmp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-directory</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
 <span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:d:pkg:elpa</span>
   <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"pkg/elpa"</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
 <span class="p">(</span><span class="nv">defconst</span> <span class="nv">my:d:pkg:elget</span>
@@ -432,10 +434,10 @@ cl が読み込まれていると
    <span class="o">'</span><span class="p">(</span><span class="nv">package-user-dir</span> <span class="nv">my:d:pkg:elpa</span><span class="p">))</span>
   <span class="p">)</span>
 <span class="p">(</span><span class="nv">eval-when-compile</span>
-  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tmp/bootstrap-stamp"</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"bootstrap-stamp"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">package-refresh-contents</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">with-temp-buffer</span>
-      <span class="p">(</span><span class="nv">write-file</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"tmp/bootstrap-stamp"</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nv">write-file</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"bootstrap-stamp"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
     <span class="p">))</span>
 <span class="p">(</span><span class="nv">package-initialize</span><span class="p">)</span></code></pre></figure>
 </div>
@@ -973,10 +975,10 @@ Emacs23 から内部が Unicode ベースになっています。
      <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"url"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="c1">;; nsm</span>
     <span class="p">(</span><span class="nv">nsm-settings-file</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"nsm.data"</span> <span class="nv">my:d:tmp</span> <span class="p">))</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"nsm.data"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="c1">;; bookmark</span>
     <span class="p">(</span><span class="nv">bookmark-default-file</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"bookmarks"</span> <span class="nv">my:d:share</span><span class="p">))</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"bookmarks"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="c1">;; eshell</span>
     <span class="p">(</span><span class="nv">eshell-directory-name</span>
      <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"eshell"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
@@ -2041,8 +2043,9 @@ EPWING化した辞書群を検索するために <code>lookup-el</code> ver. 1.4
        <span class="p">(</span><span class="nv">ndeb</span> <span class="s">"/usr/local/share/dict/rikagaku5"</span> <span class="ss">:alias</span> <span class="s">"理化学辞典 第5版"</span><span class="p">)</span>
        <span class="p">(</span><span class="nv">ndeb</span> <span class="s">"/usr/local/share/dict/koujien4"</span> <span class="ss">:alias</span> <span class="s">"広辞苑 第4版"</span><span class="p">)</span>
        <span class="p">(</span><span class="nv">ndeb</span> <span class="s">"/usr/local/share/dict/wadai5"</span> <span class="ss">:alias</span> <span class="s">"研究社 和英大辞典 第5版"</span><span class="p">)</span>
-       <span class="p">(</span><span class="nv">ndeb</span> <span class="s">"/usr/local/share/dict/eidai6"</span> <span class="ss">:alias</span> <span class="s">"研究社 英和大辞典 第6版"</span><span class="p">)</span>
-       <span class="p">(</span><span class="nv">ndeb</span> <span class="s">"/usr/local/share/dict/colloc"</span> <span class="ss">:alias</span> <span class="s">"研究社 英和活用大辞典 "</span><span class="p">)))</span>
+       <span class="c1">;; (ndeb "/usr/local/share/dict/eidai6" :alias "研究社 英和大辞典 第6版")</span>
+       <span class="c1">;; (ndeb "/usr/local/share/dict/colloc" :alias "研究社 英和活用大辞典 ")</span>
+       <span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -2298,13 +2301,18 @@ projectile かなんかを使う方が良さげだが, とりあえず.
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">google-translate</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:init</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">google-translate--search-tkk</span> <span class="p">()</span>
+  <span class="p">(</span><span class="nb">defvar</span> <span class="nv">google-translate-translation-directions-alist</span> <span class="o">'</span><span class="p">((</span><span class="s">"en"</span> <span class="o">.</span> <span class="s">"ja"</span><span class="p">)</span> <span class="p">(</span><span class="s">"ja"</span> <span class="o">.</span> <span class="s">"en"</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">popup</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:google-translate--search-tkk</span> <span class="p">()</span>
     <span class="s">"Search TKK. @see https://github.com/atykhonov/google-translate/issues/52"</span>
     <span class="p">(</span><span class="nb">list</span> <span class="mi">430675</span> <span class="mi">2721866130</span><span class="p">))</span>
   <span class="ss">:bind</span>
-  <span class="p">(</span><span class="s">"C-x t"</span> <span class="o">.</span> <span class="nv">google-translate-at-point</span><span class="p">)</span>
+  <span class="p">(</span><span class="s">"C-x t"</span> <span class="o">.</span> <span class="nv">google-translate-smooth-translate</span><span class="p">)</span>
+  <span class="ss">:advice</span> <span class="p">(</span><span class="ss">:override</span> <span class="nv">google-translate--search-tkk</span>
+                     <span class="nv">my:google-translate--search-tkk</span><span class="p">)</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">google-translate-backend-method</span> <span class="ss">'curl</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">google-translate-translation-directions-alist</span> <span class="o">'</span><span class="p">((</span><span class="s">"en"</span> <span class="o">.</span> <span class="s">"ja"</span><span class="p">)</span> <span class="p">(</span><span class="s">"ja"</span> <span class="o">.</span> <span class="s">"en"</span><span class="p">))</span>
+        <span class="nv">google-translate-backend-method</span> <span class="ss">'curl</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -3672,7 +3680,7 @@ Major modeとの衝突があるので止めた方が良い, らしい．
          <span class="p">(</span><span class="s">"C-x n w"</span> <span class="o">.</span> <span class="nv">widen</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"C-c a"</span>   <span class="o">.</span> <span class="nv">org-agenda</span><span class="p">)</span>
          <span class="p">(</span><span class="s">"C-x m"</span>   <span class="o">.</span> <span class="nv">org-capture</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">"C-x M"</span>   <span class="o">.</span> <span class="nv">org-journal-new-entry</span><span class="p">)</span>
+         <span class="c1">;; ("C-x M"   . org-journal-new-entry)</span>
          <span class="p">)</span>
   <span class="ss">:advice</span>
   <span class="p">(</span><span class="ss">:before</span> <span class="nv">org-calendar-holiday</span>
@@ -3770,7 +3778,8 @@ Major modeとの衝突があるので止めた方が良い, らしい．
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-macs</span> <span class="ss">:require</span> <span class="no">t</span><span class="p">)</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">org-id-locations-file</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-id-locations"</span> <span class="nv">my:d:share</span><span class="p">))</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-id-locations"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">org-id-link-to-org-use-id</span> <span class="o">.</span> <span class="ss">'create-if-interactive-and-no-custom-id</span><span class="p">)</span>
     <span class="c1">;; (org-id-link-to-org-use-id . create-if-interactive-and-no-custom-id)</span>
     <span class="p">)</span>
   <span class="ss">:config</span>
@@ -3854,7 +3863,108 @@ See https://writequit.org/articles/emacs-org-mode-generate-ids.html"</span>
 </div>
 </div>
 <div>
-<h3 id="org016dbf67">Agenda: スケジュール, TODO 表示</h3>
+<h3 id="orgbe835a6b">Org-capture: メモ取り</h3>
+<div class="outline-text-3" id="text-orgbe835a6b">
+<p>
+キーバインドは以前 changelog memo をやっていた時の癖で <code>C-x m</code> をメモにしている.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-capture</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
+  <span class="ss">:commands</span> <span class="nv">org-capture</span>
+  <span class="ss">:pl-setq</span>
+  <span class="p">(</span><span class="nv">my:org:calendar1</span> <span class="nv">my:org:calendar2</span><span class="p">)</span>   <span class="c1">;; 名前がイケてないっ!</span>
+  <span class="ss">:init</span> <span class="p">(</span><span class="nv">leaf</span> <span class="nv">doct</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span> <span class="c1">;; capture template を上手く書く拡張</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-default-notes-file</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"INBOX.org"</span> <span class="nv">my:d:org</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-capture-templates</span>
+        <span class="p">(</span><span class="nv">doct</span> <span class="o">'</span><span class="p">(</span><span class="c1">;; ("Diary"</span>
+                <span class="c1">;;  :keys "d"</span>
+                <span class="c1">;;  :function (my:todo:org-roam-dailies--capture (current-time)))</span>
+                <span class="c1">;; ("TODO"</span>
+                <span class="c1">;;  :keys "t"</span>
+                <span class="c1">;;  :type plain</span>
+                <span class="c1">;;  :function my:org-journal-add-date-entry-capture</span>
+                <span class="c1">;;  :template "** TODO %(format-time-string org-journal-time-format)%^{title} %^g\n  %?\n  %a"</span>
+                <span class="c1">;;  :prepend nil</span>
+                <span class="c1">;;  :unnarrowed nil</span>
+                <span class="c1">;;  :kill-buffer t</span>
+                <span class="c1">;;  )</span>
+                <span class="c1">;; ("MEMO"</span>
+                <span class="c1">;;  :keys "m"</span>
+                <span class="c1">;;  :type plain</span>
+                <span class="c1">;;  :function my:org-journal-add-date-entry-capture</span>
+                <span class="c1">;;  :template "** MEMO %(format-time-string org-journal-time-format)%^{title} %^g\n   #+\n   %?"</span>
+                <span class="c1">;;  :prepend nil</span>
+                <span class="c1">;;  :unnarrowed nil</span>
+                <span class="c1">;;  :kill-buffer t</span>
+                <span class="c1">;;  )</span>
+                <span class="p">(</span><span class="s">"Schedule: 個人スケジュール"</span>
+                 <span class="ss">:keys</span> <span class="s">"s"</span>
+                 <span class="ss">:type</span> <span class="nv">plain</span>
+                 <span class="ss">:file</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()(</span><span class="nv">expand-file-name</span> <span class="s">"Schedule.org"</span> <span class="nv">my:d:org</span><span class="p">))</span>
+                 <span class="ss">:template</span> <span class="s">"* %^{prompt}\n  :PROPERTIES:\n  :calendar-id: %(format \"%s\" my:org:calendar1)\n  :END:\n  :org-gcal:\n%?\n%i\n  :END:"</span>
+                 <span class="ss">:prepend</span> <span class="no">nil</span>
+                 <span class="ss">:unnarrowed</span> <span class="no">nil</span>
+                 <span class="ss">:kill-buffer</span> <span class="no">t</span>
+                 <span class="p">)</span>
+                <span class="p">(</span><span class="s">"Univ. Schedule: 大学関連"</span>
+                 <span class="ss">:keys</span> <span class="s">"u"</span>
+                 <span class="ss">:type</span> <span class="nv">plain</span>
+                 <span class="ss">:file</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Univ.org"</span> <span class="nv">my:d:org</span><span class="p">))</span>
+                 <span class="ss">:template</span> <span class="s">"* %^{prompt}\n  :PROPERTIES:\n  :calendar-id: %(format \"%s\" my:org:calendar2)\n  :END:\n  :org-gcal:\n%?\n%i\n  :END:"</span>
+                 <span class="ss">:prepend</span> <span class="no">nil</span>
+                 <span class="ss">:unnarrowed</span> <span class="no">nil</span>
+                 <span class="ss">:kill-buffer</span> <span class="no">t</span>
+                 <span class="p">)</span>
+                <span class="p">))</span>
+        <span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="orgbbaf7c91">Org-roam: リンク付きメモ</h3>
+<div class="outline-text-3" id="text-orgbbaf7c91">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-roam</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
+           <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"rg"</span><span class="p">)</span>
+                <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"sqlite3"</span><span class="p">)))</span>
+  <span class="ss">:bind</span>
+  <span class="p">((</span><span class="s">"C-c n l"</span> <span class="o">.</span> <span class="nv">org-roam-buffer-toggle</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">"C-c n f"</span> <span class="o">.</span> <span class="nv">org-roam-node-find</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">"C-c n i"</span> <span class="o">.</span> <span class="nv">org-roam-node-insert</span><span class="p">)</span>
+   <span class="p">(</span><span class="s">"C-x M"</span>   <span class="o">.</span> <span class="nv">org-roam-dailies-capture-today</span><span class="p">)</span>
+   <span class="p">)</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-roam-v2-ack</span>      <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">org-roam-db-location</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-roam.db"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">org-roam-directory</span>   <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"roam"</span> <span class="nv">my:d:org</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">org-roam-dailies-directory</span> <span class="o">.</span> <span class="s">""</span><span class="p">)</span> <span class="c1">;; relative path: flatten!</span>
+    <span class="p">(</span><span class="nv">org-roam-dailies-capture-templates</span>
+     <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="s">"d"</span> <span class="s">"default"</span> <span class="nv">entry</span> <span class="s">"* &lt;%&lt;%Y-%m-%d %H:%M&gt;&gt; %^{title}\n  %?"</span>
+          <span class="ss">:if-new</span> <span class="p">(</span><span class="nv">file+head</span> <span class="s">"%&lt;%Y-%m-%d&gt;.org"</span>
+                             <span class="s">"#+title: %&lt;%Y年%m月%d日(%a)&gt;"</span><span class="p">)</span>
+          <span class="ss">:prepend</span> <span class="no">nil</span>
+          <span class="p">)</span>
+         <span class="p">(</span><span class="s">"m"</span> <span class="s">"memo"</span> <span class="nv">entry</span> <span class="s">"* MEMO &lt;%&lt;%Y-%m-%d %H:%M&gt;&gt; %^{title}\n  %?"</span>
+          <span class="ss">:if-new</span> <span class="p">(</span><span class="nv">file+head</span> <span class="s">"%&lt;%Y-%m-%d&gt;.org"</span>
+                             <span class="s">"#+title: %&lt;%Y年%m月%d日(%a)&gt;"</span><span class="p">)</span>
+          <span class="ss">:prepend</span> <span class="no">nil</span>
+          <span class="p">)</span>
+         <span class="p">(</span><span class="s">"t"</span> <span class="s">"ToDo"</span> <span class="nv">entry</span> <span class="s">"* ToDo &lt;%&lt;%Y-%m-%d %H:%M&gt;&gt; %^{title}\n  %?"</span>
+          <span class="ss">:if-new</span> <span class="p">(</span><span class="nv">file+head</span> <span class="s">"%&lt;%Y-%m-%d&gt;.org"</span>
+                             <span class="s">"#+title: %&lt;%Y年%m月%d日(%a)&gt;"</span><span class="p">)</span>
+          <span class="ss">:prepend</span> <span class="no">nil</span>
+          <span class="p">)</span>
+         <span class="p">))</span>
+     <span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="p">((</span><span class="nv">after-init-hook</span> <span class="o">.</span> <span class="nv">org-roam-setup</span><span class="p">))</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org016dbf67">Org-agenda: スケジュール, TODO 表示</h3>
 <div class="outline-text-3" id="text-org016dbf67">
 <p>
 GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で取得したデータも表示している．
@@ -3868,7 +3978,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
 なんて事もやっている．元ネタは <a href="https://julien.danjou.info/blog/2010/org-mode-and-holidays">Org-mode and holidays</a>
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-agenda</span>
-  <span class="ss">:commands</span> <span class="p">(</span><span class="nv">org-agenda</span><span class="p">)</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
   <span class="ss">:defer-config</span>
   <span class="p">(</span><span class="nv">defface</span> <span class="nv">my:org-agenda-date-saturday</span>
     <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="p">(</span><span class="ss">:foreground</span> <span class="s">"#7FBFFF"</span> <span class="ss">:bold</span> <span class="no">t</span> <span class="p">)))</span>
@@ -3927,15 +4037,14 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
         <span class="p">(</span><span class="nb">when</span> <span class="nv">face</span> <span class="p">(</span><span class="nv">cl-return</span> <span class="nv">face</span><span class="p">)))))</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">org-agenda-day-face-function</span>
         <span class="ss">'my:org-agenda-day-face-function</span><span class="p">)</span>
-  <span class="c1">;; font-lock の適用</span>
+  <span class="c1">;; font-lock の適用. loop減らせないかなぁ….</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-agenda-finalize-font-lock</span> <span class="p">()</span>
     <span class="s">"Custom: apply custom font-lock"</span>
     <span class="p">(</span><span class="nv">save-excursion</span>
       <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nv">point-min</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">"Univ:"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">add-text-properties</span>
-         <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-at-eol</span><span class="p">)</span>
-         <span class="o">'</span><span class="p">(</span><span class="nv">face</span> <span class="nv">my:org-agenda-calendar-Univ</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">add-text-properties</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-at-eol</span><span class="p">)</span>
+                             <span class="o">'</span><span class="p">(</span><span class="nv">face</span> <span class="nv">my:org-agenda-calendar-Univ</span><span class="p">)))</span>
       <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nv">point-min</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">"Schedule:"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">add-text-properties</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-at-eol</span><span class="p">)</span>
@@ -3953,21 +4062,14 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
         <span class="p">(</span><span class="nv">add-text-properties</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-at-eol</span><span class="p">)</span>
                              <span class="o">'</span><span class="p">(</span><span class="nv">face</span> <span class="nv">my:org-agenda-calendar-twitter</span><span class="p">)))</span>
       <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nv">point-min</span><span class="p">))</span>
-      <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">"誕生日:"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">"祝日:\\|休日:\\|誕生日:"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">add-text-properties</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-at-eol</span><span class="p">)</span>
                              <span class="o">'</span><span class="p">(</span><span class="nv">face</span> <span class="nv">org-agenda-date-weekend</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nv">point-min</span><span class="p">))</span>
-      <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">"祝日:"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">add-text-properties</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-at-eol</span><span class="p">)</span>
-                             <span class="o">'</span><span class="p">(</span><span class="nv">face</span> <span class="nv">org-agenda-date-weekend</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nv">point-min</span><span class="p">))</span>
-      <span class="p">(</span><span class="nv">while</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">"休日:"</span> <span class="no">nil</span> <span class="no">t</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">add-text-properties</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">point-at-eol</span><span class="p">)</span>
-                             <span class="o">'</span><span class="p">(</span><span class="nv">face</span> <span class="nv">org-agenda-date-weekend</span><span class="p">)))))</span>
+      <span class="p">))</span>
   <span class="c1">;;</span>
   <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'org-agenda-finalize-hook</span>
             <span class="nf">#'</span><span class="nv">my:org-agenda-finalize-font-lock</span><span class="p">)</span>
-
+  <span class="c1">;;</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">org-agenda-span</span> <span class="ss">'day</span>
         <span class="nv">org-agenda-format-date</span> <span class="s">"%Y/%m/%d (%a)"</span>
         <span class="nv">org-agenda-start-on-weekday</span> <span class="mi">0</span>
@@ -3997,148 +4099,126 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
             <span class="p">))</span>
           <span class="p">)</span>
         <span class="p">)</span>
-  <span class="c1">;; 使用するファイル</span>
   <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">file</span>
-           <span class="o">'</span><span class="p">(</span><span class="s">"Archive.org"</span>
+           <span class="o">'</span><span class="p">(</span><span class="c1">;; "Archive.org"   &lt;-- 🤔</span>
+             <span class="c1">;; Calendar</span>
              <span class="s">"Holidays.org"</span>
-             <span class="s">"Memo.org"</span>
              <span class="s">"Schedule.org"</span>
              <span class="s">"GFD.org"</span>
              <span class="s">"Univ.org"</span>
              <span class="s">"DebianJP.org"</span>
+             <span class="c1">;; INBOX</span>
+             <span class="s">"INBOX.org"</span>
+             <span class="c1">;; misc</span>
              <span class="s">"twitter.org"</span>
+             <span class="c1">;; Project</span>
              <span class="s">"redmine_GFD.org"</span>
-             <span class="s">"redmine_FluidSoc.org"</span>
+             <span class="c1">;; "redmine_FluidSoc.org"</span>
              <span class="p">))</span>
     <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-agenda-files</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="nv">file</span> <span class="nv">my:d:org</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-agenda-files</span> <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"README.org"</span><span class="p">))</span>
-  <span class="c1">;; (if (file-directory-p</span>
-  <span class="c1">;;      (expand-file-name "Public/" (getenv "HOME")))</span>
-  <span class="c1">;;     (dolist (file</span>
-  <span class="c1">;;              (directory-files-recursively</span>
-  <span class="c1">;;               (expand-file-name "Public/" (getenv "HOME")) "org$"))</span>
-  <span class="c1">;;       (add-to-list 'org-agenda-files file)))</span>
-  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">file-directory-p</span>
-       <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"journal/"</span> <span class="nv">my:d:org</span><span class="p">))</span>
-      <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">file</span>
-               <span class="p">(</span><span class="nv">directory-files-recursively</span>
-                <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"journal/"</span> <span class="nv">my:d:org</span><span class="p">)</span> <span class="s">"org$"</span><span class="p">))</span>
-        <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-agenda-files</span> <span class="nv">file</span><span class="p">)))</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-<div>
-<h3 id="orgbbaf7c91">Org-roam</h3>
-<div class="outline-text-3" id="text-orgbbaf7c91">
-</div>
-</div>
-<div>
-<h3 id="org456c87fa">Org-journal: 日記</h3>
-<div class="outline-text-3" id="text-org456c87fa">
-<p>
-機能が豊富なのだが, イマイチ使いこなせていない.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-journal</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
-           <span class="p">(</span><span class="nb">&gt;=</span> <span class="nv">emacs-major-version</span> <span class="mi">25</span><span class="p">))</span>
-  <span class="c1">;; :commands my:org-journal-new-entry</span>
-  <span class="ss">:commands</span> <span class="nv">org-journal-new-entry</span>
-  <span class="c1">;; :bind ((:org-journal-mode-map</span>
-  <span class="c1">;;         ("C-c C-c" . my:org-journal-entry-save-and-exit)))</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:init</span>
-  <span class="c1">;; (defun my:org-journal-new-entry (prefix &amp;optional time)</span>
-  <span class="c1">;;   "Add new journal entry on new elscreen"</span>
-  <span class="c1">;;   (interactive "P")</span>
-  <span class="c1">;;   (elscreen-create)</span>
-  <span class="c1">;;   (org-journal-new-entry nil time))</span>
+  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-agenda-files</span>
+               <span class="p">(</span><span class="nv">locate-user-emacs-file</span> <span class="s">"README.org"</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-agenda-files</span>
+               <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Public/web.org"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">)))</span>
+  <span class="c1">;; (add-to-list 'org-agenda-files</span>
+  <span class="c1">;;              (expand-file-name "Public/404.org" (getenv "HOME")))</span>
+  <span class="c1">;; org-wiki</span>
+  <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">file</span>
+           <span class="p">(</span><span class="nv">directory-files-recursively</span>
+            <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Public/cc-env"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">))</span> <span class="s">"org$"</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-agenda-files</span> <span class="nv">file</span><span class="p">))</span>
+  <span class="c1">;; github repos.</span>
+  <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">file</span>
+           <span class="p">(</span><span class="nv">directory-files-recursively</span>
+            <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Public/software"</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">))</span> <span class="s">"org$"</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-agenda-files</span> <span class="nv">file</span><span class="p">))</span>
   <span class="c1">;;</span>
-  <span class="c1">;; (defun my:org-journal-entry-save-and-exit ()</span>
-  <span class="c1">;;   "Save journal entry and close elscreen buffer"</span>
-  <span class="c1">;;   (interactive)</span>
-  <span class="c1">;;   (save-buffer)</span>
-  <span class="c1">;;   (elscreen-kill))</span>
-  <span class="ss">:hook</span>
-  <span class="p">((</span><span class="nv">org-journal-mode-hook</span>
-    <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span><span class="p">()</span>
-        <span class="p">(</span><span class="nv">setq-local</span> <span class="nv">truncate-lines</span> <span class="no">t</span><span class="p">))))</span>
-  <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">org-journal-file-type</span>                 <span class="o">.</span> <span class="ss">'yearly</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-dir</span>                       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"journal"</span> <span class="nv">my:d:org</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">org-journal-file-format</span>               <span class="o">.</span> <span class="s">"%Y.org"</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-cache-file</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-journal.cache"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">org-journal-date-format</span>               <span class="o">.</span> <span class="s">"%x (%a)"</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-time-format</span>               <span class="o">.</span> <span class="s">"&lt;%Y-%m-%d %R&gt; "</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-time-prefix</span>               <span class="o">.</span> <span class="s">"** MEMO "</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-enable-agenda-integration</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-find-file</span>                 <span class="o">.</span> <span class="ss">'find-file</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-carryover-delete-empty-journal</span> <span class="o">.</span> <span class="ss">'ask</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">org-journal-start-on-weekday</span>          <span class="o">.</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">;; sunday</span>
-    <span class="p">)</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">eval-and-compile</span> <span class="ss">'browse-url</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="ss">'org-journal</span>
-    <span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"C-c C-j"</span><span class="p">)</span> <span class="ss">'browse-url-at-point</span><span class="p">))</span>
-  <span class="p">)</span></code></pre></figure>
+<span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
-<h3 id="orgbe835a6b">Org-capture: メモ取り</h3>
-<div class="outline-text-3" id="text-orgbe835a6b">
+<h3 id="orgb9dc2ae0">Org-roam と Org-agenda</h3>
+<div class="outline-text-3" id="text-orgb9dc2ae0">
 <p>
-キーバインドは以前 changelog memo をやっていた時の癖で <code>C-x m</code> をメモにしている.
+org-roam で db に query 投げて,
+<code>org-agenda-files</code> を更新するように.
+元ネタ: <a href="https://d12frosted.io/posts/2021-01-16-task-management-with-roam-vol5.html">Task management with org-roam Vol. 5: Dynamic and fast agenda</a>
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-capture</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
-  <span class="ss">:commands</span> <span class="nv">org-capture</span>
-  <span class="ss">:pl-setq</span>
-  <span class="p">(</span><span class="nv">my:org:calendar1</span> <span class="nv">my:org:calendar2</span><span class="p">)</span>   <span class="c1">;; 名前がイケてないっ!</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">vulpea</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
+           <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"rg"</span><span class="p">)</span>
+                <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"sqlite3"</span><span class="p">)))</span>
+  <span class="ss">:after</span> <span class="nv">org-agenda</span>
+  <span class="ss">:el-get</span>  <span class="nv">d12frosted/vulpea</span>
+  <span class="ss">:advice</span>
+  <span class="p">(</span><span class="ss">:before</span> <span class="nv">org-agenda</span>
+           <span class="nv">my:vulpea-agenda-files-update</span><span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="p">((</span><span class="nv">org-roam-db-autosync-mode</span> <span class="o">.</span> <span class="nv">vulpea-db-autosync-enable</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">find-file-hook</span>            <span class="o">.</span> <span class="nv">vulpea-project-update-tag</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">before-save-hook</span>          <span class="o">.</span> <span class="nv">vulpea-project-update-tag</span><span class="p">))</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-journal-add-date-entry-capture</span> <span class="p">()</span>
-    <span class="p">(</span><span class="nv">org-journal-new-entry</span> <span class="no">t</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nv">point-max</span><span class="p">))</span>
-    <span class="p">)</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-default-notes-file</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Memo.org"</span> <span class="nv">my:d:org</span><span class="p">))</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-capture-templates</span>
-        <span class="o">`</span><span class="p">(</span>
-          <span class="p">(</span><span class="s">"t"</span> <span class="s">"TODO"</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">"** TODO %(format-time-string org-journal-time-format)%^{title} %^g\n  %?\n  %a"</span>
-           <span class="ss">:prepend</span> <span class="no">nil</span>
-           <span class="ss">:unnarrowed</span> <span class="no">nil</span>
-           <span class="ss">:kill-buffer</span> <span class="no">t</span>
-           <span class="p">)</span>
-          <span class="p">(</span><span class="s">"m"</span> <span class="s">"メモを追加"</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">"** MEMO %(format-time-string org-journal-time-format)%?"</span>
-           <span class="ss">:prepend</span> <span class="no">nil</span>
-           <span class="ss">:unnarrowed</span> <span class="no">nil</span>
-           <span class="ss">:kill-buffer</span> <span class="no">t</span>
-           <span class="p">)</span>
-          <span class="p">(</span><span class="s">"a"</span> <span class="s">"少し長めの記事を追加する"</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="k">function</span> <span class="nv">my:org-journal-add-date-entry-capture</span><span class="p">)</span>
-           <span class="s">"** ARTICLE %(format-time-string org-journal-time-format)%? "</span>
-           <span class="ss">:prepend</span> <span class="no">nil</span>
-           <span class="ss">:unnarrowed</span> <span class="no">nil</span>
-           <span class="ss">:kill-buffer</span> <span class="no">t</span>
-           <span class="p">)</span>
-          <span class="p">(</span><span class="s">"s"</span> <span class="s">"個人予定表スケジュールを追加"</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="nv">file</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Schedule.org"</span> <span class="nv">my:d:org</span><span class="p">))</span>
-           <span class="s">"* %^{prompt}\n  :PROPERTIES:\n  :calendar-id: %(format \"%s\" my:org:calendar1)\n  :END:\n  :org-gcal:\n%?\n%i\n  :END:"</span>
-           <span class="ss">:prepend</span> <span class="no">nil</span>
-           <span class="ss">:unnarrowed</span> <span class="no">nil</span>
-           <span class="ss">:kill-buffer</span> <span class="no">t</span>
-           <span class="p">)</span>
-          <span class="p">(</span><span class="s">"u"</span> <span class="s">"仕事予定表スケジュールを追加"</span> <span class="nv">plain</span>
-           <span class="p">(</span><span class="nv">file</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Univ.org"</span> <span class="nv">my:d:org</span><span class="p">))</span>
-           <span class="s">"* %^{prompt}\n  :PROPERTIES:\n  :calendar-id: %(format \"%s\" my:org:calendar2)\n  :END:\n  :org-gcal:\n%?\n%i\n  :END:"</span>
-           <span class="ss">:prepend</span> <span class="no">nil</span>
-           <span class="ss">:unnarrowed</span> <span class="no">nil</span>
-           <span class="ss">:kill-buffer</span> <span class="no">t</span>
-           <span class="p">)</span>
-          <span class="p">)</span>
-        <span class="p">)</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">vulpea-project-p</span> <span class="p">()</span>
+    <span class="s">"Return non-nil if current buffer has any todo entry.
+
+TODO entries marked as done are ignored, meaning the this
+function returns nil if current buffer contains only completed
+tasks."</span>
+    <span class="p">(</span><span class="nv">seq-find</span>                                 <span class="c1">; (3)</span>
+     <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="k">type</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eq</span> <span class="k">type</span> <span class="ss">'todo</span><span class="p">))</span>
+     <span class="p">(</span><span class="nv">org-element-map</span>                         <span class="c1">; (2)</span>
+         <span class="p">(</span><span class="nv">org-element-parse-buffer</span> <span class="ss">'headline</span><span class="p">)</span> <span class="c1">; (1)</span>
+         <span class="ss">'headline</span>
+       <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">h</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">org-element-property</span> <span class="ss">:todo-type</span> <span class="nv">h</span><span class="p">)))))</span>
+
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">vulpea-project-update-tag</span> <span class="p">()</span>
+    <span class="s">"Update PROJECT tag in the current buffer."</span>
+    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nb">not</span> <span class="p">(</span><span class="nv">active-minibuffer-window</span><span class="p">))</span>
+               <span class="p">(</span><span class="nv">vulpea-buffer-p</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">save-excursion</span>
+        <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nv">point-min</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">tags</span> <span class="p">(</span><span class="nv">vulpea-buffer-tags-get</span><span class="p">))</span>
+               <span class="p">(</span><span class="nv">original-tags</span> <span class="nv">tags</span><span class="p">))</span>
+          <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">vulpea-project-p</span><span class="p">)</span>
+              <span class="p">(</span><span class="k">setq</span> <span class="nv">tags</span> <span class="p">(</span><span class="nb">cons</span> <span class="s">"project"</span> <span class="nv">tags</span><span class="p">))</span>
+            <span class="p">(</span><span class="k">setq</span> <span class="nv">tags</span> <span class="p">(</span><span class="nb">remove</span> <span class="s">"project"</span> <span class="nv">tags</span><span class="p">)))</span>
+
+          <span class="c1">;; cleanup duplicates</span>
+          <span class="p">(</span><span class="k">setq</span> <span class="nv">tags</span> <span class="p">(</span><span class="nv">seq-uniq</span> <span class="nv">tags</span><span class="p">))</span>
+
+          <span class="c1">;; update tags if changed</span>
+          <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">seq-difference</span> <span class="nv">tags</span> <span class="nv">original-tags</span><span class="p">)</span>
+                    <span class="p">(</span><span class="nv">seq-difference</span> <span class="nv">original-tags</span> <span class="nv">tags</span><span class="p">))</span>
+            <span class="p">(</span><span class="nb">apply</span> <span class="nf">#'</span><span class="nv">vulpea-buffer-tags-set</span> <span class="nv">tags</span><span class="p">))))))</span>
+
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">vulpea-buffer-p</span> <span class="p">()</span>
+    <span class="s">"Return non-nil if the currently visited buffer is a note."</span>
+    <span class="p">(</span><span class="nb">and</span> <span class="nv">buffer-file-name</span>
+         <span class="p">(</span><span class="nv">string-prefix-p</span>
+          <span class="p">(</span><span class="nv">expand-file-name</span> <span class="p">(</span><span class="nv">file-name-as-directory</span> <span class="nv">org-roam-directory</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">file-name-directory</span> <span class="nv">buffer-file-name</span><span class="p">))))</span>
+
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">vulpea-project-files</span> <span class="p">()</span>
+    <span class="s">"Return a list of note files containing 'project' tag."</span> <span class="c1">;</span>
+    <span class="p">(</span><span class="nv">seq-uniq</span>
+     <span class="p">(</span><span class="nv">seq-map</span>
+      <span class="nf">#'</span><span class="nb">car</span>
+      <span class="p">(</span><span class="nv">org-roam-db-query</span>
+       <span class="nv">[:select</span> <span class="nv">[nodes:file]</span>
+                <span class="ss">:from</span> <span class="nv">tags</span>
+                <span class="ss">:left-join</span> <span class="nv">nodes</span>
+                <span class="ss">:on</span> <span class="p">(</span><span class="nb">=</span> <span class="nv">tags:node-id</span> <span class="nv">nodes:id</span><span class="p">)</span>
+                <span class="ss">:where</span> <span class="p">(</span><span class="nv">like</span> <span class="nv">tag</span> <span class="p">(</span><span class="k">quote</span> <span class="s">"%\"project\"%"</span><span class="p">))</span><span class="nv">]</span><span class="p">))))</span>
+
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:vulpea-agenda-files-update</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">_</span><span class="p">)</span>
+    <span class="s">"Update/Add the value of `org-agenda-files'."</span>
+    <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">vulpea-project-files</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">progn</span>
+          <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">file</span> <span class="p">(</span><span class="nv">vulpea-project-files</span><span class="p">))</span>
+            <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'org-agenda-files</span> <span class="nv">file</span><span class="p">))</span>
+          <span class="p">(</span><span class="k">setq</span> <span class="nv">org-agenada-files</span> <span class="p">(</span><span class="nv">delete-dups</span> <span class="nv">org-agenda-files</span><span class="p">)))))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -4153,7 +4233,8 @@ request token 等の置き場所の変更
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-gcal</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="nv">my:d:password-store</span>
-           <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">))</span>
+           <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">my:d:org</span><span class="p">)</span>
+                <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"curl"</span><span class="p">)))</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:commands</span> <span class="p">(</span><span class="nv">org-gcal-fetch</span> <span class="nv">org-gcal-sync</span><span class="p">)</span>
   <span class="ss">:preface</span>
@@ -4164,26 +4245,27 @@ request token 等の置き場所の変更
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-generic-id</span>
     <span class="ss">:custom</span>
     <span class="o">`</span><span class="p">((</span><span class="nv">org-generic-id-locations-file</span>
-       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-generic-id-locations"</span>  <span class="nv">my:d:share</span><span class="p">))</span>
+       <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-generic-id-locations"</span>  <span class="nv">my:d:tmp</span><span class="p">))</span>
       <span class="p">)</span>
     <span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">request</span>
     <span class="ss">:ensure</span> <span class="no">t</span>
+    <span class="ss">:custom</span>
     <span class="ss">:preface</span>
     <span class="p">(</span><span class="k">setq</span> <span class="nv">request-storage-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"request"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">request-storage-directory</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">make-directory</span> <span class="nv">request-storage-directory</span><span class="p">))</span>
-    <span class="ss">:config</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">request-storage-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"request"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="ss">:custom</span>
+    <span class="o">`</span><span class="p">((</span><span class="nv">request-storage-directory</span> <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"request"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
     <span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">persist</span>
     <span class="ss">:config</span>
     <span class="p">(</span><span class="k">setq</span> <span class="nv">persist--directory-location</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"persist"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
   <span class="ss">:custom</span>
-  <span class="o">`</span><span class="p">((</span><span class="nv">org-gcal-dir</span>          <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span>
-                               <span class="s">"org-gcal"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
-    <span class="p">(</span><span class="nv">org-gcal-token-file</span>   <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span>
-                               <span class="s">"org-gcal/.org-gcal-token"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">org-gcal-dir</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-gcal"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">org-gcal-token-file</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-gcal/.org-gcal-token"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">org-gcal-down-days</span>    <span class="o">.</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1">;; 未来 180 日</span>
     <span class="p">(</span><span class="nv">org-gcal-up-days</span>      <span class="o">.</span>  <span class="mi">30</span><span class="p">)</span>  <span class="c1">;; 過去 30 日</span>
     <span class="p">(</span><span class="nv">org-gcal-auto-archive</span> <span class="o">.</span> <span class="no">t</span><span class="p">)</span>
@@ -4197,7 +4279,7 @@ request token 等の置き場所の変更
   <span class="p">(</span><span class="nv">org-gcal-client-id</span>
    <span class="nv">org-gcal-client-secret</span>
    <span class="nv">org-gcal-file-alist</span><span class="p">)</span>
-  <span class="ss">:hook</span> <span class="p">(</span><span class="nv">org-capture-after-finalize-hook</span>  <span class="o">.</span> <span class="nv">org-gcal-fetch</span><span class="p">)</span>
+  <span class="c1">;; :hook (org-capture-after-finalize-hook  . org-gcal-fetch)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -4504,7 +4586,7 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
   <span class="ss">:commands</span> <span class="nv">my:org-wiki-publish</span>
   <span class="ss">:custom</span>
   <span class="o">`</span><span class="p">((</span><span class="nv">org-publish-timestamp-directory</span>
-     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-timestamps.el"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
+     <span class="o">.</span> <span class="o">,</span><span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-timestamps/"</span> <span class="nv">my:d:tmp</span><span class="p">)))</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-wiki-publish</span> <span class="p">()</span>
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
@@ -5463,7 +5545,15 @@ powerline を使ってる
 <div>
 <h2 id="orgd89ceb4b">Debug&amp;Test</h2>
 <div class="outline-text-2" id="text-orgd89ceb4b">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;;(leaf emacs</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">debian-el</span>
+  <span class="ss">:custom</span>
+  <span class="o">`</span><span class="p">((</span><span class="nv">debian-bug-download-directory</span> <span class="o">.</span> <span class="s">"~/Downloads"</span><span class="p">))</span>
+  <span class="p">)</span>
+<span class="p">(</span><span class="nv">leaf</span> <span class="nv">rg</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"rg"</span><span class="p">)</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="p">)</span>
+<span class="c1">;;(leaf emacs</span>
 <span class="c1">;;  :preface</span>
 <span class="c1">;;  (defun my-advice/window-width (fn &amp;rest args)</span>
 <span class="c1">;;    (- (apply fn args) 1))</span>
@@ -5575,7 +5665,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2021
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2021-08-15 21:11:03 +0000
+          Lastupdate: 2021-08-31 00:09:03 +0000
           <br/>
           Powered by
           <a href="https://orgmode.org/" rel="noopener" title="Org mode">

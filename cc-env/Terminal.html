@@ -264,7 +264,7 @@ tmux に移行した.
 <figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
 #
 # Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
-# $Lastupdate: 22021-07-09 10:16:46$
+# $Lastupdate: 22021-08-30 20:39:12$
 # License: Public domain.
 </span>
 <span class="c">## general
@@ -359,8 +359,8 @@ tmux に移行した.
 
 <span class="c">## Custom command
 </span><span class="n">unbind</span>-<span class="n">key</span> -
-<span class="n">bind</span> - <span class="n">run</span>-<span class="n">shell</span> ~/.<span class="n">config</span>/<span class="n">tmux</span>/<span class="n">weechat</span>-<span class="n">toggle</span>.<span class="n">sh</span>
-<span class="c"># unbind-key b
+<span class="c"># bind - run-shell ~/.config/tmux/weechat-toggle.sh
+# unbind-key b
 </span><span class="n">bind</span>-<span class="n">key</span> <span class="n">b</span> <span class="n">split</span>-<span class="n">window</span> <span class="s1">'tmux lsw | peco | cut -d":" -f 1 | xargs tmux select-window -t'</span>
 
 <span class="n">unbind</span> <span class="n">C</span>-<span class="n">Up</span>
