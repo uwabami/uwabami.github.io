@@ -61,7 +61,9 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 それ自体は問題無いのですが,
 以下の様に
 </p>
-<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">*/*; xdg-open "%s"</code></pre></figure>
+<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">applications/*; xdg-open "%s"
+image/*; xdg-open %s;
+video/*; xdg-open %s;</code></pre></figure>
 <p>
 <code>~/.mailcap</code> を <code>xdg-open</code> に丸投げしていて, さらに <code>$DISPLAY</code> (もしくは <code>$WAYLAND_DISPLAY</code>)が無い場合には,
 <code>xdg-open</code> が <code>run-mailcap</code> を呼ぶ→ <code>run-mailcap</code> が <code>xdg-open</code> を呼び, といった
