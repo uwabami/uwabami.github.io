@@ -44,14 +44,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-10-05T05:44:59+09:00" />
+<meta property="article:published_time" content="2021-10-05T13:43:35+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Intel oneAPI でのお仕事環境の構築" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"url":"https://uwabami.github.io/cc-env/InteloneAPI.html","headline":"Intel oneAPI でのお仕事環境の構築","dateModified":"2021-10-05T05:44:59+09:00","datePublished":"2021-10-05T05:44:59+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/InteloneAPI.html"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"url":"https://uwabami.github.io/cc-env/InteloneAPI.html","headline":"Intel oneAPI でのお仕事環境の構築","dateModified":"2021-10-05T13:43:35+09:00","datePublished":"2021-10-05T13:43:35+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/InteloneAPI.html"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -172,9 +172,9 @@
 <ul>
 <li><a href="#orgb2dc6604">導入と設定</a></li>
 <li><a href="#org4c224bed">NetCDF</a></li>
-<li><a href="#org12340d07">Stow でのライブラリの有効化・無効化</a></li>
-<li><a href="#org0e8a1bdc">gtool5: 20160613版</a></li>
-<li><a href="#org7b600054">gtool5: 1.0.0rc1版</a></li>
+<li><a href="#orgc15a8fa6">gtool5</a></li>
+<li><a href="#orgb6ac8a88">ISPACK</a></li>
+<li><a href="#org667b1d64">SPML</a></li>
 </ul>
 </li>
 </ul>
@@ -192,14 +192,22 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 …まあ, 例によって設定スクリプトに未だ bashism が残っていたりするのがアレだけれど,
 HPC 環境で Intel Compiler を使うことも多いので, テストに使う分には非常に助かるわけで.
 </p>
-
-<p>
-<b>書きかけ. <code>--disable-shared</code> かつ <code>-no-prec-div</code> に変更すべし</b>
-</p>
 </div>
 <div>
 <h3 id="orgb2dc6604">導入と設定</h3>
 <div class="outline-text-3" id="text-orgb2dc6604">
+<p>
+この節は趣味の領域(飛ばして OK)
+ビルドしたモノは <code>/usr/local/intel</code> 以下にインストールする予定なので
+最低限
+</p>
+<ul class="org-ul">
+<li><code>PATH=/usr/local/intel/bin:${PATH}</code></li>
+<li><code>LD_LIBRARY_PATH=/usr/local/intel/lib:${LD_LIBRARY_APTH}</code></li>
+</ul>
+<p>
+だけは設定しておくと良い.
+</p>
 </div>
 <div>
 <h4 id="orga7eb357b">導入</h4>
@@ -302,6 +310,7 @@ Signed-by: /usr/local/share/keyrings/intel.asc
 …いや, まあ, こんなに使わんのだが
 (Data Sicnese やら Deep Learning やらで Python 関連が入るんだなぁ…).
 というわけで, 整理して切り替え可能にした zsh 関数はこんな感じかな?
+intel コンパイラでビルドした諸々は <code>/usr/local/intel</code> 以下に置くことにしている
 </p>
 
 <p>
@@ -462,7 +471,11 @@ Signed-by: /usr/local/share/keyrings/intel.asc
 <span class="c"># VTUNE</span>
 <span class="nv">_VTUNE_PROFILER_2021_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/vtune/2021.7.1
 <span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_VTUNE_PROFILER_2021_DIR</span><span class="k">}</span>/bin64:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
-<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_VTUNE_PROFILER_2021_DIR</span><span class="k">}</span>/include/pkgconfig/lib64:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span></code></pre></figure>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_VTUNE_PROFILER_2021_DIR</span><span class="k">}</span>/include/pkgconfig/lib64:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>
+
+<span class="c"># personal build</span>
+<span class="nv">_PATH</span><span class="o">=</span>/usr/local/intel/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/intel/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span></code></pre></figure>
 <p>
 読み込み
 </p>
@@ -659,7 +672,6 @@ unset SETVARS_COMPLETED</span></code></pre></figure>
 <div class="outline-text-3" id="text-org4c224bed">
 <p>
 依存するモノが多くてなかなか大変.
-インストール先は <code>/usr/local/stow/intel</code> 以下に集約して, stow で切り替えることにする.
 </p>
 
 <p>
@@ -685,7 +697,8 @@ SZIP."
 </blockquote>
 <p>
 というわけで, libeac を導入する.
-同梱されている <code>INSTALL.md</code> に導入方法があるので, これの通りに.
+同梱されている <code>INSTALL.md</code> に導入方法があるので,
+基本はこれの通りに.
 </p>
 <pre class="example">
 % sudo apt install gnulib
@@ -696,9 +709,12 @@ SZIP."
 % autoreconf -iv
 % mkdir build
 % cd build
-% AR=xiar LD=xild CC=icc ../configure
-% make CFLAGS="-O3 -xCORE-AVX2"
-% make check CFLAGS="-O3 -xCORE-AVX2"
+% AR=xiar LD=xild \
+  CC=icc \
+  CFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model=precise -mcmodel=large" \
+  ../configure --prefix=/usr/local/intel
+% make
+% make check
 % make install
 </pre>
 </div>
@@ -712,10 +728,14 @@ SZIP."
 % cd zlib-1.2.11
 % mkdir build
 % cd build
-% AR=xiar LD=xild CC=icc ../configure --prefix=/usr/local/stow/intel
-% make CFLAGS="-O3 -xCORE-AVX2"
-% make check CFLAGS="-O3 -xCORE-AVX2"
+% AR=xiar LD=xild \
+  CC=icc \
+  CFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model=precise -mcmodel=large" \
+  ../configure --prefix=/usr/local/intel
+% make
+% make test
 % make install
+# /usr/local/intel/lib/libz.so* は消しても OK.
 </pre>
 </div>
 </div>
@@ -734,27 +754,33 @@ NetCDF側では<a href="https://github.com/Unidata/netcdf-c/pull/2044">対応済
 
 <p>
 必要なのは C API だけなので, 素のビルドで OK.
+ビルドもテストもかなり時間がかかるので, 適宜休憩挟みつつ進めると良いかと.
 </p>
 <pre class="example">
 % tar xvf hdf5-1.12.1.tar.gz
 % cd hdf5-1.12.1
 % mkdir build
 % cd build
-% AR=xiar LD=xild CC=icc ../configure --prefix=/usr/local/stow/intel --with-zlib=/usr/local/stow/intel/lib --with-szlib=/usr/local/stow/intel/lib --enable-hl --with-default-api-version=v110
+% AR=xiar LD=xild \
+  CXX=icpc \
+  FC=ifort \
+  CC=icc \
+  CFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model=precise -mcmodel=large -I/usr/local/intel/include" \
+  LIBS="-L/usr/local/intel/lib -laec" \
+  ../configure \
+    --prefix=/usr/local/intel \
+    --with-zlib=/usr/local/intel/lib \
+    --with-szlib=/usr/local/intel/lib \
+    --enable-hl \
+    --with-default-api-version=v110 \
+    --disable-shared
 % make
-# 結構時間がかかる上, warning が盛り沢山.
-# 不安になってしょうがない.
-# 珈琲でも呑んでまったりしてましょう.
 % make check
-# これも結構時間がかかる.
-# 珈琲でも呑んでまったりしてましょう(2杯目).
-# verbose モードとかないモンですかねぇ….
 % make install
 % make check-install
 </pre>
 </div>
 </div>
-
 <div>
 <h4 id="orgfea0c1d5">NetCDF C</h4>
 <div class="outline-text-4" id="text-orgfea0c1d5">
@@ -764,10 +790,17 @@ HDF5 の後に NetCDF C ライブラリを導入
 </p>
 
 <p>
-雑にやるなら, HDF5 のインストール時に生成された
-C コンパイラの wrapper である h5cc をつかってビルドすると楽.
-ただ, 今後 <code>nc-config</code> の出力を使って他のライブラリをビルドしたりすることを考えたりすると,
-真面目(?)に configure を走らせた方が良い, かも.
+static でビルドする際には
+HDF5 のインストール時に生成された C コンパイラの wrapper である
+<code>h5cc</code> の中身を見て, 設定されているライブラリの情報を適宜
+<code>LIBS</code> に指定すると良い.
+<code>libhdf5.settings</code> の中身も参考になるかと.
+</p>
+
+<p>
+雑にやるなら <code>CC</code> に <code>h5cc</code> を指定する, という方法もあるが,
+今後 <code>nc-config</code> の出力を使って他のライブラリをビルドしたりすることを考えたりすると,
+真面目(?)に configure を走らせた方が良い気がする.
 </p>
 <pre class="example">
 % wget https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.8.1.tar.gz \
@@ -776,18 +809,16 @@ C コンパイラの wrapper である h5cc をつかってビルドすると楽
 % cd netcdf-c-4.8.1
 % mkdir build
 % cd build
-# 不真面目(?)
-# % AR=xiar LD=xild CC=/usr/local/stow/intel/bin/h5cc \
-#   ../configure --disable-dap --prefix=/usr/local/stow/intel
 % AR=xiar LD=xild \
-  LDFLAGS="-L/usr/local/stow/intel/lib"  \
-  CPPFLAGS="-I/usr/local/stow/intel/include" \
-  CC=icc \
-  CFLAGS="-O3 -xHost" \
-  ../configure --disable-dap --prefix=/usr/local/stow/intel
+  CC=icc
+  CFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model=precise -mcmodel=large -I/usr/local/intel/include" \
+  LIBS="-L/usr/local/intel/lib -lhdf5_hl -lhdf5 -lsz -lz-laec" \
+  ../configure \
+  --prefix=/usr/local/intel \
+  --disable-dap  \
+  --enable-large
 % make
 % make check
-# 結構時間がかかるので, 適宜休憩.
 % make install
 </pre>
 </div>
@@ -796,10 +827,7 @@ C コンパイラの wrapper である h5cc をつかってビルドすると楽
 <h4 id="orgaba91f54">NetCDF Fortran</h4>
 <div class="outline-text-4" id="text-orgaba91f54">
 <p>
-NetCDF Fortran ライブラリの configure はちょっとイケていないので
-LD<sub>LIBRARY</sub><sub>PATH</sub> に NetCDF C のライブラリの場所を指定してあげる必要がありそう
-(これまでのライブラリを全て static でビルドしていると問題無い, かもしれないが,
-その際には MPI 周りでハマリそうな気がしている).
+C版同様に LIBS に必要なライブラリを列挙するのを忘れずに.
 </p>
 <pre class="example">
 % wget https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.5.3.tar.gz -O netcdf-fortran-4.5.3.tar.gz
@@ -807,14 +835,17 @@ LD<sub>LIBRARY</sub><sub>PATH</sub> に NetCDF C のライブラリの場所を�
 % cd netcdf-fortran-4.5.3
 % mkdir build
 % cd build
-# ↓ これは configure を通すための dirty hack.
-% LD_LIBRARY_PATH=/usr/local/stow/intel/lib:${LD_LIBRARY_PATH} \
-  AR=xiar LD=xild \
-  FC=ifort FCFLAGS="-O3 -xHost -I/usr/local/stow/intel/include" \
-  F77=ifort FFLAGS="-O3 -xHost -I/usr/local/stow/intel/include" \
-  LDFLAGS="-L/usr/local/stow/intel/lib -lnetcdf" \
-  LIBS="-lhdf5_hl -lhdf5" \
-  ../configure --prefix=/usr/local/stow/intel
+% AR=xiar LD=xild \
+  CC=icc \
+  CFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model=precise -mcmodel=large -I/usr/local/intel/include" \
+  FC=ifort
+  FCFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model=precise -mcmodel=large -I/usr/local/intel/include" \
+  F77=ifort
+  FFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model=precise -mcmodel=large -I/usr/local/intel/include" \
+  LIBS="-L/usr/local/intel/lib -lnetcdf -lhdf5_hl -lhdf5 -lsz -lz -laec"
+  ../configure \
+  --prefix=/usr/local/intel \
+  --disable-shared --disable-dap
 % make
 % make check
 % make install
@@ -822,85 +853,106 @@ LD<sub>LIBRARY</sub><sub>PATH</sub> に NetCDF C のライブラリの場所を�
 </div>
 </div>
 </div>
-
 <div>
-<h3 id="org12340d07">Stow でのライブラリの有効化・無効化</h3>
-<div class="outline-text-3" id="text-org12340d07">
-<p>
-stow でシンボリックリンクを適宜作成し,
-システムライブラリを汚す事なく共有ライブラリの path を上書きする.
-</p>
-<pre class="example">
-% sudo apt install stow
-</pre>
-<p>
-有効化
-</p>
-<pre class="example">
-% sudo stow -v /usr/local/stow/intel
-% sudo ldconfig -v
-</pre>
-<p>
-無効化
-</p>
-<pre class="example">
-% sudo stow -vD /usr/local/stow/intel
-% sudo ldconfig -v
-</pre>
-<p>
-NetCDF C のインストールが終わったあたりで有効にしておくと, その後が楽かも….
-</p>
-</div>
+<h3 id="orgc15a8fa6">gtool5</h3>
+<div class="outline-text-3" id="text-orgc15a8fa6">
 </div>
 <div>
-<h3 id="org0e8a1bdc">gtool5: 20160613版</h3>
-<div class="outline-text-3" id="text-org0e8a1bdc">
+<h4 id="org0e8a1bdc">gtool5: 20160613版</h4>
+<div class="outline-text-4" id="text-org0e8a1bdc">
 <p>
-configure を直す前なので,
-一度 configure を走らせた後に手動で <code>Config.mk</code> の修正が必要.
+現在の「安定版」は configure を直す前の版なので,
+一度 configure を走らせた後に手動で <code>Config.mk</code> の修正が必要である.
 </p>
 <pre class="example">
 % wget http://www.gfd-dennou.org/library/gtool/gtool5/gtool5_current.tgz
 % tar xvf gtool5_current.tgz
 % cd gtool5-20160613/
 % AR=xiar LD=xild \
-  FC=mpiifort SYSFFLAGS="-O3 -xHost -no-prec-div -I/usr/local/stow/intel/include" \
+  FC=mpiifort \
+  SYSFFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model=precise -mcmodel=large -I/usr/local/intel/include" \
   ./configure \
     --with-netcdff=/usr/local/stow/intel/lib/libnetcdff.so \
     --with-netcdf=/usr/local/stow/intel/lib/libnetcdf.so \
     --with-mpiexec=mpiexec
-# Config.mk の修正, 該当行は以下
-SYSFFLAGS=-O3 -xHost -no-prec-div -I/usr/local/stow/intel/include -I/opt/intel/oneapi/mpi/2021.4.0//include -I/opt/intel/oneapi/mpi/2021.4.0/include
-SYSLDFLAGS=-L/usr/local/stow/intel/lib  -L/opt/intel/oneapi/mpi/2021.4.0/lib/release -L/opt/intel/oneapi/mpi/2021.4.0/lib -L/usr/local/stow/intel/lib
-SYSLDLIBS=-lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lmpifort -lmpi -ldl -lrt -lpthread
+# Config.mk の修正, 該当行は以下(修正後)
+SYSFFLAGS=-O3 -xHost -prec-div -static -shared-intel -I/usr/local/intel/include  -I/opt/intel/oneapi/mpi/2021.4.0//include -I/opt/intel/oneapi/mpi/20
+21.4.0/include
+SYSLDFLAGS=-L/usr/local/intel/lib -L/opt/intel/oneapi/mpi/2021.4.0/lib/release -L/opt/intel/oneapi/mpi/2021.4.0/lib
+SYSLDLIBS=-lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lsz -lz -laec -lmpifort -lmpi -ldl -lrt -lpthread
 % make
-% make test       # 浮動小数点の最適化次第では 1 と 0.9999999 の比較
-% make test-mpi   # なんかになってテストに失敗する…うーむ.
+% make test
+% make test-mpi
 </pre>
-</div>
-</div>
-
-<div>
-<h3 id="org7b600054">gtool5: 1.0.0rc1版</h3>
-<div class="outline-text-3" id="text-org7b600054">
 <p>
-configure 周りを全面的に書き替えているので
+そのままコレを使う場合は <code>make install</code> しておく.
+</p>
+</div>
+</div>
+<div>
+<h4 id="org7b600054">gtool5: GIT HEAD</h4>
+<div class="outline-text-4" id="text-org7b600054">
+<p>
+<code>configure</code> 周りを全面的に書き替えているので
 よくある変数を指定するだけで良い.
 </p>
-<figure class="highlight"><pre><code class="language-nil" data-lang="nil">% wget http://www.gfd-dennou.org/library/gtool/gtool5/gtool5_master.tgz
-% tar xvf gtool5_master.tgz
-% cd gtool5-1.0.0rc1
+<figure class="highlight"><pre><code class="language-nil" data-lang="nil">% git clone https://www.gfd-dennou.org/library/gtool/git_repos/gtool5.git
+% cd gtool5
+% git submodule update --init
+% ./autogen.sh
 % mkdir build
 % cd build
 % AR=xiar LD=xild \
-  FC=mpiifort FCFLAGS="-O2 -xHost -I/usr/local/include" \
-  LIBS="-L/usr/local/stow/intel/lib -lhdf5_hl -lhdf5" \
+  CPP="gcc -E" \
+  CC=mpiicc \
+  CFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model precise -mcmodel=large -I/usr/local/intel/include" \
+  FC=mpiifort \
+  FCFLAGS="-fPIC -O3 -xCORE-AVX2 -prec-div -fp-model precise -mcmodel=large -I/usr/local/intel/include" \
+  LIBS="-L/usr/local/intel/lib -lhdf5_hl -lhdf5 -lsz -lz -laec" \
   ../configure \
-  --prefix=/usr/local/stow/intel \
-  --with-nf-config=/usr/local/stow/intel/bin/nf-config
+  --prefix=/usr/local/intel \
+  --with-nf-config=/usr/local/intel/bin/nf-config
 % make
-% make test   # 浮動小数点の最適化次第では 1 と 0.9999999 の比較
-              # なんかになってテストに失敗する…うーむ.</code></pre></figure>
+% make test</code></pre></figure>
+<p>
+こちらを使う場合は <code>make install</code> まで行なう.
+</p>
+</div>
+</div>
+</div>
+<div>
+<h3 id="orgb6ac8a88">ISPACK</h3>
+<div class="outline-text-3" id="text-orgb6ac8a88">
+</div>
+<div>
+<h4 id="org25081b44">ISPACK: v1</h4>
+<div class="outline-text-4" id="text-org25081b44">
+</div>
+</div>
+<div>
+<h4 id="org5c77e3ef">ISPACK v2</h4>
+<div class="outline-text-4" id="text-org5c77e3ef">
+</div>
+</div>
+<div>
+<h4 id="org7350e806">ISPACK v3</h4>
+<div class="outline-text-4" id="text-org7350e806">
+</div>
+</div>
+</div>
+<div>
+<h3 id="org667b1d64">SPML</h3>
+<div class="outline-text-3" id="text-org667b1d64">
+</div>
+<div>
+<h4 id="org7e2953ea">SPML: v0.8.1</h4>
+<div class="outline-text-4" id="text-org7e2953ea">
+</div>
+</div>
+<div>
+<h4 id="orgb7f9c663">SPML: v2 (Git HEAD)</h4>
+<div class="outline-text-4" id="text-orgb7f9c663">
+</div>
 </div>
 </div>
 </div>
@@ -912,7 +964,7 @@ configure 周りを全面的に書き替えているので
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2021
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2021-10-04 20:44:59 +0000
+          Lastupdate: 2021-10-05 04:43:35 +0000
           <br/>
           Powered by
           <a href="https://orgmode.org/" rel="noopener" title="Org mode">
