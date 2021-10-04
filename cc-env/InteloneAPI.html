@@ -44,14 +44,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-10-05T05:41:52+09:00" />
+<meta property="article:published_time" content="2021-10-05T05:44:59+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Intel oneAPI でのお仕事環境の構築" />
 <meta name="twitter:site" content="@uwabami" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"url":"https://uwabami.github.io/cc-env/InteloneAPI.html","headline":"Intel oneAPI でのお仕事環境の構築","dateModified":"2021-10-05T05:41:52+09:00","datePublished":"2021-10-05T05:41:52+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/InteloneAPI.html"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+{"url":"https://uwabami.github.io/cc-env/InteloneAPI.html","headline":"Intel oneAPI でのお仕事環境の構築","dateModified":"2021-10-05T05:44:59+09:00","datePublished":"2021-10-05T05:44:59+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/InteloneAPI.html"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -167,7 +167,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf3b4156">Intel oneAPI でのお仕事環境整備</a></li>
+<li>
+<a href="#orga431cbe7">始めに</a>
+<ul>
+<li><a href="#orgb2dc6604">導入と設定</a></li>
+<li><a href="#org4c224bed">NetCDF</a></li>
+<li><a href="#org12340d07">Stow でのライブラリの有効化・無効化</a></li>
+<li><a href="#org0e8a1bdc">gtool5: 20160613版</a></li>
+<li><a href="#org7b600054">gtool5: 1.0.0rc1版</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
@@ -175,8 +184,8 @@
 Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
 </p>
 <div>
-<h2 id="orgf3b4156">Intel oneAPI でのお仕事環境整備</h2>
-<div class="outline-text-2" id="text-orgf3b4156">
+<h2 id="orga431cbe7">始めに</h2>
+<div class="outline-text-2" id="text-orga431cbe7">
 <p>
 いつの頃からか定かではないのだが, Intel コンパイラなどの開発環境が
 <a href="https://www.isus.jp/products/oneapi/oneapi-news-and-updates/">Intel oneAPI</a> として公開されていて, apt でインストールできる様になっている.
@@ -188,14 +197,13 @@ HPC 環境で Intel Compiler を使うことも多いので, テストに使う�
 <b>書きかけ. <code>--disable-shared</code> かつ <code>-no-prec-div</code> に変更すべし</b>
 </p>
 </div>
-
 <div>
-<h3 id="org7d6595e">導入と設定</h3>
-<div class="outline-text-3" id="text-org7d6595e">
+<h3 id="orgb2dc6604">導入と設定</h3>
+<div class="outline-text-3" id="text-orgb2dc6604">
 </div>
 <div>
-<h4 id="org52d06a5">導入</h4>
-<div class="outline-text-4" id="text-org52d06a5">
+<h4 id="orga7eb357b">導入</h4>
+<div class="outline-text-4" id="text-orga7eb357b">
 <p>
 apt で導入します.
 </p>
@@ -242,8 +250,8 @@ Signed-by: /usr/local/share/keyrings/intel.asc
 </div>
 </div>
 <div>
-<h4 id="org2184799">設定</h4>
-<div class="outline-text-4" id="text-org2184799">
+<h4 id="orgc5739144">設定</h4>
+<div class="outline-text-4" id="text-orgc5739144">
 <p>
 安直に環境設定するなら
 </p>
@@ -647,8 +655,8 @@ unset SETVARS_COMPLETED</span></code></pre></figure>
 </div>
 </div>
 <div>
-<h3 id="org04c65e9">NetCDF</h3>
-<div class="outline-text-3" id="text-org04c65e9">
+<h3 id="org4c224bed">NetCDF</h3>
+<div class="outline-text-3" id="text-org4c224bed">
 <p>
 依存するモノが多くてなかなか大変.
 インストール先は <code>/usr/local/stow/intel</code> 以下に集約して, stow で切り替えることにする.
@@ -660,8 +668,8 @@ unset SETVARS_COMPLETED</span></code></pre></figure>
 </p>
 </div>
 <div>
-<h4 id="orgb460eed">szip -&gt; libaec</h4>
-<div class="outline-text-4" id="text-orgb460eed">
+<h4 id="org7e100925">szip -&gt; libaec</h4>
+<div class="outline-text-4" id="text-org7e100925">
 <p>
 BSD-2-Clause の szip の互換ソフトウェアとして<a href="https://gitlab.dkrz.de/k202009/libaec">libeac</a>がリリースされている.
 </p>
@@ -696,8 +704,8 @@ SZIP."
 </div>
 </div>
 <div>
-<h4 id="orgcacce1d">zlib</h4>
-<div class="outline-text-4" id="text-orgcacce1d">
+<h4 id="org8cce54bf">zlib</h4>
+<div class="outline-text-4" id="text-org8cce54bf">
 <pre class="example">
 % wget https://zlib.net/zlib-1.2.11.tar.gz
 % tar xvf zlib-1.2.11.tar.gz
@@ -712,8 +720,8 @@ SZIP."
 </div>
 </div>
 <div>
-<h4 id="org803c8f4">HDF5</h4>
-<div class="outline-text-4" id="text-org803c8f4">
+<h4 id="orgfd836615">HDF5</h4>
+<div class="outline-text-4" id="text-orgfd836615">
 <p>
 あいかわらず, ダウンロードリンクは直接叩けないので
 おとなしく Web の URL をポチっとして落としてくる.
@@ -748,8 +756,8 @@ NetCDF側では<a href="https://github.com/Unidata/netcdf-c/pull/2044">対応済
 </div>
 
 <div>
-<h4 id="org9557dd5">NetCDF C</h4>
-<div class="outline-text-4" id="text-org9557dd5">
+<h4 id="orgfea0c1d5">NetCDF C</h4>
+<div class="outline-text-4" id="text-orgfea0c1d5">
 <p>
 HDF5 の後に NetCDF C ライブラリを導入
 (OPeNDAP を利用する気は無いので, curl は不要).
@@ -785,8 +793,8 @@ C コンパイラの wrapper である h5cc をつかってビルドすると楽
 </div>
 </div>
 <div>
-<h4 id="org1b951b9">NetCDF Fortran</h4>
-<div class="outline-text-4" id="text-org1b951b9">
+<h4 id="orgaba91f54">NetCDF Fortran</h4>
+<div class="outline-text-4" id="text-orgaba91f54">
 <p>
 NetCDF Fortran ライブラリの configure はちょっとイケていないので
 LD<sub>LIBRARY</sub><sub>PATH</sub> に NetCDF C のライブラリの場所を指定してあげる必要がありそう
@@ -816,8 +824,8 @@ LD<sub>LIBRARY</sub><sub>PATH</sub> に NetCDF C のライブラリの場所を�
 </div>
 
 <div>
-<h3 id="org830ede5">Stow でのライブラリの有効化・無効化</h3>
-<div class="outline-text-3" id="text-org830ede5">
+<h3 id="org12340d07">Stow でのライブラリの有効化・無効化</h3>
+<div class="outline-text-3" id="text-org12340d07">
 <p>
 stow でシンボリックリンクを適宜作成し,
 システムライブラリを汚す事なく共有ライブラリの path を上書きする.
@@ -845,8 +853,8 @@ NetCDF C のインストールが終わったあたりで有効にしておく�
 </div>
 </div>
 <div>
-<h3 id="orgb7a429e">gtool5: 20160613版</h3>
-<div class="outline-text-3" id="text-orgb7a429e">
+<h3 id="org0e8a1bdc">gtool5: 20160613版</h3>
+<div class="outline-text-3" id="text-org0e8a1bdc">
 <p>
 configure を直す前なので,
 一度 configure を走らせた後に手動で <code>Config.mk</code> の修正が必要.
@@ -873,8 +881,8 @@ SYSLDLIBS=-lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lmpifort -lmpi -ldl -lrt -lpthrea
 </div>
 
 <div>
-<h3 id="orgec0e561">gtool5: 1.0.0rc1版</h3>
-<div class="outline-text-3" id="text-orgec0e561">
+<h3 id="org7b600054">gtool5: 1.0.0rc1版</h3>
+<div class="outline-text-3" id="text-org7b600054">
 <p>
 configure 周りを全面的に書き替えているので
 よくある変数を指定するだけで良い.
@@ -904,7 +912,7 @@ configure 周りを全面的に書き替えているので
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2021
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2021-10-04 20:41:52 +0000
+          Lastupdate: 2021-10-04 20:44:59 +0000
           <br/>
           Powered by
           <a href="https://orgmode.org/" rel="noopener" title="Org mode">
