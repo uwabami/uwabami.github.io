@@ -201,6 +201,12 @@
   </url>
 
 <url>
+    <loc>https://uwabami.github.io/cc-env/InteloneAPI.html</loc>
+    <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/cc-env/InteloneAPI.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+
+<url>
     <loc>https://uwabami.github.io/cc-env/Zotero.html</loc>
     <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/cc-env/Zotero.html" />
     <changefreq>monthly</changefreq>

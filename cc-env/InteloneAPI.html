@@ -1,0 +1,933 @@
+<!doctype html>
+<html ⚡ lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="preconnect dns-prefetch" href="//cdn.ampproject.org" crossorigin>
+    <link rel="preconnect dns-prefetch" href="//uwabami.github.io/" crossorigin>
+    <!-- amp preload -->
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+    <link rel="preload" as="image" href="/assets/img/top.png">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inconsolata-v18-latin-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inconsolata-v18-latin-700.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ComicNeueSubset.woff2" crossorigin>
+    <!-- end amp preload -->
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
+    <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <!-- Custom css based on following two framework -->
+    <!-- - normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css -->
+    <!-- - basscss v8.1.2 | MIT License | github.com/basscss/basscss -->
+    <style amp-custom>@font-face{font-family:'Inconsolata';font-style:normal;font-weight:400;font-display:swap;src:local("Inconsolata Regular"),local("Inconsolata-Regular"),url("/assets/fonts/inconsolata-v18-latin-regular.woff2") format("woff2")}@font-face{font-family:'Inconsolata';font-style:Bold;font-weight:700;font-display:swap;src:local("Inconsolata Bold"),local("Inconsolata-Bold"),url("/assets/fonts/inconsolata-v18-latin-700.woff2") format("woff2")}@font-face{font-family:'Isfit+';font-style:normal;font-weight:400;font-display:swap;src:local("isfit+"),local("isfit-plus"),url("/assets/fonts/isfit-plus.woff2") format("woff2")}@font-face{font-family:'Comic Neue';font-style:normal;font-weight:400;font-display:swap;src:local("Comic Neue"),local("Comic Neue"),url("/assets/fonts/ComicNeueSubset.woff2") format("woff2")}@font-face{font-family:'AoyagiKouzanTSubset';font-style:normal;font-weight:400;font-display:swap;src:local("AoyagiKouzanTSubset"),local("AoyagiKouzanTSubset"),url("/assets/fonts/AoyagiKouzanTSubset.woff2") format("woff2")}@font-face{font-family:YuGothicM;src:local(Yu Gothic Medium)}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:"Inconsolata",YuGothic,"游ゴシック体","游ゴシック","Yu Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:"Inconsolata",YuGothic,"游ゴシック体","游ゴシック","Yu Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}.h00{font-size:4rem}.h0{font-size:3rem}.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:700}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:320px}.max-width-2{max-width:480px}.max-width-3{max-width:600px}.max-width-4{max-width:800px}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-.5rem;margin-right:-.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.m-auto{margin:auto}.mt-auto{margin-top:auto}.mr-auto{margin-right:auto}.mb-auto{margin-bottom:auto}.ml-auto{margin-left:auto}.mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.33333%}.col-2{width:16.66667%}.col-3{width:25%}.col-4{width:33.33333%}.col-5{width:41.66667%}.col-6{width:50%}.col-7{width:58.33333%}.col-8{width:66.66667%}.col-9{width:75%}.col-10{width:83.33333%}.col-11{width:91.66667%}.col-12{width:100%}@media (min-width: 40.06rem){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.33333%}.sm-col-2{width:16.66667%}.sm-col-3{width:25%}.sm-col-4{width:33.33333%}.sm-col-5{width:41.66667%}.sm-col-6{width:50%}.sm-col-7{width:58.33333%}.sm-col-8{width:66.66667%}.sm-col-9{width:75%}.sm-col-10{width:83.33333%}.sm-col-11{width:91.66667%}.sm-col-12{width:100%}}@media (min-width: 52.06rem){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.33333%}.md-col-2{width:16.66667%}.md-col-3{width:25%}.md-col-4{width:33.33333%}.md-col-5{width:41.66667%}.md-col-6{width:50%}.md-col-7{width:58.33333%}.md-col-8{width:66.66667%}.md-col-9{width:75%}.md-col-10{width:83.33333%}.md-col-11{width:91.66667%}.md-col-12{width:100%}}@media (min-width: 64rem){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.33333%}.lg-col-2{width:16.66667%}.lg-col-3{width:25%}.lg-col-4{width:33.33333%}.lg-col-5{width:41.66667%}.lg-col-6{width:50%}.lg-col-7{width:58.33333%}.lg-col-8{width:66.66667%}.lg-col-9{width:75%}.lg-col-10{width:83.33333%}.lg-col-11{width:91.66667%}.lg-col-12{width:100%}}.flex{display:-webkit-box;display:-ms-flexbox;display:flex}@media (min-width: 40.06rem){.sm-flex{display:-webkit-box;display:-ms-flexbox;display:flex}}@media (min-width: 52.06rem){.lg-flex{display:-webkit-box;display:-ms-flexbox;display:flex}}.flex-column{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.items-start{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.items-end{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.items-center{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.items-baseline{-webkit-box-align:baseline;-ms-flex-align:baseline;align-items:baseline}.items-stretch{-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.justify-end{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.justify-center{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.justify-between{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.justify-around{-ms-flex-pack:distribute;justify-content:space-around}.justify-evenly{-webkit-box-pack:space-evenly;justify-content:space-evenly}.content-start{-ms-flex-line-pack:start;align-content:flex-start}.content-end{-ms-flex-line-pack:end;align-content:flex-end}.content-center{-ms-flex-line-pack:center;align-content:center}.content-between{-ms-flex-line-pack:justify;align-content:space-between}.content-around{-ms-flex-line-pack:distribute;align-content:space-around}.content-stretch{-ms-flex-line-pack:stretch;align-content:stretch}.flex-auto{-webkit-box-flex:1;-ms-flex-positive:1;flex:1 1 auto;min-width:0;min-height:0}.flex-none{-webkit-box-flex:0;-ms-flex-positive:0;flex:none}.order-0{-webkit-box-ordinal-group:1;-ms-flex-order:0;order:0}.order-1{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}.order-2{-webkit-box-ordinal-group:3;-ms-flex-order:2;order:2}.order-3{-webkit-box-ordinal-group:4;-ms-flex-order:3;order:3}.order-last{-webkit-box-ordinal-group:100000;-ms-flex-order:99999;order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40rem){.xs-hide{display:none}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.sm-hide{display:none}}@media (min-width: 52.06rem) and (max-width: 64rem){.md-hide{display:none}}@media (min-width: 64rem){.lg-hide{display:none}}.display-none{display:none}h1{font-weight:normal}.content em{font-weight:normal;font-style:normal}.content strong{font-weight:normal;font-size:1.5rem}.content .alert{font-weight:bold;color:#ff4136}.content a:hover{text-decoration:underline}.content ol{counter-reset:list}.content ol>li{position:relative;list-style:none;margin-top:5px;margin-bottom:5px}.content dd{padding:0;margin-right:0;margin-left:15pt}.content ul>li{margin:5px 0 5px 0}.content ul{padding:0 20px 0 20px}.content ol{padding:0 30px 0 30px}.content ol>li:before{content:"(" counter(list, decimal) ") ";counter-increment:list;position:absolute;left:-35px}.content blockquote{border-left:5px solid #333333;margin:10px 0 10px 0;padding:0px 8px 0px 8px;font-style:normal}.content h2{border-bottom:1px solid #5af;font-weight:normal;margin:1rem 0 0 0;padding:0}.content h3{border-bottom:1px dashed #5af;font-weight:normal;margin:1rem 0 0 0}.content h4{border-bottom:1px dotted #5af;font-weight:normal;margin:1rem 0 0 0}.content h5{border-bottom:1px dashed #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content h6{border-bottom:1px dotted #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}html{height:100%;-ms-text-size-adjust:100%;font-size:15pt;font-family:"Inconsolata",YuGothic,"游ゴシック体","游ゴシック","Yu Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}body{margin:0;line-height:1.25;min-width:315px;height:100%;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased;padding-top:5rem}wrapper{min-height:100%}main{display:block;margin:0 auto;max-width:800px}header{display:block;margin:0 auto;width:100%;max-width:800px;box-shadow:0 6px 10px -10px rgba(0,0,0,0.7)}footer{display:block;margin:0 auto;width:100%;max-width:800px}.logo{border-radius:80%}.gsearch{width:10rem;max-width:40vw;font-family:"Inconsolata",YuGothic,"游ゴシック体","游ゴシック","Yu Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}.title-font{font-family:"Comic Neue","AoyagiKouzanTSubset","Inconsolata",YuGothic,"游ゴシック体","游ゴシック","Yu Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}hr{padding:0;margin:8px 0;border:0;height:0;border-top:1px solid rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.8)}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.2rem;width:1.2rem}.icon-envelope{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}.icon-amp{color:#ff851b}.research li:nth-child(even){background-color:#f5f5f5}.small{font-size:80%}.doi{font-size:80%}#table-of-contents{margin:0;padding:0;display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;border-bottom:1px solid rgba(0,0,0,0.1)}#table-of-contents h2{margin:0;padding:0;font-size:1rem;border:none;margin-right:1rem}#table-of-contents h2:after{content:":";padding:0;margin:0}#table-of-contents #text-table-of-contents ul{margin:0;padding:0}#table-of-contents #text-table-of-contents ul li{list-style:none;padding:0;display:inline-block}#table-of-contents #text-table-of-contents ul li+li:before{content:"/ ";padding:0;margin:0;color:#ccc}a{text-decoration:none;color:#3498db}a:hover{text-decoration:underline}@media (max-width: 40rem){body{padding-top:4.8rem}.wrapper{padding:0 .5rem;background-color:#fff}header{padding:0 .5rem;background-color:#fff}header input.navigation-input{display:none}header nav{padding-right:1rem}header div.breadcrumbs{padding-right:1rem}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;padding-right:1rem;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}.page-title{font-size:1.5rem}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.4rem;width:1.4rem}amp-img.profile-picture{height:3rem;width:3rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.2rem;margin-left:1.2rem}#table-of-contents{display:none}footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){body{padding-top:4.8rem}.wrapper{padding:0 1rem;background-color:#fff}nav{padding-right:2rem}div.breadcrumbs{padding-right:2rem}header{padding:0 1rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;padding-right:2rem;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.2rem;margin-left:1.2rem}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.3rem;width:1.3rem}footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 2rem;background-color:#fff}header{padding:0 2rem;background-color:#fff}header .navigation-input{display:none}nav{padding-right:.5rem}div.breadcrumbs{padding-right:.5rem}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu .dcontents{position:absolute}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.3rem;width:1.3rem}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 2rem}}@media (min-width: 64rem){body{padding-top:4rem}.wrapper{padding:0 4rem;background-color:#fff}header{background-color:#fff}header .navigation-input{display:none}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu .dcontents{position:absolute}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 4rem}}table{margin:15px 0;border-collapse:collapse;width:100%;padding:0}table tr{border-top:1px solid #cccccc;background-color:white;margin:0;padding:0}table tr:nth-child(2n){background-color:#f8f8f8}table tr th{font-weight:bold;border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr td{border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr th :first-child,table tr td :first-child{margin:0}table tr th :last-child,table tr td :last-child{margin:0}pre{font-size:100%;padding:5px 10px;margin:0 auto;color:#020202;background-color:#eeeeff;overflow:auto;border:2px;border-radius:3px;font-family:inherit}code{background-color:#eeeeff;color:#020202;weight:normal;font-family:inherit}figure.highlight{margin:0;padding:0;border:0;font-family:inherit}.highlight{padding:5px 10px;background-color:#eeeeff;color:#f8f8f2;font-family:inherit}.highlight .hll{background-color:#eeeeff}.highlight .c{color:#008800}.highlight .err{border:1px solid #FF0000}.highlight .k{color:#AA22FF;font-weight:bold}.highlight .o{color:#666666}.highlight .cm{color:#008800}.highlight .cp{color:#008800}.highlight .c1{color:#008800}.highlight .cs{color:#008800;font-weight:bold}.highlight .gd{color:#A00000}.highlight .gr{color:#FF0000}.highlight .gh{color:#000080;font-weight:bold}.highlight .gi{color:#00A000}.highlight .go{color:#808080}.highlight .gp{color:#000080;font-weight:bold}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#0040D0}.highlight .kc{color:#AA22FF;font-weight:bold}.highlight .kd{color:#AA22FF;font-weight:bold}.highlight .kn{color:#AA22FF;font-weight:bold}.highlight .kp{color:#AA22FF}.highlight .kr{color:#AA22FF;font-weight:bold}.highlight .kt{color:#00BB00;font-weight:bold}.highlight .m{color:#666666}.highlight .s{color:#BB4444}.highlight .na{color:#BB4444}.highlight .nb{color:#AA22FF}.highlight .nc{color:#0000FF}.highlight .no{color:#880000}.highlight .nd{color:#AA22FF}.highlight .ni{color:#999999;font-weight:bold}.highlight .ne{color:#D2413A;font-weight:bold}.highlight .nf{color:#00A000}.highlight .nl{color:#A0A000}.highlight .nn{color:#0000FF;font-weight:bold}.highlight .nt{color:#008000;font-weight:bold}.highlight .nv{color:#B8860B}.highlight .ow{color:#AA22FF;font-weight:bold}.highlight .w{color:#bbbbbb}.highlight .mf{color:#666666}.highlight .mh{color:#666666}.highlight .mi{color:#666666}.highlight .mo{color:#666666}.highlight .sb{color:#BB4444}.highlight .sc{color:#BB4444}.highlight .sd{color:#BB4444}.highlight .s2{color:#BB4444}.highlight .se{color:#BB6622;font-weight:bold}.highlight .sh{color:#BB4444}.highlight .si{color:#BB6688;font-weight:bold}.highlight .sx{color:#008000}.highlight .sr{color:#BB6688}.highlight .s1{color:#BB4444}.highlight .ss{color:#B8860B}.highlight .bp{color:#AA22FF}.highlight .vc{color:#B8860B}.highlight .vg{color:#B8860B}.highlight .vi{color:#B8860B}.highlight .il{color:#666666}span.anchor{display:none}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}p.source{text-align:right;font-size:80%}p.source cite{font-style:normal}.day h2{font-size:1rem}.comment{display:none}.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:-.6rem}.tdiary-profile{width:70%}.tdiary-profile-picture{border-radius:50%}.footer{display:block;margin:0 auto;text-align:right;font-size:80%;width:100%;max-width:800px}.gsearch{max-width:40vw}@media (max-width: 40rem){.footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){.footer{padding:0 2rem}}@media (min-width: 64rem){.footer{padding:0 4rem}}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <meta name="author" content="Youhei SASAKI">
+    <!-- end: check google site verification -->
+    <!-- alternate -->
+    <link rel="alternate" hreflang="" href="https://uwabami.github.io/cc-env/InteloneAPI.html" />
+    <!-- end: alternate -->
+    <!-- begin jekyll seo -->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Intel oneAPI でのお仕事環境の構築 | Youhei SASAKI’s official site</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Intel oneAPI でのお仕事環境の構築" />
+<meta name="author" content="Youhei SASAKI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
+<meta property="og:description" content="My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian" />
+<link rel="canonical" href="https://uwabami.github.io/cc-env/InteloneAPI.html" />
+<meta property="og:url" content="https://uwabami.github.io/cc-env/InteloneAPI.html" />
+<meta property="og:site_name" content="Youhei SASAKI’s official site" />
+<meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-05T05:33:50+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
+<meta property="twitter:title" content="Intel oneAPI でのお仕事環境の構築" />
+<meta name="twitter:site" content="@uwabami" />
+<meta name="twitter:creator" content="@Youhei SASAKI" />
+<script type="application/ld+json">
+{"url":"https://uwabami.github.io/cc-env/InteloneAPI.html","headline":"Intel oneAPI でのお仕事環境の構築","dateModified":"2021-10-05T05:33:50+09:00","datePublished":"2021-10-05T05:33:50+09:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/InteloneAPI.html"},"description":"My Interest: Geophysical Fluid Dynamics, Convection, MHD Dynamo, Numerical Computing, Unix, Linux, Debian","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+    <!-- end jekyll seo -->
+    <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
+    <!-- apple icons -->
+    <link rel="apple-touch-icon" href="https://uwabami.github.io/assets/img/favicon-256x256.png">
+    <link rel="shortcut-icon" type="image/ico" href="/assets/img/favicon.ico">
+  </head>
+  <body>
+    <!-- include: gdpr -->
+    <amp-geo layout="nodisplay">
+      <script type="application/json">
+        {
+            "ISOCountryGroups": {
+                "eu": [ "preset-eea"]
+            }
+        }
+      </script>
+    </amp-geo>
+    <amp-consent layout="nodisplay" id="consent-element">
+      <script type="application/json">
+        {
+            "consents": {
+                "my_consent": {
+                    "promptIfUnknownForGeoGroup": "eu",
+                    "promptUI": "consent-ui"
+                }
+            }
+        }
+      </script>
+      <div id="consent-ui">
+        I use cookies to analyze how visitors use my website via Google Analytics:
+        <button on="tap:consent-element.accept" role="button">Accept</button>
+        <button on="tap:consent-element.reject" role="button">Reject</button>
+        <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
+      </div>
+    </amp-consent>
+    <!-- end include: gdpr -->
+    <div class="wrapper">
+      <!-- include: navbar -->
+      <header class="container right-0 left-0 top-0 z4 fixed">
+        <!-- page loop -->
+        <nav class="navigation flex items-center justify-between">
+          <div class="pr1 py1 order-0">
+            <a href="/index.en.html">
+              <amp-img layout="fixed"
+                       width="1.2rem"
+                       height="1.2rem"
+                       src="/assets/img/top.webp"
+                       alt="About"
+                       id="top"
+                       class="logo left">
+                <amp-img fallback
+                         layout="fixed"
+                         width="1.2rem"
+                         height="1.2rem"
+                         src="/assets/img/top.jpg"
+                         alt="About"
+                         id="top"
+                         class="logo left">
+                </amp-img>
+              </amp-img>
+            </a>
+          </div>
+          <input type="checkbox" id="tm" class="navigation-input">
+          <label for="tm" class="pl1 py1 order-3 md-hide lg-hide h2">☰</label>
+          <div class="navcontents items-center md-flex lg-flex order-1">
+          
+          <div class="px1 py0">
+            <a href="/research/index.en.html">
+              Research
+            </a>
+          </div>
+          <div class="px1 py0">
+            <a href="/software/index.en.html">
+              Repository
+            </a>
+          </div>
+          </div>
+          <div class="flex-auto"></div>
+          <div class="px1 py0 order-2">
+            <form method="GET" class="p0 m0" action="https://www.google.com/cse" target="_top">
+              <div class="inline-block relative p0 m0 small">
+                <input name="cx" type="hidden" value="017455171263919107349:oumnpe4bynr" />
+                <input name="ie" type="hidden" value="UTF-8" />
+                <input class="gsearch" type="search" placeholder="Search" name="q" required>
+              </div>
+            </form>
+          </div>
+          
+        </nav>
+        <div class="breadcrumbs">
+          <div class="flex items-center">
+            <!-- create crumbs -->
+            <div class="pr1 py0">
+              <a href="/index.en.html">
+                Top
+              </a>
+            </div>
+            &gt;<div class="px1"><a href="/cc-env/index.html">Cc-env</a></div>      <!-- end page loop -->
+            <div class="flex-auto py0"></div>
+            <div class="pr0 py0"><!-- end: lang selector -->
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- end include: navbar -->
+      <main role="main">
+        <div class="container content">
+          <h1 class="page-title my2 py0 px0">Intel oneAPI でのお仕事環境の構築</h1>
+          <hr>
+<!-- %%%% start content %%%% -->
+<p>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
+</p>
+<div>
+<h2 id="orgf3b4156">Intel oneAPI でのお仕事環境整備</h2>
+<div class="outline-text-2" id="text-orgf3b4156">
+<p>
+いつの頃からか定かではないのだが, Intel コンパイラなどの開発環境が
+<a href="https://www.isus.jp/products/oneapi/oneapi-news-and-updates/">Intel oneAPI</a> として公開されていて, apt でインストールできる様になっている.
+…まあ, 例によって設定スクリプトに未だ bashism が残っていたりするのがアレだけれど,
+HPC 環境で Intel Compiler を使うことも多いので, テストに使う分には非常に助かるわけで.
+</p>
+
+<p>
+<b>書きかけ. <code>--disable-shared</code> かつ <code>-no-prec-div</code> に変更すべし</b>
+</p>
+</div>
+
+<div>
+<h3 id="org7d6595e">導入と設定</h3>
+<div class="outline-text-3" id="text-org7d6595e">
+</div>
+<div>
+<h4 id="org52d06a5">導入</h4>
+<div class="outline-text-4" id="text-org52d06a5">
+<p>
+apt で導入します.
+</p>
+
+<p>
+最近は deb822 形式で apt のソースを書いているので
+以下のファイルを <code>/etc/apt/sources.list.d/oneapi.sources</code> として
+作成します.
+</p>
+<pre class="example">
+Types: deb
+URIs:https://apt.repos.intel.com/oneapi
+Suites: all
+Components: main
+Arch: amd64
+Signed-by: /usr/local/share/keyrings/intel.asc
+</pre>
+<p>
+続いて, 鍵を上記ファイルに置いておきます.
+</p>
+<pre class="example">
+   sudo wget https://repositories.intel.com/graphics/intel-graphics.key \
+   -O /usr/local/share/keyrings/intel.asc
+</pre>
+<p>
+インストールするパッケージは色々と選べるわけですが,
+多過ぎて良くわからない.
+とりあえずは以下の通り:
+</p>
+<pre class="example">
+% sudo apt-get update
+% sudo apt-get install cmake pkg-config build-essential
+% sudo apt-get install intel-hpckit intel-hpckit-runtime
+</pre>
+<p>
+何も考えずインストールしているので, かなり大きめです.
+コーヒーでも呑みながら待ちましょう.
+…ちなみに, WSL2 でも使えるらしいですね(プロファイラ回りの kernel module がどうなるのか知らんけど…).
+</p>
+
+<p>
+なお, このパッケージは削除時に <code>/usr/local/share/pkgconfig</code> を削除します. <del>…雑なパッケージですねぇ.</del>
+</p>
+</div>
+</div>
+<div>
+<h4 id="org2184799">設定</h4>
+<div class="outline-text-4" id="text-org2184799">
+<p>
+安直に環境設定するなら
+</p>
+<pre class="example">
+% source /opt/intel/oneapi/setvars.sh
+</pre>
+<p>
+で良いです.
+しかしながら, 目的は計算もさることがならテストですから環境を切り替えたいと思うのが人情と言うものです.
+</p>
+
+<p>
+<code>setvars.sh</code> を眺めてみます.
+</p>
+<ul class="org-ul">
+<li>453行目で
+<code>component_array=$(command ls "${script_root}"/*/*/env/vars.sh 2&gt;/dev/null | awk 'NF')</code>
+として, 読み込む設定ファイルをリストアップしてます.</li>
+<li>これを <code>uniq</code> なんかを使って整理して, <code>source</code> してます.</li>
+</ul>
+<p>
+というわけで, 実際にコンポーネントをリストアップしてみると….
+</p>
+<pre class="example">
+% command ls /opt/intel/opneapi/*/*/env/vars.sh | awk 'NF' | grep latest | sort -u
+/opt/intel/oneapi/advisor/latest/env/vars.sh
+/opt/intel/oneapi/ccl/latest/env/vars.sh
+/opt/intel/oneapi/clck/latest/env/vars.sh
+/opt/intel/oneapi/compiler/latest/env/vars.sh
+/opt/intel/oneapi/dal/latest/env/vars.sh
+/opt/intel/oneapi/debugger/latest/env/vars.sh
+/opt/intel/oneapi/dev-utilities/latest/env/vars.sh
+/opt/intel/oneapi/dnnl/latest/env/vars.sh
+/opt/intel/oneapi/dpcpp-ct/latest/env/vars.sh
+/opt/intel/oneapi/dpl/latest/env/vars.sh
+/opt/intel/oneapi/inspector/latest/env/vars.sh
+/opt/intel/oneapi/intelpython/latest/env/vars.sh
+/opt/intel/oneapi/ipp/latest/env/vars.sh
+/opt/intel/oneapi/ippcp/latest/env/vars.sh
+/opt/intel/oneapi/itac/latest/env/vars.sh
+/opt/intel/oneapi/mkl/latest/env/vars.sh
+/opt/intel/oneapi/mpi/latest/env/vars.sh
+/opt/intel/oneapi/tbb/latest/env/vars.sh
+/opt/intel/oneapi/vpl/latest/env/vars.sh
+/opt/intel/oneapi/vtune/latest/env/vars.sh
+</pre>
+<p>
+…いや, まあ, こんなに使わんのだが
+(Data Sicnese やら Deep Learning やらで Python 関連が入るんだなぁ…).
+というわけで, 整理して切り替え可能にした zsh 関数はこんな感じかな?
+</p>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#! /bin/zsh</span>
+<span class="c">#</span>
+<span class="c">#  変数設定</span>
+<span class="c">#</span>
+<span class="c">## common</span>
+<span class="nv">_ONEAPI_ROOT</span><span class="o">=</span>/opt/intel/oneapi
+<span class="nv">_SETVARS_VARS_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/vtune/latest/env/vars.sh
+<span class="nv">_INTEL_LICENSE_FILE</span><span class="o">=</span>/opt/intel/licenses:<span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/intel/licenses
+<span class="c">## Advisor</span>
+<span class="nv">_ADVISOR_2021_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/advisor/2021.4.0
+<span class="nv">_PYTHONPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ADVISOR_2021_DIR</span><span class="k">}</span>/pythonapi
+<span class="nv">_APM</span><span class="o">=</span><span class="k">${</span><span class="nv">_ADVISOR_2021_DIR</span><span class="k">}</span>/perfmodels
+<span class="c">#</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ADVISOR_2021_DIR</span><span class="k">}</span>/bin64
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ADVISOR_2021_DIR</span><span class="k">}</span>/include/pkgconfig/lib64
+<span class="c"># CCL</span>
+<span class="nv">_CCL_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/ccl/2021.4.0
+<span class="nv">_CCL_CONFIGURATION</span><span class="o">=</span>cpu_gpu_dpcpp
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CCL_ROOT</span><span class="k">}</span>/lib/cpu_gpu_dpcpp
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CCL_ROOT</span><span class="k">}</span>/lib/cpu_gpu_dpcpp
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CCL_ROOT</span><span class="k">}</span>/include/cpu_gpu_dpcpp
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CCL_ROOT</span><span class="k">}</span>/lib/pkgconfig:
+<span class="c"># CLCK</span>
+<span class="nv">_CLCK_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/clck/2021.4.0
+<span class="nv">_INTEL_LICENSE_FILE</span><span class="o">=</span><span class="k">${</span><span class="nv">_INTEL_LICENSE_FILE</span><span class="k">}</span>:<span class="k">${</span><span class="nv">_CLCK_ROOT</span><span class="k">}</span>/licensing
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CLCK_ROOT</span><span class="k">}</span>/bin/intel64:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CLCK_ROOT</span><span class="k">}</span>/lib/intel64:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_CPLUS_INCLUDE_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CLCK_ROOT</span><span class="k">}</span>/include
+<span class="nv">_MANPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CLCK_ROOT</span><span class="k">}</span>/man
+<span class="c"># COMPILER</span>
+<span class="nv">_CMPLR_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/compiler/2021.4.0
+<span class="nv">_OCL_ICD_FILENAMES</span><span class="o">=</span>libintelocl_emu.so:libalteracl.so:<span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/lib/x64/libintelocl.so
+<span class="nv">_ACL_BOARD_VENDOR_PATH</span><span class="o">=</span>/opt/Intel/OpenCLFPGA/oneAPI/Boards
+<span class="nv">_FPGA_VARS_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/lib/oclfpga
+<span class="nv">_FPGA_VARS_ARGS</span><span class="o">=</span>
+<span class="nv">_INTELFPGAOCLSDKROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_FPGA_VARS_DIR</span><span class="k">}</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/bin/intel64:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_FPGA_VARS_DIR</span><span class="k">}</span>/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_PATh</span><span class="o">=</span><span class="k">${</span><span class="nv">_FPGA_VARS_DIR</span><span class="k">}</span>/llvm/aocl-bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/compiler/lib/intel64_lin:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_FPGA_VARS_DIR</span><span class="k">}</span>/linux64/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_FPGA_VARS_DIR</span><span class="k">}</span>/host/linux64/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/lib/emu:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/lib/x64:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/lib:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/compiler/lib/intel64_lin:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/linux/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/lib/pkgconfig:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>
+<span class="nv">_MANPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>/documentation/en/man/common:<span class="k">${</span><span class="nv">_MANPATH</span><span class="k">}</span>
+<span class="c">## DAL</span>
+<span class="nv">_DALROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/dal/2021.4.0
+<span class="nv">_DAALROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_DALROOT</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DALROOT</span><span class="k">}</span>/lib/intel64:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DALROOT</span><span class="k">}</span>/lib/intel64:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DALROOT</span><span class="k">}</span>/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DALROOT</span><span class="k">}</span>/lib/pkgconfig:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>
+<span class="nv">_CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DALROOT</span><span class="k">}</span>/lib/onedal.jar
+<span class="nv">_CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DALROOT</span><span class="k">}</span>
+<span class="c">## debugger</span>
+<span class="nv">_INTEL_PYTHONHOME</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/debugger/10.2.4/dep
+<span class="nv">_INFOPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/debugger/10.2.4/gdb/intel64/lib
+<span class="nv">_GDB_INFO</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/debugger/10.2.4/documentation/info/
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/debugger/10.2.4/gdb/intel64/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_INTEL_PYTHONHOME</span><span class="k">}</span>/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/debugger/10.2.4/libipt/intel64/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_INFOPATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_MANPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/debugger/10.2.4/documentation/man:<span class="k">${</span><span class="nv">_MANPATH</span><span class="k">}</span>
+<span class="c">## utilities</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/dev-utilities/2021.4.0/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/dev-utilities/2021.4.0/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="c">## DNNL</span>
+<span class="nv">_DNNLROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/dnnl/2021.4.0/cpu_dpcpp_gpu_dpcpp
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DNNLROOT</span><span class="k">}</span>/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DNNLROOT</span><span class="k">}</span>/lib:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DNNLROOT</span><span class="k">}</span>/lib:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="c">## DPCT</span>
+<span class="nv">_DPCT_BUNDLE_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/dpcpp-ct/2021.4.0
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DPCT_BUNDLE_ROOT</span><span class="k">}</span>/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DPCT_BUNDLE_ROOT</span><span class="k">}</span>/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="c">## DPL</span>
+<span class="nv">_DPL_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/dpl/2021.5.0
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DPL_ROOT</span><span class="k">}</span>/linux/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_DPL_ROOT</span><span class="k">}</span>/lib/pkgconfig:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>
+<span class="c">## INSPECTOR</span>
+<span class="nv">_INSPECTOR_2021_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/inspector/2021.4.0
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_INSPECTOR_2021_DIR</span><span class="k">}</span>/bin64:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_INSPECTOR_2021_DIR</span><span class="k">}</span>/include/pkgconfig/lib64:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>
+<span class="c">## CONDA</span>
+<span class="nv">_CONDA_PREFIX</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/intelpython/latest
+<span class="nv">_CONDA_EXE</span><span class="o">=</span><span class="k">${</span><span class="nv">_CONDA_PREFIX</span><span class="k">}</span>/bin/conda
+<span class="nv">_CONDA_PYTHON_EXE</span><span class="o">=</span><span class="k">${</span><span class="nv">_CONDA_PREFIX</span><span class="k">}</span>/bin/python
+<span class="nv">_CONDA_DEFAULT_ENV</span><span class="o">=</span>intelpython-python3.7
+<span class="nv">_CONDA_PROMPT_MODIFIER</span><span class="o">=(</span>intelpython-python3.7<span class="o">)</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CONDA_PREFIX</span><span class="k">}</span>/condabin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CONDA_PREFIX</span><span class="k">}</span>/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="c">## IPP</span>
+<span class="nv">_IPPROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/ipp/2021.4.0
+<span class="nv">_IPP_TARGET_ARCH</span><span class="o">=</span>intel64
+<span class="nv">_IPPCRYPTOROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/ippcp/2021.4.0
+<span class="nv">_IPPCP_TARGET_ARCH</span><span class="o">=</span>intel64
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPROOT</span><span class="k">}</span>/lib/intel64:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPCRYPTOROOT</span><span class="k">}</span>/lib/intel64:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPROOT</span><span class="k">}</span>/lib/intel64:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPCRYPTOROOT</span><span class="k">}</span>/lib/intel64:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPROOT</span><span class="k">}</span>/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPCRYPTOROOT</span><span class="k">}</span>/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPCRYPTOROOT</span><span class="k">}</span>/lib/pkgconfig:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>
+<span class="c"># VT</span>
+<span class="nv">_VT_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/itac/2021.4.0
+<span class="nv">_VT_MPI</span><span class="o">=</span>impi4
+<span class="nv">_VT_LIB_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_ROOT</span><span class="k">}</span>/lib
+<span class="nv">_VT_SLIB_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_ROOT</span><span class="k">}</span>/slib
+<span class="nv">_VT_ADD_LIBS</span><span class="o">=</span><span class="s2">"-ldwarf -lelf -lvtunwind -lm -lpthread"</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_ROOT</span><span class="k">}</span>/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_ROOT</span><span class="k">}</span>/slib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_MANPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_ROOT</span><span class="k">}</span>/man:<span class="k">${</span><span class="nv">_MANPATH</span><span class="k">}</span>
+<span class="c"># MKL</span>
+<span class="nv">_MKLROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/mkl/2021.4.0
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_MKLROOT</span><span class="k">}</span>/bin/intel64:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_MKLROOT</span><span class="k">}</span>/lib/intel64:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_MKLROOT</span><span class="k">}</span>/lib/intel64:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_MKLROOT</span><span class="k">}</span>/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_NLSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_MKLROOT</span><span class="k">}</span>/lib/intel64/locale/%l_%t/%N:
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_MKLROOT</span><span class="k">}</span>/lib/pkgconfig:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>
+<span class="c"># MPI</span>
+<span class="nv">_I_MPI_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/mpi/2021.4.0
+<span class="nv">_FI_PROVIDER_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/libfabric/lib/prov:/usr/lib64/libfabric
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/libfabric/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/lib/release:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/libfabric/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/lib:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/lib/release:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/libfabric/lib:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/lib/pkgconfig:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_MANPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/man:<span class="k">${</span><span class="nv">_MANPATH</span><span class="k">}</span>
+<span class="nv">_CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>/lib/mpi.jar:<span class="k">${</span><span class="nv">_CLASSPATH</span><span class="k">}</span>
+<span class="c"># TBB</span>
+<span class="nv">_TBBROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/tbb/2021.4.0/
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_TBBROOT</span><span class="k">}</span>/lib/intel64/gcc4.8:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_TBBROOT</span><span class="k">}</span>/lib/intel64/gcc4.8:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_TBBROOT</span><span class="k">}</span>/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_TBBROOT</span><span class="k">}</span>/lib/pkgconfig:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>
+<span class="nv">_CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_TBBROOT</span><span class="k">}</span>:<span class="k">${</span><span class="nv">_CMAKE_PREFIX_PATH</span><span class="k">}</span>
+<span class="c"># VPL</span>
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/vpl/2021.6.0/bin:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/vpl/2021.6.0/lib:<span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/vpl/2021.6.0/lib:<span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nv">_CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/vpl/2021.6.0/include:<span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/vpl/2021.6.0/lib/pkgconfig:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>
+<span class="nv">_CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/vpl/2021.6.0:<span class="k">${</span><span class="nv">_CMAKE_PREFIX_PATH</span><span class="k">}</span>
+<span class="c"># VTUNE</span>
+<span class="nv">_VTUNE_PROFILER_2021_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>/vtune/2021.7.1
+<span class="nv">_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_VTUNE_PROFILER_2021_DIR</span><span class="k">}</span>/bin64:<span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>
+<span class="nv">_PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_VTUNE_PROFILER_2021_DIR</span><span class="k">}</span>/include/pkgconfig/lib64:<span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#! /bin/zsh</span>
+<span class="c">#</span>
+<span class="c">#  読み込み</span>
+<span class="c">#</span>
+<span class="o">[</span> <span class="o">!</span> <span class="nt">-d</span> <span class="nv">$HOME</span>/.config/intel <span class="o">]</span> <span class="o">||</span> rsync <span class="nt">-auvz</span> <span class="nv">$HOME</span>/.config/intel <span class="nv">$HOME</span>/
+set_intel_vars
+<span class="c">## valiables</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">ONEAPI_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_ONEAPI_ROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">SETVARS_VARS_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_SETVARS_VARS_PATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">ADVISOR_2021_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_ADVISOR_2021_DIR</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">APM</span><span class="o">=</span><span class="k">${</span><span class="nv">_APM</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CCL_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_CCL_ROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CCL_CONFIGURATION</span><span class="o">=</span><span class="k">${</span><span class="nv">_CCL_CONFIGURATION</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CLCK_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_CLCK_ROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">INTEL_LICENSE_FILE</span><span class="o">=</span><span class="k">${</span><span class="nv">_INTEL_LICENSE_FILE</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CMPLR_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_CMPLR_ROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">OCL_ICD_FILENAMES</span><span class="o">=</span><span class="k">${</span><span class="nv">_OCL_ICD_FILENAMES</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">ACL_BOARD_VENDOR_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_ACL_BOARD_VENDOR_PATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">FPGA_VARS_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_FPGA_VARS_DIR</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">FPGA_VARS_ARGS</span><span class="o">=</span><span class="k">${</span><span class="nv">_FPGA_VARS_ARGS</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">INTELFPGAOCLSDKROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_INTELFPGAOCLSDKROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">DALROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_DALROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">DAALROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_DAALROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">DAL_MAJOR_BINARY</span><span class="o">=</span>1
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">DAL_MINOR_BINARY</span><span class="o">=</span>1
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">INTEL_PYTHONHOME</span><span class="o">=</span><span class="k">${</span><span class="nv">_INTEL_PYTHONHOME</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">INFOPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_INFOPATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">GDB_INFO</span><span class="o">=</span><span class="k">${</span><span class="nv">_GDB_INFO</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">DNNLROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_DNNLROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">DPCT_BUNDLE_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_DPCT_BUNDLE_ROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">INSPECTOR_2021_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_INSPECTOR_2021_DIR</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CONDA_PREFIX</span><span class="o">=</span><span class="k">${</span><span class="nv">_CONDA_PREFIX</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CONDA_EXE</span><span class="o">=</span><span class="k">${</span><span class="nv">_CONDA_EXE</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CONDA_PYTHON_EXE</span><span class="o">=</span><span class="k">${</span><span class="nv">_CONDA_PYTHON_EXE</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CONDA_SHLVL</span><span class="o">=</span>1
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CE_M</span><span class="o">=</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CE_CONDA</span><span class="o">=</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CONDA_DEFAULT_ENV</span><span class="o">=</span><span class="k">${</span><span class="nv">_CONDA_DEFAULT_ENV</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CONDA_PROMPT_MODIFIER</span><span class="o">=</span><span class="k">${</span><span class="nv">_CONDA_PROMPT_MODIFIER</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">IPPROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">IPP_TARGET_ARCH</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPP_TARGET_ARCH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">IPPCRYPTOROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPCRYPTOROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">IPPCP_TARGET_ARCH</span><span class="o">=</span><span class="k">${</span><span class="nv">_IPPCP_TARGET_ARCH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">VT_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_ROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">VT_MPI</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_MPI</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">VT_LIB_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_LIB_DIR</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">VT_SLIB_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_SLIB_DIR</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">VT_ADD_LIBS</span><span class="o">=</span><span class="k">${</span><span class="nv">_VT_ADD_LIBS</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">MKLROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_MKLROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">I_MPI_ROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_I_MPI_ROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">FI_PROVIDER_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_FI_PROVIDER_PATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">TBBROOT</span><span class="o">=</span><span class="k">${</span><span class="nv">_TBBROOT</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">VTUNE_PROFILER_2021_DIR</span><span class="o">=</span><span class="k">${</span><span class="nv">_VTUNE_PROFILER_2021_DIR</span><span class="k">}</span>
+<span class="c">## PATH</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CLASSPATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">CLASSPATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_CPATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">CPATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">INFOPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_INFOPATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">INFOPATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_LD_LIBRARY_PATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_LIBRARY_PATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">LIBRARY_PATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">MANPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_MNAPATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">MANPATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">NLSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_NLSPATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">NLSPATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_PATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">PATH</span><span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">_PKG_CONFIG_PATH</span><span class="k">}</span>:<span class="k">${</span><span class="nv">PKG_CONFIG_PATH</span><span class="k">}</span>
+<span class="c"># typeset -gx NONRPM_DB_DIR=$HOME/.intel</span>
+
+<span class="nb">typeset</span> <span class="nt">-U</span> classpath cpath infopath ld_library_path library_path
+<span class="nb">typeset</span> <span class="nt">-U</span> manpath lnspath path pkg_config_path
+
+<span class="c">## complete</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">SETVARS_COMPLETED</span><span class="o">=</span>1</code></pre></figure>
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#! /bin/zsh</span>
+<span class="c">#</span>
+<span class="c">#  読み込んだ設定を削除</span>
+<span class="c">#</span>
+<span class="o">[</span> <span class="o">!</span> <span class="nt">-d</span> <span class="nv">$HOME</span>/intel <span class="o">]</span> <span class="o">||</span> rsync <span class="nt">-auvz</span> <span class="nv">$HOME</span>/intel/ <span class="nv">$HOME</span>/.config/intel/
+<span class="nb">rm</span> <span class="nt">-fr</span> <span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/intel
+<span class="c">## clear PATH...</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">INFOPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">INFOPATH</span><span class="p">//</span><span class="nv">$_INFOPATH</span>:<span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CLASSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">CLASSPATH</span><span class="p">//</span><span class="nv">$_CLASSPATH</span>:<span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">CPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">CPATH</span><span class="p">//</span><span class="nv">$_CPATH</span>:<span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">//</span><span class="nv">$_LD_LIBRARY_PATH</span>:<span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">LIBRARY_PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">LIBRARY_PATH</span><span class="p">//</span><span class="nv">$_LIBRARY_PATH</span>:<span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">MANPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">MANPATH</span><span class="p">//</span><span class="nv">$_MNAPATH</span>:<span class="k">}</span>
+<span class="nb">typeset</span> <span class="nt">-gx</span> <span class="nv">NLSPATH</span><span class="o">=</span><span class="k">${</span><span class="nv">NLSPATH</span><span class="p">//</span><span class="nv">$_NLSPATH$}</span><span class="p">
+typeset -gx PATH=</span><span class="k">${</span><span class="nv">PATH</span><span class="p">//</span><span class="nv">$_PATH</span>:<span class="k">}</span><span class="p">
+typeset -gx PKG_CONFIG_PATH=</span><span class="k">${</span><span class="nv">PKG_CONFIG_PATH</span><span class="p">//</span><span class="nv">$_PKG_CONFIG_PATH</span>:<span class="k">}</span><span class="p">
+# update
+typeset -U infopath classpath cpath ld_library_path library_path
+typeset -U manpath nlspath path pkg_config_path
+## unset vars
+unset ONEAPI_ROOT
+unset SETVARS_VARS_PATH
+unset ADVISOR_2021_DIR
+unset APM
+unset CCL_ROOT
+unset CCL_CONFIGURATION
+unset CLCK_ROOT
+unset INTEL_LICENSE_FILE
+unset CMPLR_ROOT
+unset OCL_ICD_FILENAMES
+unset ACL_BOARD_VENDOR_PATH
+unset FPGA_VARS_DIR
+unset FPGA_VARS_ARGS
+unset INTELFPGAOCLSDKROOT
+unset DALROOT
+unset DAALROOT
+unset DAL_MAJOR_BINARY
+unset DAL_MINOR_BINARY
+unset INTEL_PYTHONHOME
+unset INFOPATH
+unset GDB_INFO
+unset DNNLROOT
+unset DPCT_BUNDLE_ROOT
+unset INSPECTOR_2021_DIR
+unset CONDA_PREFIX
+unset CONDA_EXE
+unset CONDA_PYTHON_EXE
+unset CONDA_SHLVL
+unset CE_M
+unset CE_CONDA
+unset CONDA_DEFAULT_ENV
+unset CONDA_PROMPT_MODIFIER
+unset IPPROOT
+unset IPP_TARGET_ARCH
+unset IPPCRYPTOROOT
+unset IPPCP_TARGET_ARCH
+unset VT_ROOT
+unset VT_MPI
+unset VT_LIB_DIR
+unset VT_SLIB_DIR
+unset VT_ADD_LIBS
+unset MKLROOT
+unset I_MPI_ROOT
+unset FI_PROVIDER_PATH
+unset TBBROOT
+unset VTUNE_PROFILER_2021_DIR
+## cleanup working vars
+unset _ONEAPI_ROOT
+unset _SETVARS_VARS_PATH
+unset _ADVISOR_2021_DIR
+unset _APM
+unset _CCL_ROOT
+unset _CCL_CONFIGURATION
+unset _CLCK_ROOT
+unset _INTEL_LICENSE_FILE
+unset _CMPLR_ROOT
+unset _OCL_ICD_FILENAMES
+unset _ACL_BOARD_VENDOR_PATH
+unset _FPGA_VARS_DIR
+unset _FPGA_VARS_ARGS
+unset _INTELFPGAOCLSDKROOT
+unset _DALROOT
+unset _DAALROOT
+unset _DAL_MAJOR_BINARY
+unset _DAL_MINOR_BINARY
+unset _INTEL_PYTHONHOME
+unset _INFOPATH
+unset _GDB_INFO
+unset _DNNLROOT
+unset _DPCT_BUNDLE_ROOT
+unset _INSPECTOR_2021_DIR
+unset _CONDA_PREFIX
+unset _CONDA_EXE
+unset _CONDA_PYTHON_EXE
+unset _CONDA_SHLVL
+unset _CE_M
+unset _CE_CONDA
+unset _CONDA_DEFAULT_ENV
+unset _CONDA_PROMPT_MODIFIER
+unset _IPPROOT
+unset _IPP_TARGET_ARCH
+unset _IPPCRYPTOROOT
+unset _IPPCP_TARGET_ARCH
+unset _VT_ROOT
+unset _VT_MPI
+unset _VT_LIB_DIR
+unset _VT_SLIB_DIR
+unset _VT_ADD_LIBS
+unset _MKLROOT
+unset _I_MPI_ROOT
+unset _FI_PROVIDER_PATH
+unset _TBBROOT
+unset _VTUNE_PROFILER_2021_DIR
+## cleanup
+unset SETVARS_COMPLETED</span></code></pre></figure>
+</div>
+</div>
+</div>
+
+<div>
+<h3 id="org04c65e9">NetCDF</h3>
+<div class="outline-text-3" id="text-org04c65e9">
+<p>
+依存するモノが多くてなかなか大変.
+インストール先は <code>/usr/local/stow/intel</code> 以下に集約して, stow で切り替えることにする.
+</p>
+
+<p>
+圧縮に <del>szip</del> libaec, zlib, 仮想の I/O に HDF5, その上に NetCDF というソフトウェア構造
+この順にインストールしていく.
+</p>
+</div>
+<div>
+<h4 id="orgb460eed">szip -&gt; libaec</h4>
+<div class="outline-text-4" id="text-orgb460eed">
+<p>
+BSD-2-Clause の szip の互換ソフトウェアとして<a href="https://gitlab.dkrz.de/k202009/libaec">libeac</a>がリリースされている.
+</p>
+<blockquote>
+<p>
+"Please be aware that SZIP compression has been replaced by AEC
+compression as of HDF5-1.10.7. AEC is the open source version of
+SZIP."
+</p>
+<ul class="org-ul">
+<li><a href="https://portal.hdfgroup.org/display/HDF5/Szip+Compression+in+HDF+Products">szip compression in HDF products</a></li>
+</ul>
+</blockquote>
+<p>
+というわけで, libeac を導入する.
+同梱されている <code>INSTALL.md</code> に導入方法があるので, これの通りに.
+</p>
+<pre class="example">
+% sudo apt install gnulib
+% wget https://gitlab.dkrz.de/k202009/libaec/-/archive/v1.0.6/libaec-v1.0.6.tar.gz
+% tar xvf libaec-v1.0.6.tar.gz
+% cd libeac-v1.0.6
+% gnulib-tool --import lib-symbol-visibility
+% autoreconf -iv
+% mkdir build
+% cd build
+% AR=xiar LD=xild CC=icc ../configure
+% make CFLAGS="-O3 -xCORE-AVX2"
+% make check CFLAGS="-O3 -xCORE-AVX2"
+% make install
+</pre>
+</div>
+</div>
+<div>
+<h4 id="orgcacce1d">zlib</h4>
+<div class="outline-text-4" id="text-orgcacce1d">
+<pre class="example">
+% wget https://zlib.net/zlib-1.2.11.tar.gz
+% tar xvf zlib-1.2.11.tar.gz
+% cd zlib-1.2.11
+% mkdir build
+% cd build
+% AR=xiar LD=xild CC=icc ../configure --prefix=/usr/local/stow/intel
+% make CFLAGS="-O3 -xCORE-AVX2"
+% make check CFLAGS="-O3 -xCORE-AVX2"
+% make install
+</pre>
+</div>
+</div>
+<div>
+<h4 id="org803c8f4">HDF5</h4>
+<div class="outline-text-4" id="text-org803c8f4">
+<p>
+あいかわらず, ダウンロードリンクは直接叩けないので
+おとなしく Web の URL をポチっとして落としてくる.
+</p>
+
+<p>
+hdf5 v1.12 には以前の版と非互換の変更があるため, 互換APIを有効にしてビルドすることに.
+NetCDF側では<a href="https://github.com/Unidata/netcdf-c/pull/2044">対応済み</a>みたいだけれど, これリリースされてるのかな….
+</p>
+
+<p>
+必要なのは C API だけなので, 素のビルドで OK.
+</p>
+<pre class="example">
+% tar xvf hdf5-1.12.1.tar.gz
+% cd hdf5-1.12.1
+% mkdir build
+% cd build
+% AR=xiar LD=xild CC=icc ../configure --prefix=/usr/local/stow/intel --with-zlib=/usr/local/stow/intel/lib --with-szlib=/usr/local/stow/intel/lib --enable-hl --with-default-api-version=v110
+% make
+# 結構時間がかかる上, warning が盛り沢山.
+# 不安になってしょうがない.
+# 珈琲でも呑んでまったりしてましょう.
+% make check
+# これも結構時間がかかる.
+# 珈琲でも呑んでまったりしてましょう(2杯目).
+# verbose モードとかないモンですかねぇ….
+% make install
+% make check-install
+</pre>
+</div>
+</div>
+
+<div>
+<h4 id="org9557dd5">NetCDF C</h4>
+<div class="outline-text-4" id="text-org9557dd5">
+<p>
+HDF5 の後に NetCDF C ライブラリを導入
+(OPeNDAP を利用する気は無いので, curl は不要).
+</p>
+
+<p>
+雑にやるなら, HDF5 のインストール時に生成された
+C コンパイラの wrapper である h5cc をつかってビルドすると楽.
+ただ, 今後 <code>nc-config</code> の出力を使って他のライブラリをビルドしたりすることを考えたりすると,
+真面目(?)に configure を走らせた方が良い, かも.
+</p>
+<pre class="example">
+% wget https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.8.1.tar.gz \
+  -O netcdf-c-4.8.1.tar.gz
+% tar xvf netcdf-c-4.8.1.tar.gz
+% cd netcdf-c-4.8.1
+% mkdir build
+% cd build
+# 不真面目(?)
+# % AR=xiar LD=xild CC=/usr/local/stow/intel/bin/h5cc \
+#   ../configure --disable-dap --prefix=/usr/local/stow/intel
+% AR=xiar LD=xild \
+  LDFLAGS="-L/usr/local/stow/intel/lib"  \
+  CPPFLAGS="-I/usr/local/stow/intel/include" \
+  CC=icc \
+  CFLAGS="-O3 -xHost" \
+  ../configure --disable-dap --prefix=/usr/local/stow/intel
+% make
+% make check
+# 結構時間がかかるので, 適宜休憩.
+% make install
+</pre>
+</div>
+</div>
+<div>
+<h4 id="org1b951b9">NetCDF Fortran</h4>
+<div class="outline-text-4" id="text-org1b951b9">
+<p>
+NetCDF Fortran ライブラリの configure はちょっとイケていないので
+LD<sub>LIBRARY</sub><sub>PATH</sub> に NetCDF C のライブラリの場所を指定してあげる必要がありそう
+(これまでのライブラリを全て static でビルドしていると問題無い, かもしれないが,
+その際には MPI 周りでハマリそうな気がしている).
+</p>
+<pre class="example">
+% wget https://github.com/Unidata/netcdf-fortran/archive/refs/tags/v4.5.3.tar.gz -O netcdf-fortran-4.5.3.tar.gz
+% tar xvf netcdf-fortran-4.5.3.tar.gz
+% cd netcdf-fortran-4.5.3
+% mkdir build
+% cd build
+# ↓ これは configure を通すための dirty hack.
+% LD_LIBRARY_PATH=/usr/local/stow/intel/lib:${LD_LIBRARY_PATH} \
+  AR=xiar LD=xild \
+  FC=ifort FCFLAGS="-O3 -xHost -I/usr/local/stow/intel/include" \
+  F77=ifort FFLAGS="-O3 -xHost -I/usr/local/stow/intel/include" \
+  LDFLAGS="-L/usr/local/stow/intel/lib -lnetcdf" \
+  LIBS="-lhdf5_hl -lhdf5" \
+  ../configure --prefix=/usr/local/stow/intel
+% make
+% make check
+% make install
+</pre>
+</div>
+</div>
+</div>
+
+<div>
+<h3 id="org830ede5">Stow でのライブラリの有効化・無効化</h3>
+<div class="outline-text-3" id="text-org830ede5">
+<p>
+stow でシンボリックリンクを適宜作成し,
+システムライブラリを汚す事なく共有ライブラリの path を上書きする.
+</p>
+<pre class="example">
+% sudo apt install stow
+</pre>
+<p>
+有効化
+</p>
+<pre class="example">
+% sudo stow -v /usr/local/stow/intel
+% sudo ldconfig -v
+</pre>
+<p>
+無効化
+</p>
+<pre class="example">
+% sudo stow -vD /usr/local/stow/intel
+% sudo ldconfig -v
+</pre>
+<p>
+NetCDF C のインストールが終わったあたりで有効にしておくと, その後が楽かも….
+</p>
+</div>
+</div>
+<div>
+<h3 id="orgb7a429e">gtool5: 20160613版</h3>
+<div class="outline-text-3" id="text-orgb7a429e">
+<p>
+configure を直す前なので,
+一度 configure を走らせた後に手動で <code>Config.mk</code> の修正が必要.
+</p>
+<pre class="example">
+% wget http://www.gfd-dennou.org/library/gtool/gtool5/gtool5_current.tgz
+% tar xvf gtool5_current.tgz
+% cd gtool5-20160613/
+% AR=xiar LD=xild \
+  FC=mpiifort SYSFFLAGS="-O3 -xHost -no-prec-div -I/usr/local/stow/intel/include" \
+  ./configure \
+    --with-netcdff=/usr/local/stow/intel/lib/libnetcdff.so \
+    --with-netcdf=/usr/local/stow/intel/lib/libnetcdf.so \
+    --with-mpiexec=mpiexec
+# Config.mk の修正, 該当行は以下
+SYSFFLAGS=-O3 -xHost -no-prec-div -I/usr/local/stow/intel/include -I/opt/intel/oneapi/mpi/2021.4.0//include -I/opt/intel/oneapi/mpi/2021.4.0/include
+SYSLDFLAGS=-L/usr/local/stow/intel/lib  -L/opt/intel/oneapi/mpi/2021.4.0/lib/release -L/opt/intel/oneapi/mpi/2021.4.0/lib -L/usr/local/stow/intel/lib
+SYSLDLIBS=-lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lmpifort -lmpi -ldl -lrt -lpthread
+% make
+% make test       # 浮動小数点の最適化次第では 1 と 0.9999999 の比較
+% make test-mpi   # なんかになってテストに失敗する…うーむ.
+</pre>
+</div>
+</div>
+
+<div>
+<h3 id="orgec0e561">gtool5: 1.0.0rc1版</h3>
+<div class="outline-text-3" id="text-orgec0e561">
+<p>
+configure 周りを全面的に書き替えているので
+よくある変数を指定するだけで良い.
+</p>
+<figure class="highlight"><pre><code class="language-nil" data-lang="nil">% wget http://www.gfd-dennou.org/library/gtool/gtool5/gtool5_master.tgz
+% tar xvf gtool5_master.tgz
+% cd gtool5-1.0.0rc1
+% mkdir build
+% cd build
+% AR=xiar LD=xild \
+  FC=mpiifort FCFLAGS="-O2 -xHost -I/usr/local/include" \
+  LIBS="-L/usr/local/stow/intel/lib -lhdf5_hl -lhdf5" \
+  ../configure \
+  --prefix=/usr/local/stow/intel \
+  --with-nf-config=/usr/local/stow/intel/bin/nf-config
+% make
+% make test   # 浮動小数点の最適化次第では 1 と 0.9999999 の比較
+              # なんかになってテストに失敗する…うーむ.</code></pre></figure>
+</div>
+</div>
+</div>
+<!-- %%%% end content %%%% -->
+        </div>
+      </main>
+      <!-- include footer -->
+      <footer class="container bottom-0 left-0 right-0 small">
+        <hr/>
+        <p class="p0 m0 right-align">&copy; 2006-2021
+          <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+          Lastupdate: 2021-10-04 20:33:50 +0000
+          <br/>
+          Powered by
+          <a href="https://orgmode.org/" rel="noopener" title="Org mode">
+            Org mode
+          </a>
+          +
+          <a href="https://jekyllrb.com/" rel="noopener" title="Jekyll">
+            Jekyll
+          </a>
+          +
+          <a href="https://basscss.com/" rel="noopener" title="Basscss">
+            Basscss
+          </a>
+          &amp;
+          <a href="https://amp.dev/">
+            <span class="icon-amp">⚡</span>AMP
+          </a>
+        </p>
+      </footer>
+      <amp-analytics data-block-on-consent
+                     type="gtag"
+                     data-credentials="include">
+        <script type="application/json">
+          {
+              "vars" : {
+                  "gtag_id": "UA-90872419-1",
+                  "config" : {
+                      "UA-90872419-1": { "groups": "default" }
+                  }
+              }
+          }
+        </script>
+      </amp-analytics>
+      <!-- end: include footer -->
+    </div>
+  </body>
+</html>
