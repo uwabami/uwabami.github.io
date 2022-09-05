@@ -1,0 +1,455 @@
+<!doctype html>
+<html ⚡ lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="preconnect dns-prefetch" href="//cdn.ampproject.org" crossorigin>
+    <link rel="preconnect dns-prefetch" href="//uwabami.github.io/" crossorigin>
+    <!-- amp preload -->
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ComicNeueSubset.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Fira-Mono-normal-400.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Fira-Mono-normal-700.woff2" crossorigin>
+    <!-- end amp preload -->
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
+    <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <!-- Custom css based on following two framework -->
+    <!-- - normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css -->
+    <!-- - basscss v8.1.2 | MIT License | github.com/basscss/basscss -->
+    <style amp-custom>@font-face{font-family:'Comic Neue';font-style:normal;font-weight:400;font-display:swap;src:local("Comic Neue"),local("Comic Neue"),url("/assets/fonts/ComicNeueSubset.woff2") format("woff2")}@font-face{font-family:'AoyagiKouzanTSubset';font-style:normal;font-weight:400;font-display:swap;src:local("AoyagiKouzanTSubset"),local("AoyagiKouzanTSubset"),url("/assets/fonts/AoyagiKouzanTSubset.woff2") format("woff2")}@font-face{font-family:'Fira Mono';font-style:normal;font-weight:400;font-display:swap;src:local("Fira Mono"),local("Fira Mono"),url("/assets/fonts/Fira-Mono-normal-400.woff2") format("woff2")}@font-face{font-family:'Fira Mono';font-style:bold;font-weight:700;font-display:swap;src:local("Fira Mono"),local("Fira Mono"),url("/assets/fonts/Fira-Mono-normal-700.woff2") format("woff2")}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}.h00{font-size:4rem}.h0{font-size:3rem}.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:700}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:320px}.max-width-2{max-width:480px}.max-width-3{max-width:600px}.max-width-4{max-width:800px}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-.5rem;margin-right:-.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.m-auto{margin:auto}.mt-auto{margin-top:auto}.mr-auto{margin-right:auto}.mb-auto{margin-bottom:auto}.ml-auto{margin-left:auto}.mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.33333%}.col-2{width:16.66667%}.col-3{width:25%}.col-4{width:33.33333%}.col-5{width:41.66667%}.col-6{width:50%}.col-7{width:58.33333%}.col-8{width:66.66667%}.col-9{width:75%}.col-10{width:83.33333%}.col-11{width:91.66667%}.col-12{width:100%}@media (min-width: 40.06rem){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.33333%}.sm-col-2{width:16.66667%}.sm-col-3{width:25%}.sm-col-4{width:33.33333%}.sm-col-5{width:41.66667%}.sm-col-6{width:50%}.sm-col-7{width:58.33333%}.sm-col-8{width:66.66667%}.sm-col-9{width:75%}.sm-col-10{width:83.33333%}.sm-col-11{width:91.66667%}.sm-col-12{width:100%}}@media (min-width: 52.06rem){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.33333%}.md-col-2{width:16.66667%}.md-col-3{width:25%}.md-col-4{width:33.33333%}.md-col-5{width:41.66667%}.md-col-6{width:50%}.md-col-7{width:58.33333%}.md-col-8{width:66.66667%}.md-col-9{width:75%}.md-col-10{width:83.33333%}.md-col-11{width:91.66667%}.md-col-12{width:100%}}@media (min-width: 64rem){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.33333%}.lg-col-2{width:16.66667%}.lg-col-3{width:25%}.lg-col-4{width:33.33333%}.lg-col-5{width:41.66667%}.lg-col-6{width:50%}.lg-col-7{width:58.33333%}.lg-col-8{width:66.66667%}.lg-col-9{width:75%}.lg-col-10{width:83.33333%}.lg-col-11{width:91.66667%}.lg-col-12{width:100%}}.flex{display:-webkit-box;display:-ms-flexbox;display:flex}@media (min-width: 40.06rem){.sm-flex{display:-webkit-box;display:-ms-flexbox;display:flex}}@media (min-width: 52.06rem){.lg-flex{display:-webkit-box;display:-ms-flexbox;display:flex}}.flex-column{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.items-start{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.items-end{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.items-center{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.items-baseline{-webkit-box-align:baseline;-ms-flex-align:baseline;align-items:baseline}.items-stretch{-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.justify-end{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.justify-center{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.justify-between{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.justify-around{-ms-flex-pack:distribute;justify-content:space-around}.justify-evenly{-webkit-box-pack:space-evenly;justify-content:space-evenly}.content-start{-ms-flex-line-pack:start;align-content:flex-start}.content-end{-ms-flex-line-pack:end;align-content:flex-end}.content-center{-ms-flex-line-pack:center;align-content:center}.content-between{-ms-flex-line-pack:justify;align-content:space-between}.content-around{-ms-flex-line-pack:distribute;align-content:space-around}.content-stretch{-ms-flex-line-pack:stretch;align-content:stretch}.flex-auto{-webkit-box-flex:1;-ms-flex-positive:1;flex:1 1 auto;min-width:0;min-height:0}.flex-none{-webkit-box-flex:0;-ms-flex-positive:0;flex:none}.order-0{-webkit-box-ordinal-group:1;-ms-flex-order:0;order:0}.order-1{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}.order-2{-webkit-box-ordinal-group:3;-ms-flex-order:2;order:2}.order-3{-webkit-box-ordinal-group:4;-ms-flex-order:3;order:3}.order-last{-webkit-box-ordinal-group:100000;-ms-flex-order:99999;order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40rem){.xs-hide{display:none}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.sm-hide{display:none}}@media (min-width: 52.06rem) and (max-width: 64rem){.md-hide{display:none}}@media (min-width: 64rem){.lg-hide{display:none}}.display-none{display:none}h1{font-weight:normal}.content em{font-weight:normal;font-style:normal}.content strong{font-weight:normal;font-size:1.5rem}.content .alert{font-weight:bold;color:#ff4136}.content a:hover{text-decoration:underline}.content ol{counter-reset:list}.content ol>li{position:relative;list-style:none;margin-top:5px;margin-bottom:5px}.content dd{padding:0;margin-right:0;margin-left:15pt}.content ul>li{margin:5px 0 5px 0}.content ul{padding:0 20px 0 20px}.content ol{padding:0 30px 0 30px}.content ol>li:before{content:"(" counter(list, decimal) ") ";counter-increment:list;position:absolute;left:-35px}.content blockquote{border-left:5px solid #333333;margin:10px 0 10px 0;padding:0px 8px 0px 8px;font-style:normal}.content h2{border-bottom:1px solid #5af;font-weight:normal;margin:1rem 0 0 0;padding:0}.content h3{border-bottom:1px dashed #5af;font-weight:normal;margin:1rem 0 0 0}.content h4{border-bottom:1px dotted #5af;font-weight:normal;margin:1rem 0 0 0}.content h5{border-bottom:1px dashed #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content h6{border-bottom:1px dotted #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}html{height:100%;-ms-text-size-adjust:100%;font-size:15pt;font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}body{margin:0;line-height:1.25;min-width:315px;height:100%;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased;padding-top:5rem}wrapper{min-height:100%}main{display:block;margin:0 auto;max-width:800px}header{display:block;margin:0 auto;width:100%;max-width:800px;box-shadow:0 6px 10px -10px rgba(0,0,0,0.7)}footer{display:block;margin:0 auto;width:100%;max-width:800px}.logo{border-radius:80%}.gsearch{width:10rem;max-width:40vw;font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}.title-font{font-family:"Comic Neue","AoyagiKouzanTSubset","Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}hr{padding:0;margin:8px 0;border:0;height:0;border-top:1px solid rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.8)}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.2rem;width:1.2rem}.icon-envelope{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}.icon-amp{color:#ff851b}.research li:nth-child(even){background-color:#f5f5f5}.small{font-size:80%}.doi{font-size:80%}#table-of-contents{margin:0;padding:0;display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;border-bottom:1px solid rgba(0,0,0,0.1)}#table-of-contents h2{margin:0;padding:0;font-size:1rem;border:none;margin-right:1rem}#table-of-contents h2:after{content:":";padding:0;margin:0}#table-of-contents #text-table-of-contents ul{margin:0;padding:0}#table-of-contents #text-table-of-contents ul li{list-style:none;padding:0;display:inline-block}#table-of-contents #text-table-of-contents ul li+li:before{content:"/ ";padding:0;margin:0;color:#ccc}a{text-decoration:none;color:#3498db}a:hover{text-decoration:underline}@media (max-width: 40rem){body{padding-top:4.8rem}.wrapper{padding:0 .5rem;background-color:#fff}header{padding:0 .5rem;background-color:#fff}header input.navigation-input{display:none}header nav{padding-right:1rem}header div.breadcrumbs{padding-right:1rem}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;padding-right:1rem;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}.page-title{font-size:1.5rem}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.4rem;width:1.4rem}amp-img.profile-picture{height:3rem;width:3rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.2rem;margin-left:1.2rem}#table-of-contents{display:none}footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){body{padding-top:4.8rem}.wrapper{padding:0 1rem;background-color:#fff}nav{padding-right:2rem}div.breadcrumbs{padding-right:2rem}header{padding:0 1rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;padding-right:2rem;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.2rem;margin-left:1.2rem}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.3rem;width:1.3rem}footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 2rem;background-color:#fff}header{padding:0 2rem;background-color:#fff}header .navigation-input{display:none}nav{padding-right:.5rem}div.breadcrumbs{padding-right:.5rem}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu .dcontents{position:absolute}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.3rem;width:1.3rem}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 2rem}}@media (min-width: 64rem){body{padding-top:4rem}.wrapper{padding:0 4rem;background-color:#fff}header{background-color:#fff}header .navigation-input{display:none}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu .dcontents{position:absolute}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 4rem}}table{margin:15px 0;border-collapse:collapse;width:100%;padding:0}table tr{border-top:1px solid #cccccc;background-color:white;margin:0;padding:0}table tr:nth-child(2n){background-color:#f8f8f8}table tr th{font-weight:bold;border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr td{border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr th :first-child,table tr td :first-child{margin:0}table tr th :last-child,table tr td :last-child{margin:0}pre{font-size:100%;padding:5px 10px;margin:0 auto;color:#020202;background-color:#eeeeff;overflow:auto;border:2px;border-radius:3px;font-family:inherit}code{background-color:#eeeeff;color:#020202;weight:normal;font-family:inherit}figure.highlight{margin:0;padding:0;border:0;font-family:inherit}.highlight{padding:5px 10px;background-color:#eeeeff;color:#f8f8f2;font-family:inherit}.highlight .hll{background-color:#eeeeff}.highlight .c{color:#008800}.highlight .err{border:1px solid #FF0000}.highlight .k{color:#AA22FF;font-weight:bold}.highlight .o{color:#666666}.highlight .cm{color:#008800}.highlight .cp{color:#008800}.highlight .c1{color:#008800}.highlight .cs{color:#008800;font-weight:bold}.highlight .gd{color:#A00000}.highlight .gr{color:#FF0000}.highlight .gh{color:#000080;font-weight:bold}.highlight .gi{color:#00A000}.highlight .go{color:#808080}.highlight .gp{color:#000080;font-weight:bold}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#0040D0}.highlight .kc{color:#AA22FF;font-weight:bold}.highlight .kd{color:#AA22FF;font-weight:bold}.highlight .kn{color:#AA22FF;font-weight:bold}.highlight .kp{color:#AA22FF}.highlight .kr{color:#AA22FF;font-weight:bold}.highlight .kt{color:#00BB00;font-weight:bold}.highlight .m{color:#666666}.highlight .s{color:#BB4444}.highlight .na{color:#BB4444}.highlight .nb{color:#AA22FF}.highlight .nc{color:#0000FF}.highlight .no{color:#880000}.highlight .nd{color:#AA22FF}.highlight .ni{color:#999999;font-weight:bold}.highlight .ne{color:#D2413A;font-weight:bold}.highlight .nf{color:#00A000}.highlight .nl{color:#A0A000}.highlight .nn{color:#0000FF;font-weight:bold}.highlight .nt{color:#008000;font-weight:bold}.highlight .nv{color:#B8860B}.highlight .ow{color:#AA22FF;font-weight:bold}.highlight .w{color:#bbbbbb}.highlight .mf{color:#666666}.highlight .mh{color:#666666}.highlight .mi{color:#666666}.highlight .mo{color:#666666}.highlight .sb{color:#BB4444}.highlight .sc{color:#BB4444}.highlight .sd{color:#BB4444}.highlight .s2{color:#BB4444}.highlight .se{color:#BB6622;font-weight:bold}.highlight .sh{color:#BB4444}.highlight .si{color:#BB6688;font-weight:bold}.highlight .sx{color:#008000}.highlight .sr{color:#BB6688}.highlight .s1{color:#BB4444}.highlight .ss{color:#B8860B}.highlight .bp{color:#AA22FF}.highlight .vc{color:#B8860B}.highlight .vg{color:#B8860B}.highlight .vi{color:#B8860B}.highlight .il{color:#666666}span.anchor{display:none}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}p.source{text-align:right;font-size:80%}p.source cite{font-style:normal}.day h2{font-size:1rem}.comment{display:none}.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:-.6rem}.tdiary-profile{width:70%}.tdiary-profile-picture{border-radius:50%}.footer{display:block;margin:0 auto;text-align:right;font-size:80%;width:100%;max-width:800px}.gsearch{max-width:40vw}@media (max-width: 40rem){.footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){.footer{padding:0 2rem}}@media (min-width: 64rem){.footer{padding:0 4rem}}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <meta name="author" content="Youhei SASAKI">
+    <!-- end: check google site verification -->
+    <!-- alternate -->
+    <link rel="alternate" hreflang="en" href="https://uwabami.github.io/research/index.en.html" />
+    <link rel="alternate" hreflang="ja" href="https://uwabami.github.io/research/index.html" />
+    <!-- end: alternate -->
+    <!-- begin jekyll seo -->
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Research Work | Youhei SASAKI’s official site</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Research Work" />
+<meta name="author" content="Youhei SASAKI" />
+<meta property="og:locale" content="en" />
+<link rel="canonical" href="https://uwabami.github.io/research/index.en.html" />
+<meta property="og:url" content="https://uwabami.github.io/research/index.en.html" />
+<meta property="og:site_name" content="Youhei SASAKI’s official site" />
+<meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-14T10:11:27+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
+<meta property="twitter:title" content="Research Work" />
+<meta name="twitter:site" content="@uwabami" />
+<meta name="twitter:creator" content="@Youhei SASAKI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2021-08-14T10:11:27+09:00","datePublished":"2021-08-14T10:11:27+09:00","headline":"Research Work","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/research/index.en.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/research/index.en.html"}</script>
+<!-- End Jekyll SEO tag -->
+    <!-- end jekyll seo -->
+    <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
+    <!-- apple icons -->
+    <link rel="apple-touch-icon" href="https://uwabami.github.io/assets/img/favicon-256x256.png">
+    <link rel="shortcut-icon" type="image/ico" href="/assets/img/favicon.ico">
+  </head>
+  <body>
+    <!-- include: gdpr -->
+    <amp-geo layout="nodisplay">
+      <script type="application/json">
+        {
+            "ISOCountryGroups": {
+                "eu": [ "preset-eea"]
+            }
+        }
+      </script>
+    </amp-geo>
+    <amp-consent layout="nodisplay" id="consent-element">
+      <script type="application/json">
+        {
+            "consents": {
+                "my_consent": {
+                    "promptIfUnknownForGeoGroup": "eu",
+                    "promptUI": "consent-ui"
+                }
+            }
+        }
+      </script>
+      <div id="consent-ui">
+        I use cookies to analyze how visitors use my website via Google Analytics:
+        <button on="tap:consent-element.accept" role="button">Accept</button>
+        <button on="tap:consent-element.reject" role="button">Reject</button>
+        <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
+      </div>
+    </amp-consent>
+    <!-- end include: gdpr -->
+    <div class="wrapper">
+      <!-- include: navbar -->
+      <header class="container right-0 left-0 top-0 z4 fixed">
+        <!-- page loop -->
+        <nav class="navigation flex items-center justify-between">
+          <div class="pr1 py1 order-0">
+            <a href="/index.en.html">
+              <amp-img layout="fixed"
+                       width="1.2rem"
+                       height="1.2rem"
+                       src="/assets/img/top.webp"
+                       alt="About"
+                       id="top"
+                       class="logo left">
+                <amp-img fallback
+                         layout="fixed"
+                         width="1.2rem"
+                         height="1.2rem"
+                         src="/assets/img/top.jpg"
+                         alt="About"
+                         id="top"
+                         class="logo left">
+                </amp-img>
+              </amp-img>
+            </a>
+          </div>
+          <input type="checkbox" id="tm" class="navigation-input">
+          <label for="tm" class="pl1 py1 order-3 md-hide lg-hide h2">☰</label>
+          <div class="navcontents items-center md-flex lg-flex order-1">
+          
+          <div class="px1 py0">
+            <a href="/research/index.en.html">
+              Research
+            </a>
+          </div>
+          <div class="px1 py0">
+            <a href="/software/index.en.html">
+              Repository
+            </a>
+          </div>
+          </div>
+          <div class="flex-auto"></div>
+          <div class="px1 py0 order-2">
+            <form method="GET" class="p0 m0" action="https://www.google.com/cse" target="_top">
+              <div class="inline-block relative p0 m0 small">
+                <input name="cx" type="hidden" value="017455171263919107349:oumnpe4bynr" />
+                <input name="ie" type="hidden" value="UTF-8" />
+                <input class="gsearch" type="search" placeholder="Search" name="q" required>
+              </div>
+            </form>
+          </div>
+          
+        </nav>
+        <div class="breadcrumbs">
+          <div class="flex items-center">
+            <!-- create crumbs -->
+            <div class="pr1 py0">
+              <a href="/index.en.html">
+                Top
+              </a>
+            </div>
+            &gt;<div class="px1"><a href="/research/index.en.html">Research</a></div>
+                  <!-- end page loop -->
+            <div class="flex-auto py0"></div>
+            <div class="pr0 py0"><!-- lang selector ja -->
+              <a href="/research/index.html">
+                日本語
+              </a>
+              <!-- end: lang selector -->
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- end include: navbar -->
+      <main role="main">
+        <div class="container content">
+          <h1 class="page-title my2 py0 px0">Research Work</h1>
+          <hr>
+<!-- %%%% start content %%%% -->
+<div>
+<h2 id="orge055c46c">Publication</h2>
+<div class="outline-text-2" id="text-orge055c46c">
+<p></p>
+<ul class="research">
+<li>Shin-ichi Takehiro, 
+<u>Youhei Sasaki</u>, 
+2018: 
+      On Destruction of a Thermally Stable Layer by Compositional Convection in the Earth's Outer Core, 
+Frontiers in Earth Science, 6. doi:<a href="https://doi.org/10.3389/feart.2018.00192">10.3389/feart.2018.00192</a>
+</li>
+<li>
+<u>Youhei Sasaki</u>, 
+Shin-ichi Takehiro, 
+Masaki Ishiwatari, 
+Michio Yamada, 
+2018: 
+      Effects of radial distribution of entropy diffusivity on critical modes of anelastic thermal convection in rotating spherical shells, 
+Physics of the Earth and Planetary Interiors, 276, 36. doi:<a href="https://doi.org/10.1016/j.pepi.2017.09.003">10.1016/j.pepi.2017.09.003</a>
+</li>
+<li>Shin-ichi Takehiro, 
+<u>Youhei Sasaki</u>, 
+2018: 
+      Penetration of steady fluid motions into an outer stable layer excited by MHD thermal convection in rotating spherical shells, 
+Physics of the Earth and Planetary Interiors, 276, 258. doi:<a href="https://doi.org/10.1016/j.pepi.2017.03.001">10.1016/j.pepi.2017.03.001</a>
+</li>
+<li>Hiroaki Matsui, 
+Eric Heien, 
+Julien Aubert, 
+Jonathan M. Aurnou, 
+Margaret Avery, 
+Ben Brown, 
+Bruce A. Buffett, 
+Friedrich Busse, 
+Ulrich R. Christensen, 
+Christopher J. Davies, 
+Nicholas Featherstone, 
+Thomas Gastine, 
+Gary A. Glatzmaier, 
+David Gubbins, 
+Jean-Luc Guermond, 
+Yoshi-Yuki Hayashi, 
+Rainer Hollerbach, 
+Lorraine J. Hwang, 
+Andrew Jackson, 
+Chris A. Jones, 
+Weiyuan Jiang, 
+Louise H. Kellogg, 
+Weijia Kuang, 
+Maylis Landeau, 
+Philippe Marti, 
+Peter Olson, 
+Adolfo Ribeiro, 
+<u>Youhei Sasaki</u>, 
+Nathanaël Schaeffer, 
+Radostin D. Simitev, 
+Andrey Sheyko, 
+Luis Silva, 
+Sabine Stanley, 
+Futoshi Takahashi, 
+Shin-ichi Takehiro, 
+Johannes Wicht, 
+Ashley P. Willis, 
+2016: 
+      Performance benchmarks for a next generation numerical dynamo model, 
+Geochemistry, Geophysics, Geosystems, 17, 1586. doi:<a href="https://doi.org/10.1002/2015gc006159">10.1002/2015gc006159</a>
+</li>
+<li>P. Marti, 
+N. Schaeffer, 
+R. Hollerbach, 
+D. Cébron, 
+C. Nore, 
+F. Luddens, 
+J.-L. Guermond, 
+J. Aubert, 
+S. Takehiro, 
+<u>Y. Sasaki</u>, 
+Y.-Y. Hayashi, 
+R. Simitev, 
+F. Busse, 
+S. Vantieghem, 
+A. Jackson, 
+2014: 
+      Full sphere hydrodynamic and dynamo benchmarks, 
+Geophysical Journal International, 197, 119. doi:<a href="https://doi.org/10.1093/gji/ggt518">10.1093/gji/ggt518</a>
+</li>
+<li>A. Jackson, 
+A. Sheyko, 
+P. Marti, 
+A. Tilgner, 
+D. Cébron, 
+S. Vantieghem, 
+R. Simitev, 
+F. Busse, 
+X. Zhan, 
+G. Schubert, 
+S. Takehiro, 
+<u>Y. Sasaki</u>, 
+Y.-Y. Hayashi, 
+A. Ribeiro, 
+C. Nore, 
+J.-L. Guermond, 
+2014: 
+      A spherical shell numerical dynamo benchmark with pseudo-vacuum magnetic boundary conditions, 
+Geophysical Journal International, 196, 712. doi:<a href="https://doi.org/10.1093/gji/ggt425">10.1093/gji/ggt425</a>
+</li>
+<li>
+<u>Youhei Sasaki</u>, 
+Shin-ichi Takehiro, 
+Seiya Nishizawa, 
+Yoshi-Yuki Hayashi, 
+2013: 
+      Effects of latitudinally heterogeneous buoyancy flux conditions at the inner core boundary of an MHD dynamo in a rotating spherical shell, 
+Physics of the Earth and Planetary Interiors, 223, 55. doi:<a href="https://doi.org/10.1016/j.pepi.2013.07.003">10.1016/j.pepi.2013.07.003</a>
+</li>
+<li>Shin-ichi Takehiro, 
+<u>Youhei Sasaki</u>, 
+Yoshi-Yuki Hayashi, 
+Michio Yamada, 
+2013: 
+      Differential Rotation and Angular Momentum Transport Caused by Thermal Convection in a Rotating Spherical Shell, 
+PROGRESS IN PHYSICS OF THE SUN AND STARS: A NEW ERA IN HELIO- AND ASTEROSEISMOLOGY, 479, 285.</li>
+<li>Takehiro, S, 
+Takahashi, Y.O, 
+Sugiyama, K, 
+Odaka, M, 
+Ishiwatari, M, 
+<u>Sasaki, Y</u>, 
+Ishioka, K, 
+Nishizawa, S, 
+Nakajima, K, 
+Hayashi, Y, 
+2012: 
+      Construction of Hierarchical Models for the Fluid Dynamics in Earth and Planetary Sciences: DCMODEL project., 
+Proceedings of International Conference on Simulation Technology, JSST 2012, 301.</li>
+<li>
+<u>Sasaki Youhei</u>, 
+Takehiro Shin-ichi, 
+Nakajima Kensuke, 
+Hayashi Yoshi-Yuki, 
+2012: 
+      Surface zonal flow induced by turbulent convection in rapidly rotating spherical shells, 
+Proceedings of International Conference on Simulation Technology, JSST 2012, 307.</li>
+<li>M. Ishiwatari, 
+E. Toyoda, 
+Y. Morikawa, 
+S. Takehiro, 
+<u>Y. Sasaki</u>, 
+S. Nishizawa, 
+M. Odaka, 
+N. Otobe, 
+Y. O. Takahashi, 
+K. Nakajima, 
+T. Horinouchi, 
+M. Shiotani, 
+Y.-Y. Hayashi, 
+Gtool development group, 
+2012: 
+      "Gtool5": a Fortran90 library of input/output interfaces for self-descriptive multi-dimensional numerical data, 
+Geosci. Model Dev., 5, 449. doi:<a href="https://doi.org/10.5194/gmd-5-449-2012">10.5194/gmd-5-449-2012</a>
+</li>
+<li>
+<u>Youhei Sasaki</u>, 
+Shin-ichi Takehiro, 
+Kiyoshi Kuramoto, 
+Yoshi-Yuki Hayashi, 
+2011: 
+      Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries, 
+Physics of the Earth and Planetary Interiors, 188, 203. doi:<a href="https://doi.org/10.1016/j.pepi.2011.06.019">10.1016/j.pepi.2011.06.019</a>
+</li>
+</ul>
+
+</div>
+</div>
+<div>
+<h2 id="org77a2f1d3">Presentation</h2>
+<div class="outline-text-2" id="text-org77a2f1d3">
+<p></p>
+<ul class="research">
+<li>Nakagawa, T,<u>Sasaki, Y</u>,Takehiro, S:On formation of a stably stratified layer below the core-mantle boundary region: evaluating with a 1D thermal and chemical evolution model, The 16th symposium of SEDI,Study of the Earth's Deep Interior, 2018/07/08.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S:On penetration of compositional convection into a thermally stable stratified layer in the outer core of the Earth, Interaction and Coevolution of the Core and MantleToward Integrated Deep Earth ScienceInternational Symposium and Annual General Meeting, 2018/03/26.
+  </li>
+<li>Takehiro, S,<u>Sasaki, Y</u>,Ishioka, K,Nakajima, K,Ishiwatari, M,Hayashi, Y:Disappearance of surface banded structure produced by thermal convection in a rapidly rotating thin spherical shell, The 49th Annual Divison for Planetary Sciences Meeting., 2017/10/15.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S,Ishiwatari, M,Yamada, M:Rapidly rotating two-dimensional annulus model for anelastic critical thermal convection with tilting boundaries and radially varying entropy diffusivity, Compressible Convection Conference, 2017/09/18.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S,Ishiwatari, M,Yamada, M:Effects of radial distribution of entropy diffusivity on critical modes of anelastic thermal convection in rotating spherical shells (numerical analysis), Compressible Convection Conference, 2017/09/18.
+  </li>
+<li>Takehiro, S,<u>Sasaki, Y</u>:Erosion of a thermally induced stably stratified layer by compositional convection in the Earth's outer core, AOGS 2017, 2017/08/06.
+  </li>
+<li>Shin-ichi Takehiro,<u>Youhei Sasaki</u>:Erosion of a thermally induced stably stratified layer by compositional convection in the Earth's outer core, IAG-IASPEI 2017, 2017/08/03.
+  </li>
+<li>Takehiro S,Takahashi, Y. O,Sugiyama, K,Odaka, M,Ishiwatari, M,Horinouchi, T,<u>Sasaki, Y</u>,Ishioka, K,Nakajima, K,Hayashi, Y:GFD-Dennou Club DCMODEL project, WTK Aquaplanet Workshop, 2017/01/24.
+  </li>
+<li>Takehiro, S,<u>Sasaki, Y</u>,Ishioka, K,Nakajima, K,Hayashi, Y:Mean zonal flows induced by Boussinesq thermal convection in rotating spherical shells as an application to the gas giant planets, WTK Aquaplanet Workshop, 2017/01/21.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S,Ishiwatari, M,Yamada, M:Critical mode of anelastic thermal convection in a rotating spherical shell depends on radial distribution of thermal diffusivity, The 15th symposium of SEDI, Study of the Earth's Deep Interior, 2016/07/24.
+  </li>
+<li>Takehiro, S,<u>Sasaki, Y</u>:Penetration of mean zonal flows into an outer stable layer excited by MHD thermal convection in rotating spherical shells, The 15th symposium of SEDI, Study of the Earth's Deep Interior, 2016/07/24.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S:Penetration of magneto-hydrodynamic disturbances into a strongly stable outer layer caused by MHD dynamo in a rotating spherical shell, Japan SEDI symposium 2015, 2015/09/25.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S:Penetration of magneto-hydrodynamic disturbances into an outer strongly stable layer caused by MHD dynamo in a rotating spherical shell, The 14th symposium of SEDI, Study of the Earth's Deep Interior, 2014/08/07.
+  </li>
+<li>
+<u>佐々木 洋平</u>,竹広 真一,石岡 圭一,中島 健介,林 祥介:B165 高速回転する薄い球殻中の対流により引き起こされる表層の帯状流(惑星大気科学の現在,スペシャル・セッション), 大会講演予講集, 2014.
+  </li>
+<li>Takehiro, S,<u>Sasaki, Y</u>,Takahashi, Y. O,Nakajima, K,Hayashi, Y.-Y,Kuramoto, K:Diversity of atmospheric circulations of sycronized rotating Jovian type planets., 5th Subaru International Conference: Exoplanets and Disks:Their Formation and Diversity II, 2013/12/08.
+  </li>
+<li>Takehiro, S,<u>Sasaki, Y</u>,Hayashi, Y.-Y,Yamada, M:Differential rotation and angular momentum transport caused by thermal convection in rotating spherical shells, Mathematical analysis of magneto-hydrodynamical processes in stars, 2013/09/26.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S,Kuramoto, K,Hayashi, Y:Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries, Mathematical analysis of magneto-hydrodynamical processes in stars, 2013/09/26.
+  </li>
+<li>
+<u>佐々木 洋平</u>,竹広 真一,中島 健介,林 祥介:O4-04 薄い回転球殼対流により引き起こされる表層の帯状流(口頭発表セッション4(惑星大気,衝突科学I),口頭発表), 日本惑星科学会秋期講演会予稿集, 2012/10/24.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S,Nishizawa, S,Nakajima, K,Hayashi Y.-Y:Effects of latitudinally heterogeneous buoyancy flux conditions at the inner boundary on MHD dynamos in a rotating spherical shell, The 13th Symposium of SEDI, Study of the Earth's Deep Interior, 2012/07/01.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S,Nakajima, K,Hayashi Y.-Y:Development of an anelastic convection model in rotating spherical shells for stars, gas and icy giant planets, The 13th Symposium of SEDI, Study of the Earth's Deep Interior, 2012/07/01.
+  </li>
+<li>
+<u>Sasaki, Y</u>,Takehiro, S,Kuramoto, K,Hayashi, Y:Weak-field dynamo emerging in a rotating spherical shell with stress-free top and no-slip bottom boundaries, AGU Fall Meeting 2011, 2011/12/05.
+  </li>
+<li>高橋 芳幸,杉山 耕一朗,小高 正嗣,石渡 正樹,<u>佐々木 洋平</u>,西澤 誠也,中島 健介,竹広 真一,林 祥介:D111 惑星大気計算のための大循環モデルならびに雲解像モデルの構築(大気力学,一般口頭発表), 大会講演予講集, 2011/10/31.
+  </li>
+<li>高橋 芳幸,杉山 耕一朗,小高 正嗣,石渡 正樹,<u>佐々木 洋平</u>,西澤 誠也,中島 健介,竹広 真一,林 祥介:S32-06 共通のプログラムスタイルを持つ大気大循環モデルと雲解像モデルの開発(口頭セッション32:惑星環境進化,口頭発表), 日本惑星科学会秋期講演会予稿集, 2011/10/23.
+  </li>
+</ul>
+
+</div>
+</div>
+<!-- %%%% end content %%%% -->
+        </div>
+      </main>
+      <!-- include footer -->
+      <footer class="container bottom-0 left-0 right-0 small">
+        <hr/>
+        <p class="p0 m0 right-align">&copy; 2006-2021
+          <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+          Lastupdate: 2021-08-14 01:11:27 +0000
+          <br/>
+          Powered by
+          <a href="https://orgmode.org/" rel="noopener" title="Org mode">
+            Org mode
+          </a>
+          +
+          <a href="https://jekyllrb.com/" rel="noopener" title="Jekyll">
+            Jekyll
+          </a>
+          +
+          <a href="https://basscss.com/" rel="noopener" title="Basscss">
+            Basscss
+          </a>
+          &amp;
+          <a href="https://amp.dev/">
+            <span class="icon-amp">⚡</span>AMP
+          </a>
+        </p>
+      </footer>
+      <amp-analytics data-block-on-consent
+                     type="gtag"
+                     data-credentials="include">
+        <script type="application/json">
+          {
+              "vars" : {
+                  "gtag_id": "UA-90872419-1",
+                  "config" : {
+                      "UA-90872419-1": { "groups": "default" }
+                  }
+              }
+          }
+        </script>
+      </amp-analytics>
+      <!-- end: include footer -->
+    </div>
+  </body>
+</html>
