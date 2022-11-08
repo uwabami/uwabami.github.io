@@ -1,0 +1,842 @@
+<!doctype html>
+<html ⚡ lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="preconnect dns-prefetch" href="//cdn.ampproject.org" crossorigin>
+    <link rel="preconnect dns-prefetch" href="//uwabami.github.io/" crossorigin>
+    <!-- amp preload -->
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ComicNeueSubset.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Fira-Mono-normal-400.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Fira-Mono-normal-700.woff2" crossorigin>
+    <!-- end amp preload -->
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
+    <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <!-- Custom css based on following two framework -->
+    <!-- - normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css -->
+    <!-- - basscss v8.1.2 | MIT License | github.com/basscss/basscss -->
+    <style amp-custom>@font-face{font-family:'Comic Neue';font-style:normal;font-weight:400;font-display:swap;src:local("Comic Neue"),local("Comic Neue"),url("/assets/fonts/ComicNeueSubset.woff2") format("woff2")}@font-face{font-family:'AoyagiKouzanTSubset';font-style:normal;font-weight:400;font-display:swap;src:local("AoyagiKouzanTSubset"),local("AoyagiKouzanTSubset"),url("/assets/fonts/AoyagiKouzanTSubset.woff2") format("woff2")}@font-face{font-family:'Fira Mono';font-style:normal;font-weight:400;font-display:swap;src:local("Fira Mono"),local("Fira Mono"),url("/assets/fonts/Fira-Mono-normal-400.woff2") format("woff2")}@font-face{font-family:'Fira Mono';font-style:bold;font-weight:700;font-display:swap;src:local("Fira Mono"),local("Fira Mono"),url("/assets/fonts/Fira-Mono-normal-700.woff2") format("woff2")}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}.h00{font-size:4rem}.h0{font-size:3rem}.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:700}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:320px}.max-width-2{max-width:480px}.max-width-3{max-width:600px}.max-width-4{max-width:800px}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-.5rem;margin-right:-.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.m-auto{margin:auto}.mt-auto{margin-top:auto}.mr-auto{margin-right:auto}.mb-auto{margin-bottom:auto}.ml-auto{margin-left:auto}.mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.33333%}.col-2{width:16.66667%}.col-3{width:25%}.col-4{width:33.33333%}.col-5{width:41.66667%}.col-6{width:50%}.col-7{width:58.33333%}.col-8{width:66.66667%}.col-9{width:75%}.col-10{width:83.33333%}.col-11{width:91.66667%}.col-12{width:100%}@media (min-width: 40.06rem){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.33333%}.sm-col-2{width:16.66667%}.sm-col-3{width:25%}.sm-col-4{width:33.33333%}.sm-col-5{width:41.66667%}.sm-col-6{width:50%}.sm-col-7{width:58.33333%}.sm-col-8{width:66.66667%}.sm-col-9{width:75%}.sm-col-10{width:83.33333%}.sm-col-11{width:91.66667%}.sm-col-12{width:100%}}@media (min-width: 52.06rem){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.33333%}.md-col-2{width:16.66667%}.md-col-3{width:25%}.md-col-4{width:33.33333%}.md-col-5{width:41.66667%}.md-col-6{width:50%}.md-col-7{width:58.33333%}.md-col-8{width:66.66667%}.md-col-9{width:75%}.md-col-10{width:83.33333%}.md-col-11{width:91.66667%}.md-col-12{width:100%}}@media (min-width: 64rem){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.33333%}.lg-col-2{width:16.66667%}.lg-col-3{width:25%}.lg-col-4{width:33.33333%}.lg-col-5{width:41.66667%}.lg-col-6{width:50%}.lg-col-7{width:58.33333%}.lg-col-8{width:66.66667%}.lg-col-9{width:75%}.lg-col-10{width:83.33333%}.lg-col-11{width:91.66667%}.lg-col-12{width:100%}}.flex{display:-webkit-box;display:-ms-flexbox;display:flex}@media (min-width: 40.06rem){.sm-flex{display:-webkit-box;display:-ms-flexbox;display:flex}}@media (min-width: 52.06rem){.lg-flex{display:-webkit-box;display:-ms-flexbox;display:flex}}.flex-column{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.items-start{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.items-end{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.items-center{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.items-baseline{-webkit-box-align:baseline;-ms-flex-align:baseline;align-items:baseline}.items-stretch{-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.justify-end{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.justify-center{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.justify-between{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.justify-around{-ms-flex-pack:distribute;justify-content:space-around}.justify-evenly{-webkit-box-pack:space-evenly;justify-content:space-evenly}.content-start{-ms-flex-line-pack:start;align-content:flex-start}.content-end{-ms-flex-line-pack:end;align-content:flex-end}.content-center{-ms-flex-line-pack:center;align-content:center}.content-between{-ms-flex-line-pack:justify;align-content:space-between}.content-around{-ms-flex-line-pack:distribute;align-content:space-around}.content-stretch{-ms-flex-line-pack:stretch;align-content:stretch}.flex-auto{-webkit-box-flex:1;-ms-flex-positive:1;flex:1 1 auto;min-width:0;min-height:0}.flex-none{-webkit-box-flex:0;-ms-flex-positive:0;flex:none}.order-0{-webkit-box-ordinal-group:1;-ms-flex-order:0;order:0}.order-1{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}.order-2{-webkit-box-ordinal-group:3;-ms-flex-order:2;order:2}.order-3{-webkit-box-ordinal-group:4;-ms-flex-order:3;order:3}.order-last{-webkit-box-ordinal-group:100000;-ms-flex-order:99999;order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40rem){.xs-hide{display:none}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.sm-hide{display:none}}@media (min-width: 52.06rem) and (max-width: 64rem){.md-hide{display:none}}@media (min-width: 64rem){.lg-hide{display:none}}.display-none{display:none}h1{font-weight:normal}.content em{font-weight:normal;font-style:normal}.content strong{font-weight:normal;font-size:1.5rem}.content .alert{font-weight:bold;color:#ff4136}.content a:hover{text-decoration:underline}.content ol{counter-reset:list}.content ol>li{position:relative;list-style:none;margin-top:5px;margin-bottom:5px}.content dd{padding:0;margin-right:0;margin-left:15pt}.content ul>li{margin:5px 0 5px 0}.content ul{padding:0 20px 0 20px}.content ol{padding:0 30px 0 30px}.content ol>li:before{content:"(" counter(list, decimal) ") ";counter-increment:list;position:absolute;left:-35px}.content blockquote{border-left:5px solid #333333;margin:10px 0 10px 0;padding:0px 8px 0px 8px;font-style:normal}.content h2{border-bottom:1px solid #5af;font-weight:normal;margin:1rem 0 0 0;padding:0}.content h3{border-bottom:1px dashed #5af;font-weight:normal;margin:1rem 0 0 0}.content h4{border-bottom:1px dotted #5af;font-weight:normal;margin:1rem 0 0 0}.content h5{border-bottom:1px dashed #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content h6{border-bottom:1px dotted #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}html{height:100%;-ms-text-size-adjust:100%;font-size:15pt;font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}body{margin:0;line-height:1.25;min-width:315px;height:100%;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased;padding-top:5rem}wrapper{min-height:100%}main{display:block;margin:0 auto;max-width:800px}header{display:block;margin:0 auto;width:100%;max-width:800px;box-shadow:0 6px 10px -10px rgba(0,0,0,0.7)}footer{display:block;margin:0 auto;width:100%;max-width:800px}.logo{border-radius:80%}.gsearch{width:10rem;max-width:40vw;font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}.title-font{font-family:"Comic Neue","AoyagiKouzanTSubset","Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}hr{padding:0;margin:8px 0;border:0;height:0;border-top:1px solid rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.8)}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.2rem;width:1.2rem}.icon-envelope{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}.icon-amp{color:#ff851b}.research li:nth-child(even){background-color:#f5f5f5}.small{font-size:80%}.doi{font-size:80%}#table-of-contents{margin:0;padding:0;display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;border-bottom:1px solid rgba(0,0,0,0.1)}#table-of-contents h2{margin:0;padding:0;font-size:1rem;border:none;margin-right:1rem}#table-of-contents h2:after{content:":";padding:0;margin:0}#table-of-contents #text-table-of-contents ul{margin:0;padding:0}#table-of-contents #text-table-of-contents ul li{list-style:none;padding:0;display:inline-block}#table-of-contents #text-table-of-contents ul li+li:before{content:"/ ";padding:0;margin:0;color:#ccc}a{text-decoration:none;color:#3498db}a:hover{text-decoration:underline}@media (max-width: 40rem){body{padding-top:4.8rem}.wrapper{padding:0 .5rem;background-color:#fff}header{padding:0 .5rem;background-color:#fff}header input.navigation-input{display:none}header nav{padding-right:1rem}header div.breadcrumbs{padding-right:1rem}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;padding-right:1rem;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}.page-title{font-size:1.5rem}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.4rem;width:1.4rem}amp-img.profile-picture{height:3rem;width:3rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.2rem;margin-left:1.2rem}#table-of-contents{display:none}footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){body{padding-top:4.8rem}.wrapper{padding:0 1rem;background-color:#fff}nav{padding-right:2rem}div.breadcrumbs{padding-right:2rem}header{padding:0 1rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;padding-right:2rem;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.2rem;margin-left:1.2rem}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.3rem;width:1.3rem}footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 2rem;background-color:#fff}header{padding:0 2rem;background-color:#fff}header .navigation-input{display:none}nav{padding-right:.5rem}div.breadcrumbs{padding-right:.5rem}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu .dcontents{position:absolute}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.3rem;width:1.3rem}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 2rem}}@media (min-width: 64rem){body{padding-top:4rem}.wrapper{padding:0 4rem;background-color:#fff}header{background-color:#fff}header .navigation-input{display:none}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu .dcontents{position:absolute}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 4rem}}table{margin:15px 0;border-collapse:collapse;width:100%;padding:0}table tr{border-top:1px solid #cccccc;background-color:white;margin:0;padding:0}table tr:nth-child(2n){background-color:#f8f8f8}table tr th{font-weight:bold;border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr td{border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr th :first-child,table tr td :first-child{margin:0}table tr th :last-child,table tr td :last-child{margin:0}pre{font-size:100%;padding:5px 10px;margin:0 auto;color:#020202;background-color:#eeeeff;overflow:auto;border:2px;border-radius:3px;font-family:inherit}code{background-color:#eeeeff;color:#020202;weight:normal;font-family:inherit}figure.highlight{margin:0;padding:0;border:0;font-family:inherit}.highlight{padding:5px 10px;background-color:#eeeeff;color:#f8f8f2;font-family:inherit}.highlight .hll{background-color:#eeeeff}.highlight .c{color:#008800}.highlight .err{border:1px solid #FF0000}.highlight .k{color:#AA22FF;font-weight:bold}.highlight .o{color:#666666}.highlight .cm{color:#008800}.highlight .cp{color:#008800}.highlight .c1{color:#008800}.highlight .cs{color:#008800;font-weight:bold}.highlight .gd{color:#A00000}.highlight .gr{color:#FF0000}.highlight .gh{color:#000080;font-weight:bold}.highlight .gi{color:#00A000}.highlight .go{color:#808080}.highlight .gp{color:#000080;font-weight:bold}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#0040D0}.highlight .kc{color:#AA22FF;font-weight:bold}.highlight .kd{color:#AA22FF;font-weight:bold}.highlight .kn{color:#AA22FF;font-weight:bold}.highlight .kp{color:#AA22FF}.highlight .kr{color:#AA22FF;font-weight:bold}.highlight .kt{color:#00BB00;font-weight:bold}.highlight .m{color:#666666}.highlight .s{color:#BB4444}.highlight .na{color:#BB4444}.highlight .nb{color:#AA22FF}.highlight .nc{color:#0000FF}.highlight .no{color:#880000}.highlight .nd{color:#AA22FF}.highlight .ni{color:#999999;font-weight:bold}.highlight .ne{color:#D2413A;font-weight:bold}.highlight .nf{color:#00A000}.highlight .nl{color:#A0A000}.highlight .nn{color:#0000FF;font-weight:bold}.highlight .nt{color:#008000;font-weight:bold}.highlight .nv{color:#B8860B}.highlight .ow{color:#AA22FF;font-weight:bold}.highlight .w{color:#bbbbbb}.highlight .mf{color:#666666}.highlight .mh{color:#666666}.highlight .mi{color:#666666}.highlight .mo{color:#666666}.highlight .sb{color:#BB4444}.highlight .sc{color:#BB4444}.highlight .sd{color:#BB4444}.highlight .s2{color:#BB4444}.highlight .se{color:#BB6622;font-weight:bold}.highlight .sh{color:#BB4444}.highlight .si{color:#BB6688;font-weight:bold}.highlight .sx{color:#008000}.highlight .sr{color:#BB6688}.highlight .s1{color:#BB4444}.highlight .ss{color:#B8860B}.highlight .bp{color:#AA22FF}.highlight .vc{color:#B8860B}.highlight .vg{color:#B8860B}.highlight .vi{color:#B8860B}.highlight .il{color:#666666}span.anchor{display:none}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}p.source{text-align:right;font-size:80%}p.source cite{font-style:normal}.day h2{font-size:1rem}.comment{display:none}.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:-.6rem}.tdiary-profile{width:70%}.tdiary-profile-picture{border-radius:50%}.footer{display:block;margin:0 auto;text-align:right;font-size:80%;width:100%;max-width:800px}.gsearch{max-width:40vw}@media (max-width: 40rem){.footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){.footer{padding:0 2rem}}@media (min-width: 64rem){.footer{padding:0 4rem}}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <meta name="author" content="Youhei SASAKI">
+    <!-- end: check google site verification -->
+    <!-- alternate -->
+    <link rel="alternate" hreflang="ja" href="https://uwabami.github.io/cc-env/Terminal.html" />
+    <!-- end: alternate -->
+    <!-- begin jekyll seo -->
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Terminal 生活 | Youhei SASAKI’s official site</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Terminal 生活" />
+<meta name="author" content="Youhei SASAKI" />
+<meta property="og:locale" content="ja" />
+<link rel="canonical" href="https://uwabami.github.io/cc-env/Terminal.html" />
+<meta property="og:url" content="https://uwabami.github.io/cc-env/Terminal.html" />
+<meta property="og:site_name" content="Youhei SASAKI’s official site" />
+<meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-01T23:49:43+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
+<meta property="twitter:title" content="Terminal 生活" />
+<meta name="twitter:site" content="@uwabami" />
+<meta name="twitter:creator" content="@Youhei SASAKI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2020-02-01T23:49:43+09:00","datePublished":"2020-02-01T23:49:43+09:00","headline":"Terminal 生活","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Terminal.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Terminal.html"}</script>
+<!-- End Jekyll SEO tag -->
+    <!-- end jekyll seo -->
+    <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
+    <!-- apple icons -->
+    <link rel="apple-touch-icon" href="https://uwabami.github.io/assets/img/favicon-256x256.png">
+    <link rel="shortcut-icon" type="image/ico" href="/assets/img/favicon.ico">
+  </head>
+  <body>
+    <!-- include: gdpr -->
+    <amp-geo layout="nodisplay">
+      <script type="application/json">
+        {
+            "ISOCountryGroups": {
+                "eu": [ "preset-eea"]
+            }
+        }
+      </script>
+    </amp-geo>
+    <amp-consent layout="nodisplay" id="consent-element">
+      <script type="application/json">
+        {
+            "consents": {
+                "my_consent": {
+                    "promptIfUnknownForGeoGroup": "eu",
+                    "promptUI": "consent-ui"
+                }
+            }
+        }
+      </script>
+      <div id="consent-ui">
+        I use cookies to analyze how visitors use my website via Google Analytics:
+        <button on="tap:consent-element.accept" role="button">Accept</button>
+        <button on="tap:consent-element.reject" role="button">Reject</button>
+        <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
+      </div>
+    </amp-consent>
+    <!-- end include: gdpr -->
+    <div class="wrapper">
+      <!-- include: navbar -->
+      <header class="container right-0 left-0 top-0 z4 fixed">
+        <!-- page loop -->
+        <nav class="navigation flex items-center justify-between">
+          <div class="pr1 py1 order-0">
+            <a href="/index.html">
+              <amp-img layout="fixed"
+                       width="1.2rem"
+                       height="1.2rem"
+                       src="/assets/img/top.webp"
+                       alt="About"
+                       id="top"
+                       class="logo left">
+                <amp-img fallback
+                         layout="fixed"
+                         width="1.2rem"
+                         height="1.2rem"
+                         src="/assets/img/top.jpg"
+                         alt="About"
+                         id="top"
+                         class="logo left">
+                </amp-img>
+              </amp-img>
+            </a>
+          </div>
+          <input type="checkbox" id="tm" class="navigation-input">
+          <label for="tm" class="pl1 py1 order-3 md-hide lg-hide h2">☰</label>
+          <div class="navcontents items-center md-flex lg-flex order-1">
+          <!-- lang ja -->
+            <div class="px1 py0">
+              <a href="/research/index.html">
+                Research
+              </a>
+            </div>
+            <div class="dmenu px1 py0">
+              <input type="checkbox" id="dmenu" class="dmenu-input">
+              <label for="dmenu">Software &#9662;</label>
+              <div class="dcontents">
+                <ul class="list-reset p0 m0">
+                  <li class="px1 py0">
+                    <a href="/software/index.html">
+                      Repository
+                    </a>
+                  </li>
+                  <li class="px1 py0">
+                    <a href="/cc-env/index.html">
+                      Comp. Memo
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px1 py1">
+              <a href="https://uwabami.junkhub.org/log">blog</a>
+            </div>
+          </div>
+          <div class="flex-auto"></div>
+          <div class="px1 py0 order-2">
+            <form method="GET"
+                  class="p0 m0"
+                  action="https://www.google.com/cse"
+                  target="_top">
+              <div class="inline-block relative p0 m0 small">
+                <input name="cx" type="hidden"
+                       value="017455171263919107349:oumnpe4bynr" />
+                <input name="ie" type="hidden" value="UTF-8" />
+                <input class="gsearch" type="search" placeholder="検索" name="q" required>
+              </div>
+            </form>
+          </div>
+          
+        </nav>
+        <div class="breadcrumbs">
+          <div class="flex items-center">
+            <!-- create crumbs -->
+            <div class="pr1 py0">
+              <a href="/index.html">
+                Top
+              </a>
+            </div>
+            &gt;<div class="px1"><a href="/cc-env/index.html">Cc-env</a></div>      <!-- end page loop -->
+            <div class="flex-auto py0"></div>
+            <div class="pr0 py0"><!-- end: lang selector -->
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- end include: navbar -->
+      <main role="main">
+        <div class="container content">
+          <h1 class="page-title my2 py0 px0">Terminal 生活</h1>
+          <hr>
+<!-- %%%% start content %%%% -->
+<p>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
+</p>
+<div>
+<h2 id="orgab2c8165">始めに</h2>
+<div class="outline-text-2" id="text-orgab2c8165">
+<p>
+普段の生活環境(?)であるターミナルの設定アレコレ.
+</p>
+
+<p>
+現状は rxvt-unicode-256color をメインで利用中.
+驚きの軽さが理由の全てかな.
+</p>
+</div>
+</div>
+<div>
+<h2 id="org239a6837">EAW 対応: ロケールの入れ替え</h2>
+<div class="outline-text-2" id="text-org239a6837">
+<p>
+EAW については
+</p>
+<ul class="org-ul">
+<li><a href="https://ja.wikipedia.org/wiki/%E6%9D%B1%E3%82%A2%E3%82%B8%E3%82%A2%E3%81%AE%E6%96%87%E5%AD%97%E5%B9%85">東アジアの文字幅 - Wikipedia</a></li>
+<li><a href="http://unicode.org/reports/tr11/">UAX #11: East Asian Width</a></li>
+</ul>
+<p>
+などを参照.
+</p>
+
+<p>
+手元の環境では
+East Asian Ambiguous Char と絵文字の文字幅を強制的に "2" とする
+修正ロケールを使っている.
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/uwabami/locale-eaw-emoji">uwabami/locale-eaw-emoji: UAX#11 Ambiguous と UTR #51 Emoiji を全角とする修正 locale</a></li>
+</ul>
+<p>
+微妙に間違っている気もしないではないが, まあ良いか, 的な.
+</p>
+
+<p>
+UNICODE の Box drawing char は "1" にした方が良いかなぁ…
+</p>
+</div>
+</div>
+<div>
+<h2 id="orgb8ad7afe">自作合成フォント:</h2>
+<div class="outline-text-2" id="text-orgb8ad7afe">
+<p>
+「プログラミング」とか「等幅」とかで検索すると
+イロイロな合成フォントが見つかりますが,
+いまいち気にいるフォントが無かったので, 自作することにしました.
+</p>
+
+<ul class="org-ul">
+<li><a href="https://github.com/uwabami/isfit-plus">uwabami/isfit-plus: Icon Symbols Font In Terminal plus</a></li>
+<li><a href="https://github.com/uwabami/fsmrmp">uwabami/fsmrmp: FSMRMP - Patched Font: 'Fantasque Sans Mono' + 'Rounded Mgen+'</a></li>
+</ul>
+
+<p>
+現状はとりあえずこれで良しとする感じ.
+</p>
+</div>
+</div>
+<div>
+<h2 id="org8b0bd5a9">tmux</h2>
+<div class="outline-text-2" id="text-org8b0bd5a9">
+<p>
+以前は GNU screen を使っていたのだけれども,
+接続先の環境の多くが UTF-8 をサポートしてくれたので,
+tmux に移行した.
+</p>
+
+<p>
+設定は以下の通り.
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
+#
+# Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+# $Lastupdate: 22021-09-14 17:43:54$
+# License: Public domain.
+</span>
+<span class="c">## general
+# ESC での遅延解消: don't wait
+</span><span class="n">set</span> -<span class="n">sg</span> <span class="n">escape</span>-<span class="n">time</span> <span class="m">0</span>
+<span class="c"># Window を 0,  Pane を 1 始まりに
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
+<span class="n">set</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
+<span class="c"># mouse 操作を無効化
+</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mouse</span> <span class="n">off</span>
+<span class="c"># disable bell action
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">bell</span>-<span class="n">action</span> <span class="n">none</span>
+<span class="c"># Window renmae enabled
+</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">automatic</span>-<span class="n">rename</span> <span class="n">off</span>
+<span class="c"># default で起動するコマンド: zsh
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">default</span>-<span class="n">command</span> <span class="n">zsh</span>
+<span class="c"># prefix の有効時間: no wait
+</span><span class="n">set</span>-<span class="n">option</span> -<span class="n">g</span> <span class="n">repeat</span>-<span class="n">time</span> <span class="m">0</span>
+
+<span class="c">## display
+# TERM等の設定
+# set-option -ga terminal-overrides ",rxvt-256-color:Tc"
+</span><span class="n">set</span>-<span class="n">option</span> -<span class="n">ga</span> <span class="n">terminal</span>-<span class="n">overrides</span> <span class="s2">",rxvt-*:Tc,xterm-*:Tc"</span>
+<span class="c"># set -g default-terminal "screen-256color"
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">default</span>-<span class="n">terminal</span> <span class="s2">"screen-256color"</span>
+<span class="c"># set -g default-terminal tmux-direct
+</span><span class="n">set</span>-<span class="n">environment</span> -<span class="n">g</span> <span class="n">NCURSES_NO_UTF8_ACS</span> <span class="m">0</span>
+<span class="c"># 罫線素片の扱い: rxvt ならコレで良いのだが...
+# set -ag terminal-overrides ',*:U8=0'
+# 罫線素片の扱い: VTE 系はわざわざ Unicode に置き換える, ので ASCII で描画する
+# set-option -g pane-border-ascii 0  # ←あてて build してある場合は不要
+# set-environment -g VTE_CJK_WIDTH 1 # ←最近ちゃんと効いてない気がする.
+# メッセージ表示時間(既定値は1000?)
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">display</span>-<span class="n">time</span> <span class="m">4000</span>
+<span class="c"># 後方スクロール行数(既定値は2000)
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">history</span>-<span class="n">limit</span> <span class="m">8192</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">active</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#ff5252,bg=default"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#64FCDA,bg=default"</span>
+<span class="c"># don't show other activity
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">monitor</span>-<span class="n">activity</span> <span class="n">off</span>
+<span class="n">set</span> -<span class="n">g</span> <span class="n">visual</span>-<span class="n">activity</span> <span class="n">off</span>
+<span class="n">set</span> -<span class="n">g</span> <span class="n">allow</span>-<span class="n">rename</span> <span class="n">on</span>
+<span class="c"># pane number display
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">display</span>-<span class="n">panes</span>-<span class="n">time</span> <span class="m">4000</span>
+
+<span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">style</span> <span class="s2">"bg=default,fg=#888888"</span>
+<span class="c"># set -g status-interval 1
+</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">window</span>-<span class="n">status</span>-<span class="n">current</span>-<span class="n">style</span> <span class="s2">"fg=#ff5252,bg=default"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">message</span>-<span class="n">style</span> <span class="s2">"fg=#242424,bg=#ffd740,bright"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">left</span>-<span class="n">length</span> <span class="m">25</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">right</span>-<span class="n">length</span> <span class="m">15</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">left</span> <span class="s2">"#[fg=#4c4cff][#[fg=#f6f3e8]#h#[fg=#4c4cff]]#[default] "</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">right</span> <span class="s2">"#[fg=#4c4cff]|#[fg=#f6f3e8]#(date +%y/%m/%d)#[fg=#4c4cff]|#[default]"</span>
+
+<span class="c">## keybind
+# prefix:
+</span><span class="n">unbind</span> <span class="n">C</span>-<span class="n">b</span>                 <span class="c"># 既定のPrefixキー(Ctrl+b)の割り当てを解除
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">prefix</span> <span class="n">C</span>-<span class="n">t</span>          <span class="c"># Ctrl+tをPrefixキーにする
+</span><span class="n">bind</span> <span class="n">C</span>-<span class="n">t</span> <span class="n">send</span>-<span class="n">prefix</span>       <span class="c"># prefix-key の入力を渡す
+# reload
+</span><span class="n">bind</span> <span class="n">r</span> <span class="n">source</span>-<span class="n">file</span> ~/.<span class="n">tmux</span>.<span class="n">conf</span> \; <span class="n">display</span> <span class="s2">"Reload config file"</span>
+<span class="c"># コピーモードで vi + emacs 風
+</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">mode</span>-<span class="n">keys</span> <span class="n">vi</span>
+<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">C</span>-<span class="n">a</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">start</span>-<span class="n">of</span>-<span class="n">line</span>
+<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">C</span>-<span class="n">e</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">end</span>-<span class="n">of</span>-<span class="n">line</span>
+<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">v</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">begin</span>-<span class="n">selection</span>
+<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">y</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">copy</span>-<span class="n">pipe</span>-<span class="n">and</span>-<span class="n">cancel</span> <span class="s1">'xclip -in -selection clipboard &gt;/dev/null'</span>
+<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">NPage</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">page</span>-<span class="n">down</span>
+<span class="n">bind</span> -<span class="n">T</span> <span class="n">copy</span>-<span class="n">mode</span>-<span class="n">vi</span> <span class="n">PPage</span> <span class="n">send</span>-<span class="n">keys</span> -<span class="n">X</span> <span class="n">page</span>-<span class="n">up</span>
+<span class="n">unbind</span> ]
+<span class="n">bind</span> ] <span class="n">run</span>-<span class="n">shell</span> <span class="s2">"xclip -o -selection clipboard | tmux load-buffer - &amp;&amp; tmux paste-buffer"</span>
+<span class="n">unbind</span> %
+<span class="n">unbind</span> <span class="s1">'"'</span>
+<span class="c"># bind-key          z resize-pane -Z
+</span><span class="n">unbind</span> <span class="n">z</span>
+<span class="c"># bind-key        C-z suspend-client
+</span><span class="n">unbind</span> <span class="n">C</span>-<span class="n">z</span>
+<span class="n">unbind</span> <span class="n">Z</span>
+<span class="n">unbind</span> <span class="n">s</span>
+<span class="n">bind</span> <span class="n">s</span> <span class="n">split</span>-<span class="n">window</span> -<span class="n">v</span>
+<span class="n">unbind</span> |
+<span class="n">bind</span> | <span class="n">split</span>-<span class="n">window</span> -<span class="n">h</span>
+<span class="n">unbind</span> <span class="n">o</span>
+<span class="n">bind</span> <span class="n">o</span> <span class="n">display</span>-<span class="n">pane</span>
+
+<span class="n">unbind</span> <span class="n">C</span>-<span class="n">c</span>
+<span class="n">bind</span> <span class="n">C</span>-<span class="n">c</span> <span class="n">new</span>-<span class="n">window</span>
+<span class="n">unbind</span> <span class="n">C</span>-<span class="n">p</span>
+<span class="n">bind</span> <span class="n">C</span>-<span class="n">p</span> <span class="n">previous</span>-<span class="n">window</span>
+<span class="n">unbind</span> <span class="n">C</span>-<span class="n">n</span>
+<span class="n">bind</span> <span class="n">C</span>-<span class="n">n</span> <span class="n">next</span>-<span class="n">window</span>
+
+<span class="c">## Custom command
+</span><span class="n">unbind</span>-<span class="n">key</span> -
+<span class="c"># bind - run-shell ~/.config/tmux/weechat-toggle.sh
+# unbind-key b
+# bind-key b split-window 'tmux lsw | peco | cut -d":" -f 1 | xargs tmux select-window -t'
+</span>
+<span class="n">unbind</span> <span class="n">C</span>-<span class="n">Up</span>
+<span class="n">unbind</span> <span class="n">C</span>-<span class="n">Down</span>
+<span class="n">unbind</span> <span class="n">C</span>-<span class="n">Left</span>
+<span class="n">unbind</span> <span class="n">C</span>-<span class="n">Right</span>
+<span class="n">unbind</span> <span class="n">M</span>-<span class="n">Up</span>
+<span class="n">unbind</span> <span class="n">M</span>-<span class="n">Down</span>
+<span class="n">unbind</span> <span class="n">M</span>-<span class="n">Left</span>
+<span class="n">unbind</span> <span class="n">M</span>-<span class="n">Right</span></code></pre></figure>
+
+<p>
+weechat を常に下に表示させておきたいので <code>C-t -</code> でトグルできるように
+以下の <code>weechat-toggle.sh</code> を割り当てている.
+</p>
+
+<figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/sh</span>
+<span class="nv">tmp</span><span class="o">=</span><span class="nv">$HOME</span>/.tmux.d/weechat.tmp
+<span class="nv">current_weechat_window</span><span class="o">=</span><span class="sb">`</span>tmux lsp <span class="nt">-a</span> <span class="nt">-F</span> <span class="s2">"#I: #T"</span> | <span class="nb">grep </span>WeeChat | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
+<span class="nv">current_weechat_pane</span><span class="o">=</span><span class="sb">`</span>tmux lsp <span class="nt">-a</span> <span class="nt">-F</span> <span class="s2">"#P: #T"</span> | <span class="nb">grep </span>WeeChat | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
+<span class="c"># current_weechat_window=`tmux lsp -a -F "#I: #T" | grep screen | cut -d":" -f 1`</span>
+<span class="c"># current_weechat_pane=`tmux lsp -a -F "#P: #T" | grep screen | cut -d":" -f 1`</span>
+<span class="nv">current_active_window</span><span class="o">=</span><span class="sb">`</span>tmux lsw | <span class="nb">grep </span>active | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
+<span class="nv">current_active_pane</span><span class="o">=</span><span class="sb">`</span>tmux lsp | <span class="nb">grep </span>active | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">":"</span> <span class="nt">-f</span> 1<span class="sb">`</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span> <span class="nt">-ne</span> <span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then
+    </span>tmux join-pane <span class="nt">-l</span> 10 <span class="nt">-s</span> :<span class="k">${</span><span class="nv">current_weechat_window</span><span class="k">}</span>.<span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-t</span> :<span class="k">${</span><span class="nv">current_active_window</span><span class="k">}</span>
+    tmux <span class="k">select</span><span class="nt">-pane</span> <span class="nt">-t</span> 0
+<span class="k">else
+    if</span> <span class="o">[</span> <span class="nt">-e</span> <span class="nv">$tmp</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then
+        </span>tmux resize-pane <span class="nt">-t</span> <span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-Z</span>
+        <span class="nb">rm</span> <span class="nt">-f</span> <span class="nv">$tmp</span>
+    <span class="k">else
+        </span>tmux resize-pane <span class="nt">-t</span> <span class="k">${</span><span class="nv">current_weechat_pane</span><span class="k">}</span> <span class="nt">-Z</span>
+        tmux <span class="k">select</span><span class="nt">-pane</span> <span class="nt">-t</span> 0
+        <span class="nb">touch</span> <span class="nv">$tmp</span>
+    <span class="k">fi
+fi</span></code></pre></figure>
+
+<p>
+…weechat 自体にはイロイロと表示しているので,
+気がちってしょうがない, かもしれない(笑)
+</p>
+</div>
+</div>
+<div>
+<h2 id="org0cf0845f">obsolete</h2>
+<div class="outline-text-2" id="text-org0cf0845f">
+<p>
+以下は最近やってないこと.
+</p>
+</div>
+<div>
+<h3 id="org7d8278b3">rxvt-unicode の patch 当て</h3>
+<div class="outline-text-3" id="text-org7d8278b3">
+<p>
+<b><span class="alert">Obsolete</span></b> 合成フォントを自作するようになったので最近はここまで凝ったことしてないです.
+</p>
+
+<p>
+Debian では configure オプションの変えた urxvt のパッケージが提供されていた.
+(256色が使いたいので <code>rxvt-unicode-256color</code> を使っていた).
+最近はこれらは dummy になっていて, <code>rxvt-unicode</code> を入れれば良い模様
+</p>
+<pre class="example">
+% apt-cache search rxvt-unicode
+aterm - dummy transitional package for rxvt-unicode
+aterm-ml - dummy transitional package for rxvt-unicode
+rxvt - dummy transitional package for rxvt-unicode
+rxvt-ml - dummy transitional package for rxvt-unicode
+rxvt-unicode - RXVT-like terminal emulator with Unicode and 256-color support
+rxvt-unicode-256color - dummy transitional package for rxvt-unicode
+rxvt-unicode-lite - dummy transitional package for rxvt-unicode
+</pre>
+
+<p>
+ただ, フォント表示に関して幾つか気になるところがある.
+詳細は<a href="http://emonkak.hatenablog.com/entry/2016/12/09/185009">rxvt-unicodeのフォントレンダリングを改善する - emonkak's Blog</a>
+</p>
+
+<p>
+パッチは以下. これに  Debian パッケージをこのパッチを当てて rebuild して使っている.
+</p>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/src/rxvtfont.C b/src/rxvtfont.C
+index 1914539..4c0189e 100644
+</span><span class="gd">--- a/src/rxvtfont.C
+</span><span class="gi">+++ b/src/rxvtfont.C
+</span><span class="p">@@ -1223,92 +1223,63 @@</span> rxvt_font_xft::load (const rxvt_fontprop &amp;prop, bool force_prop)
+     return false;
+
+   int ftheight = 0;
+<span class="gd">-  bool success = true;
+-
+-  for (;;)
+-    {
+-      p = FcPatternDuplicate (match);
+-      f = XftFontOpenPattern (disp, p);
+-
+-      if (!f)
+-        {
+-          FcPatternDestroy (p);
+-          success = false;
+-          break;
+-        }
+-
+-      FT_Face face = XftLockFace (f);
+-
+-      ascent  = (face-&gt;size-&gt;metrics.ascender + 63) &gt;&gt; 6;
+-      descent = (-face-&gt;size-&gt;metrics.descender + 63) &gt;&gt; 6;
+-      height  = max (ascent + descent, (face-&gt;size-&gt;metrics.height + 63) &gt;&gt; 6);
+-      width   = 0;
+-
+-      bool scalable = face-&gt;face_flags &amp; FT_FACE_FLAG_SCALABLE;
+</span>
+-      XftUnlockFace (f);
+<span class="gi">+  p = FcPatternDuplicate (match);
++  f = XftFontOpenPattern (disp, p);
+</span>
+-      int glheight = height;
+<span class="gi">+  if (!f)
++    {
++      FcPatternDestroy (p);
++      return false;
++    }
+</span>
+-      for (uint16_t *t = extent_test_chars; t &lt; extent_test_chars + ecb_array_length (extent_test_chars); t++)
+<span class="gd">-        {
+-          FcChar16 ch = *t;
+</span><span class="gi">+  FT_Face face = XftLockFace (f);
+</span>
+-          if (cs != CS_UNICODE
+<span class="gd">-              &amp;&amp; ch &gt; 0x100
+-              &amp;&amp; FROM_UNICODE (cs, ch) == NOCHAR)
+-            continue;
+</span><span class="gi">+  ascent  = f-&gt;ascent;
++  descent = f-&gt;descent;
++  height  = max (ascent + descent, f-&gt;height);
++  width   = 0;
+</span>
+-          // ignore characters we wouldn't use anyways
+<span class="gd">-          bool careful;
+-          if (!has_char (*t, &amp;prop, careful))
+-            continue;
+</span><span class="gi">+  bool scalable = face-&gt;face_flags &amp; FT_FACE_FLAG_SCALABLE;
+</span>
+-          XGlyphInfo g;
+<span class="gd">-          XftTextExtents16 (disp, f, &amp;ch, 1, &amp;g);
+</span><span class="gi">+  XftUnlockFace (f);
+</span>
+-          g.width -= g.x;
+<span class="gi">+  for (uint16_t *t = extent_test_chars; t &lt; extent_test_chars + ecb_array_length (extent_test_chars); t++)
++    {
++      FcChar16 ch = *t;
+</span>
+-          int wcw = WCWIDTH (ch);
+<span class="gd">-          if (wcw &gt; 0) g.width = (g.width + wcw - 1) / wcw;
+</span><span class="gi">+      if (cs != CS_UNICODE
++          &amp;&amp; ch &gt; 0x100
++          &amp;&amp; FROM_UNICODE (cs, ch) == NOCHAR)
++        continue;
+</span>
+-          if (width    &lt; g.width       ) width    = g.width;
+<span class="gd">-          if (height   &lt; g.height      ) height   = g.height;
+-          if (glheight &lt; g.height - g.y) glheight = g.height - g.y;
+-        }
+</span><span class="gi">+      // ignore characters we wouldn't use anyways
++      bool careful;
++      if (!has_char (*t, &amp;prop, careful))
++        continue;
+</span>
+-      if (!width)
+<span class="gd">-        {
+-          rxvt_warn ("unable to calculate font width for '%s', ignoring.\n", name);
+</span><span class="gi">+      XGlyphInfo g;
++      XftTextExtents16 (disp, f, &amp;ch, 1, &amp;g);
+</span>
+-          XftFontClose (disp, f);
+<span class="gd">-          f = 0;
+</span><span class="gi">+      g.width -= g.x;
+</span>
+-          success = false;
+<span class="gd">-          break;
+-        }
+</span><span class="gi">+      int wcw = WCWIDTH (ch);
++      if (wcw &gt; 1) g.xOff = g.xOff / wcw;
+</span>
+-      if (prop.height == rxvt_fontprop::unset
+<span class="gd">-          || (height &lt;= prop.height &amp;&amp; glheight &lt;= prop.height)
+-          || height &lt;= 2
+-          || !scalable)
+-        break;
+</span><span class="gi">+      if (width    &lt; g.xOff  ) width    = g.xOff;
++      if (height   &lt; g.height) height   = g.height;
++    }
+</span>
+-      if (ftheight)
+<span class="gd">-        {
+-          // take smaller steps near the end
+-          if (height &gt; prop.height + 1) ftheight++;
+-          if (height &gt; prop.height + 2) ftheight++;
+-          if (height &gt; prop.height + 3) ftheight++;
+</span><span class="gi">+  bool success = true;
+</span>
+-          ftheight -= height - prop.height;
+<span class="gd">-        }
+-      else
+-        ftheight = prop.height - 1;
+</span><span class="gi">+  if (!width)
++    {
++      rxvt_warn ("unable to calculate font width for '%s', ignoring.\n", name);
+</span>
+       XftFontClose (disp, f);
+<span class="gd">-      FcPatternDel (match, FC_PIXEL_SIZE);
+-      FcPatternAddInteger (match, FC_PIXEL_SIZE, ftheight);
+</span><span class="gi">+      f = 0;
++
++      success = false;
+</span>     }
+
+   FcPatternDestroy (match);
+<span class="p">@@ -1395,7 +1366,7 @@</span> rxvt_font_xft::draw (rxvt_drawable &amp;d, int x, int y,
+
+           ep-&gt;glyph = glyph;
+           ep-&gt;x = x_ + (cwidth - extents.xOff &gt;&gt; 1);
+<span class="gd">-          ep-&gt;y = y_ + ascent;
+</span><span class="gi">+          ep-&gt;y = y_ + term-&gt;fbase + (term-&gt;lineSpace &gt;&gt; 1);
+</span>
+           if (extents.xOff == 0)
+             ep-&gt;x = x_ + cwidth;
+<span class="gh">diff --git a/src/screen.C b/src/screen.C
+index 9eb375a..7b3cdbf 100644
+</span><span class="gd">--- a/src/screen.C
+</span><span class="gi">+++ b/src/screen.C
+</span><span class="p">@@ -2432,8 +2432,8 @@</span> rxvt_term::scr_refresh () NOTHROW
+                 XSetForeground (dpy, gc, pix_colors[fore]);
+
+               XDrawLine (dpy, vt, gc,
+<span class="gd">-                         xpixel, ypixel + font-&gt;ascent + 1,
+-                         xpixel + Width2Pixel (count) - 1, ypixel + font-&gt;ascent + 1);
+</span><span class="gi">+                         xpixel, ypixel + Height2Pixel (1) - 1,
++                         xpixel + Width2Pixel (count) - 1, ypixel + Height2Pixel (1) - 1);
+</span>             }
+         }                     /* for (col....) */
+     }                         /* for (row....) */
+<span class="gh">diff --git a/src/table/jis0208_1990_0.h b/src/table/jis0208_1990_0.h
+index b23378f..0febcd3 100644
+</span><span class="gd">--- a/src/table/jis0208_1990_0.h
+</span><span class="gi">+++ b/src/table/jis0208_1990_0.h
+</span><span class="p">@@ -2241,6 +2241,7 @@</span> const uint16_t *jis0208_1990_0_f_i[] = {
+
+ static uint32_t cs_jis0208_1990_0_from_unicode (unicode_t unicode) {
+     if (unicode == 0x2312) return 0x225e;
+<span class="gi">+    if (unicode == 0xff5e) return 0x2141;
+</span>     uint8_t  l = unicode;
+     uint16_t h = unicode &gt;&gt; 8;
+     if (0x00 &lt;= h &amp;&amp; h &lt;= 0xff</code></pre></figure>
+</div>
+</div>
+
+<div>
+<h3 id="org7bd35331">tmux の EAW 対応 patch</h3>
+<div class="outline-text-3" id="text-org7bd35331">
+<p>
+<b><span class="alert">Obsolete</span></b> EAW対応としてロケールを入れ替えるようになったので, 最近は patch はあててないです.
+</p>
+
+<p>
+tmux EAW 文字幅問題の扱いに多少(?)不満があるので,
+以下二つのパッチを当てて rebuild して使っている.
+</p>
+
+<p>
+一つ目は pane-border 等、全て ASCII で描くパッチ.
+</p>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="p">From: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+Date: Sat, 4 Feb 2017 03:29:22 +0900
+Subject: Use box drawing DECSP or ASCII with option 'pane-border-ascii'
+</span>
+Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+<span class="p">---
+</span> options-table.c |  5 +++++
+ tty-acs.c       | 68 ++++++++++++++++++++++++++++-----------------------------
+ 2 files changed, 39 insertions(+), 34 deletions(-)
+
+--- a/options-table.c
+<span class="gi">+++ b/options-table.c
+</span><span class="p">@@ -293,6 +293,12 @@</span>
+ 	  .default_num = 0
+ 	},
+
++	{ .name = "pane-border-ascii",
+<span class="gi">+	  .type = OPTIONS_TABLE_FLAG,
++	  .scope = OPTIONS_TABLE_SESSION,
++	  .default_num = 1
++	},
++
+</span> 	{ .name = "prefix",
+ 	  .type = OPTIONS_TABLE_KEY,
+ 	  .scope = OPTIONS_TABLE_SESSION,
+<span class="gd">--- a/tty-acs.c
+</span><span class="gi">+++ b/tty-acs.c
+</span><span class="p">@@ -30,38 +30,38 @@</span>
+ 	const char	*string;
+ };
+ const struct tty_acs_entry tty_acs_table[] = {
+<span class="gd">-	{ '+', "\342\206\222" },	/* arrow pointing right */
+-	{ ',', "\342\206\220" },	/* arrow pointing left */
+-	{ '-', "\342\206\221" },	/* arrow pointing up */
+-	{ '.', "\342\206\223" },	/* arrow pointing down */
+-	{ '0', "\342\226\256" },	/* solid square block */
+-	{ '`', "\342\227\206" },	/* diamond */
+-	{ 'a', "\342\226\222" },	/* checker board (stipple) */
+-	{ 'f', "\302\260" },		/* degree symbol */
+-	{ 'g', "\302\261" },		/* plus/minus */
+-	{ 'h', "\342\226\222" },	/* board of squares */
+-	{ 'i', "\342\230\203" },	/* lantern symbol */
+-	{ 'j', "\342\224\230" },	/* lower right corner */
+-	{ 'k', "\342\224\220" },	/* upper right corner */
+-	{ 'l', "\342\224\214" },	/* upper left corner */
+-	{ 'm', "\342\224\224" },	/* lower left corner */
+-	{ 'n', "\342\224\274" },	/* large plus or crossover */
+-	{ 'o', "\342\216\272" },	/* scan line 1 */
+-	{ 'p', "\342\216\273" },	/* scan line 3 */
+-	{ 'q', "\342\224\200" },	/* horizontal line */
+-	{ 'r', "\342\216\274" },	/* scan line 7 */
+-	{ 's', "\342\216\275" },	/* scan line 9 */
+-	{ 't', "\342\224\234" },	/* tee pointing right */
+-	{ 'u', "\342\224\244" },	/* tee pointing left */
+-	{ 'v', "\342\224\264" },	/* tee pointing up */
+-	{ 'w', "\342\224\254" },	/* tee pointing down */
+-	{ 'x', "\342\224\202" },	/* vertical line */
+-	{ 'y', "\342\211\244" },	/* less-than-or-equal-to */
+-	{ 'z', "\342\211\245" },	/* greater-than-or-equal-to */
+-	{ '{', "\317\200" },   		/* greek pi */
+-	{ '|', "\342\211\240" },	/* not-equal */
+-	{ '}', "\302\243" },		/* UK pound sign */
+-	{ '~', "\302\267" }		/* bullet */
+</span><span class="gi">+	{ '+', "&gt;" },	/* arrow pointing right */
++	{ ',', "&lt;" },	/* arrow pointing left */
++	{ '-', "^" },	/* arrow pointing up */
++	{ '.', "." },	/* arrow pointing down */
++	{ '0', "#" },	/* solid square block */
++	{ '`', "#" },	/* diamond */
++	{ 'a', "#" },	/* checker board (stipple) */
++	{ 'f', "#" },	/* degree symbol */
++	{ 'g', "#" },	/* plus/minus */
++	{ 'h', "#" },	/* board of squares */
++	{ 'i', "#" },	/* lantern symbol */
++	{ 'j', "+" },	/* lower right corner */
++	{ 'k', "+" },	/* upper right corner */
++	{ 'l', "+" },	/* upper left corner */
++	{ 'm', "+" },	/* lower left corner */
++	{ 'n', "+" },	/* large plus or crossover */
++	{ 'o', "_" },	/* scan line 1 */
++	{ 'p', "_" },	/* scan line 3 */
++	{ 'q', "-" },	/* horizontal line */
++	{ 'r', "_" },	/* scan line 7 */
++	{ 's', "_" },	/* scan line 9 */
++	{ 't', "+" },	/* tee pointing right */
++	{ 'u', "+" },	/* tee pointing left */
++	{ 'v', "+" },	/* tee pointing up */
++	{ 'w', "+" },	/* tee pointing down */
++	{ 'x', "|" },	/* vertical line */
++	{ 'y', "#" },	/* less-than-or-equal-to */
++	{ 'z', "#" },	/* greater-than-or-equal-to */
++	{ '{', "#" },	/* greek pi */
++	{ '|', "#" },	/* not-equal */
++	{ '}', "#" },	/* UK pound sign */
++	{ '~', "*" }	/* bullet */
+</span> };
+
+ int
+<span class="p">@@ -80,8 +80,8 @@</span>
+ {
+ 	struct tty_acs_entry *entry;
+
+-	/* If not a UTF-8 terminal, use the ACS set. */
+<span class="gd">-	if (tty != NULL &amp;&amp; !(tty-&gt;flags &amp; TTY_UTF8)) {
+</span><span class="gi">+	/* If pane-border-ascii */
++	if ( options_get_number(global_s_options, "pane-border-ascii") != 0 ) {
+</span> 		if (tty-&gt;term-&gt;acs[ch][0] == '\0')
+ 			return (NULL);
+ 		return (&amp;tty-&gt;term-&gt;acs[ch][0]);
+<span class="gd">--- a/tty.c
+</span><span class="gi">+++ b/tty.c
+</span><span class="p">@@ -58,7 +58,7 @@</span>
+ void	tty_default_colours(struct grid_cell *, const struct window_pane *);
+
+ #define tty_use_acs(tty) \
+<span class="gd">-	(tty_term_has((tty)-&gt;term, TTYC_ACSC) &amp;&amp; !((tty)-&gt;flags &amp; TTY_UTF8))
+</span><span class="gi">+	(tty_term_has((tty)-&gt;term, TTYC_ACSC) &amp;&amp; (options_get_number(global_s_options, "pane-border-ascii") != 0 ))
+</span>
+ #define tty_pane_full_width(tty, ctx) \
+ 	((ctx)-&gt;xoff == 0 &amp;&amp; screen_size_x((ctx)-&gt;wp-&gt;screen) &gt;= (tty)-&gt;sx)</code></pre></figure>
+
+<p>
+二つ目は <code>en_US.UTF-8</code> 決め打ちを止めるパッチ.
+</p>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="p">From: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+Date: Sat, 4 Feb 2017 03:30:21 +0900
+Subject: Unse locale as en_US.UTF-8
+</span>
+Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+<span class="p">---
+</span> tmux.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
+
+--- a/tmux.c
+<span class="gi">+++ b/tmux.c
+</span><span class="p">@@ -188,13 +188,11 @@</span>
+ 	const char	*s;
+ 	int		 opt, flags, keys;
+
+-	if (setlocale(LC_CTYPE, "en_US.UTF-8") == NULL) {
+<span class="gd">-		if (setlocale(LC_CTYPE, "") == NULL)
+-			errx(1, "invalid LC_ALL, LC_CTYPE or LANG");
+-		s = nl_langinfo(CODESET);
+-		if (strcasecmp(s, "UTF-8") != 0 &amp;&amp; strcasecmp(s, "UTF8") != 0)
+-			errx(1, "need UTF-8 locale (LC_CTYPE) but have %s", s);
+-	}
+</span><span class="gi">+	if (setlocale(LC_CTYPE, "") == NULL)
++		errx(1, "invalid LC_ALL, LC_CTYPE or LANG");
++	s = nl_langinfo(CODESET);
++	if (strcasecmp(s, "UTF-8") != 0 &amp;&amp; strcasecmp(s, "UTF8") != 0)
++		errx(1, "need UTF-8 locale (LC_CTYPE) but have %s", s);
+</span>
+ 	setlocale(LC_TIME, "");
+ 	tzset();</code></pre></figure>
+
+<p>
+これらのパッチを当てた Debian パッケージを作成し,
+tmux.conf にて <code>set-option -g pane-border-ascii 0</code> を指定している.
+</p>
+</div>
+</div>
+</div>
+<!-- %%%% end content %%%% -->
+        </div>
+      </main>
+      <!-- include footer -->
+      <footer class="container bottom-0 left-0 right-0 small">
+        <hr/>
+        <p class="p0 m0 right-align">&copy; 2006-2020
+          <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+          Lastupdate: 2020-02-01 14:49:43 +0000
+          <br/>
+          Powered by
+          <a href="https://orgmode.org/" rel="noopener" title="Org mode">
+            Org mode
+          </a>
+          +
+          <a href="https://jekyllrb.com/" rel="noopener" title="Jekyll">
+            Jekyll
+          </a>
+          +
+          <a href="https://basscss.com/" rel="noopener" title="Basscss">
+            Basscss
+          </a>
+          &amp;
+          <a href="https://amp.dev/">
+            <span class="icon-amp">⚡</span>AMP
+          </a>
+        </p>
+      </footer>
+      <amp-analytics data-block-on-consent
+                     type="gtag"
+                     data-credentials="include">
+        <script type="application/json">
+          {
+              "vars" : {
+                  "gtag_id": "UA-90872419-1",
+                  "config" : {
+                      "UA-90872419-1": { "groups": "default" }
+                  }
+              }
+          }
+        </script>
+      </amp-analytics>
+      <!-- end: include footer -->
+    </div>
+  </body>
+</html>

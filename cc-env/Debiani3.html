@@ -1,0 +1,810 @@
+<!doctype html>
+<html ⚡ lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="preconnect dns-prefetch" href="//cdn.ampproject.org" crossorigin>
+    <link rel="preconnect dns-prefetch" href="//uwabami.github.io/" crossorigin>
+    <!-- amp preload -->
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/ComicNeueSubset.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Fira-Mono-normal-400.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Fira-Mono-normal-700.woff2" crossorigin>
+    <!-- end amp preload -->
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
+    <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <!-- Custom css based on following two framework -->
+    <!-- - normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css -->
+    <!-- - basscss v8.1.2 | MIT License | github.com/basscss/basscss -->
+    <style amp-custom>@font-face{font-family:'Comic Neue';font-style:normal;font-weight:400;font-display:swap;src:local("Comic Neue"),local("Comic Neue"),url("/assets/fonts/ComicNeueSubset.woff2") format("woff2")}@font-face{font-family:'AoyagiKouzanTSubset';font-style:normal;font-weight:400;font-display:swap;src:local("AoyagiKouzanTSubset"),local("AoyagiKouzanTSubset"),url("/assets/fonts/AoyagiKouzanTSubset.woff2") format("woff2")}@font-face{font-family:'Fira Mono';font-style:normal;font-weight:400;font-display:swap;src:local("Fira Mono"),local("Fira Mono"),url("/assets/fonts/Fira-Mono-normal-400.woff2") format("woff2")}@font-face{font-family:'Fira Mono';font-style:bold;font-weight:700;font-display:swap;src:local("Fira Mono"),local("Fira Mono"),url("/assets/fonts/Fira-Mono-normal-700.woff2") format("woff2")}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:0.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}.h00{font-size:4rem}.h0{font-size:3rem}.h1{font-size:2rem}.h2{font-size:1.5rem}.h3{font-size:1.25rem}.h4{font-size:1rem}.h5{font-size:.875rem}.h6{font-size:.75rem}.font-family-inherit{font-family:inherit}.font-size-inherit{font-size:inherit}.text-decoration-none{text-decoration:none}.bold{font-weight:700}.regular{font-weight:normal}.italic{font-style:italic}.caps{text-transform:uppercase;letter-spacing:.2em}.left-align{text-align:left}.center{text-align:center}.right-align{text-align:right}.justify{text-align:justify}.nowrap{white-space:nowrap}.break-word{word-wrap:break-word}.line-height-1{line-height:1}.line-height-2{line-height:1.125}.line-height-3{line-height:1.25}.line-height-4{line-height:1.5}.list-style-none{list-style:none}.underline{text-decoration:underline}.truncate{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.list-reset{list-style:none;padding-left:0}.inline{display:inline}.block{display:block}.inline-block{display:inline-block}.table{display:table}.table-cell{display:table-cell}.overflow-hidden{overflow:hidden}.overflow-scroll{overflow:scroll}.overflow-auto{overflow:auto}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.left{float:left}.right{float:right}.fit{max-width:100%}.max-width-1{max-width:320px}.max-width-2{max-width:480px}.max-width-3{max-width:600px}.max-width-4{max-width:800px}.border-box{box-sizing:border-box}.align-baseline{vertical-align:baseline}.align-top{vertical-align:top}.align-middle{vertical-align:middle}.align-bottom{vertical-align:bottom}.m0{margin:0}.mt0{margin-top:0}.mr0{margin-right:0}.mb0{margin-bottom:0}.ml0{margin-left:0}.mx0{margin-left:0;margin-right:0}.my0{margin-top:0;margin-bottom:0}.m1{margin:.5rem}.mt1{margin-top:.5rem}.mr1{margin-right:.5rem}.mb1{margin-bottom:.5rem}.ml1{margin-left:.5rem}.mx1{margin-left:.5rem;margin-right:.5rem}.my1{margin-top:.5rem;margin-bottom:.5rem}.m2{margin:1rem}.mt2{margin-top:1rem}.mr2{margin-right:1rem}.mb2{margin-bottom:1rem}.ml2{margin-left:1rem}.mx2{margin-left:1rem;margin-right:1rem}.my2{margin-top:1rem;margin-bottom:1rem}.m3{margin:2rem}.mt3{margin-top:2rem}.mr3{margin-right:2rem}.mb3{margin-bottom:2rem}.ml3{margin-left:2rem}.mx3{margin-left:2rem;margin-right:2rem}.my3{margin-top:2rem;margin-bottom:2rem}.m4{margin:4rem}.mt4{margin-top:4rem}.mr4{margin-right:4rem}.mb4{margin-bottom:4rem}.ml4{margin-left:4rem}.mx4{margin-left:4rem;margin-right:4rem}.my4{margin-top:4rem;margin-bottom:4rem}.mxn1{margin-left:-.5rem;margin-right:-.5rem}.mxn2{margin-left:-1rem;margin-right:-1rem}.mxn3{margin-left:-2rem;margin-right:-2rem}.mxn4{margin-left:-4rem;margin-right:-4rem}.m-auto{margin:auto}.mt-auto{margin-top:auto}.mr-auto{margin-right:auto}.mb-auto{margin-bottom:auto}.ml-auto{margin-left:auto}.mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.p0{padding:0}.pt0{padding-top:0}.pr0{padding-right:0}.pb0{padding-bottom:0}.pl0{padding-left:0}.px0{padding-left:0;padding-right:0}.py0{padding-top:0;padding-bottom:0}.p1{padding:.5rem}.pt1{padding-top:.5rem}.pr1{padding-right:.5rem}.pb1{padding-bottom:.5rem}.pl1{padding-left:.5rem}.py1{padding-top:.5rem;padding-bottom:.5rem}.px1{padding-left:.5rem;padding-right:.5rem}.p2{padding:1rem}.pt2{padding-top:1rem}.pr2{padding-right:1rem}.pb2{padding-bottom:1rem}.pl2{padding-left:1rem}.py2{padding-top:1rem;padding-bottom:1rem}.px2{padding-left:1rem;padding-right:1rem}.p3{padding:2rem}.pt3{padding-top:2rem}.pr3{padding-right:2rem}.pb3{padding-bottom:2rem}.pl3{padding-left:2rem}.py3{padding-top:2rem;padding-bottom:2rem}.px3{padding-left:2rem;padding-right:2rem}.p4{padding:4rem}.pt4{padding-top:4rem}.pr4{padding-right:4rem}.pb4{padding-bottom:4rem}.pl4{padding-left:4rem}.py4{padding-top:4rem;padding-bottom:4rem}.px4{padding-left:4rem;padding-right:4rem}.col{float:left;box-sizing:border-box}.col-right{float:right;box-sizing:border-box}.col-1{width:8.33333%}.col-2{width:16.66667%}.col-3{width:25%}.col-4{width:33.33333%}.col-5{width:41.66667%}.col-6{width:50%}.col-7{width:58.33333%}.col-8{width:66.66667%}.col-9{width:75%}.col-10{width:83.33333%}.col-11{width:91.66667%}.col-12{width:100%}@media (min-width: 40.06rem){.sm-col{float:left;box-sizing:border-box}.sm-col-right{float:right;box-sizing:border-box}.sm-col-1{width:8.33333%}.sm-col-2{width:16.66667%}.sm-col-3{width:25%}.sm-col-4{width:33.33333%}.sm-col-5{width:41.66667%}.sm-col-6{width:50%}.sm-col-7{width:58.33333%}.sm-col-8{width:66.66667%}.sm-col-9{width:75%}.sm-col-10{width:83.33333%}.sm-col-11{width:91.66667%}.sm-col-12{width:100%}}@media (min-width: 52.06rem){.md-col{float:left;box-sizing:border-box}.md-col-right{float:right;box-sizing:border-box}.md-col-1{width:8.33333%}.md-col-2{width:16.66667%}.md-col-3{width:25%}.md-col-4{width:33.33333%}.md-col-5{width:41.66667%}.md-col-6{width:50%}.md-col-7{width:58.33333%}.md-col-8{width:66.66667%}.md-col-9{width:75%}.md-col-10{width:83.33333%}.md-col-11{width:91.66667%}.md-col-12{width:100%}}@media (min-width: 64rem){.lg-col{float:left;box-sizing:border-box}.lg-col-right{float:right;box-sizing:border-box}.lg-col-1{width:8.33333%}.lg-col-2{width:16.66667%}.lg-col-3{width:25%}.lg-col-4{width:33.33333%}.lg-col-5{width:41.66667%}.lg-col-6{width:50%}.lg-col-7{width:58.33333%}.lg-col-8{width:66.66667%}.lg-col-9{width:75%}.lg-col-10{width:83.33333%}.lg-col-11{width:91.66667%}.lg-col-12{width:100%}}.flex{display:-webkit-box;display:-ms-flexbox;display:flex}@media (min-width: 40.06rem){.sm-flex{display:-webkit-box;display:-ms-flexbox;display:flex}}@media (min-width: 52.06rem){.lg-flex{display:-webkit-box;display:-ms-flexbox;display:flex}}.flex-column{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.items-start{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.items-end{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.items-center{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.items-baseline{-webkit-box-align:baseline;-ms-flex-align:baseline;align-items:baseline}.items-stretch{-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.self-start{align-self:flex-start}.self-end{align-self:flex-end}.self-center{align-self:center}.self-baseline{align-self:baseline}.self-stretch{align-self:stretch}.justify-start{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.justify-end{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.justify-center{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.justify-between{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.justify-around{-ms-flex-pack:distribute;justify-content:space-around}.justify-evenly{-webkit-box-pack:space-evenly;justify-content:space-evenly}.content-start{-ms-flex-line-pack:start;align-content:flex-start}.content-end{-ms-flex-line-pack:end;align-content:flex-end}.content-center{-ms-flex-line-pack:center;align-content:center}.content-between{-ms-flex-line-pack:justify;align-content:space-between}.content-around{-ms-flex-line-pack:distribute;align-content:space-around}.content-stretch{-ms-flex-line-pack:stretch;align-content:stretch}.flex-auto{-webkit-box-flex:1;-ms-flex-positive:1;flex:1 1 auto;min-width:0;min-height:0}.flex-none{-webkit-box-flex:0;-ms-flex-positive:0;flex:none}.order-0{-webkit-box-ordinal-group:1;-ms-flex-order:0;order:0}.order-1{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}.order-2{-webkit-box-ordinal-group:3;-ms-flex-order:2;order:2}.order-3{-webkit-box-ordinal-group:4;-ms-flex-order:3;order:3}.order-last{-webkit-box-ordinal-group:100000;-ms-flex-order:99999;order:99999}.relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.top-0{top:0}.right-0{right:0}.bottom-0{bottom:0}.left-0{left:0}.z1{z-index:1}.z2{z-index:2}.z3{z-index:3}.z4{z-index:4}.border{border-style:solid;border-width:1px;border-width:1px}.border-top{border-top-style:solid;border-top-width:1px}.border-right{border-right-style:solid;border-right-width:1px}.border-bottom{border-bottom-style:solid;border-bottom-width:1px}.border-left{border-left-style:solid;border-left-width:1px}.border-none{border:0}.rounded{border-radius:3px}.circle{border-radius:50%}.rounded-top{border-radius:3px 3px 0 0}.rounded-right{border-radius:0 3px 3px 0}.rounded-bottom{border-radius:0 0 3px 3px}.rounded-left{border-radius:3px 0 0 3px}.not-rounded{border-radius:0}.hide{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}@media (max-width: 40rem){.xs-hide{display:none}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.sm-hide{display:none}}@media (min-width: 52.06rem) and (max-width: 64rem){.md-hide{display:none}}@media (min-width: 64rem){.lg-hide{display:none}}.display-none{display:none}h1{font-weight:normal}.content em{font-weight:normal;font-style:normal}.content strong{font-weight:normal;font-size:1.5rem}.content .alert{font-weight:bold;color:#ff4136}.content a:hover{text-decoration:underline}.content ol{counter-reset:list}.content ol>li{position:relative;list-style:none;margin-top:5px;margin-bottom:5px}.content dd{padding:0;margin-right:0;margin-left:15pt}.content ul>li{margin:5px 0 5px 0}.content ul{padding:0 20px 0 20px}.content ol{padding:0 30px 0 30px}.content ol>li:before{content:"(" counter(list, decimal) ") ";counter-increment:list;position:absolute;left:-35px}.content blockquote{border-left:5px solid #333333;margin:10px 0 10px 0;padding:0px 8px 0px 8px;font-style:normal}.content h2{border-bottom:1px solid #5af;font-weight:normal;margin:1rem 0 0 0;padding:0}.content h3{border-bottom:1px dashed #5af;font-weight:normal;margin:1rem 0 0 0}.content h4{border-bottom:1px dotted #5af;font-weight:normal;margin:1rem 0 0 0}.content h5{border-bottom:1px dashed #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}.content h6{border-bottom:1px dotted #333333;font-weight:normal;font-size:1rem;margin:1rem 0 0 0}html{height:100%;-ms-text-size-adjust:100%;font-size:15pt;font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}body{margin:0;line-height:1.25;min-width:315px;height:100%;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased;padding-top:5rem}wrapper{min-height:100%}main{display:block;margin:0 auto;max-width:800px}header{display:block;margin:0 auto;width:100%;max-width:800px;box-shadow:0 6px 10px -10px rgba(0,0,0,0.7)}footer{display:block;margin:0 auto;width:100%;max-width:800px}.logo{border-radius:80%}.gsearch{width:10rem;max-width:40vw;font-family:"Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}.title-font{font-family:"Comic Neue","AoyagiKouzanTSubset","Fira Mono","BIZ UD Gothic",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Symbola}hr{padding:0;margin:8px 0;border:0;height:0;border-top:1px solid rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.8)}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.2rem;width:1.2rem}.icon-envelope{color:#242424}.icon-key{color:#ff8c00}.icon-keybase{color:#ff8c00}.icon-twitter{color:#55acee}.icon-facebook{color:#3B5998}.icon-github{color:#4c4c4c}.icon-mastodon{color:#3B5998}.icon-amp{color:#ff851b}.research li:nth-child(even){background-color:#f5f5f5}.small{font-size:80%}.doi{font-size:80%}#table-of-contents{margin:0;padding:0;display:-webkit-box;display:flex;-webkit-box-align:center;align-items:center;border-bottom:1px solid rgba(0,0,0,0.1)}#table-of-contents h2{margin:0;padding:0;font-size:1rem;border:none;margin-right:1rem}#table-of-contents h2:after{content:":";padding:0;margin:0}#table-of-contents #text-table-of-contents ul{margin:0;padding:0}#table-of-contents #text-table-of-contents ul li{list-style:none;padding:0;display:inline-block}#table-of-contents #text-table-of-contents ul li+li:before{content:"/ ";padding:0;margin:0;color:#ccc}a{text-decoration:none;color:#3498db}a:hover{text-decoration:underline}@media (max-width: 40rem){body{padding-top:4.8rem}.wrapper{padding:0 .5rem;background-color:#fff}header{padding:0 .5rem;background-color:#fff}header input.navigation-input{display:none}header nav{padding-right:1rem}header div.breadcrumbs{padding-right:1rem}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;padding-right:1rem;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}.page-title{font-size:1.5rem}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.4rem;width:1.4rem}amp-img.profile-picture{height:3rem;width:3rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.2rem;margin-left:1.2rem}#table-of-contents{display:none}footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){body{padding-top:4.8rem}.wrapper{padding:0 1rem;background-color:#fff}nav{padding-right:2rem}div.breadcrumbs{padding-right:2rem}header{padding:0 1rem;background-color:#fff}header input.navigation-input{display:none}header .navcontents{height:0;padding:0;margin:0;opacity:0;overflow:hidden}header input.navigation-input:checked~.navcontents{position:absolute;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;top:2rem;width:80vw;left:10vw;text-align:right;padding:10px;padding-right:2rem;height:auto;opacity:1;background-color:#fff;box-shadow:0 6px 10px 0 rgba(0,0,0,0.7)}header input.navigation-input:checked~.navcontents div{font-size:1.25rem;margin:10px auto;width:100%;text-align:right}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-right:10px;margin-top:-1.2rem;margin-left:1.2rem}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.3rem;width:1.3rem}footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){body{padding-top:5rem}.wrapper{padding:0 2rem;background-color:#fff}header{padding:0 2rem;background-color:#fff}header .navigation-input{display:none}nav{padding-right:.5rem}div.breadcrumbs{padding-right:.5rem}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu .dcontents{position:absolute}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}.icon-envelope svg,.icon-key svg,.icon-keybase svg,.icon-twitter svg,.icon-facebook svg,.icon-github svg,.icon-mastodon svg,.icon-amp svg{height:1.3rem;width:1.3rem}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 2rem}}@media (min-width: 64rem){body{padding-top:4rem}.wrapper{padding:0 4rem;background-color:#fff}header{background-color:#fff}header .navigation-input{display:none}.dmenu input.dmenu-input{display:none;width:0}.dmenu label{text-decoration:none;color:#3498db}.dmenu .dcontents{position:absolute}.dmenu input.dmenu-input:not(:checked)~.dcontents{display:none}.dmenu input.dmenu-input:checked~.dcontents{opacity:1;background-color:#fff}.dmenu input.dmenu-input:checked~.dcontents ul{background-color:#fff}amp-img.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:0.9rem;margin-left:0.9rem}footer{padding:0 4rem}}table{margin:15px 0;border-collapse:collapse;width:100%;padding:0}table tr{border-top:1px solid #cccccc;background-color:white;margin:0;padding:0}table tr:nth-child(2n){background-color:#f8f8f8}table tr th{font-weight:bold;border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr td{border:1px solid #cccccc;text-align:left;margin:0;padding:6px 13px}table tr th :first-child,table tr td :first-child{margin:0}table tr th :last-child,table tr td :last-child{margin:0}pre{font-size:100%;padding:5px 10px;margin:0 auto;color:#020202;background-color:#eeeeff;overflow:auto;border:2px;border-radius:3px;font-family:inherit}code{background-color:#eeeeff;color:#020202;weight:normal;font-family:inherit}figure.highlight{margin:0;padding:0;border:0;font-family:inherit}.highlight{padding:5px 10px;background-color:#eeeeff;color:#f8f8f2;font-family:inherit}.highlight .hll{background-color:#eeeeff}.highlight .c{color:#008800}.highlight .err{border:1px solid #FF0000}.highlight .k{color:#AA22FF;font-weight:bold}.highlight .o{color:#666666}.highlight .cm{color:#008800}.highlight .cp{color:#008800}.highlight .c1{color:#008800}.highlight .cs{color:#008800;font-weight:bold}.highlight .gd{color:#A00000}.highlight .gr{color:#FF0000}.highlight .gh{color:#000080;font-weight:bold}.highlight .gi{color:#00A000}.highlight .go{color:#808080}.highlight .gp{color:#000080;font-weight:bold}.highlight .gs{font-weight:bold}.highlight .gu{color:#800080;font-weight:bold}.highlight .gt{color:#0040D0}.highlight .kc{color:#AA22FF;font-weight:bold}.highlight .kd{color:#AA22FF;font-weight:bold}.highlight .kn{color:#AA22FF;font-weight:bold}.highlight .kp{color:#AA22FF}.highlight .kr{color:#AA22FF;font-weight:bold}.highlight .kt{color:#00BB00;font-weight:bold}.highlight .m{color:#666666}.highlight .s{color:#BB4444}.highlight .na{color:#BB4444}.highlight .nb{color:#AA22FF}.highlight .nc{color:#0000FF}.highlight .no{color:#880000}.highlight .nd{color:#AA22FF}.highlight .ni{color:#999999;font-weight:bold}.highlight .ne{color:#D2413A;font-weight:bold}.highlight .nf{color:#00A000}.highlight .nl{color:#A0A000}.highlight .nn{color:#0000FF;font-weight:bold}.highlight .nt{color:#008000;font-weight:bold}.highlight .nv{color:#B8860B}.highlight .ow{color:#AA22FF;font-weight:bold}.highlight .w{color:#bbbbbb}.highlight .mf{color:#666666}.highlight .mh{color:#666666}.highlight .mi{color:#666666}.highlight .mo{color:#666666}.highlight .sb{color:#BB4444}.highlight .sc{color:#BB4444}.highlight .sd{color:#BB4444}.highlight .s2{color:#BB4444}.highlight .se{color:#BB6622;font-weight:bold}.highlight .sh{color:#BB4444}.highlight .si{color:#BB6688;font-weight:bold}.highlight .sx{color:#008000}.highlight .sr{color:#BB6688}.highlight .s1{color:#BB4444}.highlight .ss{color:#B8860B}.highlight .bp{color:#AA22FF}.highlight .vc{color:#B8860B}.highlight .vg{color:#B8860B}.highlight .vi{color:#B8860B}.highlight .il{color:#666666}span.anchor{display:none}.sanchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAAAAAA6I3INAAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAOAAAADgCxW/H3AAAAH0lEQVQI12M4jAIYDv9HAni4hw/Tmgt3E1YuiqtQAAD5Nq+Ne1ON1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMi0wNy0zMVQxNTowNDowNCswOTowMONpTpcAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMDctMTAtMjhUMDc6NDY6MzArMDk6MDAE9UrdAAAAAElFTkSuQmCC);background-position:bottom right;background-repeat:no-repeat;padding:14px 14px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.canchor{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAMAAAADADOpTJ+AAAAIElEQVQI12P4jwQYsHKOHDlCDAe3AVAOSDVcD24OAgAAVIGJOMkyXx4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMTItMDctMzFUMTU6MDM6NTgrMDk6MDCO9TH+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDA3LTEwLTI4VDA3OjQ2OjMwKzA5OjAwBPVK3QAAAABJRU5ErkJggg==);background-position:bottom right;background-repeat:no-repeat;padding:12px 12px 0px 0px;color:#fff;background-color:transparent;font-size:1px}.mail{display:none}.sanchor:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}p.source{text-align:right;font-size:80%}p.source cite{font-style:normal}.day h2{font-size:1rem}.comment{display:none}.profile-picture{height:6rem;width:6rem;position:relative;float:right;border-radius:50%;margin-top:-.6rem}.tdiary-profile{width:70%}.tdiary-profile-picture{border-radius:50%}.footer{display:block;margin:0 auto;text-align:right;font-size:80%;width:100%;max-width:800px}.gsearch{max-width:40vw}@media (max-width: 40rem){.footer{padding:0 .5rem}}@media (min-width: 40.06rem) and (max-width: 52.06rem){.footer{padding:0 1rem}}@media (min-width: 52.06rem) and (max-width: 64rem){.footer{padding:0 2rem}}@media (min-width: 64rem){.footer{padding:0 4rem}}*[id]:before{display:block;content:" ";margin-top:-110px;height:110px;visibility:hidden}    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <meta name="author" content="Youhei SASAKI">
+    <!-- end: check google site verification -->
+    <!-- alternate -->
+    <link rel="alternate" hreflang="ja" href="https://uwabami.github.io/cc-env/Debiani3.html" />
+    <!-- end: alternate -->
+    <!-- begin jekyll seo -->
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>i3 の設定 | Youhei SASAKI’s official site</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="i3 の設定" />
+<meta name="author" content="Youhei SASAKI" />
+<meta property="og:locale" content="ja" />
+<link rel="canonical" href="https://uwabami.github.io/cc-env/Debiani3.html" />
+<meta property="og:url" content="https://uwabami.github.io/cc-env/Debiani3.html" />
+<meta property="og:site_name" content="Youhei SASAKI’s official site" />
+<meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-10-25T22:42:33+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
+<meta property="twitter:title" content="i3 の設定" />
+<meta name="twitter:site" content="@uwabami" />
+<meta name="twitter:creator" content="@Youhei SASAKI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2018-10-25T22:42:33+09:00","datePublished":"2018-10-25T22:42:33+09:00","headline":"i3 の設定","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Debiani3.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Debiani3.html"}</script>
+<!-- End Jekyll SEO tag -->
+    <!-- end jekyll seo -->
+    <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
+    <!-- apple icons -->
+    <link rel="apple-touch-icon" href="https://uwabami.github.io/assets/img/favicon-256x256.png">
+    <link rel="shortcut-icon" type="image/ico" href="/assets/img/favicon.ico">
+  </head>
+  <body>
+    <!-- include: gdpr -->
+    <amp-geo layout="nodisplay">
+      <script type="application/json">
+        {
+            "ISOCountryGroups": {
+                "eu": [ "preset-eea"]
+            }
+        }
+      </script>
+    </amp-geo>
+    <amp-consent layout="nodisplay" id="consent-element">
+      <script type="application/json">
+        {
+            "consents": {
+                "my_consent": {
+                    "promptIfUnknownForGeoGroup": "eu",
+                    "promptUI": "consent-ui"
+                }
+            }
+        }
+      </script>
+      <div id="consent-ui">
+        I use cookies to analyze how visitors use my website via Google Analytics:
+        <button on="tap:consent-element.accept" role="button">Accept</button>
+        <button on="tap:consent-element.reject" role="button">Reject</button>
+        <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
+      </div>
+    </amp-consent>
+    <!-- end include: gdpr -->
+    <div class="wrapper">
+      <!-- include: navbar -->
+      <header class="container right-0 left-0 top-0 z4 fixed">
+        <!-- page loop -->
+        <nav class="navigation flex items-center justify-between">
+          <div class="pr1 py1 order-0">
+            <a href="/index.html">
+              <amp-img layout="fixed"
+                       width="1.2rem"
+                       height="1.2rem"
+                       src="/assets/img/top.webp"
+                       alt="About"
+                       id="top"
+                       class="logo left">
+                <amp-img fallback
+                         layout="fixed"
+                         width="1.2rem"
+                         height="1.2rem"
+                         src="/assets/img/top.jpg"
+                         alt="About"
+                         id="top"
+                         class="logo left">
+                </amp-img>
+              </amp-img>
+            </a>
+          </div>
+          <input type="checkbox" id="tm" class="navigation-input">
+          <label for="tm" class="pl1 py1 order-3 md-hide lg-hide h2">☰</label>
+          <div class="navcontents items-center md-flex lg-flex order-1">
+          <!-- lang ja -->
+            <div class="px1 py0">
+              <a href="/research/index.html">
+                Research
+              </a>
+            </div>
+            <div class="dmenu px1 py0">
+              <input type="checkbox" id="dmenu" class="dmenu-input">
+              <label for="dmenu">Software &#9662;</label>
+              <div class="dcontents">
+                <ul class="list-reset p0 m0">
+                  <li class="px1 py0">
+                    <a href="/software/index.html">
+                      Repository
+                    </a>
+                  </li>
+                  <li class="px1 py0">
+                    <a href="/cc-env/index.html">
+                      Comp. Memo
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px1 py1">
+              <a href="https://uwabami.junkhub.org/log">blog</a>
+            </div>
+          </div>
+          <div class="flex-auto"></div>
+          <div class="px1 py0 order-2">
+            <form method="GET"
+                  class="p0 m0"
+                  action="https://www.google.com/cse"
+                  target="_top">
+              <div class="inline-block relative p0 m0 small">
+                <input name="cx" type="hidden"
+                       value="017455171263919107349:oumnpe4bynr" />
+                <input name="ie" type="hidden" value="UTF-8" />
+                <input class="gsearch" type="search" placeholder="検索" name="q" required>
+              </div>
+            </form>
+          </div>
+          
+        </nav>
+        <div class="breadcrumbs">
+          <div class="flex items-center">
+            <!-- create crumbs -->
+            <div class="pr1 py0">
+              <a href="/index.html">
+                Top
+              </a>
+            </div>
+            &gt;<div class="px1"><a href="/cc-env/index.html">Cc-env</a></div>      <!-- end page loop -->
+            <div class="flex-auto py0"></div>
+            <div class="pr0 py0"><!-- end: lang selector -->
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- end include: navbar -->
+      <main role="main">
+        <div class="container content">
+          <h1 class="page-title my2 py0 px0">i3 の設定</h1>
+          <hr>
+<!-- %%%% start content %%%% -->
+<p>
+Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href="index.html#orge0707863">Debian</a>
+</p>
+<div>
+<h2 id="orge8854151">始めに</h2>
+<div class="outline-text-2" id="text-orge8854151">
+<p>
+スペックがあまり潤沢ではない機材を使うため,
+軽量な wm として <a href="https://i3wm.org/">i3</a> を使い始めた.
+</p>
+
+<p>
+元々常にtmuxを全画面にして作業しているので,
+「タイル型wmの恩恵を受けられるのか?」という疑問はあったのだが,
+使ってみたら「綺麗」かつ「驚きの軽さ」ということで,
+すっかり気にいってしまった.
+</p>
+
+<p>
+<a href="https://uwabami.github.io/cc-env/Debiani3/desktop-1920x1200.png"><amp-img src="https://uwabami.github.io/cc-env/Debiani3/desktop-576x360.webp" width="576" height="360" class="px2" layout="responsive"><amp-img src="https://uwabami.github.io/cc-env/Debiani3/desktop-576x360.png" width="576" height="360" class="px2" layout="responsive" fallback></amp-img><noscript><img src="https://uwabami.github.io/cc-env/Debiani3/desktop-576x360.png" width="576" height="360" class="px2"></noscript></amp-img></a>
+</p>
+</div>
+</div>
+
+<div>
+<h2 id="org3ce1fcee">i3 と一緒に使っているもの</h2>
+<div class="outline-text-2" id="text-org3ce1fcee">
+<p>
+とりあえず現状では以下:
+</p>
+<ul class="org-ul">
+<li>ターミナル関連: urxvt と tmux → <a href="Terminal.html">Terminal生活</a>
+</li>
+<li>ファイルマネージャ: pcmanfm</li>
+<li>ブラウザ: firefox + vimium-ff</li>
+<li>ランチャ: rofi</li>
+</ul>
+
+<p>
+他にも
+</p>
+<ul class="org-ul">
+<li>Compositor: compton</li>
+<li>ネットワーク: Network Manager</li>
+<li>音: pulseaudio</li>
+</ul>
+<p>
+といった所はそのまま, かな?
+</p>
+</div>
+</div>
+
+<div>
+<h2 id="org3565d884">i3 の設定</h2>
+<div class="outline-text-2" id="text-org3565d884">
+<p>
+設定ファイルは末尾に掲載している.
+</p>
+</div>
+<div>
+<h3 id="org1290fec2">xdg-open と run-mailcap</h3>
+<div class="outline-text-3" id="text-org1290fec2">
+<p>
+いわゆる GNOME や KDE といった Desktop 環境ではないので,
+たとえば <code>xdg-open</code> の挙動が変わります.
+</p>
+
+<p>
+それ自体は問題無いのですが,
+以下の様に
+</p>
+<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">applications/*; xdg-open "%s"
+image/*; xdg-open %s;
+video/*; xdg-open %s;</code></pre></figure>
+<p>
+<code>~/.mailcap</code> を <code>xdg-open</code> に丸投げしていて, さらに <code>$DISPLAY</code> (もしくは <code>$WAYLAND_DISPLAY</code>)が無い場合には,
+<code>xdg-open</code> が <code>run-mailcap</code> を呼ぶ→ <code>run-mailcap</code> が <code>xdg-open</code> を呼び, といった
+無限ループが発生します.
+<del>run-mailcapを抜けば良い, という話もありますが, これ=mime-support=パッケージで提供されているので, 抜くとpython が抜けて大変な目に会います</del>
+</p>
+
+<p>
+というわけで, 安直には <code>xdg-open</code> を修正すれば良いですね:
+</p>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">--- /usr/bin/xdg-open.orig	2015-10-06 04:19:48.000000000 +0900
+</span><span class="gi">+++ /usr/bin/xdg-open	2017-07-24 21:18:32.191564009 +0900
+</span><span class="p">@@ -787,20 +787,9 @@</span>
+         if [ -n "$DISPLAY" ]; then
+             filetype=`xdg-mime query filetype "$file" | sed "s/;.*//"`
+             open_generic_xdg_mime "$file" "$filetype"
+<span class="gd">-        fi
+-
+-        if which run-mailcap 2&gt;/dev/null 1&gt;&amp;2; then
+-            run-mailcap --action=view "$file"
+-            if [ $? -eq 0 ]; then
+-                exit_success
+-            fi
+-        fi
+-
+-        if [ -n "$DISPLAY" ] &amp;&amp; mimeopen -v 2&gt;/dev/null 1&gt;&amp;2; then
+-            mimeopen -L -n "$file"
+-            if [ $? -eq 0 ]; then
+-                exit_success
+-            fi
+</span><span class="gi">+        else
++            echo "can't handle: please set mime type via xdg-mime"
++            exit_failure_operation_failed
+</span>         fi
+     fi</code></pre></figure>
+
+<p>
+あと, <code>~/.local/share/applications/mimeapps.list</code> から <code>~/.config/mimeapps.list</code> へ symbolic link を作成しておきます.
+</p>
+</div>
+</div>
+<div>
+<h3 id="org02118902">Rofi: ランチャ</h3>
+<div class="outline-text-3" id="text-org02118902">
+<p>
+<a href="https://davedavenport.github.io/rofi/">Rofi</a> は良い感じのランチャ.
+</p>
+
+<p>
+設定ファイルは <code>~/.config/rofi/config</code> か <code>~/.Xresources</code> で行なう.
+今はこんな塩梅:
+</p>
+
+<figure class="highlight"><pre><code class="language-conf-xdefaults" data-lang="conf-xdefaults">! -*- mode:conf-xdefaults; coding: utf-8 -*-
+!! Rofi
+rofi.modi: run,window,,windowcd,drun,ssh
+rofi.combi-modi: windowcd,drun
+rofi.lines: 6
+rofi.font: FSMRMP 24
+rofi.bw: 2
+rofi.location: 0
+rofi.padding: 5
+rofi.sidebar-mode: true
+rofi.hide-scrollbar: true
+rofi.fixed-num-lines: true
+rofi.kb-row-up: Up,Control+p,Shift+Tab,Alt+Tab
+rofi.kb-row-down: Down,Control+n
+rofi.kb-cancel: Escape,Control+g,Control+bracketleft,Control+c
+rofi.kb-mode-next: Shift+Right,Control+i,Control+Tab
+rofi.kb-mode-previous: Shift+Left,Control+Shift+i
+rofi.color-enabled: true
+rofi.color-window: #3a4c54, #2a373e, #c3c6c8
+rofi.color-normal: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
+rofi.color-active: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
+rofi.color-urgent: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3</code></pre></figure>
+
+<p>
+i3の方では Alt+Shift+Tab で呼び出せるようにしている:
+</p>
+<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">bindsym $Alt+Shift+Tab $execi sh -c "rofi -show window"</code></pre></figure>
+<p>
+Alt+Tab は <a href="https://github.com/yoshimoto/i3-alt-tab.py">https://github.com/yoshimoto/i3-alt-tab.py</a> をありがたく使わせて貰っている.
+</p>
+</div>
+</div>
+<div>
+<h3 id="org8012159d">i3bar</h3>
+<div class="outline-text-3" id="text-org8012159d">
+<p>
+i3barは背景透過した上で,
+</p>
+<ul class="org-ul">
+<li>i3statusでバッテリ情報と日付</li>
+<li>primary display に system tray を出す</li>
+</ul>
+<p>
+だけ.
+</p>
+
+<p>
+status ラインは以下の通り
+</p>
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># status bar
+</span><span class="n">bar</span> {
+    <span class="n">output</span> <span class="n">eDP1</span>
+    <span class="n">position</span> <span class="n">top</span>
+    <span class="n">tray_output</span> <span class="n">eDP1</span>
+    <span class="n">tray_padding</span> -<span class="m">4</span>
+    <span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">Xft</span>:<span class="n">FontAwesome</span> <span class="m">18</span>
+    <span class="n">i3bar_command</span> <span class="n">i3bar</span> --<span class="n">transparency</span>
+    <span class="n">status_command</span> <span class="n">i3status</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3status</span>.<span class="n">conf</span>
+    <span class="n">binding_mode_indicator</span> <span class="n">yes</span>
+    <span class="n">colors</span> {
+      <span class="n">background</span> <span class="c">#02020200
+</span>      <span class="n">statusline</span> <span class="c">#F6F3E8
+</span>      <span class="n">separator</span>  <span class="c">#111822
+</span>      <span class="n">focused_workspace</span>  <span class="c">#111822 #222244 #F6F3E8
+</span>      <span class="n">active_workspace</span>   <span class="c">#555555 #555555 #F6F3E8
+</span>      <span class="n">inactive_workspace</span> <span class="c">#020202 #242424 #888888
+</span>      <span class="n">urgent_workspace</span>   <span class="c">#A00000 #900000 #F6F3E8
+</span>      <span class="n">binding_mode</span>       <span class="c">#A00000 #900000 #f6f3e8
+</span>    }
+}</code></pre></figure>
+<p>
+i3status は以下
+</p>
+<figure class="highlight"><pre><code class="language-conf-unix" data-lang="conf-unix">general {
+        colors = true
+        interval = 1
+        output_format = i3bar
+        markup ="pango"
+}
+order += "tztime local"
+tztime local {
+        align = left
+        min_width = "2020/12/31(木) 23:59:59"
+        format = "%Y/%m/%d(%a) %H:%M:%S"
+}
+order += "battery all"
+battery all {
+        align = left
+        min_width = " 80.00%"
+        format = "&lt;span color='#ffbf7f'&gt;%status %percentage&lt;/span&gt;"
+        status_unk = 
+        status_full = 
+        status_chr = 
+        status_bat = 
+}</code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org32bf169b">conky</h3>
+<div class="outline-text-3" id="text-org32bf169b">
+<p>
+system load を表示させている.
+</p>
+
+<figure class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="c1">-- -*- mode: lua; coding: utf-8 -*-</span>
+<span class="n">conky</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="c1">--########################</span>
+   <span class="c1">-- Global config section #</span>
+   <span class="c1">--########################</span>
+   <span class="c1">-- Update interval in seconds</span>
+   <span class="n">update_interval</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="c1">-- This is the number of times Conky will update before quitting</span>
+   <span class="c1">-- (0: unlimited)</span>
+   <span class="n">total_run_times</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="c1">-- number of net samples to average (1: disable averaging)</span>
+   <span class="n">net_avg_samples</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="c1">-- number of cpu samples to average (1: disable averaging)</span>
+   <span class="n">cpu_avg_samples</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+
+   <span class="n">imlib_cache_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="c1">-- Use double buffering (reduces flicker, may not work for everyone)</span>
+   <span class="n">double_buffer</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+   <span class="c1">-- Subtract file system buffers from used memory?</span>
+   <span class="n">no_buffers</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+
+   <span class="c1">--################</span>
+   <span class="c1">-- Text settings #</span>
+   <span class="c1">--################</span>
+   <span class="c1">-- Force UTF8? note that UTF8 support required XFT</span>
+   <span class="n">override_utf8_locale</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+   <span class="n">use_xft</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+   <span class="n">font</span> <span class="o">=</span> <span class="s1">'FSMRMP:style=Bold:size=4'</span><span class="p">,</span>
+   <span class="c1">-- use_xft =  false,</span>
+   <span class="c1">-- font='-shinonome-gothic-medium-r-normal--14-130-75-75-c-70-iso8859-1',</span>
+
+   <span class="c1">--##################</span>
+   <span class="c1">-- Window settings #</span>
+   <span class="c1">--##################</span>
+   <span class="c1">-- Create own window instead of using desktop (required in nautilus)</span>
+   <span class="n">own_window_class</span> <span class="o">=</span> <span class="s1">'conky'</span><span class="p">,</span>
+   <span class="n">own_window</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+   <span class="n">own_window_type</span> <span class="o">=</span> <span class="s1">'override'</span><span class="p">,</span>
+   <span class="n">own_window_transparent</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+   <span class="n">own_window_hints</span> <span class="o">=</span> <span class="s1">'undecorated,below,sticky,skip_pager,skip_taskbar'</span><span class="p">,</span>
+   <span class="c1">-- Text alignment, other possible values are commented top_left,</span>
+   <span class="c1">-- top_right, top_middle, bottom_left, bottom_right, bottom_middle,</span>
+   <span class="c1">-- middle_left, middle_middle, middle_right, or none (also can be</span>
+   <span class="c1">-- abreviated as tl, tr, tm, bl, br, bm, ml, mm, mr)</span>
+   <span class="n">alignment</span> <span class="o">=</span> <span class="s1">'tl'</span><span class="p">,</span>
+   <span class="c1">-- Gap between borders of screen and text</span>
+   <span class="c1">-- same thing as passing -x at command line</span>
+   <span class="n">gap_x</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+   <span class="n">gap_y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="c1">-- Minimum size of text area</span>
+   <span class="n">minimum_width</span> <span class="o">=</span> <span class="mi">1440</span><span class="p">,</span>
+   <span class="n">maximum_width</span> <span class="o">=</span> <span class="mi">1440</span><span class="p">,</span>
+
+   <span class="c1">--####################</span>
+   <span class="c1">-- Graphics settings #</span>
+   <span class="c1">--####################</span>
+   <span class="n">default_bar_width</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="n">default_bar_height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="c1">-- Draw shades?</span>
+   <span class="n">draw_shades</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+   <span class="c1">-- Draw outlines?</span>
+   <span class="n">draw_outline</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+   <span class="c1">-- Draw borders around text</span>
+   <span class="n">draw_borders</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+   <span class="n">draw_graph_borders</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+   <span class="n">default_color</span> <span class="o">=</span> <span class="s1">'#ffffff'</span><span class="p">,</span>
+   <span class="c1">-- default_shade_color = '#242424',</span>
+<span class="p">};</span>
+<span class="n">conky</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">[[
+${font FSMRMP:size=16.5}${color #f09000}CPU${color}: ${cpu cpu0}%${font}\
+${voffset   8}\
+${goto      0}${color #ff0000}${cpubar cpu1 8,24} ${cpubar cpu3 8,24}${color}\
+${goto     54}${color #ff0000}${cpubar cpu2 8,24} ${cpubar cpu4 8,24}${color}\
+${voffset -20}\
+${goto    108}${color 888888}${cpugraph cpu0 28,50 ff0000 ff0000}${color}\
+${goto    164}\
+${voffset  -2}\
+${font FSMRMP:size=16.5}${color #f09000}RAM${color}: $memperc%${font}\
+${voffset   9}\
+${goto    164}\
+${color #0000ff}${membar 8,85}${color}\
+${voffset -20}\
+${goto    256}${color 888888}${memgraph 28,50 0000ff 0000ff}${color}\
+${voffset  -2}\
+${goto    310}\
+${font FSMRMP:size=16.5}${color #f09000}DISK${color}: ${fs_used_perc /}%${font}\
+${voffset   9}\
+${goto    310}${color #aaaaaa}${fs_bar 8,95 /}${color}\
+${voffset -20}\
+${goto    413}\
+${color 888888}${diskiograph_read /dev/dm-0 28,50 FCAF3E FCAF3E} \
+${color 888888}${diskiograph_write /dev/dm-0 28,50 FFFF4C FFFF4C}\
+${if_existing /proc/net/route tun0}\
+${voffset  -2}\
+${goto    520}\
+${font FSMRMP:size=13.5}${color #4cff4c} VPN${color}${font}\
+${voffset   4}\
+${goto    520}\
+${font FSMRMP:size=15}${color #ffffff}${addr tun0}${font}${color}\
+${voffset -24}\
+${goto    675}\
+${color 888888}\
+${upspeedgraph wlp2s0 28,50 4CFFFF 7FFFFF} \
+${downspeedgraph wlp2s0 28,50 4CFF4C 7FFF7F}${color}\
+${else}\
+${if_existing /proc/net/route wlp2s0}\
+${voffset  -2}\
+${goto    520}\
+${font FSMRMP:size=13.5}${color #4cff4c} Wifi${color}${font}\
+${voffset   4}\
+${goto    520}\
+${font FSMRMP:size=15}${color #ffffff}${addr wlp2s0}${font}${color}\
+${voffset -24}\
+${goto    675}\
+${color 888888}\
+${upspeedgraph wlp2s0 28,50 4CFFFF 4CFFFF} \
+${downspeedgraph wlp2s0 28,50 4CFF4C 4CFF4C}${color}\
+${else}\
+${if_existing /proc/net/route enp0s31f6}\
+${voffset  -2}\
+${goto    520}\
+${font FSMRMP:size=13.5}${color #4cff4c} LAN${color}${font}\
+${voffset   4}\
+${goto    520}\
+${font FSMRMP:size=15}${color #ffffff}${addr enp0s31f6}${font}${color}\
+${voffset -24}\
+${goto    675}\
+${color 888888}\
+${upspeedgraph enp0s31f6 28,50 4CFFFF 4CFFFF} \
+${downspeedgraph enp0s31f6 28,50 4CFF4C 4CFF4C}${color}\
+${else}\
+${voffset  -2}\
+${goto    520}\
+${font FSMRMP:size=13.5}${color #aaaaaa} --- ${color}${font}\
+${voffset   4}\
+${goto    520}\
+${font FSMRMP:size=15}${color #aaaaaa}---.---.---.---${color}${font}\
+${endif}${endif}${endif}
+]]</span><span class="p">;</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="orgeba38d0b">screen lock: i3lock の設定</h3>
+<div class="outline-text-3" id="text-orgeba38d0b">
+<p>
+suspend → resume した時に i3lock を走らせたいので
+<code>/etc/systemd/system/i3lock.service</code>:
+</p>
+
+<figure class="highlight"><pre><code class="language-systemd" data-lang="systemd"><span class="k">[Unit]</span>
+<span class="nt">Description</span><span class="p">=</span>Starts i3lock at suspend time
+<span class="nt">After</span><span class="p">=</span>sleep.target
+
+<span class="k">[Service]</span>
+<span class="nt">User</span><span class="p">=</span>uwabami
+<span class="nt">Type</span><span class="p">=</span>forking
+<span class="nt">Environment</span><span class="p">=</span>DISPLAY=:0
+<span class="nt">ExecStart</span><span class="p">=</span>/usr/bin/i3lock -p win -c 444444
+
+<span class="k">[Install]</span>
+<span class="nt">WantedBy</span><span class="p">=</span>sleep.target</code></pre></figure>
+
+<p>
+を作成して有効にしておく.
+</p>
+</div>
+</div>
+</div>
+<div>
+<h2 id="org48c36fb1">i3 の設定ファイル</h2>
+<div class="outline-text-2" id="text-org48c36fb1">
+<p>
+設定ファイル全体は以下の通り
+</p>
+
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c">#-*- mode:conf-space ; coding: utf-8 -*-
+# macro
+</span><span class="n">set</span> $<span class="n">mod</span> <span class="n">Mod4</span>
+<span class="n">set</span> $<span class="n">Alt</span> <span class="n">Mod1</span>
+<span class="n">set</span> $<span class="n">execi</span> <span class="n">exec</span> --<span class="n">no</span>-<span class="n">startup</span>-<span class="n">id</span>
+<span class="c"># set $execa exec_always
+# set $execai exec_always --no-startup-id
+</span>
+<span class="c"># font
+</span><span class="n">font</span> <span class="n">xft</span>:<span class="n">FSMRMP</span> <span class="m">16</span>.<span class="m">5</span>
+
+<span class="c"># startup
+#$execi /usr/libexec/gsd-xsettings --gtk-no-debug=All --gdk-no-debug=all
+</span>$<span class="n">execi</span> <span class="n">xrdb</span> -<span class="n">merge</span> $<span class="n">HOME</span>/.<span class="n">Xresources</span>
+$<span class="n">execi</span> <span class="n">picom</span> -<span class="n">bcCG</span>
+$<span class="n">execi</span> <span class="n">nm</span>-<span class="n">applet</span>
+$<span class="n">execi</span> <span class="n">blueman</span>-<span class="n">applet</span>
+$<span class="n">execi</span> /<span class="n">usr</span>/<span class="n">libexec</span>/<span class="n">gpaste</span>/<span class="n">gpaste</span>-<span class="n">daemon</span>
+$<span class="n">execi</span> <span class="n">feh</span> --<span class="n">bg</span>-<span class="n">fill</span> $<span class="n">HOME</span>/<span class="n">Pictures</span>/<span class="n">desktop</span>.<span class="n">png</span> --<span class="n">image</span>-<span class="n">bg</span> <span class="n">black</span> --<span class="n">no</span>-<span class="n">fehbg</span>
+$<span class="n">execi</span> <span class="n">conky</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">conkyrc</span>
+$<span class="n">execi</span> <span class="n">nextcloud</span>
+
+<span class="c"># screensaver and power management
+</span>$<span class="n">execi</span> <span class="n">xset</span> -<span class="n">dpms</span>   <span class="c"># disable DPMS
+</span>$<span class="n">execi</span> <span class="n">xset</span> <span class="n">s</span> <span class="n">off</span>   <span class="c"># disable auto screensaver
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Shift</span>+<span class="n">l</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"i3lock -n -c 020202"</span>
+
+<span class="c"># start a terminal: rxvt-unicide daemon mode
+</span><span class="n">bindsym</span> <span class="n">Control</span>+<span class="n">Shift</span>+<span class="n">n</span> <span class="n">exec</span> <span class="n">urxvtcd</span>
+<span class="c"># start launcher: rofi @see ~/.Xresources
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">F2</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"rofi -show run"</span>
+
+<span class="c"># change focus
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Tab</span> $<span class="n">execi</span> <span class="n">sh</span> -<span class="n">c</span> <span class="s2">"rofi -show window"</span>
+<span class="c"># set $i3t_alt_tab ~/.config/i3/i3-alt-tab.py
+# bindsym $Alt+Tab exec $i3t_alt_tab n all 2&gt;&amp;1 1&gt;/dev/null
+# bindsym $Alt+Shift+Tab exec $i3t_alt_tab n 2&gt;&amp;1 1&gt;/dev/null
+</span>
+<span class="c"># change focus
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">j</span> <span class="n">focus</span> <span class="n">left</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Control</span>+<span class="n">Left</span> <span class="n">focus</span> <span class="n">left</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">k</span> <span class="n">focus</span> <span class="n">right</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Control</span>+<span class="n">Down</span> <span class="n">focus</span> <span class="n">down</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">l</span> <span class="n">focus</span> <span class="n">down</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Control</span>+<span class="n">Right</span> <span class="n">focus</span> <span class="n">right</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Control</span>+<span class="n">Up</span> <span class="n">focus</span> <span class="n">Up</span>
+
+<span class="c"># kill focused window
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">F4</span> <span class="n">kill</span>
+
+<span class="c"># toggle tiling / floating
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Return</span> <span class="n">floating</span> <span class="n">toggle</span>
+<span class="c"># enter fullscreen mode for the focused container
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">F12</span> <span class="n">fullscreen</span> <span class="n">toggle</span>
+
+<span class="c"># move focused window
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Left</span> <span class="n">move</span> <span class="n">left</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Down</span> <span class="n">move</span> <span class="n">down</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Up</span> <span class="n">move</span> <span class="n">up</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Right</span> <span class="n">move</span> <span class="n">right</span>
+
+<span class="c"># change container layout (tabbed, stacked, toggle split)
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">s</span> <span class="n">layout</span> <span class="n">stacking</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">w</span> <span class="n">layout</span> <span class="n">tabbed</span>
+<span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">t</span> <span class="n">layout</span> <span class="n">toggle</span> <span class="n">split</span>
+<span class="n">workspace_layout</span> <span class="n">tabbed</span>
+
+<span class="c"># focus the parent container
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">a</span> <span class="n">focus</span> <span class="n">parent</span>
+<span class="c"># focus the child container
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">d</span> <span class="n">focus</span> <span class="n">child</span>
+
+<span class="c"># resize window (you can also use the mouse for that)
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">r</span> <span class="n">mode</span> <span class="s2">"resize"</span>
+<span class="n">mode</span> <span class="s2">"resize"</span> {
+        <span class="c"># These bindings trigger as soon as you enter the resize mode
+</span>        <span class="n">bindsym</span> <span class="n">Left</span> <span class="n">resize</span> <span class="n">shrink</span> <span class="n">width</span> <span class="m">10</span> <span class="n">px</span> <span class="n">or</span> <span class="m">10</span> <span class="n">ppt</span>
+        <span class="n">bindsym</span> <span class="n">Down</span> <span class="n">resize</span> <span class="n">grow</span> <span class="n">height</span> <span class="m">10</span> <span class="n">px</span> <span class="n">or</span> <span class="m">10</span> <span class="n">ppt</span>
+        <span class="n">bindsym</span> <span class="n">Up</span> <span class="n">resize</span> <span class="n">shrink</span> <span class="n">height</span> <span class="m">10</span> <span class="n">px</span> <span class="n">or</span> <span class="m">10</span> <span class="n">ppt</span>
+        <span class="n">bindsym</span> <span class="n">Right</span> <span class="n">resize</span> <span class="n">grow</span> <span class="n">width</span> <span class="m">10</span> <span class="n">px</span> <span class="n">or</span> <span class="m">10</span> <span class="n">ppt</span>
+        <span class="c"># back to normal: Enter or Escape
+</span>        <span class="n">bindsym</span> <span class="n">Return</span> <span class="n">mode</span> <span class="s2">"default"</span>
+        <span class="n">bindsym</span> <span class="n">Escape</span> <span class="n">mode</span> <span class="s2">"default"</span>
+}
+<span class="c"># switch to workspace
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">1</span> <span class="n">workspace</span> <span class="m">1</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">2</span> <span class="n">workspace</span> <span class="m">2</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">3</span> <span class="n">workspace</span> <span class="m">3</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">4</span> <span class="n">workspace</span> <span class="m">4</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">5</span> <span class="n">workspace</span> <span class="m">5</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">6</span> <span class="n">workspace</span> <span class="m">6</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">7</span> <span class="n">workspace</span> <span class="m">7</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">8</span> <span class="n">workspace</span> <span class="m">8</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="m">9</span> <span class="n">workspace</span> <span class="m">9</span>
+
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Control</span>+<span class="n">Left</span> <span class="n">workspace</span> <span class="n">prev</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Control</span>+<span class="n">Right</span> <span class="n">workspace</span> <span class="n">next</span>
+
+<span class="c"># move focused container to workspace
+</span><span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">1</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">1</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">2</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">2</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">3</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">3</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">4</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">4</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">5</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">5</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">6</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">6</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">7</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">7</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">8</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">8</span>
+<span class="n">bindsym</span> $<span class="n">Alt</span>+<span class="n">Shift</span>+<span class="m">9</span> <span class="n">move</span> <span class="n">container</span> <span class="n">to</span> <span class="n">workspace</span> <span class="m">9</span>
+
+<span class="c"># reload the configuration file
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Shift</span>+<span class="n">c</span> <span class="n">reload</span>
+<span class="c"># restart i3 inplace
+</span><span class="n">bindsym</span> $<span class="n">mod</span>+<span class="n">Shift</span>+<span class="n">r</span> <span class="n">restart</span>
+<span class="c"># exit
+# bindsym $mod+Shift+e exec i3-msg exit
+</span>
+<span class="c"># media key
+</span><span class="n">bindsym</span> <span class="n">XF86AudioRaiseVolume</span> $<span class="n">execi</span> <span class="n">pactl</span> <span class="n">set</span>-<span class="n">sink</span>-<span class="n">volume</span> <span class="m">0</span> +<span class="m">5</span>%
+<span class="n">bindsym</span> <span class="n">XF86AudioLowerVolume</span> $<span class="n">execi</span> <span class="n">pactl</span> <span class="n">set</span>-<span class="n">sink</span>-<span class="n">volume</span> <span class="m">0</span> -<span class="m">5</span>%
+<span class="n">bindsym</span> <span class="n">XF86AudioMute</span> $<span class="n">execi</span> <span class="n">pactl</span> <span class="n">set</span>-<span class="n">sink</span>-<span class="n">mute</span> <span class="m">0</span> <span class="n">toggle</span>
+<span class="n">bindsym</span> <span class="n">XF86MonBrightnessUp</span> $<span class="n">execi</span> <span class="n">light</span> -<span class="n">A</span> <span class="m">5</span>
+<span class="n">bindsym</span> <span class="n">XF86MonBrightnessDown</span> $<span class="n">execi</span> <span class="n">light</span> -<span class="n">U</span> <span class="m">5</span>
+
+<span class="c"># status bar
+</span><span class="n">bar</span> {
+    <span class="n">mode</span> <span class="n">dock</span>
+    <span class="n">output</span> <span class="n">eDP</span>-<span class="m">1</span>
+    <span class="n">position</span> <span class="n">top</span>
+    <span class="n">tray_output</span> <span class="n">eDP</span>-<span class="m">1</span>
+    <span class="n">tray_padding</span> <span class="m">0</span>
+    <span class="n">font</span> <span class="n">xft</span>:<span class="n">FSMRMP</span> <span class="m">19</span>.<span class="m">5</span>
+    <span class="n">i3bar_command</span> <span class="n">i3bar</span> --<span class="n">transparency</span>
+    <span class="n">status_command</span> <span class="n">i3status</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3status</span>.<span class="n">conf</span>
+    <span class="n">binding_mode_indicator</span> <span class="n">yes</span>
+    <span class="n">colors</span> {
+      <span class="n">background</span> <span class="c">#02020200
+</span>      <span class="n">statusline</span> <span class="c">#F6F3E8
+</span>      <span class="n">separator</span>  <span class="c">#111822
+</span>      <span class="n">focused_workspace</span>  <span class="c">#111844 #222244 #F6F3E8
+</span>      <span class="n">active_workspace</span>   <span class="c">#555555 #555555 #F6F3E8
+</span>      <span class="n">inactive_workspace</span> <span class="c">#020202 #242424 #888888
+</span>      <span class="n">urgent_workspace</span>   <span class="c">#A00000 #900000 #F6F3E8
+</span>      <span class="n">binding_mode</span>       <span class="c">#A00000 #900000 #f6f3e8
+</span>    }
+}
+
+<span class="c"># class                 border  bground text    indicator child_border
+</span><span class="n">client</span>.<span class="n">focused</span>          <span class="c">#111866 #333366 #F6F3E8 #2B2B2B   #2B2B2B
+</span><span class="n">client</span>.<span class="n">focused_inactive</span> <span class="c">#020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
+</span><span class="n">client</span>.<span class="n">unfocused</span>        <span class="c">#020202 #242424 #F6F3E8 #2B2B2B   #2B2B2B
+</span><span class="n">client</span>.<span class="n">urgent</span>           <span class="c">#A00000 #900000 #F6F3E8 #2B2B2B   #2B2B2B
+</span><span class="n">client</span>.<span class="n">placeholder</span>      <span class="c">#000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+</span>
+<span class="c"># specific window settings
+</span><span class="n">for_window</span> [<span class="n">window_role</span>=<span class="s2">"pop-up"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">window_role</span>=<span class="s2">"task_dialog"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)feh"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="c"># for_window [class="(?i)vlc"] floating enable
+</span><span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)zotero"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)zooom"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)teams"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)slack"</span>] <span class="n">floating</span> <span class="n">enable</span>
+<span class="n">for_window</span> [<span class="n">class</span>=<span class="s2">"(?i)ruby"</span>] <span class="n">floating</span> <span class="n">enable</span>
+
+<span class="c"># startup
+</span><span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)evince"</span> ] <span class="m">2</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)nautilus"</span> ] <span class="m">2</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)zotero"</span> ] <span class="m">2</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)slack"</span> ] <span class="m">3</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)firefox"</span>] <span class="m">4</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)teams"</span> ] <span class="m">5</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)remmina"</span> ] <span class="m">6</span>
+<span class="n">assign</span> [<span class="n">class</span>=<span class="s2">"(?i)zoom"</span> ] <span class="m">6</span></code></pre></figure>
+</div>
+</div>
+<!-- %%%% end content %%%% -->
+        </div>
+      </main>
+      <!-- include footer -->
+      <footer class="container bottom-0 left-0 right-0 small">
+        <hr/>
+        <p class="p0 m0 right-align">&copy; 2006-2018
+          <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
+          Lastupdate: 2018-10-25 13:42:33 +0000
+          <br/>
+          Powered by
+          <a href="https://orgmode.org/" rel="noopener" title="Org mode">
+            Org mode
+          </a>
+          +
+          <a href="https://jekyllrb.com/" rel="noopener" title="Jekyll">
+            Jekyll
+          </a>
+          +
+          <a href="https://basscss.com/" rel="noopener" title="Basscss">
+            Basscss
+          </a>
+          &amp;
+          <a href="https://amp.dev/">
+            <span class="icon-amp">⚡</span>AMP
+          </a>
+        </p>
+      </footer>
+      <amp-analytics data-block-on-consent
+                     type="gtag"
+                     data-credentials="include">
+        <script type="application/json">
+          {
+              "vars" : {
+                  "gtag_id": "UA-90872419-1",
+                  "config" : {
+                      "UA-90872419-1": { "groups": "default" }
+                  }
+              }
+          }
+        </script>
+      </amp-analytics>
+      <!-- end: include footer -->
+    </div>
+  </body>
+</html>
