@@ -32,7 +32,7 @@
     <!-- begin jekyll seo -->
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Terminal 生活 | Youhei SASAKI’s official site</title>
-<meta name="generator" content="Jekyll v4.2.2" />
+<meta name="generator" content="Jekyll v4.3.1" />
 <meta property="og:title" content="Terminal 生活" />
 <meta name="author" content="Youhei SASAKI" />
 <meta property="og:locale" content="ja" />
@@ -447,8 +447,8 @@ index 1914539..4c0189e 100644
 </span><span class="gi">+++ b/src/rxvtfont.C
 </span><span class="p">@@ -1223,92 +1223,63 @@</span> rxvt_font_xft::load (const rxvt_fontprop &amp;prop, bool force_prop)
      return false;
-
-   int ftheight = 0;
+<span class="err">
+</span>   int ftheight = 0;
 <span class="gd">-  bool success = true;
 -
 -  for (;;)
@@ -471,121 +471,121 @@ index 1914539..4c0189e 100644
 -      width   = 0;
 -
 -      bool scalable = face-&gt;face_flags &amp; FT_FACE_FLAG_SCALABLE;
-</span>
--      XftUnlockFace (f);
-<span class="gi">+  p = FcPatternDuplicate (match);
+</span><span class="err">
+</span><span class="gd">-      XftUnlockFace (f);
+</span><span class="gi">+  p = FcPatternDuplicate (match);
 +  f = XftFontOpenPattern (disp, p);
-</span>
--      int glheight = height;
-<span class="gi">+  if (!f)
+</span><span class="err">
+</span><span class="gd">-      int glheight = height;
+</span><span class="gi">+  if (!f)
 +    {
 +      FcPatternDestroy (p);
 +      return false;
 +    }
-</span>
--      for (uint16_t *t = extent_test_chars; t &lt; extent_test_chars + ecb_array_length (extent_test_chars); t++)
-<span class="gd">-        {
+</span><span class="err">
+</span><span class="gd">-      for (uint16_t *t = extent_test_chars; t &lt; extent_test_chars + ecb_array_length (extent_test_chars); t++)
+-        {
 -          FcChar16 ch = *t;
 </span><span class="gi">+  FT_Face face = XftLockFace (f);
-</span>
--          if (cs != CS_UNICODE
-<span class="gd">-              &amp;&amp; ch &gt; 0x100
+</span><span class="err">
+</span><span class="gd">-          if (cs != CS_UNICODE
+-              &amp;&amp; ch &gt; 0x100
 -              &amp;&amp; FROM_UNICODE (cs, ch) == NOCHAR)
 -            continue;
 </span><span class="gi">+  ascent  = f-&gt;ascent;
 +  descent = f-&gt;descent;
 +  height  = max (ascent + descent, f-&gt;height);
 +  width   = 0;
-</span>
--          // ignore characters we wouldn't use anyways
-<span class="gd">-          bool careful;
+</span><span class="err">
+</span><span class="gd">-          // ignore characters we wouldn't use anyways
+-          bool careful;
 -          if (!has_char (*t, &amp;prop, careful))
 -            continue;
 </span><span class="gi">+  bool scalable = face-&gt;face_flags &amp; FT_FACE_FLAG_SCALABLE;
-</span>
--          XGlyphInfo g;
-<span class="gd">-          XftTextExtents16 (disp, f, &amp;ch, 1, &amp;g);
+</span><span class="err">
+</span><span class="gd">-          XGlyphInfo g;
+-          XftTextExtents16 (disp, f, &amp;ch, 1, &amp;g);
 </span><span class="gi">+  XftUnlockFace (f);
-</span>
--          g.width -= g.x;
-<span class="gi">+  for (uint16_t *t = extent_test_chars; t &lt; extent_test_chars + ecb_array_length (extent_test_chars); t++)
+</span><span class="err">
+</span><span class="gd">-          g.width -= g.x;
+</span><span class="gi">+  for (uint16_t *t = extent_test_chars; t &lt; extent_test_chars + ecb_array_length (extent_test_chars); t++)
 +    {
 +      FcChar16 ch = *t;
-</span>
--          int wcw = WCWIDTH (ch);
-<span class="gd">-          if (wcw &gt; 0) g.width = (g.width + wcw - 1) / wcw;
+</span><span class="err">
+</span><span class="gd">-          int wcw = WCWIDTH (ch);
+-          if (wcw &gt; 0) g.width = (g.width + wcw - 1) / wcw;
 </span><span class="gi">+      if (cs != CS_UNICODE
 +          &amp;&amp; ch &gt; 0x100
 +          &amp;&amp; FROM_UNICODE (cs, ch) == NOCHAR)
 +        continue;
-</span>
--          if (width    &lt; g.width       ) width    = g.width;
-<span class="gd">-          if (height   &lt; g.height      ) height   = g.height;
+</span><span class="err">
+</span><span class="gd">-          if (width    &lt; g.width       ) width    = g.width;
+-          if (height   &lt; g.height      ) height   = g.height;
 -          if (glheight &lt; g.height - g.y) glheight = g.height - g.y;
 -        }
 </span><span class="gi">+      // ignore characters we wouldn't use anyways
 +      bool careful;
 +      if (!has_char (*t, &amp;prop, careful))
 +        continue;
-</span>
--      if (!width)
-<span class="gd">-        {
+</span><span class="err">
+</span><span class="gd">-      if (!width)
+-        {
 -          rxvt_warn ("unable to calculate font width for '%s', ignoring.\n", name);
 </span><span class="gi">+      XGlyphInfo g;
 +      XftTextExtents16 (disp, f, &amp;ch, 1, &amp;g);
-</span>
--          XftFontClose (disp, f);
-<span class="gd">-          f = 0;
+</span><span class="err">
+</span><span class="gd">-          XftFontClose (disp, f);
+-          f = 0;
 </span><span class="gi">+      g.width -= g.x;
-</span>
--          success = false;
-<span class="gd">-          break;
+</span><span class="err">
+</span><span class="gd">-          success = false;
+-          break;
 -        }
 </span><span class="gi">+      int wcw = WCWIDTH (ch);
 +      if (wcw &gt; 1) g.xOff = g.xOff / wcw;
-</span>
--      if (prop.height == rxvt_fontprop::unset
-<span class="gd">-          || (height &lt;= prop.height &amp;&amp; glheight &lt;= prop.height)
+</span><span class="err">
+</span><span class="gd">-      if (prop.height == rxvt_fontprop::unset
+-          || (height &lt;= prop.height &amp;&amp; glheight &lt;= prop.height)
 -          || height &lt;= 2
 -          || !scalable)
 -        break;
 </span><span class="gi">+      if (width    &lt; g.xOff  ) width    = g.xOff;
 +      if (height   &lt; g.height) height   = g.height;
 +    }
-</span>
--      if (ftheight)
-<span class="gd">-        {
+</span><span class="err">
+</span><span class="gd">-      if (ftheight)
+-        {
 -          // take smaller steps near the end
 -          if (height &gt; prop.height + 1) ftheight++;
 -          if (height &gt; prop.height + 2) ftheight++;
 -          if (height &gt; prop.height + 3) ftheight++;
 </span><span class="gi">+  bool success = true;
-</span>
--          ftheight -= height - prop.height;
-<span class="gd">-        }
+</span><span class="err">
+</span><span class="gd">-          ftheight -= height - prop.height;
+-        }
 -      else
 -        ftheight = prop.height - 1;
 </span><span class="gi">+  if (!width)
 +    {
 +      rxvt_warn ("unable to calculate font width for '%s', ignoring.\n", name);
-</span>
-       XftFontClose (disp, f);
+</span><span class="err">
+</span>       XftFontClose (disp, f);
 <span class="gd">-      FcPatternDel (match, FC_PIXEL_SIZE);
 -      FcPatternAddInteger (match, FC_PIXEL_SIZE, ftheight);
 </span><span class="gi">+      f = 0;
 +
 +      success = false;
 </span>     }
-
-   FcPatternDestroy (match);
+<span class="err">
+</span>   FcPatternDestroy (match);
 <span class="p">@@ -1395,7 +1366,7 @@</span> rxvt_font_xft::draw (rxvt_drawable &amp;d, int x, int y,
-
-           ep-&gt;glyph = glyph;
+<span class="err">
+</span>           ep-&gt;glyph = glyph;
            ep-&gt;x = x_ + (cwidth - extents.xOff &gt;&gt; 1);
 <span class="gd">-          ep-&gt;y = y_ + ascent;
 </span><span class="gi">+          ep-&gt;y = y_ + term-&gt;fbase + (term-&gt;lineSpace &gt;&gt; 1);
-</span>
-           if (extents.xOff == 0)
+</span><span class="err">
+</span>           if (extents.xOff == 0)
              ep-&gt;x = x_ + cwidth;
 <span class="gh">diff --git a/src/screen.C b/src/screen.C
 index 9eb375a..7b3cdbf 100644
@@ -593,8 +593,8 @@ index 9eb375a..7b3cdbf 100644
 </span><span class="gi">+++ b/src/screen.C
 </span><span class="p">@@ -2432,8 +2432,8 @@</span> rxvt_term::scr_refresh () NOTHROW
                  XSetForeground (dpy, gc, pix_colors[fore]);
-
-               XDrawLine (dpy, vt, gc,
+<span class="err">
+</span>               XDrawLine (dpy, vt, gc,
 <span class="gd">-                         xpixel, ypixel + font-&gt;ascent + 1,
 -                         xpixel + Width2Pixel (count) - 1, ypixel + font-&gt;ascent + 1);
 </span><span class="gi">+                         xpixel, ypixel + Height2Pixel (1) - 1,
@@ -607,8 +607,8 @@ index b23378f..0febcd3 100644
 </span><span class="gd">--- a/src/table/jis0208_1990_0.h
 </span><span class="gi">+++ b/src/table/jis0208_1990_0.h
 </span><span class="p">@@ -2241,6 +2241,7 @@</span> const uint16_t *jis0208_1990_0_f_i[] = {
-
- static uint32_t cs_jis0208_1990_0_from_unicode (unicode_t unicode) {
+<span class="err">
+</span> static uint32_t cs_jis0208_1990_0_from_unicode (unicode_t unicode) {
      if (unicode == 0x2312) return 0x225e;
 <span class="gi">+    if (unicode == 0xff5e) return 0x2141;
 </span>     uint8_t  l = unicode;
@@ -635,21 +635,21 @@ tmux EAW 文字幅問題の扱いに多少(?)不満があるので,
 <figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="p">From: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 Date: Sat, 4 Feb 2017 03:29:22 +0900
 Subject: Use box drawing DECSP or ASCII with option 'pane-border-ascii'
-</span>
-Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
-<span class="p">---
+</span><span class="err">
+</span><span class="p">Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+---
 </span> options-table.c |  5 +++++
  tty-acs.c       | 68 ++++++++++++++++++++++++++++-----------------------------
  2 files changed, 39 insertions(+), 34 deletions(-)
-
---- a/options-table.c
-<span class="gi">+++ b/options-table.c
+<span class="err">
+</span><span class="gd">--- a/options-table.c
+</span><span class="gi">+++ b/options-table.c
 </span><span class="p">@@ -293,6 +293,12 @@</span>
  	  .default_num = 0
  	},
-
-+	{ .name = "pane-border-ascii",
-<span class="gi">+	  .type = OPTIONS_TABLE_FLAG,
+<span class="err">
+</span><span class="gi">+	{ .name = "pane-border-ascii",
++	  .type = OPTIONS_TABLE_FLAG,
 +	  .scope = OPTIONS_TABLE_SESSION,
 +	  .default_num = 1
 +	},
@@ -728,14 +728,14 @@ Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 +	{ '}', "#" },	/* UK pound sign */
 +	{ '~', "*" }	/* bullet */
 </span> };
-
- int
+<span class="err">
+</span> int
 <span class="p">@@ -80,8 +80,8 @@</span>
  {
  	struct tty_acs_entry *entry;
-
--	/* If not a UTF-8 terminal, use the ACS set. */
-<span class="gd">-	if (tty != NULL &amp;&amp; !(tty-&gt;flags &amp; TTY_UTF8)) {
+<span class="err">
+</span><span class="gd">-	/* If not a UTF-8 terminal, use the ACS set. */
+-	if (tty != NULL &amp;&amp; !(tty-&gt;flags &amp; TTY_UTF8)) {
 </span><span class="gi">+	/* If pane-border-ascii */
 +	if ( options_get_number(global_s_options, "pane-border-ascii") != 0 ) {
 </span> 		if (tty-&gt;term-&gt;acs[ch][0] == '\0')
@@ -745,12 +745,12 @@ Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 </span><span class="gi">+++ b/tty.c
 </span><span class="p">@@ -58,7 +58,7 @@</span>
  void	tty_default_colours(struct grid_cell *, const struct window_pane *);
-
- #define tty_use_acs(tty) \
+<span class="err">
+</span> #define tty_use_acs(tty) \
 <span class="gd">-	(tty_term_has((tty)-&gt;term, TTYC_ACSC) &amp;&amp; !((tty)-&gt;flags &amp; TTY_UTF8))
 </span><span class="gi">+	(tty_term_has((tty)-&gt;term, TTYC_ACSC) &amp;&amp; (options_get_number(global_s_options, "pane-border-ascii") != 0 ))
-</span>
- #define tty_pane_full_width(tty, ctx) \
+</span><span class="err">
+</span> #define tty_pane_full_width(tty, ctx) \
  	((ctx)-&gt;xoff == 0 &amp;&amp; screen_size_x((ctx)-&gt;wp-&gt;screen) &gt;= (tty)-&gt;sx)</code></pre></figure>
 
 <p>
@@ -759,20 +759,20 @@ Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 <figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="p">From: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 Date: Sat, 4 Feb 2017 03:30:21 +0900
 Subject: Unse locale as en_US.UTF-8
-</span>
-Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
-<span class="p">---
+</span><span class="err">
+</span><span class="p">Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+---
 </span> tmux.c | 12 +++++-------
  1 file changed, 5 insertions(+), 7 deletions(-)
-
---- a/tmux.c
-<span class="gi">+++ b/tmux.c
+<span class="err">
+</span><span class="gd">--- a/tmux.c
+</span><span class="gi">+++ b/tmux.c
 </span><span class="p">@@ -188,13 +188,11 @@</span>
  	const char	*s;
  	int		 opt, flags, keys;
-
--	if (setlocale(LC_CTYPE, "en_US.UTF-8") == NULL) {
-<span class="gd">-		if (setlocale(LC_CTYPE, "") == NULL)
+<span class="err">
+</span><span class="gd">-	if (setlocale(LC_CTYPE, "en_US.UTF-8") == NULL) {
+-		if (setlocale(LC_CTYPE, "") == NULL)
 -			errx(1, "invalid LC_ALL, LC_CTYPE or LANG");
 -		s = nl_langinfo(CODESET);
 -		if (strcasecmp(s, "UTF-8") != 0 &amp;&amp; strcasecmp(s, "UTF8") != 0)
@@ -783,8 +783,8 @@ Signed-off-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
 +	s = nl_langinfo(CODESET);
 +	if (strcasecmp(s, "UTF-8") != 0 &amp;&amp; strcasecmp(s, "UTF8") != 0)
 +		errx(1, "need UTF-8 locale (LC_CTYPE) but have %s", s);
-</span>
- 	setlocale(LC_TIME, "");
+</span><span class="err">
+</span> 	setlocale(LC_TIME, "");
  	tzset();</code></pre></figure>
 
 <p>

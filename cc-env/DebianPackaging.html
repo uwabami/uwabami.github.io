@@ -32,7 +32,7 @@
     <!-- begin jekyll seo -->
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest | Youhei SASAKI’s official site</title>
-<meta name="generator" content="Jekyll v4.2.2" />
+<meta name="generator" content="Jekyll v4.3.1" />
 <meta property="og:title" content="パッケージ作成環境: sbuild, lintian, piuparts, autopkgtest" />
 <meta name="author" content="Youhei SASAKI" />
 <meta property="og:locale" content="ja" />
@@ -356,8 +356,8 @@ LXC の基本設定や dnsmasq での DHCP 取得ができるようになって�
 <figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">--- /usr/bin/autopkgtest-build-lxc.orig	2017-09-07 20:15:12.615081394 +0900
 </span><span class="gi">+++ /usr/bin/autopkgtest-build-lxc	2017-09-07 20:16:31.584016755 +0900
 </span><span class="p">@@ -150,14 +150,14 @@</span>
-
- if [ ! -e $LXCDIR/$NAME ]; then
+<span class="err">
+</span> if [ ! -e $LXCDIR/$NAME ]; then
      # first-time run: just create the container
 <span class="gd">-    $LXC_CREATE_PREFIX lxc-create -B best --name=$NAME $LXC_ARGS
 </span><span class="gi">+    $LXC_CREATE_PREFIX lxc-create --name=$NAME $LXC_ARGS

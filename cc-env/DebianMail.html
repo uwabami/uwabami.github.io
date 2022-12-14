@@ -32,7 +32,7 @@
     <!-- begin jekyll seo -->
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Mail 環境の設定 | Youhei SASAKI’s official site</title>
-<meta name="generator" content="Jekyll v4.2.2" />
+<meta name="generator" content="Jekyll v4.3.1" />
 <meta property="og:title" content="Mail 環境の設定" />
 <meta name="author" content="Youhei SASAKI" />
 <meta property="og:locale" content="ja" />
@@ -754,9 +754,9 @@ diff は以下:
 </span><span class="p">@@ -13,6 +13,62 @@</span>
      &lt;fieldType name="long" class="solr.TrieLongField" /&gt;
      &lt;fieldType name="boolean" class="solr.BoolField" /&gt;
-
-+    &lt;!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) --&gt;
-<span class="gi">+    &lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;
+<span class="err">
+</span><span class="gi">+    &lt;!-- CJK bigram (see text_ja for a Japanese configuration using morphological analysis) --&gt;
++    &lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;
 +      &lt;analyzer&gt;
 +        &lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;
 +        &lt;!-- normalize width before bigram, as e.g. half-width dakuten combine  --&gt;
@@ -817,20 +817,20 @@ diff は以下:
 <span class="p">@@ -43,14 +99,14 @@</span>
     &lt;field name="box" type="string" indexed="true" stored="true" required="true" /&gt;
     &lt;field name="user" type="string" indexed="true" stored="true" required="true" /&gt;
-
--   &lt;field name="hdr" type="text" indexed="true" stored="false" /&gt;
-<span class="gd">-   &lt;field name="body" type="text" indexed="true" stored="false" /&gt;
+<span class="err">
+</span><span class="gd">-   &lt;field name="hdr" type="text" indexed="true" stored="false" /&gt;
+-   &lt;field name="body" type="text" indexed="true" stored="false" /&gt;
 </span><span class="gi">+   &lt;field name="hdr" type="text_cjk" indexed="true" stored="false" /&gt;
 +   &lt;field name="body" type="text_cjk" indexed="true" stored="false" /&gt;
-</span>
-    &lt;field name="from" type="text" indexed="true" stored="false" /&gt;
+</span><span class="err">
+</span>    &lt;field name="from" type="text" indexed="true" stored="false" /&gt;
     &lt;field name="to" type="text" indexed="true" stored="false" /&gt;
     &lt;field name="cc" type="text" indexed="true" stored="false" /&gt;
     &lt;field name="bcc" type="text" indexed="true" stored="false" /&gt;
 <span class="gd">-   &lt;field name="subject" type="text" indexed="true" stored="false" /&gt;
 </span><span class="gi">+   &lt;field name="subject" type="text_cjk" indexed="true" stored="false" /&gt;
-</span>
-    &lt;!-- Used by Solr internally: --&gt;
+</span><span class="err">
+</span>    &lt;!-- Used by Solr internally: --&gt;
     &lt;field name="_version_" type="long" indexed="true" stored="true"/&gt;</code></pre></figure>
 </div>
 </div>

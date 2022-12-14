@@ -32,7 +32,7 @@
     <!-- begin jekyll seo -->
 <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Squid で広告避け | Youhei SASAKI’s official site</title>
-<meta name="generator" content="Jekyll v4.2.2" />
+<meta name="generator" content="Jekyll v4.3.1" />
 <meta property="og:title" content="Squid で広告避け" />
 <meta name="author" content="Youhei SASAKI" />
 <meta property="og:locale" content="ja" />
@@ -311,8 +311,8 @@ index ba9104f3..e0952f62 100755
 <span class="gi">+               --enable-ssl-crtd \
 +               --with-openssl \
 </span>                --with-gnutls
-
- ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)</code></pre></figure>
+<span class="err">
+</span> ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)</code></pre></figure>
 </li>
 <li>
 <p>
@@ -327,8 +327,8 @@ index 8d23f69e..d10052dc 100644
         , libxml2-dev
         , nettle-dev
 <span class="gi">+       , libssl-dev
-</span>
- Package: squid3
+</span><span class="err">
+</span> Package: squid3
  Architecture: all</code></pre></figure>
 </li>
 <li>
