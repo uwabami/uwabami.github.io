@@ -80,7 +80,7 @@
         }
       </script>
       <div id="consent-ui">
-        I use cookies to analyze how visitors use my website via Google Analytics:
+	<p>I use cookies to analyze how visitors use my website via Google Analytics:</p>
         <button on="tap:consent-element.accept" role="button">Accept</button>
         <button on="tap:consent-element.reject" role="button">Reject</button>
         <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
@@ -526,14 +526,15 @@ Enjoy!
       <amp-analytics data-block-on-consent
                      type="googleanalytics"
                      config="https://uwabami.github.io/assets/ga4.json"
-                     data-credentials="include">
+                     data-credentials="include"
+		     data-block-on-consent>
         <script type="application/json">
           {
               "vars": {
                   "GA4_MEASUREMENT_ID": "G-CLB2VW9XEW",
                   "GA4_ENDPOINT_HOSTNAME": "www.google-analytics.com",
                   "DEFAULT_PAGEVIEW_ENABLED": true,
-                  "GOOGLE_CONSENT_ENABLED": false,
+                  "GOOGLE_CONSENT_ENABLED": true,
                   "WEBVITALS_TRACKING": false,
                   "PERFORMANCE_TIMING_TRACKING": false
               }

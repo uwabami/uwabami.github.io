@@ -79,7 +79,7 @@
         }
       </script>
       <div id="consent-ui">
-        I use cookies to analyze how visitors use my website via Google Analytics:
+	<p>I use cookies to analyze how visitors use my website via Google Analytics:</p>
         <button on="tap:consent-element.accept" role="button">Accept</button>
         <button on="tap:consent-element.reject" role="button">Reject</button>
         <button on="tap:consent-element.dismiss" role="button">Dismiss</button>
@@ -260,7 +260,7 @@ with Org-mode options as YAML Front Matter.
         <hr/>
         <p class="p0 m0 right-align">&copy; 2006-2023
           <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-          Lastupdate: 2023-03-01 23:15:57 +0900
+          Lastupdate: 2023-03-03 16:19:48 +0900
           <br/>
           Powered by
           <a href="https://orgmode.org/" rel="noopener" title="Org mode">
@@ -283,14 +283,15 @@ with Org-mode options as YAML Front Matter.
       <amp-analytics data-block-on-consent
                      type="googleanalytics"
                      config="https://uwabami.github.io/assets/ga4.json"
-                     data-credentials="include">
+                     data-credentials="include"
+		     data-block-on-consent>
         <script type="application/json">
           {
               "vars": {
                   "GA4_MEASUREMENT_ID": "G-CLB2VW9XEW",
                   "GA4_ENDPOINT_HOSTNAME": "www.google-analytics.com",
                   "DEFAULT_PAGEVIEW_ENABLED": true,
-                  "GOOGLE_CONSENT_ENABLED": false,
+                  "GOOGLE_CONSENT_ENABLED": true,
                   "WEBVITALS_TRACKING": false,
                   "PERFORMANCE_TIMING_TRACKING": false
               }
