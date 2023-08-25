@@ -129,6 +129,18 @@
   </url>
 
 <url>
+    <loc>https://uwabami.github.io/lectures/crypt/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/lectures/crypt/index.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+
+<url>
+    <loc>https://uwabami.github.io/lectures/crypt/euclid.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/lectures/crypt/euclid.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+
+<url>
     <loc>https://uwabami.github.io/cc-env/index.html</loc>
     <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/cc-env/index.html" />
     <changefreq>monthly</changefreq>
@@ -179,6 +191,18 @@
 <url>
     <loc>https://uwabami.github.io/index.html</loc>
     <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/index.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+
+<url>
+    <loc>https://uwabami.github.io/lectures/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/lectures/index.html" />
+    <changefreq>monthly</changefreq>
+  </url>
+
+<url>
+    <loc>https://uwabami.github.io/lectures/crypt/modpow.html</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://uwabami.github.io/lectures/crypt/modpow.html" />
     <changefreq>monthly</changefreq>
   </url>
 
