@@ -53,14 +53,17 @@
     <!-- apple icons -->
     <link rel="apple-touch-icon" href="https://uwabami.github.io/assets/img/favicon-256x256.png">
     <link rel="shortcut-icon" type="image/ico" href="/assets/img/favicon.ico">
+    <meta name="amp-consent-blocking" content="amp-analytics">
   </head>
   <body>
     <amp-geo layout="nodisplay">
   <script type="application/json">
     {
-        "ISOCountryGroups": {
-            "eu": [ "preset-eea"]
-        }
+      "ISOCountryGroups": {
+        "eea": [ "at", "be", "bg", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr",
+        "gb", "gr", "hr", "hu", "ie", "is", "it", "li", "lt", "lu", "lv", "mt", "nl",
+        "no", "pl", "pt", "ro", "se", "si", "sk"]
+      }
     }
   </script>
 </amp-geo>
@@ -69,7 +72,7 @@
     {
         "consents": {
             "my_consent": {
-                "promptIfUnknownForGeoGroup": "eu",
+                "promptIfUnknownForGeoGroup": "eea",
                 "promptUI": "consent-ui"
             }
         }
