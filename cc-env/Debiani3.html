@@ -194,7 +194,6 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 </p>
 </div>
 </div>
-
 <div>
 <h2 id="org3ce1fcee">i3 と一緒に使っているもの</h2>
 <div class="outline-text-2" id="text-org3ce1fcee">
@@ -222,7 +221,6 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 </p>
 </div>
 </div>
-
 <div>
 <h2 id="org3565d884">i3 の設定</h2>
 <div class="outline-text-2" id="text-org3565d884">
@@ -242,9 +240,9 @@ Related <a href="https://uwabami.github.io/cc-env/index.html">Index</a> <a href=
 それ自体は問題無いのですが,
 以下の様に
 </p>
-<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">applications/*; xdg-open "%s"
-image/*; xdg-open %s;
-video/*; xdg-open %s;</code></pre></figure>
+<figure class="highlight"><pre><code class="language-conf-space" data-lang="conf-space">applications/*; xdg-open "%s";
+image/*; xdg-open "%s";
+video/*; xdg-open "%s";</code></pre></figure>
 <p>
 <code>~/.mailcap</code> を <code>xdg-open</code> に丸投げしていて, さらに <code>$DISPLAY</code> (もしくは <code>$WAYLAND_DISPLAY</code>)が無い場合には,
 <code>xdg-open</code> が <code>run-mailcap</code> を呼ぶ→ <code>run-mailcap</code> が <code>xdg-open</code> を呼び, といった
@@ -303,7 +301,7 @@ video/*; xdg-open %s;</code></pre></figure>
 rofi.modi: run,window,,windowcd,drun,ssh
 rofi.combi-modi: windowcd,drun
 rofi.lines: 6
-rofi.font: FSMRMP 24
+rofi.font: EAW CONSOLE 24
 rofi.bw: 2
 rofi.location: 0
 rofi.padding: 5
@@ -550,7 +548,6 @@ ${endif}${endif}${endif}
 suspend → resume した時に i3lock を走らせたいので
 <code>/etc/systemd/system/i3lock.service</code>:
 </p>
-
 <figure class="highlight"><pre><code class="language-systemd" data-lang="systemd"><span class="k">[Unit]</span>
 <span class="nt">Description</span><span class="p">=</span>Starts i3lock at suspend time
 <span class="nt">After</span><span class="p">=</span>sleep.target
@@ -563,7 +560,6 @@ suspend → resume した時に i3lock を走らせたいので
 
 <span class="k">[Install]</span>
 <span class="nt">WantedBy</span><span class="p">=</span>sleep.target</code></pre></figure>
-
 <p>
 を作成して有効にしておく.
 </p>
@@ -586,7 +582,7 @@ suspend → resume した時に i3lock を走らせたいので
 # set $execai exec_always --no-startup-id
 </span>
 <span class="c"># font
-</span><span class="n">font</span> <span class="n">xft</span>:<span class="n">FSMRMP</span> <span class="m">16</span>.<span class="m">5</span>
+</span><span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">xft</span>:<span class="n">FontAwesome</span> <span class="m">16</span>.<span class="m">5</span>
 
 <span class="c"># startup
 #$execi /usr/libexec/gsd-xsettings --gtk-no-debug=All --gdk-no-debug=all
@@ -707,7 +703,7 @@ $<span class="n">execi</span> <span class="n">nextcloud</span>
     <span class="n">position</span> <span class="n">top</span>
     <span class="n">tray_output</span> <span class="n">eDP</span>-<span class="m">1</span>
     <span class="n">tray_padding</span> <span class="m">0</span>
-    <span class="n">font</span> <span class="n">xft</span>:<span class="n">FSMRMP</span> <span class="m">19</span>.<span class="m">5</span>
+    <span class="n">font</span> <span class="n">xft</span>:<span class="n">Inconsolata</span>,<span class="n">Xft</span>:<span class="n">FontAwesome</span> <span class="m">19</span>.<span class="m">5</span>
     <span class="n">i3bar_command</span> <span class="n">i3bar</span> --<span class="n">transparency</span>
     <span class="n">status_command</span> <span class="n">i3status</span> -<span class="n">c</span> $<span class="n">HOME</span>/.<span class="n">config</span>/<span class="n">i3</span>/<span class="n">i3status</span>.<span class="n">conf</span>
     <span class="n">binding_mode_indicator</span> <span class="n">yes</span>

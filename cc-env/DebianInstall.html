@@ -37,14 +37,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-08-14T06:45:09+09:00" />
+<meta property="article:published_time" content="2025-12-11T00:40:08+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Debian の Install" />
 <meta name="twitter:site" content="@uwabami_frozen" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2021-08-14T06:45:09+09:00","datePublished":"2021-08-14T06:45:09+09:00","headline":"Debian の Install","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianInstall.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianInstall.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2025-12-11T00:40:08+09:00","datePublished":"2025-12-11T00:40:08+09:00","headline":"Debian の Install","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/DebianInstall.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/DebianInstall.html"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -223,61 +223,437 @@ jigdo については <a href="https://www.debian.org/CD/jigdo-cd/index.ja.html"
 </div>
 </div>
 <div>
-<h2 id="orgd1a4ba84">EFI 32bit installer</h2>
-<div class="outline-text-2" id="text-orgd1a4ba84">
+<h2 id="orgecbdb37f">ThinkPad X13</h2>
+<div class="outline-text-2" id="text-orgecbdb37f">
 <p>
-古いMacPro 用に作成する必要があったのでメモを残しておく.
+2025/06/21から利用中
+</p>
+</div>
+<div>
+<h3 id="orgdbb8715e">機器情報</h3>
+<div class="outline-text-3" id="text-orgdbb8715e">
+<figure class="highlight"><pre><code class="language-text" data-lang="text">00:00.0 Host bridge: Intel Corporation Device 7d02 (rev 04)
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IOMMU group 1
+        Capabilities: [e0] Vendor Specific Information: Intel Capabilities v1
+                CapA: Peg60Dis- Peg12Dis- Peg11Dis- Peg10Dis- PeLWUDis- DmiWidth=x4
+                      EccDis+ ForceEccEn- VTdDis- DmiG2Dis- PegG2Dis- DDRMaxSize=Unlimited
+                      1NDis- CDDis- DDPCDis+ X2APICEn+ PDCDis- IGDis- CDID=1 CRID=4
+                      DDROCCAP- OCEn- DDRWrtVrefEn- DDR3LEn-
+                CapB: ImguDis- OCbySSKUCap- OCbySSKUEn- SMTCap+ CacheSzCap 0x0
+                      SoftBinCap+ DDR3MaxFreqWithRef100=Disabled PegG3Dis-
+                      PkgTyp- AddGfxEn- AddGfxCap- PegX16Dis- DmiG3Dis- GmmDis-
+                      DDR3MaxFreq=2932MHz LPDDR3En-
+                CapC: PegG4Dis- DDR4MaxFreq=Unlimited LPDDREn- LPDDR4MaxFreq=Unlimited LPDDR4En-
+                      QClkGvDis- SgxDis- BClkOC=Disabled IddDis- Pipe3Dis- Gear1MaxFreq=Unlimited
+        Kernel driver in use: igen6_edac
+        Kernel modules: igen6_edac
+
+00:02.0 VGA compatible controller: Intel Corporation Meteor Lake-P [Intel Graphics] (rev 08) (prog-if 00 [VGA controller])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 209, IOMMU group 0
+        Memory at 4058000000 (64-bit, prefetchable) [size=16M]
+        Memory at 4000000000 (64-bit, prefetchable) [size=256M]
+        Expansion ROM at 000c0000 [virtual] [disabled] [size=128K]
+        Capabilities: [40] Vendor Specific Information: Intel Capabilities v1
+                CapA: Peg60Dis- Peg12Dis- Peg11Dis- Peg10Dis- PeLWUDis- DmiWidth=x4
+                      EccDis- ForceEccEn- VTdDis- DmiG2Dis- PegG2Dis- DDRMaxSize=Unlimited
+                      1NDis- CDDis- DDPCDis- X2APICEn- PDCDis- IGDis- CDID=0 CRID=0
+                      DDROCCAP+ OCEn- DDRWrtVrefEn+ DDR3LEn+
+                CapB: ImguDis- OCbySSKUCap- OCbySSKUEn- SMTCap- CacheSzCap 0x0
+                      SoftBinCap- DDR3MaxFreqWithRef100=Disabled PegG3Dis-
+                      PkgTyp- AddGfxEn- AddGfxCap- PegX16Dis- DmiG3Dis- GmmDis-
+                      DDR3MaxFreq=2932MHz LPDDR3En-
+        Capabilities: [70] Express Root Complex Integrated Endpoint, IntMsgNum 0
+        Capabilities: [ac] MSI: Enable+ Count=1/1 Maskable+ 64bit+
+        Capabilities: [d0] Power Management version 3
+        Capabilities: [100] Null
+        Capabilities: [110] Process Address Space ID (PASID)
+        Capabilities: [200] Address Translation Service (ATS)
+        Capabilities: [420] Physical Resizable BAR
+        Capabilities: [320] Single Root I/O Virtualization (SR-IOV)
+        Capabilities: [400] Latency Tolerance Reporting
+        Kernel driver in use: i915
+        Kernel modules: i915, xe
+
+00:04.0 Signal processing controller: Intel Corporation Meteor Lake-P Dynamic Tuning Technology (rev 04)
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 16, IOMMU group 2
+        Memory at 405a6c0000 (64-bit, non-prefetchable) [size=128K]
+        Capabilities: [90] MSI: Enable- Count=1/1 Maskable- 64bit-
+        Capabilities: [d0] Power Management version 3
+        Capabilities: [e0] Vendor Specific Information: Intel Capabilities v1
+                CapA: Peg60Dis- Peg12Dis- Peg11Dis- Peg10Dis- PeLWUDis- DmiWidth=x4
+                      EccDis- ForceEccEn- VTdDis- DmiG2Dis- PegG2Dis- DDRMaxSize=Unlimited
+                      1NDis- CDDis- DDPCDis- X2APICEn- PDCDis- IGDis- CDID=0 CRID=0
+                      DDROCCAP- OCEn- DDRWrtVrefEn- DDR3LEn-
+                CapB: ImguDis- OCbySSKUCap- OCbySSKUEn- SMTCap- CacheSzCap 0x0
+                      SoftBinCap- DDR3MaxFreqWithRef100=Disabled PegG3Dis-
+                      PkgTyp- AddGfxEn- AddGfxCap- PegX16Dis- DmiG3Dis- GmmDis-
+                      DDR3MaxFreq=2932MHz LPDDR3En-
+        Kernel driver in use: proc_thermal_pci
+        Kernel modules: processor_thermal_device_pci
+
+00:06.0 PCI bridge: Intel Corporation Meteor Lake-H/U PCIe Root Port #9 (rev 20) (prog-if 00 [Normal decode])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 122, IOMMU group 3
+        Bus: primary=00, secondary=1c, subordinate=1c, sec-latency=0
+        I/O behind bridge: 2000-2fff [size=4K] [16-bit]
+        Memory behind bridge: 9c200000-9c3fffff [size=2M] [32-bit]
+        Prefetchable memory behind bridge: 4059200000-4059bfffff [size=10M] [32-bit]
+        Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+        Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Capabilities: [98] Subsystem: Lenovo Device 232a
+        Capabilities: [a0] Power Management version 3
+        Capabilities: [100] Advanced Error Reporting
+        Capabilities: [220] Access Control Services
+        Capabilities: [150] Precision Time Measurement
+        Capabilities: [280] Virtual Channel
+        Capabilities: [a30] Secondary PCI Express
+        Capabilities: [a90] Data Link Feature &lt;?&gt;
+        Capabilities: [a9c] Physical Layer 16.0 GT/s
+        Capabilities: [edc] Lane Margining at the Receiver
+        Kernel driver in use: pcieport
+
+00:06.1 PCI bridge: Intel Corporation Meteor Lake-H/U PCIe Root Port #10 (rev 10) (prog-if 00 [Normal decode])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 123, IOMMU group 4
+        Bus: primary=00, secondary=04, subordinate=04, sec-latency=0
+        I/O behind bridge: [disabled] [16-bit]
+        Memory behind bridge: aac00000-aacfffff [size=1M] [32-bit]
+        Prefetchable memory behind bridge: [disabled] [64-bit]
+        Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+        Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Capabilities: [98] Subsystem: Lenovo Device 232a
+        Capabilities: [a0] Power Management version 3
+        Capabilities: [100] Advanced Error Reporting
+        Capabilities: [220] Access Control Services
+        Capabilities: [200] L1 PM Substates
+        Capabilities: [150] Precision Time Measurement
+        Capabilities: [280] Virtual Channel
+        Capabilities: [a30] Secondary PCI Express
+        Capabilities: [a90] Data Link Feature &lt;?&gt;
+        Capabilities: [a9c] Physical Layer 16.0 GT/s
+        Capabilities: [edc] Lane Margining at the Receiver
+        Kernel driver in use: pcieport
+
+00:07.0 PCI bridge: Intel Corporation Meteor Lake-P Thunderbolt 4 PCI Express Root Port #0 (rev 02) (prog-if 00 [Normal decode])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 124, IOMMU group 5
+        Bus: primary=00, secondary=20, subordinate=49, sec-latency=0
+        I/O behind bridge: 3000-3fff [size=4K] [16-bit]
+        Memory behind bridge: 9e000000-aa1fffff [size=194M] [32-bit]
+        Prefetchable memory behind bridge: 4010000000-402bffffff [size=448M] [32-bit]
+        Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+        Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+        Capabilities: [90] Subsystem: Lenovo Device 232a
+        Capabilities: [a0] Power Management version 3
+        Capabilities: [100] Advanced Error Reporting
+        Capabilities: [220] Access Control Services
+        Capabilities: [150] Precision Time Measurement
+        Capabilities: [a30] Secondary PCI Express
+        Capabilities: [a90] Data Link Feature &lt;?&gt;
+        Kernel driver in use: pcieport
+
+00:07.2 PCI bridge: Intel Corporation Meteor Lake-P Thunderbolt 4 PCI Express Root Port #2 (rev 02) (prog-if 00 [Normal decode])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 125, IOMMU group 6
+        Bus: primary=00, secondary=50, subordinate=79, sec-latency=0
+        I/O behind bridge: 4000-4fff [size=4K] [16-bit]
+        Memory behind bridge: 90000000-9c1fffff [size=194M] [32-bit]
+        Prefetchable memory behind bridge: 4030000000-404bffffff [size=448M] [32-bit]
+        Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+        Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+        Capabilities: [90] Subsystem: Lenovo Device 232a
+        Capabilities: [a0] Power Management version 3
+        Capabilities: [100] Advanced Error Reporting
+        Capabilities: [220] Access Control Services
+        Capabilities: [150] Precision Time Measurement
+        Capabilities: [a30] Secondary PCI Express
+        Capabilities: [a90] Data Link Feature &lt;?&gt;
+        Kernel driver in use: pcieport
+
+00:08.0 System peripheral: Intel Corporation Meteor Lake-P Gaussian &amp; Neural-Network Accelerator (rev 20)
+        Subsystem: Lenovo Device 232a
+        Flags: fast devsel, IRQ 255, IOMMU group 7
+        Memory at 405a713000 (64-bit, non-prefetchable) [disabled] [size=4K]
+        Capabilities: [90] MSI: Enable- Count=1/1 Maskable- 64bit-
+        Capabilities: [a0] Vendor Specific Information: Intel &lt;unknown&gt;
+        Capabilities: [dc] Power Management version 2
+        Capabilities: [f0] PCI Advanced Features
+
+00:0a.0 Signal processing controller: Intel Corporation Meteor Lake-P Platform Monitoring Technology (rev 01)
+        Subsystem: Lenovo Device 232a
+        Flags: fast devsel, IOMMU group 8
+        Memory at 405a680000 (64-bit, non-prefetchable) [size=256K]
+        Capabilities: [70] Express Root Complex Integrated Endpoint, IntMsgNum 0
+        Capabilities: [d0] Power Management version 3
+        Capabilities: [100] Designated Vendor-Specific: Vendor=8086 ID=0002 Rev=1 Len=16 &lt;?&gt;
+        Capabilities: [110] Designated Vendor-Specific: Vendor=8086 ID=0003 Rev=1 Len=16 &lt;?&gt;
+        Capabilities: [120] Designated Vendor-Specific: Vendor=8086 ID=0004 Rev=1 Len=16 &lt;?&gt;
+        Kernel driver in use: intel_vsec
+        Kernel modules: intel_vsec
+
+00:0b.0 Processing accelerators: Intel Corporation Meteor Lake NPU (rev 04)
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 191, IOMMU group 9
+        Memory at 4050000000 (64-bit, non-prefetchable) [size=128M]
+        Memory at 405a712000 (64-bit, non-prefetchable) [size=4K]
+        Capabilities: [80] Power Management version 3
+        Capabilities: [90] Vendor Specific Information: Intel &lt;unknown&gt;
+        Capabilities: [d0] MSI: Enable+ Count=1/1 Maskable+ 64bit+
+        Capabilities: [40] Express Root Complex Integrated Endpoint, IntMsgNum 0
+        Capabilities: [100] Address Translation Service (ATS)
+        Kernel driver in use: intel_vpu
+        Kernel modules: intel_vpu
+
+00:0d.0 USB controller: Intel Corporation Meteor Lake-P Thunderbolt 4 USB Controller (rev 02) (prog-if 30 [XHCI])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, medium devsel, latency 0, IRQ 159, IOMMU group 10
+        Memory at 405a6f0000 (64-bit, non-prefetchable) [size=64K]
+        Capabilities: [70] Power Management version 3
+        Capabilities: [80] MSI: Enable+ Count=8/8 Maskable- 64bit+
+        Capabilities: [90] Vendor Specific Information: Intel &lt;unknown&gt;
+        Capabilities: [b0] Vendor Specific Information: Intel Capabilities v1
+        Kernel driver in use: xhci_hcd
+        Kernel modules: xhci_pci
+
+00:0d.2 USB controller: Intel Corporation Meteor Lake-P Thunderbolt 4 NHI #0 (rev 02) (prog-if 40 [USB4 Host Interface])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 16, IOMMU group 10
+        Memory at 405a640000 (64-bit, non-prefetchable) [size=256K]
+        Memory at 405a711000 (64-bit, non-prefetchable) [size=4K]
+        Capabilities: [80] Power Management version 3
+        Capabilities: [88] MSI: Enable- Count=1/1 Maskable- 64bit+
+        Capabilities: [a0] MSI-X: Enable+ Count=16 Masked-
+        Kernel driver in use: thunderbolt
+        Kernel modules: thunderbolt
+
+00:0d.3 USB controller: Intel Corporation Meteor Lake-P Thunderbolt 4 NHI #1 (rev 02) (prog-if 40 [USB4 Host Interface])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 16, IOMMU group 10
+        Memory at 405a600000 (64-bit, non-prefetchable) [size=256K]
+        Memory at 405a710000 (64-bit, non-prefetchable) [size=4K]
+        Capabilities: [80] Power Management version 3
+        Capabilities: [88] MSI: Enable- Count=1/1 Maskable- 64bit+
+        Capabilities: [a0] MSI-X: Enable+ Count=16 Masked-
+        Kernel driver in use: thunderbolt
+        Kernel modules: thunderbolt
+
+00:14.0 USB controller: Intel Corporation Meteor Lake-P USB 3.2 Gen 2x1 xHCI Host Controller (rev 20) (prog-if 30 [XHCI])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, medium devsel, latency 0, IRQ 168, IOMMU group 11
+        Memory at 405a6e0000 (64-bit, non-prefetchable) [size=64K]
+        Capabilities: [70] Power Management version 3
+        Capabilities: [80] MSI: Enable+ Count=8/8 Maskable- 64bit+
+        Capabilities: [90] Vendor Specific Information: Intel &lt;unknown&gt;
+        Capabilities: [b0] Vendor Specific Information: Intel Capabilities v1
+        Kernel driver in use: xhci_hcd
+        Kernel modules: xhci_pci
+
+00:14.2 RAM memory: Intel Corporation Meteor Lake-H/U Shared SRAM (rev 20)
+        Subsystem: Lenovo Device 232a
+        Flags: fast devsel, IOMMU group 11
+        Memory at 405a708000 (64-bit, non-prefetchable) [size=16K]
+        Memory at 405a70f000 (64-bit, non-prefetchable) [size=4K]
+        Capabilities: [80] Power Management version 3
+        Kernel driver in use: intel_pmc_ssram_telemetry
+        Kernel modules: intel_pmc_ssram_telemetry
+
+00:14.3 Network controller: Intel Corporation Meteor Lake PCH CNVi WiFi (rev 20)
+        Subsystem: Intel Corporation Device 0090
+        Flags: bus master, fast devsel, latency 0, IRQ 18, IOMMU group 12
+        Memory at 405a704000 (64-bit, non-prefetchable) [size=16K]
+        Capabilities: [c8] Power Management version 3
+        Capabilities: [d0] MSI: Enable- Count=1/1 Maskable- 64bit+
+        Capabilities: [40] Express Root Complex Integrated Endpoint, IntMsgNum 0
+        Capabilities: [80] MSI-X: Enable+ Count=16 Masked-
+        Capabilities: [100] Latency Tolerance Reporting
+        Capabilities: [164] Vendor Specific Information: ID=0010 Rev=0 Len=014 &lt;?&gt;
+        Kernel driver in use: iwlwifi
+        Kernel modules: iwlwifi
+
+00:15.0 Serial bus controller: Intel Corporation Meteor Lake-P Serial IO I2C Controller #0 (rev 20)
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 32, IOMMU group 13
+        Memory at 402c000000 (64-bit, non-prefetchable) [size=4K]
+        Capabilities: [80] Power Management version 3
+        Capabilities: [90] Vendor Specific Information: Intel &lt;unknown&gt;
+        Kernel driver in use: intel-lpss
+        Kernel modules: intel_lpss_pci
+
+00:16.0 Communication controller: Intel Corporation Meteor Lake-P CSME HECI #1 (rev 20)
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 167, IOMMU group 14
+        Memory at 405a70d000 (64-bit, non-prefetchable) [size=4K]
+        Capabilities: [50] Power Management version 3
+        Capabilities: [8c] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Capabilities: [a4] Vendor Specific Information: Intel &lt;unknown&gt;
+        Kernel driver in use: mei_me
+        Kernel modules: mei_me
+
+00:1c.0 PCI bridge: Intel Corporation Device 7e38 (rev 20) (prog-if 00 [Normal decode])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IRQ 126, IOMMU group 15
+        Bus: primary=00, secondary=1d, subordinate=1d, sec-latency=0
+        I/O behind bridge: 5000-5fff [size=4K] [16-bit]
+        Memory behind bridge: aa200000-aabfffff [size=10M] [32-bit]
+        Prefetchable memory behind bridge: 4059c00000-405a5fffff [size=10M] [32-bit]
+        Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+        Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Capabilities: [98] Subsystem: Lenovo Device 232a
+        Capabilities: [a0] Power Management version 3
+        Capabilities: [100] Advanced Error Reporting
+        Capabilities: [220] Access Control Services
+        Capabilities: [150] Precision Time Measurement
+        Capabilities: [a30] Secondary PCI Express
+        Capabilities: [a90] Data Link Feature &lt;?&gt;
+        Capabilities: [a9c] Physical Layer 16.0 GT/s
+        Capabilities: [edc] Lane Margining at the Receiver
+        Kernel driver in use: pcieport
+
+00:1f.0 ISA bridge: Intel Corporation Device 7e03 (rev 20)
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 0, IOMMU group 16
+
+00:1f.3 Audio device: Intel Corporation Meteor Lake-P HD Audio Controller (rev 20) (prog-if 80 [HDA compatible with vendor specific extensions])
+        Subsystem: Lenovo Device 232a
+        Flags: bus master, fast devsel, latency 64, IRQ 210, IOMMU group 16
+        Memory at 405a700000 (64-bit, non-prefetchable) [size=16K]
+        Memory at 4059000000 (64-bit, non-prefetchable) [size=2M]
+        Capabilities: [50] Power Management version 3
+        Capabilities: [c0] Vendor Specific Information: Intel &lt;unknown&gt;
+        Capabilities: [60] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Kernel driver in use: sof-audio-pci-intel-mtl
+        Kernel modules: snd_sof_pci_intel_mtl, snd_hda_intel
+
+00:1f.4 SMBus: Intel Corporation Meteor Lake-P SMBus Controller (rev 20)
+        Subsystem: Lenovo Device 232a
+        Flags: medium devsel, IRQ 18, IOMMU group 16
+        Memory at 405a70c000 (64-bit, non-prefetchable) [size=256]
+        I/O ports at efa0 [size=32]
+        Kernel driver in use: i801_smbus
+        Kernel modules: i2c_i801
+
+00:1f.5 Serial bus controller: Intel Corporation Meteor Lake-P SPI Controller (rev 20)
+        Subsystem: Lenovo Device 232a
+        Flags: fast devsel, IOMMU group 16
+        Memory at 9c400000 (32-bit, non-prefetchable) [size=4K]
+
+04:00.0 Non-Volatile memory controller: Sandisk Corp WD Black SN850X NVMe SSD (rev 01) (prog-if 02 [NVM Express])
+        Subsystem: Sandisk Corp WD Black SN850X NVMe SSD
+        Flags: bus master, fast devsel, latency 0, IRQ 16, IOMMU group 17
+        Memory at aac00000 (64-bit, non-prefetchable) [size=16K]
+        Capabilities: [80] Power Management version 3
+        Capabilities: [90] MSI: Enable- Count=1/32 Maskable- 64bit+
+        Capabilities: [b0] MSI-X: Enable+ Count=65 Masked-
+        Capabilities: [c0] Express Endpoint, IntMsgNum 0
+        Capabilities: [100] Advanced Error Reporting
+        Capabilities: [1b8] Latency Tolerance Reporting
+        Capabilities: [300] Secondary PCI Express
+        Capabilities: [900] L1 PM Substates
+        Capabilities: [910] Data Link Feature &lt;?&gt;
+        Capabilities: [920] Lane Margining at the Receiver
+        Capabilities: [9c0] Physical Layer 16.0 GT/s
+        Kernel driver in use: nvme
+        Kernel modules: nvme</code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="orga70d6bc4">install前の作業</h3>
+<div class="outline-text-3" id="text-orga70d6bc4">
+<p>
+ちょっと前は Windows 領域を縮小して…とかやっていたが,
+今回は SSD を換装して Windows 領域は無い状況で運用することに.
+</p>
+</div>
+</div>
+<div>
+<h3 id="org551a4fe1">インストール作業</h3>
+<div class="outline-text-3" id="text-org551a4fe1">
+</div>
+<div>
+<h4 id="org11e46cb0">インストールメディアの準備</h4>
+<div class="outline-text-4" id="text-org11e46cb0">
+<p>
+現状のインストーラに同梱されている firmware が古いので,
+インストール作業中にwifiが使えない, という情報があったのでそれに従った.
 </p>
 <ul class="org-ul">
-<li>参考: <a href="https://wiki.debian.org/InstallingDebianOn/Apple/MacBook/2-1">InstallingDebianOn/Apple/MacBook/2-1 - Debian Wiki</a>
-</li>
-<li>Linux 環境で作成する.  <code>grub-efi-ia32-bin</code> をインストールする.</li>
-<li>インストーラとして,
-<a href="http://ftp.de.debian.org/debian/dists/jessie/main/installer-i386/current/images/netboot/mini.iso">http://ftp.de.debian.org/debian/dists/jessie/main/installer-i386/current/images/netboot/mini.iso</a>
-を使うので, ダウンロードしておく</li>
-<li>USB メモリの先頭に, 適当なサイズ(50MB もあれば十分) のFAT32(W95 FAT32) MBR パーティションを作成</li>
-<li>マウントする(以下,  <code>/media/usb</code> にマウントしたとする)</li>
-<li>
-<p>
-IA32 EFI をインストール
-</p>
-<pre class="example">
-# grub-install --target=i386-efi \
-               --efi-directory=/media/usb \
-               --boot-directory=/media/usb/boot \
-               --removable
-</pre>
-</li>
-<li>
-<p>
-<code>/media/usb/boot/grub/grub.cfg</code> ファイルを以下の内容で作成
-</p>
-<pre class="example">
-if loadfont /boot/grub/fonts/unicode.pf2 ; then
-    set gfxmode=800x600
-    insmod efi_gop
-    insmod efi_uga
-    insmod video_bochs
-    insmod video_cirrus
-    insmod gfxterm
-    insmod png
-    terminal_output gfxterm
-fi
-linux (hd0,msdos1)/linux
-initrd (hd0,msdos1)/initrd.gz
-boot
-</pre>
-</li>
-<li>
-<code>mini.iso</code> から <code>initrd.gz</code> と <code>linux</code> を取り出して, <code>/media/usb</code> 以下に置く</li>
-<li>
-<code>mini.iso</code> そのものを <code>/media/usb</code> に置く</li>
+<li><a href="https://wiki.debian.org/InstallingDebianOn/Thinkpad/X1%20Carbon%20Gen%2011/trixie">InstallingDebianOn/Thinkpad/X1 Carbon Gen 11/trixie - Debian Wiki</a></li>
 </ul>
+<p>
+あとから気がついたが, これ一年前の情報なので今なら問題無いのでは, という気もする.
+もう一回試す気はないけれど.
+</p>
 
 <p>
-以上で, 32-bit EFI 用のインストーラが作成できる.
-ネットワーク必須なので, 必要に応じて firmware も同梱してくと良いだろう.
+やる事は
 </p>
+<ol class="org-ol">
+<li>インストールメディアを適宜準備</li>
+<li>インストールメディアとは別に firmware を入れておくメディアを準備</li>
+<li>
+<p>
+メディアに
+</p>
+<ul class="org-ul">
+<li>
+<code>check-missing-firmware</code> の最新版</li>
+<li>
+<code>firmware</code> の最新版</li>
+</ul>
+<p>
+を入れておく
+</p>
+<pre class="example">
+$ sudo -s
+# mkfs.vfat /dev/sd[x]
+# mount /dev/sd[x] /mnt
+# cd /mnt
+# wget "https://salsa.debian.org/tijuca/hw-detect/-/raw/master/check-missing-firmware.sh?ref_type=heads" -O check-missing-firmware
+# mkdir firmware &amp;&amp; cd firmware
+# wget -r -nd -e robots=no -A 'iwlwifi-so-a0-gf-a0*.*' --accept-regex '/plain/' https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/
+# mkdir i915 &amp;&amp; cd i915
+# wget -r -nd -e robots=no --accept-regex '/plain/' https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915
+# cd &amp; umount /mnt
+</pre>
+</li>
+<li>
+<p>
+インストール作業の 「Detect and mount installation media」の後に「Execute shell」で shell に切り替えて,
+</p>
+<pre class="example">
+# mount -t vfat /dev/sd[x] /mnt
+# cp /mnt/check-missing-firmware /bin
+# cp -a /mnt/firmware/* /lib/firmware
+# umount /mnt
+</pre>
+<p>
+として, ファイルを入れ替える.
+</p>
+</li>
+</ol>
+
+<p>
+といった塩梅.
+</p>
+</div>
+</div>
+<div>
+<h4 id="orgb9b6e222">インストール中の作業: snapper 向けの btrfs の設定</h4>
+<div class="outline-text-4" id="text-orgb9b6e222">
+<p>
+あんまり凝らなくても良いとは思うものの.
+</p>
+<ul class="org-ul">
+<li><a href="https://medium.com/@inatagan/installing-debian-with-btrfs-snapper-backups-and-grub-btrfs-27212644175f">Installing Debian with BTRFS, Snapper backups and GRUB-BTRFS | by A. Nagatani 永谷 | Medium</a></li>
+</ul>
+<p>
+まあ, ほとんど↑のまま, というか.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div>
@@ -1569,6 +1945,64 @@ boot と swap に分ける必要はあるのか定かではない. 癖のよう�
 </div>
 </div>
 <div>
+<h2 id="orgd1a4ba84">EFI 32bit installer</h2>
+<div class="outline-text-2" id="text-orgd1a4ba84">
+<p>
+古いMacPro 用に作成する必要があったのでメモを残しておく.
+</p>
+<ul class="org-ul">
+<li>参考: <a href="https://wiki.debian.org/InstallingDebianOn/Apple/MacBook/2-1">InstallingDebianOn/Apple/MacBook/2-1 - Debian Wiki</a>
+</li>
+<li>Linux 環境で作成する.  <code>grub-efi-ia32-bin</code> をインストールする.</li>
+<li>インストーラとして,
+<a href="http://ftp.de.debian.org/debian/dists/jessie/main/installer-i386/current/images/netboot/mini.iso">http://ftp.de.debian.org/debian/dists/jessie/main/installer-i386/current/images/netboot/mini.iso</a>
+を使うので, ダウンロードしておく</li>
+<li>USB メモリの先頭に, 適当なサイズ(50MB もあれば十分) のFAT32(W95 FAT32) MBR パーティションを作成</li>
+<li>マウントする(以下,  <code>/media/usb</code> にマウントしたとする)</li>
+<li>
+<p>
+IA32 EFI をインストール
+</p>
+<pre class="example">
+# grub-install --target=i386-efi \
+               --efi-directory=/media/usb \
+               --boot-directory=/media/usb/boot \
+               --removable
+</pre>
+</li>
+<li>
+<p>
+<code>/media/usb/boot/grub/grub.cfg</code> ファイルを以下の内容で作成
+</p>
+<pre class="example">
+if loadfont /boot/grub/fonts/unicode.pf2 ; then
+    set gfxmode=800x600
+    insmod efi_gop
+    insmod efi_uga
+    insmod video_bochs
+    insmod video_cirrus
+    insmod gfxterm
+    insmod png
+    terminal_output gfxterm
+fi
+linux (hd0,msdos1)/linux
+initrd (hd0,msdos1)/initrd.gz
+boot
+</pre>
+</li>
+<li>
+<code>mini.iso</code> から <code>initrd.gz</code> と <code>linux</code> を取り出して, <code>/media/usb</code> 以下に置く</li>
+<li>
+<code>mini.iso</code> そのものを <code>/media/usb</code> に置く</li>
+</ul>
+
+<p>
+以上で, 32-bit EFI 用のインストーラが作成できる.
+ネットワーク必須なので, 必要に応じて firmware も同梱してくと良いだろう.
+</p>
+</div>
+</div>
+<div>
 <h2 id="orge01c0840">install が終わったら.</h2>
 <div class="outline-text-2" id="text-orge01c0840">
 <p>
@@ -1622,9 +2056,9 @@ $ reportbug -b installation-reports
       <a href="#" class="back_to_top">Back to Top &#9650;</a>
       <hr/>
       <footer>
-        <p>&copy; 2006-2021
+        <p>&copy; 2006-2025
   <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-  Lastupdate: 2021-08-13 21:45:09 +0000
+  Lastupdate: 2025-12-10 15:40:08 +0000
   <br/>
   Powered by
   <a href="https://orgmode.org/" rel="noopener" title="Org mode">
