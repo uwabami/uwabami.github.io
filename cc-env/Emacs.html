@@ -37,14 +37,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2026-02-05T22:41:04+09:00" />
+<meta property="article:published_time" content="2026-02-10T22:17:35+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami_frozen" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2026-02-05T22:41:04+09:00","datePublished":"2026-02-05T22:41:04+09:00","headline":"Emacs の設定","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2026-02-10T22:17:35+09:00","datePublished":"2026-02-10T22:17:35+09:00","headline":"Emacs の設定","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -228,56 +228,88 @@ VCS からインストールしたいパッケージは
 本ファイル(<code>README.org</code>) から,
 Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し, byte-compile します.
 </p>
-<figure class="highlight"><pre><code class="language-makefile-gmake" data-lang="makefile-gmake"><span class="nv">EMACS</span>		<span class="o">?=</span> emacs
-<span class="nv">EMACS_VER</span>	<span class="o">?=</span> <span class="p">$(</span>shell <span class="p">$(</span>EMACS<span class="p">)</span> <span class="nt">--version</span> | <span class="nb">head</span> <span class="nt">-1</span> | <span class="nb">cut</span> <span class="nt">-f</span> 3 <span class="nt">--d</span> <span class="se">\ </span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-makefile-gmake" data-lang="makefile-gmake"><span class="c"># -*- mode: makefile -*-
+# ----------------------------------------------------------------------------
+</span><span class="nv">EMACS</span>		<span class="o">?=</span> emacs
+<span class="nv">EMACS_VER</span>	<span class="o">?=</span> <span class="p">$(</span>shell emacs <span class="nt">--version</span> | <span class="nb">head</span> <span class="nt">-1</span> | <span class="nb">cut</span> <span class="nt">-f</span> 3 <span class="nt">--d</span> <span class="se">\ </span><span class="p">)</span>
 <span class="nv">EARLY_INIT</span>	<span class="o">?=</span> <span class="p">$(</span>shell <span class="k">if</span> <span class="o">[</span> <span class="sb">`</span><span class="nb">echo</span> <span class="s2">"</span><span class="p">$(</span><span class="s2">EMACS_VER</span><span class="p">)</span><span class="s2"> &gt;= 27"</span> | bc<span class="sb">`</span> <span class="nt">-eq</span> 1 <span class="o">]</span> <span class="p">;</span> <span class="k">then </span><span class="nb">echo yes</span><span class="p">;</span> <span class="k">fi</span><span class="p">)</span>
-<span class="nv">NATIVE_COMP</span>	<span class="o">?=</span> <span class="p">$(</span>shell <span class="k">if</span> <span class="o">[</span> <span class="sb">`</span><span class="nb">echo</span> <span class="s2">"</span><span class="p">$(</span><span class="s2">EMACS_VER</span><span class="p">)</span><span class="s2"> &gt;= 28.1"</span> | bc<span class="sb">`</span> <span class="nt">-eq</span> 1 <span class="o">]</span> <span class="p">;</span> <span class="k">then </span><span class="nb">echo yes</span> <span class="p">;</span> <span class="k">fi</span><span class="p">)</span>
+<span class="nv">NATIVE_COMP</span>	<span class="o">?=</span> <span class="p">$(</span>shell <span class="k">if</span> <span class="o">[</span> <span class="sb">`</span><span class="nb">echo</span> <span class="s2">"</span><span class="p">$(</span><span class="s2">EMACS_VER</span><span class="p">)</span><span class="s2"> &gt;= 28.1"</span> | bc<span class="sb">`</span> <span class="nt">-eq</span> 1 <span class="o">]</span> <span class="p">;</span> <span class="k">then </span><span class="nb">echo yes</span><span class="p">;</span> <span class="k">fi</span><span class="p">)</span>
+<span class="nv">TREESIT</span>	<span class="o">?=</span> <span class="p">$(</span>shell <span class="k">if</span> <span class="o">[</span> <span class="sb">`</span><span class="nb">echo</span> <span class="s2">"</span><span class="p">$(</span><span class="s2">EMACS_VER</span><span class="p">)</span><span class="s2"> &gt;= 29"</span> | bc<span class="sb">`</span> <span class="nt">-eq</span> 1 <span class="o">]</span>  <span class="p">;</span><span class="k">then </span><span class="nb">echo yes</span><span class="p">;</span> <span class="k">fi</span><span class="p">)</span>
+<span class="nv">NATIVE_COMP_DIR</span> <span class="o">?=</span> <span class="p">$(</span>shell <span class="k">if</span> <span class="o">[</span> <span class="sb">`</span><span class="nb">echo</span> <span class="s2">"</span><span class="p">$(</span><span class="s2">EMACS_VER</span><span class="p">)</span><span class="s2"> &gt;= 30"</span> | bc<span class="sb">`</span> <span class="nt">-eq</span> 1 <span class="o">]</span> <span class="p">;</span> <span class="k">then </span><span class="nb">echo yes</span><span class="p">;</span> <span class="k">fi</span><span class="p">)</span>
 <span class="nv">EL</span>		<span class="o">=</span>
-<span class="k">ifeq</span> <span class="nv">($(EARLY_INIT),yes)</span>
+
+<span class="c"># ----------------------------------------------------------------------------
+# check: early-init
+</span><span class="k">ifeq</span> <span class="nv">($(EARLY_INIT),yes)</span>
 <span class="nv">EL</span>		<span class="o">+=</span> early-init.el
 <span class="nv">LOAD</span>		<span class="o">?=</span> <span class="nt">-l</span> early-init.el <span class="nt">-l</span> init.el
 <span class="k">else</span>
 <span class="nv">LOAD</span>		<span class="o">?=</span> <span class="nt">-l</span> init.el
 <span class="k">endif</span>
-
-<span class="c">## check wl-beta debian package
+<span class="c"># ----------------------------------------------------------------------------
+# check: Wanderlust Debian package
 </span><span class="k">ifneq</span> <span class="nv">(,$(wildcard /etc/emacs/site-start.d/65wl-beta.el))</span>
 <span class="nv">EL</span>		<span class="o">+=</span> init-wl.el
 <span class="k">endif</span>
-
-<span class="k">ifeq</span> <span class="nv">($(NATIVE_COMP),yes)</span>
+<span class="c"># ----------------------------------------------------------------------------
+# check: native compile or byte compile
+</span><span class="k">ifeq</span> <span class="nv">($(NATIVE_COMP),yes)</span>
 <span class="nl">all</span><span class="o">:</span> <span class="nf">$(EL)</span>
 <span class="k">else</span>
 <span class="nv">ELC</span>		<span class="o">=</span> <span class="p">$(</span>EL:%.el<span class="o">=</span>%.elc<span class="p">)</span>
 <span class="nl">all</span><span class="o">:</span> <span class="nf">$(ELC) init.elc</span>
-<span class="k">endif</span>
-
-<span class="nl">$(EL)</span><span class="o">:</span> <span class="nf">init.el</span>
-<span class="nl">init.el</span><span class="o">:</span> <span class="nf">README.org</span>
-    <span class="err">@mkdir</span> <span class="err">-p</span> <span class="err">~/.cache/emacs</span>
-    <span class="err">@if</span> <span class="err">[</span> <span class="err">!</span> <span class="err">-d</span> <span class="err">~/.cache/emacs/eln-cache</span> <span class="err">];</span> <span class="err">then</span> <span class="err">\</span>
-        <span class="err">echo</span> <span class="s2">";; mkdir ~/.cache/emacs/eln-cache"</span><span class="err">;</span> <span class="err">mkdir</span> <span class="err">~/.cache/emacs/eln-cache</span> <span class="err">;\</span>
-    <span class="err">fi</span>
-    <span class="err">@if</span> <span class="err">[</span> <span class="err">!</span> <span class="err">-L</span> <span class="err">eln-cache</span> <span class="err">];</span> <span class="err">then</span> <span class="err">\</span>
-        <span class="err">echo</span> <span class="s2">";; ln -sf ~/.cache/emacs/eln-cache . "</span><span class="err">;</span> <span class="err">ln</span> <span class="err">-sf</span> <span class="err">~/.cache/emacs/eln-cache</span> <span class="err">.</span> <span class="err">;\</span>
-    <span class="err">fi</span>
-    <span class="err">@if</span> <span class="err">[</span> <span class="err">!</span> <span class="err">-d</span> <span class="err">~/.cache/emacs/tree-sitter</span> <span class="err">];</span> <span class="err">then</span> <span class="err">\</span>
-        <span class="err">echo</span> <span class="s2">";; mkdir ~/.cache/emacs/tree-sitter"</span><span class="err">;</span> <span class="err">mkdir</span> <span class="err">~/.cache/emacs/tree-sitter</span> <span class="err">;\</span>
-    <span class="err">fi</span>
-    <span class="err">@if</span> <span class="err">[</span> <span class="err">!</span> <span class="err">-L</span> <span class="err">tree-sitter</span> <span class="err">];</span> <span class="err">then</span> <span class="err">\</span>
-        <span class="err">echo</span> <span class="s2">";; ln -sf ~/.cache/emacs/tree-sitter . "</span><span class="err">;</span> <span class="err">ln</span> <span class="err">-sf</span> <span class="err">~/.cache/emacs/tree-sitter</span> <span class="err">.</span> <span class="err">;\</span>
-    <span class="err">fi</span>
-    <span class="err">@mkdir</span> <span class="err">-p</span> <span class="err">elpa</span>
-    <span class="err">$(EMACS)</span> <span class="err">--batch</span> <span class="err">--eval</span> <span class="err">\</span>
-       <span class="err">"(progn</span> <span class="err">\</span>
-          <span class="err">(require</span> <span class="err">'ob-tangle)</span> <span class="err">\</span>
-          <span class="err">(org-babel-tangle-file</span> <span class="err">\</span><span class="s2">"$&lt;\" \"$@\" \"emacs-lisp\"))"</span>
-    <span class="err">$(EMACS)</span> <span class="err">-l</span> <span class="err">init.el</span> <span class="err">--batch</span> <span class="err">--eval</span> <span class="s1">'(kill-emacs)'</span>
-
-<span class="k">ifneq</span> <span class="nv">($(NATIVE_COMP),yes)</span>
 <span class="nl">%.elc</span><span class="o">:</span> <span class="nf">%.el</span>
-    <span class="err">$(EMACS)</span> <span class="err">$(LOAD)</span> <span class="err">-batch</span> <span class="err">-f</span> <span class="err">batch-byte-compile</span> <span class="err">$&lt;</span>
-<span class="err">endif</span></code></pre></figure>
+	<span class="p">$(</span>EMACS<span class="p">)</span> <span class="p">$(</span>LOAD<span class="p">)</span> <span class="nt">-batch</span> <span class="nt">-f</span> batch-byte-compile <span class="nv">$&lt;</span>
+<span class="k">endif</span>
+<span class="c"># ----------------------------------------------------------------------------
+# main part
+</span><span class="nl">$(EL)</span><span class="o">:</span> <span class="nf">init.el</span>
+<span class="nl">init.el</span><span class="o">:</span> <span class="nf">README.org</span>
+	<span class="p">@</span><span class="nb">mkdir</span> <span class="nt">-p</span> elpa
+	<span class="p">$(</span>EMACS<span class="p">)</span> <span class="nt">--batch</span> <span class="nt">--eval</span> <span class="se">\</span>
+	   <span class="s2">"(progn </span><span class="se">\</span><span class="s2">
+		  (require 'ob-tangle) </span><span class="se">\</span><span class="s2">
+		  (org-babel-tangle-file </span><span class="se">\"</span><span class="nv">$&lt;</span><span class="se">\"</span><span class="s2"> </span><span class="se">\"</span><span class="nv">$@</span><span class="se">\"</span><span class="s2"> </span><span class="se">\"</span><span class="s2">emacs-lisp</span><span class="se">\"</span><span class="s2">))"</span>
+	<span class="p">@</span><span class="k">if</span> <span class="o">[</span> x<span class="s2">"</span><span class="p">$(</span><span class="s2">TREESIT</span><span class="p">)</span><span class="s2">"</span> <span class="o">=</span> x<span class="s2">"yes"</span> <span class="nt">-a</span> <span class="o">!</span> <span class="nt">-f</span> tree-sitter/libtree-sitter-elisp.so <span class="o">]</span> <span class="p">;</span> <span class="k">then</span> <span class="se">\</span>
+		<span class="p">$(</span>EMACS<span class="p">)</span> <span class="nt">--batch</span> <span class="nt">--eval</span> <span class="se">\</span>
+		  <span class="s2">"(progn </span><span class="se">\</span><span class="s2">
+			(setq treesit-language-source-alist </span><span class="se">\</span><span class="s2">
+			  '((elisp </span><span class="se">\"</span><span class="s2">https://github.com/Wilfred/tree-sitter-elisp</span><span class="se">\"</span><span class="s2">))) </span><span class="se">\</span><span class="s2">
+			(treesit-install-language-grammar 'elisp)))"</span> <span class="p">;</span><span class="se">\</span>
+	<span class="k">fi</span>
+	<span class="p">$(</span>EMACS<span class="p">)</span> <span class="p">$(</span>LOAD<span class="p">)</span> <span class="nt">--batch</span> <span class="nt">--eval</span> <span class="s1">'(kill-emacs)'</span>
+<span class="c"># ----------------------------------------------------------------------------
+# create subdirectory symlink
+</span><span class="k">ifeq</span> <span class="nv">($(NATIVE_COMP_DIR),yes)</span>
+<span class="nl">README.org</span><span class="o">:</span> <span class="nf">tree-sitter</span>
+<span class="k">else</span>
+<span class="nl">README.org</span><span class="o">:</span> <span class="nf">eln-cache tree-sitter</span>
+<span class="k">endif</span>
+<span class="nl">tree-sitter</span><span class="o">:</span>
+	<span class="p">@</span><span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-d</span> ~/.cache/emacs/tree-sitter <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="se">\</span>
+		<span class="nb">echo</span> <span class="s2">";; mkdir ~/.cache/emacs/tree-sitter"</span><span class="p">;</span> <span class="nb">mkdir</span> ~/.cache/emacs/tree-sitter <span class="p">;</span><span class="se">\</span>
+	<span class="k">fi</span>
+	<span class="p">@</span><span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-L</span> tree-sitter <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="se">\</span>
+		<span class="nb">echo</span> <span class="s2">";; ln -sf ~/.cache/emacs/tree-sitter . "</span><span class="p">;</span> <span class="nb">ln</span> <span class="nt">-sf</span> ~/.cache/emacs/tree-sitter <span class="nb">.</span> <span class="p">;</span><span class="se">\</span>
+	<span class="k">fi</span>
+<span class="nl">eln-cache</span><span class="o">:</span>
+	<span class="p">@</span><span class="nb">mkdir</span> <span class="nt">-p</span> ~/.cache/emacs
+	<span class="p">@</span><span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-d</span> ~/.cache/emacs/eln-cache <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="se">\</span>
+		<span class="nb">echo</span> <span class="s2">";; mkdir ~/.cache/emacs/eln-cache"</span><span class="p">;</span> <span class="nb">mkdir</span> ~/.cache/emacs/eln-cache <span class="p">;</span><span class="se">\</span>
+	<span class="k">fi</span>
+	<span class="p">@</span><span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-L</span> <span class="nv">$@</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="se">\</span>
+		<span class="nb">echo</span> <span class="s2">";; ln -sf ~/.cache/emacs/eln-cache . "</span><span class="p">;</span> <span class="nb">ln</span> <span class="nt">-sf</span> ~/.cache/emacs/eln-cache <span class="nb">.</span> <span class="p">;</span><span class="se">\</span>
+	<span class="k">fi</span>
+<span class="c"># ----------------------------------------------------------------------------
+</span><span class="nl">clean</span><span class="o">:</span>
+	<span class="nb">rm</span> <span class="nt">-fr</span> auto-save-list <span class="k">*</span>.el <span class="k">*</span>.elc <span class="k">*</span>~
+<span class="nl">distclean</span><span class="o">:</span> <span class="nf">clean</span>
+	<span class="nb">rm</span> <span class="nt">-fr</span> elpa
+	<span class="nb">rm</span> <span class="nt">-fr</span> eln-cache/<span class="k">*</span>
+	<span class="nb">rm</span> <span class="nt">-f</span> eln-cache
+	<span class="nb">rm</span> <span class="nt">-fr</span> tree-sitter/<span class="k">*</span>
+	<span class="nb">rm</span> <span class="nt">-f</span> tree-sitter
+	<span class="nb">rm</span> <span class="nt">-f</span> ~/.cache/emacs/package-quickstart.<span class="k">*</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -296,7 +328,7 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し, 
 </div>
 <div>
 <h2 id="org60bad8a3">
-<span class="todo TODO">TODO</span> ディレクトリ構成の修正 <code>[0/1]</code>
+<span class="todo TODO">TODO</span> ディレクトリ構成の修正 <code>[0/2]</code>
 </h2>
 <div class="outline-text-2" id="text-org60bad8a3">
 <p>
@@ -304,15 +336,7 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し, 
 の置き場所は <code>user-emacs-directory</code> 以下にまとめられます.
 <del>パッケージによって置き方はかなり野放図ですよねぇ.</del>
 </p>
-<ul class="org-ul">
-<li class="off">
-<code>[ ]</code> <a href="https://github.com/emacscollective/no-littering">no-littering</a> あたりで整理した方が良いかなぁ.
-<ul class="org-ul">
-<li>~/.emacs.d/eln-cache を変更できないか?</li>
-<li>treesit のインストール先がハードコードされている. これを変えたいなぁ…</li>
-</ul>
-</li>
-</ul>
+
 
 <p>
 ディレクトリ構成は以下のようにしました:
@@ -321,12 +345,37 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し, 
     ~/.emacs.d/
      |-- Makefile    ←  byte-compile 用の rule
      |-- README.org  ←  本ファイル．`org-babel-tangle' で init.el を生成
-     |-- eln-cache/  → ~/.cache/emacs/eln-cache への symlink: native compile 出力
      |-- elpa/       ←  package.el で導入したパッケージが置かれる場所
      |-- share/      ←  (基本的に)参照するだけの資源置き場所
          `-- tree-sitter ← ~/.cache/emacs/tree-sitter への symlink: treesit-auto のインストール先
     ~/.cache/emacs   ←  一次ファイルの置き場所
 </pre>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> <a href="https://github.com/rsnodgrass/emacs-xdg">rsnodgrass/emacs-xdg: XDG Base Directory Specification for Emacs</a> を使った方が良い?
+<ul class="org-ul">
+<li>Emacs ≧ 29.4 でサポートしている模様</li>
+<li>
+<code>early-init.el</code> で, これ↑ 使えるかな?</li>
+</ul>
+</li>
+<li class="off">
+<code>[ ]</code> <a href="https://github.com/emacscollective/no-littering">no-littering</a> あたりで整理した方が良いかなぁ.
+<ul class="org-ul">
+<li>treesit のインストール先がハードコードされている. これを変えたい</li>
+<li>
+<p>
+~/.emacs.d/eln-cache を変更できないか? ← 少なくとも Emacs ≧ 29.1 ではできた.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">startup-redirect-eln-cache</span>
+ <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"~/.local/share/emacs/eln-cache/"</span><span class="p">))</span></code></pre></figure>
+<p>
+で OK.
+</p>
+</li>
+</ul>
+</li>
+</ul>
 
 <p>
 上記ディレクトリ構成を設定ファイルで使用するために
@@ -359,15 +408,14 @@ Makefile 内の以下のスクリプトで <code>~/init.el</code> を生成し, 
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-when-compile</span>
   <span class="p">(</span><span class="nb">require</span> <span class="ss">'cl-lib</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span></code></pre></figure>
 <p>
-また, Emacs 27 以降は cl が読み込まれていると
+また, Emacs ≧ 27 は cl が読み込まれていると
 `Package cl is deprecated' が表示されるので, これを止めておきます.
 他にも幾つかの警告を無効化しておきます.
 特に, 意図的に <code>setq</code> を優先して使っているので,
 debug 時以外は <code>free-vars</code> と <code>unresolved</code> も無効化しておかないと騒々しいですよね.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-and-compile</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">byte-compile-warnings</span> <span class="no">t</span><span class="p">)</span>
-  <span class="c1">;; (setq byte-compile-warnings '(not cl-functions free-vars docstrings unresolved))</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">byte-compile-warnings</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span> <span class="nv">cl-functions</span> <span class="nv">free-vars</span> <span class="nv">docstrings</span> <span class="nv">unresolved</span><span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
 <p>
 native compile: 気になった時に動かしています.
@@ -376,6 +424,7 @@ Makefile から叩いて処理できると良いんですけどね…
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;;;###autoload</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:native-compile-async-all</span> <span class="p">()</span>
   <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">setq-local</span> <span class="nv">native-comp-async-jobs-number</span> <span class="mi">8</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">native-compile-async</span> <span class="s">"~/.emacs.d/init.el"</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">native-compile-async</span> <span class="s">"~/.emacs.d/early-init.el"</span><span class="p">)</span>
   <span class="c1">;; (native-compile-async "~/.emacs.d/share/elisp/" 'recursively)</span>
@@ -449,19 +498,25 @@ init.el でも gc-cons-threshold を設定しておく.
 </div>
 </div>
 <div>
-<h4 id="org9584246f">起動後に GC Threshold を既定値に戻す</h4>
+<h4 id="org9584246f">
+<span class="todo TODO">TODO</span> 起動後に GC Threshold を既定値に戻す <code>[/]</code>
+</h4>
 <div class="outline-text-4" id="text-org9584246f">
 <p>
 以前は以下を設定していたが, 最近は <code>gcmh</code> に任せる事にした.
 → <a href="#org414ff0d8"><code>gcmh</code>: 賢い garbage-collection</a>
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (setq garbage-collection-messages nil)</span>
-<span class="c1">;; ;; Run GC every 60 seconds if emacs is idle.</span>
-<span class="c1">;; (run-with-idle-timer 60.0 t #'garbage-collect)</span>
-<span class="c1">;; ;; 起動後に初期値に戻す.</span>
-<span class="c1">;; (add-hook 'emacs-startup-hook</span>
-<span class="c1">;;           (lambda ()</span>
-<span class="c1">;;             (setq gc-cons-threshold 800000)))</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">garbage-collection-messages</span> <span class="no">nil</span><span class="p">)</span>
+<span class="c1">;; Run GC every 60 seconds if emacs is idle.</span>
+<span class="p">(</span><span class="nv">run-with-idle-timer</span> <span class="mf">60.0</span> <span class="no">t</span> <span class="nf">#'</span><span class="nv">garbage-collect</span><span class="p">)</span>
+<span class="c1">;; 起動後に初期値に戻す.</span>
+<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'emacs-startup-hook</span>
+          <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+            <span class="p">(</span><span class="k">setq</span> <span class="nv">gc-cons-threshold</span> <span class="mi">800000</span><span class="p">)))</span></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> gcmh は無駄にタイマーを増やし過ぎて, 結果, 自分が増やしたタイマーで GC を走らせる, という指摘もある.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -471,12 +526,35 @@ init.el でも gc-cons-threshold を設定しておく.
 <p>
 本体でやっても良いけど, ここに持ってきても良いらしい.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">package-archives</span> <span class="o">'</span><span class="p">((</span><span class="s">"gnu"</span>    <span class="o">.</span> <span class="s">"https://elpa.gnu.org/packages/"</span><span class="p">)</span>
-                         <span class="p">(</span><span class="s">"melpa"</span>  <span class="o">.</span> <span class="s">"https://melpa.org/packages/"</span><span class="p">)</span>
-                         <span class="p">(</span><span class="s">"nongnu"</span> <span class="o">.</span> <span class="s">"https://elpa.nongnu.org/nongnu/"</span><span class="p">)</span>
-                         <span class="p">)</span>
-      <span class="nv">package-gnupghome-dir</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">".gnupg"</span> <span class="s">"~/"</span><span class="p">)</span>
-      <span class="nv">package-enable-at-startup</span> <span class="no">nil</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="s">"package"</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">package-archives</span> <span class="o">'</span><span class="p">((</span><span class="s">"gnu"</span>    <span class="o">.</span> <span class="s">"https://elpa.gnu.org/packages/"</span><span class="p">)</span>
+                           <span class="p">(</span><span class="s">"melpa"</span>  <span class="o">.</span> <span class="s">"https://melpa.org/packages/"</span><span class="p">)</span>
+                           <span class="p">(</span><span class="s">"nongnu"</span> <span class="o">.</span> <span class="s">"https://elpa.nongnu.org/nongnu/"</span><span class="p">)</span>
+                           <span class="p">)</span>
+        <span class="nv">package-enable-at-startup</span> <span class="no">nil</span>
+        <span class="nv">package-gnupghome-dir</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">".gnupg"</span> <span class="s">"~/"</span><span class="p">)</span>
+        <span class="nv">package-quickstart</span> <span class="no">t</span>
+        <span class="nv">package-quickstart-file</span> <span class="s">"~/.cache/emacs/package-quickstart.el"</span>
+        <span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="orgc5c74cbf">Native Compile の設定</h3>
+<div class="outline-text-3" id="text-orgc5c74cbf">
+<p>
+Native Compile に関連する設定(Emacs ≧ 29).
+保存先の移動などなど.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">startup-redirect-eln-cache</span>
+ <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"~/.cache/emacs/eln-cache/"</span><span class="p">))</span></code></pre></figure>
+<p>
+どうにも org-element-* は native compile すると挙動不振だったので外している.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">with-eval-after-load</span> <span class="s">"comp"</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">native-comp-async-jobs-number</span> <span class="mi">8</span>
+        <span class="nv">native-comp-jit-compilation-deny-list</span> <span class="o">'</span><span class="p">(</span><span class="s">"\\(.*org-element.*\\|.*-loaddefs\\|.*-autoloads\\)\\.\\(el\\.gz\\|el\\)"</span><span class="p">))</span>
+  <span class="p">)</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -554,15 +632,9 @@ init.el でも gc-cons-threshold を設定しておく.
 <span class="p">(</span><span class="k">setq</span> <span class="nv">auto-save-default</span> <span class="no">nil</span><span class="p">)</span>
 <span class="p">(</span><span class="k">setq</span> <span class="nv">auto-save-list-file-prefix</span> <span class="no">nil</span><span class="p">)</span></code></pre></figure>
 <p>
-Native Compile に関連する設定(Emacs ≧ 29)
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="k">setq</span> <span class="nv">package-native-compile</span> <span class="no">t</span>
-      <span class="nv">native-compile-target-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"eln-cache"</span> <span class="nv">user-emacs-directory</span><span class="p">)</span>
-      <span class="nv">native-comp-jit-compilation-deny-list</span> <span class="o">'</span><span class="p">(</span><span class="s">"\\(.*org-element.*\\|.*-loaddefs\\|.*-autoloads\\)\\.\\(el\\.gz\\|el\\)"</span><span class="p">))</span></code></pre></figure>
-<p>
 以下はここで設定するのが良いのかいまいちわかっていないあれこれ.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">setq-default</span> <span class="nv">vc-handled-backends</span> <span class="no">nil</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">setq-default</span> <span class="nv">vc-handled-backends</span> <span class="o">'</span><span class="p">(</span><span class="nv">Git</span><span class="p">))</span>
 <span class="p">(</span><span class="k">setq</span> <span class="nv">vc-follow-symlinks</span> <span class="no">t</span><span class="p">)</span>
 <span class="p">(</span><span class="k">setq</span> <span class="nv">history-delete-duplicates</span> <span class="no">t</span><span class="p">)</span>
 <span class="p">(</span><span class="k">setq</span> <span class="nv">load-prefer-newer</span> <span class="nv">noninteractive</span><span class="p">)</span>
@@ -604,11 +676,152 @@ Native Compile に関連する設定(Emacs ≧ 29)
 </div>
 </div>
 <div>
-<h2 id="org34ff2306">独自関数</h2>
+<h2 id="orgcf4176e7">Package 関連: <a href="https://emacs-jp.github.io/packages/package-management/package-el">package.el</a>, <a href="https://github.com/conao3/leaf.el">leaf.el</a>
+</h2>
+<div class="outline-text-2" id="text-orgcf4176e7">
+<p>
+<a href="https://github.com/conao3/leaf.el">leaf.el</a>のおかげで,
+無いと途方に暮れるパッケージ以外のインストールは無視できるようになります.
+</p>
+</div>
+<div>
+<h3 id="org61dc7202">
+<span class="todo TODO">TODO</span> <a href="https://emacs-jp.github.io/packages/package-management/package-el">package.el</a> の初期化処理 <code>[/]</code>
+</h3>
+<div class="outline-text-3" id="text-org61dc7202">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; esup が early-init を呼ばない...</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">package-quickstart-file</span> <span class="s">"~/.cache/emacs/package-quickstart.el"</span>
+      <span class="nv">package-quickstart</span> <span class="no">t</span><span class="p">)</span>
+<span class="c1">;;;###autoload</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">my:package-quickstart-refresh-silently</span> <span class="p">()</span>
+  <span class="s">"Compile-Log を表示せずに package-quickstart-refresh を実行するラッパー関数"</span>
+  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">byte-compile-warnings</span> <span class="no">nil</span><span class="p">)</span>      <span class="c1">;; 警告を生成しない</span>
+        <span class="p">(</span><span class="nv">byte-compile-verbose</span> <span class="no">nil</span><span class="p">)</span>       <span class="c1">;; 詳細ログを出さない</span>
+        <span class="p">(</span><span class="nv">inhibit-message</span> <span class="no">t</span><span class="p">)</span>              <span class="c1">;; メッセージエリアの出力も抑制</span>
+        <span class="c1">;; *Compile-Log* バッファが表示されようとしたら「何もしない」設定にする</span>
+        <span class="p">(</span><span class="nv">display-buffer-alist</span>
+         <span class="o">'</span><span class="p">((</span><span class="s">"\\*Compile-Log\\*"</span> <span class="nv">display-buffer-no-window</span> <span class="p">(</span><span class="nv">allow-no-window</span> <span class="o">.</span> <span class="no">t</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="nv">with-current-buffer</span> <span class="p">(</span><span class="nv">get-buffer-create</span> <span class="s">"*Compile-Log*"</span><span class="p">)</span>
+      <span class="c1">;; 念のためログバッファを空にしておく（以前のログが残っているとポップアップの原因になることがあるため）</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">inhibit-read-only</span> <span class="no">t</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">erase-buffer</span><span class="p">)))</span>
+    <span class="c1">;; 実行</span>
+    <span class="p">(</span><span class="nv">package-quickstart-refresh</span><span class="p">)))</span>
+<span class="c1">;;</span>
+<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">'kill-emacs-hook</span> <span class="nf">#'</span><span class="nv">my:package-quickstart-refresh-silently</span><span class="p">)</span></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> 起動時にはここが一番時間がかかっている.</li>
+</ul>
+</div>
+</div>
+<div>
+<h3 id="orgc2ededbf"><a href="https://github.com/conao3/leaf.el">leaf.el</a></h3>
+<div class="outline-text-3" id="text-orgc2ededbf">
+<p>
+個々のパッケージの設定には<a href="https://github.com/conao3/leaf.el">leaf.el</a>を利用します.
+以前は el-get も利用していましたが,
+<code>:vc</code> キーワードで <code>package-vc-install</code> を呼び出せるので, こっちを使うようになりました.
+</p>
+<ul class="org-ul">
+<li class="on">
+<code>[X]</code> <code>package-vc-install</code> でインストールした諸々って, package-upgrade 後に delete 対象になる?
+→ send PR: <a href="https://github.com/conao3/leaf.el/pull/552">leaf-handler-vc: Add package to package-selected-packages by uwabami · Pull Request #552 · conao3/leaf.el</a>
+</li>
+</ul>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; ---------------------------------------------------------------------------</span>
+<span class="p">(</span><span class="nv">eval-and-compile</span>
+  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">featurep</span> <span class="ss">'leaf</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">package-initialize</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">package-installed-p</span> <span class="ss">'leaf</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">package-refresh-contents</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">package-install</span> <span class="ss">'leaf</span> <span class="no">t</span><span class="p">))))</span>
+<span class="c1">;; ---------------------------------------------------------------------------</span>
+<span class="p">(</span><span class="nv">leaf</span> <span class="nv">leaf-keywords</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">blackout</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">shut-up</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="nv">leaf-keywords-init</span><span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org9c1823a4">
+<code>package-vc-install</code> の調整</h3>
+<div class="outline-text-3" id="text-org9c1823a4">
+<p>
+package-vc-install を直接叩く事は無くて,
+leaf の <code>:vc</code> キーワードでインストールします.
+ただ, package-vc-install はリポジトリに既に .el が存在すること前提としていて
+make によって .el が生成される場合にはちょっと不便だったりします.
+よって, これを解決する <code>:advice</code> で追加しておきます.
+</p>
+
+<p>
+make を叩く必要があるパッケージは
+個別に <code>:preface</code> キーワードで
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'package-vc-allow-build-commands</span> <span class="ss">'hogehero</span><span class="p">)</span></code></pre></figure>
+<p>
+と指定する様にしました.
+</p>
+
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">package-vc</span>
+  <span class="ss">:doc</span> <span class="s">"Extend package-vc to support post-make autoload generation"</span>
+  <span class="ss">:tag</span> <span class="s">"builtin"</span>
+  <span class="c1">;; 呼び出されるまで変数が見えないので custom に移動していくことに</span>
+  <span class="ss">:custom</span> <span class="p">(</span><span class="nv">package-vc-allow-build-commands</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
+  <span class="ss">:preface</span>
+<span class="c1">;;;###autoload</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:package-vc-regenerate-autoloads-after-make</span> <span class="p">(</span><span class="nv">pkg-spec</span> <span class="nv">pkg-desc</span><span class="p">)</span>
+    <span class="s">"Regenerate autoloads after `package-vc--make' if new .el files were generated."</span>
+    <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">pkg-dir</span> <span class="p">(</span><span class="nv">package-desc-dir</span> <span class="nv">pkg-desc</span><span class="p">))</span>
+           <span class="p">(</span><span class="nv">name</span> <span class="p">(</span><span class="nv">package-desc-name</span> <span class="nv">pkg-desc</span><span class="p">))</span>
+           <span class="p">(</span><span class="nv">lisp-dir</span> <span class="p">(</span><span class="nv">plist-get</span> <span class="nv">pkg-spec</span> <span class="ss">:lisp-dir</span><span class="p">))</span>
+           <span class="p">(</span><span class="nv">lisp-path</span> <span class="p">(</span><span class="nv">file-name-concat</span> <span class="nv">pkg-dir</span> <span class="nv">lisp-dir</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">lisp-path</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">message</span> <span class="s">"Regenerating autoloads for %s in %s..."</span> <span class="nv">name</span> <span class="nv">lisp-path</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">package-generate-autoloads</span> <span class="nv">name</span> <span class="nv">lisp-path</span><span class="p">))))</span>
+<span class="c1">;;;###autoload</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:package-vc-register-as-selected</span> <span class="p">(</span><span class="nv">pkg</span> <span class="k">&amp;rest</span> <span class="nv">_</span><span class="p">)</span>
+    <span class="s">"Add PKG to `package-selected-packages' and save it to `custom-file'."</span>
+    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">pkg-name</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">listp</span> <span class="nv">pkg</span><span class="p">)</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">pkg</span><span class="p">)</span> <span class="nv">pkg</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">package-installed-p</span> <span class="nv">pkg-name</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">memq</span> <span class="nv">pkg-name</span> <span class="nv">package-selected-packages</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">customize-save-variable</span>
+           <span class="ss">'package-selected-packages</span>
+           <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'package-selected-packages</span> <span class="nv">pkg-name</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">message</span> <span class="s">"package-vc: Registered %s as a selected package."</span> <span class="nv">pkg-name</span><span class="p">)))))</span>
+  <span class="ss">:advice</span>
+  <span class="p">((</span><span class="ss">:after</span> <span class="nv">package-vc--make</span>
+           <span class="nv">my:package-vc-regenerate-autoloads-after-make</span><span class="p">)</span>
+   <span class="p">(</span><span class="ss">:after</span> <span class="nv">package-vc-install</span>
+           <span class="nv">my:package-vc-register-as-selected</span><span class="p">))</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+</div>
+<div>
+<h2 id="org34ff2306">独自関数など</h2>
 <div class="outline-text-2" id="text-org34ff2306">
 <p>
-細かい独自関数, など．
+自分のためのツールなど.
 </p>
+</div>
+<div>
+<h3 id="org1eb544d6">OS判定用の定数</h3>
+<div class="outline-text-3" id="text-org1eb544d6">
+<p>
+最近, あんまり環境で分岐していないので, 実は不要?
+どちらかというと WSL 環境の判定が欲しい所.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">defconst</span> <span class="nv">is-mac</span> <span class="p">(</span><span class="nb">eq</span> <span class="nv">system-type</span> <span class="ss">'darwin</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">defconst</span> <span class="nv">is-linux</span> <span class="p">(</span><span class="nv">memq</span> <span class="nv">system-type</span> <span class="o">'</span><span class="p">(</span><span class="nv">gnu</span> <span class="nv">gnu/linux</span> <span class="nv">gnu/kfreebsd</span> <span class="nv">berkeley-unix</span><span class="p">)))</span>
+<span class="p">(</span><span class="nv">defconst</span> <span class="nv">is-windows</span> <span class="p">(</span><span class="nv">memq</span> <span class="nv">system-type</span> <span class="o">'</span><span class="p">(</span><span class="nv">cygwin</span> <span class="nv">windows-nt</span> <span class="nv">ms-dos</span><span class="p">)))</span></code></pre></figure>
+</div>
 </div>
 <div>
 <h3 id="org452a76a8">ファイル名を minibuffer におさまる様に整形</h3>
@@ -726,7 +939,7 @@ zsh prompt風味．
 <span class="c1">;;;###autoload</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:describe-face-at-point</span> <span class="p">()</span>
   <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">message</span> <span class="s">"%s"</span> <span class="p">(</span><span class="nv">get-char-property</span> <span class="p">(</span><span class="nv">point</span><span class="p">)</span> <span class="ss">'face</span><span class="p">)))</span></code></pre></figure>
+  <span class="p">(</span><span class="nv">message</span> <span class="s">"%s"</span> <span class="p">(</span><span class="nv">get-text-property</span> <span class="p">(</span><span class="nv">point</span><span class="p">)</span> <span class="ss">'face</span><span class="p">)))</span></code></pre></figure>
 </div>
 </div>
 <div>
@@ -768,122 +981,14 @@ C-u を付けて実行すると, 埋める文字を指定可能(例: = や * な
 </div>
 </div>
 <div>
-<h2 id="orgcf4176e7">Package 関連: <a href="https://emacs-jp.github.io/packages/package-management/package-el">package.el</a>, <a href="https://github.com/conao3/leaf.el">leaf.el</a>
-</h2>
-<div class="outline-text-2" id="text-orgcf4176e7">
-<p>
-<a href="https://github.com/conao3/leaf.el">leaf.el</a>のおかげで,
-無いと途方に暮れるパッケージ以外のインストールは無視できるようになります.
-</p>
-</div>
-<div>
-<h3 id="orgc51eb87d">
-<span class="todo TODO">TODO</span> <a href="https://emacs-jp.github.io/packages/package-management/package-el">package.el</a> <code>[/]</code>
-</h3>
-<div class="outline-text-3" id="text-orgc51eb87d">
-<p>
-パッケージは基本的に <code>package.el</code> で導入するので, 先ずはその設定.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-and-compile</span>
-  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">package-installed-p</span> <span class="ss">'leaf</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">package-initialize</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">and</span> <span class="nv">noninteractive</span>
-               <span class="p">(</span><span class="nb">not</span> <span class="p">(</span><span class="nv">package-installed-p</span> <span class="ss">'leaf</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nv">package-refresh-contents</span><span class="p">)</span>
-      <span class="p">(</span><span class="nv">package-install</span> <span class="ss">'leaf</span> <span class="no">t</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nv">package-activate-all</span><span class="p">))</span></code></pre></figure>
-<ul class="org-ul">
-<li class="off">
-<code>[ ]</code> 起動時にはここが一番時間がかかっているみたい.</li>
-</ul>
-</div>
-</div>
-<div>
-<h3 id="orgc2ededbf"><a href="https://github.com/conao3/leaf.el">leaf.el</a></h3>
-<div class="outline-text-3" id="text-orgc2ededbf">
-<p>
-個々のパッケージの設定には<a href="https://github.com/conao3/leaf.el">leaf.el</a>を利用します.
-以前は el-get も利用していましたが,
-<code>:vc</code> キーワードで <code>package-vc-install</code> を呼び出せるので, こっちを使うようになりました.
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">leaf-keywords</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">blackout</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-  <span class="ss">:config</span>
-  <span class="p">(</span><span class="nv">leaf-keywords-init</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
-<ul class="org-ul">
-<li class="on">
-<code>[X]</code> <code>package-vc-install</code> でインストールした諸々って, package-upgrade 後に delete 対象になる?
-→ send PR: <a href="https://github.com/conao3/leaf.el/pull/552">leaf-handler-vc: Add package to package-selected-packages by uwabami · Pull Request #552 · conao3/leaf.el</a>
-</li>
-</ul>
-</div>
-</div>
-<div>
-<h3 id="org9c1823a4">
-<code>package-vc-install</code> の調整</h3>
-<div class="outline-text-3" id="text-org9c1823a4">
-<p>
-package-vc-install を直接叩く事は無くて,
-leaf の <code>:vc</code> キーワードでインストールします.
-ただ, package-vc-install はリポジトリに既に .el が存在すること前提としていて
-make によって .el が生成される場合にはちょっと不便だったりします.
-よって, これを解決する <code>:advice</code> で追加しておきます.
-</p>
-
-<p>
-make を叩く必要があるパッケージは
-個別に <code>:preface</code> キーワードで
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'package-vc-allow-build-commands</span> <span class="ss">'hogehero</span><span class="p">)</span></code></pre></figure>
-<p>
-と指定する様にしました.
-</p>
-
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">package-vc</span>
-  <span class="ss">:doc</span> <span class="s">"Extend package-vc to support post-make autoload generation"</span>
-  <span class="ss">:tag</span> <span class="s">"builtin"</span>
-  <span class="c1">;; 呼び出されるまで変数が見えないので custom に移動していくことに</span>
-  <span class="ss">:custom</span> <span class="p">(</span><span class="nv">package-vc-allow-build-commands</span> <span class="o">.</span> <span class="no">nil</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-<span class="c1">;;;###autoload</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:package-vc-regenerate-autoloads-after-make</span> <span class="p">(</span><span class="nv">pkg-spec</span> <span class="nv">pkg-desc</span><span class="p">)</span>
-    <span class="s">"Regenerate autoloads after `package-vc--make' if new .el files were generated."</span>
-    <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">pkg-dir</span> <span class="p">(</span><span class="nv">package-desc-dir</span> <span class="nv">pkg-desc</span><span class="p">))</span>
-           <span class="p">(</span><span class="nv">name</span> <span class="p">(</span><span class="nv">package-desc-name</span> <span class="nv">pkg-desc</span><span class="p">))</span>
-           <span class="p">(</span><span class="nv">lisp-dir</span> <span class="p">(</span><span class="nv">plist-get</span> <span class="nv">pkg-spec</span> <span class="ss">:lisp-dir</span><span class="p">))</span>
-           <span class="p">(</span><span class="nv">lisp-path</span> <span class="p">(</span><span class="nv">file-name-concat</span> <span class="nv">pkg-dir</span> <span class="nv">lisp-dir</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="nv">lisp-path</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">message</span> <span class="s">"Regenerating autoloads for %s in %s..."</span> <span class="nv">name</span> <span class="nv">lisp-path</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">package-generate-autoloads</span> <span class="nv">name</span> <span class="nv">lisp-path</span><span class="p">))))</span>
-<span class="c1">;;;###autoload</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:package-vc-register-as-selected</span> <span class="p">(</span><span class="nv">pkg</span> <span class="k">&amp;rest</span> <span class="nv">_</span><span class="p">)</span>
-    <span class="s">"Add PKG to `package-selected-packages' and save it to `custom-file'."</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">pkg-name</span> <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">listp</span> <span class="nv">pkg</span><span class="p">)</span> <span class="p">(</span><span class="nb">car</span> <span class="nv">pkg</span><span class="p">)</span> <span class="nv">pkg</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">package-installed-p</span> <span class="nv">pkg-name</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">memq</span> <span class="nv">pkg-name</span> <span class="nv">package-selected-packages</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">customize-save-variable</span>
-           <span class="ss">'package-selected-packages</span>
-           <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'package-selected-packages</span> <span class="nv">pkg-name</span><span class="p">))</span>
-          <span class="p">(</span><span class="nv">message</span> <span class="s">"package-vc: Registered %s as a selected package."</span> <span class="nv">pkg-name</span><span class="p">)))))</span>
-  <span class="ss">:advice</span>
-  <span class="p">((</span><span class="ss">:after</span> <span class="nv">package-vc--make</span>
-           <span class="nv">my:package-vc-regenerate-autoloads-after-make</span><span class="p">)</span>
-   <span class="p">(</span><span class="ss">:after</span> <span class="nv">package-vc-install</span>
-           <span class="nv">my:package-vc-register-as-selected</span><span class="p">))</span>
-  <span class="p">)</span></code></pre></figure>
-</div>
-</div>
-</div>
-<div>
 <h2 id="org414ff0d8">
 <code>gcmh</code>: 賢い garbage-collection</h2>
 <div class="outline-text-2" id="text-org414ff0d8">
 <p>
 割と速い段階で設定しておきたくてここに書いたけれど,
 実際には <code>emacs-startup-hook</code> で起動するので, 最後辺りで有効になる.
+→ 「gcmh はタイマーを沢山増やすので, 結果として自分で GC をまわすことになるので有害」
+  という話もあって悩み所.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">gcmh</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
@@ -930,16 +1035,17 @@ shell(zsh)で設定した <code>PATH</code> などの環境変数がEmacsに渡�
   <span class="ss">:if</span> <span class="nv">window-system</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:config</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">exec-path-from-shell-variables</span> <span class="o">'</span><span class="p">(</span><span class="s">"DEBEMAIL"</span>
-                                         <span class="s">"DEBFULLNAME"</span>
-                                         <span class="s">"GPG_AGENT_INFO"</span>
-                                         <span class="s">"GPG_KEY_ID"</span>
-                                         <span class="s">"PASSWORD_STORE_DIR"</span>
-                                         <span class="s">"PATH"</span>
-                                         <span class="s">"SHELL"</span>
-                                         <span class="s">"SKKSERVER"</span>
-                                         <span class="s">"TEXMFHOME"</span>
-                                         <span class="s">"WSL_DISTRO_NAME"</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">exec-path-from-shell-variables</span>
+        <span class="o">'</span><span class="p">(</span><span class="s">"DEBEMAIL"</span>
+          <span class="s">"DEBFULLNAME"</span>
+          <span class="s">"GPG_AGENT_INFO"</span>
+          <span class="s">"GPG_KEY_ID"</span>
+          <span class="s">"PASSWORD_STORE_DIR"</span>
+          <span class="s">"PATH"</span>
+          <span class="s">"SHELL"</span>
+          <span class="s">"SKKSERVER"</span>
+          <span class="s">"TEXMFHOME"</span>
+          <span class="s">"WSL_DISTRO_NAME"</span><span class="p">)</span>
         <span class="nv">exec-path-from-shell-arguments</span> <span class="no">nil</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">)</span>
   <span class="p">)</span>
@@ -1020,9 +1126,8 @@ EAW は 2文字幅に設定されてしまいます.
   <span class="ss">:preface</span>
   <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'package-vc-allow-build-commands</span> <span class="ss">'eaw-halfwidth</span><span class="p">)</span>
   <span class="ss">:hook</span> <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-                                <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">load-file-message</span> <span class="no">nil</span><span class="p">))</span>
-                                  <span class="p">(</span><span class="nv">eaw-init</span><span class="p">)</span>
-                                  <span class="p">(</span><span class="nv">global-auto-composition-mode</span> <span class="mi">0</span><span class="p">))))</span>
+                                <span class="p">(</span><span class="nv">eaw-init</span><span class="p">)</span>
+                                <span class="p">(</span><span class="nv">global-auto-composition-mode</span> <span class="mi">0</span><span class="p">)))</span>
   <span class="p">)</span></code></pre></figure>
 <p>
 とりあえず祟りが少ないので EAW は 1 文字幅+調整済の <code>eaw-console</code> を利用しているが,
@@ -1082,42 +1187,69 @@ GUIで, 絵文字と1:2のサイズ調整を行なうのってのは,
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*gui</span>
   <span class="ss">:if</span> <span class="nv">window-system</span>
   <span class="ss">:preface</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">face-font-rescale-alist</span>
-        <span class="o">'</span><span class="p">((</span><span class="s">"Noto Color Emoji"</span> <span class="o">.</span> <span class="mf">0.85</span><span class="p">)</span>
-          <span class="p">(</span><span class="s">"PlemolJP Console NF"</span> <span class="o">.</span> <span class="mf">1.0</span><span class="p">)</span>
-          <span class="p">(</span><span class="s">"EAW CONSOLE"</span> <span class="o">.</span> <span class="mf">1.0</span><span class="p">)))</span>
+<span class="c1">;;;###autoload</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:setup-gui-fonts</span> <span class="p">(</span><span class="nv">default-font-name</span>
+                             <span class="nv">default-font-height</span>
+                             <span class="nv">cjk-font-name</span>
+                             <span class="nv">cjk-font-scale</span>
+                             <span class="nv">emoji-font-name</span>
+                             <span class="nv">emoji-font-scale</span><span class="p">)</span>
+    <span class="c1">;; 欧文フォント</span>
+    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">member</span> <span class="nv">default-font-name</span> <span class="p">(</span><span class="nv">font-family-list</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span>
+                          <span class="ss">:family</span> <span class="nv">default-font-name</span>
+                          <span class="ss">:height</span> <span class="nv">default-font-height</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-frame-font</span> <span class="nv">default-font-name</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))</span>
+    <span class="c1">;; 日本語フォント</span>
+    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">member</span> <span class="nv">cjk-font-name</span> <span class="p">(</span><span class="nv">font-family-list</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">script</span> <span class="p">(</span><span class="nb">list</span> <span class="ss">'han</span> <span class="ss">'kana</span> <span class="ss">'cjk-misc</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">t</span> <span class="nv">script</span> <span class="nv">cjk-font-name</span><span class="p">)))</span>
+    <span class="c1">;; 絵文字</span>
+    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">member</span> <span class="nv">emoji-font-name</span> <span class="p">(</span><span class="nv">font-family-list</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">t</span> <span class="ss">'emoji</span> <span class="nv">emoji-font-name</span><span class="p">))</span>
+    <span class="c1">;; Rescale the CJK and emoji fonts.</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">face-font-rescale-alist</span>
+          <span class="o">`</span><span class="p">((</span><span class="o">,</span><span class="p">(</span><span class="nb">format</span> <span class="s">".*%s.*"</span> <span class="nv">cjk-font-name</span><span class="p">)</span> <span class="o">.</span> <span class="o">,</span><span class="nv">cjk-font-scale</span><span class="p">)</span>
+            <span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nb">format</span> <span class="s">".*%s.*"</span> <span class="nv">emoji-font-name</span><span class="p">)</span> <span class="o">.</span> <span class="o">,</span><span class="nv">emoji-font-scale</span><span class="p">)))</span>
+    <span class="p">)</span>
+  <span class="c1">;; ;;;###autoload</span>
+  <span class="c1">;;   (defun my:apply-font-Moralerspace-Argon ()</span>
+  <span class="c1">;;     (interactive)</span>
+  <span class="c1">;;     (my:setup-gui-fonts "Moralerspace Argon HW" 130</span>
+  <span class="c1">;;                         "Moralerspace Argon HW" 1.0</span>
+  <span class="c1">;;                         "Moto Color Emoji-Moralerspace Argon" 1</span>
+  <span class="c1">;;                         ))</span>
+  <span class="c1">;; ;;;###autoload</span>
+  <span class="c1">;;   (defun my:apply-font-PlemolJP-Console ()</span>
+  <span class="c1">;;     (interactive)</span>
+  <span class="c1">;;     (my:setup-gui-fonts "PlemolJP Console NF" 135</span>
+  <span class="c1">;;                         "PlemolJP Console NF" 1.0</span>
+  <span class="c1">;;                         ;; "Moto Color Emoji for PlemolJP" 1.0</span>
+  <span class="c1">;;                         "EAW CONSOLE" 1.0</span>
+  <span class="c1">;;                          ))</span>
+<span class="c1">;; ;;;###autoload</span>
+<span class="c1">;;   (defun my:apply-font-Cica ()</span>
+<span class="c1">;;     (interactive)</span>
+<span class="c1">;;     (my:setup-gui-fonts "PlemolJP Console NF" 135</span>
+<span class="c1">;;                         "PlemolJP Console NF" 1.0</span>
+<span class="c1">;;                         "Cica" 1.0</span>
+<span class="c1">;;                          ))</span>
+<span class="c1">;;;###autoload</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:apply-font-EAW-CONSOLE</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">my:setup-gui-fonts</span> <span class="s">"EAW CONSOLE"</span> <span class="mi">135</span>
+                        <span class="s">"EAW CONSOLE"</span> <span class="mf">1.0</span>
+                        <span class="s">"EAW CONSOLE"</span> <span class="mf">1.0</span>
+                        <span class="p">))</span>
 <span class="c1">;;;###autoload</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:setup-gui-frame</span> <span class="p">(</span><span class="k">&amp;optional</span> <span class="nv">frame</span><span class="p">)</span>
     <span class="s">"GUI環境のみ reverse と alpha を適用する"</span>
+    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
     <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">f</span> <span class="p">(</span><span class="nb">or</span> <span class="nv">frame</span> <span class="p">(</span><span class="nv">selected-frame</span><span class="p">))))</span>
-        <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="nv">f</span> <span class="ss">'reverse</span> <span class="no">t</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="nv">f</span> <span class="ss">'reverse</span> <span class="no">t</span><span class="p">)</span>
         <span class="c1">;; もの凄く重くなるので, 一旦保留. 透明度, 不透明度の順</span>
-        <span class="c1">;; (set-frame-parameter f 'alpha '(95 . 90))</span>
-        <span class="p">))</span>
-<span class="c1">;;;###autoload</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:apply-font-eaw-console</span> <span class="p">()</span>
-    <span class="s">"EAW CONSOLE を適用する"</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span> <span class="ss">:family</span> <span class="s">"EAW CONSOLE"</span> <span class="ss">:height</span> <span class="mi">135</span><span class="p">)</span>
-    <span class="p">)</span>
-<span class="c1">;;;###autoload</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:apply-font-eaw-console-with-emoji</span> <span class="p">()</span>
-    <span class="s">"EAW CONSOLE と Noto Color Emoji を適用する"</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span> <span class="ss">:family</span> <span class="s">"EAW CONSOLE"</span> <span class="ss">:height</span> <span class="mi">135</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">color-font</span> <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"Noto Color Emoji"</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span> <span class="ss">'emoji</span> <span class="nv">color-font</span> <span class="no">nil</span> <span class="ss">'append</span><span class="p">)</span>
-      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span> <span class="o">'</span><span class="p">(</span><span class="m">#x1F004</span> <span class="o">.</span> <span class="m">#x1FFFD</span><span class="p">)</span> <span class="nv">color-font</span> <span class="no">nil</span> <span class="ss">'append</span><span class="p">))</span>
-    <span class="p">)</span>
-<span class="c1">;;;###autoload</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:apply-font-plemol-jp</span> <span class="p">()</span>
-    <span class="s">"PlemolJP とカラー絵文字を適用する"</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">set-face-attribute</span> <span class="ss">'default</span> <span class="no">nil</span> <span class="ss">:family</span> <span class="s">"PlemolJP Console NF"</span> <span class="ss">:height</span> <span class="mi">125</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">emoji-font</span> <span class="p">(</span><span class="nv">font-spec</span> <span class="ss">:family</span> <span class="s">"Noto Color Emoji"</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span> <span class="ss">'emoji</span> <span class="nv">emoji-font</span><span class="p">)</span>
-      <span class="p">(</span><span class="nv">set-fontset-font</span> <span class="no">nil</span> <span class="o">'</span><span class="p">(</span><span class="m">#x1F004</span> <span class="o">.</span> <span class="m">#x1FFFD</span><span class="p">)</span> <span class="nv">emoji-font</span> <span class="no">nil</span> <span class="ss">'append</span><span class="p">))</span>
-    <span class="p">)</span>
+      <span class="p">(</span><span class="nv">set-frame-parameter</span> <span class="nv">f</span> <span class="ss">'alpha</span> <span class="o">'</span><span class="p">(</span><span class="mi">90</span> <span class="o">.</span> <span class="mi">70</span><span class="p">))</span>
+      <span class="p">))</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">scalable-fonts-allowed</span> <span class="no">nil</span>
         <span class="nv">buffer-face-mode-face</span> <span class="ss">'fixed-pitch</span>
@@ -1126,11 +1258,13 @@ GUIで, 絵文字と1:2のサイズ調整を行なうのってのは,
   <span class="p">((</span><span class="nv">window-setup-hook</span>
     <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
         <span class="p">(</span><span class="nv">my:setup-gui-frame</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">my:apply-font-eaw-console-with-emoji</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">my:apply-font-EAW-CONSOLE</span><span class="p">))</span>
+    <span class="p">)</span>
    <span class="p">(</span><span class="nv">after-make-frame-functions</span>
     <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
         <span class="p">(</span><span class="nv">my:setup-gui-frame</span><span class="p">)</span>
-        <span class="p">(</span><span class="nv">my:apply-font-eaw-console-with-emoji</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">my:apply-font-EAW-CONSOLE</span><span class="p">))</span>
+    <span class="p">)</span>
    <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 <p>
@@ -1150,10 +1284,11 @@ GUIで, 絵文字と1:2のサイズ調整を行なうのってのは,
 |アイウエオカ|
 |ｱｲｳｴｵｶｷｸｹｺｻｼ|
 
-| hoge                 | hogeghoe | age              |
-|----------------------+----------+------------------|
-| 今日もいい天気ですね | お、     | 等幅なった👍 🍺🤔|
-|----------------------+----------+------------------|
+| hoge                 | hogeghoe | age             |
+|----------------------+----------+-----------------|
+| 今日もいい天気ですね | お、     | 等幅なった    🤔|
+| 今日もいい天気ですね | お、     | 等幅なった👍🍺🤔|
+|----------------------+----------+-----------------|
 </pre>
 </div>
 </div>
@@ -1224,28 +1359,17 @@ GUIで, 絵文字と1:2のサイズ調整を行なうのってのは,
 </div>
 </div>
 <div>
-<h3 id="org2a427bfe">customize で行なっている雑多な設定など</h3>
+<h3 id="org2a427bfe">雑多な設定など</h3>
 <div class="outline-text-3" id="text-org2a427bfe">
 <p>
 Emacs 本体に同梱されている関数などの雑多な設定.
-</p>
-<ul class="org-ul">
-<li>大抵の場合ターミナル内で <code>-nw</code> として起動するし,
-メニューは触ったことないので使わないので,
-フレーム, ツールバー等を非表示にする．</li>
-<li>
-<code>.elc</code> と <code>.el</code> の timestamp を比較し, 新しい方を読み込む.</li>
-<li>yes or no を y or n に</li>
-</ul>
-<p>
-他にもイロイロと. 設定が増えてきたり複雑になったら分ける(かも).
+設定が増えてきたり複雑になったら分ける(かも).
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">cus-start</span>
   <span class="ss">:tag</span> <span class="s">"builtin"</span>
   <span class="c1">;; &lt; for show-paren syntax highlight</span>
   <span class="ss">:emacs&gt;</span> <span class="s">"28"</span>
   <span class="ss">:init</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">server</span> <span class="ss">:commands</span> <span class="p">(</span><span class="nv">server-running-p</span><span class="p">))</span>
   <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="s">"~/Sources/Git/salsa.debian.org/rlb/deb-emacs/src"</span><span class="p">)</span>
       <span class="p">(</span><span class="k">setq</span> <span class="nv">find-function-C-source-directory</span>
               <span class="s">"~/Sources/Git/salsa.debian.org/rlb/deb-emacs/src"</span><span class="p">))</span>
@@ -1276,12 +1400,12 @@ Emacs 本体に同梱されている関数などの雑多な設定.
         <span class="nv">initial-scratch-message</span> <span class="no">nil</span>
         <span class="c1">;; minibuffer も静かに: これは t だと shutup できない, という罠</span>
         <span class="nv">inhibit-startup-echo-area-message</span> <span class="nv">user-login-name</span>
-        <span class="c1">;; 対応する括弧を強調表示: 不等号でも反応しちゃうのが玉に瑕</span>
-        <span class="c1">;; show-paren-style 'mixed</span>
         <span class="c1">;; modeline に行番号は表示しない</span>
         <span class="nv">line-number-mode</span> <span class="no">nil</span>
         <span class="c1">;; minibuffer は case insensitive</span>
         <span class="nv">read-file-name-completion-ignore-case</span> <span class="no">t</span>
+        <span class="c1">;; 起動時の表示の更新を遅延させる: 0.5 → 1 秒に</span>
+        <span class="nv">idle-update-delay</span> <span class="mf">1.0</span>
         <span class="c1">;; 編集関連 ----------------------------------------------------------</span>
         <span class="c1">;; バッファ終端で newline を入れない</span>
         <span class="nv">next-line-add-newlines</span> <span class="no">nil</span>
@@ -1323,8 +1447,8 @@ Emacs 本体に同梱されている関数などの雑多な設定.
         <span class="nv">save-abbrevs</span> <span class="ss">'silently</span>
         <span class="p">)</span>
   <span class="ss">:config</span>
-  <span class="c1">;; use-short-answers t で良いのでは?</span>
-  <span class="p">(</span><span class="nv">defalias</span> <span class="ss">'yes-or-no-p</span> <span class="ss">'y-or-n-p</span><span class="p">)</span>
+  <span class="c1">;; (defalias 'yes-or-no-p 'y-or-n-p)</span>
+  <span class="c1">;; → use-short-answers t で良い筈</span>
   <span class="ss">:hook</span>
   <span class="o">`</span><span class="p">(</span><span class="c1">;; hl-line: 現在行のハイライト</span>
     <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">global-hl-line-mode</span><span class="p">)</span>
@@ -1338,12 +1462,23 @@ Emacs 本体に同梱されている関数などの雑多な設定.
     <span class="c1">;; 3日変更の無かった buffer を自動的に閉じる</span>
     <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">midnight-mode</span><span class="p">)</span>
     <span class="c1">;; server 起動</span>
-    <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
-                            <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">server-running-p</span><span class="p">)</span>
-                              <span class="p">(</span><span class="nv">server-start</span><span class="p">))))</span>
     <span class="c1">;; ファイルが変更されたら再読み込み</span>
     <span class="p">(</span><span class="nv">find-file-hook</span>     <span class="o">.</span> <span class="nv">global-auto-revert-mode</span><span class="p">)</span>
     <span class="p">)</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
+<h3 id="org6e795c21">
+<code>server</code>: Emacs server</h3>
+<div class="outline-text-3" id="text-org6e795c21">
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">server</span>
+  <span class="ss">:tag</span> <span class="s">"builtin"</span>
+  <span class="ss">:commands</span> <span class="p">(</span><span class="nv">server-running-p</span><span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
+                          <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">server-running-p</span><span class="p">)</span>
+                            <span class="p">(</span><span class="nv">server-start</span><span class="p">))))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -1397,7 +1532,7 @@ Emacs 本体に同梱されている関数などの雑多な設定.
 <code>savehist</code> minibuffer の履歴の保存</h3>
 <div class="outline-text-3" id="text-org779d3217">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">savehist</span>
-  <span class="ss">:config</span>
+  <span class="ss">:init</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">savehist-file</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"history"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
   <span class="ss">:hook</span>
   <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">savehist-mode</span><span class="p">)</span>
@@ -1406,7 +1541,8 @@ Emacs 本体に同梱されている関数などの雑多な設定.
 </div>
 <div>
 <h3 id="org77978fff">
-<code>saveplace</code> 前回の修正位置の保存</h3>
+<span class="todo TODO">TODO</span> <code>saveplace</code> 前回の修正位置の保存 <code>[0/1]</code>
+</h3>
 <div class="outline-text-3" id="text-org77978fff">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">saveplace</span>
   <span class="ss">:config</span>
@@ -1418,6 +1554,10 @@ Emacs 本体に同梱されている関数などの雑多な設定.
   <span class="ss">:hook</span>
   <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">save-place-mode</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> org-mode で fold されている場所に対して利用できるのか?</li>
+</ul>
 </div>
 </div>
 <div>
@@ -1523,7 +1663,8 @@ minibuffer では eldoc にお黙り頂く。
     <span class="p">(</span><span class="nb">list</span> <span class="s">"\\.rd$"</span> <span class="s">"\\.md$"</span> <span class="s">"\\.rbt$"</span> <span class="s">"\\.rab$"</span><span class="p">))</span>
   <span class="c1">;; 除外リスト以外の trailing whitespace を削除</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:configure-whitespace-for-buffer</span> <span class="p">()</span>
-    <span class="s">"Locally disable trailing whitespace cleanup if the file matches the exclude list."</span>
+    <span class="s">"Locally disable trailing whitespace cleanup if the file matches the
+exclude list."</span>
     <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">buffer-file-name</span><span class="p">)</span>
       <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">patterns</span> <span class="nv">my:delete-trailing-whitespace-exclude-suffix</span><span class="p">)</span>
             <span class="p">(</span><span class="nv">found</span> <span class="no">nil</span><span class="p">)</span>
@@ -1534,7 +1675,8 @@ minibuffer では eldoc にお黙り頂く。
           <span class="p">(</span><span class="k">setq</span> <span class="nv">patterns</span> <span class="p">(</span><span class="nb">cdr</span> <span class="nv">patterns</span><span class="p">)))</span>
         <span class="p">(</span><span class="nb">when</span> <span class="nv">found</span>
           <span class="p">(</span><span class="nv">make-local-variable</span> <span class="ss">'whitespace-style</span><span class="p">)</span>
-          <span class="p">(</span><span class="k">setq</span> <span class="nv">whitespace-style</span> <span class="p">(</span><span class="nb">delete</span> <span class="ss">'trailing</span> <span class="p">(</span><span class="nb">append</span> <span class="nv">whitespace-style</span> <span class="no">nil</span><span class="p">)))</span>
+          <span class="p">(</span><span class="k">setq</span> <span class="nv">whitespace-style</span>
+                <span class="p">(</span><span class="nb">delete</span> <span class="ss">'trailing</span> <span class="p">(</span><span class="nb">append</span> <span class="nv">whitespace-style</span> <span class="no">nil</span><span class="p">)))</span>
           <span class="p">))))</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">whitespace-line-column</span> <span class="mi">72</span>
@@ -1552,10 +1694,10 @@ minibuffer では eldoc にお黙り頂く。
         <span class="nv">whitespace-space-regexp</span> <span class="s">"\\(\u3000+\\)"</span>
         <span class="nv">whitespace-trailing-regexp</span>  <span class="s">"\\([ \u00A0]+\\)$"</span>
         <span class="nv">whitespace-global-modes</span> <span class="o">'</span><span class="p">(</span><span class="nb">not</span> <span class="nv">eww-mode</span>
-                                     <span class="nv">term-mode</span>
-                                     <span class="nv">eshell-mode</span>
-                                     <span class="nv">org-agenda-mode</span>
-                                     <span class="nv">calendar-mode</span><span class="p">))</span>
+                                      <span class="nv">term-mode</span>
+                                      <span class="nv">eshell-mode</span>
+                                      <span class="nv">org-agenda-mode</span>
+                                      <span class="nv">calendar-mode</span><span class="p">))</span>
   <span class="ss">:hook</span> <span class="p">((</span><span class="nv">find-file-hook</span> <span class="o">.</span> <span class="nv">my:configure-whitespace-for-buffer</span><span class="p">)</span>
          <span class="p">(</span><span class="nv">after-change-major-mode-hook</span> <span class="o">.</span> <span class="nv">my:configure-whitespace-for-buffer</span><span class="p">)</span>
          <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">global-whitespace-mode</span><span class="p">)</span>
@@ -1700,22 +1842,25 @@ Emacs27から同梱された <code>tab-bar-mode</code> に elscreen から乗り
 <p>
 といった事をしている.
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">*authentication</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"GPG_KEY_ID"</span><span class="p">)</span>
-           <span class="nv">my:d:password-store</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"GPG_KEY_ID"</span><span class="p">)</span>
+           <span class="p">(</span><span class="nv">file-exists-p</span> <span class="nv">my:d:password-store</span><span class="p">))</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">auth-source</span>
-    <span class="ss">:init</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">auth-source-gpg-encrypt-to</span> <span class="o">'</span><span class="p">(</span><span class="nv">getenv</span> <span class="s">"GPG_KEY_ID"</span><span class="p">)))</span>
+    <span class="ss">:tag</span> <span class="s">"builtin"</span>
+    <span class="ss">:leaf-defer</span> <span class="no">t</span>
+    <span class="ss">:config</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">auth-source-gpg-encrypt-to</span> <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nv">getenv</span> <span class="s">"GPG_KEY_ID"</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">plstore</span>
+    <span class="ss">:tag</span> <span class="s">"builtin"</span>
+    <span class="ss">:leaf-defer</span> <span class="no">t</span>
+    <span class="ss">:config</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">plstore-secret-keys</span> <span class="ss">'silent</span>
+          <span class="nv">plstore-encrypt-to</span>  <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nv">getenv</span> <span class="s">"GPG_KEY_ID"</span><span class="p">)))</span>
+    <span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">password-store</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">auth-source-pass</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">plstore</span>
-    <span class="ss">:init</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">plstore-secret-keys</span> <span class="ss">'silent</span>
-          <span class="nv">plstore-encrypt-to</span>  <span class="p">(</span><span class="nv">getenv</span> <span class="s">"GPG_KEY_ID"</span><span class="p">))</span>
-    <span class="p">)</span>
-  <span class="ss">:config</span>
+  <span class="c1">;;</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">leaf-default-plstore</span>
-     <span class="p">(</span><span class="nv">plstore-open</span>
+        <span class="p">(</span><span class="nv">plstore-open</span>
          <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"plstore.plist"</span> <span class="nv">my:d:password-store</span><span class="p">)))</span>
   <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'vc-directory-exclusion-list</span>
                <span class="p">(</span><span class="nv">expand-file-name</span> <span class="nv">my:d:password-store</span><span class="p">))</span>
@@ -2158,6 +2303,7 @@ buffer を眺めるのは ibuffer が好み
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">vertico</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:preface</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:disable-selection</span> <span class="p">()</span>
     <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nb">eq</span> <span class="nv">minibuffer-completion-table</span> <span class="nf">#'</span><span class="nv">org-tags-completion-function</span><span class="p">)</span>
       <span class="p">(</span><span class="nv">setq-local</span> <span class="nv">vertico-map</span> <span class="nv">minibuffer-local-completion-map</span>
@@ -2474,6 +2620,26 @@ svg-lib でのアイコン表示ではなく nerd-icons を利用するように
 </div>
 </div>
 <div>
+<h2 id="org21392594">
+<code>chezmoi</code>: 設定ファイルの編集補助</h2>
+<div class="outline-text-2" id="text-org21392594">
+<p>
+設定ファイルの管理に <a href="https://www.chezmoi.io/">chezmoi</a> を使うようになったので,
+その編集補助に.
+</p>
+
+<p>
+地味ながら, 非常に便利.
+</p>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">chezmoi</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"chezmoi"</span><span class="p">)</span>
+  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-c C f"</span> <span class="o">.</span> <span class="nv">chezmoi-find</span><span class="p">)</span>
+         <span class="p">(</span><span class="s">"C-c C s"</span> <span class="o">.</span> <span class="nv">chezmoi-write</span><span class="p">))</span>
+  <span class="p">)</span></code></pre></figure>
+</div>
+</div>
+<div>
 <h2 id="org31fb6f15">言語毎のモードの設定など</h2>
 <div class="outline-text-2" id="text-org31fb6f15">
 </div>
@@ -2520,14 +2686,23 @@ svg-lib でのアイコン表示ではなく nerd-icons を利用するように
 Emacs 同梱の treesit を使う
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">treesit</span>
-  <span class="c1">;; :if (executable-find "tree-sitter")</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"tree-sitter"</span><span class="p">)</span>
   <span class="ss">:tag</span> <span class="s">"builtin"</span>
-  <span class="ss">:defvar</span> <span class="nv">treesit-language-source-alist</span>
+  <span class="ss">:preface</span>
+<span class="c1">;;;###autoload</span>
+  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:treesit-install-grammar-all</span> <span class="p">()</span>
+    <span class="s">"install all tree-sitter-grammer's"</span>
+    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">mapc</span>
+     <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">lang</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">treesit-language-available-p</span> <span class="nv">lang</span> <span class="no">nil</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">treesit-install-language-grammar</span> <span class="nv">lang</span><span class="p">)))</span>
+     <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#'</span><span class="nb">car</span> <span class="nv">treesit-language-source-alist</span><span class="p">)))</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">treesit-language-source-alist</span>
         <span class="o">'</span><span class="p">(</span><span class="c1">;;</span>
           <span class="p">(</span><span class="nv">elisp</span> <span class="s">"https://github.com/Wilfred/tree-sitter-elisp"</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">markdown</span> <span class="s">"https://github.com/ikatyang/tree-sitter-markdown"</span><span class="p">)</span>
+          <span class="c1">;; (markdown "https://github.com/ikatyang/tree-sitter-markdown")</span>
           <span class="p">(</span><span class="nv">gitcommit</span> <span class="s">"https://github.com/gbprod/tree-sitter-gitcommit"</span><span class="p">)</span>
           <span class="c1">;; (bash "https://github.com/tree-sitter/tree-sitter-bash")</span>
           <span class="c1">;; (clojure "https://github.com/sogaiu/tree-sitter-clojure")</span>
@@ -2543,21 +2718,12 @@ Emacs 同梱の treesit を使う
           <span class="c1">;; (nix "https://github.com/nix-community/tree-sitter-nix")</span>
           <span class="c1">;; (python "https://github.com/tree-sitter/tree-sitter-python")</span>
           <span class="c1">;; (rust "https://github.com/tree-sitter/tree-sitter-rust")</span>
-          <span class="c1">;; (toml "https://github.com/tree-sitter/tree-sitter-toml")</span>
+          <span class="p">(</span><span class="nv">toml</span> <span class="s">"https://github.com/tree-sitter/tree-sitter-toml"</span><span class="p">)</span>
           <span class="c1">;; (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")</span>
           <span class="c1">;; (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")</span>
           <span class="c1">;; (yaml "https://github.com/ikatyang/tree-sitter-yaml")</span>
           <span class="p">)</span>
         <span class="p">)</span>
-  <span class="c1">;;</span>
-  <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:treesit-install-grammar-all</span> <span class="p">()</span>
-    <span class="s">"install all tree-sitter-grammer's"</span>
-    <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
-    <span class="p">(</span><span class="nb">mapc</span>
-     <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">lang</span><span class="p">)</span>
-       <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">treesit-language-available-p</span> <span class="nv">lang</span> <span class="no">nil</span><span class="p">)</span>
-         <span class="p">(</span><span class="nv">treesit-install-language-grammar</span> <span class="nv">lang</span><span class="p">)))</span>
-     <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#'</span><span class="nb">car</span> <span class="nv">treesit-language-source-alist</span><span class="p">)))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -2569,12 +2735,14 @@ Emacs 同梱の treesit を使う
 あまり好みでないので, 諸々じたばた…
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">f90-ts-mode</span>
-  <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"git@github.com:mscfd/emacs-f90-ts-mode.git"</span><span class="p">)</span>
+  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"tree-sitter"</span><span class="p">)</span>
+  <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"git@github.com:uwabami/emacs-f90-ts-mode.git"</span><span class="p">)</span>
   <span class="ss">:mode</span> <span class="p">(</span><span class="s">"\\.f90\\'"</span> <span class="s">"\\.F90\\'"</span> <span class="s">"\\.f95\\'"</span> <span class="s">"\\.F95\\'"</span> <span class="s">"\\.F\\'"</span><span class="p">)</span>
   <span class="ss">:defvar</span> <span class="nv">treesit-language-source-alist</span>
   <span class="ss">:bind</span> <span class="p">(</span><span class="ss">:f90-ts-mode-map</span>
          <span class="p">(</span><span class="s">"C-c '"</span> <span class="o">.</span> <span class="nv">separedit</span><span class="p">))</span>
   <span class="ss">:preface</span>
+  <span class="c1">;;  --------------------------------------------------- --------------------</span>
 <span class="c1">;;;###autoload</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:install-fortran-grammar-with-generate</span> <span class="p">()</span>
     <span class="s">"install 時に tree-sitter generateを実行してから install"</span>
@@ -2593,6 +2761,7 @@ Emacs 同梱の treesit を使う
       <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">treesit-language-source-alist</span> <span class="o">`</span><span class="p">((</span><span class="o">,</span><span class="nv">lang</span> <span class="o">,</span><span class="nv">tmp-dir</span> <span class="no">nil</span> <span class="s">"src"</span><span class="p">))))</span>
         <span class="p">(</span><span class="nv">treesit-install-language-grammar</span> <span class="nv">lang</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">message</span> <span class="s">"Fortran grammar installed successfully from generated source!"</span><span class="p">)))</span>
+  <span class="c1">;; ------------------------------------------------------------------------</span>
 <span class="c1">;;;###autoload</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:f90-ts-toggle-mode</span> <span class="p">()</span>
     <span class="s">"Toggle between `f90-mode' (legacy) and `f90-ts-mode'."</span>
@@ -2602,76 +2771,7 @@ Emacs 同梱の treesit を使う
             <span class="p">(</span><span class="nv">f90-mode</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">message</span> <span class="s">"Legacy `f90-mode' not available"</span><span class="p">))</span>
       <span class="p">(</span><span class="nv">f90-ts-mode</span><span class="p">)))</span>
-<span class="c1">;; function 関連の色付けルールがまだ熟れていないので, ちょっと修正する</span>
-<span class="p">(</span><span class="nb">defvar</span> <span class="nv">my:f90-keywords</span>
-  <span class="o">'</span><span class="p">(</span><span class="s">"allocated"</span> <span class="s">"associated"</span> <span class="s">"present"</span> <span class="s">"allocate"</span> <span class="s">"deallocate"</span> <span class="s">"nullify"</span><span class="p">))</span>
-<span class="p">(</span><span class="nb">defvar</span> <span class="nv">my:f90-builtins</span>
-  <span class="o">'</span><span class="p">(</span><span class="s">"min"</span> <span class="s">"max"</span> <span class="s">"abs"</span> <span class="s">"mod"</span> <span class="s">"sqrt"</span> <span class="s">"sum"</span>
-    <span class="s">"size"</span> <span class="s">"shape"</span> <span class="s">"len"</span> <span class="s">"trim"</span> <span class="s">"adjustl"</span> <span class="s">"adjustr"</span>
-    <span class="s">"real"</span> <span class="s">"int"</span> <span class="s">"dble"</span> <span class="s">"cmplx"</span> <span class="s">"count"</span> <span class="s">"any"</span> <span class="s">"all"</span><span class="p">))</span>
-<span class="c1">;;;###autoload</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">my:f90-make-regex</span> <span class="p">(</span><span class="nv">word-list</span><span class="p">)</span>
-  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">patterns</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">word</span><span class="p">)</span>
-                            <span class="p">(</span><span class="nv">mapconcat</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">c</span><span class="p">)</span>
-                                         <span class="p">(</span><span class="nb">format</span> <span class="s">"[%c%c]"</span> <span class="p">(</span><span class="nv">upcase</span> <span class="nv">c</span><span class="p">)</span> <span class="p">(</span><span class="nv">downcase</span> <span class="nv">c</span><span class="p">)))</span>
-                                       <span class="nv">word</span> <span class="s">""</span><span class="p">))</span>
-                          <span class="nv">word-list</span><span class="p">)))</span>
-    <span class="p">(</span><span class="nb">format</span> <span class="s">"^\\(%s\\)$"</span> <span class="p">(</span><span class="nv">mapconcat</span> <span class="nf">#'</span><span class="nb">identity</span> <span class="nv">patterns</span> <span class="s">"\\|"</span><span class="p">))))</span>
-<span class="c1">;;;###autoload</span>
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">my:fixed-f90-ts-rules-function</span> <span class="p">()</span>
-  <span class="s">"Fixed font-lock rules for functions and subroutines."</span>
-  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">regex-kw</span> <span class="p">(</span><span class="nv">my:f90-make-regex</span> <span class="nv">my:f90-keywords</span><span class="p">))</span>
-        <span class="p">(</span><span class="nv">regex-bi</span> <span class="p">(</span><span class="nv">my:f90-make-regex</span> <span class="nv">my:f90-builtins</span><span class="p">)))</span>
-    <span class="p">(</span><span class="nv">treesit-font-lock-rules</span>
-     <span class="ss">:language</span> <span class="ss">'fortran</span>
-     <span class="ss">:feature</span> <span class="ss">'function</span>
-     <span class="o">`</span><span class="p">((</span><span class="nv">subroutine_statement</span>
-        <span class="nv">name:</span> <span class="p">(</span><span class="nv">name</span><span class="p">)</span>                  <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
-       <span class="p">(</span><span class="nv">function_statement</span>
-        <span class="nv">name:</span> <span class="p">(</span><span class="nv">name</span><span class="p">)</span>                  <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
-       <span class="p">(</span><span class="nv">function_result</span>
-        <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span>                  <span class="nv">@default</span><span class="p">)</span>
-       <span class="p">(</span><span class="nv">subroutine_call</span>
-        <span class="nv">subroutine:</span> <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span>      <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
-       <span class="c1">;; --- 削除箇所 ---</span>
-       <span class="c1">;; (call_expression (identifier) @font-lock-function-name-face)</span>
-       <span class="p">((</span><span class="nv">call_expression</span> <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span> <span class="nv">@font-lock-keyword-face</span><span class="p">)</span>
-        <span class="p">(</span><span class="ss">:match</span> <span class="o">,</span><span class="nv">regex-kw</span>             <span class="nv">@font-lock-keyword-face</span><span class="p">))</span>
-       <span class="p">((</span><span class="nv">call_expression</span> <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span> <span class="nv">@font-lock-builtin-face</span><span class="p">)</span>
-        <span class="p">(</span><span class="ss">:match</span> <span class="o">,</span><span class="nv">regex-bi</span>             <span class="nv">@font-lock-builtin-face</span><span class="p">))</span>
-       <span class="c1">;; within derived type declarations</span>
-       <span class="p">(</span><span class="nv">variable_declaration</span>
-        <span class="nv">type:</span> <span class="p">(</span><span class="nv">procedure</span>
-               <span class="s">"procedure"</span>
-               <span class="p">(</span><span class="nv">procedure_interface</span><span class="p">)</span>        <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
-        <span class="c1">;; is this always a pointer to a procedure?</span>
-        <span class="nv">declarator:</span> <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span>            <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
-       <span class="p">(</span><span class="nv">procedure_statement</span>
-        <span class="nv">declarator:</span> <span class="nv">[</span>
-                     <span class="p">((</span><span class="nv">method_name</span><span class="p">)</span>         <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
-                     <span class="p">((</span><span class="nv">binding</span>
-                       <span class="p">(</span><span class="nv">binding_name</span>
-                        <span class="nv">[</span>
-                         <span class="p">((</span><span class="nv">identifier</span><span class="p">)</span>      <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
-                         <span class="p">((</span><span class="nv">operator</span>
-                           <span class="p">(</span><span class="nv">operator_name</span><span class="p">)</span>  <span class="nv">@f90-ts-font-lock-operator-face</span><span class="p">))</span>
-                         <span class="p">((</span><span class="nv">assignment</span> <span class="s">"="</span>   <span class="nv">@f90-ts-font-lock-operator-face</span><span class="p">))</span>
-                         <span class="nv">]</span><span class="p">)</span>
-                       <span class="p">(</span><span class="nv">method_name</span><span class="p">)</span>        <span class="nv">@font-lock-function-name-face</span><span class="p">))</span>
-                     <span class="nv">]</span><span class="p">)</span>
-       <span class="p">(</span><span class="nv">generic_statement</span>
-        <span class="nv">declarator:</span> <span class="p">(</span><span class="nv">binding_list</span>
-                     <span class="p">(</span><span class="nv">binding_name</span>
-                      <span class="nv">[</span>
-                       <span class="p">((</span><span class="nv">identifier</span><span class="p">)</span>       <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
-                       <span class="p">((</span><span class="nv">operator</span>
-                         <span class="p">(</span><span class="nv">operator_name</span><span class="p">)</span>   <span class="nv">@f90-ts-font-lock-operator-face</span><span class="p">))</span>
-                       <span class="p">((</span><span class="nv">assignment</span> <span class="s">"="</span>    <span class="nv">@f90-ts-font-lock-operator-face</span><span class="p">))</span>
-                       <span class="nv">]</span><span class="p">)</span>
-                     <span class="p">(</span><span class="nv">method_name</span><span class="p">)</span>         <span class="nv">@font-lock-function-name-face</span><span class="p">))</span>
-       <span class="p">(</span><span class="nv">final_statement</span>
-        <span class="nv">declarator:</span> <span class="p">(</span><span class="nv">method_name</span><span class="p">)</span>           <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
-       <span class="p">))))</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
 <span class="c1">;;;###autoload</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:fixed-f90-ts-rules-variable</span> <span class="p">()</span>
     <span class="s">"Fixed font-lock rules for variables, declarations, and module control."</span>
@@ -2687,7 +2787,7 @@ Emacs 同梱の treesit を使う
        <span class="p">(</span><span class="nv">save_statement</span> <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span> <span class="nv">@font-lock-variable-name-face</span><span class="p">)</span>
        <span class="c1">;; 3. モジュール制御 (use, only, private, public)</span>
        <span class="p">(</span><span class="nv">use_statement</span> <span class="p">(</span><span class="nv">module_name</span><span class="p">)</span> <span class="nv">@font-lock-constant-face</span><span class="p">)</span>
-       <span class="p">(</span><span class="nv">included_items</span> <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span> <span class="nv">@font-lock-variable-name-face</span><span class="p">)</span> <span class="c1">;; use ..., only: DP</span>
+       <span class="p">(</span><span class="nv">included_items</span> <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span> <span class="nv">@font-lock-variable-name-face</span><span class="p">)</span>
        <span class="p">(</span><span class="nv">public_statement</span> <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span> <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
        <span class="p">(</span><span class="nv">private_statement</span> <span class="p">(</span><span class="nv">identifier</span><span class="p">)</span> <span class="nv">@font-lock-function-name-face</span><span class="p">)</span>
        <span class="c1">;; 4. プログラム単位の名前</span>
@@ -2697,12 +2797,14 @@ Emacs 同梱の treesit を使う
        <span class="p">((</span><span class="nv">identifier</span><span class="p">)</span> <span class="nv">@f90-ts-font-lock-special-var-face</span>
         <span class="p">(</span><span class="ss">:pred</span> <span class="nv">f90-ts-special-var-p</span> <span class="nv">@f90-ts-font-lock-special-var-face</span><span class="p">))</span>
        <span class="p">)))</span>
-  <span class="c1">;;</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
   <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'major-mode-remap-alist</span> <span class="o">'</span><span class="p">(</span><span class="nv">f90-mode</span> <span class="o">.</span> <span class="nv">f90-ts-mode</span><span class="p">))</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
   <span class="ss">:advice</span>
-  <span class="p">((</span><span class="ss">:override</span> <span class="nv">f90-ts--font-lock-rules-function</span> <span class="nv">my:fixed-f90-ts-rules-function</span><span class="p">)</span>
+  <span class="p">(</span><span class="c1">;; (:override f90-ts--font-lock-rules-function my:fixed-f90-ts-rules-function)</span>
    <span class="p">(</span><span class="ss">:override</span> <span class="nv">f90-ts--font-lock-rules-variable</span> <span class="nv">my:fixed-f90-ts-rules-variable</span><span class="p">)</span>
    <span class="p">)</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
   <span class="ss">:custom-face</span>
   <span class="p">(</span><span class="nv">f90-ts-font-lock-intrinsic-face</span>       <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="ss">:inherit</span> <span class="nv">font-lock-builtin-face</span><span class="p">)))</span>
   <span class="p">(</span><span class="nv">f90-ts-font-lock-delimiter-face</span>       <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="ss">:inherit</span> <span class="nv">font-lock-delimiter-face</span><span class="p">)))</span>
@@ -2711,19 +2813,24 @@ Emacs 同梱の treesit を使う
   <span class="p">(</span><span class="nv">f90-ts-font-lock-bracket-face</span>         <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="ss">:inherit</span> <span class="nv">font-lock-bracket-face</span><span class="p">)))</span>
   <span class="p">(</span><span class="nv">f90-ts-font-lock-special-var-face</span>     <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="ss">:inherit</span> <span class="nv">font-lock-constant-face</span><span class="p">)))</span>
   <span class="p">(</span><span class="nv">f90-ts-font-lock-special-comment-face</span> <span class="o">.</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="ss">:inherit</span> <span class="nv">font-lock-doc-face</span><span class="p">)))</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
   <span class="ss">:init</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">f90-ts-indent-block</span> <span class="mi">2</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">f90-ts-indent-toplevel</span> <span class="mi">2</span>
         <span class="nv">f90-ts-indent-contain</span> <span class="mi">2</span>
+        <span class="nv">f90-ts-indent-block</span> <span class="mi">2</span>
         <span class="nv">f90-ts-indent-continued</span> <span class="mi">2</span>
-        <span class="nv">f90-ts-indent-toplevel</span> <span class="mi">2</span>
+        <span class="nv">f90-ts-indent-openmp-style</span> <span class="ss">'context</span>
         <span class="nv">f90-ts-indent-lists-region</span> <span class="ss">'continued-line</span>
         <span class="nv">f90-ts-indent-lists-line</span>   <span class="ss">'continued-line</span>
+        <span class="nv">f90-ts-smart-end</span> <span class="ss">'no-blink</span>
         <span class="p">)</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">f90-ts-indent-rules-openmp</span>
         <span class="o">`</span><span class="p">(</span>
+          <span class="c1">;; ,@(f90-ts-indent-rules-info "openmp")</span>
           <span class="p">((</span><span class="nv">f90-ts--openmp-comment-is</span><span class="p">)</span> <span class="nv">prev-sibling</span> <span class="mi">0</span><span class="p">)</span>
-          <span class="p">((</span><span class="nv">f90-ts--openmp-comment-is</span><span class="p">)</span> <span class="nv">parent-bol</span> <span class="nv">f90-ts-indent-block</span><span class="p">)))</span>
-  <span class="c1">;; :config</span>
+          <span class="p">((</span><span class="nv">f90-ts--openmp-comment-is</span><span class="p">)</span> <span class="nv">parent-bol</span> <span class="nv">f90-ts-indent-block</span><span class="p">))</span>
+        <span class="p">)</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
   <span class="ss">:hook</span>
   <span class="p">(</span><span class="nv">f90-ts-mode-hook</span>
    <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
@@ -3088,6 +3195,7 @@ Emacs 29から 本体に同梱されることになったので <code>eglot</cod
 <code>eglot</code> と同時に利用されるので、一応設定しておく.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">flymake</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:bind</span> <span class="p">(</span><span class="ss">:flymake-mode-map</span>
          <span class="p">(</span><span class="s">"C-c C-p"</span> <span class="o">.</span> <span class="nv">flymake-goto-prev-error</span><span class="p">)</span>
@@ -3096,6 +3204,7 @@ Emacs 29から 本体に同梱されることになったので <code>eglot</cod
   <span class="ss">:config</span> <span class="p">(</span><span class="nb">require</span> <span class="ss">'flymake-proc</span> <span class="no">nil</span> <span class="ss">'noerror</span><span class="p">)</span>
   <span class="p">)</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">flymake-diagnostic-at-point</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:after</span> <span class="nv">flymake</span>
   <span class="ss">:hook</span> <span class="p">(</span><span class="nv">flymake-mode-hook</span> <span class="o">.</span> <span class="nv">flymake-diagnostic-at-point-mode</span><span class="p">)</span>
@@ -3194,7 +3303,7 @@ async で <code>latexmk -pvc</code> を走らせておいた方が気持が良�
 </div>
 <div>
 <h3 id="org76c99d7f">
-<span class="todo TODO">TODO</span> <code>project.el</code> <code>[0/1]</code>
+<span class="todo TODO">TODO</span> <code>project.el</code> <code>[0/2]</code>
 </h3>
 <div class="outline-text-3" id="text-org76c99d7f">
 <p>
@@ -3210,7 +3319,16 @@ Emacs 27.1 から built-in となった.
 <ul class="org-ul">
 <li class="off">
 <code>[ ]</code> ghq の list を追加できないかな?
-できれば <code>--full-path</code> じゃない表示にしたい(<code>my:shorten-file-path</code> を噛ませたい).</li>
+<ul class="org-ul">
+<li>できれば <code>--full-path</code> じゃない表示にしたい(<code>my:shorten-file-path</code> を噛ませたい).</li>
+</ul>
+</li>
+<li class="off">
+<code>[ ]</code> 何故か↑の <code>project-list-file</code> が効かずに <code>~/.emacs.d/project</code> が生成される事が.
+<ul class="org-ul">
+<li>これはなんだろうか?</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -3239,6 +3357,7 @@ magit は Emacs の Git Frontend.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">magit</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x g"</span> <span class="o">.</span> <span class="nv">magit-status</span><span class="p">))</span>
+  <span class="ss">:commands</span> <span class="nv">git-commit-mode</span>
   <span class="ss">:ensure</span> <span class="no">t</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">transient</span>
@@ -3254,7 +3373,6 @@ magit は Emacs の Git Frontend.
         <span class="nv">magit-refs-show-commit-count</span>   <span class="ss">'all</span>
         <span class="nv">magit-log-buffer-file-locked</span>   <span class="no">t</span>
         <span class="nv">magit-revision-show-gravatars</span>  <span class="no">nil</span>
-        <span class="c1">;; git-commit-major-mode 'git-commit-ts-mode</span>
         <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
@@ -3264,8 +3382,6 @@ magit は Emacs の Git Frontend.
 <div class="outline-text-3" id="text-orgb6921ead">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">git-commit-ts-mode</span>
   <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"https://github.com/danilshvalov/git-commit-ts-mode"</span><span class="p">)</span>
-  <span class="c1">;; :preface</span>
-  <span class="c1">;; (add-to-list 'major-mode-remap-alist '(f90-mode . f90-ts-mode))</span>
   <span class="ss">:mode</span> <span class="s">"\\COMMIT_EDITMSG\\'"</span>
   <span class="p">)</span></code></pre></figure>
 </div>
@@ -3429,7 +3545,8 @@ SEMI や FLIM などの UA の表示に <a href="http://uwabami.github.com/rail/
   <span class="c1">;; :vc (:url "https://github.com/uwabami/rail")</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">rail-emulate-genjis</span> <span class="no">t</span><span class="p">)</span>
-  <span class="ss">:require</span> <span class="no">t</span>
+  <span class="c1">;; :require t</span>
+  <span class="ss">:leaf-defer</span> <span class="no">t</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -3515,7 +3632,8 @@ Emacs 本体での設定は以下の通り. Wanderlust 自体の設定は別フ�
 <div>
 <h4 id="orge2af69a1">byte-compile の準備</h4>
 <div class="outline-text-4" id="text-orge2af69a1">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">eval-when-compile</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; -*- lexical-binding: t -*-</span>
+<span class="p">(</span><span class="nv">eval-when-compile</span>
   <span class="p">(</span><span class="nb">require</span> <span class="ss">'leaf-keywords</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">require</span> <span class="ss">'cp5022x</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">require</span> <span class="ss">'wl</span><span class="p">)</span>
@@ -4647,6 +4765,11 @@ if</span> <span class="o">[</span> <span class="o">!</span> x<span class="s2">"<
 Desktop の設定では
 </p>
 <figure class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="c">#!/bin/sh</span>
+
+Tested-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+Tested-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+Tested-by: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
+
 <span class="c"># emacs-mailto-handler</span>
 
 <span class="nv">mailto</span><span class="o">=</span><span class="nv">$1</span>
@@ -5244,29 +5367,29 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
          <span class="c1">;; 除外対象: ルートにある Archive.org</span>
          <span class="p">(</span><span class="nv">archive-file</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"Archive.org"</span> <span class="nv">base-dir</span><span class="p">))</span>
          <span class="c1">;; 作業用リスト</span>
-         <span class="nv">my-agenda-list</span>
-         <span class="nv">my-search-list</span><span class="p">)</span>
+         <span class="nv">my:agenda-list</span>
+         <span class="nv">my:search-list</span><span class="p">)</span>
     <span class="c1">;; ==========================================================</span>
     <span class="c1">;; A. org-agenda-files (アジェンダ用: 現在・未来・TODO)</span>
     <span class="c1">;; ==========================================================</span>
     <span class="c1">;; 1. ルートのファイルをベースにする (ここには Gcal, Redmine現行が含まれる)</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">my-agenda-list</span> <span class="nv">root-files</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">my:agenda-list</span> <span class="nv">root-files</span><span class="p">)</span>
     <span class="c1">;; 2. Archive.org をリストから削除 (破壊的操作だがローカル変数なのでOK)</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">my-agenda-list</span> <span class="p">(</span><span class="nb">delete</span> <span class="nv">archive-file</span> <span class="nv">my-agenda-list</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">my:agenda-list</span> <span class="p">(</span><span class="nb">delete</span> <span class="nv">archive-file</span> <span class="nv">my:agenda-list</span><span class="p">))</span>
     <span class="c1">;; 3. 全ての Journal を追加 (ファイルが存在する場合のみ)</span>
     <span class="c1">;; (when (file-exists-p journal-current)</span>
-    <span class="c1">;;   (add-to-list 'my-agenda-list journal-current))</span>
+    <span class="c1">;;   (add-to-list 'my:agenda-list journal-current))</span>
     <span class="p">(</span><span class="nb">when</span> <span class="nv">journal-all</span>
-      <span class="p">(</span><span class="k">setq</span> <span class="nv">my-agenda-list</span> <span class="p">(</span><span class="nb">append</span> <span class="nv">my-agenda-list</span> <span class="nv">journal-all</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">setq</span> <span class="nv">my:agenda-list</span> <span class="p">(</span><span class="nb">append</span> <span class="nv">my:agenda-list</span> <span class="nv">journal-all</span><span class="p">)))</span>
     <span class="c1">;; 4. 今年の Mastodon を追加 (ファイルが存在する場合のみ)</span>
     <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">file-exists-p</span> <span class="nv">mstdn-current</span><span class="p">)</span>
-      <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'my-agenda-list</span> <span class="nv">mstdn-current</span><span class="p">))</span>
+      <span class="p">(</span><span class="nb">push</span> <span class="nv">mstdn-current</span> <span class="nv">my:agenda-list</span><span class="p">))</span>
     <span class="c1">;; グローバル変数へ適用</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">org-agenda-files</span> <span class="nv">my-agenda-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">org-agenda-files</span> <span class="nv">my:agenda-list</span><span class="p">)</span>
     <span class="c1">;; ==========================================================</span>
     <span class="c1">;; B. org-agenda-text-search-extra-files (検索用: 過去ログ・アーカイブ)</span>
     <span class="c1">;; ==========================================================</span>
-    <span class="p">(</span><span class="k">setq</span> <span class="nv">my-search-list</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">my:search-list</span>
           <span class="p">(</span><span class="nb">append</span>
            <span class="c1">;; 1. Archive.org</span>
            <span class="p">(</span><span class="nb">list</span> <span class="nv">archive-file</span><span class="p">)</span>
@@ -5280,7 +5403,7 @@ GTD 用の設定．後述の <code>org-gcal</code> と <code>orgmine</code> で�
            <span class="p">(</span><span class="nb">remove</span> <span class="nv">mstdn-current</span> <span class="nv">mstdn-all</span><span class="p">)))</span>
     <span class="c1">;; グローバル変数へ適用 (実在するファイルのみフィルタリング)</span>
     <span class="p">(</span><span class="k">setq</span> <span class="nv">org-agenda-text-search-extra-files</span>
-          <span class="p">(</span><span class="nv">seq-filter</span> <span class="ss">'file-exists-p</span> <span class="nv">my-search-list</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nv">seq-filter</span> <span class="ss">'file-exists-p</span> <span class="nv">my:search-list</span><span class="p">)))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -5864,7 +5987,13 @@ Beamer 関連: <code>SHORT</code> 系を追加している
 <p>
 ほぼ読み込むだけの mode の設定. 設定が増えたら別途まとめる。
 </p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;;;</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">fill-column-indicator</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:hook</span>
+  <span class="p">((</span><span class="nv">git-commit-mode</span> <span class="o">.</span> <span class="nv">fci-mode</span><span class="p">)</span>
+   <span class="p">)</span>
+  <span class="p">)</span>
+<span class="c1">;;;</span>
 <span class="c1">;; (leaf hideshow</span>
 <span class="c1">;;   :bind (:f90-mode-map</span>
 <span class="c1">;;          ("TAB" . my:f90-hs-smart-tab)</span>
@@ -5984,10 +6113,18 @@ Beamer 関連: <code>SHORT</code> 系を追加している
 <div class="outline-text-2" id="text-orgbf458527">
 </div>
 <div>
-<h3 id="orgce78777d">theme: <code>modus-theme</code>
-</h3>
-<div class="outline-text-3" id="text-orgce78777d">
+<h3 id="orgbea9b769">
+<code>modus-theme</code>: 視認性の良いテーマ</h3>
+<div class="outline-text-3" id="text-orgbea9b769">
 <p>
+Emacs 本体に同梱されるし, 沢山のテーマに対応しているし,
+ということで <a href="https://protesilaos.com/emacs/modus-themes">Modus Themes | Protesilaos Stavrou</a> を利用することにした.
+</p>
+
+<p>
+たた, 元々このテーマはアクセシビリティ対応のテーマでもあるので,
+配色がちょっと好みではない.
+というわけで, 幾つかの配色の palettte を上書きして
 デフォルトの font-lock を(好みに合わせて)入れ替えたり.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">modus-themes</span>
@@ -6002,16 +6139,16 @@ Beamer 関連: <code>SHORT</code> 系を追加している
                            <span class="p">(</span><span class="nv">load-theme</span> <span class="ss">'modus-vivendi</span> <span class="ss">:no-confirm</span><span class="p">)))</span>
    <span class="p">(</span><span class="nv">modus-themes-after-load-theme-hook</span> <span class="o">.</span> <span class="nv">my:modus-themes-custom-faces</span><span class="p">)</span>
    <span class="p">)</span>
-  <span class="ss">:init</span>
+  <span class="ss">:config</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">modus-themes-custom-auto-reload</span> <span class="no">t</span>
         <span class="nv">modus-themes-disable-other-themes</span> <span class="no">t</span>
         <span class="nv">modus-themes-bold-constructs</span> <span class="no">nil</span>
         <span class="nv">modus-themes-italic-constructs</span> <span class="no">nil</span>
         <span class="nv">modus-themes-mixed-fonts</span> <span class="no">nil</span>
-        <span class="nv">modus-themes-prompts</span> <span class="o">'</span><span class="p">(</span><span class="nv">bold</span> <span class="nv">bold</span><span class="p">)</span>
+        <span class="nv">modus-themes-prompts</span>     <span class="o">'</span><span class="p">(</span><span class="nv">bold</span> <span class="nv">bold</span><span class="p">)</span>
         <span class="nv">modus-themes-completions</span> <span class="o">'</span><span class="p">((</span><span class="nv">matches</span>   <span class="o">.</span> <span class="p">(</span><span class="nv">bold</span><span class="p">))</span>
                                    <span class="p">(</span><span class="nv">selection</span> <span class="o">.</span> <span class="p">(</span><span class="nv">bold</span> <span class="nv">underline</span><span class="p">)))</span>
-        <span class="nv">modus-themes-headings</span> <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="o">.</span> <span class="p">(</span><span class="nv">bold</span><span class="p">)))</span>
+        <span class="nv">modus-themes-headings</span>    <span class="o">'</span><span class="p">((</span><span class="no">t</span> <span class="o">.</span> <span class="p">(</span><span class="nv">bold</span><span class="p">)))</span>
         <span class="nv">modus-themes-variable-pitch-ui</span> <span class="no">nil</span>
         <span class="nv">modus-vivendi-palette-overrides</span>
         <span class="o">`</span><span class="p">(</span><span class="c1">;;</span>
@@ -6019,50 +6156,51 @@ Beamer 関連: <code>SHORT</code> 系を追加している
                         <span class="s">"#000000"</span>     <span class="c1">; GUIなら背景色</span>
                       <span class="ss">'unspecified</span><span class="p">))</span>  <span class="c1">; ターミナルなら色は指定しない</span>
           <span class="c1">;; Basic color override</span>
-          <span class="p">(</span><span class="nv">green-cooler</span> <span class="s">"#bfff7f"</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">green-intense</span> <span class="s">"#4ceea5"</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">yellow</span> <span class="s">"#efef00"</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">yellow-warmer</span> <span class="s">"#ffb347"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">green-cooler</span>   <span class="s">"#bfff7f"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">green-intense</span>  <span class="s">"#4ceea5"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">yellow</span>         <span class="s">"#efef00"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">yellow-warmer</span>  <span class="s">"#ffb347"</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">yellow-intense</span> <span class="s">"#ffff7f"</span><span class="p">)</span>
           <span class="c1">;;</span>
-          <span class="c1">;; (bg-yellow-intense "#556b2f")</span>
-          <span class="c1">;;</span>
-          <span class="p">(</span><span class="nv">comment</span> <span class="nv">fg-dim</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">orange</span>         <span class="s">"#ff9040"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">purple</span>         <span class="s">"#d57bff"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">teal</span>           <span class="s">"#40e0d0"</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">pink</span>           <span class="s">"#ff88e0"</span><span class="p">)</span>
           <span class="c1">;; (bg-hl-line "#556b2f")</span>
-          <span class="p">(</span><span class="nv">bg-hl-line</span> <span class="s">"DarkSlateBlue"</span><span class="p">)</span>
+          <span class="c1">;; (bg-hl-line "DarkSlateBlue")</span>
           <span class="c1">;;</span>
           <span class="c1">;; Code remapping</span>
           <span class="c1">;;</span>
           <span class="p">(</span><span class="nv">builtin</span> <span class="nv">blue-warmer</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">comment</span> <span class="nv">fg-dim</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">constant</span> <span class="nv">yellow-warmer</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">delimiter</span> <span class="nv">red-warmer</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">docstring</span> <span class="nv">green-intense</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">docmarkup</span> <span class="nv">green-intense</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">docmarkup</span> <span class="nv">teal</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">fnname</span> <span class="nv">magenta-cooler</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">fnname-call</span> <span class="nv">pink</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">preprocessor</span> <span class="nv">magenta</span><span class="p">)</span>
           <span class="p">(</span><span class="kt">keyword</span> <span class="nv">red-faint</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">preprocessor</span> <span class="nv">red-cooler</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">property</span> <span class="nv">cyan</span><span class="p">)</span>
           <span class="p">(</span><span class="nb">string</span> <span class="nv">cyan-cooler</span><span class="p">)</span>
           <span class="p">(</span><span class="k">type</span> <span class="nv">yellow-intense</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">variable</span> <span class="nv">blue</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">variable-use</span> <span class="nv">slate</span><span class="p">)</span>
           <span class="c1">;;</span>
           <span class="p">(</span><span class="nv">rx-construct</span> <span class="nv">blue-faint</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">rx-backslash</span> <span class="nv">green-cooler</span><span class="p">)</span>
-          <span class="c1">;;</span>
-          <span class="p">(</span><span class="nv">fg-link</span> <span class="nv">cyan-warmer</span><span class="p">)</span>
-          <span class="c1">;;</span>
-          <span class="p">(</span><span class="nv">err</span> <span class="nv">red-intense</span><span class="p">)</span>
-          <span class="p">(</span><span class="kt">warning</span> <span class="nv">magenta-intense</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">info</span> <span class="nv">cyan-intense</span><span class="p">)</span>
           <span class="c1">;;</span>
           <span class="c1">;; Org Agenda view</span>
           <span class="c1">;; (date-common fg-alt)</span>
           <span class="c1">;; (date-deadline red-faint)</span>
           <span class="c1">;; (date-event fg-alt)</span>
           <span class="c1">;;</span>
+          <span class="c1">;; -----------------------------------------------------------------</span>
           <span class="p">(</span><span class="nv">date-common</span> <span class="nv">fg-alt</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">date-weekday</span> <span class="nv">fg-main</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">date-weekend</span> <span class="nv">red-faint</span><span class="p">)</span>
-          <span class="c1">;; headline</span>
+          <span class="c1">;; headline --------------------------------------------------------</span>
           <span class="p">(</span><span class="nv">fg-heading-0</span> <span class="nv">cyan-intense</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">fg-heading-1</span> <span class="nv">magenta-cooler</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">fg-heading-2</span> <span class="nv">blue-cooler</span><span class="p">)</span>
@@ -6071,15 +6209,25 @@ Beamer 関連: <code>SHORT</code> 系を追加している
           <span class="p">(</span><span class="nv">fg-heading-5</span> <span class="nv">yellow-intense</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">fg-heading-6</span> <span class="nv">red-cooler</span><span class="p">)</span>
           <span class="p">(</span><span class="nv">fg-heading-7</span> <span class="nv">magenta-warmer</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">fg-heading-8</span> <span class="nv">fg-main</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">fg-heading-8</span> <span class="nv">orange</span><span class="p">)</span>
+          <span class="c1">;; rainbow ---------------------------------------------------------</span>
+          <span class="p">(</span><span class="nv">rainbow-0</span> <span class="nv">cyan-intense</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">rainbow-1</span> <span class="nv">magenta-cooler</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">rainbow-2</span> <span class="nv">blue-cooler</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">rainbow-3</span> <span class="nv">yellow-warmer</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">rainbow-4</span> <span class="nv">green-faint</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">rainbow-5</span> <span class="nv">yellow-intense</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">rainbow-6</span> <span class="nv">red-cooler</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">rainbow-7</span> <span class="nv">magenta-warmer</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">rainbow-8</span> <span class="nv">orange</span><span class="p">)</span>
           <span class="p">)</span>
         <span class="p">)</span>
-  <span class="ss">:config</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:modus-themes-custom-faces</span> <span class="p">(</span><span class="k">&amp;rest</span> <span class="nv">_args</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">modus-themes-with-colors</span>
       <span class="p">(</span><span class="nv">custom-set-faces</span>
        <span class="c1">;; vertico</span>
-       <span class="o">`</span><span class="p">(</span><span class="nv">vertico-current</span>                                  <span class="p">((</span><span class="no">t</span> <span class="ss">:inherit</span> <span class="nv">hl-line</span> <span class="ss">:background</span> <span class="nv">unspecified</span> <span class="p">)))</span>
+       <span class="o">`</span><span class="p">(</span><span class="nv">vertico-current</span>                                  <span class="p">((</span><span class="no">t</span> <span class="ss">:inherit</span> <span class="nv">hl-line</span> <span class="p">)))</span>
        <span class="c1">;; wanderlust</span>
        <span class="o">`</span><span class="p">(</span><span class="nv">wl-highlight-folder-closed-face</span>                  <span class="p">((</span><span class="no">t</span> <span class="ss">:foreground</span> <span class="o">,</span><span class="nv">green-cooler</span> <span class="p">)))</span>
        <span class="o">`</span><span class="p">(</span><span class="nv">wl-highlight-folder-few-face</span>                     <span class="p">((</span><span class="no">t</span> <span class="ss">:foreground</span> <span class="o">,</span><span class="nv">red-cooler</span> <span class="p">)))</span>
@@ -6123,8 +6271,11 @@ Beamer 関連: <code>SHORT</code> 系を追加している
        <span class="o">`</span><span class="p">(</span><span class="nv">whitespace-tab</span>                                   <span class="p">((</span><span class="no">t</span> <span class="ss">:foreground</span> <span class="o">,</span><span class="nv">blue-intense</span> <span class="ss">:underline</span> <span class="no">t</span><span class="p">)))</span>
        <span class="o">`</span><span class="p">(</span><span class="nv">whitespace-space</span>                                 <span class="p">((</span><span class="no">t</span> <span class="ss">:foreground</span> <span class="o">,</span><span class="nv">green-intense</span> <span class="ss">:bold</span> <span class="no">t</span><span class="p">)))</span>
        <span class="o">`</span><span class="p">(</span><span class="nv">whitespace-empty</span>                                 <span class="p">((</span><span class="no">t</span> <span class="ss">:background</span> <span class="o">,</span><span class="nv">red-intense</span> <span class="p">)))</span>
-       <span class="p">))</span>
-    <span class="p">)</span>
+       <span class="c1">;; org-block</span>
+       <span class="o">`</span><span class="p">(</span><span class="nv">org-block</span>                                        <span class="p">((</span><span class="no">t</span> <span class="ss">:background</span> <span class="o">,</span><span class="nv">bg-main</span> <span class="ss">:extend</span> <span class="no">t</span><span class="p">)))</span>
+       <span class="o">`</span><span class="p">(</span><span class="nv">org-block-begin-line</span>                             <span class="p">((</span><span class="no">t</span> <span class="ss">:background</span> <span class="o">,</span><span class="nv">bg-main</span> <span class="ss">:foreground</span> <span class="o">,</span><span class="nv">fg-prose-block-delimiter</span> <span class="ss">:extend</span> <span class="no">t</span><span class="p">)))</span>
+       <span class="o">`</span><span class="p">(</span><span class="nv">org-block-end-line</span>                               <span class="p">((</span><span class="no">t</span> <span class="ss">:background</span> <span class="o">,</span><span class="nv">bg-main</span> <span class="ss">:foreground</span> <span class="o">,</span><span class="nv">fg-prose-block-delimiter</span> <span class="ss">:extend</span> <span class="no">t</span><span class="p">)))</span>
+       <span class="p">)))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -6240,7 +6391,30 @@ Beamer 関連: <code>SHORT</code> 系を追加している
 <div>
 <h2 id="orgd89ceb4b">Debug&amp;Test</h2>
 <div class="outline-text-2" id="text-orgd89ceb4b">
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; (leaf copilot</span>
+<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">perfect-margin</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">perfect-margin-visible-width</span> <span class="mi">128</span>
+        <span class="nv">perfect-margin-only-set-left-margin</span> <span class="no">nil</span><span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="c1">;; (emacs-startup-hook . perfect-margin-mode)</span>
+  <span class="p">)</span>
+<span class="p">(</span><span class="nv">leaf</span> <span class="nv">dimmer</span>
+  <span class="ss">:disabled</span> <span class="no">t</span>
+  <span class="ss">:ensure</span> <span class="no">t</span>
+  <span class="ss">:config</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">dimmer-fraction</span> <span class="mf">0.07</span> <span class="c1">;; 色の薄くなる比率</span>
+        <span class="nv">dimmer-adjustment-mode</span> <span class="ss">:both</span>
+        <span class="nv">dimmer-use-colorspace</span> <span class="ss">:rgb</span>
+        <span class="nv">dimmer-watch-frame-focus-events</span> <span class="no">nil</span><span class="p">)</span>
+  <span class="ss">:hook</span>
+  <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">dimmer-mode</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="c1">;; (leaf org-side-tree</span>
+<span class="c1">;;   :ensure t</span>
+<span class="c1">;;  )</span>
+
+<span class="c1">;; (leaf copilot</span>
 <span class="c1">;;   :vc (:url "https://github.com/copilot-emacs/copilot.el" :rev :newest :branch "main")</span>
 <span class="c1">;;   :init</span>
 <span class="c1">;;   (leaf editorconfig :ensure t)</span>
@@ -6249,12 +6423,6 @@ Beamer 関連: <code>SHORT</code> 系を追加している
 <span class="c1">;;   )</span>
 <span class="c1">;; (leaf copilot-chat :ensure t)</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">apparmor-mode</span> <span class="ss">:ensure</span> <span class="no">t</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">leaf</span> <span class="nv">chezmoi</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"chezmoi"</span><span class="p">)</span>
-  <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-c C f"</span> <span class="o">.</span> <span class="nv">chezmoi-find</span><span class="p">)</span>
-         <span class="p">(</span><span class="s">"C-c C s"</span> <span class="o">.</span> <span class="nv">chezmoi-write</span><span class="p">))</span>
-  <span class="p">)</span>
 
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">enh-ruby-mode</span>
   <span class="c1">;; :ensure t</span>
@@ -6349,7 +6517,8 @@ Beamer 関連: <code>SHORT</code> 系を追加している
 </div>
 <div>
 <h3 id="org0bd0c625">
-<code>esup</code>: 起動時間を調べる</h3>
+<span class="todo TODO">TODO</span> <code>esup</code>: 起動時間を調べる <code>[/]</code>
+</h3>
 <div class="outline-text-3" id="text-org0bd0c625">
 <p>
 本気でやるなら profiler なんだろうけれど.
@@ -6361,6 +6530,17 @@ Beamer 関連: <code>SHORT</code> 系を追加している
         <span class="nv">esup-depth</span> <span class="mi">0</span> <span class="c1">;; 🤔</span>
         <span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
+<ul class="org-ul">
+<li class="off">
+<code>[ ]</code> <code>early-init.el</code> を見ないので, 読み込まれない設定が多々.
+<ul class="org-ul">
+<li><a href="https://github.com/jschaf/esup/issues/93">early-init.el is not included in profiling · Issue #93 · jschaf/esup</a></li>
+</ul>
+</li>
+<li>あと, leaf を利用していると,
+殆どがマクロ展開で埋まるので,
+速度計測の意味が無い…。</li>
+</ul>
 </div>
 </div>
 <div>
@@ -6420,7 +6600,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
       <footer>
         <p>&copy; 2006-2026
   <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-  Lastupdate: 2026-02-05 13:41:04 +0000
+  Lastupdate: 2026-02-10 13:17:35 +0000
   <br/>
   Powered by
   <a href="https://orgmode.org/" rel="noopener" title="Org mode">
