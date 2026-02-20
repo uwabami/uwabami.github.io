@@ -37,14 +37,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site" />
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2026-02-21T03:26:16+09:00" />
+<meta property="article:published_time" content="2026-02-21T11:00:03+09:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png" />
 <meta property="twitter:title" content="Emacs の設定" />
 <meta name="twitter:site" content="@uwabami_frozen" />
 <meta name="twitter:creator" content="@Youhei SASAKI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2026-02-21T03:26:16+09:00","datePublished":"2026-02-21T03:26:16+09:00","headline":"Emacs の設定","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2026-02-21T11:00:03+09:00","datePublished":"2026-02-21T11:00:03+09:00","headline":"Emacs の設定","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/cc-env/Emacs.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/cc-env/Emacs.html"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -491,15 +491,12 @@ org-tangle から init.el を生成する際には
 <h4 id="org9584246f">起動後に GC Threshold を既定値に戻す</h4>
 <div class="outline-text-4" id="text-org9584246f">
 <p>
-<del>以前は以下を設定していたが, 最近は <code>gcmh</code> に任せる事にした.</del>
-→ <a href="#org414ff0d8"><code>gcmh</code>: 賢い garbage-collection</a>
+以前は <code>gcmh</code> を利用していたけれど…
 </p>
-
-<p>
-→ 利用を止めました.
-@see <a href="https://emacsconf.org/2023/talks/gc/">EmacsConf - 2023 - talks - emacs-gc-stats: Does garbage collection actually slow down Emacs?</a>
-</p>
-
+<ul class="org-ul">
+<li>@see <a href="https://emacsconf.org/2023/talks/gc/">EmacsConf - 2023 - talks - emacs-gc-stats: Does garbage collection actually slow down Emacs?</a>
+</li>
+</ul>
 <p>
 上記プレゼンでの推奨値に設定するのと,
 <code>idle-timer</code> で入力が無い時に GC を走らせることにする.
@@ -519,27 +516,6 @@ org-tangle から init.el を生成する際には
 …どうだろう? そんなに重い処理をするわけじゃないし,
 初期値のままで, 小まめに gc 走らせた方が体感は速かったりしないかなぁ….
 </p>
-</div>
-</div>
-<div>
-<h4 id="org414ff0d8">
-<span class="done CANCEL">CANCEL</span> <code>gcmh</code>: 賢い garbage-collection</h4>
-<div class="outline-text-4" id="text-org414ff0d8">
-<p>
-<del>割と速い段階で設定しておきたくてここに書いたけれど, 実際には <code>emacs-startup-hook</code> で起動するので, 最後辺りで有効になる.</del>
-→利用を止めました.
-@see <a href="https://emacsconf.org/2023/talks/gc/">EmacsConf - 2023 - talks - emacs-gc-stats: Does garbage collection actually slow down Emacs?</a>
-</p>
-<figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">gcmh</span>
-  <span class="ss">:disabled</span> <span class="no">t</span>
-  <span class="ss">:ensure</span> <span class="no">t</span>
-  <span class="ss">:blackout</span> <span class="no">t</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">gcmh-idle-delay</span> <span class="ss">'auto</span>  <span class="c1">; アイドル判定を自動調整</span>
-        <span class="nv">gcmh-auto-idle-delay-factor</span> <span class="mi">10</span>
-        <span class="nv">gcmh-high-cons-threshold</span> <span class="p">(</span><span class="nb">*</span> <span class="mi">128</span> <span class="mi">1024</span> <span class="mi">1024</span><span class="p">))</span> <span class="c1">; 入力中は 128MB まで許容</span>
-  <span class="ss">:hook</span> <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="nv">gcmh-mode</span><span class="p">)</span>
-  <span class="p">)</span></code></pre></figure>
 </div>
 </div>
 </div>
@@ -1195,8 +1171,8 @@ EAW は 2文字幅に設定されてしまいます.
             <span class="ss">:lisp-dir</span> <span class="s">"dist"</span>
             <span class="p">)</span>
   <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'eaw-console</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'package-vc-allow-build-commands</span> <span class="ss">'eaw-console</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'eaw-console</span><span class="p">)</span>
   <span class="ss">:init</span>
   <span class="ss">:hook</span> <span class="p">(</span><span class="nv">emacs-startup-hook</span> <span class="o">.</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">()</span>
                                 <span class="p">(</span><span class="nv">eaw-init</span><span class="p">)</span>
@@ -2340,9 +2316,10 @@ WSLでは <code>powershell/clip.exe</code> を使う様になっているけど,
 あまり呼び出さなくなったけど, 設定は残しておくことに.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ibuffer</span>
-  <span class="ss">:defun</span> <span class="p">(</span><span class="nv">ibuffer-current-buffer</span><span class="p">)</span>
-  <span class="ss">:defvar</span> <span class="p">(</span><span class="nv">ibuffer-formats</span><span class="p">)</span>
+  <span class="ss">:tag</span> <span class="s">"builtin"</span>
   <span class="ss">:preface</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
+<span class="c1">;;;###autoload</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:ibuffer-find-file</span> <span class="p">()</span>
     <span class="s">"Like `find-file', but default to the directory of the buffer at point."</span>
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
@@ -2353,6 +2330,24 @@ WSLでは <code>powershell/clip.exe</code> を使う様になっているけど,
                     <span class="nv">default-directory</span><span class="p">)</span>
                 <span class="nv">default-directory</span><span class="p">))))</span>
       <span class="p">(</span><span class="nv">find-file</span> <span class="nv">default-directory</span><span class="p">)))</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="nv">leaf</span> <span class="nv">nerd-icons-ibuffer</span>
+    <span class="ss">:ensure</span> <span class="no">t</span>
+    <span class="ss">:custom</span>
+    <span class="p">((</span><span class="nv">nerd-icons-ibuffer-formats</span>
+      <span class="o">.</span>
+      <span class="o">`</span><span class="p">((</span><span class="nv">mark</span> <span class="nv">modified</span> <span class="nv">read-only</span> <span class="o">,</span><span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&gt;=</span> <span class="nv">emacs-major-version</span> <span class="mi">26</span><span class="p">)</span> <span class="ss">'locked</span> <span class="s">""</span><span class="p">)</span>
+              <span class="s">" "</span> <span class="p">(</span><span class="nv">icon</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">)</span>
+              <span class="s">" "</span> <span class="p">(</span><span class="nv">name</span> <span class="mi">17</span> <span class="mi">17</span> <span class="ss">:left</span> <span class="ss">:elide</span><span class="p">)</span>
+              <span class="s">" "</span> <span class="p">(</span><span class="nv">size-h</span> <span class="mi">9</span> <span class="mi">-1</span> <span class="ss">:right</span><span class="p">)</span>
+              <span class="s">" "</span> <span class="p">(</span><span class="nv">mode+</span> <span class="mi">16</span> <span class="mi">16</span> <span class="ss">:left</span> <span class="ss">:elide</span><span class="p">)</span>
+              <span class="s">" "</span> <span class="nv">filename-and-process+</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">mark</span> <span class="s">" "</span> <span class="p">(</span><span class="nv">name</span> <span class="mi">16</span> <span class="mi">-1</span><span class="p">)</span> <span class="s">" "</span> <span class="nv">filename</span><span class="p">))</span>
+      <span class="p">)</span>
+     <span class="p">)</span>
+    <span class="p">)</span>
+  <span class="ss">:hook</span> <span class="p">(</span><span class="nv">ibuffer-mode</span> <span class="o">.</span> <span class="nv">nerd-icons-ibuffer-mode</span><span class="p">)</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x M-b"</span> <span class="o">.</span> <span class="nv">ibuffer</span><span class="p">)</span>
          <span class="p">(</span><span class="ss">:ibuffer-mode-map</span>
           <span class="p">(</span><span class="s">"C-x C-f"</span> <span class="o">.</span> <span class="nv">my:ibuffer-find-file</span><span class="p">))</span>
@@ -2761,8 +2756,7 @@ cape は capf を拡張するパッケージ
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">consult-ghq</span>
   <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"https://github.com/uwabami/consult-ghq"</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'consult-ghq</span><span class="p">)</span>
+  <span class="ss">:preface</span> <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'consult-ghq</span><span class="p">)</span>
   <span class="ss">:bind</span> <span class="p">((</span><span class="s">"C-x f"</span> <span class="o">.</span> <span class="nv">consult-ghq-open</span><span class="p">))</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">consult-ghq-short-list</span> <span class="no">t</span><span class="p">)</span>
@@ -2868,8 +2862,7 @@ eglot との通信を高速化す eglot-booster も入れておく
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">eglot-booster</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"emacs-lsp-booster"</span><span class="p">)</span>
   <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"git@github.com:jdtsmith/eglot-booster.git"</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'eglot-booster</span><span class="p">)</span>
+  <span class="ss">:preface</span> <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'eglot-booster</span><span class="p">)</span>
   <span class="ss">:after</span> <span class="nv">eglot</span>
   <span class="ss">:config</span> <span class="p">(</span><span class="nv">eglot-booster-mode</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
@@ -2992,8 +2985,7 @@ Emacs 同梱の treesit を使う
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">f90-ts-mode</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"tree-sitter"</span><span class="p">)</span>
   <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"git@github.com:uwabami/emacs-f90-ts-mode.git"</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'f90-ts-mode</span><span class="p">)</span>
+  <span class="ss">:preface</span> <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'f90-ts-mode</span><span class="p">)</span>
   <span class="ss">:mode</span> <span class="p">(</span><span class="s">"\\.f90\\'"</span> <span class="s">"\\.F90\\'"</span> <span class="s">"\\.f95\\'"</span> <span class="s">"\\.F95\\'"</span> <span class="s">"\\.F\\'"</span><span class="p">)</span>
   <span class="ss">:defvar</span> <span class="nv">treesit-language-source-alist</span>
   <span class="ss">:bind</span> <span class="p">(</span><span class="ss">:f90-ts-mode-map</span>
@@ -3623,8 +3615,7 @@ magit は Emacs の Git Frontend.
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">git-commit-ts-mode</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">executable-find</span> <span class="s">"tree-sitter"</span><span class="p">)</span>
   <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"https://github.com/danilshvalov/git-commit-ts-mode"</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'git-commit-ts-mode</span><span class="p">)</span>
+  <span class="ss">:preface</span> <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'git-commit-ts-mode</span><span class="p">)</span>
   <span class="ss">:mode</span> <span class="s">"\\COMMIT_EDITMSG\\'"</span>
   <span class="p">)</span></code></pre></figure>
 </div>
@@ -3750,8 +3741,7 @@ EPWING化した辞書群を検索するために <code>lookup-el</code> ver. 1.4
 <div class="outline-text-3" id="text-org501da28b">
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">text-adjust</span>
   <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"https://github.com/uwabami/text-adjust.el"</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'text-adjust</span><span class="p">)</span>
+  <span class="ss">:preface</span> <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'text-adjust</span><span class="p">)</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -5751,8 +5741,7 @@ request token 等の置き場所の変更
   <span class="c1">;;             (if (assoc "om_server" org-file-properties) (orgmine-mode))))</span>
   <span class="p">(</span><span class="nv">leaf</span> <span class="nv">orgmine</span>
     <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"https://github.com/kametoku/orgmine"</span> <span class="p">)</span>
-    <span class="ss">:preface</span>
-    <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'orgmine</span><span class="p">)</span>
+    <span class="ss">:preface</span> <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'orgmine</span><span class="p">)</span>
     <span class="ss">:commands</span> <span class="p">(</span><span class="nv">orgmine-mode</span><span class="p">)</span>
     <span class="ss">:init</span>
     <span class="c1">;; (defun my:orgmine-default-todo-keyword ()</span>
@@ -5798,8 +5787,8 @@ request token 等の置き場所の変更
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">org-wiki</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="s">"~/Public/cc-env"</span><span class="p">)</span>
   <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"https://github.com/uwabami/org-wiki"</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'org-wiki</span><span class="p">)</span>
+  <span class="ss">:preface</span> <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'org-wiki</span><span class="p">)</span>
+  <span class="ss">:commands</span> <span class="nv">org-wiki-make-org-publish-plist</span>
   <span class="ss">:init</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">org-wiki-location-alist</span>     <span class="o">'</span><span class="p">(</span><span class="s">"~/Public/cc-env"</span><span class="p">)</span>
         <span class="nv">org-wiki-location</span>           <span class="s">"~/Public/cc-env"</span>
@@ -5875,8 +5864,7 @@ exporter は <a href="https://uwabami.github.com/ox-jekyll">uwabami/ox-jekyll</a
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ox-jekyll</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="s">"~/Public/cc-env"</span><span class="p">)</span>
   <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"https://github.com/uwabami/ox-jekyll"</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'ox-jekyll</span><span class="p">)</span>
+  <span class="ss">:preface</span> <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'ox-jekyll</span><span class="p">)</span>
   <span class="p">)</span>
 <span class="p">(</span><span class="nv">leaf</span> <span class="nv">ox-html</span>
   <span class="ss">:after</span> <span class="nv">ox</span>
@@ -6192,15 +6180,17 @@ Beamer 関連: <code>SHORT</code> 系を追加している
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">leaf</span> <span class="nv">ox-publish</span>
   <span class="ss">:if</span> <span class="p">(</span><span class="nv">file-directory-p</span> <span class="s">"~/Public/cc-env"</span><span class="p">)</span>
   <span class="ss">:after</span> <span class="p">(</span><span class="nv">ox-jekyll</span> <span class="nv">org-wiki</span><span class="p">)</span>
-  <span class="ss">:commands</span> <span class="nv">my:org-wiki-publish</span>
-  <span class="ss">:init</span>
-  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-publish-timestamp-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-timestamps/"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
-  <span class="ss">:config</span>
+  <span class="ss">:preface</span>
+  <span class="c1">;; -------------------------------------------------------------------------</span>
+<span class="c1">;;;###autoload</span>
   <span class="p">(</span><span class="nb">defun</span> <span class="nv">my:org-wiki-publish</span> <span class="p">()</span>
     <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
     <span class="p">(</span><span class="nv">org-publish</span> <span class="p">(</span><span class="nv">org-wiki-make-org-publish-plist</span>
                   <span class="ss">'org-jekyll-publish-to-html</span><span class="p">)</span>
                  <span class="no">t</span><span class="p">))</span>
+  <span class="c1">;;  ------------------------------------------------------------------------</span>
+  <span class="ss">:init</span>
+  <span class="p">(</span><span class="k">setq</span> <span class="nv">org-publish-timestamp-directory</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">"org-timestamps/"</span> <span class="nv">my:d:tmp</span><span class="p">))</span>
   <span class="p">)</span></code></pre></figure>
 </div>
 </div>
@@ -6222,8 +6212,7 @@ Beamer 関連: <code>SHORT</code> 系を追加している
   <span class="ss">:defvar</span> <span class="p">(</span><span class="nv">tdiary-csrf-key</span> <span class="nv">tdiary-passwd-file</span> <span class="nv">tdiary-passd-file</span><span class="p">)</span>
   <span class="ss">:pl-setq</span> <span class="p">(</span><span class="nv">tdiary-csrf-key</span> <span class="nv">tdiary-passwd-file</span><span class="p">)</span>
   <span class="ss">:vc</span> <span class="p">(</span><span class="ss">:url</span> <span class="s">"https://github.com/uwabami/tdiary-mode"</span><span class="p">)</span>
-  <span class="ss">:preface</span>
-  <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'tdiary-mode</span><span class="p">)</span>
+  <span class="ss">:preface</span> <span class="p">(</span><span class="nv">my:vc-installed-package</span> <span class="ss">'tdiary-mode</span><span class="p">)</span>
   <span class="ss">:config</span>
   <span class="p">(</span><span class="k">setq</span> <span class="nv">tdiary-text-directory</span> <span class="p">(</span><span class="nv">concat</span> <span class="p">(</span><span class="nv">getenv</span> <span class="s">"HOME"</span><span class="p">)</span> <span class="s">"/Nextcloud/tdiary/"</span><span class="p">)</span>
         <span class="nv">tdiary-diary-list</span> <span class="o">'</span><span class="p">((</span><span class="s">"log"</span> <span class="s">"https://uwabami.junkhub.org/log/"</span><span class="p">))</span>
@@ -6851,7 +6840,7 @@ along with this program. If not, see &lt;https://www.gnu.org/licenses/&gt;.
       <footer>
         <p>&copy; 2006-2026
   <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-  Lastupdate: 2026-02-20 18:26:16 +0000
+  Lastupdate: 2026-02-21 02:00:03 +0000
   <br/>
   Powered by
   <a href="https://orgmode.org/" rel="noopener" title="Org mode">
