@@ -1,0 +1,61 @@
+From: Youhei SASAKI <uwabami@gfd-dennou.org>
+Date: Fri, 20 Feb 2026 12:42:41 +0900
+Subject: Fix Emoji Font Supoort
+
+Signed-off-by: Youhei SASAKI <uwabami@gfd-dennou.org>
+---
+ src/rxvtfont.C | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/src/rxvtfont.C b/src/rxvtfont.C
+index cfc22ad..36309be 100644
+--- a/src/rxvtfont.C
++++ b/src/rxvtfont.C
+@@ -154,10 +154,13 @@ static const struct rxvt_fallback_font {
+ 
+ // these characters are used to guess the font height and width
+ // pango uses a similar algorithm and doesn't trust the font either.
+-static uint16_t extent_test_chars[] = {
++static text_t extent_test_chars[] = {
+   '0', '1', '8', 'a', 'd', 'x', 'm', 'y', 'g', 'W', 'X', '\'', '_',
+   0x00cd, 0x00d5, 0x0114, 0x0177, 0x0643,	// ÍÕĔŷﻙ
+   0x304c, 0x672c,				// が本
++#if UNICODE_3
++  0x1f604,
++#endif
+ };
+ 
+ #define dTermDisplay Display *disp = term->dpy
+@@ -939,7 +942,7 @@ rxvt_font_x11::load (const rxvt_fontprop &prop, bool force_prop)
+ 
+   width = 1;
+ 
+-  for (uint16_t *t = extent_test_chars; t < extent_test_chars + ecb_array_length (extent_test_chars); t++)
++  for (text_t *t = extent_test_chars; t < extent_test_chars + ecb_array_length (extent_test_chars); t++)
+     {
+       if (FROM_UNICODE (cs, *t) == NOCHAR)
+         continue;
+@@ -1273,9 +1276,9 @@ rxvt_font_xft::load (const rxvt_fontprop &prop, bool force_prop)
+ 
+   XftUnlockFace (f);
+ 
+-  for (uint16_t *t = extent_test_chars; t < extent_test_chars + ecb_array_length (extent_test_chars); t++)
++  for (text_t *t = extent_test_chars; t < extent_test_chars + ecb_array_length (extent_test_chars); t++)
+     {
+-      FcChar16 ch = *t;
++      text_t ch = *t;
+ 
+       if (cs != CS_UNICODE
+           && ch > 0x100
+@@ -1288,7 +1291,11 @@ rxvt_font_xft::load (const rxvt_fontprop &prop, bool force_prop)
+         continue;
+ 
+       XGlyphInfo g;
++#ifdef UNICODE_3
++      XftTextExtents32 (disp, f, &ch, 1, &g);
++#else
+       XftTextExtents16 (disp, f, &ch, 1, &g);
++#endif
+ 
+       g.width -= g.x;
+ 
