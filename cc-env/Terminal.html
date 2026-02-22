@@ -270,6 +270,9 @@ Color Scheme は沢山ありすぎて結構迷う. <a href="https://wezterm.org/
 </p>
 <figure class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">wezterm</span> <span class="o">=</span> <span class="nb">require</span> <span class="s1">'wezterm'</span>
 <span class="kd">local</span> <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">if</span> <span class="n">wezterm</span><span class="p">.</span><span class="n">config_builder</span> <span class="k">then</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="n">wezterm</span><span class="p">.</span><span class="n">config_builder</span><span class="p">()</span>
+<span class="k">end</span>
 
 <span class="c1">-- default gui startup args</span>
 <span class="n">config</span><span class="p">.</span><span class="n">default_gui_startup_args</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"start"</span><span class="p">,</span> <span class="s2">"--always-new-process"</span> <span class="p">}</span>
@@ -277,29 +280,60 @@ Color Scheme は沢山ありすぎて結構迷う. <a href="https://wezterm.org/
 
 <span class="c1">-- font settings</span>
 <span class="n">config</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">wezterm</span><span class="p">.</span><span class="n">font_with_fallback</span> <span class="p">{</span>
-   <span class="p">{</span> <span class="n">family</span> <span class="o">=</span> <span class="s1">'Victor Mono NF'</span><span class="p">,</span>
+   <span class="c1">-- ------------------------------------------------------------------------</span>
+   <span class="c1">-- a 0 7 69  :&lt; &gt;= &lt;= -&gt; &lt;-</span>
+   <span class="c1">-- ------------------------------------------------------------------------</span>
+   <span class="p">{</span> <span class="n">family</span> <span class="o">=</span> <span class="s1">'Victor Mono'</span><span class="p">,</span>
      <span class="n">weight</span> <span class="o">=</span> <span class="s1">'Medium'</span><span class="p">,</span>
      <span class="n">assume_emoji_presentation</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">,</span>
-     <span class="n">harfbuzz_features</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'ss01'</span><span class="p">,</span> <span class="c1">-- Single-storey a</span>
-                           <span class="s1">'ss02'</span><span class="p">,</span> <span class="c1">-- Slashed zero, variant 1</span>
-                           <span class="c1">-- 'ss03', -- Slashed zero, variant 2</span>
-                           <span class="c1">-- 'ss04', -- Slashed zero, variant 3</span>
-                           <span class="c1">-- 'ss05', -- Slashed zero, variant 4</span>
-                           <span class="c1">-- 'ss06', -- Slashed seven</span>
-                           <span class="s1">'ss07'</span><span class="p">,</span> <span class="c1">-- Straighter 6 and 9</span>
-                           <span class="c1">-- 'ss08=0', -- More fishlike turbofish</span>
-     <span class="p">},</span>
+     <span class="c1">-- リガチャの設定は↓の切り替えコマンドで行なう</span>
+     <span class="c1">-- harfbuzz_features = {</span>
+     <span class="c1">--  'calt=0',   -- 記号類の合字の無効化</span>
+     <span class="c1">--  -- 'liga=0', -- 文脈依存の合字</span>
+     <span class="c1">--  -- 'clig=0', -- 標準の合字</span>
+     <span class="c1">--  'ss01', -- Single-storey a</span>
+     <span class="c1">--  'ss02', -- Slashed zero, variant 1</span>
+     <span class="c1">--  -- 'ss03', -- Slashed zero, variant 2</span>
+     <span class="c1">--  -- 'ss04', -- Slashed zero, variant 3</span>
+     <span class="c1">--  -- 'ss05', -- Slashed zero, variant 4</span>
+     <span class="c1">--  'ss06', -- Slashed seven</span>
+     <span class="c1">--  'ss07', -- Straighter 6 and 9</span>
+     <span class="c1">--  -- 'ss08=0', -- More fishlike turbofish</span>
+     <span class="c1">-- },</span>
    <span class="p">},</span>
+   <span class="c1">-- ------------------------------------------------------------------------</span>
    <span class="c1">-- Ⅰ,Ⅱと I, II の区別はつくか?</span>
-   <span class="c1">-- { family = 'IBM Plex Sans JP',</span>
-   <span class="c1">--   weight = 'Regular',</span>
-   <span class="c1">--   assume_emoji_presentation = false },</span>
-   <span class="c1">-- { family = 'BIZ UDGothic',</span>
-   <span class="c1">--   weight = 'Regular',</span>
-   <span class="c1">--   assume_emoji_presentation = false },</span>
+   <span class="c1">-- ①と⑳は?全角スペース 　 は? 半角ｶﾀｶﾅは?</span>
+   <span class="c1">-- ------------------------------------------------------------------------</span>
    <span class="p">{</span> <span class="n">family</span> <span class="o">=</span> <span class="s1">'Migu 1M'</span><span class="p">,</span>
-     <span class="n">assume_emoji_presentation</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">},</span>
+     <span class="n">assume_emoji_presentation</span> <span class="o">=</span> <span class="kc">false</span>
+   <span class="p">},</span>
+   <span class="p">{</span> <span class="n">family</span> <span class="o">=</span> <span class="s1">'Symbols Nerd Font'</span><span class="p">,</span>
+     <span class="n">assume_emoji_presentation</span> <span class="o">=</span> <span class="kc">false</span>
+   <span class="p">},</span>
+   <span class="p">{</span> <span class="n">family</span> <span class="o">=</span> <span class="s1">'Noto Color Emoji'</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">8</span> <span class="p">},</span>
 <span class="p">}</span>
+<span class="c1">-- ---------------------------------------------------------------------------</span>
+<span class="c1">-- リガチャの ON/OFF を切り替えるトグル機能</span>
+<span class="c1">-- - 現状は先頭に 'calt=0' があるかどうかで判定</span>
+<span class="c1">-- - 切り替えているのは記号類の合字のみ</span>
+<span class="c1">-- ---------------------------------------------------------------------------</span>
+<span class="kd">local</span> <span class="k">function</span> <span class="nf">toggle_ligatures</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">pane</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">liga</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'calt=0'</span><span class="p">,</span> <span class="s1">'ss01'</span><span class="p">,</span> <span class="s1">'ss02'</span><span class="p">,</span> <span class="s1">'ss06'</span><span class="p">,</span> <span class="s1">'ss07'</span> <span class="p">};</span>
+  <span class="kd">local</span> <span class="n">overrides</span> <span class="o">=</span> <span class="n">window</span><span class="p">:</span><span class="n">get_config_overrides</span><span class="p">()</span> <span class="ow">or</span> <span class="p">{}</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">overrides</span><span class="p">.</span><span class="n">harfbuzz_features</span>
+    <span class="ow">or</span> <span class="n">overrides</span><span class="p">.</span><span class="n">harfbuzz_features</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'calt=1'</span> <span class="k">then</span>
+    <span class="n">overrides</span><span class="p">.</span><span class="n">harfbuzz_features</span> <span class="o">=</span> <span class="n">liga</span>
+    <span class="c1">-- }</span>
+  <span class="k">else</span>
+    <span class="n">liga</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'calt=1'</span><span class="p">;</span>
+    <span class="n">overrides</span><span class="p">.</span><span class="n">harfbuzz_features</span> <span class="o">=</span> <span class="n">liga</span>
+  <span class="k">end</span>
+  <span class="n">window</span><span class="p">:</span><span class="n">set_config_overrides</span><span class="p">(</span><span class="n">overrides</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">wezterm</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s2">"toggle-ligatures"</span><span class="p">,</span> <span class="n">toggle_ligatures</span><span class="p">)</span>
+<span class="c1">-- キーボードショートカットの設定は↓</span>
+<span class="c1">-- ---------------------------------------------------------------------------</span>
 <span class="n">config</span><span class="p">.</span><span class="n">bold_brightens_ansi_colors</span> <span class="o">=</span> <span class="s1">'BrightAndBold'</span>
 <span class="c1">-- 文字幅</span>
 <span class="c1">-- @see github.com/hamano/locale-eaw --</span>
@@ -309,7 +343,7 @@ Color Scheme は沢山ありすぎて結構迷う. <a href="https://wezterm.org/
 <span class="n">config</span><span class="p">.</span><span class="n">font_size</span> <span class="o">=</span> <span class="mi">13</span>
 <span class="n">config</span><span class="p">.</span><span class="n">cell_width</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">85</span>
 <span class="n">config</span><span class="p">.</span><span class="n">line_height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">85</span>
-<span class="n">config</span><span class="p">.</span><span class="n">underline_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+<span class="n">config</span><span class="p">.</span><span class="n">underline_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
 
 <span class="n">config</span><span class="p">.</span><span class="n">unicode_version</span> <span class="o">=</span> <span class="mi">15</span>
 <span class="c1">-- config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"</span>
@@ -324,7 +358,7 @@ Color Scheme は沢山ありすぎて結構迷う. <a href="https://wezterm.org/
 <span class="n">config</span><span class="p">.</span><span class="n">mux_enable_ssh_agent</span> <span class="o">=</span> <span class="kc">false</span>
 
 <span class="c1">-- color settings</span>
-<span class="n">config</span><span class="p">.</span><span class="n">window_background_opacity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">92</span>
+<span class="n">config</span><span class="p">.</span><span class="n">window_background_opacity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">95</span>
 <span class="n">config</span><span class="p">.</span><span class="n">text_background_opacity</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">config</span><span class="p">.</span><span class="n">color_scheme</span> <span class="o">=</span> <span class="s1">'Dracula (Official)'</span>
 <span class="c1">-- misc.</span>
@@ -349,8 +383,7 @@ Color Scheme は沢山ありすぎて結構迷う. <a href="https://wezterm.org/
 <span class="n">config</span><span class="p">.</span><span class="n">hide_mouse_cursor_when_typing</span> <span class="o">=</span> <span class="kc">false</span>
 <span class="n">config</span><span class="p">.</span><span class="n">pane_focus_follows_mouse</span> <span class="o">=</span> <span class="kc">true</span>
 
-
-
+<span class="c1">-- リガチャの切り替えコマンド</span>
 <span class="c1">-- key binding</span>
 <span class="n">config</span><span class="p">.</span><span class="n">disable_default_key_bindings</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="n">config</span><span class="p">.</span><span class="n">keys</span> <span class="o">=</span> <span class="p">{</span>
@@ -380,6 +413,11 @@ Color Scheme は沢山ありすぎて結構迷う. <a href="https://wezterm.org/
    <span class="p">{</span> <span class="n">key</span> <span class="o">=</span> <span class="s1">'+'</span><span class="p">,</span>
      <span class="n">mods</span> <span class="o">=</span> <span class="s1">'CTRL|SHIFT'</span><span class="p">,</span>
      <span class="n">action</span> <span class="o">=</span> <span class="n">wezterm</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">IncreaseFontSize</span>
+   <span class="p">},</span>
+   <span class="c1">-- リガチャのトグル: とりあえず空いているので C-L に割り当て</span>
+   <span class="p">{</span> <span class="n">key</span> <span class="o">=</span> <span class="s1">'L'</span><span class="p">,</span>
+     <span class="n">mods</span> <span class="o">=</span> <span class="s1">'CTRL|SHIFT'</span><span class="p">,</span>
+     <span class="n">action</span> <span class="o">=</span> <span class="n">wezterm</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="n">EmitEvent</span><span class="p">(</span><span class="s2">"toggle-ligatures"</span><span class="p">)</span>
    <span class="p">},</span>
 <span class="p">}</span>
 
@@ -480,7 +518,7 @@ Wayland 環境でも <code>/.Xdefaults</code> に適宜設定しておけば OK.
 <span class="n">URxvt</span>*<span class="n">italicfont</span>: <span class="n">xft</span>:<span class="n">Victor</span> <span class="n">Mono</span> <span class="n">NF</span>:<span class="n">style</span>=<span class="n">Italic</span>:<span class="n">size</span>=<span class="m">13</span>,<span class="n">xft</span>:<span class="n">Migu</span> <span class="m">1</span><span class="n">M</span>:<span class="n">style</span>=<span class="n">Italic</span>:<span class="n">size</span>=<span class="m">13</span>,<span class="n">xft</span>:<span class="n">Twemoji</span> <span class="n">Mozilla</span>:<span class="n">size</span>=<span class="m">13</span>:<span class="n">style</span>=<span class="n">Regular</span>,<span class="n">xft</span>:<span class="n">Symbola</span>:<span class="n">size</span>=<span class="m">13</span>:<span class="n">style</span>=<span class="n">Regular</span>
 <span class="n">URxvt</span>*<span class="n">bolditalicfont</span>: <span class="n">xft</span>:<span class="n">Victor</span> <span class="n">Mono</span> <span class="n">NF</span>:<span class="n">style</span>=<span class="n">BoldItalic</span>:<span class="n">size</span>=<span class="m">13</span>,<span class="n">xft</span>:<span class="n">Migu</span> <span class="m">1</span><span class="n">M</span>:<span class="n">style</span>=<span class="n">Bolditalic</span>:<span class="n">size</span>=<span class="m">13</span>,<span class="n">xft</span>:<span class="n">Twemoji</span> <span class="n">Mozilla</span>:<span class="n">size</span>=<span class="m">13</span>:<span class="n">style</span>=<span class="n">Regular</span>,<span class="n">xft</span>:<span class="n">Symbola</span>:<span class="n">size</span>=<span class="m">13</span>:<span class="n">style</span>=<span class="n">Regular</span>
 <span class="n">URxvt</span>*<span class="n">letterSpace</span>: -<span class="m">2</span>
-<span class="n">URxvt</span>*<span class="n">lineSpace</span>: -<span class="m">5</span>
+<span class="n">URxvt</span>*<span class="n">lineSpace</span>: -<span class="m">2</span>
 ! <span class="n">misc</span> <span class="n">settings</span>
 <span class="n">URxvt</span>*<span class="n">saveLines</span>:   <span class="m">0</span>
 <span class="n">URxvt</span>*<span class="n">scrollBar</span>:   <span class="n">false</span>
@@ -536,16 +574,16 @@ Wayland 環境でも <code>/.Xdefaults</code> に適宜設定しておけば OK.
 <p>
 設定は以下の通り.
 </p>
-<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: conf; coding: utf-8-unix; indent-tabs-mode: nil -*-
+<figure class="highlight"><pre><code class="language-conf" data-lang="conf"><span class="c"># -*- mode: tmux; mode: rainbow; coding: utf-8-unix; indent-tabs-mode: nil -*-
 #
 # Author: Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
-# $Lastupdate: 2026-02-19 14:45:47$
+# $Lastupdate: 2026-02-22 17:08:12$
 # License: Public domain.
 </span>
 <span class="c">## general
 # ESC での遅延解消: don't wait
 </span><span class="n">set</span> -<span class="n">sg</span> <span class="n">escape</span>-<span class="n">time</span> <span class="m">0</span>
-<span class="c"># Window を 0,  Pane を 1 始まりに
+<span class="c"># Window, pane  を 0 始まりに
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
 <span class="n">set</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">base</span>-<span class="n">index</span> <span class="m">0</span>
 <span class="c"># mouse 操作を無効化
@@ -553,7 +591,7 @@ Wayland 環境でも <code>/.Xdefaults</code> に適宜設定しておけば OK.
 <span class="c"># disable bell action
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">bell</span>-<span class="n">action</span> <span class="n">none</span>
 <span class="c"># Window renmae enabled
-</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">automatic</span>-<span class="n">rename</span> <span class="n">off</span>
+</span><span class="n">setw</span> -<span class="n">g</span> <span class="n">automatic</span>-<span class="n">rename</span> <span class="n">on</span>
 <span class="c"># default で起動するコマンド: zsh
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">default</span>-<span class="n">command</span> <span class="n">zsh</span>
 <span class="c"># prefix の有効時間: no wait
@@ -581,13 +619,16 @@ Wayland 環境でも <code>/.Xdefaults</code> に適宜設定しておけば OK.
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">history</span>-<span class="n">limit</span> <span class="m">8192</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">active</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#ff5252,bg=default"</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">style</span> <span class="s2">"fg=#64FCDA,bg=default"</span>
-<span class="c"># don't show other activity
+<span class="c"># set -g pane-border-status bottom
+# set -g pane-border-format " [ ###P #T ] "
+# set -g pane-border-format "#{pane_index} #{pane_title}"
+# don't show other activity
 </span><span class="n">set</span> -<span class="n">g</span> <span class="n">monitor</span>-<span class="n">activity</span> <span class="n">off</span>
 <span class="n">set</span> -<span class="n">g</span> <span class="n">visual</span>-<span class="n">activity</span> <span class="n">off</span>
 <span class="n">set</span> -<span class="n">g</span> <span class="n">allow</span>-<span class="n">rename</span> <span class="n">on</span>
 <span class="c"># pane number display
 # set -g display-panes-time 4000
-</span><span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">style</span> <span class="s2">"fg=#888888"</span>
+</span><span class="n">set</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">style</span> <span class="s2">"fg=#888888,bg=#000000"</span>
 <span class="c"># set -g status-interval 1
 </span><span class="n">setw</span> -<span class="n">g</span> <span class="n">window</span>-<span class="n">status</span>-<span class="n">current</span>-<span class="n">style</span> <span class="s2">"fg=#ff5252,bg=default"</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">message</span>-<span class="n">style</span> <span class="s2">"fg=#242424,bg=#ffd740,bright"</span>
@@ -595,6 +636,7 @@ Wayland 環境でも <code>/.Xdefaults</code> に適宜設定しておけば OK.
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">right</span>-<span class="n">length</span> <span class="m">15</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">left</span> <span class="s2">"#[fg=#4c4cff][#[fg=#f6f3e8]#h#[fg=#4c4cff]]#[default] "</span>
 <span class="n">setw</span> -<span class="n">g</span> <span class="n">status</span>-<span class="n">right</span> <span class="s2">"#[fg=#4c4cff]|#[fg=#f6f3e8]#(date +%y/%m/%d)#[fg=#4c4cff]|#[default]"</span>
+<span class="n">setw</span> -<span class="n">g</span> <span class="n">pane</span>-<span class="n">border</span>-<span class="n">format</span> <span class="s1">' #{=/-20/…:pane_title} [#{=/-20/…:pane_current_command}] #(pgrep -P "#{pane_pid}" | tr "\n" " ")#{pane_current_path} #{?alternate_on,&lt;Alt Mode&gt; ,}'</span>
 
 <span class="c">## keybind
 # prefix:
@@ -647,8 +689,8 @@ Wayland 環境でも <code>/.Xdefaults</code> に適宜設定しておけば OK.
 
 <span class="c">## Custom command
 </span><span class="n">unbind</span>-<span class="n">key</span> -
-<span class="c"># bind - run-shell ~/.config/tmux/weechat-toggle.sh
-# unbind-key b
+<span class="n">bind</span> - <span class="n">run</span>-<span class="n">shell</span> ~/.<span class="n">config</span>/<span class="n">tmux</span>/<span class="n">weechat</span>-<span class="n">toggle</span>.<span class="n">sh</span>
+<span class="c"># unbind-key b
 # bind-key b split-window 'tmux lsw | peco | cut -d":" -f 1 | xargs tmux select-window -t'
 </span>
 <span class="n">unbind</span> <span class="n">C</span>-<span class="n">Up</span>
