@@ -237,4 +237,10 @@
   </url>
 
 
+<url>
+    <loc>https://uwabami.github.io/assets/css/style.css</loc>
+    <xhtml:link rel="alternate" hreflang="" href="https://uwabami.github.io/assets/css/style.css" />
+    <changefreq>monthly</changefreq>
+  </url>
+
 </urlset>
