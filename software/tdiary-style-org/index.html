@@ -29,14 +29,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site">
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2026-03-11T06:26:52+09:00">
+<meta property="article:published_time" content="2026-03-11T08:50:59+09:00">
 <meta name="twitter:card" content="summary">
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png">
 <meta property="twitter:title" content="TDiary::Style::Org">
 <meta name="twitter:site" content="@uwabami_frozen">
 <meta name="twitter:creator" content="@Youhei SASAKI">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2026-03-11T06:26:52+09:00","datePublished":"2026-03-11T06:26:52+09:00","description":"Org-mode 形式で tDiary を書くためのライブラリ","headline":"TDiary::Style::Org","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/software/tdiary-style-org/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2026-03-11T08:50:59+09:00","datePublished":"2026-03-11T08:50:59+09:00","description":"Org-mode 形式で tDiary を書くためのライブラリ","headline":"TDiary::Style::Org","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/software/tdiary-style-org/"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -140,18 +140,21 @@ TDiary::Style::Org は
 
 <p>
 Org から HTML の変換には <a href="https://github.com/wallyqs/org-ruby">wallyqs/org-ruby: An Org mode parser written in Ruby</a> を用いています．
-また，ソースコードのシンタックスハイライトには <a href="https://github.com/tmm1/pygments.rb">tmm1/pygments.rb: pygments syntax highlighting in ruby</a>
+</p>
+
+<p>
+ソースコードのシンタックスハイライトには <a href="https://github.com/tmm1/pygments.rb">tmm1/pygments.rb: pygments syntax highlighting in ruby</a>
 を使っています．
 </p>
 
 
 <figure>
-<a href="src.webp" class="pseudo-lightbox-trigger"><img src="src_thumb.webp" alt="編集画面" width="800" height="628" loading="lazy"></a>
+<a href="src.webp" class="pseudo-lightbox-trigger"><img src="src_thumb.webp" alt="編集画面" width="800" height="649" loading="lazy"></a>
 
 </figure>
 
 <figure>
-<a href="result.webp" class="pseudo-lightbox-trigger"><img src="result_thumb.webp" alt="出力結果" width="800" height="628" loading="lazy"></a>
+<a href="result.webp" class="pseudo-lightbox-trigger"><img src="result_thumb.webp" alt="出力結果" width="800" height="649" loading="lazy"></a>
 
 </figure>
 </div>
@@ -162,18 +165,12 @@ Org から HTML の変換には <a href="https://github.com/wallyqs/org-ruby">wa
 <p>
 tDiary の <code>Gemfile.local</code> に
 </p>
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">'tdiary-style-org'</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">'tdiary-style-org'</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">'https://github.com/uwabami/tdiary-style-org'</span><span class="p">,</span> <span class="ss">:ref</span> <span class="o">=&gt;</span> <span class="s1">'master'</span></code></pre></figure>
 <p>
 を追加して，
 </p>
 <pre class="example">
 % bundle install
-</pre>
-<p>
-とするか，
-</p>
-<pre class="example">
-% gem install tdiary-style-org
 </pre>
 <p>
 として下さい．
@@ -231,9 +228,10 @@ tDiary の <code>Gemfile.local</code> に
 </ul>
 </li>
 <li class="off">
-<code>[ ]</code> can't handlinng "alt" in image link: due to org-ruby limitation.</li>
+<code>[ ]</code> use rouge instead of pygments.rb</li>
 </ul>
 </li>
+<li>can't handlinng "alt" in image link: due to org-ruby limitation.</li>
 </ul>
 </div>
 </div>
@@ -275,7 +273,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <footer>
         <p>&copy; 2006-2026
   <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-  Lastupdate: 2026-03-10 21:26:52 +0000
+  Lastupdate: 2026-03-10 23:50:59 +0000
   <br>
   Powered by
   <a href="https://orgmode.org/" rel="noopener" title="Org mode">
