@@ -22,19 +22,21 @@
 <meta property="og:title" content="TDiary::Style::Org">
 <meta name="author" content="Youhei SASAKI">
 <meta property="og:locale" content="en">
+<meta name="description" content="Org-mode style for tDiary">
+<meta property="og:description" content="Org-mode style for tDiary">
 <link rel="canonical" href="https://uwabami.github.io/software/tdiary-style-org/index.en.html">
 <meta property="og:url" content="https://uwabami.github.io/software/tdiary-style-org/index.en.html">
 <meta property="og:site_name" content="Youhei SASAKI’s official site">
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2018-10-17T06:15:46+09:00">
+<meta property="article:published_time" content="2026-03-11T06:27:25+09:00">
 <meta name="twitter:card" content="summary">
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png">
 <meta property="twitter:title" content="TDiary::Style::Org">
 <meta name="twitter:site" content="@uwabami_frozen">
 <meta name="twitter:creator" content="@Youhei SASAKI">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2018-10-17T06:15:46+09:00","datePublished":"2018-10-17T06:15:46+09:00","headline":"TDiary::Style::Org","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/index.en.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/software/tdiary-style-org/index.en.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2026-03-11T06:27:25+09:00","datePublished":"2026-03-11T06:27:25+09:00","description":"Org-mode style for tDiary","headline":"TDiary::Style::Org","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-style-org/index.en.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/software/tdiary-style-org/index.en.html"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -109,15 +111,14 @@
         <div class="content">
           <h1 class="page-title">TDiary::Style::Org</h1>
           <hr>
-<div id="outline-container-org348eccb" class="outline-2">
-<h2 id="orgbe33c2ee">
-<a id="org348eccb"></a>What's this?</h2>
+<div>
+<h2 id="orgbe33c2ee">What's this?</h2>
 <div class="outline-text-2" id="text-orgbe33c2ee">
-<p><amp-img src="https://travis-ci.org/uwabami/tdiary-style-org.svg?branch=master" width="72px" height="20px" layout="fixed" class="travis_badge"></amp-img>
-<span id="forkongithub">
-  <a href="https://github.com/uwabami/tdiary-style-org">Fork me on GitHub</a>
-</span>
-</p>
+
+<figure>
+<img src="https://github.com/uwabami/tdiary-style-org/actions/workflows/test.yml/badge.svg" alt="badge.svg" class="org-svg">
+
+</figure>
 
 <p>
 The <code>TDiary::Style::Org</code> is provide <a href="http://orgmode.org/">Org-mode</a> style for <a href="http://www.tdiary.org/">tDiary</a>.
@@ -126,19 +127,18 @@ Convert Org to HTML by  <a href="https://github.com/wallyqs/org-ruby">wallyqs/or
 
 
 <figure>
-<img src="src.webp" alt="src.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753">
+<a href="src.webp" class="pseudo-lightbox-trigger"><img src="src_thumb.webp" alt="edit" width="800" height="628" loading="lazy"></a>
 
 </figure>
 
 <figure>
-<img src="result.webp" alt="result.webp" class="sm-col md-col-6 sm-col-12 pr2" width="970" height="753">
+<a href="result.webp" class="pseudo-lightbox-trigger"><img src="result_thumb.webp" alt="result" width="800" height="628" loading="lazy"></a>
 
 </figure>
 </div>
 </div>
-<div id="outline-container-org1c73b10" class="outline-2">
-<h2 id="org6e2eeda3">
-<a id="org1c73b10"></a>Installation</h2>
+<div>
+<h2 id="org6e2eeda3">Installation</h2>
 <div class="outline-text-2" id="text-org6e2eeda3">
 <p>
 Add this line to your application's Gemfile.local:
@@ -158,9 +158,8 @@ Or install it yourself as:
 </pre>
 </div>
 </div>
-<div id="outline-container-org0a3cb57" class="outline-2">
-<h2 id="orgd6c9ef88">
-<a id="org0a3cb57"></a>Usage</h2>
+<div>
+<h2 id="orgd6c9ef88">Usage</h2>
 <div class="outline-text-2" id="text-orgd6c9ef88">
 <p>
 If you want to use this style, add @style into tdiary.conf below:
@@ -168,9 +167,8 @@ If you want to use this style, add @style into tdiary.conf below:
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="vi">@style</span> <span class="o">=</span> <span class="s1">'Org'</span></code></pre></figure>
 </div>
 </div>
-<div id="outline-container-org7a9ab7c" class="outline-2">
-<h2 id="org97554279">
-<a id="org7a9ab7c"></a>Syntax</h2>
+<div>
+<h2 id="org97554279">Syntax</h2>
 <div class="outline-text-2" id="text-org97554279">
 <p>
 Basically, samve as  <a href="http://orgmode.org/">Org-mode</a>.
@@ -184,9 +182,8 @@ Basically, samve as  <a href="http://orgmode.org/">Org-mode</a>.
 </ul>
 </div>
 </div>
-<div id="outline-container-org4a62400" class="outline-2">
-<h2 id="org8b745107">
-<a id="org4a62400"></a>Contributing</h2>
+<div>
+<h2 id="org8b745107">Contributing</h2>
 <div class="outline-text-2" id="text-org8b745107">
 <ol class="org-ol">
 <li>Fork it</li>
@@ -197,9 +194,9 @@ Basically, samve as  <a href="http://orgmode.org/">Org-mode</a>.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgb86c386" class="outline-2">
+<div>
 <h2 id="org479649c4">
-<a id="orgb86c386"></a><span class="todo TODO">TODO</span> ToDo</h2>
+<span class="todo TODO">TODO</span> ToDo</h2>
 <div class="outline-text-2" id="text-org479649c4">
 <ul class="org-ul">
 <li>on going… <code>[2/3]</code>
@@ -219,9 +216,8 @@ Basically, samve as  <a href="http://orgmode.org/">Org-mode</a>.
 </ul>
 </div>
 </div>
-<div id="outline-container-org496088b" class="outline-2">
-<h2 id="orgf6905d6a">
-<a id="org496088b"></a>Copyright</h2>
+<div>
+<h2 id="orgf6905d6a">Copyright</h2>
 <div class="outline-text-2" id="text-orgf6905d6a">
 <pre class="example">
 Copyright (c) 2015-2016 Youhei SASAKI &lt;uwabami@gfd-dennou.org&gt;
@@ -256,9 +252,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </span>
       <hr>
       <footer>
-        <p>&copy; 2006-2018
+        <p>&copy; 2006-2026
   <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-  Lastupdate: 2018-10-16 21:15:46 +0000
+  Lastupdate: 2026-03-10 21:27:25 +0000
   <br>
   Powered by
   <a href="https://orgmode.org/" rel="noopener" title="Org mode">
@@ -276,6 +272,46 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       </footer>
     </div>
+    <!-- check lightbox -->
+      <div id="pseudo-lightbox-modal">
+        <span id="pseudo-lightbox-close">&times;</span>
+        <img id="pseudo-lightbox-img" src="">
+      </div>
+      <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const triggers = document.querySelectorAll('.pseudo-lightbox-trigger');
+    const modal = document.getElementById('pseudo-lightbox-modal');
+    const modalImg = document.getElementById('pseudo-lightbox-img');
+    const closeBtn = document.getElementById('pseudo-lightbox-close');
+
+    if (!modal) return;
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            modalImg.src = this.href;
+            modal.classList.add('is-active');
+        });
+    });
+
+    const closeModal = () => {
+        modal.classList.remove('is-active');
+        setTimeout(() => { modalImg.src = ""; }, 300);
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+            closeModal();
+        }
+    });
+});
+      </script>
+
     <!-- /check lightbox -->
   </body>
 </html>
