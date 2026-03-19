@@ -25,14 +25,14 @@
 <meta property="og:site_name" content="Youhei SASAKI’s official site">
 <meta property="og:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2020-01-14T12:39:47+09:00">
+<meta property="article:published_time" content="2026-03-20T15:42:46+09:00">
 <meta name="twitter:card" content="summary">
 <meta property="twitter:image" content="https://uwabami.github.io/assets/img/eyecatch_1600x900.png">
 <meta property="twitter:title" content="tDiary-mode">
 <meta name="twitter:site" content="@uwabami_frozen">
 <meta name="twitter:creator" content="@Youhei SASAKI">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2020-01-14T12:39:47+09:00","datePublished":"2020-01-14T12:39:47+09:00","headline":"tDiary-mode","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-mode/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/software/tdiary-mode/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Youhei SASAKI","url":"https://uwabami.github.io/"},"dateModified":"2026-03-20T15:42:46+09:00","datePublished":"2026-03-20T15:42:46+09:00","headline":"tDiary-mode","image":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://uwabami.github.io/software/tdiary-mode/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://uwabami.github.io/assets/img/eyecatch_1600x900.png"},"name":"Youhei SASAKI"},"url":"https://uwabami.github.io/software/tdiary-mode/"}</script>
 <!-- End Jekyll SEO tag -->
     <!-- end jekyll seo -->
     <link rel="icon" type="image/x-icon" href="https://uwabami.github.io/assets/img/favicon.ico">
@@ -118,18 +118,18 @@
         <div class="content">
           <h1 class="page-title">tDiary-mode</h1>
           <hr>
-<div id="outline-container-orgb16301c" class="outline-2">
-<h2 id="org69e913f6">
-<a id="orgb16301c"></a>What's this?</h2>
+<div>
+<h2 id="org69e913f6">What's this?</h2>
 <div class="outline-text-2" id="text-org69e913f6">
-<p><span id="forkongithub">
-  <a href="https://github.com/uwabami/tdiary-mode">Fork me on GitHub</a>
-</span>
+<p>
+<span class="icon-github"><a href="https://github.com/uwabami/tdiary-style-org/"><svg height="20" class="octicon octicon-mark-github" viewbox="0 0 16 16" version="1.1" width="20" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg></a></span>
 </p>
 
 <p>
 Emacs から tDiary を更新するための Major mode です.
 </p>
+
+<p><mark>本家の <a href="https://github.com/tdiary/tdiary-contrib">tdiary-contrib</a> へもコミットしました.</mark></p>
 
 <p>
 以前は Junichiro Kita さんが作成されておりましたが,
@@ -144,13 +144,11 @@ Emacs から tDiary を更新するための Major mode です.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgb7b1c87" class="outline-2">
-<h2 id="org3494318d">
-<a id="orgb7b1c87"></a>How to Use</h2>
+<div>
+<h2 id="org3494318d">How to Use</h2>
 <div class="outline-text-2" id="text-org3494318d">
 <p>
-load-path の通った所に <a href="tdiary-mode.el">tdiary-mode.el</a> を置いて,
+load-path の通った所に <a href="https://github.com/uwabami/tdiary-mode/blob/master/tdiary-mode.el">tdiary-mode.el</a> を置いて,
 以下を <code>.emacs</code> に記載して下さい.
 </p>
 <figure class="highlight"><pre><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; 更新する日記のリスト</span>
@@ -205,10 +203,8 @@ M-x tdiary-password-save
 </p>
 </div>
 </div>
-
-<div id="outline-container-org355dd4f" class="outline-2">
-<h2 id="org66f25035">
-<a id="org355dd4f"></a>Notice</h2>
+<div>
+<h2 id="org66f25035">Notice</h2>
 <div class="outline-text-2" id="text-org66f25035">
 <p>
 上手く書き込みできない場合にはご自身のtDiaryで
@@ -223,26 +219,24 @@ sshができない場合は何かしらの方法でCSRF KEYを知る必要があ
 </p>
 </div>
 </div>
-
-<div id="outline-container-org4763921" class="outline-2">
-<h2 id="orgea20b5bc">
-<a id="org4763921"></a>ToDO <code>[/]</code>
+<div>
+<h2 id="orgea20b5bc">ToDO <code>[1/4]</code>
 </h2>
 <div class="outline-text-2" id="text-orgea20b5bc">
 <ul class="org-ul">
 <li class="off">
-<code>[ ]</code> melpa への登録申請</li>
-<li class="off">
 <code>[ ]</code> 認証情報を <code>auth-source</code> で扱う</li>
+<li class="on">
+<code>[X]</code> Customize 対応</li>
 <li class="off">
-<code>[ ]</code> Customize 対応</li>
+<code>[ ]</code> テストの作成</li>
+<li class="off">
+<code>[ ]</code> melpa への登録申請?</li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orga492367" class="outline-2">
-<h2 id="orgcb46cc98">
-<a id="orga492367"></a>Contributing</h2>
+<div>
+<h2 id="orgcb46cc98">Contributing</h2>
 <div class="outline-text-2" id="text-orgcb46cc98">
 <ol class="org-ol">
 <li>Fork it</li>
@@ -253,10 +247,8 @@ sshができない場合は何かしらの方法でCSRF KEYを知る必要があ
 </ol>
 </div>
 </div>
-
-<div id="outline-container-org5e95138" class="outline-2">
-<h2 id="orgdb62b53b">
-<a id="org5e95138"></a>LICENSE</h2>
+<div>
+<h2 id="orgdb62b53b">LICENSE</h2>
 <div class="outline-text-2" id="text-orgdb62b53b">
 <pre class="example">
   Copyright (C) 2002 Junichiro Kita
@@ -264,7 +256,7 @@ sshができない場合は何かしらの方法でCSRF KEYを知る必要があ
   License: GPL-2.0+
 </pre>
 <p>
-@see <a href="LICENSE">LICENSE</a> for detail.
+@see <a href="https://github.com/uwabami/tdiary-mode/blob/master/LICENSE">LICENSE</a> for detail.
 </p>
 </div>
 </div>
@@ -276,9 +268,9 @@ sshができない場合は何かしらの方法でCSRF KEYを知る必要があ
       </span>
       <hr>
       <footer>
-        <p>&copy; 2006-2020
+        <p>&copy; 2006-2026
   <a href="mailto:uwabami@gfd-dennou.org">Youhei SASAKI</a>,
-  Lastupdate: 2020-01-14 03:39:47 +0000
+  Lastupdate: 2026-03-20 06:42:46 +0000
   <br>
   Powered by
   <a href="https://orgmode.org/" rel="noopener" title="Org mode">
